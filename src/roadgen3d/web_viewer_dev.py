@@ -258,6 +258,7 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
         "default_selection": "final_scene",
         "spawn_point": spawn_payload["spawn_point"],
         "forward_vector": spawn_payload["forward_vector"],
+        "lighting_preset": outputs.get("lighting_preset", "bright_day"),
     }
 
 

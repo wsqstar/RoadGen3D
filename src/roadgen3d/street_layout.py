@@ -5969,6 +5969,29 @@ def _place_surrounding_buildings(
     )
 
 
+def _derive_lighting_preset(sky_selection: Any) -> str:
+    """Map sky selection to a viewer lighting preset."""
+    if sky_selection is None:
+        return "bright_day"
+    time_of_day = str(getattr(sky_selection, "time_of_day", "day") or "day").lower()
+    weather_tags = [
+        str(tag).lower()
+        for tag in (getattr(sky_selection, "weather_tags", ()) or ())
+    ]
+    illumination_tags = [
+        str(tag).lower()
+        for tag in (getattr(sky_selection, "illumination_tags", ()) or ())
+    ]
+    all_tags = set(weather_tags) | set(illumination_tags)
+    if time_of_day == "night":
+        return "night_presentation"
+    if time_of_day == "evening":
+        return "golden_hour"
+    if any(tag in all_tags for tag in ("overcast", "cloudy", "foggy", "rainy")):
+        return "overcast"
+    return "bright_day"
+
+
 def compose_street_scene(
     config: StreetComposeConfig,
     manifest_path: Path,
@@ -8329,6 +8352,8 @@ def compose_street_scene(
     for view in render_views:
         if str(view.get("path", "")).strip():
             outputs[f"presentation_{view.get('name', 'view')}"] = str(view["path"])
+
+    outputs["lighting_preset"] = _derive_lighting_preset(sky_selection)
 
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 

@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 import sys
+from hashlib import sha256
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -34,6 +36,8 @@ from roadgen3d.knowledge.source_registry import (  # noqa: E402
     list_sources,
 )
 from roadgen3d.knowledge.pdf_rag import PdfKnowledgeBaseBuilder  # noqa: E402
+from roadgen3d.diff_engine import compute_scene_diff  # noqa: E402
+from roadgen3d.diff_render import render_diff_overlay, render_delta_map  # noqa: E402
 
 
 class ChatMessageModel(BaseModel):
@@ -99,6 +103,11 @@ class ImproveRequestModel(BaseModel):
     comparison: Dict[str, Any] | None = None
     current_patch: Dict[str, Any] | None = None
     weakness_queries: List[str] | None = None
+
+
+class SceneDiffRequestModel(BaseModel):
+    layout_a: str
+    layout_b: str
 
 
 def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
@@ -243,6 +252,52 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         service = app.state.design_service
         items = service.list_recent_scenes(limit=int(limit))
         return make_json_safe({"items": [item.to_dict() for item in items]})
+
+    @app.post("/api/scenes/diff")
+    def scene_diff(request: SceneDiffRequestModel) -> Dict[str, Any]:
+        layout_a = Path(request.layout_a).expanduser().resolve()
+        layout_b = Path(request.layout_b).expanduser().resolve()
+        if not layout_a.exists() or not layout_b.exists():
+            raise HTTPException(status_code=404, detail="One or both layout files not found.")
+        try:
+            payload_a = json.loads(layout_a.read_text(encoding="utf-8"))
+            payload_b = json.loads(layout_b.read_text(encoding="utf-8"))
+        except Exception as exc:
+            raise HTTPException(status_code=400, detail=f"Failed to parse layout: {exc}") from exc
+        return make_json_safe(compute_scene_diff(payload_a, payload_b))
+
+    @app.get("/api/scenes/diff/image")
+    def scene_diff_image(
+        layout_a: str = Query(...),
+        layout_b: str = Query(...),
+        mode: str = Query(default="overlay"),
+    ) -> FileResponse:
+        layout_a_path = Path(layout_a).expanduser().resolve()
+        layout_b_path = Path(layout_b).expanduser().resolve()
+        if not layout_a_path.exists() or not layout_b_path.exists():
+            raise HTTPException(status_code=404, detail="One or both layout files not found.")
+        if mode not in ("overlay", "delta"):
+            raise HTTPException(status_code=400, detail="Invalid mode. Use overlay or delta.")
+
+        cache_key = sha256(f"{layout_a_path}|{layout_b_path}|{mode}".encode("utf-8")).hexdigest()[:16]
+        cache_dir = ROOT / "artifacts" / "diff_images"
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cache_path = cache_dir / f"{cache_key}_{mode}.png"
+
+        if cache_path.exists():
+            return FileResponse(cache_path, media_type="image/png")
+
+        try:
+            if mode == "overlay":
+                render_diff_overlay(layout_a_path, layout_b_path, cache_path)
+            else:
+                render_delta_map(layout_a_path, layout_b_path, cache_path)
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Diff rendering failed: {exc}") from exc
+
+        if not cache_path.exists():
+            raise HTTPException(status_code=500, detail="Diff rendering produced no output.")
+        return FileResponse(cache_path, media_type="image/png")
 
     @app.post("/api/knowledge/rebuild")
     def rebuild_knowledge(request: KnowledgeRebuildRequestModel) -> Dict[str, Any]:
