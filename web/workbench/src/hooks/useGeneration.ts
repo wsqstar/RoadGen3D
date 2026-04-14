@@ -418,7 +418,7 @@ export function useGeneration(
       onStatusChange(`优化失败: ${error instanceof Error ? error.message : String(error)}`);
       return updatedSchemes;
     }
-  }
+  }, []);
 
   /**
    * Create a scene job with a specific config patch
@@ -461,7 +461,7 @@ export function useGeneration(
     }, 60000);
 
     return await pollJobCompletion(response.job_id, onProgress);
-  }, []);
+  }
 
   return {
     generationState,
