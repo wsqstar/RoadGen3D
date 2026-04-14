@@ -91,9 +91,41 @@ python scripts/knowledge/build_sidewalk_index.py
 - 树木、路灯、长椅、垃圾桶、公交站等街道家具
 - 总大小: 49 MB
 
+**数据来源**:
+- **UrbanVerse 数据集**: 主要的 3D 城市场景资产来源
+  - 通过 `src/roadgen3d/urbanverse_import.py` 脚本导入
+  - 包含高质量的街景对象 (长椅、路灯、垃圾桶等)
+- **Objaverse 数据集**: 补充的开源 3D 模型
+  - 通过 `src/roadgen3d/objaverse_import.py` 脚本导入
+  - 8 个额外资产 (bench, lamp, trash 等)
+  - 基于 LVIS 分类和关键词匹配筛选
+- **参数化生成**: 程序化生成的资产
+  - 101 个资产通过算法生成
+
 **获取方式**: 
 - 联系项目维护者获取下载链接
 - 或通过内部资产管理系统导出
+- 或使用 UrbanVerse/Objaverse 原始数据集重新导入
+
+#### 从 UrbanVerse 重新导入
+
+如果你有 UrbanVerse 数据集的访问权限：
+
+```bash
+# 运行 UrbanVerse 导入脚本
+python src/roadgen3d/urbanverse_import.py \
+  --urbanverse-root /path/to/urbanverse/dataset \
+  --output-root data/real
+```
+
+#### 从 Objaverse 重新导入
+
+```bash
+# 运行 Objaverse 导入脚本
+python src/roadgen3d/objaverse_import.py \
+  --output-dir data/real/meshes \
+  --manifest data/real/objaverse_assets_manifest.jsonl
+```
 
 ### 2. 2D 俯视纹理 (`assets/`)
 
