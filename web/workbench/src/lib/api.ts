@@ -1,4 +1,5 @@
-import { API_BASE, EvaluationScores, WalkabilityIndicators, ComparisonResult, ImprovementResult } from "./types";
+import type { EvaluationScores, WalkabilityIndicators, ComparisonResult, ImprovementResult } from "./types";
+import { API_BASE } from "./types";
 
 const DEFAULT_TIMEOUT_MS = 30000;
 

@@ -2,9 +2,8 @@ import { useState, useCallback } from "react";
 import type { ScenePreset, GeneratedScheme } from "../lib/types";
 import type { DraftResponse } from "../lib/api";
 import { DEFAULT_GRAPH_TEMPLATE_ID, POLL_INTERVAL_MS, MAX_GENERATION_ATTEMPTS, SCENE_PRESETS } from "../lib/types";
-import { postJson, getJson, evaluateScene, resolveApiUrl, proposeImprovement, evaluateSceneWithHistory } from "../lib/api";
+import { postJson, getJson, evaluateScene, resolveApiUrl } from "../lib/api";
 import { resolveViewerUrl, sleep } from "../lib/utils";
-import type { GeneratedScheme, EvaluationResponse, ComparisonResult } from "../lib/types";
 
 // 方案变体定义：确保A/B/C有显著差异
 const SCHEME_VARIANTS = {

@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
+import { ConfigProvider } from "antd";
 import type { ScenePreset, GeneratedScheme, EvaluationResult, WorkflowStep } from "./lib/types";
 import type { DraftResponse } from "./lib/api";
 import { Header } from "./components/Header";
@@ -8,6 +9,7 @@ import { EvaluationPanel } from "./components/EvaluationPanel";
 import { StatusBar } from "./components/StatusBar";
 import { FreeTextInput } from "./components/FreeTextInput";
 import { useGeneration } from "./hooks/useGeneration";
+import { antdTheme } from "./theme";
 import "./App.css";
 
 type InputMode = "preset" | "free_text";
@@ -136,8 +138,9 @@ function App() {
   }, [selectedSchemeId, displaySchemes]);
 
   return (
-    <div className="workbench">
-      <Header currentStep={currentStep} />
+    <ConfigProvider theme={antdTheme}>
+      <div className="workbench">
+        <Header currentStep={currentStep} />
 
       <main className="workbench-content">
         {currentStep === 1 && (
@@ -278,6 +281,7 @@ function App() {
 
       <StatusBar message={status} />
     </div>
+    </ConfigProvider>
   );
 }
 
