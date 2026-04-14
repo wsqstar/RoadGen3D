@@ -41,4 +41,10 @@ data/street_furniture/
 graph_rag/data/
 graph
 knowledge/graphRAG/graphrag_quickstart/cache/
+knowledge/graphRAG/graphrag_quickstart/output/ # 2MB, can be regenerated
 data/street_furniture_data.tar.gz
+
+# Large 3D Assets (Keep source, ignore generated/packed binaries)
+assets/building/buildings.tar.gz
+assets/building/assets_std_glb_flat/
+assets/building/assets_std_obj/
