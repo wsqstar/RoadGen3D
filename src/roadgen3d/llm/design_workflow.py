@@ -87,6 +87,15 @@ class DesignAssistantService:
         ).expanduser().resolve()
         self.draft_cache_dir = Path(draft_cache_dir or DEFAULT_DESIGN_DRAFT_CACHE_DIR).expanduser().resolve()
         self.scene_job_service = scene_job_service or SceneJobService(generator=generate_scene_from_draft)
+        
+        # Initialize evaluation engine from road-metrics submodule
+        import sys
+        _submodule_path = Path(__file__).resolve().parents[1] / "eval_engine_ext"
+        if str(_submodule_path) not in sys.path:
+            sys.path.insert(0, str(_submodule_path))
+        
+        from road_metrics import EvalEngine, EvalConfig
+        self.eval_engine = EvalEngine(EvalConfig(enable_llm_eval=True))
 
     def rebuild_knowledge(
         self,
@@ -363,92 +372,44 @@ class DesignAssistantService:
         previous_evaluation: str = "",
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> Dict[str, Any]:
-        """Evaluate scene with before/after comparison against a previous iteration.
+        """Evaluate scene with before/after comparison using road-metrics EvalEngine.
 
         Returns the same fields as evaluate_scene_unified plus a `comparison` object.
         """
-        import base64
         layout = Path(layout_path).expanduser().resolve()
         if not layout.exists():
             raise RuntimeError(f"Layout file not found: {layout}")
-        payload = json.loads(layout.read_text(encoding="utf-8"))
-        summary = payload.get("summary", {}) or {}
-        placements = payload.get("placements", []) or []
-        llm = self._get_llm_client()
-        placement_summary = []
-        for p in placements[:30]:
-            placement_summary.append({
-                "instance_id": p.get("instance_id", ""),
-                "category": p.get("category", ""),
-                "asset_id": p.get("asset_id", ""),
-                "position_xyz": p.get("position_xyz"),
-            })
-
-        def _to_data_url(path: str | None) -> str | None:
-            if not path:
-                return None
-            img = Path(path).expanduser().resolve()
-            if not img.exists():
-                return None
-            return f"data:image/png;base64,{base64.b64encode(img.read_bytes()).decode('ascii')}"
-
-        image_data_url = _to_data_url(image_path)
-        previous_image_data_url = _to_data_url(previous_image_path)
-
-        previous_summary: dict = {}
+        
+        # Current evaluation
+        current_payload = json.loads(layout.read_text(encoding="utf-8"))
+        current_result = self.eval_engine.evaluate(current_payload)
+        
+        # Previous evaluation (if available)
+        comparison = {}
         if previous_layout_path:
             prev = Path(previous_layout_path).expanduser().resolve()
             if prev.exists():
-                previous_summary = json.loads(prev.read_text(encoding="utf-8")).get("summary", {}) or {}
-
-        # Retrieve evidence for evaluation
-        evidence: List[RagEvidence] = []
-        resolved_knowledge = normalize_knowledge_source(knowledge_source)
-        if resolved_knowledge != "none":
-            eval_queries = [
-                "pedestrian friendly street design walkability evaluation criteria",
-                "street safety design guidelines complete streets",
-                "urban street beauty aesthetics landscape design",
-                "sidewalk design pedestrian comfort amenities",
-                "traffic safety street crossing pedestrian protection",
-            ]
-            try:
-                evidence = self._retrieve_evidence(
-                    queries=eval_queries,
-                    topk=6,
-                    knowledge_source=resolved_knowledge,
-                )
-            except RuntimeError:
-                evidence = []
-
-        from .prompts import build_comparative_evaluation_messages
-        messages = build_comparative_evaluation_messages(
-            summary=summary,
-            placement_summary=placement_summary,
-            image_data_url=image_data_url,
-            previous_summary=previous_summary,
-            previous_image_data_url=previous_image_data_url,
-            previous_score=previous_score,
-            previous_evaluation=previous_evaluation,
-            evidence=evidence if evidence else None,
-        )
-        eval_payload = llm.chat_json(messages)
-
-        walkability = int(eval_payload.get("walkability", 0) or 0)
-        safety = int(eval_payload.get("safety", 0) or 0)
-        beauty = int(eval_payload.get("beauty", 0) or 0)
-        overall = round(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
-
+                prev_payload = json.loads(prev.read_text(encoding="utf-8"))
+                prev_result = self.eval_engine.evaluate(prev_payload)
+                
+                comparison = {
+                    "improved_areas": self._find_improvements(current_result, prev_result),
+                    "regressed_areas": self._find_regressions(current_result, prev_result),
+                    "unchanged_areas": self._find_unchanged(current_result, prev_result),
+                    "reasoning": self._generate_comparison_text(current_result, prev_result),
+                }
+        
+        # Convert to Web API format (0-100 scale)
         return {
-            "walkability": max(0, min(100, walkability)),
-            "safety": max(0, min(100, safety)),
-            "beauty": max(0, min(100, beauty)),
-            "overall": max(0, min(100, overall)),
-            "evaluation": str(eval_payload.get("evaluation", "")),
-            "suggestions": list(eval_payload.get("suggestions", []) or []),
-            "comparison": dict(eval_payload.get("comparison", {}) or {}),
-            "indicators": dict(eval_payload.get("indicators", {}) or {}),
-            "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
+            "walkability": int(current_result.walkability.walkability_index * 100),
+            "safety": int(current_result.safety.final_score * 100),
+            "beauty": int(current_result.beauty.final_score * 100),
+            "overall": int(current_result.evaluation_score * 100),
+            "evaluation": self._generate_evaluation_text(current_result),
+            "suggestions": self._generate_suggestions(current_result),
+            "indicators": self._extract_indicators(current_result),
+            "config_patch": self._generate_config_patch(current_result),
+            "comparison": comparison,
         }
 
     def propose_improvement(
@@ -496,7 +457,7 @@ class DesignAssistantService:
         image_path: str | None = None,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> Dict[str, Any]:
-        """Evaluate scene with unified 3-dimension scores (walkability/safety/beauty).
+        """Evaluate scene with unified 3-dimension scores using road-metrics EvalEngine.
 
         Args:
             layout_path: Path to scene_layout.json
@@ -506,76 +467,25 @@ class DesignAssistantService:
         Returns:
             Dict with walkability, safety, beauty (0-100), overall (0-100), evaluation, suggestions
         """
-        import base64
         layout = Path(layout_path).expanduser().resolve()
         if not layout.exists():
             raise RuntimeError(f"Layout file not found: {layout}")
+        
         payload = json.loads(layout.read_text(encoding="utf-8"))
-        summary = payload.get("summary", {}) or {}
-        placements = payload.get("placements", []) or []
-        llm = self._get_llm_client()
-        placement_summary = []
-        for p in placements[:30]:
-            placement_summary.append({
-                "instance_id": p.get("instance_id", ""),
-                "category": p.get("category", ""),
-                "asset_id": p.get("asset_id", ""),
-                "position_xyz": p.get("position_xyz"),
-            })
-        image_data_url = None
-        if image_path:
-            img = Path(image_path).expanduser().resolve()
-            if img.exists():
-                image_data_url = f"data:image/png;base64,{base64.b64encode(img.read_bytes()).decode('ascii')}"
-
-        # Retrieve knowledge evidence for evaluation
-        evidence: List[RagEvidence] = []
-        resolved_knowledge = normalize_knowledge_source(knowledge_source)
-        if resolved_knowledge != "none":
-            # Build evaluation queries based on scene summary and design principles
-            eval_queries = [
-                "pedestrian friendly street design walkability evaluation criteria",
-                "street safety design guidelines complete streets",
-                "urban street beauty aesthetics landscape design",
-                "sidewalk design pedestrian comfort amenities",
-                "traffic safety street crossing pedestrian protection",
-            ]
-            try:
-                evidence = self._retrieve_evidence(
-                    queries=eval_queries,
-                    topk=6,
-                    knowledge_source=resolved_knowledge,
-                )
-            except RuntimeError:
-                # If knowledge retrieval fails (e.g., no artifacts), proceed without evidence
-                evidence = []
-
-        from .prompts import build_unified_evaluation_messages
-        messages = build_unified_evaluation_messages(
-            summary=summary,
-            placement_summary=placement_summary,
-            image_data_url=image_data_url,
-            evidence=evidence if evidence else None,
-        )
-        eval_payload = llm.chat_json(messages)
-
-        # Extract scores with defaults
-        walkability = int(eval_payload.get("walkability", 0) or 0)
-        safety = int(eval_payload.get("safety", 0) or 0)
-        beauty = int(eval_payload.get("beauty", 0) or 0)
-
-        # Always compute overall deterministically from the three dimensions
-        overall = round(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
-
+        
+        # Use EvalEngine from road-metrics submodule
+        result = self.eval_engine.evaluate(payload)
+        
+        # Convert to Web API format (0-100 scale)
         return {
-            "walkability": max(0, min(100, walkability)),
-            "safety": max(0, min(100, safety)),
-            "beauty": max(0, min(100, beauty)),
-            "overall": max(0, min(100, overall)),
-            "evaluation": str(eval_payload.get("evaluation", "")),
-            "suggestions": list(eval_payload.get("suggestions", []) or []),
-            "indicators": dict(eval_payload.get("indicators", {}) or {}),
-            "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
+            "walkability": int(result.walkability.walkability_index * 100),
+            "safety": int(result.safety.final_score * 100),
+            "beauty": int(result.beauty.final_score * 100),
+            "overall": int(result.evaluation_score * 100),
+            "evaluation": self._generate_evaluation_text(result),
+            "suggestions": self._generate_suggestions(result),
+            "indicators": self._extract_indicators(result),
+            "config_patch": self._generate_config_patch(result),
         }
 
     def generate_initial_config_from_graph(
@@ -610,6 +520,214 @@ class DesignAssistantService:
             "compose_config_patch": patch,
             "design_summary": design_summary,
         }
+
+    # ========================================================================
+    # Evaluation helper methods
+    # ========================================================================
+
+    def _generate_evaluation_text(self, result) -> str:
+        """Generate human-readable evaluation text."""
+        w = result.walkability
+        s = result.safety
+        b = result.beauty
+        
+        parts = []
+        
+        # Walkability summary
+        if w.walkability_index >= 0.7:
+            parts.append("步行性优秀")
+        elif w.walkability_index >= 0.5:
+            parts.append("步行性良好")
+        else:
+            parts.append("步行性需改进")
+        
+        # Safety summary
+        if s.final_score >= 0.7:
+            parts.append("安全性高")
+        elif s.final_score >= 0.5:
+            parts.append("安全性中等")
+        else:
+            parts.append("安全性需改进")
+        
+        # Beauty summary
+        if b.final_score >= 0.7:
+            parts.append("美观度优秀")
+        elif b.final_score >= 0.5:
+            parts.append("美观度良好")
+        else:
+            parts.append("美观度需改进")
+        
+        # Weakest dimension
+        if s.diagnosis.get("weakest"):
+            parts.append(f"最弱安全维度: {s.diagnosis['weakest']}")
+        if b.diagnosis.get("weakest"):
+            parts.append(f"最弱美观维度: {b.diagnosis['weakest']}")
+        
+        return "。".join(parts) + "。"
+
+    def _generate_suggestions(self, result) -> List[str]:
+        """Generate improvement suggestions based on evaluation result."""
+        suggestions = []
+        
+        # Safety suggestions
+        if result.safety.final_score < 0.7:
+            weakest = result.safety.diagnosis.get("weakest")
+            if weakest == "CROSS_PROV":
+                suggestions.append("增加过街设施密度，建议每80米设置一个过街点")
+            elif weakest == "LIGHT_UNI":
+                suggestions.append("优化路灯布局，提高照明均匀性")
+            elif weakest == "BUFFER_RATIO":
+                suggestions.append("增加缓冲带宽度，提高行人保护")
+            elif weakest == "BOLLARD_DENSITY":
+                suggestions.append("增加护柱密度，提高物理隔离")
+        
+        # Beauty suggestions
+        if result.beauty.final_score < 0.7:
+            weakest = result.beauty.diagnosis.get("weakest")
+            if weakest == "active_front_ratio":
+                suggestions.append("增加活跃界面比例，提高街道活力")
+            elif weakest == "anchor_poi_score":
+                suggestions.append("增加锚点POI，如餐厅、咖啡馆等")
+            elif weakest == "presentation_score":
+                suggestions.append("提升整体展示质量，包括风格一致性和视觉秩序")
+        
+        # Walkability suggestions
+        w = result.walkability
+        if w.walkability_index < 0.7:
+            if w.comfort < 0.5:
+                suggestions.append("提高步行舒适性，增加净空宽度和绿化遮荫")
+            if w.delight < 0.5:
+                suggestions.append("增加街道愉悦度，提高家具密度和POI混合度")
+        
+        return suggestions if suggestions else ["场景质量良好，无需重大改进"]
+
+    def _extract_indicators(self, result) -> Dict[str, Any]:
+        """Extract detailed indicators for Web API response."""
+        w = result.walkability
+        
+        return {
+            "sidewalk_adequacy": self._classify(w.sid_clr),
+            "furniture_density": self._classify(w.furn_d),
+            "tree_shading_rate": self._classify(w.tree_shade),
+            "vehicle_throughput_compliance": "Pass" if w.transit_prox > 0.3 else "Fail",
+            "rule_satisfaction": round(result.evaluation_score, 2),
+        }
+
+    def _generate_config_patch(self, result) -> Dict[str, Any]:
+        """Generate configuration patch based on evaluation result."""
+        patch = {}
+        
+        # Safety improvements
+        if result.safety.final_score < 0.6:
+            weakest = result.safety.diagnosis.get("weakest")
+            if weakest == "CROSS_PROV":
+                patch["transit_demand_level"] = "high"
+            elif weakest == "BUFFER_RATIO":
+                patch["road_width_m"] = 14.0  # Wider road for more buffer
+        
+        # Beauty improvements
+        if result.beauty.final_score < 0.6:
+            weakest = result.beauty.diagnosis.get("weakest")
+            if weakest == "active_front_ratio":
+                patch["density"] = 1.2  # Higher density for more active fronts
+        
+        return patch
+
+    def _find_improvements(self, current, previous) -> List[str]:
+        """Find dimensions that improved significantly."""
+        improvements = []
+        
+        # Check walkability
+        w_delta = current.walkability.walkability_index - previous.walkability.walkability_index
+        if w_delta > 0.05:
+            improvements.append("步行性")
+        
+        # Check safety
+        s_delta = current.safety.final_score - previous.safety.final_score
+        if s_delta > 0.05:
+            improvements.append("安全性")
+        
+        # Check beauty
+        b_delta = current.beauty.final_score - previous.beauty.final_score
+        if b_delta > 0.05:
+            improvements.append("美观性")
+        
+        return improvements
+
+    def _find_regressions(self, current, previous) -> List[str]:
+        """Find dimensions that regressed significantly."""
+        regressions = []
+        
+        w_delta = current.walkability.walkability_index - previous.walkability.walkability_index
+        if w_delta < -0.05:
+            regressions.append("步行性")
+        
+        s_delta = current.safety.final_score - previous.safety.final_score
+        if s_delta < -0.05:
+            regressions.append("安全性")
+        
+        b_delta = current.beauty.final_score - previous.beauty.final_score
+        if b_delta < -0.05:
+            regressions.append("美观性")
+        
+        return regressions
+
+    def _find_unchanged(self, current, previous) -> List[str]:
+        """Find dimensions that remained stable."""
+        unchanged = []
+        
+        w_delta = abs(current.walkability.walkability_index - previous.walkability.walkability_index)
+        if w_delta <= 0.05:
+            unchanged.append("步行性")
+        
+        s_delta = abs(current.safety.final_score - previous.safety.final_score)
+        if s_delta <= 0.05:
+            unchanged.append("安全性")
+        
+        b_delta = abs(current.beauty.final_score - previous.beauty.final_score)
+        if b_delta <= 0.05:
+            unchanged.append("美观性")
+        
+        return unchanged
+
+    def _generate_comparison_text(self, current, previous) -> str:
+        """Generate comparison text between current and previous results."""
+        w_delta = current.walkability.walkability_index - previous.walkability.walkability_index
+        s_delta = current.safety.final_score - previous.safety.final_score
+        b_delta = current.beauty.final_score - previous.beauty.final_score
+        
+        parts = []
+        
+        if abs(w_delta) > 0.05:
+            direction = "提升" if w_delta > 0 else "下降"
+            parts.append(f"步行性{direction}{abs(w_delta)*100:.1f}%")
+        
+        if abs(s_delta) > 0.05:
+            direction = "提升" if s_delta > 0 else "下降"
+            parts.append(f"安全性{direction}{abs(s_delta)*100:.1f}%")
+        
+        if abs(b_delta) > 0.05:
+            direction = "提升" if b_delta > 0 else "下降"
+            parts.append(f"美观性{direction}{abs(b_delta)*100:.1f}%")
+        
+        if not parts:
+            return "各项指标基本保持不变"
+        
+        return "。".join(parts) + "。"
+
+    @staticmethod
+    def _classify(score: float) -> str:
+        """Classify a score into a human-readable label."""
+        if score >= 0.8:
+            return "Excellent"
+        elif score >= 0.6:
+            return "High"
+        elif score >= 0.4:
+            return "Medium"
+        elif score >= 0.2:
+            return "Low"
+        else:
+            return "Very Low"
 
     def _get_llm_client(self) -> LLMClient | Any:
         if self.llm_client is None:
