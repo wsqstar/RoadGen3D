@@ -1,6 +1,127 @@
 # RoadGen3D
 
-## 快速测试命令
+> **Text-to-3D Urban Street Scene Generation** — 从文本描述到详细 3D 城市场景的神经符号系统
+
+[![Architecture](https://img.shields.io/badge/docs-architecture-blue)](docs/ARCHITECTURE.md)
+[![Evaluation Engine](https://img.shields.io/badge/eval-road--metrics-green)](src/roadgen3d/eval_engine_ext)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+
+---
+
+## 🏗️ 仓库架构
+
+RoadGen3D 是一个**分层架构**的生成式设计系统，由 **4 层**和 **3 个子模块**组成：
+
+```
+RoadGen3D/
+├── 🌐 Web 交互层 (web/)
+│   ├── workbench/          # React 设计工作台 (模板选择、方案生成、评估可视化)
+│   ├── viewer/             # Three.js 3D 场景查看器 (独立渲染器)
+│   └── api/                # FastAPI 后端 (意图理解、场景生成、评估接口)
+│
+├── 🧠 核心引擎层 (src/roadgen3d/)
+│   ├── auto_pipeline/      # 自动生成流水线 (graph_loader, iteration_controller)
+│   ├── llm/                # LLM 设计助手 (prompts, design_workflow)
+│   ├── knowledge/          # RAG 知识库 (PDF/GraphRAG 检索)
+│   ├── services/           # 运行时服务 (design_runtime, scene_jobs)
+│   └── eval_engine_ext/    # 📦 [Submodule] 独立评估引擎 → road-metrics
+│
+├── 📊 评估引擎 (road-metrics) ← 独立 Git Submodule
+│   ├── extractors/         # Layer 1: 数据提取 (crossing, trees, furniture)
+│   ├── base_metrics/       # Layer 2: 基础指标 (adequacy, uniformity, density)
+│   ├── composers/          # Layer 3: 评分组合 (walkability, safety, beauty)
+│   └── evaluators/         # LLM 增强评估 (safety_eval, beauty_eval)
+│
+├── 📦 资产与数据 (data/, assets/)
+│   ├── real/latents/       # CLIP 特征向量缓存 (154 个资产，600KB)
+│   ├── real/meshes/        # 3D 资产 GLB 文件 (本地存储，不提交到 Git)
+│   └── knowledge/          # GraphRAG 知识库索引
+│
+└── 📖 文档 (docs/)
+    ├── ARCHITECTURE.md     # 完整系统架构与工作流说明
+    └── EVALUATION_REPORT.md # 评估公式与指标详细展开
+```
+
+### 🔑 核心设计理念
+
+| 层级 | 职责 | 关键技术 |
+|:---|:---|:---|
+| **Web 层** | 用户交互、3D 可视化 | React, Three.js, Vite |
+| **API 层** | 业务逻辑编排、任务队列 | FastAPI, Pydantic |
+| **引擎层** | 场景生成、约束求解、布局优化 | Python, NumPy, CLIP |
+| **评估层** | 多维度质量评估 (独立子模块) | road-metrics (Submodule) |
+
+### 🔄 核心工作流 (5 步闭环)
+
+```
+用户输入 → 意图理解 (LLM+RAG) → 场景生成 (布局+资产) → 质量评估 (road-metrics) → 诊断优化 → 重新生成
+   ↑_________________________________________________________________________________________|
+```
+
+1. **Draft**: 自然语言 → 参数配置 (`compose_config_patch`)
+2. **Generate**: 参数 → 3D 场景 (`scene_layout.json` + `scene.glb`)
+3. **Evaluate**: 场景 → 多维度评分 (步行性/安全性/美观性)
+4. **Diagnose**: 识别短板 → 生成改进建议 (`config_patch`)
+5. **Loop**: 应用建议 → 回到第 2 步重新生成
+
+### 📦 独立子模块
+
+本项目使用 Git Submodule 管理独立组件：
+
+| 子模块 | 路径 | 仓库 | 说明 |
+|:---|:---|:---|:---|
+| **road-metrics** | `src/roadgen3d/eval_engine_ext` | [wsqstar/road-metrics](https://github.com/wsqstar/road-metrics) | 分层评估引擎 (可独立安装) |
+| **viewer** | `web/viewer` | [GIStudio/Viewer](https://github.com/GIStudio/Viewer) | 3D 场景渲染器 |
+
+```bash
+# 克隆时初始化子模块
+git clone --recurse-submodules https://github.com/GIStudio/RoadGen3D.git
+```
+
+---
+
+## 🚀 快速开始
+
+### 环境准备
+
+```bash
+# 1. 克隆仓库 (包含子模块)
+git clone --recurse-submodules https://github.com/GIStudio/RoadGen3D.git
+cd RoadGen3D
+
+# 2. 安装 Python 依赖 (使用 uv)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv sync
+
+# 3. 安装前端依赖
+make workbench-install
+make viewer-install
+
+# 4. 下载 CLIP 模型 (离线)
+huggingface-cli download openai/clip-vit-base-patch32 \
+  --local-dir models/clip-vit-base-patch32
+```
+
+> **本项目使用 [uv](https://github.com/astral-sh/uv) 管理 Python 依赖和运行环境。**
+>
+> 所有 Python 命令通过 `uv run python` 或 `uv run pytest` 执行，无需手动创建虚拟环境或安装依赖。
+
+### 启动服务
+
+**启动完整开发环境** (API + Workbench + Viewer):
+
+```bash
+make dev
+```
+
+这将启动三个服务：
+- **API** — `http://127.0.0.1:8010` (FastAPI 后端)
+- **Workbench** — `http://127.0.0.1:4174` (React 设计工作台)
+- **Viewer** — `http://127.0.0.1:4173` (Three.js 3D 查看器)
+
+或单独启动：`make workbench-api`, `make workbench-web`, `make viewer-web`。
+
+### 测试 Pipeline
 
 ```bash
 # 默认：随机选择模板，禁用 LLM
@@ -9,26 +130,15 @@ make test-pipeline
 # 指定模板
 make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all
 
-# 启用 LLM 动态生成（GraphRAG + LLM）
+# 启用 LLM 动态生成
 make test-pipeline USE_LLM=1
-
-# 指定模板 + 启用 LLM
-make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all USE_LLM=1
 
 # 批量测试：并行生成 6 个模板
 make test-batch
 
-# 启动完整开发环境
-make dev
+# 查看测试报告
+make test-report
 ```
-
-> **本项目使用 [uv](https://github.com/astral-sh/uv) 管理 Python 依赖和运行环境。**
->
-> 所有 Python 命令通过 `uv run python` 或 `uv run pytest` 执行，无需手动创建虚拟环境或安装依赖。
-
-**Text-to-3D Urban Street Scene Generation**
-
-RoadGen3D is a neuro-symbolic system that transforms text descriptions into detailed 3D urban street scenes. A user describes a design goal (e.g., *"步行安全、全龄友好的完整街道"*), the workbench retrieves design knowledge via RAG, generates a parameterized street layout with design-rule constraints, and exports a 3D scene viewable in the built-in Viewer.
 
 ## Quick Start
 
