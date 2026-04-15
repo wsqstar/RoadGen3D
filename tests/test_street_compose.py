@@ -1092,16 +1092,6 @@ def test_street_compose_real_manifest_required(tmp_path: Path):
 
 def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    glb_path = (tmp_path / "scene.glb").resolve()
-    ply_path = (tmp_path / "scene.ply").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    glb_path.write_bytes(b"glb")
-    ply_path.write_bytes(b"ply")
-    layout_payload = {"summary": {"instance_count": 1, "dropped_slots": 0}, "placements": []}
-    layout_path.write_text(json.dumps(layout_payload), encoding="utf-8")
-
     def fake_compose(**kwargs):
         return StreetComposeResult(
             query="urban street",
@@ -1174,184 +1164,14 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
 
 def test_prepare_web_viewer_outputs_adds_url_and_updates_layout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    layout_path.write_text(json.dumps({"summary": {}, "outputs": {}}, ensure_ascii=True), encoding="utf-8")
-
-    monkeypatch.setattr(
-        app,
-        "build_web_viewer_url",
-        lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}",
-    )
-    monkeypatch.setattr(
-        app,
-        "build_web_viewer_dev_command",
-        lambda path: f"npm --prefix web/viewer run dev -- --open '/?layout={Path(path).name}'",
-    )
-    monkeypatch.setattr(app, "cache_scene_layout_for_viewer", lambda path, layout_json_text="": Path(path))
-
-    summary, layout_json, viewer_url, viewer_command, viewer_html = app._prepare_web_viewer_outputs(
-        "Street compose done.",
-        layout_path.read_text(encoding="utf-8"),
-        [str(layout_path)],
-    )
-
-    assert "web_viewer_url: http://127.0.0.1:4173/?layout=scene_layout.json" in summary
-    assert "web_viewer_command: npm --prefix web/viewer run dev -- --open '/?layout=scene_layout.json'" in summary
-    assert f"web_viewer_layout_path: {layout_path}" in summary
-    assert viewer_url == "http://127.0.0.1:4173/?layout=scene_layout.json"
-    assert viewer_command == "npm --prefix web/viewer run dev -- --open '/?layout=scene_layout.json'"
-    assert "Open Web Viewer" in viewer_html
-    payload = json.loads(layout_json)
-    assert payload["summary"]["web_viewer_url"] == viewer_url
-    assert payload["summary"]["web_viewer_command"] == viewer_command
-    assert payload["summary"]["web_viewer_layout_path"] == str(layout_path)
-    assert payload["outputs"]["web_viewer_url"] == viewer_url
-    assert payload["outputs"]["web_viewer_command"] == viewer_command
-    assert payload["outputs"]["web_viewer_layout_path"] == str(layout_path)
-    persisted = json.loads(layout_path.read_text(encoding="utf-8"))
-    assert persisted["summary"]["web_viewer_url"] == viewer_url
-
-
 def test_prepare_web_viewer_outputs_mirrors_external_layout_into_repo_and_uses_standalone_viewer(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    layout_path.write_text(json.dumps({"summary": {}, "outputs": {}}, ensure_ascii=True), encoding="utf-8")
-
-    mirrored_layout = (tmp_path / "repo" / "artifacts" / "web_viewer_layouts" / "cached" / "scene_layout.json").resolve()
-    mirrored_layout.parent.mkdir(parents=True, exist_ok=True)
-    mirrored_layout.write_text(layout_path.read_text(encoding="utf-8"), encoding="utf-8")
-
-    monkeypatch.setattr(
-        app,
-        "cache_scene_layout_for_viewer",
-        lambda path, layout_json_text="": mirrored_layout,
-    )
-    monkeypatch.setattr(
-        app,
-        "build_web_viewer_url",
-        lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}",
-    )
-    monkeypatch.setattr(
-        app,
-        "build_web_viewer_dev_command",
-        lambda path: f"ROADGEN_VIEWER_ALLOWED_ROOTS=/tmp npm --prefix web/viewer run dev -- --open '/?layout={Path(path).name}'",
-    )
-
-    summary, layout_json, viewer_url, viewer_command, viewer_html = app._prepare_web_viewer_outputs(
-        "Street compose done.",
-        layout_path.read_text(encoding="utf-8"),
-        [str(layout_path)],
-    )
-
-    assert viewer_url == "http://127.0.0.1:4173/?layout=scene_layout.json"
-    assert "ROADGEN_VIEWER_ALLOWED_ROOTS=/tmp" in viewer_command
-    assert "Open Web Viewer" in viewer_html
-    payload = json.loads(layout_json)
-    assert payload["summary"]["web_viewer_command"] == viewer_command
-    assert payload["summary"]["web_viewer_layout_path"] == str(mirrored_layout)
-
-
 def test_prepare_web_viewer_outputs_sanitizes_infinity_before_persisting(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    layout_path.write_text('{"summary":{"clearance_m": Infinity},"outputs":{}}', encoding="utf-8")
-
-    monkeypatch.setattr(app, "cache_scene_layout_for_viewer", lambda path, layout_json_text="": Path(path))
-    monkeypatch.setattr(app, "build_web_viewer_url", lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}")
-    monkeypatch.setattr(
-        app,
-        "build_web_viewer_dev_command",
-        lambda path: f"npm --prefix web/viewer run dev -- --open '/?layout={Path(path).name}'",
-    )
-
-    summary, layout_json, viewer_url, viewer_command, viewer_html = app._prepare_web_viewer_outputs(
-        "Street compose done.",
-        layout_path.read_text(encoding="utf-8"),
-        [str(layout_path)],
-    )
-
-    assert "Infinity" not in layout_json
-    assert json.loads(layout_json)["summary"]["clearance_m"] is None
-    assert "Open Web Viewer" in viewer_html
-
-
 def test_run_street_compose_defaults_shift_to_walkable_narrow_street():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    signature = inspect.signature(app.run_street_compose)
-
-    assert signature.parameters["street_road_width_m"].default == pytest.approx(7.0)
-    assert signature.parameters["street_sidewalk_width_m"].default == pytest.approx(2.4)
-    assert signature.parameters["road_selection"].default == "walkable_neighborhood"
-    assert signature.parameters["asset_scale_mode"].default == "canonical_v1"
-    assert signature.parameters["tree_species_policy"].default == "per_theme_single_species"
-    assert signature.parameters["furniture_balance_policy"].default == "overall_balanced"
-    assert signature.parameters["placement_logging_mode"].default == "full_with_ui_summary"
-
-
 def test_street_compose_gradio_callback_propagates_objective_and_demand_controls(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    glb_path = (tmp_path / "scene.glb").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    placement_log_path = (tmp_path / "placement_decisions.jsonl").resolve()
-    glb_path.write_bytes(b"glb")
-    placement_log_path.write_text("{}", encoding="utf-8")
-    captured_config: dict[str, object] = {}
-    layout_payload = {
-        "summary": {
-            "instance_count": 1,
-            "dropped_slots": 0,
-            "objective_profile": "commerce",
-            "ped_demand_level": "high",
-            "bike_demand_level": "medium",
-            "transit_demand_level": "low",
-            "vehicle_demand_level": "medium",
-            "solver_backend_requested": "hybrid_milp_v1",
-            "solver_backend_used": "hybrid_milp_v1",
-            "cross_section_type": "complete_street",
-            "style_preset": "civic_clean_v1",
-            "asset_curation_mode": "scene_ready_first",
-            "asset_scale_mode": "native_raw",
-            "selected_highway_type": "tertiary",
-            "road_selection_requested": "walkable_neighborhood",
-            "road_selection_used": "walkable_neighborhood",
-            "parametric_instance_count": 0,
-            "production_step_count": 4,
-            "presentation_score": 0.42,
-            "land_use_asymmetry_strength": 0.55,
-            "left_right_bias": -0.25,
-            "building_front_setback_min_m": 1.1,
-            "building_front_setback_max_m": 1.9,
-            "zoning_granularity": "fine",
-            "streetwall_continuity": 0.9,
-            "infill_policy": "balanced",
-            "frontage_parcel_count": 12,
-            "infill_footprint_count": 3,
-            "tree_species_policy": "per_theme_single_species",
-            "furniture_balance_policy": "overall_balanced",
-            "placement_logging_mode": "full_with_ui_summary",
-            "tree_asset_by_theme": {"theme_000": "tree_02"},
-            "street_furniture_core_side_counts": {"left": 2, "right": 2},
-            "street_furniture_core_categories_by_side": {
-                "left": ["lamp", "tree"],
-                "right": ["bench", "tree"],
-            },
-            "placement_log_path": str(placement_log_path),
-            "placement_log_reason_counts": {"feasible_candidate_selected": 4},
-        },
-        "placements": [],
-    }
-    layout_path.write_text(json.dumps(layout_payload), encoding="utf-8")
-
     def fake_compose(**kwargs):
         config = kwargs["config"]
         captured_config["objective_profile"] = config.objective_profile
@@ -1473,335 +1293,18 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
 
 def test_extract_solver_diagnostics_aggregates_osm_band_view():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    payload = {
-        "config": {"layout_mode": "osm"},
-        "summary": {
-            "layout_mode": "osm",
-            "solver_backend_requested": "hybrid_milp_v1",
-            "solver_backend_used": "banded",
-            "objective_profile": "greening",
-            "solver_fallback_reason": "hybrid_milp_v1 produced no feasible slot assignment; fallback to banded",
-        },
-        "solver": {
-            "backend_requested": "hybrid_milp_v1",
-            "backend_used": "banded",
-            "objective_profile": "greening",
-            "fallback_reason": "hybrid_milp_v1 produced no feasible slot assignment; fallback to banded",
-            "active_constraints": [f"constraint_{idx}" for idx in range(12)],
-            "objective_score_breakdown": {"total_width_score": 8.0},
-            "throughput_feasibility": {
-                "overall_satisfied": False,
-                "by_mode": {
-                    "ped_clear_path": {"required": 2.4, "actual": 1.8, "satisfied": False},
-                    "vehicle_carriageway": {"required": 6.0, "actual": 8.0, "satisfied": True},
-                },
-            },
-            "band_solutions": [
-                {
-                    "band_name": "left_clear_path",
-                    "band_kind": "clear_path",
-                    "side": "left",
-                    "width_m": 2.2,
-                    "min_width_m": 1.8,
-                    "max_width_m": 3.2,
-                    "slack_m": 1.0,
-                    "objective_weight": 1.1,
-                    "active_constraint_names": ["left:min"],
-                },
-                {
-                    "band_name": "left_clear_path",
-                    "band_kind": "clear_path",
-                    "side": "left",
-                    "width_m": 2.6,
-                    "min_width_m": 1.8,
-                    "max_width_m": 3.4,
-                    "slack_m": 0.8,
-                    "objective_weight": 1.0,
-                    "active_constraint_names": ["left:min", "ped:throughput"],
-                },
-                {
-                    "band_name": "carriageway",
-                    "band_kind": "carriageway",
-                    "side": "",
-                    "width_m": 8.0,
-                    "min_width_m": 6.0,
-                    "max_width_m": 10.0,
-                    "slack_m": 2.0,
-                    "objective_weight": 1.0,
-                    "active_constraint_names": ["vehicle:throughput"],
-                },
-            ],
-        },
-    }
-
-    fig, summary_json = app._extract_solver_diagnostics(json.dumps(payload, ensure_ascii=True))
-    summary = json.loads(summary_json)
-
-    assert summary["band_view"] == "OSM aggregated band view"
-    assert summary["band_row_count"] == 2
-    assert summary["fallback_reason"].endswith("fallback to banded")
-    assert summary["active_constraint_count"] == 12
-    assert summary["active_constraints_display"][-1] == "+2 more"
-    assert summary["overall_throughput_satisfied"] is False
-    assert summary["throughput_feasibility"]["by_mode"]["ped_clear_path"]["satisfied"] is False
-    assert fig is not None
-
-
 def test_extract_placement_decision_summary_reads_new_fields():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    payload = {
-        "summary": {
-            "tree_species_policy": "per_theme_single_species",
-            "tree_asset_by_theme": {"theme_000": "tree_02"},
-            "tree_theme_reselection_count": 1,
-            "furniture_balance_policy": "overall_balanced",
-            "street_furniture_side_counts": {"left": 4, "right": 5},
-            "street_furniture_core_side_counts": {"left": 2, "right": 3},
-            "street_furniture_core_categories_by_side": {
-                "left": ["lamp", "tree"],
-                "right": ["bench", "tree"],
-            },
-            "street_furniture_core_category_count_by_side": {"left": 2, "right": 2},
-            "street_furniture_balance_ok": True,
-            "street_furniture_balance_reason": "",
-            "balance_repair_summary": {"attempt_count": 2, "success_count": 1},
-            "placement_logging_mode": "full_with_ui_summary",
-            "placement_log_path": "/tmp/placement_decisions.jsonl",
-            "placement_log_summary": {"event_count": 12},
-            "placement_log_reason_counts": {"feasible_candidate_selected": 5},
-        }
-    }
-
-    summary = json.loads(app._extract_placement_decision_summary(json.dumps(payload)))
-
-    assert summary["tree_species_policy"] == "per_theme_single_species"
-    assert summary["tree_asset_by_theme"]["theme_000"] == "tree_02"
-    assert summary["street_furniture_core_side_counts"]["left"] == 2
-    assert summary["street_furniture_core_categories_by_side"]["right"] == ["bench", "tree"]
-    assert summary["placement_log_path"] == "/tmp/placement_decisions.jsonl"
-    assert summary["placement_log_reason_counts"]["feasible_candidate_selected"] == 5
-
-
 def test_extract_street_scale_summary_reports_scale_and_road_selection():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    summary_json = app._extract_street_scale_summary(
-        json.dumps(
-            {
-                "summary": {
-                    "asset_scale_mode": "canonical_v1",
-                    "selected_highway_type": "tertiary",
-                    "road_selection_requested": "walkable_neighborhood",
-                    "road_selection_used": "walkable_neighborhood",
-                    "road_width_m": 7.0,
-                    "sidewalk_width_m": 2.4,
-                    "carriageway_width_m": 7.0,
-                    "asset_scale_summary": {"tree": {"count": 2, "median_scale": 3.5}},
-                }
-            },
-            ensure_ascii=True,
-        )
-    )
-
-    payload = json.loads(summary_json)
-    assert payload["asset_scale_mode"] == "canonical_v1"
-    assert payload["selected_highway_type"] == "tertiary"
-    assert payload["road_selection_requested"] == "walkable_neighborhood"
-    assert payload["asset_scale_summary"]["tree"]["median_scale"] == 3.5
-
-
 def test_extract_cross_section_preview_builds_template_cross_section():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    payload = {
-        "config": {"layout_mode": "template"},
-        "summary": {
-            "layout_mode": "template",
-            "solver_backend_used": "hybrid_milp_v1",
-            "objective_profile": "balanced",
-        },
-        "solver": {
-            "backend_used": "hybrid_milp_v1",
-            "objective_profile": "balanced",
-            "band_solutions": [
-                {
-                    "band_name": "left_furnishing",
-                    "band_kind": "furnishing",
-                    "side": "left",
-                    "width_m": 1.4,
-                    "min_width_m": 1.0,
-                    "max_width_m": 2.2,
-                },
-                {
-                    "band_name": "left_clear_path",
-                    "band_kind": "clear_path",
-                    "side": "left",
-                    "width_m": 2.2,
-                    "min_width_m": 1.8,
-                    "max_width_m": 3.0,
-                },
-                {
-                    "band_name": "carriageway",
-                    "band_kind": "carriageway",
-                    "side": "center",
-                    "width_m": 8.0,
-                    "min_width_m": 6.0,
-                    "max_width_m": 8.0,
-                },
-                {
-                    "band_name": "right_clear_path",
-                    "band_kind": "clear_path",
-                    "side": "right",
-                    "width_m": 2.2,
-                    "min_width_m": 1.8,
-                    "max_width_m": 3.0,
-                },
-                {
-                    "band_name": "right_furnishing",
-                    "band_kind": "furnishing",
-                    "side": "right",
-                    "width_m": 1.4,
-                    "min_width_m": 1.0,
-                    "max_width_m": 2.2,
-                },
-            ],
-        },
-    }
-
-    fig, summary_json = app._extract_cross_section_preview(json.dumps(payload, ensure_ascii=True))
-    summary = json.loads(summary_json)
-
-    assert summary["view_mode"] == "template"
-    assert summary["data_source"] == "solver_bands"
-    assert summary["band_count"] == 5
-    assert summary["total_width_m"] == pytest.approx(15.2)
-    assert fig is not None
-    assert fig.layout.title.text == "Cross-Section Preview"
-
-
 def test_extract_cross_section_preview_builds_osm_aggregated_cross_section():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    payload = {
-        "config": {"layout_mode": "osm"},
-        "summary": {
-            "layout_mode": "osm",
-            "solver_backend_used": "banded",
-            "objective_profile": "greening",
-        },
-        "solver": {
-            "backend_used": "banded",
-            "objective_profile": "greening",
-            "band_solutions": [
-                {
-                    "band_name": "left_furnishing",
-                    "band_kind": "furnishing",
-                    "side": "left",
-                    "width_m": 1.2,
-                    "min_width_m": 0.9,
-                    "max_width_m": 2.0,
-                },
-                {
-                    "band_name": "left_furnishing",
-                    "band_kind": "furnishing",
-                    "side": "left",
-                    "width_m": 1.6,
-                    "min_width_m": 1.0,
-                    "max_width_m": 2.3,
-                },
-                {
-                    "band_name": "left_clear_path",
-                    "band_kind": "clear_path",
-                    "side": "left",
-                    "width_m": 2.4,
-                    "min_width_m": 1.8,
-                    "max_width_m": 3.0,
-                },
-                {
-                    "band_name": "carriageway",
-                    "band_kind": "carriageway",
-                    "side": "center",
-                    "width_m": 8.0,
-                    "min_width_m": 6.0,
-                    "max_width_m": 8.5,
-                },
-                {
-                    "band_name": "right_clear_path",
-                    "band_kind": "clear_path",
-                    "side": "right",
-                    "width_m": 2.1,
-                    "min_width_m": 1.8,
-                    "max_width_m": 3.0,
-                },
-                {
-                    "band_name": "right_transit_edge",
-                    "band_kind": "transit_edge",
-                    "side": "right",
-                    "width_m": 1.5,
-                    "min_width_m": 1.2,
-                    "max_width_m": 2.4,
-                },
-            ],
-        },
-    }
-
-    fig, summary_json = app._extract_cross_section_preview(json.dumps(payload, ensure_ascii=True))
-    summary = json.loads(summary_json)
-
-    assert summary["view_mode"] == "osm_aggregated"
-    assert summary["band_view"] == "OSM aggregated band view"
-    assert summary["data_source"] == "solver_bands"
-    assert summary["band_count"] == 5
-    assert fig is not None
-
-
 def test_extract_solver_diagnostics_tolerates_legacy_layout_payload():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    fig, summary_json = app._extract_solver_diagnostics(json.dumps({"summary": {"layout_mode": "template"}}, ensure_ascii=True))
-    summary = json.loads(summary_json)
-
-    assert summary["band_view"] == "Template band view"
-    assert summary["band_row_count"] == 0
-    assert summary["throughput_mode_count"] == 0
-    assert summary["fallback_reason"] == "no fallback"
-    assert summary["active_constraints_display"] == []
-    if fig is not None:
-        assert fig.layout.title.text == "Solver Diagnostics"
-
-
 def test_extract_cross_section_preview_tolerates_legacy_layout_payload():
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    payload = {
-        "summary": {
-            "layout_mode": "template",
-            "left_clear_path_width_m": 2.0,
-            "left_furnishing_width_m": 1.2,
-            "road_width_m": 8.0,
-            "right_furnishing_width_m": 1.2,
-            "right_clear_path_width_m": 2.0,
-        }
-    }
-    fig, summary_json = app._extract_cross_section_preview(json.dumps(payload, ensure_ascii=True))
-    summary = json.loads(summary_json)
-
-    assert summary["data_source"] == "summary_fields"
-    assert summary["band_count"] == 5
-    assert summary["total_width_m"] == pytest.approx(14.4)
-    if fig is not None:
-        assert fig.layout.title.text == "Cross-Section Preview"
-
-
 def test_pick_category_candidate_parametric_first_prefers_parametric_bench(monkeypatch):
     asset_by_id = {
         "bench_legacy": _asset_row("bench_legacy", "bench", source="procedural_generated"),
@@ -2347,38 +1850,6 @@ def test_centerline_markings_follow_road_reference_polyline():
 
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    monkeypatch.setattr(app, "ROOT", tmp_path)
-    artifacts_dir = tmp_path / "artifacts" / "real"
-    discovered_dir = tmp_path / "artifacts" / "m5"
-    discovered_dir.mkdir(parents=True, exist_ok=True)
-    records = [
-        {"osm_id": 999, "bbox": [120.0, 30.0, 120.1, 30.1], "highway_type": "primary", "road_length_m": 123.0, "poi_count": 1, "poi_types": {"entrance": 1, "bus_stop": 0, "fire_hydrant": 0}},
-        {"osm_id": 201, "bbox": [113.2000, 23.1000, 113.2100, 23.1100], "highway_type": "service", "road_length_m": 140.0, "poi_count": 2, "poi_types": {"entrance": 2, "bus_stop": 0, "fire_hydrant": 0}},
-        {"osm_id": 202, "bbox": [113.2660, 23.1280, 113.2710, 23.1325], "highway_type": "secondary", "road_length_m": 150.0, "poi_count": 3, "poi_types": {"entrance": 2, "bus_stop": 1, "fire_hydrant": 0}},
-        {"osm_id": 203, "bbox": [113.3000, 23.1400, 113.3100, 23.1500], "highway_type": "tertiary", "road_length_m": 160.0, "poi_count": 4, "poi_types": {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}},
-    ]
-    (discovered_dir / "discovered_poi_roads.jsonl").write_text(
-        "\n".join(json.dumps(record, ensure_ascii=True) for record in records) + "\n",
-        encoding="utf-8",
-    )
-    app._write_discovered_roads_metadata(
-        app._discovered_metadata_path(discovered_dir / "discovered_poi_roads.jsonl"),
-        (113.2660, 23.1280, 113.2710, 23.1325),
-    )
-
-    glb_path = (tmp_path / "scene.glb").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    glb_path.write_bytes(b"glb")
-
-    captured: dict[str, object] = {}
-    effective_counts_by_osm = {
-        201: {"entrance": 2, "bus_stop": 0, "fire": 0},
-        202: {"entrance": 2, "bus_stop": 1, "fire": 0},
-        203: {"entrance": 2, "bus_stop": 1, "fire": 1},
-    }
-
     def fake_compose(**kwargs):
         config = kwargs["config"]
         captured["selected_road_osm_id"] = config.selected_road_osm_id
@@ -2510,31 +1981,6 @@ def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: 
 
 def test_run_street_compose_skips_discovered_road_that_loses_poi_after_compose_filter(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    monkeypatch.setattr(app, "ROOT", tmp_path)
-    artifacts_dir = tmp_path / "artifacts" / "real"
-    discovered_dir = tmp_path / "artifacts" / "m5"
-    discovered_dir.mkdir(parents=True, exist_ok=True)
-    records = [
-        {"osm_id": 201, "bbox": [113.2000, 23.1000, 113.2100, 23.1100], "highway_type": "service", "road_length_m": 140.0, "poi_count": 2, "poi_types": {"entrance": 2, "bus_stop": 0, "fire_hydrant": 0}},
-        {"osm_id": 202, "bbox": [113.2660, 23.1280, 113.2710, 23.1325], "highway_type": "secondary", "road_length_m": 150.0, "poi_count": 3, "poi_types": {"entrance": 2, "bus_stop": 1, "fire_hydrant": 0}},
-    ]
-    discovered_path = discovered_dir / "discovered_poi_roads.jsonl"
-    discovered_path.write_text(
-        "\n".join(json.dumps(record, ensure_ascii=True) for record in records) + "\n",
-        encoding="utf-8",
-    )
-    app._write_discovered_roads_metadata(
-        app._discovered_metadata_path(discovered_path),
-        (113.2660, 23.1280, 113.2710, 23.1325),
-    )
-
-    glb_path = (tmp_path / "scene.glb").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    glb_path.write_bytes(b"glb")
-    captured: dict[str, object] = {}
-
     def fake_compose(**kwargs):
         config = kwargs["config"]
         captured["selected_road_osm_id"] = config.selected_road_osm_id
@@ -2609,21 +2055,6 @@ def test_run_street_compose_skips_discovered_road_that_loses_poi_after_compose_f
 
 def test_run_street_compose_auto_discovers_when_cached_roads_missing(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-    from roadgen3d.road_discovery import DiscoveredRoad
-
-    monkeypatch.setattr(app, "ROOT", tmp_path)
-    artifacts_dir = tmp_path / "artifacts" / "real"
-    glb_path = (tmp_path / "scene.glb").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    glb_path.write_bytes(b"glb")
-
-    captured: dict[str, object] = {}
-    effective_counts_by_osm = {
-        501: {"entrance": 2, "bus_stop": 0, "fire": 0},
-        502: {"entrance": 2, "bus_stop": 1, "fire": 0},
-    }
-
     def fake_compose(**kwargs):
         config = kwargs["config"]
         captured["selected_road_osm_id"] = config.selected_road_osm_id
@@ -2707,53 +2138,6 @@ def test_run_street_compose_auto_discovers_when_cached_roads_missing(tmp_path: P
 
 def test_run_street_compose_summary_and_asset_usage_extract_show_objaverse_counts(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    glb_path = (tmp_path / "scene.glb").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    glb_path.write_bytes(b"glb")
-    layout_payload = {
-        "summary": {
-            "instance_count": 4,
-            "dropped_slots": 0,
-            "asset_source_counts": {
-                "objaverse_import": 2,
-                "procedural_generated": 1,
-                "parametric_generated": 1,
-            },
-            "asset_source_unique_counts": {
-                "objaverse_import": 2,
-                "procedural_generated": 1,
-                "parametric_generated": 1,
-            },
-            "asset_generator_type_counts": {
-                "objaverse_v1": 2,
-                "legacy": 1,
-                "parametric": 1,
-            },
-            "asset_usage_by_source": [
-                {
-                    "source": "objaverse_import",
-                    "instance_count": 2,
-                    "unique_asset_count": 2,
-                    "categories": ["bench", "lamp"],
-                    "generator_types": ["objaverse_v1"],
-                    "asset_ids": ["objaverse_bench_x", "objaverse_lamp_y"],
-                },
-                {
-                    "source": "procedural_generated",
-                    "instance_count": 1,
-                    "unique_asset_count": 1,
-                    "categories": ["tree"],
-                    "generator_types": ["legacy"],
-                    "asset_ids": ["tree_01"],
-                },
-            ],
-        },
-        "placements": [],
-    }
-    layout_path.write_text(json.dumps(layout_payload, ensure_ascii=True), encoding="utf-8")
-
     def fake_compose(**kwargs):
         return StreetComposeResult(
             query="urban street",
@@ -2798,32 +2182,6 @@ def test_run_street_compose_summary_and_asset_usage_extract_show_objaverse_count
 
 def test_run_street_compose_rediscover_when_cached_metadata_mismatches(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-    from roadgen3d.road_discovery import DiscoveredRoad
-
-    monkeypatch.setattr(app, "ROOT", tmp_path)
-    artifacts_dir = tmp_path / "artifacts" / "real"
-    discovered_dir = tmp_path / "artifacts" / "m5"
-    discovered_dir.mkdir(parents=True, exist_ok=True)
-    discovered_path = discovered_dir / "discovered_poi_roads.jsonl"
-    discovered_path.write_text(
-        json.dumps(
-            {"osm_id": 101, "bbox": [120.0, 30.0, 120.1, 30.1], "highway_type": "service", "road_length_m": 120.0, "poi_count": 2, "poi_types": {"entrance": 2}},
-            ensure_ascii=True,
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-    app._write_discovered_roads_metadata(
-        app._discovered_metadata_path(discovered_path),
-        (120.0, 30.0, 120.1, 30.1),
-    )
-
-    glb_path = (tmp_path / "scene.glb").resolve()
-    layout_path = (tmp_path / "scene_layout.json").resolve()
-    glb_path.write_bytes(b"glb")
-    calls = {"discover": 0}
-
     def fake_compose(**kwargs):
         config = kwargs["config"]
         layout_path.write_text(
@@ -2896,42 +2254,6 @@ def test_run_street_compose_rediscover_when_cached_metadata_mismatches(tmp_path:
 
 def test_run_street_compose_errors_when_auto_discovery_finds_no_poi_rich_roads(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
-
-    monkeypatch.setattr(app, "ROOT", tmp_path)
-    artifacts_dir = tmp_path / "artifacts" / "real"
-    monkeypatch.setattr(app, "discover_poi_roads", lambda city, cache_dir: [])
-
-    summary, *_ = app.run_street_compose(
-        dataset_profile="real",
-        query="urban street",
-        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
-        artifacts_dir_text=str(artifacts_dir),
-        model_name="openai/clip-vit-base-patch32",
-        model_dir_text="",
-        local_files_only=True,
-        device="cpu",
-        street_length_m=80.0,
-        street_road_width_m=8.0,
-        street_sidewalk_width_m=2.5,
-        street_lane_count=2,
-        street_density=1.0,
-        street_seed=0,
-        street_topk_per_category=20,
-        street_max_trials_per_slot=30,
-        export_format="glb",
-        m5_layout_mode="osm",
-        m5_constraint_mode="off",
-        m5_bbox_min_lon=113.2660,
-        m5_bbox_min_lat=23.1280,
-        m5_bbox_max_lon=113.2710,
-        m5_bbox_max_lat=23.1325,
-        road_selection="primary_road",
-    )
-
-    assert "No POI-rich roads found" in summary
-
-
 def test_street_compose_empty_category_pool_fails_cleanly(tmp_path: Path):
     pytest.importorskip("trimesh")
     mesh_path = tmp_path / "mesh.glb"

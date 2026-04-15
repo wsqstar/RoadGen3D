@@ -30,7 +30,7 @@ from roadgen3d.types import RetrievalHit, StreetComposeConfig  # noqa: E402
 from roadgen3d.street_layout import compose_street_scene  # noqa: E402
 import roadgen3d.street_layout as street_layout  # noqa: E402
 
-import scripts.layout_collect_data as m4_collect  # noqa: E402
+import scripts.layout_collect_data as layout_collect  # noqa: E402
 
 
 def _build_context() -> PolicyFeatureContext:
@@ -115,16 +115,16 @@ def test_collect_policy_data_schema(tmp_path: Path, monkeypatch):
             hits = [RetrievalHit(asset_id="bench_01", score=0.95)]
             return [hits for _ in range(query_embeddings.shape[0])]
 
-    monkeypatch.setattr(m4_collect, "ClipTextEmbedder", FakeEmbedder)
-    monkeypatch.setattr(m4_collect, "FaissIndexStore", FakeIndexStore)
+    monkeypatch.setattr(layout_collect, "ClipTextEmbedder", FakeEmbedder)
+    monkeypatch.setattr(layout_collect, "FaissIndexStore", FakeIndexStore)
     monkeypatch.setattr(
-        m4_collect,
+        layout_collect,
         "_load_mesh_cache",
         lambda rows: {"bench_01": SimpleNamespace(half_x=0.2, half_z=0.2, min_y=0.0)},
     )
 
     out_path = tmp_path / "policy_train.jsonl"
-    samples = m4_collect.collect_policy_data(
+    samples = layout_collect.collect_policy_data(
         manifest=manifest,
         artifacts=tmp_path / "artifacts",
         out=out_path,

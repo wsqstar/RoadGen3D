@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from scripts import street_generate_assets as m3_assets
+from scripts import street_generate_assets
 
 
 def _spec(
@@ -22,7 +22,7 @@ def _spec(
     *,
     style: str = "modern",
     budget_k: int | None = None,
-) -> m3_assets.AssetSpec:
+) -> street_generate_assets.AssetSpec:
     default_budget_k = {
         "bench": 15,
         "lamp": 20,
@@ -33,7 +33,7 @@ def _spec(
         "hydrant": 12,
         "bollard": 8,
     }
-    return m3_assets.AssetSpec(
+    return street_generate_assets.AssetSpec(
         task_id=f"task_{asset_id}",
         category=category,
         asset_id=asset_id,
@@ -71,7 +71,7 @@ def test_min_face_thresholds_enforced(tmp_path: Path):
 
     mesh_out = tmp_path / "meshes"
     manifest_out = tmp_path / "real_assets_manifest.jsonl"
-    m3_assets.generate_all(
+    street_generate_assets.generate_all(
         specs=specs,
         mesh_out_dir=mesh_out,
         manifest_out=manifest_out,
@@ -87,15 +87,15 @@ def test_min_face_thresholds_enforced(tmp_path: Path):
             mesh = trimesh.util.concatenate(tuple(mesh_or_scene.geometry.values()))
         else:
             mesh = mesh_or_scene
-        assert len(mesh.faces) >= m3_assets.MIN_FACES_BY_CATEGORY[category]
+        assert len(mesh.faces) >= street_generate_assets.MIN_FACES_BY_CATEGORY[category]
 
 
 def test_generation_fails_when_threshold_unreachable(tmp_path: Path, monkeypatch):
     specs = [_spec("bench_fail", "bench", budget_k=1)]
-    monkeypatch.setitem(m3_assets.MIN_FACES_BY_CATEGORY, "bench", 50000)
+    monkeypatch.setitem(street_generate_assets.MIN_FACES_BY_CATEGORY, "bench", 50000)
 
     with pytest.raises(RuntimeError, match="Failed to satisfy face constraints"):
-        m3_assets.generate_all(
+        street_generate_assets.generate_all(
             specs=specs,
             mesh_out_dir=tmp_path / "meshes",
             manifest_out=tmp_path / "real_assets_manifest.jsonl",
@@ -112,7 +112,7 @@ def test_tree_and_lamp_not_lowpoly_baseline(tmp_path: Path):
     ]
     mesh_out = tmp_path / "meshes"
     manifest_out = tmp_path / "real_assets_manifest.jsonl"
-    m3_assets.generate_all(
+    street_generate_assets.generate_all(
         specs=specs,
         mesh_out_dir=mesh_out,
         manifest_out=manifest_out,
@@ -143,7 +143,7 @@ def test_bench_and_lamp_default_to_parametric_backend_in_batch_generation(tmp_pa
     ]
     mesh_out = tmp_path / "meshes"
     manifest_out = tmp_path / "real_assets_manifest.jsonl"
-    m3_assets.generate_all(
+    street_generate_assets.generate_all(
         specs=specs,
         mesh_out_dir=mesh_out,
         manifest_out=manifest_out,
@@ -164,7 +164,7 @@ def test_bench_and_lamp_default_to_parametric_backend_in_batch_generation(tmp_pa
     for asset_id in ("bench_param", "lamp_param"):
         mesh_or_scene = trimesh.load(Path(str(rows[asset_id]["mesh_path"])), force="scene")
         mesh = trimesh.util.concatenate(tuple(mesh_or_scene.geometry.values())) if isinstance(mesh_or_scene, trimesh.Scene) else mesh_or_scene
-        assert len(mesh.faces) >= m3_assets.MIN_FACES_BY_CATEGORY[str(rows[asset_id]["category"])]
+        assert len(mesh.faces) >= street_generate_assets.MIN_FACES_BY_CATEGORY[str(rows[asset_id]["category"])]
 
 
 def test_bench_and_lamp_can_fallback_to_legacy_backend(tmp_path: Path):
@@ -173,7 +173,7 @@ def test_bench_and_lamp_can_fallback_to_legacy_backend(tmp_path: Path):
         _spec("lamp_legacy", "lamp", style="modern"),
     ]
     manifest_out = tmp_path / "real_assets_manifest.jsonl"
-    m3_assets.generate_all(
+    street_generate_assets.generate_all(
         specs=specs,
         mesh_out_dir=tmp_path / "meshes",
         manifest_out=manifest_out,

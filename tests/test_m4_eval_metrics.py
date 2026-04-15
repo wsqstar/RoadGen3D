@@ -16,7 +16,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.eval_metrics import compute_dropped_slot_rate, compute_overlap_rate  # noqa: E402
 from roadgen3d.types import StreetComposeResult  # noqa: E402
-import scripts.layout_eval as m4_eval  # noqa: E402
+import scripts.layout_eval as layout_eval  # noqa: E402
 
 
 def test_overlap_rate_zero_when_no_intersection():
@@ -105,7 +105,7 @@ def _build_args(tmp_path: Path, placement_policy: str, compare_rule: bool) -> ar
         queries=queries,
         manifest=tmp_path / "real_assets_manifest.jsonl",
         artifacts=tmp_path / "artifacts",
-        out_dir=tmp_path / "m4_eval",
+        out_dir=tmp_path / "layout_eval",
         model_name="openai/clip-vit-base-patch32",
         model_dir=None,
         local_files_only=True,
@@ -128,10 +128,10 @@ def _build_args(tmp_path: Path, placement_policy: str, compare_rule: bool) -> ar
 
 
 def test_eval_report_schema_fields(tmp_path: Path, monkeypatch):
-    monkeypatch.setattr(m4_eval, "compose_street_scene", _fake_compose_factory(tmp_path))
+    monkeypatch.setattr(layout_eval, "compose_street_scene", _fake_compose_factory(tmp_path))
     args = _build_args(tmp_path, placement_policy="rule", compare_rule=False)
 
-    report = m4_eval.run_eval(args)
+    report = layout_eval.run_eval(args)
     summary = report["summary"]
     for key in (
         "instance_count",
@@ -151,10 +151,10 @@ def test_eval_report_schema_fields(tmp_path: Path, monkeypatch):
 
 
 def test_rule_vs_learned_comparison_output(tmp_path: Path, monkeypatch):
-    monkeypatch.setattr(m4_eval, "compose_street_scene", _fake_compose_factory(tmp_path))
+    monkeypatch.setattr(layout_eval, "compose_street_scene", _fake_compose_factory(tmp_path))
     args = _build_args(tmp_path, placement_policy="learned", compare_rule=True)
 
-    report = m4_eval.run_eval(args)
+    report = layout_eval.run_eval(args)
     assert report["rule_summary"] is not None
     comparison = report["comparison_vs_rule"]
     assert "delta_instance_count" in comparison
