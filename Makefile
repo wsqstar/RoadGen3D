@@ -22,9 +22,9 @@ help:
 	@echo "make viewer-install    - Install web/viewer dependencies"
 	@echo "make ui-api/ui-web/ui-install - Backward-compatible aliases"
 	@echo "make knowledge-build   - Build the complete-streets PDF knowledge base"
-	@echo "make collect           - Collect M4 policy training data"
-	@echo "make train             - Train layout policy (M4)"
-	@echo "make eval              - Run M4 engineering evaluation"
+	@echo "make collect           - Collect layout policy training data"
+	@echo "make train             - Train layout policy"
+	@echo "make eval              - Run layout engineering evaluation"
 	@echo "make snapshot-diff     - Run snapshot diff pipeline (real LLM, single query)"
 	@echo ""
 	@echo "Test Commands:"
@@ -142,8 +142,8 @@ test:
 	@echo ""
 	uv run pytest tests/ \
 		--ignore=tests/test_m2_pipeline.py \
-		--ignore=tests/test_m3_street_compose.py \
-		--ignore=tests/test_m3_external_tree_import.py \
+		--ignore=tests/test_street_compose.py \
+		--ignore=tests/test_street_compose_external_tree_import.py \
 		--ignore=tests/test_m4_layout_policy.py \
 		--ignore=tests/test_m5_compose_constraints.py \
 		--ignore=tests/test_m6_neuralsymbolic_pipeline.py \

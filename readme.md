@@ -308,7 +308,7 @@ RoadGen3D/
 │   │   ├── design_types.py         # Data types
 │   │   └── scene_jobs.py           # Async job queue
 │   └── ...
-├── scripts/                # CLI tools (m1_*, m2_*, m3_*, m4_*, m5_*)
+├── scripts/                # CLI tools (rag_*, street_compose_*, layout_*, osm_*, eval_*)
 │   ├── auto_scene_pipeline.py      # Auto pipeline CLI entry point
 │   └── run_auto_eval.py            # Multi-version auto evaluation
 ├── web/
