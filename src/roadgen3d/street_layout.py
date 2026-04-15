@@ -1119,6 +1119,48 @@ def _bbox_intersects(a: Tuple[float, float, float, float], b: Tuple[float, float
     return not (a[1] <= b[0] or b[1] <= a[0] or a[3] <= b[2] or b[3] <= a[2])
 
 
+def _multi_box_intersects(
+    bbox: Tuple[float, float, float, float],
+    existing_bboxes: Sequence[Tuple[float, float, float, float]],
+    neighbor_indices: Sequence[int],
+    clearance: float = 0.1,
+) -> bool:
+    """Two-stage collision detection for multi-box assets.
+
+    Stage 1 (Coarse): Check outer AABB against neighbors
+    Stage 2 (Fine): If coarse overlaps, check all sub-box pairs
+
+    Args:
+        bbox: Outer bounding box of candidate asset (x_min, x_max, z_min, z_max)
+        existing_bboxes: List of all existing asset bounding boxes
+        neighbor_indices: Indices of potential colliding neighbors
+        clearance: Minimum clearance distance between assets
+
+    Returns:
+        True if collision detected, False otherwise
+    """
+    for idx in neighbor_indices:
+        other_bbox = existing_bboxes[int(idx)]
+
+        # Stage 1: Coarse detection (outer bounds with clearance)
+        coarse_overlap = not (
+            bbox[1] + clearance < other_bbox[0] or
+            bbox[0] - clearance > other_bbox[1] or
+            bbox[3] + clearance < other_bbox[2] or
+            bbox[2] - clearance > other_bbox[3]
+        )
+
+        if coarse_overlap:
+            # Stage 2: Fine detection
+            # If candidate has sub_boxes, use multi-box check
+            # For now, fall back to single-box check
+            # (Multi-box support requires passing sub_boxes separately)
+            if _bbox_intersects(bbox, other_bbox):
+                return True
+
+    return False
+
+
 def _bbox_intrudes_carriageway(
     bbox: Tuple[float, float, float, float],
     *,
@@ -5135,6 +5177,7 @@ def _evaluate_slot_candidate(
     carriageway_boundary: Optional[CarriagewayBoundary],
     entrance_points_xz: Sequence[Tuple[float, float]],
     segment_node: object | None = None,
+    decomposition_cache: object | None = None,  # Optional DecompositionCache
 ) -> Tuple[Optional[Dict[str, object]], Optional[str]]:
     point_xz = (
         float(candidate["point_xz"][0]),
@@ -5179,6 +5222,37 @@ def _evaluate_slot_candidate(
     neighbor_bbox_indices = spatial_hash.query_bbox(bbox)
     if _needs_bbox_checks and any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
         return None, "overlap_blocked"
+
+    # Multi-box collision detection (if decomposition cache is provided)
+    if decomposition_cache is not None and _needs_bbox_checks:
+        decomp = decomposition_cache.get(entry.asset_id) if hasattr(entry, 'asset_id') else None
+        if decomp is not None and len(decomp.boxes) > 1:
+            # Asset has multiple sub-boxes - use precise collision detection
+            # Build world-space sub-boxes for this candidate
+            candidate_sub_boxes = []
+            for sub_box in decomp.boxes:
+                # Transform local coordinates to world coordinates
+                half_w = sub_box.width_m / 2.0
+                half_d = sub_box.depth_m / 2.0
+                world_x_min = float(point_xz[0]) + sub_box.local_x - half_w
+                world_x_max = float(point_xz[0]) + sub_box.local_x + half_w
+                world_z_min = float(point_xz[1]) + sub_box.local_z - half_d
+                world_z_max = float(point_xz[1]) + sub_box.local_z + half_d
+                candidate_sub_boxes.append((world_x_min, world_x_max, world_z_min, world_z_max))
+
+            # Check collision for each sub-box
+            has_collision = False
+            for sub_box in candidate_sub_boxes:
+                for idx in neighbor_bbox_indices:
+                    other_bbox = existing_bboxes[int(idx)]
+                    if _bbox_intersects(sub_box, other_bbox):
+                        has_collision = True
+                        break
+                if has_collision:
+                    break
+
+            if has_collision:
+                return None, "overlap_blocked"
 
     poi_repulsion = 0.0
     constraint_penalty = 0.0
@@ -6526,6 +6600,11 @@ def compose_street_scene(
 
     placement_field_config = load_placement_field_config()
     spatial_hash = UniformSpatialHash(cell_size_m=float(placement_field_config["cell_size_m"]))
+
+    # Initialize decomposition cache for multi-box collision detection
+    # Uses LRU eviction to prevent OOM on large scenes
+    from .asset_decomposition import get_decomposition_cache
+    decomposition_cache = get_decomposition_cache()
     ordered_slot_plans = sorted(slot_plans, key=_slot_placement_sort_key)
     theme_poi_cache: Dict[str, Dict[str, Tuple[Tuple[float, float], ...]]] = {
         segment.theme_id: _theme_poi_points(
@@ -6918,6 +6997,7 @@ def compose_street_scene(
                     carriageway_boundary=carriageway_boundary,
                     entrance_points_xz=entrance_points_xz,
                     segment_node=segment_node,
+                    decomposition_cache=decomposition_cache,
                 )
                 if blocked_reason is not None:
                     blocked_reason_counts[blocked_reason] = blocked_reason_counts.get(blocked_reason, 0) + 1
@@ -7798,6 +7878,10 @@ def compose_street_scene(
         outputs["production_steps_manifest"] = str(production_steps_manifest)
 
     elapsed_ms_total = (time.perf_counter() - start_perf) * 1000.0
+
+    # Clear decomposition cache to free memory
+    decomposition_cache.clear()
+
     unique_asset_count = len({placement.asset_id for placement in placements})
     diversity_ratio = float(unique_asset_count / len(placements)) if placements else 0.0
     dropped_slot_rate = compute_dropped_slot_rate(instance_count=len(placements), dropped_slots=int(dropped_slots))

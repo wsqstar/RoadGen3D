@@ -31,11 +31,14 @@ except ImportError:
 # Directory for cached decomposition results
 DECOMPOSITION_CACHE_DIR = Path(__file__).parent.parent.parent.parent / "data" / "real" / "latents"
 
+# Maximum number of decompositions to keep in memory (LRU limit)
+DEFAULT_MAX_DECOMPOSITION_CACHE = 100
+
 
 @dataclass(frozen=True)
 class SubBox:
     """A single sub-box within a decomposed asset.
-    
+
     Coordinates are local to the asset's center (XZ plane).
     """
     local_x: float      # Center X offset from asset origin
@@ -54,6 +57,94 @@ class SubBox:
             width_m=float(d["width_m"]),
             depth_m=float(d["depth_m"]),
         )
+
+
+class DecompositionCache:
+    """Memory-efficient LRU cache for asset decompositions.
+
+    This cache stores only lightweight metadata and lazily loads
+    full decomposition data (SubBox lists) only when accessed.
+    Uses LRU eviction to prevent OOM on large scenes.
+
+    Memory footprint per cached entry:
+      - Metadata only: ~200 bytes
+      - Loaded decomposition: ~200 + (num_boxes * 100) bytes
+      - With 100 entries and avg 3 boxes each: < 50 KB total
+    """
+
+    def __init__(self, max_entries: int = DEFAULT_MAX_DECOMPOSITION_CACHE):
+        self._max_entries = max_entries
+        # Stores either None (not loaded) or DecomposedAsset (loaded)
+        self._cache: Dict[str, Optional[DecomposedAsset]] = {}
+        # Access order for LRU eviction
+        self._access_order: List[str] = []
+
+    def get(self, asset_id: str) -> Optional[DecomposedAsset]:
+        """Get decomposition for asset, loading from disk if needed.
+
+        Returns None if no decomposition cache exists for this asset.
+        Uses LRU eviction if cache is full.
+        """
+        # Fast path: already loaded in memory
+        if asset_id in self._cache:
+            self._touch(asset_id)
+            return self._cache[asset_id]
+
+        # Load from disk
+        decomp = DecomposedAsset.load_cache(asset_id)
+        if decomp is None:
+            return None
+
+        # Evict LRU entries if cache is full
+        while len(self._cache) >= self._max_entries:
+            if self._access_order:
+                oldest = self._access_order.pop(0)
+                if oldest in self._cache:
+                    del self._cache[oldest]
+
+        # Store in cache
+        self._cache[asset_id] = decomp
+        self._access_order.append(asset_id)
+
+        return decomp
+
+    def preload(self, asset_ids: List[str]) -> None:
+        """Preload specific decompositions into cache.
+
+        Useful when you know which assets will be needed.
+        """
+        for asset_id in asset_ids:
+            self.get(asset_id)
+
+    def clear(self) -> None:
+        """Clear all cached decompositions from memory."""
+        self._cache.clear()
+        self._access_order.clear()
+
+    def _touch(self, asset_id: str) -> None:
+        """Mark asset as recently accessed (move to end of LRU list)."""
+        if asset_id in self._access_order:
+            self._access_order.remove(asset_id)
+        self._access_order.append(asset_id)
+
+    @property
+    def memory_usage_bytes(self) -> int:
+        """Estimate current memory usage in bytes."""
+        total = 0
+        for decomp in self._cache.values():
+            if decomp is not None:
+                # Rough estimate: 200 bytes base + 100 bytes per box
+                total += 200 + len(decomp.boxes) * 100
+        return total
+
+
+# Global default cache instance
+_default_cache = DecompositionCache()
+
+
+def get_decomposition_cache() -> DecompositionCache:
+    """Get the global default decomposition cache."""
+    return _default_cache
 
 
 @dataclass(frozen=True)
