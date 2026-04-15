@@ -1256,7 +1256,46 @@ def _build_slot_plans(
         remaining_count = max(0, count - anchor_slot_count)
         if remaining_count <= 0:
             continue
+        # --- DYNAMIC SPACING ALGORITHM (Bin Packing / Uniform Distribution) ---
+        # Instead of simply dividing Length / Count, we estimate the asset size
+        # to calculate a spacing that prevents overlap or excessive gaps.
+
+        # Heuristic asset width (meters). 
+        # Most street furniture (benches, lamps) is around 1.5m - 2.5m wide.
+        # We use a safe average to ensure slots are spaced realistically.
+        _ASSET_WIDTH_ESTIMATES = {
+            "tree": 4.0,      # Canopy width
+            "lamp": 0.5,      # Pole base is small
+            "bench": 2.0,     # Standard bench
+            "trash": 0.8,     # Bin
+            "mailbox": 0.6,   # Post box
+            "bus_stop": 3.5,  # Shelter
+            "bollard": 0.3,   # Thin post
+        }
+        est_width = _ASSET_WIDTH_ESTIMATES.get(str(category), 1.5)
+        min_spacing = 1.5 # Minimum clearance between assets
+
         segment = float(solver_input.config.length_m) / float(max(remaining_count, 1))
+        
+        # Optimization: Recalculate segment based on asset size
+        if remaining_count > 1:
+            total_length = float(solver_input.config.length_m)
+            # Space required by assets themselves
+            total_assets_width = remaining_count * est_width
+            # Space remaining for gaps
+            free_space = total_length - total_assets_width
+            
+            if str(category) in {"tree", "lamp", "bollard"}:
+                # UNIFORM SPACING: Distribute free space evenly between gaps
+                # (Count items have Count-1 gaps between them)
+                gap = free_space / float(remaining_count - 1)
+                segment = est_width + gap
+            else:
+                # COMPACT PACKING: Use a fixed, tight spacing
+                # This groups items like benches/trash together rather than spreading them thin
+                segment = max(est_width + min_spacing, free_space / float(remaining_count - 1))
+        # --------------------------------------------------------------------
+
         ordered_bands = _balanced_band_sequence(
             category=str(category),
             allowed_bands=allowed_bands,
