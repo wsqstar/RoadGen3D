@@ -5499,8 +5499,14 @@ def _place_building_targets(
         _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
         if row is not None:
             entry = mesh_cache.get_metadata(row["asset_id"])
-            scale_x = max(frontage_width_m / max(entry.half_x * 2.0, 1e-3), 0.1)
-            scale_z = max(depth_m / max(entry.half_z * 2.0, 1e-3), 0.1)
+            # Calculate individual scales for width and depth
+            raw_scale_x = max(frontage_width_m / max(entry.half_x * 2.0, 1e-3), 0.1)
+            raw_scale_z = max(depth_m / max(entry.half_z * 2.0, 1e-3), 0.1)
+
+            # FIX: Enforce uniform scaling (isotropic) to prevent asset stretching/distortion.
+            # We take the minimum scale to ensure the asset fits within the slot bounds without deformation.
+            uniform_scale_xz = min(raw_scale_x, raw_scale_z)
+
             if _target_height_m > 0.0 and entry.native_height_y > 0.01:
                 scale_y = max(0.75, min(3.0, _target_height_m / entry.native_height_y))
             else:
@@ -5508,8 +5514,11 @@ def _place_building_targets(
                     str(row.get("height_class", target.get("height_class", "midrise"))),
                     {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(target.get("height_class", "midrise")), 1.2),
                 )
-                scale_y = max(scale_x, scale_z) * float(height_multiplier)
-            scale_xyz = [float(scale_x), float(scale_y), float(scale_z)]
+                # Use the uniform scale for height estimation to maintain proportions
+                scale_y = uniform_scale_xz * float(height_multiplier)
+
+            # Apply uniform scale to X and Z axes
+            scale_xyz = [float(uniform_scale_xz), float(scale_y), float(uniform_scale_xz)]
             asset_id = str(row["asset_id"])
             asset_count += 1
             fallback_reason = ""
