@@ -2,6 +2,8 @@
 
 This module replaces the fixed "Slot" mechanism for specific asset categories
 to ensure better utilization of street length and aesthetic spacing.
+
+Supports both single-box and multi-box (decomposed) assets for tighter packing.
 """
 
 from __future__ import annotations
@@ -10,6 +12,7 @@ from dataclasses import dataclass
 from typing import List, Tuple, Sequence, Dict, Any, Optional
 
 from .types import StreetProgram, StreetBand
+from .asset_decomposition import SubBox, DecomposedAsset
 
 @dataclass
 class AssetCandidate:
@@ -19,6 +22,9 @@ class AssetCandidate:
     width_m: float  # Full width (already scaled)
     depth_m: float  # Full depth (already scaled)
     min_spacing_m: float = 1.5  # Minimum gap to other assets
+    
+    # Optional: multi-box decomposition
+    decomposition: Optional[DecomposedAsset] = None
 
 
 @dataclass
@@ -31,10 +37,25 @@ class PlacedAsset:
     width_m: float
     depth_m: float
     yaw_deg: float = 0.0
+    
+    # Optional: multi-box decomposition (in world coordinates)
+    boxes: List[SubBox] = None
+
+    def __post_init__(self):
+        if self.boxes is None:
+            # Default to single box if not provided
+            half_w = self.width_m / 2.0
+            half_d = self.depth_m / 2.0
+            self.boxes = [SubBox(
+                local_x=0.0,
+                local_z=0.0,
+                width_m=self.width_m,
+                depth_m=self.depth_m,
+            )]
 
     @property
     def bbox_xz(self) -> Tuple[float, float, float, float]:
-        """Returns (x_min, x_max, z_min, z_max)."""
+        """Returns outer bounding box (x_min, x_max, z_min, z_max)."""
         half_w = self.width_m / 2.0
         half_d = self.depth_m / 2.0
         return (
@@ -44,17 +65,58 @@ class PlacedAsset:
             self.center_z + half_d,
         )
 
-    def intersects(self, other: PlacedAsset) -> bool:
-        """Check AABB intersection with a small tolerance for clearance."""
-        clearance = 0.1  # 10cm tolerance
+    def get_world_boxes(self) -> List[Tuple[float, float, float, float]]:
+        """Get all sub-boxes in world coordinates.
+        
+        Returns list of (x_min, x_max, z_min, z_max) for each sub-box.
+        """
+        result = []
+        for box in self.boxes:
+            x_min = self.center_x + box.local_x - box.width_m / 2.0
+            x_max = self.center_x + box.local_x + box.width_m / 2.0
+            z_min = self.center_z + box.local_z - box.depth_m / 2.0
+            z_max = self.center_z + box.local_z + box.depth_m / 2.0
+            result.append((x_min, x_max, z_min, z_max))
+        return result
+
+    def intersects(self, other: PlacedAsset, clearance: float = 0.1) -> bool:
+        """Check collision using multi-box precise detection.
+        
+        Two-stage detection:
+        1. Coarse: Check outer AABB
+        2. Fine: Check all sub-box pairs only if coarse overlaps
+        """
+        # Stage 1: Coarse detection (outer bounds)
         bbox1 = self.bbox_xz
         bbox2 = other.bbox_xz
-        return not (
+        
+        coarse_overlap = not (
             bbox1[1] + clearance < bbox2[0] or
             bbox1[0] - clearance > bbox2[1] or
             bbox1[3] + clearance < bbox2[2] or
             bbox1[2] - clearance > bbox2[3]
         )
+        
+        if not coarse_overlap:
+            return False
+        
+        # Stage 2: Fine detection (all sub-box pairs)
+        my_boxes = self.get_world_boxes()
+        other_boxes = other.get_world_boxes()
+        
+        for b1 in my_boxes:
+            for b2 in other_boxes:
+                # Check overlap with clearance
+                overlap = not (
+                    b1[1] + clearance < b2[0] or
+                    b1[0] - clearance > b2[1] or
+                    b1[3] + clearance < b2[2] or
+                    b1[2] - clearance > b2[3]
+                )
+                if overlap:
+                    return True
+        
+        return False
 
 
 @dataclass
@@ -154,34 +216,39 @@ def solve_compact_packing(
     keepouts: Sequence[KeepoutZone] = (),
 ) -> List[PlacedAsset]:
     """Pack assets as tightly as possible, filling gaps.
-    
+
     Strategy: First Fit Decreasing (simplified for 1D).
-    Sort assets by size (optional, usually they are same category) and place them
-    one by one starting from start_x.
+    Supports multi-box decomposition for precise collision detection.
+    
+    Algorithm:
+    1. Sort assets by size (optional)
+    2. Place one by one from start_x
+    3. Use multi-box collision detection for tight packing
+    4. Jump over keepout zones
     """
     if not assets:
         return []
 
     placed: List[PlacedAsset] = []
     current_x = start_x
-    
-    # Sort by width (largest first usually packs better, but for street furniture
-    # insertion order or random is often fine to look natural).
-    # Let's keep original order or random shuffle for natural look.
-    
+
     for asset in assets:
         half_w = asset.width_m / 2.0
-        
+
         # Candidate position: touch the previous asset or start_x
         candidate_x = current_x + half_w
-        
+
         # Check Bounds
         if candidate_x + half_w > end_x:
             # Asset doesn't fit in remaining space
             continue
-            
-        # Check Keepouts
-        skip = False
+
+        # Build placed asset with decomposition if available
+        boxes = None
+        if asset.decomposition is not None:
+            # Use pre-computed decomposition
+            boxes = list(asset.decomposition.boxes)
+        
         temp_asset = PlacedAsset(
             asset_id=asset.asset_id,
             category=asset.category,
@@ -189,30 +256,36 @@ def solve_compact_packing(
             center_z=center_z,
             width_m=asset.width_m,
             depth_m=asset.depth_m,
+            boxes=boxes,
         )
-        
+
+        # Check Keepouts
+        skip = False
         for zone in keepouts:
             if zone.overlaps(temp_asset):
                 # Move asset to end of keepout
                 candidate_x = zone.x_max + half_w
-                skip = True # Need to re-check bounds and overlaps
+                skip = True
                 break
-        
+
         if skip:
             # Re-check bounds after jump
             if candidate_x + half_w > end_x:
                 continue
             # Update temp asset position
             temp_asset.center_x = candidate_x
-            
+
             # Re-check overlap with previously placed assets (since we jumped forward)
             for prev in placed:
                 if prev.intersects(temp_asset):
-                    # If we overlap with a placed asset (shouldn't happen if keepouts are disjoint 
-                    # from placed assets, but good for safety), move past it
-                    candidate_x = prev.bbox_xz[1] + half_w + 0.1 # 10cm clearance
+                    # Move past the overlapping asset
+                    candidate_x = prev.bbox_xz[1] + half_w + 0.1  # 10cm clearance
                     temp_asset.center_x = candidate_x
         
+        # Final bounds check
+        if candidate_x + half_w > end_x:
+            continue
+
         # Final placement
         placed.append(PlacedAsset(
             asset_id=asset.asset_id,
@@ -221,9 +294,30 @@ def solve_compact_packing(
             center_z=center_z,
             width_m=asset.width_m,
             depth_m=asset.depth_m,
+            boxes=list(temp_asset.boxes),
         ))
-        
+
         # Update cursor: current asset's end edge
         current_x = candidate_x + half_w + asset.min_spacing_m
 
     return placed
+
+
+def create_candidate_from_decomposition(
+    asset_id: str,
+    category: str,
+    decomposition: DecomposedAsset,
+    min_spacing_m: float = 1.5,
+) -> AssetCandidate:
+    """Create an AssetCandidate from a pre-computed decomposition.
+    
+    This is a helper to easily use decomposed assets in the packing algorithms.
+    """
+    return AssetCandidate(
+        asset_id=asset_id,
+        category=category,
+        width_m=decomposition.outer_half_x * 2.0,
+        depth_m=decomposition.outer_half_z * 2.0,
+        min_spacing_m=min_spacing_m,
+        decomposition=decomposition,
+    )
