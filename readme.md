@@ -637,6 +637,32 @@ Workbench 提供交互式评估可视化功能：
 - 场景布局路径透传
 - 最近场景历史记录
 
+## UI 设计主题
+
+Web 界面采用统一的 **HKUST 主题风格**，贯穿所有页面：
+
+### 配色方案
+
+| 用途 | 颜色 | 说明 |
+|:---|:---|:---|
+| 主色 | `#00539F` | HKUST Blue，用于按钮、标题、导航等核心元素 |
+| 强调色 | `#FFD100` | HKUST Yellow，用于徽章、重要提示、hover 效果 |
+| 背景 | 透明科技白 | 半透明白色 + backdrop-filter 模糊效果 |
+| 阴影 | 柔和阴影 | CSS 变量 `--shadow-md`，营造层次感 |
+
+### 主题特性
+
+- **透明面板**: 所有卡片和面板使用 `rgba(255, 255, 255, 0.85)` 半透明背景
+- **毛玻璃效果**: `backdrop-filter: blur(12px)` 创建科技感
+- **柔和阴影**: 多层阴影叠加，边缘有蓝色光晕
+- **CSS 变量**: 统一使用 `--color-primary`、`--color-accent` 等变量，便于主题切换
+
+### 统一组件
+
+Viewer 子模块提供共享 UI 组件 (`ui.ts`):
+- `setupMenuToggle()` — 响应式菜单切换
+- `setupNavigation()` — 统一的页面导航
+
 ## Testing
 
 The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `llm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
