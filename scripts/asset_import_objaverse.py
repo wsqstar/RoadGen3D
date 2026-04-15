@@ -23,8 +23,8 @@ from roadgen3d.objaverse_import import (
     write_manifest_rows,
     write_report_json,
 )
-from scripts import m3_05_seed_production_parametric_assets as production_seed
-from scripts import m3_04_clean_asset_manifest as manifest_cleaner
+from scripts import asset_seed_production as production_seed
+from scripts import asset_clean_manifest as manifest_cleaner
 
 
 def _parse_categories(value: str | Sequence[str] | None) -> List[str]:

@@ -21,8 +21,8 @@ if str(SRC) not in sys.path:
 from roadgen3d.embedder import ClipTextEmbedder
 from roadgen3d.index_store import FaissIndexStore
 from roadgen3d.parametric_assets import GenerationRequest, generate_parametric_asset
-from scripts import m2_12_build_real_index as build_real_index
-from scripts import m3_04_clean_asset_manifest as manifest_cleaner
+from scripts import asset_build_index as build_real_index
+from scripts import asset_clean_manifest as manifest_cleaner
 
 
 PRODUCTION_ASSET_SPECS: Sequence[Dict[str, Any]] = (

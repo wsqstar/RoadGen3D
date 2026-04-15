@@ -16,9 +16,9 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from scripts import m3_04_clean_asset_manifest as manifest_cleaner
-from scripts import m3_05_seed_production_parametric_assets as production_seed
-from scripts.m2_10_ingest_assets import (
+from scripts import asset_clean_manifest as manifest_cleaner
+from scripts import asset_seed_production as production_seed
+from scripts.asset_ingest import (
     _load_as_filtered_scene,
     _load_mesh_as_single_mesh,
     normalize_grounded_mesh,
