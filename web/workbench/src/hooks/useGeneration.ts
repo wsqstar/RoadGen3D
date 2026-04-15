@@ -1,8 +1,8 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import type { ScenePreset, GeneratedScheme } from "../lib/types";
 import type { DraftResponse } from "../lib/api";
-import { DEFAULT_GRAPH_TEMPLATE_ID, POLL_INTERVAL_MS, MAX_GENERATION_ATTEMPTS, SCENE_PRESETS } from "../lib/types";
-import { postJson, getJson, evaluateScene, resolveApiUrl } from "../lib/api";
+import { DEFAULT_GRAPH_TEMPLATE_ID, POLL_INTERVAL_MS, MAX_GENERATION_ATTEMPTS, FALLBACK_SCENE_PRESETS } from "../lib/types";
+import { fetchPresets, fetchGraphTemplates, postJson, getJson, evaluateScene, resolveApiUrl } from "../lib/api";
 import { resolveViewerUrl, sleep } from "../lib/utils";
 
 // 方案变体定义：确保A/B/C有显著差异
@@ -14,6 +14,7 @@ const SCHEME_VARIANTS = {
 
 export type GenerationState =
   | { type: "idle" }
+  | { type: "loading_presets"; }
   | { type: "generating"; schemes: GeneratedScheme[] }
   | { type: "done"; schemes: GeneratedScheme[] }
   | { type: "error"; message: string };
@@ -25,8 +26,30 @@ type JobProgress = {
   message: string;       // 友好的状态描述
 };
 
+export function useScenePresets() {
+  const [presets, setPresets] = useState<ScenePreset[]>(FALLBACK_SCENE_PRESETS);
+  const [templates, setTemplates] = useState<{ template_id: string; label: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([fetchPresets(), fetchGraphTemplates()]).then(([presets, templates]) => {
+      if (presets.length > 0) {
+        setPresets(presets);
+      }
+      setTemplates(templates);
+      setLoading(false);
+    }).catch(() => {
+      setLoading(false);
+    });
+  }, []);
+
+  return { presets, templates, loading };
+}
+
 export function useGeneration(
-  onStatusChange: (message: string) => void
+  onStatusChange: (message: string) => void,
+  graphTemplateId: string = DEFAULT_GRAPH_TEMPLATE_ID,
+  presets: ScenePreset[] = FALLBACK_SCENE_PRESETS
 ) {
   const [generationState, setGenerationState] = useState<GenerationState>({ type: "idle" });
 
@@ -150,7 +173,7 @@ export function useGeneration(
         aoi_bbox: null,
         city_name_en: null,
         reference_plan_id: null,
-        graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
+        graph_template_id: graphTemplateId,
       },
       patch_overrides: {},
       generation_options: { preset_id: preset.id, random_seed: randomSeed },
@@ -285,7 +308,7 @@ export function useGeneration(
         aoi_bbox: null,
         city_name_en: null,
         reference_plan_id: null,
-        graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
+        graph_template_id: graphTemplateId,
       },
       patch_overrides: {},
       generation_options: { preset_id: "custom_draft", random_seed: randomSeed },
@@ -405,7 +428,7 @@ export function useGeneration(
     try {
       // Get the current config patch from the preset or draft
       // For now, we'll use the target scheme's preset to get the base config
-      const preset = SCENE_PRESETS.find(p => p.id === targetScheme.presetId);
+      const preset = presets.find(p => p.id === targetScheme.presetId);
       const baseConfig = preset?.configPatch || {};
 
       // Merge the patch with the base config
@@ -481,7 +504,7 @@ export function useGeneration(
     scene_glb_path: string;
     viewer_url: string;
   }> {
-    const preset = SCENE_PRESETS.find(p => p.id === presetId);
+    const preset = presets.find(p => p.id === presetId);
     const prompt = preset?.prompt || "优化后的街道设计";
 
     const response = await postJson<{
@@ -502,7 +525,7 @@ export function useGeneration(
         aoi_bbox: null,
         city_name_en: null,
         reference_plan_id: null,
-        graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
+        graph_template_id: graphTemplateId,
       },
       patch_overrides: {},
       generation_options: { preset_id: presetId },

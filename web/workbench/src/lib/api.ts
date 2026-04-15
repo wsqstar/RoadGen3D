@@ -1,7 +1,35 @@
 import type { EvaluationScores, WalkabilityIndicators, ComparisonResult, ImprovementResult } from "./types";
+import type { ScenePreset } from "./types";
 import { API_BASE } from "./types";
 
 const DEFAULT_TIMEOUT_MS = 30000;
+
+export interface GraphTemplate {
+  template_id: string;
+  label: string;
+  description: string;
+  image_url: string;
+}
+
+export async function fetchPresets(): Promise<ScenePreset[]> {
+  try {
+    const response = await getJson<{ items: ScenePreset[] }>("/api/presets");
+    return response.items;
+  } catch (error) {
+    console.error("Failed to fetch presets:", error);
+    return [];
+  }
+}
+
+export async function fetchGraphTemplates(): Promise<GraphTemplate[]> {
+  try {
+    const response = await getJson<{ items: GraphTemplate[] }>("/api/graph-templates");
+    return response.items;
+  } catch (error) {
+    console.error("Failed to fetch graph templates:", error);
+    return [];
+  }
+}
 
 export async function postJson<T>(path: string, payload: unknown, timeoutMs = DEFAULT_TIMEOUT_MS): Promise<T> {
   const controller = new AbortController();

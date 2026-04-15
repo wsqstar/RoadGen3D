@@ -148,7 +148,9 @@ export const DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate";
 export const POLL_INTERVAL_MS = 1500;
 export const MAX_GENERATION_ATTEMPTS = 120;
 
-export const SCENE_PRESETS: ScenePreset[] = [
+// Fallback presets when API is not available (kept for offline/demo mode)
+// SCENE_PRESETS are now fetched from /api/presets endpoint
+export const FALLBACK_SCENE_PRESETS: ScenePreset[] = [
   {
     id: "pedestrian_friendly",
     name: "步行友好",
@@ -214,7 +216,7 @@ export const SCENE_PRESETS: ScenePreset[] = [
     configPatch: {
       design_rule_profile: "pedestrian_priority_v1",
       objective_profile: "greening",
-      density: 0.2,
+      density: 0.25,
       ped_demand_level: "medium",
       bike_demand_level: "medium",
       transit_demand_level: "low",
@@ -232,8 +234,8 @@ export const SCENE_PRESETS: ScenePreset[] = [
     configPatch: {
       design_rule_profile: "pedestrian_priority_v1",
       objective_profile: "greening",
-      density: 0.3,
-      ped_demand_level: "low",
+      density: 0.35,
+      ped_demand_level: "high",
       bike_demand_level: "medium",
       transit_demand_level: "low",
       vehicle_demand_level: "low",

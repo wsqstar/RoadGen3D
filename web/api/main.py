@@ -23,6 +23,7 @@ if str(SRC) not in sys.path:
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
 from roadgen3d.llm import LLMConfigurationError, LLMResponseError  # noqa: E402
 from roadgen3d.graph_templates import get_graph_template, list_graph_templates  # noqa: E402
+from roadgen3d.presets import SCENE_PRESETS  # noqa: E402
 from roadgen3d.metaurban_procedural import get_metaurban_reference_plan, list_metaurban_reference_plans  # noqa: E402
 from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_compose_config,
@@ -162,6 +163,11 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             payload["image_url"] = f"/api/graph-templates/{template.template_id}/image"
             items.append(payload)
         return make_json_safe({"items": items})
+
+    @app.get("/api/presets")
+    def list_presets() -> Dict[str, Any]:
+        """Return all scene presets for frontend consumption."""
+        return make_json_safe({"items": SCENE_PRESETS})
 
     @app.get("/api/graph-templates/{template_id}/image")
     def get_graph_template_image(template_id: str) -> FileResponse:

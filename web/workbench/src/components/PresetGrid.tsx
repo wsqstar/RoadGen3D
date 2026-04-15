@@ -1,15 +1,15 @@
-import { SCENE_PRESETS } from "../lib/types";
 import type { ScenePreset } from "../lib/types";
 
 interface PresetGridProps {
   selectedPreset: ScenePreset | null;
   onSelect: (preset: ScenePreset) => void;
+  presets: ScenePreset[];
 }
 
-export function PresetGrid({ selectedPreset, onSelect }: PresetGridProps) {
+export function PresetGrid({ selectedPreset, onSelect, presets }: PresetGridProps) {
   return (
     <div className="preset-grid">
-      {SCENE_PRESETS.map((preset) => {
+      {presets.map((preset) => {
         const isSelected = selectedPreset?.id === preset.id;
         return (
           <div

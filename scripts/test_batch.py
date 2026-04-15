@@ -36,100 +36,23 @@ except ImportError:
     load_dotenv = None
 
 
-# ── Configuration ────────────────────────────────────────────────────────────────
+# ── Import shared presets ────────────────────────────────────────────────────────
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+from roadgen3d.presets import SCENE_PRESETS
 
-SCENE_PRESETS = [
-    {
-        "id": "pedestrian_friendly",
-        "name": "步行友好",
-        "name_en": "Pedestrian Friendly",
-        "prompt": "步行安全，全龄友好的完整街道，安静、安全、舒适",
-        "config_patch": {
-            "design_rule_profile": "pedestrian_priority_v1",
-            "objective_profile": "balanced",
-            "density": 0.5,
-            "ped_demand_level": "high",
-            "bike_demand_level": "medium",
-            "transit_demand_level": "medium",
-            "vehicle_demand_level": "low",
-        },
-    },
-    {
-        "id": "commercial_vitality",
-        "name": "商业活力",
-        "name_en": "Commercial Vitality",
-        "prompt": "商业活跃的街道，商业设施密集，人流穿梭",
-        "config_patch": {
-            "design_rule_profile": "balanced_complete_street_v1",
-            "objective_profile": "commerce",
-            "density": 0.9,
-            "ped_demand_level": "high",
-            "bike_demand_level": "medium",
-            "transit_demand_level": "high",
-            "vehicle_demand_level": "medium",
-        },
-    },
-    {
-        "id": "transit_priority",
-        "name": "公交优先",
-        "name_en": "Transit Priority",
-        "prompt": "公交优先的街道，公交可达性高，换乘便利",
-        "config_patch": {
-            "design_rule_profile": "transit_priority_v1",
-            "objective_profile": "transit",
-            "density": 0.85,
-            "ped_demand_level": "high",
-            "bike_demand_level": "medium",
-            "transit_demand_level": "high",
-            "vehicle_demand_level": "high",
-        },
-    },
-    {
-        "id": "park_landscape",
-        "name": "公园景观",
-        "name_en": "Park Landscape",
-        "prompt": "公园景观街道，绿化丰富，自然生态，休闲舒适",
-        "config_patch": {
-            "design_rule_profile": "pedestrian_priority_v1",
-            "objective_profile": "greening",
-            "density": 0.25,
-            "ped_demand_level": "medium",
-            "bike_demand_level": "high",
-            "transit_demand_level": "low",
-            "vehicle_demand_level": "low",
-        },
-    },
-    {
-        "id": "quiet_residential",
-        "name": "安静居住",
-        "name_en": "Quiet Residential",
-        "prompt": "安静居住街道，绿树成荫，步行安全，适合全龄",
-        "config_patch": {
-            "design_rule_profile": "balanced_complete_street_v1",
-            "objective_profile": "greening",
-            "density": 0.35,
-            "ped_demand_level": "high",
-            "bike_demand_level": "medium",
-            "transit_demand_level": "low",
-            "vehicle_demand_level": "low",
-        },
-    },
-    {
-        "id": "balanced_complete",
-        "name": "平衡街道",
-        "name_en": "Balanced Complete",
-        "prompt": "各类使用者平衡的完整街道，行人、自行车、公交、机动车和谐共处",
-        "config_patch": {
-            "design_rule_profile": "balanced_complete_street_v1",
-            "objective_profile": "balanced",
-            "density": 0.6,
-            "ped_demand_level": "medium",
-            "bike_demand_level": "medium",
-            "transit_demand_level": "medium",
-            "vehicle_demand_level": "medium",
-        },
-    },
-]
+# Map camelCase fields from shared presets to snake_case for backward compatibility
+def _adapt_preset(preset: dict) -> dict:
+    """Adapt shared preset format to batch test format."""
+    return {
+        "id": preset["id"],
+        "name": preset["name"],
+        "name_en": preset["nameEn"],
+        "prompt": preset["prompt"],
+        "config_patch": preset["configPatch"],
+    }
+
+SCENE_PRESETS_BATCH = [_adapt_preset(p) for p in SCENE_PRESETS]
 
 # 可用的 Graph Templates
 GRAPH_TEMPLATES = [
@@ -585,7 +508,7 @@ Examples:
     parser.add_argument(
         "--presets",
         nargs="+",
-        choices=[p["id"] for p in SCENE_PRESETS],
+        choices=[p["id"] for p in SCENE_PRESETS_BATCH],
         default=None,
         help="指定预设模板 ID (默认: 随机选择 3 个)",
     )
@@ -654,14 +577,14 @@ Examples:
 
     # Select presets
     if args.all:
-        selected_presets = SCENE_PRESETS
+        selected_presets = SCENE_PRESETS_BATCH
     elif args.presets:
-        selected_presets = [p for p in SCENE_PRESETS if p["id"] in args.presets]
+        selected_presets = [p for p in SCENE_PRESETS_BATCH if p["id"] in args.presets]
         if not selected_presets:
             print("错误: 未找到指定的模板")
             sys.exit(1)
     else:
-        selected_presets = random.sample(SCENE_PRESETS, min(3, len(SCENE_PRESETS)))
+        selected_presets = random.sample(SCENE_PRESETS_BATCH, min(3, len(SCENE_PRESETS_BATCH)))
 
     # Determine graph template
     graph_template_id = args.graph_template or DEFAULT_GRAPH_TEMPLATE_ID
