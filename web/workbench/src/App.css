@@ -1,7 +1,31 @@
 /* ── RoadGen3D Workbench Layout Styles ────────────────────────────────── */
-/* 大部分组件样式已迁移到 Ant Design，此处仅保留布局相关样式 */
+/* HKUST Blue Theme - 大部分组件样式已迁移到 Ant Design */
 
 :root {
+  /* Primary Blue (HKUST) */
+  --color-primary: #00539F;
+  --color-primary-dark: #003366;
+  --color-primary-light: #0066CC;
+  --color-primary-lighter: #E6F0FF;
+
+  /* Accent Yellow */
+  --color-accent: #FFD100;
+  --color-accent-dark: #E5B800;
+  --color-accent-light: #FFED66;
+
+  /* Neutral - Tech White */
+  --color-bg: rgba(255, 255, 255, 0.95);
+  --color-bg-panel: rgba(255, 255, 255, 0.88);
+  --color-bg-hover: rgba(0, 102, 204, 0.06);
+
+  /* Text */
+  --color-text: #1E293B;
+  --color-text-secondary: #64748B;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 83, 159, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 83, 159, 0.12);
+
   color-scheme: light;
 }
 
@@ -13,10 +37,11 @@
 
 html, body {
   min-height: 100%;
-  background: #F9FAFB;
+  background: linear-gradient(135deg, rgba(230, 240, 255, 0.6) 0%, rgba(255, 255, 255, 0.95) 100%);
   font-family: "Inter", "PingFang SC", "Noto Sans SC", system-ui, -apple-system, sans-serif;
   font-size: 14px;
   line-height: 1.5;
+  color: var(--color-text);
 }
 
 body {
@@ -156,12 +181,14 @@ body {
 }
 
 .btn.primary {
-  background: #2563EB;
+  background: var(--color-primary);
   color: white;
 }
 
 .btn.primary:hover:not(:disabled) {
-  background: #1D4ED8;
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 83, 159, 0.25);
 }
 
 .btn.primary:disabled {
@@ -170,31 +197,32 @@ body {
 }
 
 .btn.secondary {
-  background: #F3F4F6;
-  color: #374151;
+  background: white;
+  color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
 }
 
 .btn.secondary:hover {
-  background: #E5E7EB;
+  background: var(--color-primary-lighter);
 }
 
 .btn.force-btn {
-  background: #7C3AED;
-  color: white;
+  background: var(--color-accent);
+  color: #1E293B;
 }
 
 .btn.force-btn:hover:not(:disabled) {
-  background: #6D28D9;
+  background: var(--color-accent-dark);
 }
 
 .btn-viewer {
   padding: 6px 12px;
-  background: #F9FAFB;
-  border: 1px solid #E5E7EB;
+  background: white;
+  border: 1px solid var(--color-primary);
   border-radius: 6px;
   font-size: 0.75rem;
   cursor: pointer;
-  color: #374151;
+  color: var(--color-primary);
 }
 
 .btn-viewer:hover {
@@ -223,20 +251,19 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  border: 1px solid #E5E7EB;
-  background: #FFFFFF;
-  color: #6B7280;
+  border: 1px solid var(--color-primary);
+  background: white;
+  color: var(--color-primary);
   transition: all 0.2s ease;
 }
 
 .mode-btn:hover {
-  border-color: #2563EB;
-  color: #2563EB;
+  background: var(--color-primary-lighter);
 }
 
 .mode-btn.active {
-  background: #2563EB;
-  border-color: #2563EB;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: white;
 }
 
@@ -247,9 +274,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 .header-left {
@@ -299,15 +328,16 @@ body {
   gap: 8px;
   padding: 6px 12px;
   border-radius: 20px;
-  background: #F3F4F6;
-  color: #6B7280;
+  background: rgba(0, 102, 204, 0.08);
+  color: var(--color-text-secondary);
   font-size: 0.75rem;
   transition: all 0.2s ease;
 }
 
 .step.active {
-  background: #2563EB;
+  background: var(--color-primary);
   color: white;
+  box-shadow: 0 2px 8px rgba(0, 83, 159, 0.25);
 }
 
 .step.completed {
@@ -333,21 +363,22 @@ body {
 
 .preset-card {
   padding: 20px;
-  background: #FFFFFF;
-  border: 2px solid #E5E7EB;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--color-border, rgba(148, 163, 184, 0.2));
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .preset-card:hover {
-  border-color: #2563EB;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .preset-card.selected {
-  border-color: #2563EB;
-  background: #EFF6FF;
+  border-color: var(--color-primary);
+  background: var(--color-primary-lighter);
 }
 
 .preset-icon {
@@ -411,21 +442,22 @@ body {
 }
 
 .scheme-card {
-  background: #FFFFFF;
-  border: 2px solid #E5E7EB;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(148, 163, 184, 0.2);
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.2s ease;
 }
 
 .scheme-card:hover {
-  border-color: #93C5FD;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .scheme-card.selected {
-  border-color: #2563EB;
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.2);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 16px rgba(0, 83, 159, 0.2);
 }
 
 .scheme-card.ready {
@@ -783,10 +815,11 @@ body {
 /* ── 评估面板 ─────────────────────────────────────────────────────────── */
 
 .evaluation-panel {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 /* ── Graph Template Selector ───────────────────────────────────────────── */
