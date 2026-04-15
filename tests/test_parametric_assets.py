@@ -15,7 +15,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.parametric_assets import generate_parametric_asset
 from roadgen3d.street_layout import _load_real_manifest
-from scripts import m3_03_generate_parametric_asset as cli
+from scripts import street_generate_parametric_asset as cli
 
 
 def test_bench_params_are_clamped_and_warned():

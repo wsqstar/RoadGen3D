@@ -327,7 +327,7 @@ class TestDiscoverAllCities:
 
 class TestJsonlCompat:
     def test_roundtrip_with_load_bboxes(self, tmp_path):
-        """Written JSONL should be readable by m6_01's _load_bboxes()."""
+        """Written JSONL should be readable by program_collect_data's _load_bboxes()."""
         road = DiscoveredRoad(
             city_name_en="beijing",
             osm_id=12345,
@@ -340,7 +340,7 @@ class TestJsonlCompat:
         out = tmp_path / "test.jsonl"
         write_discovered_roads_jsonl([road], out)
 
-        # Read back using the same logic as m6_01's _load_bboxes()
+        # Read back using the same logic as program_collect_data's _load_bboxes()
         bboxes = []
         for line in out.read_text(encoding="utf-8").splitlines():
             if not line.strip():

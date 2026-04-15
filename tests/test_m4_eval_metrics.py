@@ -16,7 +16,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.eval_metrics import compute_dropped_slot_rate, compute_overlap_rate  # noqa: E402
 from roadgen3d.types import StreetComposeResult  # noqa: E402
-import scripts.m4_10_eval_engineering as m4_eval  # noqa: E402
+import scripts.layout_eval as m4_eval  # noqa: E402
 
 
 def test_overlap_rate_zero_when_no_intersection():

@@ -15,8 +15,8 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.types import RetrievalHit, StreetComposeConfig, StreetComposeResult
-from scripts import m3_04_clean_asset_manifest as manifest_cleaner
-from scripts import m3_06_import_external_tree_assets as tree_import
+from scripts import asset_clean_manifest as manifest_cleaner
+from scripts import asset_import_external_trees as tree_import
 import roadgen3d.street_layout as street_layout
 from roadgen3d.street_layout import compose_street_scene
 

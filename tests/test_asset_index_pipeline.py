@@ -18,8 +18,8 @@ from roadgen3d.decoder import PlaceholderVoxelDecoder
 from roadgen3d.decoder_shapee import ShapeEDecoder
 from roadgen3d.types import PipelineResult, RetrievalHit
 from roadgen3d.voxel_export import export_voxel_meshes
-from scripts.m2_10_ingest_assets import check_mesh_latent_pairs, validate_manifest_row
-from scripts.m2_12_build_real_index import evaluate_topk_category_hits
+from scripts.asset_ingest import check_mesh_latent_pairs, validate_manifest_row
+from scripts.asset_build_index import evaluate_topk_category_hits
 
 
 def test_voxel_export_files_created(tmp_path: Path):
@@ -81,86 +81,7 @@ def test_pipeline_result_contains_mesh_outputs(tmp_path: Path):
     assert "mesh_ply" in result.outputs
 
 
-def test_gradio_run_returns_model_path(tmp_path: Path, monkeypatch):
-    pytest.importorskip("gradio")
-    import scripts.m1_gradio_app as app
 
-    data_dir = tmp_path / "data"
-    artifacts_dir = tmp_path / "artifacts"
-    data_dir.mkdir(parents=True)
-    artifacts_dir.mkdir(parents=True)
-    (data_dir / "assets.jsonl").write_text(
-        json.dumps({"asset_id": "bench_01", "description": "a bench", "latent_path": "latents/bench_01.pt"}) + "\n",
-        encoding="utf-8",
-    )
-
-    class FakeEmbedder:
-        def __init__(self, *args, **kwargs):
-            pass
-
-    class FakeIndex:
-        @classmethod
-        def load(cls, *args, **kwargs):
-            return cls()
-
-    class FakeLatentStore:
-        def __init__(self, *args, **kwargs):
-            pass
-
-    class FakePipeline:
-        def __init__(self, *args, **kwargs):
-            pass
-
-        def run(self, *args, **kwargs):
-            mesh_glb = (artifacts_dir / "demo.glb").resolve()
-            mesh_ply = (artifacts_dir / "demo.ply").resolve()
-            mesh_glb.write_bytes(b"glb")
-            mesh_ply.write_bytes(b"ply")
-            result = PipelineResult(
-                query="bench",
-                top_hit=RetrievalHit(asset_id="bench_01", score=1.0),
-                latent_shape=[1, 256],
-                voxel_shape=[64, 64, 64],
-                occupied_voxels=10,
-                outputs={"mesh_glb": str(mesh_glb), "mesh_ply": str(mesh_ply)},
-            )
-            hits = [RetrievalHit(asset_id="bench_01", score=1.0)]
-            return result, hits
-
-        @staticmethod
-        def save_result_json(result, hits, out_path):
-            out_path.write_text(json.dumps(result.to_dict()), encoding="utf-8")
-
-    monkeypatch.setattr(app, "ClipTextEmbedder", FakeEmbedder)
-    monkeypatch.setattr(app, "FaissIndexStore", FakeIndex)
-    monkeypatch.setattr(app, "LatentStore", FakeLatentStore)
-    monkeypatch.setattr(app, "M1Pipeline", FakePipeline)
-    monkeypatch.setattr(app, "_build_decoder", lambda **kwargs: object())
-
-    summary, hits_table, _, model_path, files = app.run_query_pipeline(
-        dataset_profile="mock",
-        query="bench",
-        topk=1,
-        data_dir_text=str(data_dir),
-        artifacts_dir_text=str(artifacts_dir),
-        real_manifest_text=str(tmp_path / "missing_manifest.jsonl"),
-        model_name="openai/clip-vit-base-patch32",
-        model_dir_text="",
-        local_files_only=True,
-        device="cpu",
-        decoder_choice="placeholder",
-        shapee_model_dir_text="",
-        shapee_strict=False,
-        resolution=64,
-        threshold=0.5,
-        voxel_size=0.1,
-        export_method="marching_cubes",
-        export_format="both",
-    )
-    assert "Pipeline done" in summary
-    assert model_path and model_path.endswith(".glb")
-    assert any(path.endswith(".ply") for path in files)
-    assert hits_table and hits_table[0][0] == "bench_01"
 
 
 def test_decoder_interface_placeholder_and_shapee():

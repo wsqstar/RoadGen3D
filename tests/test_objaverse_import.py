@@ -23,7 +23,7 @@ from roadgen3d.objaverse_import import (
     recommended_default_categories,
     score_candidate,
 )
-from scripts import m2_14_import_objaverse as objaverse_script
+from scripts import asset_import_objaverse as objaverse_script
 
 
 def _annotation(

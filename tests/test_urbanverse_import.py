@@ -190,7 +190,7 @@ def test_urbanverse_import_skips_missing_optional_stage_manifests(tmp_path: Path
 
 
 def test_urbanverse_import_append_is_idempotent_and_tree_failures_are_reported(tmp_path: Path, monkeypatch):
-    from scripts import m3_05_seed_production_parametric_assets as production_seed
+    from scripts import asset_seed_production as production_seed
 
     monkeypatch.setattr(
         production_seed,

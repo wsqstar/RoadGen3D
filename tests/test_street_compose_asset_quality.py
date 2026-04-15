@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from scripts import m3_02_generate_procedural_assets as m3_assets
+from scripts import street_generate_assets as m3_assets
 
 
 def _spec(

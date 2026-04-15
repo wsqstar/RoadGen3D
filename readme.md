@@ -308,7 +308,7 @@ RoadGen3D/
 │   │   ├── design_types.py         # Data types
 │   │   └── scene_jobs.py           # Async job queue
 │   └── ...
-├── scripts/                # CLI tools (rag_*, street_compose_*, layout_*, osm_*, eval_*)
+├── scripts/                # CLI tools (rag_*, asset_*, street_*, layout_*, osm_*, program_*)
 │   ├── auto_scene_pipeline.py      # Auto pipeline CLI entry point
 │   └── run_auto_eval.py            # Multi-version auto evaluation
 ├── web/
@@ -421,7 +421,7 @@ Normalized POI types: `entrance`, `bus_stop`, `fire_hydrant`, `crossing`, `traff
 ### Generate a Street Scene
 
 ```bash
-uv run python scripts/m3_01_compose_street.py \
+uv run python scripts/street_compose.py \
   --query "modern clean urban street" \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
@@ -443,10 +443,10 @@ Output: `artifacts/real/scene.glb`, `artifacts/real/scene_layout.json`
 
 ```bash
 # Fetch OSM data for an AOI
-uv run python scripts/m5_01_fetch_osm.py --bbox 116.39 39.90 116.40 39.91
+uv run python scripts/osm_fetch.py --bbox 116.39 39.90 116.40 39.91
 
 # Generate with real OSM geometry + POI constraints
-uv run python scripts/m3_01_compose_street.py \
+uv run python scripts/street_compose.py \
   --query "urban residential" \
   --layout-mode osm \
   --constraint-mode soft \
@@ -458,7 +458,7 @@ uv run python scripts/m3_01_compose_street.py \
   --local-files-only
 
 # Evaluate POI compliance
-uv run python scripts/m5_10_eval_compliance.py \
+uv run python scripts/osm_eval_compliance.py \
   --scene-dir artifacts/m4/eval_scenes/rule
 ```
 
@@ -545,7 +545,7 @@ uv run python scripts/run_auto_eval.py \
 
 ```bash
 # Collect distilled policy data
-uv run python scripts/m4_01_collect_policy_data.py \
+uv run python scripts/layout_collect_data.py \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
   --out artifacts/m4/policy_train.jsonl \
@@ -553,20 +553,20 @@ uv run python scripts/m4_01_collect_policy_data.py \
   --local-files-only
 
 # Train layout policy (MLP: 32 → 64 → 32 → 1)
-uv run python scripts/m4_02_train_layout_policy.py \
+uv run python scripts/layout_train.py \
   --data artifacts/m4/policy_train.jsonl \
   --out-dir artifacts/m4 \
   --device cpu
 
 # Use learned policy
-uv run python scripts/m3_01_compose_street.py \
+uv run python scripts/street_compose.py \
   --placement-policy learned \
   --policy-ckpt artifacts/m4/layout_policy.pt \
   --policy-temperature 0.12 \
   ...
 
 # Evaluate engineering metrics
-uv run python scripts/m4_10_eval_engineering.py \
+uv run python scripts/layout_eval.py \
   --queries data/eval/queries_m4.txt \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
@@ -587,7 +587,7 @@ Reports: `artifacts/m4/eval_report.json`, `artifacts/m4/eval_per_scene.csv`
 Refresh manifest metadata after adding or replacing assets:
 
 ```bash
-uv run python scripts/m3_04_clean_asset_manifest.py \
+uv run python scripts/asset_clean_manifest.py \
   --manifest data/real/real_assets_manifest.jsonl --write
 ```
 

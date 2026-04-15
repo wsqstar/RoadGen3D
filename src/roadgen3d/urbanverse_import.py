@@ -232,7 +232,7 @@ def run_urbanverse_subset_import(
     rebuild_index_performed = False
     index_summary: Dict[str, Any] = {}
     if rebuild_index and append_object_manifest is not None and object_rows:
-        from scripts import m3_05_seed_production_parametric_assets as production_seed
+        from scripts import asset_seed_production as production_seed
 
         index_summary = production_seed.rebuild_real_index(
             manifest_path=append_object_manifest.expanduser().resolve(),
@@ -591,7 +591,7 @@ def _import_object_row(
     cached_mesh_path = ""
     tree_validation: Dict[str, Any] | None = None
     if canonical_category == "tree":
-        from scripts.m2_10_ingest_assets import _load_mesh_as_single_mesh, normalize_grounded_mesh, validate_tree_upright
+        from scripts.asset_ingest import _load_mesh_as_single_mesh, normalize_grounded_mesh, validate_tree_upright
 
         mesh = _load_mesh_as_single_mesh(mesh_source_path)
         normalized = normalize_grounded_mesh(mesh)
@@ -704,7 +704,7 @@ def _import_object_row(
 
 
 def _clean_object_rows(rows: Sequence[Mapping[str, Any]], *, manifest_dir: Path) -> List[Dict[str, Any]]:
-    from scripts import m3_04_clean_asset_manifest as manifest_cleaner
+    from scripts import asset_clean_manifest as manifest_cleaner
 
     return manifest_cleaner.clean_manifest_rows(rows, manifest_dir.resolve())
 

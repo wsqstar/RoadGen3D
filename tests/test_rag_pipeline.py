@@ -26,7 +26,7 @@ def run_cmd(args):
 
 def test_env_report_fields(tmp_path: Path):
     out = tmp_path / "env_report.json"
-    proc = run_cmd([sys.executable, "scripts/m1_00_check_env.py", "--out", str(out)])
+    proc = run_cmd([sys.executable, "scripts/rag_check_env.py", "--out", str(out)])
     assert proc.returncode == 0, proc.stderr
     payload = json.loads(out.read_text(encoding="utf-8"))
     assert "python_version" in payload
@@ -41,7 +41,7 @@ def test_seed_assets_outputs(tmp_path: Path):
     proc = run_cmd(
         [
             sys.executable,
-            "scripts/m1_01_seed_assets.py",
+            "scripts/rag_seed_assets.py",
             "--out-dir",
             str(out_dir),
             "--num-assets",
@@ -177,7 +177,7 @@ def test_missing_model_fails_cleanly(tmp_path: Path):
     proc = run_cmd(
         [
             sys.executable,
-            "scripts/m1_02_embed_texts.py",
+            "scripts/rag_embed_texts.py",
             "--assets",
             str(assets_path),
             "--out",

@@ -8,7 +8,7 @@ POI (default >=2) to be useful training samples.
 The output is a list of :class:`DiscoveredRoad` records whose ``bbox`` field is
 a tight WGS-84 bounding box around each qualifying road.  These can be
 serialised to JSONL that is directly compatible with
-``m6_01_collect_program_data._load_bboxes()``.
+``program_collect_data._load_bboxes()``.
 """
 
 from __future__ import annotations

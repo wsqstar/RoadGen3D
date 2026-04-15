@@ -172,7 +172,7 @@ class ShapeEDecoder:
                         "Incompatible Shape-E latent size: "
                         f"got {int(latent_vector.numel())} values, expected a multiple of latent_ctx={latent_ctx}. "
                         "This usually means you are using M1 placeholder latents (e.g. [1,256]). "
-                        "Please generate real Shape-E latents via scripts/m2_11_encode_shapee_latents.py."
+                        "Please generate real Shape-E latents via scripts/asset_encode_latents.py."
                     )
                 width = int(latent_vector.numel() // latent_ctx)
                 if d_latent > 0 and width != d_latent:

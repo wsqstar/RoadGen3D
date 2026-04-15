@@ -12,7 +12,7 @@ if str(SRC) not in sys.path:
 
 import roadgen3d.beauty as beauty  # noqa: E402
 import roadgen3d.street_layout as street_layout  # noqa: E402
-from scripts import m3_04_clean_asset_manifest as manifest_cleaner  # noqa: E402
+from scripts import asset_clean_manifest as manifest_cleaner  # noqa: E402
 
 
 BAD_TREE_ASSET_ID = "objaverse_tree_7c97aea203b34df6bb615d0d3567d984"

@@ -30,7 +30,7 @@ from roadgen3d.types import RetrievalHit, StreetComposeConfig  # noqa: E402
 from roadgen3d.street_layout import compose_street_scene  # noqa: E402
 import roadgen3d.street_layout as street_layout  # noqa: E402
 
-import scripts.m4_01_collect_policy_data as m4_collect  # noqa: E402
+import scripts.layout_collect_data as m4_collect  # noqa: E402
 
 
 def _build_context() -> PolicyFeatureContext:

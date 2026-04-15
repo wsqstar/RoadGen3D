@@ -39,7 +39,7 @@ def compute_latency_ms_per_instance(latency_ms_total: float, instance_count: int
 
 
 def evaluate_topk_category_hits(predictions: List[Dict[str, object]], topk: int = 3) -> float:
-    """Top-k category hit metric aligned with m2_12 evaluation definition."""
+    """Top-k category hit metric aligned with asset_build_index evaluation definition."""
     if topk <= 0:
         raise ValueError("topk must be >= 1")
     if not predictions:

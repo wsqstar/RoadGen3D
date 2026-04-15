@@ -17,7 +17,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.types import RetrievalHit, StreetComposeConfig
 import roadgen3d.street_layout as street_layout
-from scripts import m3_05_seed_production_parametric_assets as seed_assets
+from scripts import asset_seed_production as seed_assets
 
 
 def _write_manifest(path: Path, rows: list[dict[str, object]]) -> None:

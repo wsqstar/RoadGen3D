@@ -98,17 +98,17 @@ knowledge-build:
 		--out-dir knowledge/complete_streets
 
 collect:
-	$(PYTHON) scripts/m4_01_collect_policy_data.py \
+	$(PYTHON) scripts/layout_collect_data.py \
 		--manifest $(MANIFEST) --artifacts $(ARTIFACTS) \
 		--out $(M4_DIR)/policy_train.jsonl \
 		--model-dir $(MODEL_DIR) --local-files-only
 
 train:
-	$(PYTHON) scripts/m4_02_train_layout_policy.py \
+	$(PYTHON) scripts/layout_train.py \
 		--data $(M4_DIR)/policy_train.jsonl --out-dir $(M4_DIR)
 
 eval:
-	$(PYTHON) scripts/m4_10_eval_engineering.py \
+	$(PYTHON) scripts/layout_eval.py \
 		--placement-policy learned --policy-ckpt $(M4_DIR)/layout_policy.pt \
 		--compare-rule --manifest $(MANIFEST) --artifacts $(ARTIFACTS) \
 		--out-dir $(M4_DIR) --model-dir $(MODEL_DIR) --local-files-only
@@ -141,12 +141,12 @@ test:
 	@echo "      if llm_base_url and key are not set in .env"
 	@echo ""
 	uv run pytest tests/ \
-		--ignore=tests/test_m2_pipeline.py \
+		--ignore=tests/test_asset_index_pipeline.py \
 		--ignore=tests/test_street_compose.py \
 		--ignore=tests/test_street_compose_external_tree_import.py \
 		--ignore=tests/test_m4_layout_policy.py \
-		--ignore=tests/test_m5_compose_constraints.py \
-		--ignore=tests/test_m6_neuralsymbolic_pipeline.py \
+		--ignore=tests/test_osm_compose_constraints.py \
+		--ignore=tests/test_program_neuralsymbolic_pipeline.py \
 		$(TEST_PYTEST_ARGS)
 
 # ── Test Pipeline ──────────────────────────────────────────────────────────────
