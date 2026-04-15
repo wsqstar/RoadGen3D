@@ -9,6 +9,8 @@ from typing import Any, Dict, List, Mapping, Sequence, Tuple
 from .osm_ingest import OsmRoad, ProjectedFeatures
 from .placement_zones import PlacementContext, build_placement_context
 from .reference_annotation import (
+    BezierCurve3,
+    JunctionComposition,
     ReferenceAnnotation,
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
@@ -158,6 +160,10 @@ def build_reference_annotation_scene_bridge(
         resolved_config,
         road_segment_graph=road_segment_graph,
     )
+    placement_context.junction_geometries = _apply_manual_junction_compositions(
+        annotation,
+        list(getattr(placement_context, "junction_geometries", []) or []),
+    )
     placement_context.building_regions = _annotation_building_region_records(annotation)
     center_x = float(annotation.image_width_px) * 0.5
     center_y = float(annotation.image_height_px) * 0.5
@@ -196,6 +202,135 @@ def build_reference_annotation_scene_bridge(
         placement_context=placement_context,
         summary_metadata=summary_metadata,
     )
+
+
+def _sample_bezier_points(curve: BezierCurve3, steps: int = 16) -> Sequence[Tuple[float, float]]:
+    points: List[Tuple[float, float]] = []
+    n = max(2, steps)
+    for i in range(n + 1):
+        t = i / n
+        u = 1.0 - t
+        u2 = u * u
+        u3 = u2 * u
+        t2 = t * t
+        t3 = t2 * t
+        x = u3 * curve.start.x + 3 * u2 * t * curve.control1.x + 3 * u * t2 * curve.control2.x + t3 * curve.end.x
+        y = u3 * curve.start.y + 3 * u2 * t * curve.control1.y + 3 * u * t2 * curve.control2.y + t3 * curve.end.y
+        points.append((float(x), float(y)))
+    return points
+
+
+def _build_manual_junction_geometry(
+    composition: JunctionComposition,
+) -> Dict[str, Any]:
+    from shapely.geometry import Polygon
+
+    sidewalk_corner_patches: List[Dict[str, Any]] = []
+    nearroad_corner_patches: List[Dict[str, Any]] = []
+    frontage_corner_patches: List[Dict[str, Any]] = []
+    sidewalk_corner_polylines: List[Dict[str, Any]] = []
+    nearroad_corner_polylines: List[Dict[str, Any]] = []
+    frontage_corner_polylines: List[Dict[str, Any]] = []
+    quadrant_corner_kernels: List[Dict[str, Any]] = []
+
+    strip_to_patch_bucket: Dict[str, List[List[Dict[str, Any]]]] = {
+        "clear_sidewalk": sidewalk_corner_patches,
+        "nearroad_furnishing": nearroad_corner_patches,
+        "frontage_reserve": frontage_corner_patches,
+    }
+    strip_to_polyline_bucket: Dict[str, List[List[Dict[str, Any]]]] = {
+        "clear_sidewalk": sidewalk_corner_polylines,
+        "nearroad_furnishing": nearroad_corner_polylines,
+        "frontage_reserve": frontage_corner_polylines,
+    }
+
+    for quadrant in composition.quadrants:
+        # Build patches from bezier curves
+        for patch in quadrant.patches:
+            inner_pts = _sample_bezier_points(patch.inner_curve, steps=12)
+            outer_pts = _sample_bezier_points(patch.outer_curve, steps=12)
+            # Closed ring: inner from start->end, then outer from end->start
+            ring = list(inner_pts) + list(reversed(outer_pts))
+            if len(ring) >= 3:
+                poly = Polygon(ring)
+                if not poly.is_valid:
+                    poly = poly.buffer(0)
+                if not getattr(poly, "is_empty", True):
+                    bucket = strip_to_patch_bucket.get(patch.strip_kind)
+                    if bucket is not None:
+                        bucket.append({"patch_id": patch.patch_id, "geometry": poly})
+
+        # Build polylines from skeleton lines
+        for skeleton in quadrant.skeleton_lines:
+            pts = _sample_bezier_points(skeleton.curve, steps=12)
+            bucket = strip_to_polyline_bucket.get(skeleton.strip_kind)
+            if bucket is not None:
+                bucket.append({
+                    "polyline_id": skeleton.line_id,
+                    "quadrant_id": quadrant.quadrant_id,
+                    "kernel_id": f"{quadrant.quadrant_id}_kernel",
+                    "points_xy": [[float(x), float(y)] for x, y in pts],
+                    "width_m": round(float(skeleton.width_m), 3),
+                })
+
+        # Build a simplified quadrant_corner_kernel from the first patch (sidewalk preferred)
+        canonical_patch = next(
+            (p for p in quadrant.patches if p.strip_kind == "clear_sidewalk"),
+            quadrant.patches[0] if quadrant.patches else None,
+        )
+        if canonical_patch is not None:
+            inner_pts = _sample_bezier_points(canonical_patch.inner_curve, steps=8)
+            quadrant_corner_kernels.append({
+                "kernel_id": f"{quadrant.quadrant_id}_kernel",
+                "quadrant_id": quadrant.quadrant_id,
+                "road_a_id": 0,
+                "road_b_id": 0,
+                "centerline_a_id": quadrant.arm_a_id,
+                "centerline_b_id": quadrant.arm_b_id,
+                "kernel_kind": "polyline_fallback",
+                "center_xy": [0.0, 0.0],
+                "radius_m": 0.0,
+                "start_xy": [float(canonical_patch.inner_curve.start.x), float(canonical_patch.inner_curve.start.y)],
+                "end_xy": [float(canonical_patch.inner_curve.end.x), float(canonical_patch.inner_curve.end.y)],
+                "start_heading_deg": 0.0,
+                "end_heading_deg": 0.0,
+                "clockwise": None,
+                "sampled_points_xy": [[float(x), float(y)] for x, y in inner_pts],
+            })
+
+    geometry: Dict[str, Any] = {
+        "junction_id": composition.junction_id,
+        "kind": composition.kind,
+        "quadrant_corner_kernels": quadrant_corner_kernels,
+        "sidewalk_corner_polylines": sidewalk_corner_polylines,
+        "nearroad_corner_polylines": nearroad_corner_polylines,
+        "frontage_corner_polylines": frontage_corner_polylines,
+        "sidewalk_corner_patches": sidewalk_corner_patches,
+        "nearroad_corner_patches": nearroad_corner_patches,
+        "frontage_corner_patches": frontage_corner_patches,
+    }
+    return geometry
+
+
+def _apply_manual_junction_compositions(
+    annotation: ReferenceAnnotation,
+    junction_geometries: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    if not annotation.junction_compositions:
+        return junction_geometries
+
+    manual_by_junction_id = {comp.junction_id: comp for comp in annotation.junction_compositions}
+    result: List[Dict[str, Any]] = []
+    for geom in junction_geometries:
+        junction_id = str(geom.get("junction_id", "") or "")
+        if junction_id in manual_by_junction_id:
+            manual_geom = _build_manual_junction_geometry(manual_by_junction_id[junction_id])
+            # Preserve fields that manual geom doesn't provide (core rect, crosswalks, etc.)
+            merged = {**geom, **manual_geom}
+            result.append(merged)
+        else:
+            result.append(geom)
+    return result
 
 
 __all__ = [

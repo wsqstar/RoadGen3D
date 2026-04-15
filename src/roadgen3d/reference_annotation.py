@@ -809,6 +809,86 @@ class AnnotatedFunctionalZone:
 
 
 @dataclass(frozen=True)
+class BezierCurve3:
+    start: AnnotationPoint
+    end: AnnotationPoint
+    control1: AnnotationPoint
+    control2: AnnotationPoint
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "start": self.start.to_dict(),
+            "end": self.end.to_dict(),
+            "control1": self.control1.to_dict(),
+            "control2": self.control2.to_dict(),
+        }
+
+
+@dataclass(frozen=True)
+class JunctionQuadrantBezierPatch:
+    patch_id: str
+    strip_kind: str
+    inner_curve: BezierCurve3
+    outer_curve: BezierCurve3
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "patch_id": self.patch_id,
+            "strip_kind": self.strip_kind,
+            "inner_curve": self.inner_curve.to_dict(),
+            "outer_curve": self.outer_curve.to_dict(),
+        }
+
+
+@dataclass(frozen=True)
+class JunctionQuadrantSkeletonLine:
+    line_id: str
+    strip_kind: str
+    curve: BezierCurve3
+    width_m: float
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "line_id": self.line_id,
+            "strip_kind": self.strip_kind,
+            "curve": self.curve.to_dict(),
+            "width_m": float(self.width_m),
+        }
+
+
+@dataclass(frozen=True)
+class JunctionQuadrantComposition:
+    quadrant_id: str
+    arm_a_id: str
+    arm_b_id: str
+    patches: Tuple[JunctionQuadrantBezierPatch, ...] = ()
+    skeleton_lines: Tuple[JunctionQuadrantSkeletonLine, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "quadrant_id": self.quadrant_id,
+            "arm_a_id": self.arm_a_id,
+            "arm_b_id": self.arm_b_id,
+            "patches": [item.to_dict() for item in self.patches],
+            "skeleton_lines": [item.to_dict() for item in self.skeleton_lines],
+        }
+
+
+@dataclass(frozen=True)
+class JunctionComposition:
+    junction_id: str
+    kind: str
+    quadrants: Tuple[JunctionQuadrantComposition, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "junction_id": self.junction_id,
+            "kind": self.kind,
+            "quadrants": [item.to_dict() for item in self.quadrants],
+        }
+
+
+@dataclass(frozen=True)
 class ReferenceAnnotation:
     version: str
     plan_id: str
@@ -822,6 +902,7 @@ class ReferenceAnnotation:
     control_points: Tuple[AnnotatedMarker, ...]
     building_regions: Tuple[AnnotatedBuildingRegion, ...] = ()
     functional_zones: Tuple[AnnotatedFunctionalZone, ...] = ()
+    junction_compositions: Tuple[JunctionComposition, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -837,6 +918,7 @@ class ReferenceAnnotation:
             "control_points": [item.to_dict() for item in self.control_points],
             "building_regions": [item.to_dict() for item in self.building_regions],
             "functional_zones": [item.to_dict() for item in self.functional_zones],
+            "junction_compositions": [item.to_dict() for item in self.junction_compositions],
         }
 
 
@@ -1401,6 +1483,74 @@ def _point_on_polyline_distance(
     return best
 
 
+def _parse_bezier_curve3(value: Any, label: str) -> BezierCurve3:
+    if not _is_record(value):
+        raise ValueError(f"{label} must be an object.")
+    return BezierCurve3(
+        start=_parse_point(value.get("start"), f"{label}.start"),
+        end=_parse_point(value.get("end"), f"{label}.end"),
+        control1=_parse_point(value.get("control1"), f"{label}.control1"),
+        control2=_parse_point(value.get("control2"), f"{label}.control2"),
+    )
+
+
+def _parse_junction_quadrant_bezier_patch(value: Any, index: int) -> JunctionQuadrantBezierPatch:
+    if not _is_record(value):
+        raise ValueError(f"junction quadrant patch at index {index} must be an object.")
+    return JunctionQuadrantBezierPatch(
+        patch_id=_as_string(value.get("patch_id"), f"patch_{index}"),
+        strip_kind=_as_string(value.get("strip_kind"), "clear_sidewalk"),
+        inner_curve=_parse_bezier_curve3(value.get("inner_curve"), f"patch[{index}].inner_curve"),
+        outer_curve=_parse_bezier_curve3(value.get("outer_curve"), f"patch[{index}].outer_curve"),
+    )
+
+
+def _parse_junction_quadrant_skeleton_line(value: Any, index: int) -> JunctionQuadrantSkeletonLine:
+    if not _is_record(value):
+        raise ValueError(f"junction quadrant skeleton line at index {index} must be an object.")
+    return JunctionQuadrantSkeletonLine(
+        line_id=_as_string(value.get("line_id"), f"line_{index}"),
+        strip_kind=_as_string(value.get("strip_kind"), "clear_sidewalk"),
+        curve=_parse_bezier_curve3(value.get("curve"), f"line[{index}].curve"),
+        width_m=_as_float(value.get("width_m"), "width_m", default=1.0),
+    )
+
+
+def _parse_junction_quadrant_composition(value: Any, index: int) -> JunctionQuadrantComposition:
+    if not _is_record(value):
+        raise ValueError(f"junction quadrant composition at index {index} must be an object.")
+    patches_raw = value.get("patches") or []
+    skeleton_lines_raw = value.get("skeleton_lines") or []
+    if not isinstance(patches_raw, Sequence) or isinstance(patches_raw, (str, bytes)):
+        raise ValueError(f"quadrant[{index}].patches must be an array.")
+    if not isinstance(skeleton_lines_raw, Sequence) or isinstance(skeleton_lines_raw, (str, bytes)):
+        raise ValueError(f"quadrant[{index}].skeleton_lines must be an array.")
+    return JunctionQuadrantComposition(
+        quadrant_id=_as_string(value.get("quadrant_id"), f"quadrant_{index}"),
+        arm_a_id=_as_string(value.get("arm_a_id"), ""),
+        arm_b_id=_as_string(value.get("arm_b_id"), ""),
+        patches=tuple(_parse_junction_quadrant_bezier_patch(item, i) for i, item in enumerate(patches_raw)),
+        skeleton_lines=tuple(
+            _parse_junction_quadrant_skeleton_line(item, i) for i, item in enumerate(skeleton_lines_raw)
+        ),
+    )
+
+
+def _parse_junction_composition(value: Any, index: int) -> JunctionComposition:
+    if not _is_record(value):
+        raise ValueError(f"junction composition at index {index} must be an object.")
+    quadrants_raw = value.get("quadrants") or []
+    if not isinstance(quadrants_raw, Sequence) or isinstance(quadrants_raw, (str, bytes)):
+        raise ValueError(f"junction_compositions[{index}].quadrants must be an array.")
+    return JunctionComposition(
+        junction_id=_as_string(value.get("junction_id"), f"composition_{index}"),
+        kind=_as_string(value.get("kind"), "cross_junction"),
+        quadrants=tuple(
+            _parse_junction_quadrant_composition(item, i) for i, item in enumerate(quadrants_raw)
+        ),
+    )
+
+
 def _validate_explicit_junction_model(annotation: ReferenceAnnotation) -> None:
     explicit_junctions = [junction for junction in annotation.junctions if str(junction.source_mode or "") == "explicit"]
     if not explicit_junctions:
@@ -1474,6 +1624,9 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     control_points_raw = payload.get("control_points") or []
     building_regions_raw = payload.get("building_regions") or []
     functional_zones_raw = payload.get("functional_zones") or []
+    junction_compositions_raw = payload.get("junction_compositions") or []
+    if not isinstance(junction_compositions_raw, Sequence) or isinstance(junction_compositions_raw, (str, bytes)):
+        raise ValueError("junction_compositions must be an array.")
 
     if not isinstance(centerlines_raw, Sequence) or isinstance(centerlines_raw, (str, bytes)):
         raise ValueError("centerlines must be an array.")
@@ -1523,6 +1676,10 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         functional_zones=tuple(
             _parse_functional_zone(item, index)
             for index, item in enumerate(functional_zones_raw)
+        ),
+        junction_compositions=tuple(
+            _parse_junction_composition(item, index)
+            for index, item in enumerate(junction_compositions_raw)
         ),
     )
     _validate_explicit_junction_model(annotation)
