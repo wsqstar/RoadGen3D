@@ -1,0 +1,57 @@
+{
+  "walkability": {
+    "protection_weight": 0.40,
+    "comfort_weight": 0.35,
+    "delight_weight": 0.25,
+    "clear_width_min": 1.8,
+    "clear_width_ideal": 3.2,
+    "amenity_density_ideal": 0.15,
+    "crossing_spacing_m": 80.0,
+    "entrance_density_ideal": 0.04,
+    "micro_env_tree_weight": 0.5,
+    "micro_env_noise_weight": 0.3,
+    "micro_env_openness_weight": 0.2,
+    "transit_decay_m": 60.0
+  },
+  "safety": {
+    "cross_prov_weight": 0.15,
+    "light_uni_weight": 0.15,
+    "buffer_ratio_weight": 0.10,
+    "bollard_density_weight": 0.10,
+    "visibility_weight": 0.10,
+    "llm_weight": 0.60,
+    "llm_cross_prov_weight": 0.15,
+    "llm_light_uni_weight": 0.15,
+    "llm_buffer_ratio_weight": 0.10,
+    "bollard_density_ideal": 0.15,
+    "llm_stddev_threshold": 0.20
+  },
+  "beauty": {
+    "presentation_weight": 0.40,
+    "active_front_weight": 0.10,
+    "anchor_poi_weight": 0.10,
+    "visual_clutter_weight": 0.10,
+    "llm_weight": 0.40,
+    "llm_presentation_weight": 0.40,
+    "llm_active_front_weight": 0.10,
+    "llm_anchor_poi_weight": 0.10,
+    "active_frontage_span_m": 4.0,
+    "active_frontage_ratio_ideal": 0.70,
+    "anchor_poi_density_ideal": 0.12,
+    "llm_stddev_threshold": 0.20
+  },
+  "audio": {
+    "lane_count_weight": 0.4,
+    "road_width_weight": 0.3,
+    "vehicle_demand_weight": 0.3
+  },
+  "aggregation": {
+    "walkability_weight": 0.45,
+    "safety_weight": 0.35,
+    "beauty_weight": 0.20
+  },
+  "enable_llm_eval": false,
+  "enable_audio_profile": true,
+  "enable_top_contributors": true,
+  "top_k_contributors": 3
+}

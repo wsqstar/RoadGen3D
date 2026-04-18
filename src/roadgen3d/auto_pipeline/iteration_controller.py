@@ -7,8 +7,11 @@ import json
 import shutil
 from dataclasses import dataclass, field, replace
 from pathlib import Path
-from typing import Any, Dict, List, Mapping
+from typing import Any, Dict, List, Mapping, Optional
 
+from ..eval_engine.core.config import EvalConfig
+from ..eval_engine_ext.road_metrics.evaluators.safety_eval import evaluate_safety
+from ..eval_engine_ext.road_metrics.evaluators.beauty_eval import evaluate_beauty
 from ..eval_quality import (
     WalkabilityResult,
     compute_walkability_indicators,
@@ -17,8 +20,6 @@ from ..eval_quality import (
     write_walkability_report,
     write_json_report,
 )
-from ..eval_engine_ext.road_metrics.evaluators.safety_eval import evaluate_safety
-from ..eval_engine_ext.road_metrics.evaluators.beauty_eval import evaluate_beauty
 from ..llm.design_workflow import DesignAssistantService
 from ..services.design_runtime import generate_scene_from_graph_context
 from ..services.design_types import (
@@ -27,6 +28,12 @@ from ..services.design_types import (
 )
 from .graph_loader import GraphSceneContext
 from .scene_renderer import render_topdown_preview
+
+
+# 默认聚合权重 (与 EvalConfig.AggregationConfig 默认值一致)
+DEFAULT_WALKABILITY_WEIGHT = 0.45
+DEFAULT_SAFETY_WEIGHT = 0.35
+DEFAULT_BEAUTY_WEIGHT = 0.20
 
 
 @dataclass
@@ -81,12 +88,19 @@ class AutoIterationController:
         query: str = "modern clean urban street",
         design_service: DesignAssistantService | None = None,
         enable_llm_eval: bool = False,
+        eval_config: EvalConfig | None = None,
     ) -> None:
         self.graph_ctx = graph_ctx
         self.base_map_path = Path(base_map_path) if base_map_path else None
         self.max_iterations = max(1, int(max_iterations))
         self.query = query
         self.enable_llm_eval = bool(enable_llm_eval)
+
+        # 评估配置 (支持自定义权重)
+        self.eval_config = eval_config or EvalConfig.default()
+        self._w_weight = self.eval_config.aggregation.walkability_weight
+        self._s_weight = self.eval_config.aggregation.safety_weight
+        self._b_weight = self.eval_config.aggregation.beauty_weight
 
         root = Path(__file__).resolve().parents[3]
         self.output_dir = Path(output_dir).expanduser().resolve()
@@ -208,13 +222,16 @@ class AutoIterationController:
             safety_report = compute_structured_safety_report(layout_payload, walkability, llm_scores=llm_safety_scores)
             beauty_report = compute_structured_beauty_report(layout_payload, llm_scores=llm_beauty_scores)
 
-            # Compute combined evaluation score (0-10)
-            # EvaluationScore = 0.45 * WalkabilityIndex + 0.35 * SafetyScore + 0.20 * BeautyScore
+            # Compute combined evaluation score using configurable weights
+            # Default: W=0.45, S=0.35, B=0.20 (可通過 eval_config 調整)
             walkability_index = float(walkability.walkability_index)
             safety_score = float(safety_report.get("final_score", 0.0))
             beauty_score = float(beauty_report.get("final_score", 0.0))
             evaluation_score = round(
-                0.45 * walkability_index + 0.35 * safety_score + 0.20 * beauty_score, 4
+                self._w_weight * walkability_index
+                + self._s_weight * safety_score
+                + self._b_weight * beauty_score,
+                4,
             )
 
             # Save evaluation reports
@@ -254,9 +271,10 @@ class AutoIterationController:
 
             print(
                 f"[auto_pipeline] Iteration {i}: "
-                f"LLM_score={score:.1f}/10, "
                 f"Evaluation={evaluation_score:.2f} "
-                f"(Walk={walkability_index:.2f}, Safety={safety_score:.2f}, Beauty={beauty_score:.2f})"
+                f"(W={walkability_index:.2f}×{self._w_weight:.2f}, "
+                f"S={safety_score:.2f}×{self._s_weight:.2f}, "
+                f"B={beauty_score:.2f}×{self._b_weight:.2f})"
             )
 
             # Detect regression from comparison

@@ -1,0 +1,8 @@
+{
+  "_description": "步行优先场景 - 强调步行性指标，降低安全性权重",
+  "aggregation": {
+    "walkability_weight": 0.60,
+    "safety_weight": 0.25,
+    "beauty_weight": 0.15
+  }
+}
