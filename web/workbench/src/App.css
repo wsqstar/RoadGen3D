@@ -287,10 +287,28 @@ body {
   gap: 8px;
 }
 
+.header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .workbench-header h1 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #111827;
+}
+
+.header-template-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-template-selector label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6B7280;
 }
 
 .header-right {
@@ -875,6 +893,12 @@ body {
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
+  }
+
+  .header-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .step-indicator {

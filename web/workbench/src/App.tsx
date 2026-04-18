@@ -1,5 +1,5 @@
-import { useState, useMemo, useCallback, useEffect } from "react";
-import { ConfigProvider, Select } from "antd";
+import { useState, useMemo, useCallback } from "react";
+import { ConfigProvider } from "antd";
 import type { ScenePreset, GeneratedScheme, EvaluationResult, WorkflowStep } from "./lib/types";
 import type { DraftResponse } from "./lib/api";
 import { Header } from "./components/Header";
@@ -149,7 +149,12 @@ function App() {
   return (
     <ConfigProvider theme={antdTheme}>
       <div className="workbench">
-        <Header currentStep={currentStep} />
+        <Header
+          currentStep={currentStep}
+          templates={templates}
+          selectedTemplateId={selectedTemplateId}
+          onTemplateChange={setSelectedTemplateId}
+        />
 
         <main className="workbench-content">
         {currentStep === 1 && (
@@ -157,28 +162,6 @@ function App() {
             <div className="section-header">
               <h2>选择输入方式</h2>
               <p className="section-desc">使用预设模板快速生成，或用自然语言描述你的需求</p>
-            </div>
-
-            {/* Graph Template Selector */}
-            <div className="template-selector">
-              <label>图底模板: </label>
-              <Select
-                value={selectedTemplateId}
-                onChange={setSelectedTemplateId}
-                style={{ width: 300 }}
-                placeholder="选择图底模板"
-              >
-                {templates.map((t) => (
-                  <Select.Option key={t.template_id} value={t.template_id}>
-                    {t.label}
-                  </Select.Option>
-                ))}
-                {templates.length === 0 && (
-                  <Select.Option value={DEFAULT_GRAPH_TEMPLATE_ID}>
-                    {DEFAULT_GRAPH_TEMPLATE_ID} (默认)
-                  </Select.Option>
-                )}
-              </Select>
             </div>
 
             <div className="input-mode-toggle">
