@@ -604,8 +604,51 @@ class DesignAssistantService:
     def _extract_indicators(self, result) -> Dict[str, Any]:
         """Extract detailed indicators for Web API response."""
         w = result.walkability
+        s = result.safety
+        b = result.beauty
+
+        # 提取步行性子分数
+        protection = w.protection
+        comfort = w.comfort
+        delight = w.delight
+
+        # 提取安全性子分数（如果有 LLM 评分）
+        safety_lighting = 0.0
+        safety_visibility = 0.0
+        safety_protection = 0.0
+        safety_activation = 0.0
         
+        if s.llm_scores:
+            safety_lighting = s.llm_scores.get("lighting", 0.0)
+            safety_visibility = s.llm_scores.get("visibility", 0.0)
+            safety_protection = s.llm_scores.get("protection", 0.0)
+            safety_activation = s.llm_scores.get("activation", 0.0)
+
+        # 提取美观性字分数（如果有 LLM 评分）
+        beauty_planting = 0.0
+        beauty_furniture = 0.0
+        beauty_space = 0.0
+        
+        if b.llm_scores:
+            beauty_planting = b.llm_scores.get("planting", 0.0)
+            beauty_furniture = b.llm_scores.get("furniture", 0.0)
+            beauty_space = b.llm_scores.get("space", 0.0)
+
         return {
+            # 步行性子分数
+            "protection": round(protection * 100, 1),
+            "comfort": round(comfort * 100, 1),
+            "delight": round(delight * 100, 1),
+            # 安全性子分数
+            "safety_lighting": round(safety_lighting * 100, 1),
+            "safety_visibility": round(safety_visibility * 100, 1),
+            "safety_protection": round(safety_protection * 100, 1),
+            "safety_activation": round(safety_activation * 100, 1),
+            # 美观性字分数
+            "beauty_planting": round(beauty_planting * 100, 1),
+            "beauty_furniture": round(beauty_furniture * 100, 1),
+            "beauty_space": round(beauty_space * 100, 1),
+            # 保留原有字段
             "sidewalk_adequacy": self._classify(w.sid_clr),
             "furniture_density": self._classify(w.furn_d),
             "tree_shading_rate": self._classify(w.tree_shade),
