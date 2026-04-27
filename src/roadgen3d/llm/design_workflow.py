@@ -382,7 +382,7 @@ class DesignAssistantService:
         
         # Current evaluation
         current_payload = json.loads(layout.read_text(encoding="utf-8"))
-        current_result = self.eval_engine.evaluate(current_payload)
+        current_result = self.eval_engine.evaluate(current_payload, image_path=image_path)
         
         # Previous evaluation (if available)
         comparison = {}
@@ -390,7 +390,7 @@ class DesignAssistantService:
             prev = Path(previous_layout_path).expanduser().resolve()
             if prev.exists():
                 prev_payload = json.loads(prev.read_text(encoding="utf-8"))
-                prev_result = self.eval_engine.evaluate(prev_payload)
+                prev_result = self.eval_engine.evaluate(prev_payload, image_path=previous_image_path)
                 
                 comparison = {
                     "improved_areas": self._find_improvements(current_result, prev_result),
@@ -399,16 +399,21 @@ class DesignAssistantService:
                     "reasoning": self._generate_comparison_text(current_result, prev_result),
                 }
         
+        safety_available = self._llm_report_available(current_result.safety)
+        beauty_available = self._llm_report_available(current_result.beauty)
+        visual_scores_available = safety_available and beauty_available
+
         # Convert to Web API format (0-100 scale)
         return {
             "walkability": int(current_result.walkability.walkability_index * 100),
-            "safety": int(current_result.safety.final_score * 100),
-            "beauty": int(current_result.beauty.final_score * 100),
-            "overall": int(current_result.evaluation_score * 100),
+            "safety": int(current_result.safety.final_score * 100) if safety_available else None,
+            "beauty": int(current_result.beauty.final_score * 100) if beauty_available else None,
+            "overall": int(current_result.evaluation_score * 100) if visual_scores_available else None,
             "evaluation": self._generate_evaluation_text(current_result),
             "suggestions": self._generate_suggestions(current_result),
             "indicators": self._extract_indicators(current_result),
             "config_patch": self._generate_config_patch(current_result),
+            "llm_status": self._extract_llm_status(current_result),
             "comparison": comparison,
         }
 
@@ -455,13 +460,15 @@ class DesignAssistantService:
         *,
         layout_path: str,
         image_path: str | None = None,
+        rendered_views: List[Mapping[str, Any]] | None = None,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> Dict[str, Any]:
         """Evaluate scene with unified 3-dimension scores using road-metrics EvalEngine.
 
         Args:
             layout_path: Path to scene_layout.json
-            image_path: Optional path to rendered preview image
+            image_path: Optional legacy path to rendered preview image
+            rendered_views: Rendered scene views as data URLs for visual LLM evaluation
             knowledge_source: Knowledge source to use (pdf_rag, graph_rag, hybrid, or none)
 
         Returns:
@@ -474,18 +481,26 @@ class DesignAssistantService:
         payload = json.loads(layout.read_text(encoding="utf-8"))
         
         # Use EvalEngine from road-metrics submodule
-        result = self.eval_engine.evaluate(payload)
+        result = self.eval_engine.evaluate(
+            payload,
+            rendered_views=list(rendered_views or []),
+            image_path=image_path,
+        )
+        safety_available = self._llm_report_available(result.safety)
+        beauty_available = self._llm_report_available(result.beauty)
+        visual_scores_available = safety_available and beauty_available
         
         # Convert to Web API format (0-100 scale)
         return {
             "walkability": int(result.walkability.walkability_index * 100),
-            "safety": int(result.safety.final_score * 100),
-            "beauty": int(result.beauty.final_score * 100),
-            "overall": int(result.evaluation_score * 100),
+            "safety": int(result.safety.final_score * 100) if safety_available else None,
+            "beauty": int(result.beauty.final_score * 100) if beauty_available else None,
+            "overall": int(result.evaluation_score * 100) if visual_scores_available else None,
             "evaluation": self._generate_evaluation_text(result),
             "suggestions": self._generate_suggestions(result),
             "indicators": self._extract_indicators(result),
             "config_patch": self._generate_config_patch(result),
+            "llm_status": self._extract_llm_status(result),
         }
 
     def generate_initial_config_from_graph(
@@ -530,6 +545,8 @@ class DesignAssistantService:
         w = result.walkability
         s = result.safety
         b = result.beauty
+        safety_available = self._llm_report_available(s)
+        beauty_available = self._llm_report_available(b)
         
         parts = []
         
@@ -542,25 +559,29 @@ class DesignAssistantService:
             parts.append("步行性需改进")
         
         # Safety summary
-        if s.final_score >= 0.7:
-            parts.append("安全性高")
+        if not safety_available:
+            parts.append("视觉安全性 N/A")
+        elif s.final_score >= 0.7:
+            parts.append("视觉安全性高")
         elif s.final_score >= 0.5:
-            parts.append("安全性中等")
+            parts.append("视觉安全性中等")
         else:
-            parts.append("安全性需改进")
+            parts.append("视觉安全性需改进")
         
         # Beauty summary
-        if b.final_score >= 0.7:
-            parts.append("美观度优秀")
+        if not beauty_available:
+            parts.append("视觉美观度 N/A")
+        elif b.final_score >= 0.7:
+            parts.append("视觉美观度优秀")
         elif b.final_score >= 0.5:
-            parts.append("美观度良好")
+            parts.append("视觉美观度良好")
         else:
-            parts.append("美观度需改进")
+            parts.append("视觉美观度需改进")
         
         # Weakest dimension
-        if s.diagnosis.get("weakest"):
+        if safety_available and s.diagnosis.get("weakest"):
             parts.append(f"最弱安全维度: {s.diagnosis['weakest']}")
-        if b.diagnosis.get("weakest"):
+        if beauty_available and b.diagnosis.get("weakest"):
             parts.append(f"最弱美观维度: {b.diagnosis['weakest']}")
         
         return "。".join(parts) + "。"
@@ -568,9 +589,11 @@ class DesignAssistantService:
     def _generate_suggestions(self, result) -> List[str]:
         """Generate improvement suggestions based on evaluation result."""
         suggestions = []
+        safety_available = self._llm_report_available(result.safety)
+        beauty_available = self._llm_report_available(result.beauty)
         
         # Safety suggestions
-        if result.safety.final_score < 0.7:
+        if safety_available and result.safety.final_score < 0.7:
             weakest = result.safety.diagnosis.get("weakest")
             if weakest == "CROSS_PROV":
                 suggestions.append("增加过街设施密度，建议每80米设置一个过街点")
@@ -582,7 +605,7 @@ class DesignAssistantService:
                 suggestions.append("增加护柱密度，提高物理隔离")
         
         # Beauty suggestions
-        if result.beauty.final_score < 0.7:
+        if beauty_available and result.beauty.final_score < 0.7:
             weakest = result.beauty.diagnosis.get("weakest")
             if weakest == "active_front_ratio":
                 suggestions.append("增加活跃界面比例，提高街道活力")
@@ -599,6 +622,8 @@ class DesignAssistantService:
             if w.delight < 0.5:
                 suggestions.append("增加街道愉悦度，提高家具密度和POI混合度")
         
+        if not safety_available or not beauty_available:
+            suggestions.append("视觉评估需要 Viewer 截图输入；缺失时安全性和美观度显示为 N/A")
         return suggestions if suggestions else ["场景质量良好，无需重大改进"]
 
     def _extract_indicators(self, result) -> Dict[str, Any]:
@@ -613,26 +638,28 @@ class DesignAssistantService:
         delight = w.delight
 
         # 提取安全性子分数（如果有 LLM 评分）
-        safety_lighting = 0.0
-        safety_visibility = 0.0
-        safety_protection = 0.0
-        safety_activation = 0.0
+        safety_lighting = None
+        safety_visibility = None
+        safety_protection = None
+        safety_activation = None
         
         if s.llm_scores:
-            safety_lighting = s.llm_scores.get("lighting", 0.0)
-            safety_visibility = s.llm_scores.get("visibility", 0.0)
-            safety_protection = s.llm_scores.get("protection", 0.0)
-            safety_activation = s.llm_scores.get("activation", 0.0)
+            safety_lighting = s.llm_scores.get("lighting")
+            safety_visibility = s.llm_scores.get("visibility")
+            safety_protection = s.llm_scores.get("protection")
+            safety_activation = s.llm_scores.get("activation")
 
-        # 提取美观性字分数（如果有 LLM 评分）
-        beauty_planting = 0.0
-        beauty_furniture = 0.0
-        beauty_space = 0.0
+        # 提取美观性子分数（仅在 LLM 返回真实维度时提供）
+        beauty_coherence = None
+        beauty_human_scale = None
+        beauty_material_contrast = None
+        beauty_visual_interest = None
         
         if b.llm_scores:
-            beauty_planting = b.llm_scores.get("planting", 0.0)
-            beauty_furniture = b.llm_scores.get("furniture", 0.0)
-            beauty_space = b.llm_scores.get("space", 0.0)
+            beauty_coherence = b.llm_scores.get("coherence")
+            beauty_human_scale = b.llm_scores.get("human_scale")
+            beauty_material_contrast = b.llm_scores.get("material_contrast")
+            beauty_visual_interest = b.llm_scores.get("visual_interest")
 
         return {
             # 步行性子分数
@@ -640,20 +667,40 @@ class DesignAssistantService:
             "comfort": round(comfort * 100, 1),
             "delight": round(delight * 100, 1),
             # 安全性子分数
-            "safety_lighting": round(safety_lighting * 100, 1),
-            "safety_visibility": round(safety_visibility * 100, 1),
-            "safety_protection": round(safety_protection * 100, 1),
-            "safety_activation": round(safety_activation * 100, 1),
-            # 美观性字分数
-            "beauty_planting": round(beauty_planting * 100, 1),
-            "beauty_furniture": round(beauty_furniture * 100, 1),
-            "beauty_space": round(beauty_space * 100, 1),
+            "safety_lighting": round(safety_lighting * 100, 1) if safety_lighting is not None else None,
+            "safety_visibility": round(safety_visibility * 100, 1) if safety_visibility is not None else None,
+            "safety_protection": round(safety_protection * 100, 1) if safety_protection is not None else None,
+            "safety_activation": round(safety_activation * 100, 1) if safety_activation is not None else None,
+            # 美观性子分数
+            "beauty_coherence": round(beauty_coherence * 100, 1) if beauty_coherence is not None else None,
+            "beauty_human_scale": round(beauty_human_scale * 100, 1) if beauty_human_scale is not None else None,
+            "beauty_material_contrast": round(beauty_material_contrast * 100, 1) if beauty_material_contrast is not None else None,
+            "beauty_visual_interest": round(beauty_visual_interest * 100, 1) if beauty_visual_interest is not None else None,
             # 保留原有字段
             "sidewalk_adequacy": self._classify(w.sid_clr),
             "furniture_density": self._classify(w.furn_d),
             "tree_shading_rate": self._classify(w.tree_shade),
             "vehicle_throughput_compliance": "Pass" if w.transit_prox > 0.3 else "Fail",
-            "rule_satisfaction": round(result.evaluation_score, 2),
+            "rule_satisfaction": (
+                round(result.evaluation_score, 2)
+                if self._llm_report_available(s) and self._llm_report_available(b)
+                else None
+            ),
+        }
+
+    def _llm_report_available(self, report) -> bool:
+        status = dict(getattr(report, "llm_status", {}) or {})
+        return (
+            bool(status.get("available", False))
+            and str(status.get("visual_input", "") or "").lower() == "provided"
+            and bool(getattr(report, "llm_scores", None))
+        )
+
+    def _extract_llm_status(self, result) -> Dict[str, Any]:
+        """Expose whether safety/beauty LLM subscores came from cache, live LLM, or are unavailable."""
+        return {
+            "safety": dict(getattr(result.safety, "llm_status", {}) or {}),
+            "beauty": dict(getattr(result.beauty, "llm_status", {}) or {}),
         }
 
     def _generate_config_patch(self, result) -> Dict[str, Any]:
@@ -661,7 +708,7 @@ class DesignAssistantService:
         patch = {}
         
         # Safety improvements
-        if result.safety.final_score < 0.6:
+        if self._llm_report_available(result.safety) and result.safety.final_score < 0.6:
             weakest = result.safety.diagnosis.get("weakest")
             if weakest == "CROSS_PROV":
                 patch["transit_demand_level"] = "high"
@@ -669,7 +716,7 @@ class DesignAssistantService:
                 patch["road_width_m"] = 14.0  # Wider road for more buffer
         
         # Beauty improvements
-        if result.beauty.final_score < 0.6:
+        if self._llm_report_available(result.beauty) and result.beauty.final_score < 0.6:
             weakest = result.beauty.diagnosis.get("weakest")
             if weakest == "active_front_ratio":
                 patch["density"] = 1.2  # Higher density for more active fronts
