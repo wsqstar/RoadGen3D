@@ -135,6 +135,16 @@ class _FakeService:
                 created_at="2026-03-23T00:00:00+00:00",
                 started_at="2026-03-23T00:00:01+00:00",
                 finished_at="2026-03-23T00:00:02+00:00",
+                stage="succeeded",
+                progress=100,
+                operations=(
+                    {
+                        "timestamp": "2026-03-23T00:00:02+00:00",
+                        "stage": "succeeded",
+                        "progress": 100,
+                        "message": "Scene generation completed.",
+                    },
+                ),
                 result=SceneGenerationResult(
                     compose_config={"sidewalk_width_m": 4.0},
                     summary={"instance_count": 5, "clearance_m": float("inf")},
@@ -248,10 +258,15 @@ def test_design_api_endpoints_return_expected_shapes():
     job_list_response = client.get("/api/scene/jobs")
     assert job_list_response.status_code == 200
     assert job_list_response.json()["items"][0]["status"] == "succeeded"
+    assert job_list_response.json()["items"][0]["stage"] == "succeeded"
+    assert job_list_response.json()["items"][0]["progress"] == 100
 
     job_status_response = client.get("/api/scene/jobs/job-demo")
     assert job_status_response.status_code == 200
     assert job_status_response.json()["result"]["scene_layout_path"] == "/tmp/layout.json"
+    assert job_status_response.json()["stage"] == "succeeded"
+    assert job_status_response.json()["progress"] == 100
+    assert job_status_response.json()["operations"][-1]["message"] == "Scene generation completed."
     assert "Infinity" not in job_status_response.text
     assert job_status_response.json()["result"]["summary"]["clearance_m"] is None
 

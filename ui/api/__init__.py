@@ -22,6 +22,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from roadgen3d.services.generation_api import router as generation_router
+from roadgen3d.api.junction_templates import router as junction_templates_router
 
 # Create FastAPI app
 app = FastAPI(
@@ -48,6 +49,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(generation_router, prefix="/api", tags=["generation"])
+app.include_router(junction_templates_router, tags=["junction-templates"])
 
 # Optional: Include LLM workflow routes if needed
 # Uncomment to enable LLM-based design assistant

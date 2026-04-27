@@ -100,6 +100,46 @@ def test_generate_scene_from_draft_wraps_existing_scene_pipeline(tmp_path: Path,
     assert captured["local_files_only"] is True
 
 
+def test_generate_scene_from_draft_passes_progress_callback_to_compose(tmp_path: Path, monkeypatch):
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 4}}), encoding="utf-8")
+    received_events: list[dict[str, object]] = []
+    captured: dict[str, object] = {}
+
+    def _fake_compose(**kwargs):
+        captured["progress_callback"] = kwargs.get("progress_callback")
+        kwargs["progress_callback"]({
+            "stage": "asset_composition",
+            "progress": 66,
+            "message": "Placing street assets.",
+        })
+        return SimpleNamespace(
+            instance_count=4,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        )
+
+    monkeypatch.setattr(runtime, "compose_street_scene", _fake_compose)
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="safe complete street",
+        compose_config_patch={"road_width_m": 6.5, "sidewalk_width_m": 4.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(draft, progress_callback=received_events.append)
+
+    assert result.summary["instance_count"] == 4
+    assert callable(captured["progress_callback"])
+    assert any(event["stage"] == "asset_composition" and event["progress"] == 66 for event in received_events)
+
+
 def test_generate_scene_from_draft_uses_sanitized_cached_layout_summary(tmp_path: Path, monkeypatch):
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text('{"summary":{"instance_count": 8, "clearance_m": Infinity}}', encoding="utf-8")

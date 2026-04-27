@@ -25,6 +25,7 @@ from roadgen3d.llm import LLMConfigurationError, LLMResponseError  # noqa: E402
 from roadgen3d.graph_templates import get_graph_template, list_graph_templates  # noqa: E402
 from roadgen3d.presets import SCENE_PRESETS  # noqa: E402
 from roadgen3d.metaurban_procedural import get_metaurban_reference_plan, list_metaurban_reference_plans  # noqa: E402
+from roadgen3d.api.junction_templates import router as junction_templates_router  # noqa: E402
 from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
@@ -85,9 +86,16 @@ class ReferenceAnnotationConvertRequestModel(BaseModel):
     compose_config: Dict[str, Any] = Field(default_factory=dict)
 
 
+class RenderedViewModel(BaseModel):
+    view_id: str
+    label: str
+    image_data_url: str
+
+
 class EvaluateRequestModel(BaseModel):
     layout_path: str
     image_path: str | None = None
+    rendered_views: List[RenderedViewModel] = Field(default_factory=list)
 
 
 class EvaluateCompareRequestModel(BaseModel):
@@ -394,6 +402,10 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             result = service.evaluate_scene_unified(
                 layout_path=request.layout_path,
                 image_path=request.image_path,
+                rendered_views=[
+                    view.model_dump() if hasattr(view, "model_dump") else view.dict()
+                    for view in request.rendered_views
+                ],
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -430,6 +442,8 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(result)
+
+    app.include_router(junction_templates_router)
 
     return app
 

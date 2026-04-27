@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from queue import Queue
 from threading import Condition, Lock, Thread
@@ -36,6 +36,9 @@ class _SceneJobState:
     started_at: str = ""
     finished_at: str = ""
     error: str = ""
+    stage: str = "queued"
+    progress: int = 5
+    operations: List[Dict[str, Any]] = field(default_factory=list)
     result: SceneGenerationResult | None = None
 
 
@@ -151,6 +154,12 @@ class SceneJobService:
                     continue
                 state.status = "running"
                 state.started_at = _utc_now()
+                self._apply_progress_locked(
+                    state,
+                    stage="context_resolving",
+                    progress=10,
+                    message="Resolving scene generation context.",
+                )
                 self._condition.notify_all()
             try:
                 result = self.generator(
@@ -158,6 +167,7 @@ class SceneJobService:
                     patch_overrides=state.patch_overrides,
                     generation_options=state.generation_options,
                     scene_context=state.scene_context,
+                    progress_callback=lambda event: self._record_progress(job_id, event),
                 )
             except Exception as exc:
                 with self._condition:
@@ -166,6 +176,13 @@ class SceneJobService:
                         latest.status = "failed"
                         latest.error = str(exc)
                         latest.finished_at = _utc_now()
+                        self._apply_progress_locked(
+                            latest,
+                            stage="failed",
+                            progress=latest.progress,
+                            message=str(exc) or "Scene generation failed.",
+                            detail={"error": str(exc)},
+                        )
                     self._condition.notify_all()
                 continue
             with self._condition:
@@ -174,7 +191,83 @@ class SceneJobService:
                     latest.status = "succeeded"
                     latest.result = result
                     latest.finished_at = _utc_now()
+                    self._apply_progress_locked(
+                        latest,
+                        stage="succeeded",
+                        progress=100,
+                        message="Scene generation completed.",
+                    )
                 self._condition.notify_all()
+
+    def _record_progress(self, job_id: str, event: Mapping[str, Any] | str) -> None:
+        payload: Mapping[str, Any]
+        if isinstance(event, Mapping):
+            payload = event
+        else:
+            payload = {"message": str(event)}
+        with self._condition:
+            state = self._jobs.get(job_id)
+            if state is None:
+                return
+            stage = str(payload.get("stage") or payload.get("status") or state.stage or "running")
+            message = str(
+                payload.get("message")
+                or payload.get("name")
+                or payload.get("status")
+                or stage.replace("_", " ").title()
+            )
+            progress = payload.get("progress", state.progress)
+            detail = payload.get("detail")
+            if detail is None:
+                detail = {
+                    key: value
+                    for key, value in payload.items()
+                    if key not in {"stage", "status", "progress", "message", "name"}
+                }
+            self._apply_progress_locked(
+                state,
+                stage=stage,
+                progress=progress,
+                message=message,
+                detail=detail if isinstance(detail, Mapping) else {"value": detail},
+            )
+            self._condition.notify_all()
+
+    @staticmethod
+    def _coerce_progress(value: Any, fallback: int) -> int:
+        try:
+            progress = int(round(float(value)))
+        except (TypeError, ValueError):
+            progress = int(fallback)
+        return max(0, min(100, progress))
+
+    @classmethod
+    def _apply_progress_locked(
+        cls,
+        state: _SceneJobState,
+        *,
+        stage: str,
+        progress: Any,
+        message: str,
+        detail: Mapping[str, Any] | None = None,
+    ) -> None:
+        coerced_progress = cls._coerce_progress(progress, state.progress)
+        if stage not in {"failed"}:
+            coerced_progress = max(int(state.progress), coerced_progress)
+        state.stage = str(stage or state.stage or "running")
+        state.progress = coerced_progress
+        operation = {
+            "timestamp": _utc_now(),
+            "stage": state.stage,
+            "progress": int(state.progress),
+            "message": str(message or state.stage),
+            "name": str(message or state.stage),
+            "status": str(message or state.stage),
+            "detail": dict(detail or {}),
+        }
+        state.operations.append(operation)
+        if len(state.operations) > 50:
+            del state.operations[:-50]
 
     @staticmethod
     def _to_status_response(state: _SceneJobState) -> SceneJobStatusResponse:
@@ -185,6 +278,9 @@ class SceneJobService:
             started_at=state.started_at,
             finished_at=state.finished_at,
             error=state.error,
+            stage=state.stage,
+            progress=state.progress,
+            operations=tuple(dict(item) for item in state.operations),
             result=state.result,
         )
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from threading import Event
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -58,14 +59,67 @@ def test_scene_job_service_runs_sync_generation():
 
 
 def test_scene_job_service_records_failure():
-    service = SceneJobService(generator=lambda draft, **kwargs: (_ for _ in ()).throw(RuntimeError("boom")))
+    def _generator(draft, **kwargs):
+        kwargs["progress_callback"]({
+            "stage": "asset_loading",
+            "progress": 33,
+            "message": "Assets loaded before failure.",
+        })
+        raise RuntimeError("boom")
+
+    service = SceneJobService(generator=_generator)
 
     created = service.submit_job(draft=_draft())
     status = service.wait_for_job(created.job_id, timeout_s=2.0)
 
     assert status is not None
     assert status.status == "failed"
+    assert status.stage == "failed"
+    assert status.progress == 33
+    assert status.operations[-1]["stage"] == "failed"
     assert "boom" in status.error
+
+
+def test_scene_job_service_exposes_running_progress():
+    progress_recorded = Event()
+    release_generator = Event()
+
+    def _generator(draft, **kwargs):
+        kwargs["progress_callback"]({
+            "stage": "asset_composition",
+            "progress": 64,
+            "message": "Placing street assets.",
+            "detail": {"placed_slots": 7, "total_slots": 11},
+        })
+        progress_recorded.set()
+        release_generator.wait(timeout=2.0)
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={"instance_count": 7},
+            scene_layout_path="/tmp/layout.json",
+            scene_glb_path="/tmp/scene.glb",
+            scene_ply_path="/tmp/scene.ply",
+            viewer_url="http://127.0.0.1:4173/?layout=demo",
+        )
+
+    service = SceneJobService(generator=_generator)
+    created = service.submit_job(draft=_draft())
+
+    assert progress_recorded.wait(timeout=2.0)
+    running = service.get_job(created.job_id)
+    assert running is not None
+    assert running.status == "running"
+    assert running.stage == "asset_composition"
+    assert running.progress == 64
+    assert running.operations[-1]["message"] == "Placing street assets."
+    assert running.operations[-1]["detail"]["placed_slots"] == 7
+
+    release_generator.set()
+    completed = service.wait_for_job(created.job_id, timeout_s=2.0)
+    assert completed is not None
+    assert completed.status == "succeeded"
+    assert completed.stage == "succeeded"
+    assert completed.progress == 100
 
 
 def test_scene_job_service_preserves_graph_template_scene_context():
