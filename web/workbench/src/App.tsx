@@ -1,11 +1,13 @@
 import { useState, useMemo, useCallback } from "react";
 import { ConfigProvider } from "antd";
-import type { ScenePreset, GeneratedScheme, EvaluationResult, WorkflowStep } from "./lib/types";
+import type { ScenePreset, GeneratedScheme, EvaluationResult, WorkflowStep, CompareScheme } from "./lib/types";
 import type { DraftResponse } from "./lib/api";
 import { Header } from "./components/Header";
 import { PresetGrid } from "./components/PresetGrid";
 import { SchemeGrid } from "./components/SchemeGrid";
 import { EvaluationPanel } from "./components/EvaluationPanel";
+import { ComparisonPanel } from "./components/ComparisonPanel";
+import { SceneCompareModal } from "./components/SceneCompareModal";
 import { StatusBar } from "./components/StatusBar";
 import { FreeTextInput } from "./components/FreeTextInput";
 import { useGeneration, useScenePresets } from "./hooks/useGeneration";
@@ -31,6 +33,12 @@ function App() {
   const [selectedSchemeId, setSelectedSchemeId] = useState<string | null>(null);
   const [evaluations, setEvaluations] = useState<EvaluationResult[]>([]);
   const [status, setStatus] = useState<string>("就绪");
+
+  // 对比相关状态
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareSchemeA, setCompareSchemeA] = useState<CompareScheme | null>(null);
+  const [compareSchemeB, setCompareSchemeB] = useState<CompareScheme | null>(null);
+  const [show3DCompareModal, setShow3DCompareModal] = useState(false);
 
   // Load presets and templates from API
   const { presets, templates, loading: loadingPresets } = useScenePresets();
@@ -66,6 +74,9 @@ function App() {
         scores: s.evaluation,
         indicators: s.indicators!,
         pillarScores: { Protection: 0, Comfort: 0, Delight: 0 },
+        evaluation: s.evaluationText,
+        suggestions: s.suggestions,
+        llmStatus: s.llmStatus || null,
       })));
     } catch (error) {
       console.error("Optimization failed:", error);
@@ -132,11 +143,46 @@ function App() {
         Comfort: scheme.evaluation.walkability,
         Delight: scheme.evaluation.beauty,
       },
+      evaluation: scheme.evaluationText,
+      suggestions: scheme.suggestions,
+      llmStatus: scheme.llmStatus || null,
     }));
     setEvaluations(newEvaluations);
     setCurrentStep(3);
     setStatus("评估结果已生成");
   }, [displaySchemes]);
+
+  const handleStartCompare = useCallback(() => {
+    setCompareMode(true);
+    // 默认选择前两个方案
+    const readySchemes = displaySchemes.filter((s) => s.status === "ready");
+    if (readySchemes.length >= 2) {
+      setCompareSchemeA({
+        id: readySchemes[0].id,
+        name: readySchemes[0].name,
+        layoutPath: readySchemes[0].layoutPath,
+        previewUrl: readySchemes[0].previewUrl,
+        viewerUrl: readySchemes[0].viewerUrl,
+        evaluation: readySchemes[0].evaluation,
+        indicators: readySchemes[0].indicators,
+      });
+      setCompareSchemeB({
+        id: readySchemes[1].id,
+        name: readySchemes[1].name,
+        layoutPath: readySchemes[1].layoutPath,
+        previewUrl: readySchemes[1].previewUrl,
+        viewerUrl: readySchemes[1].viewerUrl,
+        evaluation: readySchemes[1].evaluation,
+        indicators: readySchemes[1].indicators,
+      });
+    }
+  }, [displaySchemes]);
+
+  const handleExitCompare = useCallback(() => {
+    setCompareMode(false);
+    setCompareSchemeA(null);
+    setCompareSchemeB(null);
+  }, []);
 
   const handleExportScene = useCallback(() => {
     if (!selectedSchemeId) return;
@@ -155,6 +201,12 @@ function App() {
           selectedTemplateId={selectedTemplateId}
           onTemplateChange={setSelectedTemplateId}
         />
+        <aside className="legacy-notice" role="note">
+          <strong>Legacy workflow</strong>
+          <span>
+            Workbench is now maintained as a compatibility view. New generation, visual evaluation, and comparison work should happen in Viewer&apos;s Design sidebar.
+          </span>
+        </aside>
 
         <main className="workbench-content">
         {currentStep === 1 && (
@@ -247,29 +299,59 @@ function App() {
 
         {currentStep === 2 && (
           <section className="step-content">
-            <div className="section-header">
-              <h2>方案对比</h2>
-              <p className="section-desc">
-                {isGenerating ? "正在生成 3 个方案，请稍候..." : "生成完成，点击卡片选择方案"}
-              </p>
-            </div>
-            <SchemeGrid
-              schemes={displaySchemes}
-              selectedSchemeId={selectedSchemeId}
-              onSelectScheme={setSelectedSchemeId}
-            />
-            <div className="step-actions">
-              <button className="btn secondary" onClick={() => setCurrentStep(1)}>
-                重新选择模板
-              </button>
-              <button
-                className="btn primary"
-                onClick={handleShowEvaluation}
-                disabled={!hasReadySchemes}
-              >
-                查看评估结果
-              </button>
-            </div>
+            {!compareMode ? (
+              <>
+                <div className="section-header">
+                  <h2>方案对比</h2>
+                  <p className="section-desc">
+                    {isGenerating ? "正在生成 3 个方案，请稍候..." : "生成完成，点击卡片选择方案"}
+                  </p>
+                </div>
+                <SchemeGrid
+                  schemes={displaySchemes}
+                  selectedSchemeId={selectedSchemeId}
+                  onSelectScheme={setSelectedSchemeId}
+                />
+                <div className="step-actions">
+                  <button className="btn secondary" onClick={() => setCurrentStep(1)}>
+                    重新选择模板
+                  </button>
+                  <button
+                    className="btn primary"
+                    onClick={handleShowEvaluation}
+                    disabled={!hasReadySchemes}
+                  >
+                    查看评估结果
+                  </button>
+                  <button
+                    className="btn primary"
+                    onClick={handleStartCompare}
+                    disabled={displaySchemes.filter((s) => s.status === "ready").length < 2}
+                  >
+                    📊 PNG + JSON 前后对比
+                  </button>
+                  <button
+                    className="btn secondary"
+                    onClick={() => setShow3DCompareModal(true)}
+                    disabled={displaySchemes.filter((s) => s.status === "ready").length < 2}
+                  >
+                    🌐 3D 场景对比
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="section-header">
+                  <h2>方案详细对比</h2>
+                  <p className="section-desc">对比两个方案的配置、指标和放置差异</p>
+                </div>
+                <ComparisonPanel
+                  schemeA={compareSchemeA}
+                  schemeB={compareSchemeB}
+                  onBack={handleExitCompare}
+                />
+              </>
+            )}
           </section>
         )}
 
@@ -302,6 +384,23 @@ function App() {
       </main>
 
       <StatusBar message={status} />
+
+      {/* 3D 场景对比模态框 */}
+      <SceneCompareModal
+        schemes={displaySchemes
+          .filter((s) => s.status === "ready")
+          .map((s) => ({
+            id: s.id,
+            name: s.name,
+            layoutPath: s.layoutPath,
+            previewUrl: s.previewUrl,
+            viewerUrl: s.viewerUrl,
+            evaluation: s.evaluation,
+            indicators: s.indicators,
+          }))}
+        visible={show3DCompareModal}
+        onClose={() => setShow3DCompareModal(false)}
+      />
       </div>
     </ConfigProvider>
   );

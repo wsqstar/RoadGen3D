@@ -1,5 +1,5 @@
-import type { EvaluationScores, WalkabilityIndicators, ComparisonResult, ImprovementResult } from "./types";
-import type { ScenePreset } from "./types";
+import type { EvaluationScores, WalkabilityIndicators, ComparisonResult, ImprovementResult, LlmStatusMap } from "./types";
+import type { ScenePreset, SceneDiffResult } from "./types";
 import { API_BASE } from "./types";
 
 const DEFAULT_TIMEOUT_MS = 30000;
@@ -130,6 +130,7 @@ export interface EvaluationResponse {
   evaluation: string;
   suggestions: string[];
   config_patch?: Record<string, any>;
+  llm_status?: LlmStatusMap | null;
   comparison?: ComparisonResult;
 }
 
@@ -137,17 +138,22 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
   try {
     const response = await postJson<{
       walkability: number;
-      safety: number;
-      beauty: number;
-      overall: number;
+      safety: number | null;
+      beauty: number | null;
+      overall: number | null;
       evaluation: string;
       suggestions: string[];
       indicators: WalkabilityIndicators | null;
       config_patch?: Record<string, any>;
+      llm_status?: LlmStatusMap | null;
     }>("/api/design/evaluate/unified", {
       layout_path: layoutPath,
       image_path: null,
     }, 60000);
+
+    if (response.safety === null || response.beauty === null || response.overall === null) {
+      return null;
+    }
 
     return {
       scores: {
@@ -160,6 +166,7 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
       evaluation: response.evaluation,
       suggestions: response.suggestions,
       config_patch: response.config_patch,
+      llm_status: response.llm_status,
     };
   } catch (error) {
     console.error("Evaluation API failed:", error);
@@ -182,6 +189,7 @@ export async function evaluateSceneWithHistory(
       evaluation: string;
       suggestions: string[];
       indicators: WalkabilityIndicators | null;
+      llm_status?: LlmStatusMap | null;
       comparison: ComparisonResult;
     }>("/api/design/evaluate/compare", {
       current_layout_path: currentLayoutPath,
@@ -200,6 +208,7 @@ export async function evaluateSceneWithHistory(
       indicators: response.indicators,
       evaluation: response.evaluation,
       suggestions: response.suggestions,
+      llm_status: response.llm_status,
       comparison: response.comparison,
     };
   } catch (error) {
@@ -267,4 +276,29 @@ export async function draftDesign(options: DraftDesignOptions): Promise<DraftRes
     console.error("Draft design API failed:", error);
     return null;
   }
+}
+
+export async function compareScenes(
+  layoutA: string,
+  layoutB: string
+): Promise<SceneDiffResult | null> {
+  try {
+    const response = await postJson<SceneDiffResult>("/api/scenes/diff", {
+      layout_a: layoutA,
+      layout_b: layoutB,
+    }, 30000);
+
+    return response;
+  } catch (error) {
+    console.error("Scene compare API failed:", error);
+    return null;
+  }
+}
+
+export function getDiffImageUrl(
+  layoutA: string,
+  layoutB: string,
+  mode: "overlay" | "delta" = "overlay"
+): string {
+  return `${API_BASE}/api/scenes/diff/image?layout_a=${encodeURIComponent(layoutA)}&layout_b=${encodeURIComponent(layoutB)}&mode=${mode}`;
 }

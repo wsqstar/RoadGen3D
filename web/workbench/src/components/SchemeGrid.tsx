@@ -1,6 +1,14 @@
 import { EVALUATION_COLORS, SCHEME_COLORS } from "../lib/constants";
 import type { GeneratedScheme } from "../lib/types";
 
+function getLlmStatusBadge(source: string | undefined): { label: string; className: string } {
+  const normalized = String(source || "unavailable").toLowerCase();
+  if (normalized === "llm") return { label: "Live", className: "live" };
+  if (normalized === "cache") return { label: "Cache", className: "cache" };
+  if (normalized === "disabled") return { label: "Disabled", className: "disabled" };
+  return { label: "Unavailable", className: "unavailable" };
+}
+
 interface SchemeGridProps {
   schemes: GeneratedScheme[];
   selectedSchemeId: string | null;
@@ -109,6 +117,21 @@ export function SchemeGrid({ schemes, selectedSchemeId, onSelectScheme }: Scheme
                           </span>
                           <span className="score-value">{scheme.evaluation.beauty}</span>
                         </div>
+                      </div>
+
+                      <div className="scheme-llm-status">
+                        {(() => {
+                          const safetyBadge = getLlmStatusBadge(scheme.llmStatus?.safety?.source);
+                          const beautyBadge = getLlmStatusBadge(scheme.llmStatus?.beauty?.source);
+                          return (
+                            <>
+                              <span className="scheme-llm-label">Safety LLM</span>
+                              <span className={`scheme-llm-pill ${safetyBadge.className}`}>{safetyBadge.label}</span>
+                              <span className="scheme-llm-label">Beauty LLM</span>
+                              <span className={`scheme-llm-pill ${beautyBadge.className}`}>{beautyBadge.label}</span>
+                            </>
+                          );
+                        })()}
                       </div>
 
                       {/* 评估反馈区域 */}

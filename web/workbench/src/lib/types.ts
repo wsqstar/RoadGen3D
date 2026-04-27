@@ -32,6 +32,17 @@ export type SceneJobStatusResponse = {
   started_at: string;
   finished_at: string;
   error: string;
+  stage: string;
+  progress: number;
+  operations: Array<{
+    timestamp?: string;
+    stage?: string;
+    progress?: number;
+    message?: string;
+    name?: string;
+    status?: string;
+    detail?: Record<string, unknown>;
+  }>;
   result: {
     scene_layout_path: string;
     scene_glb_path: string;
@@ -45,6 +56,19 @@ export type EvaluationScores = {
   safety: number;
   beauty: number;
   overall: number;
+};
+
+export type LlmStatusEntry = {
+  enabled?: boolean;
+  available?: boolean;
+  source?: string;
+  cached?: boolean;
+  reasoning?: string;
+};
+
+export type LlmStatusMap = {
+  safety?: LlmStatusEntry;
+  beauty?: LlmStatusEntry;
 };
 
 export type WalkabilityIndicators = {
@@ -73,6 +97,7 @@ export type EvaluationResult = {
   evaluation?: string;
   suggestions?: string[];
   config_patch?: Record<string, any>;
+  llmStatus?: LlmStatusMap | null;
   comparison?: {
     improved_areas: string[];
     regressed_areas: string[];
@@ -107,6 +132,7 @@ export interface GeneratedScheme {
   indicators: WalkabilityIndicators | null;
   evaluationText: string;
   suggestions: string[];
+  llmStatus?: LlmStatusMap | null;
   status: SchemeStatus;
   progress: number;
 }
@@ -140,6 +166,63 @@ export interface BarChartData {
     data: number[];
     color: string;
   }[];
+}
+
+// Scene comparison types
+export interface ConfigDiff {
+  added: Record<string, any>;
+  removed: Record<string, any>;
+  changed: Record<string, { old: any; new: any }>;
+}
+
+export interface MetricDiff {
+  key: string;
+  old: number | null;
+  new: number | null;
+  delta: number;
+  delta_pct: number | null;
+}
+
+export interface MetricsDiff {
+  metrics: MetricDiff[];
+}
+
+export interface PlacementDiff {
+  category: string;
+  count_a: number;
+  count_b: number;
+  delta: number;
+  matched: number;
+  added: number;
+  deleted: number;
+  moved: number;
+  mean_position_shift_m: number;
+}
+
+export interface PlacementsDiff {
+  total_count_a: number;
+  total_count_b: number;
+  total_delta: number;
+  category_stats: PlacementDiff[];
+  added_instances: Array<{ category: string; position_xyz: number[] }>;
+  deleted_instances: Array<{ category: string; position_xyz: number[] }>;
+  moved_instances: Array<{ category: string; distance_m: number; a: any; b: any }>;
+}
+
+export interface SceneDiffResult {
+  config_diff: ConfigDiff;
+  metrics_diff: MetricsDiff;
+  placements_diff: PlacementsDiff;
+}
+
+export interface CompareScheme {
+  id: string;
+  name: string;
+  layoutPath: string;
+  previewUrl: string;
+  viewerUrl: string;
+  evaluation: EvaluationScores;
+  indicators: WalkabilityIndicators | null;
 }
 
 export const API_BASE = (import.meta.env.VITE_ROADGEN_API_BASE as string | undefined) || "http://127.0.0.1:8010";

@@ -68,6 +68,7 @@ export function useGeneration(
       indicators: null,
       evaluationText: "",
       suggestions: [],
+      llmStatus: null,
       status: "generating",
       progress: 0,
     }));
@@ -119,12 +120,15 @@ export function useGeneration(
             scheme.indicators = evalResult.indicators || scheme.indicators;
             scheme.evaluationText = evalResult.evaluation;
             scheme.suggestions = evalResult.suggestions;
+            scheme.llmStatus = evalResult.llm_status || null;
           } else {
             scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+            scheme.llmStatus = null;
           }
         } catch (evalError) {
           console.error(`方案 ${scheme.id} 评估失败:`, evalError);
           scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+          scheme.llmStatus = null;
         }
 
         scheme.status = "ready";
@@ -198,10 +202,12 @@ export function useGeneration(
         case "running":
         case "processing":
           switch (stage) {
+            case "context_resolving":
+              return { stage: "context_resolving", progress: 15, message: "正在解析场景上下文..." };
+            case "asset_loading":
+              return { stage: "asset_loading", progress: 25, message: "正在加载资产..." };
             case "layout_generation":
-              return { stage: "layout_generation", progress: 20, message: "正在生成布局..." };
-            case "graph_parsing":
-              return { stage: "graph_parsing", progress: 30, message: "正在解析图形..." };
+              return { stage: "layout_generation", progress: 40, message: "正在生成布局..." };
             case "constraint_solving":
               return { stage: "constraint_solving", progress: 45, message: "正在求解约束..." };
             case "asset_composition":
@@ -212,11 +218,13 @@ export function useGeneration(
               return { stage: "scene_rendering", progress: 75, message: "正在渲染场景..." };
             case "glb_export":
               return { stage: "glb_export", progress: 85, message: "正在导出 GLB..." };
+            case "finalizing":
+              return { stage: "finalizing", progress: 98, message: "正在整理结果..." };
             default:
               return { stage: stage || "processing", progress: 50, message: "正在处理中..." };
           }
         case "succeeded":
-          return { stage: "succeeded", progress: 95, message: "生成完成!" };
+          return { stage: "succeeded", progress: 100, message: "生成完成!" };
         case "failed":
           return { stage: "failed", progress: 0, message: "生成失败" };
         default:
@@ -231,7 +239,7 @@ export function useGeneration(
           status: string;
           stage?: string;
           progress?: number;
-          operations?: string[];
+          operations?: Array<string | { name?: string; status?: string; message?: string }>;
           result: {
             scene_layout_path: string;
             scene_glb_path: string;
@@ -255,7 +263,7 @@ export function useGeneration(
           if (typeof currentOp === "string") {
             message = currentOp;
           } else if (typeof currentOp === "object" && currentOp !== null) {
-            const opName = (currentOp as { name?: string }).name || (currentOp as { status?: string }).status || baseProg.message;
+            const opName = (currentOp as { message?: string }).message || (currentOp as { name?: string }).name || (currentOp as { status?: string }).status || baseProg.message;
             message = opName;
           }
         }
@@ -332,6 +340,7 @@ export function useGeneration(
       indicators: null,
       evaluationText: "",
       suggestions: [],
+      llmStatus: null,
       status: "generating",
       progress: 0,
     }));
@@ -381,12 +390,15 @@ export function useGeneration(
             scheme.indicators = evalResult.indicators || scheme.indicators;
             scheme.evaluationText = evalResult.evaluation;
             scheme.suggestions = evalResult.suggestions;
+            scheme.llmStatus = evalResult.llm_status || null;
           } else {
             scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+            scheme.llmStatus = null;
           }
         } catch (evalError) {
           console.error(`方案 ${scheme.id} 评估失败:`, evalError);
           scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+          scheme.llmStatus = null;
         }
 
         scheme.status = "ready";
@@ -466,9 +478,11 @@ export function useGeneration(
             scheme.indicators = evalResult.indicators || scheme.indicators;
             scheme.evaluationText = evalResult.evaluation;
             scheme.suggestions = evalResult.suggestions;
+            scheme.llmStatus = evalResult.llm_status || null;
           }
         } catch (evalError) {
           console.error(`方案 ${targetScheme.id} 评估失败:`, evalError);
+          scheme.llmStatus = null;
         }
 
         scheme.status = "ready";

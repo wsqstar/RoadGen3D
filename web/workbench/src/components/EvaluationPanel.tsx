@@ -3,7 +3,7 @@
  * 使用 Ant Design 组件重构
  */
 
-import { Card, Statistic, Row, Col, Tag, Button, Space, Typography, Divider } from "antd";
+import { Card, Statistic, Row, Col, Tag, Button, Space, Typography, Divider, Tabs } from "antd";
 import {
   TrophyOutlined,
   SafetyOutlined,
@@ -11,17 +11,44 @@ import {
   RocketOutlined,
   CheckCircleOutlined,
   WarningOutlined,
+  BarChartOutlined,
+  ScanOutlined,
+  AreaChartOutlined,
 } from "@ant-design/icons";
 import type { EvaluationResult } from "../lib/types";
+import { RadarComparison } from "./RadarComparison";
+import { ScatterPlotComparison } from "./ScatterPlotComparison";
 import { COLORS } from "../theme";
+import type { LlmStatusEntry } from "../lib/types";
 
 const { Text } = Typography;
+const { TabPane } = Tabs;
 
 interface EvaluationPanelProps {
   evaluations: EvaluationResult[];
   selectedSchemeId: string | null;
   onOptimize?: (schemeId: string, patch: Record<string, any>) => void;
   isOptimizing?: boolean;
+}
+
+function renderLlmStatusTag(label: string, entry?: LlmStatusEntry) {
+  const source = String(entry?.source || "unavailable").toLowerCase();
+  const statusLabel =
+    source === "llm" ? "Live" :
+    source === "cache" ? "Cache" :
+    source === "disabled" ? "Disabled" :
+    "Unavailable";
+  const color =
+    source === "llm" ? "green" :
+    source === "cache" ? "blue" :
+    source === "disabled" ? "default" :
+    "volcano";
+  return (
+    <Space key={label} size="small">
+      <Text type="secondary">{label}</Text>
+      <Tag color={color}>{statusLabel}</Tag>
+    </Space>
+  );
 }
 
 export function EvaluationPanel({ evaluations, selectedSchemeId, onOptimize, isOptimizing }: EvaluationPanelProps) {
@@ -35,7 +62,7 @@ export function EvaluationPanel({ evaluations, selectedSchemeId, onOptimize, isO
     );
   }
 
-  const { scores, evaluation, suggestions, config_patch } = selectedEval;
+  const { scores, evaluation, suggestions, config_patch, llmStatus } = selectedEval;
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
@@ -79,11 +106,49 @@ export function EvaluationPanel({ evaluations, selectedSchemeId, onOptimize, isO
             />
           </Col>
         </Row>
+        <Divider style={{ margin: "16px 0 0" }} />
+        <Space wrap style={{ marginTop: 12 }}>
+          <Text strong>LLM Status</Text>
+          {renderLlmStatusTag("Safety", llmStatus?.safety)}
+          {renderLlmStatusTag("Beauty", llmStatus?.beauty)}
+        </Space>
       </Card>
 
-      {/* 多维度对比 - 简化为进度条 */}
+      {/* 多维度对比 - Tab 切换 */}
       {evaluations.length > 1 && (
-        <Card title="多维度对比">
+        <Card>
+          <Tabs defaultActiveKey="scatter">
+            <TabPane
+              tab={
+                <Space>
+                  <AreaChartOutlined />
+                  散点图分析
+                </Space>
+              }
+              key="scatter"
+            >
+              <ScatterPlotComparison evaluations={evaluations} height={400} />
+            </TabPane>
+            <TabPane
+              tab={
+                <Space>
+                  <ScanOutlined />
+                  雷达图对比
+                </Space>
+              }
+              key="radar"
+            >
+              <RadarComparison evaluations={evaluations} height={400} />
+            </TabPane>
+            <TabPane
+              tab={
+                <Space>
+                  <BarChartOutlined />
+                  柱状图对比
+                </Space>
+              }
+              key="bar"
+            >
           {evaluations.map((eval_) => (
             <div key={eval_.sceneId} style={{ marginBottom: 16 }}>
               <Text strong>方案 {eval_.sceneId}</Text>
@@ -139,6 +204,8 @@ export function EvaluationPanel({ evaluations, selectedSchemeId, onOptimize, isO
               </Row>
             </div>
           ))}
+            </TabPane>
+          </Tabs>
         </Card>
       )}
 
