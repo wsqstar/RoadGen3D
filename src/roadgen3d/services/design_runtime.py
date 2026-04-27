@@ -6,7 +6,7 @@ import json
 from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Mapping
+from typing import Any, Callable, Dict, Mapping
 
 from ..json_safe import make_json_safe
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
@@ -55,6 +55,30 @@ DEFAULT_SCENE_GENERATION_OPTIONS = SceneGenerationOptions(
     program_ckpt=None,
     policy_temperature=0.12,
 )
+
+ProgressCallback = Callable[[Mapping[str, Any]], None]
+
+
+def _emit_progress(
+    progress_callback: ProgressCallback | None,
+    *,
+    stage: str,
+    progress: int,
+    message: str,
+    **detail: Any,
+) -> None:
+    if progress_callback is None:
+        return
+    try:
+        progress_callback({
+            "stage": stage,
+            "progress": int(progress),
+            "message": message,
+            "detail": dict(detail),
+        })
+    except Exception:
+        # Progress reporting is best-effort and must not fail scene generation.
+        return
 
 
 def build_compose_config_from_draft(
@@ -184,6 +208,7 @@ def _augment_layout_summary(layout_path: str | Path, extra_summary: Mapping[str,
     summary = dict(payload.get("summary", {}) or {})
     if extra_summary:
         summary.update(dict(make_json_safe(extra_summary)))
+    payload["summary"] = summary
     # Inject audio profile
     try:
         from ..scene_audio import inject_audio_profile
@@ -254,8 +279,16 @@ def _generate_metaurban_scene_from_draft(
     *,
     options: SceneGenerationOptions,
     scene_context: SceneContext,
+    progress_callback: ProgressCallback | None = None,
 ) -> SceneGenerationResult:
     plan_id = str(scene_context.reference_plan_id or DEFAULT_METAURBAN_REFERENCE_PLAN_ID).strip().lower()
+    _emit_progress(
+        progress_callback,
+        stage="context_resolving",
+        progress=15,
+        message="Building MetaUrban layout bridge.",
+        reference_plan_id=plan_id,
+    )
     try:
         bridge = build_metaurban_scene_bridge(
             base_config,
@@ -265,6 +298,13 @@ def _generate_metaurban_scene_from_draft(
         raise RuntimeError(str(exc)) from exc
     config = replace(base_config, layout_mode="metaurban")
     metaurban_out_dir = _build_metaurban_out_dir(options.out_dir, plan_id)
+    _emit_progress(
+        progress_callback,
+        stage="asset_loading",
+        progress=20,
+        message="Preparing scene asset backends.",
+        layout_mode="metaurban",
+    )
     object_backend, ground_backend, sky_backend = _build_scene_backends(options)
     result = compose_street_scene(
         config=config,
@@ -286,6 +326,7 @@ def _generate_metaurban_scene_from_draft(
         road_segment_graph_override=bridge.road_segment_graph,
         projected_features_override=bridge.projected_features,
         placement_context_override=bridge.placement_context,
+        progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
         config=config,
@@ -299,8 +340,16 @@ def _generate_graph_template_scene_from_draft(
     *,
     options: SceneGenerationOptions,
     scene_context: SceneContext,
+    progress_callback: ProgressCallback | None = None,
 ) -> SceneGenerationResult:
     template_id = str(scene_context.graph_template_id or DEFAULT_GRAPH_TEMPLATE_ID).strip().lower()
+    _emit_progress(
+        progress_callback,
+        stage="context_resolving",
+        progress=15,
+        message="Building graph-template layout bridge.",
+        graph_template_id=template_id,
+    )
     try:
         bridge = build_graph_template_scene_bridge(
             base_config,
@@ -310,6 +359,13 @@ def _generate_graph_template_scene_from_draft(
         raise RuntimeError(str(exc)) from exc
     config = replace(base_config, layout_mode="graph_template")
     graph_template_out_dir = _build_graph_template_out_dir(options.out_dir, template_id)
+    _emit_progress(
+        progress_callback,
+        stage="asset_loading",
+        progress=20,
+        message="Preparing scene asset backends.",
+        layout_mode="graph_template",
+    )
     object_backend, ground_backend, sky_backend = _build_scene_backends(options)
     result = compose_street_scene(
         config=config,
@@ -331,6 +387,7 @@ def _generate_graph_template_scene_from_draft(
         road_segment_graph_override=bridge.road_segment_graph,
         projected_features_override=bridge.projected_features,
         placement_context_override=bridge.placement_context,
+        progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
         config=config,
@@ -345,6 +402,7 @@ def generate_scene_from_draft(
     patch_overrides: Mapping[str, Any] | None = None,
     generation_options: Mapping[str, Any] | SceneGenerationOptions | None = None,
     scene_context: Mapping[str, Any] | SceneContext | None = None,
+    progress_callback: ProgressCallback | None = None,
 ) -> SceneGenerationResult:
     """Run the existing scene pipeline using a confirmed design draft."""
 
@@ -371,6 +429,12 @@ def generate_scene_from_draft(
         if isinstance(generation_options, SceneGenerationOptions)
         else normalize_scene_generation_options(generation_options)
     )
+    _emit_progress(
+        progress_callback,
+        stage="context_resolving",
+        progress=10,
+        message="Normalizing generation request.",
+    )
     base_config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
     normalized_scene_context = sanitize_scene_context(scene_context)
     if normalized_scene_context.layout_mode == "graph_template":
@@ -378,21 +442,37 @@ def generate_scene_from_draft(
             base_config,
             options=options,
             scene_context=normalized_scene_context,
+            progress_callback=progress_callback,
         )
     if normalized_scene_context.layout_mode == "metaurban":
         return _generate_metaurban_scene_from_draft(
             base_config,
             options=options,
             scene_context=normalized_scene_context,
+            progress_callback=progress_callback,
         )
     resolved_scene_context = resolve_scene_context(
         normalized_scene_context,
         config=base_config,
         artifacts_dir=options.artifacts_dir,
     )
+    _emit_progress(
+        progress_callback,
+        stage="context_resolving",
+        progress=20,
+        message="Resolved scene context.",
+        layout_mode=normalized_scene_context.layout_mode,
+    )
     config = _build_runtime_compose_config(
         base_config,
         resolved_scene_context=resolved_scene_context,
+    )
+    _emit_progress(
+        progress_callback,
+        stage="asset_loading",
+        progress=22,
+        message="Preparing scene asset backends.",
+        layout_mode=config.layout_mode,
     )
     object_backend, ground_backend, sky_backend = _build_scene_backends(options)
     result = compose_street_scene(
@@ -412,6 +492,7 @@ def generate_scene_from_draft(
         object_asset_backend=object_backend,
         ground_material_backend=ground_backend,
         sky_backend=sky_backend,
+        progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
         config=config,
@@ -428,6 +509,7 @@ def generate_scene_from_graph_context(
     placement_context_override: Any,
     generation_options: Mapping[str, Any] | SceneGenerationOptions | None = None,
     extra_summary: Mapping[str, Any] | None = None,
+    progress_callback: ProgressCallback | None = None,
 ) -> SceneGenerationResult:
     """Run the scene pipeline using pre-built graph overrides directly.
 
@@ -450,6 +532,12 @@ def generate_scene_from_graph_context(
     base_config = build_compose_config_from_draft(draft)
     config = replace(base_config, layout_mode="graph_template")
 
+    _emit_progress(
+        progress_callback,
+        stage="asset_loading",
+        progress=20,
+        message="Preparing graph-context scene asset backends.",
+    )
     object_backend, ground_backend, sky_backend = _build_scene_backends(options)
 
     iter_out_dir = options.out_dir
@@ -475,6 +563,7 @@ def generate_scene_from_graph_context(
         road_segment_graph_override=road_segment_graph_override,
         projected_features_override=projected_features_override,
         placement_context_override=placement_context_override,
+        progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
         config=config,

@@ -373,9 +373,13 @@ class SceneJobStatusResponse:
     started_at: str = ""
     finished_at: str = ""
     error: str = ""
+    stage: str = "queued"
+    progress: int = 0
+    operations: Tuple[Dict[str, Any], ...] = ()
     result: SceneGenerationResult | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)
         payload["result"] = self.result.to_dict() if self.result is not None else None
-        return payload
+        payload["operations"] = list(self.operations)
+        return dict(make_json_safe(payload))

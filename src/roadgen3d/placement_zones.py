@@ -350,6 +350,7 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
             "farfromroad_buffer_width_m": farfromroad_buffer_width_m,
             "frontage_reserve_width_m": frontage_reserve_width_m,
             "side_strip_layouts": side_strip_layouts,
+            "center_strip_layouts": _node_center_strip_layouts(node),
         }
     return profiles
 
@@ -390,6 +391,7 @@ def _node_side_strip_layouts(node: Any) -> Tuple[float, Dict[str, List[Dict[str,
                     "strip_id": str(getattr(strip, "strip_id", "") or ""),
                     "side": side,
                     "kind": strip_kind,
+                    "direction": str(getattr(strip, "direction", "none") or "none").strip().lower() or "none",
                     "band_name": detailed_strip_band_name(side, strip_kind),
                     "width_m": float(width_m),
                     "order_index": int(getattr(strip, "order_index", 0) or 0),
@@ -440,6 +442,7 @@ def _node_center_strip_layouts(node: Any) -> List[Dict[str, Any]]:
                 "strip_id": str(getattr(strip, "strip_id", "") or ""),
                 "side": "center",
                 "kind": strip_kind,
+                "direction": str(getattr(strip, "direction", "none") or "none").strip().lower() or "none",
                 "band_name": f"center_{strip_kind}",
                 "width_m": float(width_m),
                 "order_index": int(getattr(strip, "order_index", 0) or 0),
@@ -1308,6 +1311,300 @@ def _corner_lane_kernel(
     }
 
 
+_CENTER_TURN_LANE_KINDS = frozenset({"drive_lane", "bus_lane", "bike_lane", "parking_lane"})
+_SIDE_TURN_LANE_KINDS = ("nearroad_furnishing", "clear_sidewalk", "frontage_reserve")
+_SKIP_TURN_LANE_KINDS = frozenset({"median", "grass_belt"})
+
+
+def _turn_lane_surface_role(strip_kind: str, stack_kind: str) -> str:
+    kind = str(strip_kind or "").strip().lower()
+    if kind == "bike_lane":
+        return "bike_lane"
+    if kind == "bus_lane":
+        return "bus_lane"
+    if kind == "parking_lane":
+        return "parking_lane"
+    if kind == "drive_lane" or stack_kind == "center":
+        return "carriageway"
+    if kind == "clear_sidewalk":
+        return "sidewalk"
+    if kind == "frontage_reserve":
+        return "context_ground"
+    if "buffer" in kind or kind == "nearroad_furnishing":
+        return "furnishing"
+    return "sidewalk"
+
+
+def _signed_offset_edge_distance(edge_offset_m: float, offset_m: float) -> float:
+    return abs(float(offset_m) - float(edge_offset_m))
+
+
+def _strip_range_for_offsets(
+    *,
+    arm: Dict[str, Any],
+    corner_center: Tuple[float, float],
+    strip_kind: str,
+    strip_id: str,
+    direction: str,
+    inner_offset_m: float,
+    outer_offset_m: float,
+    stack_kind: str,
+    order_index: int,
+) -> Dict[str, Any] | None:
+    boundary_center = tuple(float(value) for value in arm.get("split_boundary_center", (0.0, 0.0)))
+    normal = tuple(float(value) for value in arm.get("normal", (0.0, 0.0)))
+    edge_offset_m = (
+        (float(corner_center[0]) - float(boundary_center[0])) * float(normal[0])
+        + (float(corner_center[1]) - float(boundary_center[1])) * float(normal[1])
+    )
+    offsets = [float(inner_offset_m), float(outer_offset_m)]
+    offsets.sort(key=lambda value: _signed_offset_edge_distance(edge_offset_m, value))
+    near_offset, far_offset = offsets
+    width_m = abs(float(far_offset) - float(near_offset))
+    if width_m <= 1e-6:
+        return None
+    return {
+        "strip_kind": str(strip_kind or "").strip().lower(),
+        "strip_id": str(strip_id or ""),
+        "direction": str(direction or "none").strip().lower() or "none",
+        "near_offset_m": float(near_offset),
+        "far_offset_m": float(far_offset),
+        "near_distance_m": _signed_offset_edge_distance(edge_offset_m, near_offset),
+        "far_distance_m": _signed_offset_edge_distance(edge_offset_m, far_offset),
+        "width_m": float(width_m),
+        "stack_kind": str(stack_kind),
+        "surface_role": _turn_lane_surface_role(strip_kind, stack_kind),
+        "order_index": int(order_index),
+    }
+
+
+def _corner_turn_strip_stack(
+    arm: Dict[str, Any],
+    corner_center: Tuple[float, float],
+    *,
+    stack_kind: str,
+) -> List[Dict[str, Any]]:
+    zone = _facing_zone_for_corner(arm, corner_center)
+    records: List[Dict[str, Any]] = []
+    if stack_kind == "side":
+        for strip in tuple((arm.get("side_strip_layouts", {}) or {}).get(zone, ())):
+            kind = str(strip.get("kind", "") or "").strip().lower()
+            if not kind or kind in _SKIP_TURN_LANE_KINDS:
+                continue
+            record = _strip_range_for_offsets(
+                arm=arm,
+                corner_center=corner_center,
+                strip_kind=kind,
+                strip_id=str(strip.get("strip_id", "") or ""),
+                direction=str(strip.get("direction", "none") or "none"),
+                inner_offset_m=float(strip.get("inner_offset_m", 0.0) or 0.0),
+                outer_offset_m=float(strip.get("outer_offset_m", 0.0) or 0.0),
+                stack_kind=stack_kind,
+                order_index=int(strip.get("order_index", len(records)) or 0),
+            )
+            if record is not None:
+                records.append(record)
+    else:
+        boundary_center = tuple(float(value) for value in arm.get("split_boundary_center", (0.0, 0.0)))
+        normal = tuple(float(value) for value in arm.get("normal", (0.0, 0.0)))
+        edge_offset_m = (
+            (float(corner_center[0]) - float(boundary_center[0])) * float(normal[0])
+            + (float(corner_center[1]) - float(boundary_center[1])) * float(normal[1])
+        )
+        side_sign = 1.0 if edge_offset_m >= 0.0 else -1.0
+        for strip in tuple(arm.get("center_strip_layouts", []) or ()):
+            kind = str(strip.get("kind", "") or "").strip().lower()
+            direction = str(strip.get("direction", "") or "").strip().lower()
+            center_offset_m = float(strip.get("center_m", 0.0) or 0.0)
+            if kind not in _CENTER_TURN_LANE_KINDS or direction == "none":
+                continue
+            if center_offset_m == 0.0 or math.copysign(1.0, center_offset_m) != side_sign:
+                continue
+            record = _strip_range_for_offsets(
+                arm=arm,
+                corner_center=corner_center,
+                strip_kind=kind,
+                strip_id=str(strip.get("strip_id", "") or ""),
+                direction=direction,
+                inner_offset_m=float(strip.get("inner_m", 0.0) or 0.0),
+                outer_offset_m=float(strip.get("outer_m", 0.0) or 0.0),
+                stack_kind=stack_kind,
+                order_index=int(strip.get("order_index", len(records)) or 0),
+            )
+            if record is not None:
+                records.append(record)
+    records.sort(key=lambda item: (float(item["near_distance_m"]), float(item["far_distance_m"]), int(item["order_index"])))
+    return records
+
+
+def _short_arc_sweep(start_angle: float, end_angle: float) -> Tuple[float, float]:
+    ccw_sweep = float(end_angle) - float(start_angle)
+    while ccw_sweep <= 0.0:
+        ccw_sweep += math.tau
+    clockwise_sweep = float(start_angle) - float(end_angle)
+    while clockwise_sweep <= 0.0:
+        clockwise_sweep += math.tau
+    if ccw_sweep <= clockwise_sweep:
+        return ccw_sweep, 1.0
+    return clockwise_sweep, -1.0
+
+
+def _sample_tapered_arc(
+    *,
+    center: Tuple[float, float],
+    start_point: Tuple[float, float],
+    end_point: Tuple[float, float],
+    target_segment_length_m: float = 0.75,
+    min_points: int = 4,
+    max_points: int = 24,
+) -> List[Tuple[float, float]]:
+    start_radius = _distance(center, start_point)
+    end_radius = _distance(center, end_point)
+    if start_radius <= 1e-6 and end_radius <= 1e-6:
+        return [(float(center[0]), float(center[1]))]
+    start_angle = math.atan2(float(start_point[1]) - float(center[1]), float(start_point[0]) - float(center[0]))
+    end_angle = math.atan2(float(end_point[1]) - float(center[1]), float(end_point[0]) - float(center[0]))
+    sweep, direction = _short_arc_sweep(start_angle, end_angle)
+    arc_length = max((float(start_radius) + float(end_radius)) * 0.5 * float(sweep), 0.0)
+    point_count = int(math.ceil(arc_length / max(float(target_segment_length_m), 1e-6))) + 1
+    point_count = max(int(min_points), min(int(max_points), point_count))
+    point_count = max(point_count, 2)
+    points: List[Tuple[float, float]] = []
+    for index in range(point_count):
+        ratio = float(index) / float(point_count - 1)
+        radius = float(start_radius) + (float(end_radius) - float(start_radius)) * ratio
+        angle = float(start_angle) + float(direction) * float(sweep) * ratio
+        points.append((float(center[0]) + math.cos(angle) * radius, float(center[1]) + math.sin(angle) * radius))
+    points[0] = (float(start_point[0]), float(start_point[1]))
+    points[-1] = (float(end_point[0]), float(end_point[1]))
+    return points
+
+
+def _dedupe_ring_points(points: Sequence[Tuple[float, float]], tolerance_m: float = 1e-6) -> List[Tuple[float, float]]:
+    deduped: List[Tuple[float, float]] = []
+    for point in points:
+        candidate = (float(point[0]), float(point[1]))
+        if deduped and _distance(deduped[-1], candidate) <= float(tolerance_m):
+            continue
+        deduped.append(candidate)
+    if len(deduped) > 1 and _distance(deduped[0], deduped[-1]) <= float(tolerance_m):
+        deduped.pop()
+    return deduped
+
+
+def _turn_lane_sector_patch(
+    *,
+    corner_center: Tuple[float, float],
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    strip_a: Dict[str, Any],
+    strip_b: Dict[str, Any],
+    target_segment_length_m: float,
+) -> Any:
+    from shapely.geometry import Polygon
+
+    boundary_a = tuple(float(value) for value in arm["split_boundary_center"])
+    normal_a = tuple(float(value) for value in arm["normal"])
+    boundary_b = tuple(float(value) for value in next_arm["split_boundary_center"])
+    normal_b = tuple(float(value) for value in next_arm["normal"])
+    near_start = _point_on_boundary_with_offset(boundary_a, normal_a, float(strip_a["near_offset_m"]))
+    far_start = _point_on_boundary_with_offset(boundary_a, normal_a, float(strip_a["far_offset_m"]))
+    near_end = _point_on_boundary_with_offset(boundary_b, normal_b, float(strip_b["near_offset_m"]))
+    far_end = _point_on_boundary_with_offset(boundary_b, normal_b, float(strip_b["far_offset_m"]))
+    near_arc = _sample_tapered_arc(
+        center=corner_center,
+        start_point=near_start,
+        end_point=near_end,
+        target_segment_length_m=target_segment_length_m,
+    )
+    far_arc = _sample_tapered_arc(
+        center=corner_center,
+        start_point=far_start,
+        end_point=far_end,
+        target_segment_length_m=target_segment_length_m,
+    )
+    ring = _dedupe_ring_points([*near_arc, *reversed(far_arc)])
+    if len(ring) < 3:
+        return Polygon()
+    patch = Polygon([_round_xy(point) for point in ring])
+    if not patch.is_valid:
+        patch = patch.buffer(0)
+    return patch
+
+
+def _build_cross_turn_lane_patches(
+    junction_id: str,
+    quadrant_id: str,
+    arm_index: int,
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    corner_center: Tuple[float, float],
+    *,
+    target_segment_length_m: float,
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    patches: List[Dict[str, Any]] = []
+    debug_records: List[Dict[str, Any]] = []
+    lane_index = 0
+    stack_a = {
+        str(strip["strip_kind"]): strip
+        for strip in _corner_turn_strip_stack(arm, corner_center, stack_kind="side")
+        if str(strip.get("strip_kind", "") or "") in _SIDE_TURN_LANE_KINDS
+    }
+    stack_b = {
+        str(strip["strip_kind"]): strip
+        for strip in _corner_turn_strip_stack(next_arm, corner_center, stack_kind="side")
+        if str(strip.get("strip_kind", "") or "") in _SIDE_TURN_LANE_KINDS
+    }
+    for strip_kind in _SIDE_TURN_LANE_KINDS:
+        strip_a = stack_a.get(strip_kind)
+        strip_b = stack_b.get(strip_kind)
+        if strip_a is None or strip_b is None:
+            debug_records.append(
+                {
+                    "quadrant_id": quadrant_id,
+                    "strip_kind": strip_kind,
+                    "reason": "missing_side_strip",
+                    "has_arm_a": strip_a is not None,
+                    "has_arm_b": strip_b is not None,
+                }
+            )
+            continue
+        patch = _turn_lane_sector_patch(
+            corner_center=corner_center,
+            arm=arm,
+            next_arm=next_arm,
+            strip_a=strip_a,
+            strip_b=strip_b,
+            target_segment_length_m=target_segment_length_m,
+        )
+        if getattr(patch, "is_empty", True) or float(getattr(patch, "area", 0.0) or 0.0) <= 1e-6:
+            debug_records.append(
+                {
+                    "quadrant_id": quadrant_id,
+                    "strip_kind": strip_kind,
+                    "reason": "empty_or_invalid_sector",
+                }
+            )
+            continue
+        patches.append(
+            {
+                "patch_id": f"{junction_id}_turn_{arm_index:02d}_{lane_index:02d}_{strip_kind}",
+                "quadrant_id": quadrant_id,
+                "strip_kind": strip_kind,
+                "strip_id_a": str(strip_a.get("strip_id", "") or ""),
+                "strip_id_b": str(strip_b.get("strip_id", "") or ""),
+                "lane_index": int(lane_index),
+                "flow": "none",
+                "direction": "none",
+                "surface_role": str(strip_a.get("surface_role", "sidewalk") or "sidewalk"),
+                "stack_kind": "side",
+                "geometry": patch,
+            }
+        )
+        lane_index += 1
+    return patches, debug_records
+
+
 def _build_cross_corner_kernel_geometries(
     junction_id: str,
     ordered_arms: Sequence[Dict[str, Any]],
@@ -1323,15 +1620,46 @@ def _build_cross_corner_kernel_geometries(
     sidewalk_corner_patches: List[Dict[str, Any]] = []
     nearroad_corner_patches: List[Dict[str, Any]] = []
     frontage_corner_patches: List[Dict[str, Any]] = []
+    turn_lane_patches: List[Dict[str, Any]] = []
+    turn_lane_debug_records: List[Dict[str, Any]] = []
+    arm_skeletons_by_index: Dict[int, Dict[str, Any]] = {}
 
     for arm_index, arm in enumerate(ordered_arms):
-        next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
+        split_center = tuple(float(value) for value in arm.get("split_boundary_center", (0.0, 0.0)))
+        split_start = tuple(float(value) for value in arm.get("split_boundary_start", split_center))
+        split_end = tuple(float(value) for value in arm.get("split_boundary_end", split_center))
+        arm_skeletons_by_index[arm_index] = {
+            "arm_skeleton_id": f"{junction_id}_arm_{arm_index:02d}",
+            "arm_index": int(arm_index),
+            "road_id": int(arm.get("road_id", 0) or 0),
+            "centerline_id": str(arm.get("centerline_id", "") or ""),
+            "angle_deg": round(float(arm.get("angle_deg", 0.0) or 0.0), 3),
+            "tangent_xy": _round_xy(tuple(float(value) for value in arm.get("tangent", (0.0, 0.0)))),
+            "normal_xy": _round_xy(tuple(float(value) for value in arm.get("normal", (0.0, 0.0)))),
+            "split_center_xy": _round_xy(split_center),
+            "split_start_xy": _round_xy(split_start),
+            "split_end_xy": _round_xy(split_end),
+            "split_distance_m": round(float(arm.get("split_distance_m", 0.0) or 0.0), 3),
+            "core_exit_distance_m": round(float(arm.get("core_exit_distance_m", 0.0) or 0.0), 3),
+            "corner_facing_sides": [],
+        }
+
+    for arm_index, arm in enumerate(ordered_arms):
+        next_index = (arm_index + 1) % len(ordered_arms)
+        next_arm = ordered_arms[next_index]
         start_angle = float(arm["angle_deg"])
         end_angle = float(next_arm["angle_deg"])
         sweep = end_angle - start_angle
         if sweep <= 0.0:
             sweep += 360.0
         if sweep <= 5.0 or sweep >= 175.0:
+            turn_lane_debug_records.append(
+                {
+                    "quadrant_id": f"{junction_id}_quadrant_{arm_index:02d}",
+                    "reason": "unsupported_quadrant_sweep",
+                    "sweep_deg": round(float(sweep), 3),
+                }
+            )
             continue
         corner_center = _line_intersection(
             tuple(float(value) for value in arm["split_boundary_center"]),
@@ -1340,12 +1668,45 @@ def _build_cross_corner_kernel_geometries(
             tuple(float(value) for value in next_arm["normal"]),
         )
         if corner_center is None:
+            turn_lane_debug_records.append(
+                {
+                    "quadrant_id": f"{junction_id}_quadrant_{arm_index:02d}",
+                    "reason": "parallel_split_normals",
+                }
+            )
             continue
 
         quadrant_id = f"{junction_id}_quadrant_{arm_index:02d}"
         kernel_id = f"{quadrant_id}_kernel"
         start_tangent = (float(arm["tangent"][0]), float(arm["tangent"][1]))
         end_tangent = (float(next_arm["tangent"][0]), float(next_arm["tangent"][1]))
+        if arm_index in arm_skeletons_by_index:
+            arm_skeletons_by_index[arm_index]["corner_facing_sides"].append(
+                {
+                    "quadrant_id": quadrant_id,
+                    "role": "start_arm",
+                    "side": _facing_zone_for_corner(arm, corner_center),
+                }
+            )
+        if next_index in arm_skeletons_by_index:
+            arm_skeletons_by_index[next_index]["corner_facing_sides"].append(
+                {
+                    "quadrant_id": quadrant_id,
+                    "role": "end_arm",
+                    "side": _facing_zone_for_corner(next_arm, corner_center),
+                }
+            )
+        quadrant_turn_patches, quadrant_turn_debug = _build_cross_turn_lane_patches(
+            junction_id,
+            quadrant_id,
+            arm_index,
+            arm,
+            next_arm,
+            corner_center,
+            target_segment_length_m=target_segment_length_m,
+        )
+        turn_lane_patches.extend(quadrant_turn_patches)
+        turn_lane_debug_records.extend(quadrant_turn_debug)
 
         canonical_start = None
         canonical_end = None
@@ -1494,6 +1855,9 @@ def _build_cross_corner_kernel_geometries(
         "sidewalk_corner_patches": sidewalk_corner_patches,
         "nearroad_corner_patches": nearroad_corner_patches,
         "frontage_corner_patches": frontage_corner_patches,
+        "turn_lane_patches": turn_lane_patches,
+        "turn_lane_debug": turn_lane_debug_records,
+        "arm_skeletons": [arm_skeletons_by_index[index] for index in sorted(arm_skeletons_by_index)],
     }
 
 
@@ -1563,6 +1927,7 @@ def _build_explicit_graph_junction_geometries(
                     "farfromroad_buffer_width_m": float(profile.get("farfromroad_buffer_width_m", 0.0) or 0.0),
                     "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
                     "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
+                    "center_strip_layouts": list(profile.get("center_strip_layouts", []) or ()),
                 }
             )
             seen_road_ids.add(road_id)
@@ -1732,6 +2097,9 @@ def _build_explicit_graph_junction_geometries(
         sidewalk_corner_polylines = []
         nearroad_corner_polylines = []
         frontage_corner_polylines = []
+        turn_lane_patches = []
+        turn_lane_debug = []
+        arm_skeletons = []
         ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
         if kind == "cross_junction":
             cross_corner_data = _build_cross_corner_kernel_geometries(
@@ -1745,6 +2113,9 @@ def _build_explicit_graph_junction_geometries(
             sidewalk_corner_patches = list(cross_corner_data["sidewalk_corner_patches"])
             nearroad_corner_patches = list(cross_corner_data["nearroad_corner_patches"])
             frontage_corner_patches = list(cross_corner_data["frontage_corner_patches"])
+            turn_lane_patches = list(cross_corner_data.get("turn_lane_patches", []) or ())
+            turn_lane_debug = list(cross_corner_data.get("turn_lane_debug", []) or ())
+            arm_skeletons = list(cross_corner_data.get("arm_skeletons", []) or ())
         else:
             for arm_index, arm in enumerate(ordered_arms):
                 next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -1837,6 +2208,9 @@ def _build_explicit_graph_junction_geometries(
             junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
             junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
             junction_geometry["frontage_corner_patches"] = frontage_corner_patches
+            junction_geometry["turn_lane_patches"] = turn_lane_patches
+            junction_geometry["turn_lane_debug"] = turn_lane_debug
+            junction_geometry["arm_skeletons"] = arm_skeletons
         else:
             junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
             junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
@@ -1943,6 +2317,7 @@ def build_junction_geometries(
                         "farfromroad_buffer_width_m": float(profile.get("farfromroad_buffer_width_m", 0.0) or 0.0),
                         "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
                         "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
+                        "center_strip_layouts": list(profile.get("center_strip_layouts", []) or ()),
                     }
                 )
         arm_angles = [float(item["angle_deg"]) for item in arms]
@@ -2094,9 +2469,20 @@ def build_junction_geometries(
                 ]
             ).buffer(trim_half_width, cap_style="flat")
             sidewalk_trim_polygons.append(trim_polygon)
-            arm["split_boundary_center"] = (
+            split_boundary_center = (
                 anchor[0] + float(arm["tangent"][0]) * (float(exit_distance_m) + float(crosswalk_depth_m)),
                 anchor[1] + float(arm["tangent"][1]) * (float(exit_distance_m) + float(crosswalk_depth_m)),
+            )
+            arm["core_exit_distance_m"] = float(exit_distance_m)
+            arm["split_distance_m"] = float(exit_distance_m) + float(crosswalk_depth_m)
+            arm["split_boundary_center"] = split_boundary_center
+            arm["split_boundary_start"] = (
+                split_boundary_center[0] - float(arm["normal"][0]) * half_width,
+                split_boundary_center[1] - float(arm["normal"][1]) * half_width,
+            )
+            arm["split_boundary_end"] = (
+                split_boundary_center[0] + float(arm["normal"][0]) * half_width,
+                split_boundary_center[1] + float(arm["normal"][1]) * half_width,
             )
 
         carriageway_core = junction_core_rect
@@ -2107,6 +2493,9 @@ def build_junction_geometries(
         sidewalk_corner_polylines = []
         nearroad_corner_polylines = []
         frontage_corner_polylines = []
+        turn_lane_patches = []
+        turn_lane_debug = []
+        arm_skeletons = []
         ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
         if kind == "cross_junction":
             cross_corner_data = _build_cross_corner_kernel_geometries(
@@ -2120,6 +2509,9 @@ def build_junction_geometries(
             sidewalk_corner_patches = list(cross_corner_data["sidewalk_corner_patches"])
             nearroad_corner_patches = list(cross_corner_data["nearroad_corner_patches"])
             frontage_corner_patches = list(cross_corner_data["frontage_corner_patches"])
+            turn_lane_patches = list(cross_corner_data.get("turn_lane_patches", []) or ())
+            turn_lane_debug = list(cross_corner_data.get("turn_lane_debug", []) or ())
+            arm_skeletons = list(cross_corner_data.get("arm_skeletons", []) or ())
         else:
             for arm_index, arm in enumerate(ordered_arms):
                 next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -2208,6 +2600,9 @@ def build_junction_geometries(
             junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
             junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
             junction_geometry["frontage_corner_patches"] = frontage_corner_patches
+            junction_geometry["turn_lane_patches"] = turn_lane_patches
+            junction_geometry["turn_lane_debug"] = turn_lane_debug
+            junction_geometry["arm_skeletons"] = arm_skeletons
         else:
             junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
             junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches

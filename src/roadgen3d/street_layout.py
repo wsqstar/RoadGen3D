@@ -12,7 +12,7 @@ from collections import Counter
 import dataclasses
 from dataclasses import dataclass, replace
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
@@ -4007,45 +4007,84 @@ def _build_osm_base_scene(
                     roughness_key="crossing",
                     surface_role="crossing",
                 )
-            for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
+            turn_lane_patches = list(junction.get("turn_lane_patches", []) or ())
+            for patch_index, patch in enumerate(turn_lane_patches):
                 geometry = patch.get("geometry")
                 if geometry is None or getattr(geometry, "is_empty", True):
                     continue
+                surface_role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
+                strip_kind = str(patch.get("strip_kind", "") or "").strip().lower()
+                stack_kind = str(patch.get("stack_kind", "") or "").strip().lower()
+                if surface_role in {"bike_lane", "bus_lane", "parking_lane"}:
+                    color_key = surface_role
+                elif surface_role == "furnishing" or "furnishing" in strip_kind or "buffer" in strip_kind:
+                    color_key = "furnishing"
+                elif surface_role == "context_ground" or strip_kind == "frontage_reserve":
+                    color_key = "context_ground"
+                elif surface_role == "sidewalk" or strip_kind == "clear_sidewalk":
+                    color_key = "sidewalk"
+                else:
+                    color_key = "carriageway"
+                if color_key == "furnishing":
+                    color = list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255))))
+                elif color_key == "bike_lane":
+                    color = list(colors.get("bike_lane", (50, 110, 80, 255)))
+                elif color_key == "bus_lane":
+                    color = list(colors.get("bus_lane", colors.get("carriageway", (65, 68, 72, 255))))
+                elif color_key == "parking_lane":
+                    color = list(colors.get("parking_lane", colors.get("carriageway", (65, 68, 72, 255))))
+                else:
+                    color = list(colors.get(color_key, colors.get("carriageway", (65, 68, 72, 255))))
+                is_center_turn = stack_kind == "center" or color_key in {"carriageway", "bike_lane", "bus_lane", "parking_lane"}
                 _extrude_polygon(
                     geometry,
-                    0.08,
-                    list(colors.get("sidewalk", (165, 168, 172, 255))),
-                    f"junction_sidewalk_corner_{junction_index}_{patch_index}",
-                    y_offset=SIDEWALK_ELEVATION_M,
-                    roughness_key="sidewalk",
-                    surface_role="sidewalk",
+                    0.014 if is_center_turn else 0.055,
+                    color,
+                    f"junction_turn_lane_{junction_index}_{patch_index}",
+                    y_offset=0.010 if is_center_turn else SIDEWALK_ELEVATION_M,
+                    roughness_key=color_key,
+                    surface_role=surface_role,
                 )
-            for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
-                geometry = patch.get("geometry")
-                if geometry is None or getattr(geometry, "is_empty", True):
-                    continue
-                _extrude_polygon(
-                    geometry,
-                    0.05,
-                    list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
-                    f"junction_nearroad_corner_{junction_index}_{patch_index}",
-                    y_offset=SIDEWALK_ELEVATION_M,
-                    roughness_key="furnishing",
-                    surface_role="furnishing",
-                )
-            for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
-                geometry = patch.get("geometry")
-                if geometry is None or getattr(geometry, "is_empty", True):
-                    continue
-                _extrude_polygon(
-                    geometry,
-                    0.05,
-                    list(colors.get("context_ground", (168, 163, 150, 255))),
-                    f"junction_frontage_corner_{junction_index}_{patch_index}",
-                    y_offset=SIDEWALK_ELEVATION_M,
-                    roughness_key="context_ground",
-                    surface_role="context_ground",
-                )
+            if not turn_lane_patches:
+                for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    _extrude_polygon(
+                        geometry,
+                        0.08,
+                        list(colors.get("sidewalk", (165, 168, 172, 255))),
+                        f"junction_sidewalk_corner_{junction_index}_{patch_index}",
+                        y_offset=SIDEWALK_ELEVATION_M,
+                        roughness_key="sidewalk",
+                        surface_role="sidewalk",
+                    )
+                for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    _extrude_polygon(
+                        geometry,
+                        0.05,
+                        list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
+                        f"junction_nearroad_corner_{junction_index}_{patch_index}",
+                        y_offset=SIDEWALK_ELEVATION_M,
+                        roughness_key="furnishing",
+                        surface_role="furnishing",
+                    )
+                for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    _extrude_polygon(
+                        geometry,
+                        0.05,
+                        list(colors.get("context_ground", (168, 163, 150, 255))),
+                        f"junction_frontage_corner_{junction_index}_{patch_index}",
+                        y_offset=SIDEWALK_ELEVATION_M,
+                        roughness_key="context_ground",
+                        surface_role="context_ground",
+                    )
 
     fallback_length_m = 20.0
     if scene_bounds:
@@ -4399,6 +4438,89 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     }
                     for patch in item.get("crosswalk_patches", []) or ()
                 ],
+                "turn_lane_patches": [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "quadrant_id": str(patch.get("quadrant_id", "") or ""),
+                        "strip_kind": str(patch.get("strip_kind", "") or ""),
+                        "strip_id_a": str(patch.get("strip_id_a", "") or ""),
+                        "strip_id_b": str(patch.get("strip_id_b", "") or ""),
+                        "lane_index": int(patch.get("lane_index", 0) or 0),
+                        "flow": str(patch.get("flow", "") or ""),
+                        "direction": str(patch.get("direction", "") or ""),
+                        "surface_role": str(patch.get("surface_role", "") or ""),
+                        "stack_kind": str(patch.get("stack_kind", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("turn_lane_patches", []) or ()
+                ],
+                "turn_lane_debug": [
+                    {
+                        "quadrant_id": str(record.get("quadrant_id", "") or ""),
+                        "strip_kind": str(record.get("strip_kind", "") or ""),
+                        "reason": str(record.get("reason", "") or ""),
+                        **(
+                            {"sweep_deg": round(float(record.get("sweep_deg", 0.0) or 0.0), 3)}
+                            if "sweep_deg" in record
+                            else {}
+                        ),
+                        **(
+                            {"has_arm_a": bool(record.get("has_arm_a")), "has_arm_b": bool(record.get("has_arm_b"))}
+                            if "has_arm_a" in record or "has_arm_b" in record
+                            else {}
+                        ),
+                    }
+                    for record in item.get("turn_lane_debug", []) or ()
+                ],
+                "arm_skeletons": [
+                    {
+                        "arm_skeleton_id": str(arm.get("arm_skeleton_id", "") or ""),
+                        "arm_index": int(arm.get("arm_index", 0) or 0),
+                        "road_id": int(arm.get("road_id", 0) or 0),
+                        "centerline_id": str(arm.get("centerline_id", "") or ""),
+                        "angle_deg": round(float(arm.get("angle_deg", 0.0) or 0.0), 3),
+                        "tangent_xy": _serialize_point(arm.get("tangent_xy", [0.0, 0.0])),
+                        "normal_xy": _serialize_point(arm.get("normal_xy", [0.0, 0.0])),
+                        "split_center_xy": _serialize_point(arm.get("split_center_xy", [0.0, 0.0])),
+                        "split_start_xy": _serialize_point(arm.get("split_start_xy", [0.0, 0.0])),
+                        "split_end_xy": _serialize_point(arm.get("split_end_xy", [0.0, 0.0])),
+                        "split_distance_m": round(float(arm.get("split_distance_m", 0.0) or 0.0), 3),
+                        "core_exit_distance_m": round(float(arm.get("core_exit_distance_m", 0.0) or 0.0), 3),
+                        "corner_facing_sides": [
+                            {
+                                "quadrant_id": str(side.get("quadrant_id", "") or ""),
+                                "role": str(side.get("role", "") or ""),
+                                "side": str(side.get("side", "") or ""),
+                            }
+                            for side in arm.get("corner_facing_sides", []) or ()
+                        ],
+                    }
+                    for arm in item.get("arm_skeletons", []) or ()
+                ],
+                "lane_surface_patches": [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "lane"),
+                        "lane_id": str(patch.get("lane_id", "") or ""),
+                        "arm_key": str(patch.get("arm_key", "") or ""),
+                        "flow": str(patch.get("flow", "") or ""),
+                        "lane_index": int(patch.get("lane_index", 0) or 0),
+                        "provenance": str(patch.get("provenance", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("lane_surface_patches", []) or ()
+                ],
+                "merged_surface_patches": [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "merged"),
+                        "provenance": str(patch.get("provenance", "") or ""),
+                        "merged_from_surface_ids": [str(value) for value in patch.get("merged_from_surface_ids", []) or ()],
+                        "merged_from_lane_ids": [str(value) for value in patch.get("merged_from_lane_ids", []) or ()],
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("merged_surface_patches", []) or ()
+                ],
             }
             if str(item.get("kind", "") or "") == "cross_junction":
                 junction_item["quadrant_corner_kernels"] = [
@@ -4472,6 +4594,30 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     }
                     for patch in item.get("frontage_corner_patches", []) or ()
                 ]
+                junction_item["lane_surface_patches"] = [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "lane"),
+                        "lane_id": str(patch.get("lane_id", "") or ""),
+                        "arm_key": str(patch.get("arm_key", "") or ""),
+                        "flow": str(patch.get("flow", "") or ""),
+                        "lane_index": int(patch.get("lane_index", 0) or 0),
+                        "provenance": str(patch.get("provenance", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("lane_surface_patches", []) or ()
+                ]
+                junction_item["merged_surface_patches"] = [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "merged"),
+                        "provenance": str(patch.get("provenance", "") or ""),
+                        "merged_from_surface_ids": [str(value) for value in patch.get("merged_from_surface_ids", []) or ()],
+                        "merged_from_lane_ids": [str(value) for value in patch.get("merged_from_lane_ids", []) or ()],
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("merged_surface_patches", []) or ()
+                ]
             else:
                 junction_item["sidewalk_corner_patches"] = [
                     {
@@ -4493,6 +4639,30 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                         "rings": _extract_rings(patch.get("geometry")),
                     }
                     for patch in item.get("frontage_corner_patches", []) or ()
+                ]
+                junction_item["lane_surface_patches"] = [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "lane"),
+                        "lane_id": str(patch.get("lane_id", "") or ""),
+                        "arm_key": str(patch.get("arm_key", "") or ""),
+                        "flow": str(patch.get("flow", "") or ""),
+                        "lane_index": int(patch.get("lane_index", 0) or 0),
+                        "provenance": str(patch.get("provenance", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("lane_surface_patches", []) or ()
+                ]
+                junction_item["merged_surface_patches"] = [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "merged"),
+                        "provenance": str(patch.get("provenance", "") or ""),
+                        "merged_from_surface_ids": [str(value) for value in patch.get("merged_from_surface_ids", []) or ()],
+                        "merged_from_lane_ids": [str(value) for value in patch.get("merged_from_lane_ids", []) or ()],
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("merged_surface_patches", []) or ()
                 ]
             result["junction_geometries"].append(junction_item)
     return result
@@ -6134,6 +6304,7 @@ def compose_street_scene(
     road_segment_graph_override: object | None = None,
     projected_features_override: object | None = None,
     placement_context_override: object | None = None,
+    progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
 ) -> StreetComposeResult:
     """
     Compose a street scene by category-aware retrieval and collision-aware placement.
@@ -6150,6 +6321,26 @@ def compose_street_scene(
     policy_mode = str(placement_policy).strip().lower()
     if policy_mode not in {"rule", "learned"}:
         raise ValueError("placement_policy must be 'rule' or 'learned'")
+
+    def _emit_progress(stage: str, progress: int, message: str, **detail: Any) -> None:
+        if progress_callback is None:
+            return
+        try:
+            progress_callback({
+                "stage": stage,
+                "progress": int(progress),
+                "message": message,
+                "detail": dict(detail),
+            })
+        except Exception:
+            return
+
+    _emit_progress(
+        "asset_loading",
+        12,
+        "Loading object, material, and sky assets.",
+        layout_mode=str(config.layout_mode),
+    )
 
     object_backend_name = "manifest_legacy"
     if object_asset_backend is not None:
@@ -6263,6 +6454,14 @@ def compose_street_scene(
                 logger.info("Added %d building assets to retrieval index", building_asset_count)
     building_index_enabled = building_asset_count > 0
 
+    _emit_progress(
+        "asset_loading",
+        25,
+        "Loaded retrieval index and building assets.",
+        object_asset_count=len(rows),
+        building_asset_count=building_asset_count,
+    )
+
     policy_runtime: Optional[LayoutPolicyRuntime] = None
     policy_used = "rule"
     policy_fallback_reason = ""
@@ -6313,6 +6512,12 @@ def compose_street_scene(
     projected = None
     road_segment_graph = road_segment_graph_override if road_segment_graph_override is not None else None
     effective_poi_counts: Dict[str, int] = normalize_poi_counts({})
+    _emit_progress(
+        "context_resolving",
+        30,
+        "Resolving road graph, POI, and placement context.",
+        layout_mode=str(config.layout_mode),
+    )
     if config.layout_mode == "osm":
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
         from .placement_zones import evaluate_projected_road_context
@@ -6343,6 +6548,13 @@ def compose_street_scene(
             )
         projected = projected_features_override
         placement_ctx = placement_context_override
+
+    _emit_progress(
+        "layout_generation",
+        35,
+        "Building spatial context and theme segments.",
+        layout_mode=str(config.layout_mode),
+    )
 
     poi_ctx = None
     rule_set = None
@@ -6397,6 +6609,13 @@ def compose_street_scene(
     )
     theme_by_id = {segment.theme_id: segment for segment in theme_segments}
 
+    _emit_progress(
+        "layout_generation",
+        42,
+        "Generating street program from layout and guidance.",
+        theme_segment_count=len(theme_segments),
+    )
+
     program_result = program_runtime.generate(
         ProgramGenerationInput(
             query=config.query,
@@ -6423,6 +6642,13 @@ def compose_street_scene(
     slot_band_lookup: Dict[str, object] = {}
     theme_zone_programs: List[Dict[str, object]] = []
     composition_pass_reports: List[Dict[str, object]] = []
+
+    _emit_progress(
+        "constraint_solving",
+        50,
+        "Solving themed layout constraints.",
+        theme_segment_count=len(theme_segments),
+    )
 
     for theme_segment in theme_segments:
         theme_spec = theme_profile_style(theme_segment.theme_name)
@@ -6619,6 +6845,13 @@ def compose_street_scene(
     for slot in ordered_slot_plans:
         category_slot_counts[slot.category] = category_slot_counts.get(slot.category, 0) + 1
     total_scene_slots = max(len(ordered_slot_plans), 1)
+    placement_progress_interval = max(1, total_scene_slots // 10)
+    _emit_progress(
+        "asset_composition",
+        60,
+        "Composing street furniture and asset placements.",
+        total_slots=total_scene_slots,
+    )
     placed_score_sums: Dict[str, float] = {category: 0.0 for category in DEFAULT_CATEGORIES}
     placed_counts: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
     slot_index_by_category: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
@@ -7356,7 +7589,7 @@ def compose_street_scene(
         )
         return synthetic_record
 
-    for slot in ordered_slot_plans:
+    for slot_index, slot in enumerate(ordered_slot_plans, start=1):
         _append_placement_decision_event(
             decision_events,
             event_type="slot_generated",
@@ -7428,6 +7661,15 @@ def compose_street_scene(
             }
         slot_attempt_records[str(getattr(slot, "slot_id", ""))] = attempt_record
         slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
+        if slot_index == total_scene_slots or slot_index % placement_progress_interval == 0:
+            progress = 60 + int(round((slot_index / total_scene_slots) * 12))
+            _emit_progress(
+                "asset_composition",
+                min(progress, 72),
+                "Placing street assets.",
+                placed_slots=slot_index,
+                total_slots=total_scene_slots,
+            )
 
     def _balance_targets_met() -> bool:
         if furniture_balance_policy != "overall_balanced":
@@ -7737,6 +7979,13 @@ def compose_street_scene(
             "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
         )
 
+    _emit_progress(
+        "mesh_generation",
+        76,
+        "Generating surrounding buildings and base scene meshes.",
+        placement_count=len(placements),
+    )
+
     surrounding_buildings = _place_surrounding_buildings(
         config=config,
         projected_features=projected,
@@ -7845,6 +8094,12 @@ def compose_street_scene(
         if debug_scene_overlays_enabled:
             _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), ())
 
+    _emit_progress(
+        "glb_export",
+        88,
+        "Exporting scene geometry.",
+        export_format=str(export_format),
+    )
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
     serialized_osm_geometry = (
         _serialize_osm_geometry(placement_ctx)
@@ -7852,6 +8107,12 @@ def compose_street_scene(
         else None
     )
 
+    _emit_progress(
+        "scene_rendering",
+        92,
+        "Building production step artifacts.",
+        placement_count=len(placements),
+    )
     production_steps = _build_production_steps(
         out_dir=out_dir,
         config=config,
@@ -7876,6 +8137,13 @@ def compose_street_scene(
     outputs["production_steps_dir"] = str(production_steps_dir)
     if production_steps_manifest.exists():
         outputs["production_steps_manifest"] = str(production_steps_manifest)
+
+    _emit_progress(
+        "finalizing",
+        95,
+        "Computing scene metrics and layout payload.",
+        production_step_count=len(production_steps),
+    )
 
     elapsed_ms_total = (time.perf_counter() - start_perf) * 1000.0
 
@@ -8448,6 +8716,12 @@ def compose_street_scene(
     layout_payload["summary"]["scene_graph_available_categories"] = list(
         scene_graph.get("filters", {}).get("categories", []) or []
     )
+    _emit_progress(
+        "scene_rendering",
+        97,
+        "Rendering presentation views.",
+        layout_path=str(layout_path),
+    )
     render_views = render_presentation_views(layout_payload, out_dir=out_dir, config=config)
     layout_payload["summary"]["render_views"] = render_views
     render_preset_used = str(getattr(config, "render_preset", "axonometric_board_v1") or "axonometric_board_v1")
@@ -8488,6 +8762,12 @@ def compose_street_scene(
     outputs["lighting_preset"] = _derive_lighting_preset(sky_selection)
     outputs["lighting_params"] = _derive_lighting_params(sky_selection)
 
+    _emit_progress(
+        "finalizing",
+        99,
+        "Writing final scene layout.",
+        layout_path=str(layout_path),
+    )
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 
     outputs["scene_layout"] = str(layout_path)
