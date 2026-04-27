@@ -1,0 +1,56 @@
+{
+  "pedestrian_friendly": {
+    "rag_queries": [
+      "pedestrian priority street design safety",
+      "complete street pedestrian infrastructure",
+      "all-ages walkable street best practices"
+    ],
+    "knowledge_source": "graph_rag",
+    "llm_adjustment_prompt": "Based on the pedestrian-friendly preset parameters, optimize the design for maximum walkability and safety while maintaining the provided density and demand levels."
+  },
+  "commercial_vitality": {
+    "rag_queries": [
+      "commercial street design high density",
+      "retail area pedestrian flow optimization",
+      "commercial street furniture layout"
+    ],
+    "knowledge_source": "graph_rag",
+    "llm_adjustment_prompt": "Based on the commercial vitality preset, optimize for high pedestrian traffic, retail accessibility, and commercial street furniture while maintaining vibrant atmosphere."
+  },
+  "transit_priority": {
+    "rag_queries": [
+      "transit oriented development street design",
+      "bus priority lane configuration",
+      "transit hub pedestrian access design"
+    ],
+    "knowledge_source": "graph_rag",
+    "llm_adjustment_prompt": "Based on the transit priority preset, optimize for high transit accessibility, bus lane efficiency, and seamless pedestrian access to transit stops."
+  },
+  "park_landscape": {
+    "rag_queries": [
+      "park adjacent street landscape design",
+      "green infrastructure street design",
+      "nature-based street furniture layout"
+    ],
+    "knowledge_source": "graph_rag",
+    "llm_adjustment_prompt": "Based on the park landscape preset, maximize greenery, natural elements, and ecological design while maintaining recreational accessibility."
+  },
+  "quiet_residential": {
+    "rag_queries": [
+      "residential street traffic calming",
+      "quiet neighborhood street design",
+      "residential area tree canopy coverage"
+    ],
+    "knowledge_source": "graph_rag",
+    "llm_adjustment_prompt": "Based on the quiet residential preset, optimize for low traffic noise, high tree coverage, and safe pedestrian environment for residents."
+  },
+  "balanced_complete": {
+    "rag_queries": [
+      "complete street balanced mode design",
+      "multi-modal street design best practices",
+      "shared space pedestrian bike transit balance"
+    ],
+    "knowledge_source": "graph_rag",
+    "llm_adjustment_prompt": "Based on the balanced complete street preset, ensure equal accommodation for pedestrians, cyclists, transit users, and vehicles while maintaining harmony."
+  }
+}

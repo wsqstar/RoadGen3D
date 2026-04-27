@@ -270,10 +270,33 @@ def _build_scene_backends(options: SceneGenerationOptions):
 def _wants_llm_parameter_derivation(
     generation_options: Mapping[str, Any] | SceneGenerationOptions | None,
 ) -> bool:
+    """Check whether the draft should be enriched by the LLM before generation.
+
+    Both custom and preset modes benefit from RAG + LLM adjustment.
+    Presets provide base parameters, while LLM fine-tunes based on prompt.
+    """
     if not isinstance(generation_options, Mapping):
         return False
     preset_id = str(generation_options.get("preset_id", "") or "").strip().lower()
-    return preset_id in {"custom", "__custom__", "llm", "llm_driven", "llm-driven"}
+    # Always enable LLM derivation for both custom and presets
+    return preset_id not in {"none", "disabled", "skip_llm"}
+
+
+def _load_preset_rag_config(preset_id: str) -> Dict[str, Any]:
+    """Load RAG configuration for a specific preset."""
+    import json
+    from pathlib import Path
+    
+    preset_rag_path = Path(__file__).resolve().parent.parent.parent / "assets" / "presets" / "preset_rag_config.json"
+    if not preset_rag_path.exists():
+        return {}
+    
+    try:
+        with open(preset_rag_path, "r", encoding="utf-8") as f:
+            config = json.load(f)
+        return config.get(preset_id, {})
+    except Exception:
+        return {}
 
 
 def _graph_summary_for_llm_derivation(
@@ -321,6 +344,9 @@ def _derive_draft_with_llm(
         from ..llm.design_workflow import DesignAssistantService
         from ..llm.prompts import build_graph_aware_design_messages
 
+        # Determine preset_id for RAG configuration
+        preset_id = str(options.preset_id or "custom").strip().lower() if hasattr(options, 'preset_id') else "custom"
+        
         graph_summary = _graph_summary_for_llm_derivation(
             base_config,
             scene_context=scene_context,
@@ -328,12 +354,16 @@ def _derive_draft_with_llm(
         )
         assistant = DesignAssistantService()
         
-        # RAG evidence retrieval
-        knowledge_source = "graph_rag"  # Default to graph RAG
-        rag_queries = [draft.normalized_scene_query or "walkable complete street"]
-        if base_config.target_street_type:
-            rag_queries.append(f"street design {base_config.target_street_type}")
+        # Load preset RAG configuration
+        preset_rag_config = _load_preset_rag_config(preset_id)
+        knowledge_source = preset_rag_config.get("knowledge_source", "graph_rag")
+        rag_queries = preset_rag_config.get("rag_queries", [draft.normalized_scene_query or "walkable complete street"])
         
+        # For presets, also use preset-specific RAG queries
+        if preset_id not in {"custom", "__custom__", "llm", "llm-driven"}:
+            rag_queries = [draft.normalized_scene_query or "walkable complete street"] + rag_queries
+        
+        # RAG evidence retrieval
         evidence = []
         try:
             evidence = assistant._retrieve_evidence(
@@ -342,8 +372,8 @@ def _derive_draft_with_llm(
                 knowledge_source=knowledge_source,
             )
             citations_by_field = {
-                "street_design": tuple(e.chunk_id for e in evidence[:2]),
-                "pedestrian": tuple(e.chunk_id for e in evidence[2:4]),
+                f"{preset_id}_design": tuple(e.chunk_id for e in evidence[:2]),
+                "general": tuple(e.chunk_id for e in evidence[2:4]),
             }
         except Exception as rag_exc:
             import logging
@@ -354,7 +384,7 @@ def _derive_draft_with_llm(
         messages = build_graph_aware_design_messages(
             graph_summary=graph_summary,
             user_prompt=draft.normalized_scene_query or "walkable complete street",
-            current_patch=draft.compose_config_patch,
+            current_patch=draft.compose_config_patch,  # Preset base params passed here
         )
         llm_response = assistant._get_llm_client().chat_json(messages)
         raw_patch = sanitize_compose_config_patch(llm_response.get("compose_config_patch", {}))
@@ -390,6 +420,7 @@ def _derive_draft_with_llm(
             citations_by_field=citations_by_field,
             knowledge_source=knowledge_source,
             evidence_count=len(evidence),
+            preset_id=preset_id,
             **llm_patch,
         )
         return DesignDraft(

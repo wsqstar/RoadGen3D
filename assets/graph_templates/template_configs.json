@@ -1,0 +1,74 @@
+{
+  "hkust_gz_gate": {
+    "label": "HKUST-GZ Gate / 港科大（广州）校门",
+    "description": "University gate with balanced traffic flow, pedestrian-friendly design",
+    "base_config_patch": {
+      "density": 0.65,
+      "design_rule_profile": "complete_street_v1",
+      "objective_profile": "balanced_v1",
+      "ped_demand_level": "high",
+      "bike_demand_level": "medium",
+      "transit_demand_level": "medium",
+      "vehicle_demand_level": "medium",
+      "road_width_m": 13.5,
+      "length_m": 80.0,
+      "lane_count": 4,
+      "sidewalk_width_m": 3.5,
+      "target_street_type": "university_gate"
+    },
+    "rag_queries": [
+      "university gate street design",
+      "pedestrian priority complete street",
+      "campus entrance road furniture"
+    ],
+    "knowledge_source": "graph_rag"
+  },
+  "hkust_gz_detailed": {
+    "label": "HKUST-GZ Detailed / 港科大详细版",
+    "description": "Detailed campus street with comprehensive furniture layout",
+    "base_config_patch": {
+      "density": 0.7,
+      "design_rule_profile": "pedestrian_priority_v1",
+      "objective_profile": "walkable_v1",
+      "ped_demand_level": "high",
+      "bike_demand_level": "high",
+      "transit_demand_level": "low",
+      "vehicle_demand_level": "low",
+      "road_width_m": 10.0,
+      "length_m": 100.0,
+      "lane_count": 2,
+      "sidewalk_width_m": 4.0,
+      "target_street_type": "campus_walkable"
+    },
+    "rag_queries": [
+      "campus walkable street design",
+      "pedestrian priority street furniture",
+      "unampus bike lane design"
+    ],
+    "knowledge_source": "graph_rag"
+  },
+  "hkust_gz_gate_all": {
+    "label": "HKUST-GZ Gate All / 港科大校门完整版",
+    "description": "Complete university gate with all furniture types and POI context",
+    "base_config_patch": {
+      "density": 0.75,
+      "design_rule_profile": "complete_street_v1",
+      "objective_profile": "balanced_v1",
+      "ped_demand_level": "high",
+      "bike_demand_level": "medium",
+      "transit_demand_level": "high",
+      "vehicle_demand_level": "medium",
+      "road_width_m": 15.0,
+      "length_m": 120.0,
+      "lane_count": 6,
+      "sidewalk_width_m": 4.5,
+      "target_street_type": "university_gate_complete"
+    },
+    "rag_queries": [
+      "university gate complete street design",
+      "high density street furniture layout",
+      "transit priority street design"
+    ],
+    "knowledge_source": "graph_rag"
+  }
+}
