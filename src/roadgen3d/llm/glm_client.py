@@ -78,7 +78,13 @@ class GLMClient:
         self.timeout = float(timeout)
         self.max_retries = max_retries
         self.base_delay = base_delay
-        self._client = httpx.Client(timeout=self.timeout, transport=transport)
+        # Disable SSL verification for internal/self-signed certificate LLM services
+        # This is safe for local/internal deployments
+        self._client = httpx.Client(
+            timeout=self.timeout,
+            transport=transport,
+            verify=False,  # Skip SSL verification for internal LLM services
+        )
 
     @property
     def endpoint(self) -> str:
