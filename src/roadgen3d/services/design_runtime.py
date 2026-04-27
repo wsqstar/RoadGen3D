@@ -327,10 +327,35 @@ def _derive_draft_with_llm(
             options=options,
         )
         assistant = DesignAssistantService()
+        
+        # RAG evidence retrieval
+        knowledge_source = "graph_rag"  # Default to graph RAG
+        rag_queries = [draft.normalized_scene_query or "walkable complete street"]
+        if base_config.target_street_type:
+            rag_queries.append(f"street design {base_config.target_street_type}")
+        
+        evidence = []
+        try:
+            evidence = assistant._retrieve_evidence(
+                queries=rag_queries,
+                topk=5,
+                knowledge_source=knowledge_source,
+            )
+            citations_by_field = {
+                "street_design": tuple(e.chunk_id for e in evidence[:2]),
+                "pedestrian": tuple(e.chunk_id for e in evidence[2:4]),
+            }
+        except Exception as rag_exc:
+            import logging
+            logging.getLogger(__name__).warning("RAG retrieval failed: %s", rag_exc)
+            citations_by_field = {}
+            evidence = []
+        
         messages = build_graph_aware_design_messages(
             graph_summary=graph_summary,
             user_prompt=draft.normalized_scene_query or "walkable complete street",
             current_patch=draft.compose_config_patch,
+            evidence=evidence,
         )
         llm_response = assistant._get_llm_client().chat_json(messages)
         raw_patch = sanitize_compose_config_patch(llm_response.get("compose_config_patch", {}))
@@ -362,12 +387,16 @@ def _derive_draft_with_llm(
             llm_raw_fields=sorted(llm_fields),
             defaulted_fields=sorted(defaulted_fields),
             parameter_sources_by_field=parameter_sources,
+            # RAG evidence fields for frontend display
+            citations_by_field=citations_by_field,
+            knowledge_source=knowledge_source,
+            evidence_count=len(evidence),
             **llm_patch,
         )
         return DesignDraft(
             normalized_scene_query=draft.normalized_scene_query,
             compose_config_patch=llm_patch,
-            citations_by_field=draft.citations_by_field,
+            citations_by_field=citations_by_field,
             design_summary=design_summary or draft.design_summary,
             risk_notes=draft.risk_notes,
             parameter_sources_by_field=parameter_sources,
