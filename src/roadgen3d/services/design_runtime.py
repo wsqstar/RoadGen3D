@@ -355,7 +355,6 @@ def _derive_draft_with_llm(
             graph_summary=graph_summary,
             user_prompt=draft.normalized_scene_query or "walkable complete street",
             current_patch=draft.compose_config_patch,
-            evidence=evidence,
         )
         llm_response = assistant._get_llm_client().chat_json(messages)
         raw_patch = sanitize_compose_config_patch(llm_response.get("compose_config_patch", {}))
