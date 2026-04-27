@@ -857,6 +857,86 @@ class JunctionQuadrantSkeletonLine:
 
 
 @dataclass(frozen=True)
+class JunctionSurfaceNode:
+    node_id: str
+    kind: str
+    point: AnnotationPoint
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "node_id": self.node_id,
+            "kind": self.kind,
+            "point": self.point.to_dict(),
+        }
+
+
+@dataclass(frozen=True)
+class JunctionSurfaceEdge:
+    edge_id: str
+    start_node_id: str
+    end_node_id: str
+    kind: str
+    curve: BezierCurve3
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "edge_id": self.edge_id,
+            "start_node_id": self.start_node_id,
+            "end_node_id": self.end_node_id,
+            "kind": self.kind,
+            "curve": self.curve.to_dict(),
+        }
+
+
+@dataclass(frozen=True)
+class JunctionLaneSurface:
+    surface_id: str
+    lane_id: str
+    arm_key: str
+    flow: str
+    lane_index: int
+    lane_width_m: float
+    skeleton_id: str
+    provenance: str = "generated"
+    nodes: Tuple[JunctionSurfaceNode, ...] = ()
+    edges: Tuple[JunctionSurfaceEdge, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "surface_id": self.surface_id,
+            "lane_id": self.lane_id,
+            "arm_key": self.arm_key,
+            "flow": self.flow,
+            "lane_index": int(self.lane_index),
+            "lane_width_m": float(self.lane_width_m),
+            "skeleton_id": self.skeleton_id,
+            "provenance": self.provenance,
+            "nodes": [item.to_dict() for item in self.nodes],
+            "edges": [item.to_dict() for item in self.edges],
+        }
+
+
+@dataclass(frozen=True)
+class JunctionMergedSurface:
+    surface_id: str
+    merged_from_surface_ids: Tuple[str, ...] = ()
+    merged_from_lane_ids: Tuple[str, ...] = ()
+    provenance: str = "merged"
+    nodes: Tuple[JunctionSurfaceNode, ...] = ()
+    edges: Tuple[JunctionSurfaceEdge, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "surface_id": self.surface_id,
+            "merged_from_surface_ids": list(self.merged_from_surface_ids),
+            "merged_from_lane_ids": list(self.merged_from_lane_ids),
+            "provenance": self.provenance,
+            "nodes": [item.to_dict() for item in self.nodes],
+            "edges": [item.to_dict() for item in self.edges],
+        }
+
+
+@dataclass(frozen=True)
 class JunctionQuadrantComposition:
     quadrant_id: str
     arm_a_id: str
@@ -879,12 +959,16 @@ class JunctionComposition:
     junction_id: str
     kind: str
     quadrants: Tuple[JunctionQuadrantComposition, ...] = ()
+    lane_surfaces: Tuple[JunctionLaneSurface, ...] = ()
+    merged_surfaces: Tuple[JunctionMergedSurface, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "junction_id": self.junction_id,
             "kind": self.kind,
             "quadrants": [item.to_dict() for item in self.quadrants],
+            "lane_surfaces": [item.to_dict() for item in self.lane_surfaces],
+            "merged_surfaces": [item.to_dict() for item in self.merged_surfaces],
         }
 
 
@@ -1498,10 +1582,10 @@ def _parse_junction_quadrant_bezier_patch(value: Any, index: int) -> JunctionQua
     if not _is_record(value):
         raise ValueError(f"junction quadrant patch at index {index} must be an object.")
     return JunctionQuadrantBezierPatch(
-        patch_id=_as_string(value.get("patch_id"), f"patch_{index}"),
-        strip_kind=_as_string(value.get("strip_kind"), "clear_sidewalk"),
-        inner_curve=_parse_bezier_curve3(value.get("inner_curve"), f"patch[{index}].inner_curve"),
-        outer_curve=_parse_bezier_curve3(value.get("outer_curve"), f"patch[{index}].outer_curve"),
+        patch_id=_as_string(value.get("patch_id") or value.get("patchId"), f"patch_{index}"),
+        strip_kind=_as_string(value.get("strip_kind") or value.get("stripKind"), "clear_sidewalk"),
+        inner_curve=_parse_bezier_curve3(value.get("inner_curve") or value.get("innerCurve"), f"patch[{index}].inner_curve"),
+        outer_curve=_parse_bezier_curve3(value.get("outer_curve") or value.get("outerCurve"), f"patch[{index}].outer_curve"),
     )
 
 
@@ -1509,10 +1593,80 @@ def _parse_junction_quadrant_skeleton_line(value: Any, index: int) -> JunctionQu
     if not _is_record(value):
         raise ValueError(f"junction quadrant skeleton line at index {index} must be an object.")
     return JunctionQuadrantSkeletonLine(
-        line_id=_as_string(value.get("line_id"), f"line_{index}"),
-        strip_kind=_as_string(value.get("strip_kind"), "clear_sidewalk"),
+        line_id=_as_string(value.get("line_id") or value.get("lineId"), f"line_{index}"),
+        strip_kind=_as_string(value.get("strip_kind") or value.get("stripKind"), "clear_sidewalk"),
         curve=_parse_bezier_curve3(value.get("curve"), f"line[{index}].curve"),
-        width_m=_as_float(value.get("width_m"), "width_m", default=1.0),
+        width_m=_as_float(value.get("width_m") or value.get("widthM"), "width_m", default=1.0),
+    )
+
+
+def _parse_junction_surface_node(value: Any, index: int) -> JunctionSurfaceNode:
+    if not _is_record(value):
+        raise ValueError(f"junction surface node at index {index} must be an object.")
+    return JunctionSurfaceNode(
+        node_id=_as_string(value.get("node_id") or value.get("nodeId"), f"node_{index}"),
+        kind=_as_string(value.get("kind"), "custom"),
+        point=_parse_point(value.get("point") or value.get("xy") or value.get("location"), f"surface node[{index}].point"),
+    )
+
+
+def _parse_junction_surface_edge(value: Any, index: int) -> JunctionSurfaceEdge:
+    if not _is_record(value):
+        raise ValueError(f"junction surface edge at index {index} must be an object.")
+    return JunctionSurfaceEdge(
+        edge_id=_as_string(value.get("edge_id") or value.get("edgeId"), f"edge_{index}"),
+        start_node_id=_as_string(value.get("start_node_id") or value.get("startNodeId"), ""),
+        end_node_id=_as_string(value.get("end_node_id") or value.get("endNodeId"), ""),
+        kind=_as_string(value.get("kind"), "line"),
+        curve=_parse_bezier_curve3(value.get("curve"), f"surface edge[{index}].curve"),
+    )
+
+
+def _parse_junction_lane_surface(value: Any, index: int) -> JunctionLaneSurface:
+    if not _is_record(value):
+        raise ValueError(f"junction lane surface at index {index} must be an object.")
+    nodes_raw = value.get("nodes") or []
+    edges_raw = value.get("edges") or []
+    if not isinstance(nodes_raw, Sequence) or isinstance(nodes_raw, (str, bytes)):
+        raise ValueError(f"lane_surfaces[{index}].nodes must be an array.")
+    if not isinstance(edges_raw, Sequence) or isinstance(edges_raw, (str, bytes)):
+        raise ValueError(f"lane_surfaces[{index}].edges must be an array.")
+    return JunctionLaneSurface(
+        surface_id=_as_string(value.get("surface_id") or value.get("surfaceId"), f"lane_surface_{index}"),
+        lane_id=_as_string(value.get("lane_id") or value.get("laneId"), ""),
+        arm_key=_as_string(value.get("arm_key") or value.get("armKey"), "north"),
+        flow=_as_string(value.get("flow"), "inbound"),
+        lane_index=max(0, _as_int(value.get("lane_index") or value.get("laneIndex"), "lane_index", default=0)),
+        lane_width_m=max(0.01, _as_float(value.get("lane_width_m") or value.get("laneWidthM"), "lane_width_m", default=3.5)),
+        skeleton_id=_as_string(value.get("skeleton_id") or value.get("skeletonId"), ""),
+        provenance=_as_string(value.get("provenance"), "generated"),
+        nodes=tuple(_parse_junction_surface_node(item, i) for i, item in enumerate(nodes_raw)),
+        edges=tuple(_parse_junction_surface_edge(item, i) for i, item in enumerate(edges_raw)),
+    )
+
+
+def _parse_junction_merged_surface(value: Any, index: int) -> JunctionMergedSurface:
+    if not _is_record(value):
+        raise ValueError(f"junction merged surface at index {index} must be an object.")
+    nodes_raw = value.get("nodes") or []
+    edges_raw = value.get("edges") or []
+    if not isinstance(nodes_raw, Sequence) or isinstance(nodes_raw, (str, bytes)):
+        raise ValueError(f"merged_surfaces[{index}].nodes must be an array.")
+    if not isinstance(edges_raw, Sequence) or isinstance(edges_raw, (str, bytes)):
+        raise ValueError(f"merged_surfaces[{index}].edges must be an array.")
+    merged_from_surface_ids_raw = value.get("merged_from_surface_ids") or value.get("mergedFromSurfaceIds") or []
+    merged_from_lane_ids_raw = value.get("merged_from_lane_ids") or value.get("mergedFromLaneIds") or []
+    if not isinstance(merged_from_surface_ids_raw, Sequence) or isinstance(merged_from_surface_ids_raw, (str, bytes)):
+        raise ValueError(f"merged_surfaces[{index}].merged_from_surface_ids must be an array.")
+    if not isinstance(merged_from_lane_ids_raw, Sequence) or isinstance(merged_from_lane_ids_raw, (str, bytes)):
+        raise ValueError(f"merged_surfaces[{index}].merged_from_lane_ids must be an array.")
+    return JunctionMergedSurface(
+        surface_id=_as_string(value.get("surface_id") or value.get("surfaceId"), f"merged_surface_{index}"),
+        merged_from_surface_ids=tuple(_as_string(item) for item in merged_from_surface_ids_raw if _as_string(item)),
+        merged_from_lane_ids=tuple(_as_string(item) for item in merged_from_lane_ids_raw if _as_string(item)),
+        provenance=_as_string(value.get("provenance"), "merged"),
+        nodes=tuple(_parse_junction_surface_node(item, i) for i, item in enumerate(nodes_raw)),
+        edges=tuple(_parse_junction_surface_edge(item, i) for i, item in enumerate(edges_raw)),
     )
 
 
@@ -1520,15 +1674,15 @@ def _parse_junction_quadrant_composition(value: Any, index: int) -> JunctionQuad
     if not _is_record(value):
         raise ValueError(f"junction quadrant composition at index {index} must be an object.")
     patches_raw = value.get("patches") or []
-    skeleton_lines_raw = value.get("skeleton_lines") or []
+    skeleton_lines_raw = value.get("skeleton_lines") or value.get("skeletonLines") or []
     if not isinstance(patches_raw, Sequence) or isinstance(patches_raw, (str, bytes)):
         raise ValueError(f"quadrant[{index}].patches must be an array.")
     if not isinstance(skeleton_lines_raw, Sequence) or isinstance(skeleton_lines_raw, (str, bytes)):
         raise ValueError(f"quadrant[{index}].skeleton_lines must be an array.")
     return JunctionQuadrantComposition(
-        quadrant_id=_as_string(value.get("quadrant_id"), f"quadrant_{index}"),
-        arm_a_id=_as_string(value.get("arm_a_id"), ""),
-        arm_b_id=_as_string(value.get("arm_b_id"), ""),
+        quadrant_id=_as_string(value.get("quadrant_id") or value.get("quadrantId"), f"quadrant_{index}"),
+        arm_a_id=_as_string(value.get("arm_a_id") or value.get("armAId"), ""),
+        arm_b_id=_as_string(value.get("arm_b_id") or value.get("armBId"), ""),
         patches=tuple(_parse_junction_quadrant_bezier_patch(item, i) for i, item in enumerate(patches_raw)),
         skeleton_lines=tuple(
             _parse_junction_quadrant_skeleton_line(item, i) for i, item in enumerate(skeleton_lines_raw)
@@ -1539,15 +1693,23 @@ def _parse_junction_quadrant_composition(value: Any, index: int) -> JunctionQuad
 def _parse_junction_composition(value: Any, index: int) -> JunctionComposition:
     if not _is_record(value):
         raise ValueError(f"junction composition at index {index} must be an object.")
-    quadrants_raw = value.get("quadrants") or []
+    quadrants_raw = value.get("quadrants") or value.get("quadrants") or []
+    lane_surfaces_raw = value.get("lane_surfaces") or value.get("laneSurfaces") or []
+    merged_surfaces_raw = value.get("merged_surfaces") or value.get("mergedSurfaces") or []
     if not isinstance(quadrants_raw, Sequence) or isinstance(quadrants_raw, (str, bytes)):
         raise ValueError(f"junction_compositions[{index}].quadrants must be an array.")
+    if not isinstance(lane_surfaces_raw, Sequence) or isinstance(lane_surfaces_raw, (str, bytes)):
+        raise ValueError(f"junction_compositions[{index}].lane_surfaces must be an array.")
+    if not isinstance(merged_surfaces_raw, Sequence) or isinstance(merged_surfaces_raw, (str, bytes)):
+        raise ValueError(f"junction_compositions[{index}].merged_surfaces must be an array.")
     return JunctionComposition(
-        junction_id=_as_string(value.get("junction_id"), f"composition_{index}"),
+        junction_id=_as_string(value.get("junction_id") or value.get("junctionId"), f"composition_{index}"),
         kind=_as_string(value.get("kind"), "cross_junction"),
         quadrants=tuple(
             _parse_junction_quadrant_composition(item, i) for i, item in enumerate(quadrants_raw)
         ),
+        lane_surfaces=tuple(_parse_junction_lane_surface(item, i) for i, item in enumerate(lane_surfaces_raw)),
+        merged_surfaces=tuple(_parse_junction_merged_surface(item, i) for i, item in enumerate(merged_surfaces_raw)),
     )
 
 
@@ -1624,7 +1786,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     control_points_raw = payload.get("control_points") or []
     building_regions_raw = payload.get("building_regions") or []
     functional_zones_raw = payload.get("functional_zones") or []
-    junction_compositions_raw = payload.get("junction_compositions") or []
+    junction_compositions_raw = payload.get("junction_compositions") or payload.get("compositions") or []
     if not isinstance(junction_compositions_raw, Sequence) or isinstance(junction_compositions_raw, (str, bytes)):
         raise ValueError("junction_compositions must be an array.")
 
@@ -2702,6 +2864,14 @@ __all__ = [
     "AnnotationPoint",
     "DEFAULT_PIXELS_PER_METER",
     "DEFAULT_ROUNDABOUT_RADIUS_PX",
+    "JunctionComposition",
+    "JunctionLaneSurface",
+    "JunctionMergedSurface",
+    "JunctionQuadrantBezierPatch",
+    "JunctionQuadrantComposition",
+    "JunctionQuadrantSkeletonLine",
+    "JunctionSurfaceEdge",
+    "JunctionSurfaceNode",
     "ReferenceAnnotation",
     "build_reference_annotation_compose_config",
     "build_reference_annotation_graph_payload",

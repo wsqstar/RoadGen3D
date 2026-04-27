@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 import pytest
@@ -26,6 +27,29 @@ def _max_polygon_ring_size(geometry) -> int:
     if geom_type == "GeometryCollection":
         return max((_max_polygon_ring_size(item) for item in geometry.geoms), default=0)
     return 0
+
+
+def _assert_turn_lane_patches_are_valid(turn_patches):
+    assert turn_patches
+    grouped = defaultdict(list)
+    for patch in turn_patches:
+        assert patch["patch_id"]
+        assert patch["quadrant_id"]
+        assert patch["strip_kind"]
+        geometry = patch["geometry"]
+        assert geometry.is_valid
+        assert geometry.area > 0
+        grouped[patch["quadrant_id"]].append(patch)
+    assert len(grouped) == 4
+    assert all(len(items) >= 3 for items in grouped.values())
+    kinds = {patch["strip_kind"] for patch in turn_patches}
+    assert kinds == {"nearroad_furnishing", "clear_sidewalk", "frontage_reserve"}
+    assert all(patch.get("stack_kind") == "side" for patch in turn_patches)
+    assert all(patch.get("direction") == "none" for patch in turn_patches)
+    for patches in grouped.values():
+        for index, patch_a in enumerate(patches):
+            for patch_b in patches[index + 1:]:
+                assert patch_a["geometry"].intersection(patch_b["geometry"]).area < 1e-5
 
 
 def _sample_annotation_payload():
@@ -363,6 +387,9 @@ def test_reference_annotation_scene_bridge_builds_cross_corner_polylines_for_der
     assert {polyline["kernel_id"] for polyline in junction_geometry["sidewalk_corner_polylines"]} == {
         kernel["kernel_id"] for kernel in junction_geometry["quadrant_corner_kernels"]
     }
+    assert len(junction_geometry.get("arm_skeletons", [])) == 4
+    assert all(skeleton["split_center_xy"] for skeleton in junction_geometry["arm_skeletons"])
+    _assert_turn_lane_patches_are_valid(junction_geometry.get("turn_lane_patches", []))
 
 
 def test_osm_geometry_serialization_and_scene_include_junction_patches():
@@ -417,6 +444,9 @@ def test_cross_junction_serialization_and_scene_include_corner_polylines():
     assert all(len(polyline["points_xy"]) > 3 for polyline in junction_geometry["sidewalk_corner_polylines"])
     assert all(polyline["quadrant_id"] for polyline in junction_geometry["frontage_corner_polylines"])
     assert all(polyline["kernel_id"] for polyline in junction_geometry["frontage_corner_polylines"])
+    assert len(junction_geometry.get("arm_skeletons", [])) == 4
+    assert all(skeleton["corner_facing_sides"] for skeleton in junction_geometry["arm_skeletons"])
+    _assert_turn_lane_patches_are_valid(junction_geometry.get("turn_lane_patches", []))
 
     serialized = _serialize_osm_geometry(bridge.placement_context)
     assert len(serialized["junction_geometries"]) == 1
@@ -433,12 +463,26 @@ def test_cross_junction_serialization_and_scene_include_corner_polylines():
     assert all(len(polyline["points_xy"]) > 3 for polyline in serialized_junction["frontage_corner_polylines"])
     assert all(polyline["quadrant_id"] for polyline in serialized_junction["sidewalk_corner_polylines"])
     assert all(polyline["kernel_id"] for polyline in serialized_junction["sidewalk_corner_polylines"])
+    assert serialized_junction["turn_lane_patches"]
+    assert all(patch["rings"] for patch in serialized_junction["turn_lane_patches"])
+    assert {patch["strip_kind"] for patch in serialized_junction["turn_lane_patches"]} == {
+        "nearroad_furnishing",
+        "clear_sidewalk",
+        "frontage_reserve",
+    }
+    assert all(patch["stack_kind"] == "side" for patch in serialized_junction["turn_lane_patches"])
+    assert {patch["quadrant_id"] for patch in serialized_junction["turn_lane_patches"]} == {
+        kernel["quadrant_id"] for kernel in serialized_junction["quadrant_corner_kernels"]
+    }
+    assert len(serialized_junction["arm_skeletons"]) == 4
+    assert all(skeleton["split_center_xy"] for skeleton in serialized_junction["arm_skeletons"])
 
     scene = _build_osm_base_scene(bridge.placement_context)
     node_names = set(scene.graph.nodes_geometry)
-    assert any(name.startswith("junction_sidewalk_corner_") for name in node_names)
-    assert any(name.startswith("junction_nearroad_corner_") for name in node_names)
-    assert any(name.startswith("junction_frontage_corner_") for name in node_names)
+    assert any(name.startswith("junction_turn_lane_") for name in node_names)
+    assert not any(name.startswith("junction_sidewalk_corner_") for name in node_names)
+    assert not any(name.startswith("junction_nearroad_corner_") for name in node_names)
+    assert not any(name.startswith("junction_frontage_corner_") for name in node_names)
 
 
 def test_explicit_junction_scene_bridge_serializes_split_lines_and_control_points():

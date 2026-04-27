@@ -11,6 +11,8 @@ from .placement_zones import PlacementContext, build_placement_context
 from .reference_annotation import (
     BezierCurve3,
     JunctionComposition,
+    JunctionLaneSurface,
+    JunctionMergedSurface,
     ReferenceAnnotation,
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
@@ -163,6 +165,7 @@ def build_reference_annotation_scene_bridge(
     placement_context.junction_geometries = _apply_manual_junction_compositions(
         annotation,
         list(getattr(placement_context, "junction_geometries", []) or []),
+        road_segment_graph=road_segment_graph,
     )
     placement_context.building_regions = _annotation_building_region_records(annotation)
     center_x = float(annotation.image_width_px) * 0.5
@@ -220,6 +223,93 @@ def _sample_bezier_points(curve: BezierCurve3, steps: int = 16) -> Sequence[Tupl
     return points
 
 
+def _surface_boundary_points(surface: JunctionLaneSurface | JunctionMergedSurface, steps: int = 12) -> List[Tuple[float, float]]:
+    sampled_points: List[Tuple[float, float]] = []
+    for edge in getattr(surface, "edges", ()) or ():
+        edge_points = _sample_bezier_points(edge.curve, steps=steps)
+        if not sampled_points:
+            sampled_points.extend(edge_points)
+        else:
+            sampled_points.extend(edge_points[1:])
+    if not sampled_points:
+        for node in getattr(surface, "nodes", ()) or ():
+            sampled_points.append((float(node.point.x), float(node.point.y)))
+    if sampled_points and sampled_points[0] != sampled_points[-1]:
+        sampled_points.append(sampled_points[0])
+    return sampled_points
+
+
+def _surface_polygon_record(surface: JunctionLaneSurface | JunctionMergedSurface) -> Dict[str, Any] | None:
+    from shapely.geometry import Polygon
+
+    points = _surface_boundary_points(surface, steps=10)
+    if len(points) < 4:
+        return None
+    polygon = Polygon(points)
+    if not polygon.is_valid:
+        polygon = polygon.buffer(0)
+    if getattr(polygon, "is_empty", True):
+        return None
+    record: Dict[str, Any] = {
+        "surface_id": str(surface.surface_id),
+        "provenance": str(getattr(surface, "provenance", "generated") or "generated"),
+        "geometry": polygon,
+        "node_count": len(getattr(surface, "nodes", ()) or ()),
+        "edge_count": len(getattr(surface, "edges", ()) or ()),
+    }
+    if isinstance(surface, JunctionLaneSurface):
+        record.update(
+            {
+                "surface_kind": "lane",
+                "lane_id": str(surface.lane_id),
+                "arm_key": str(surface.arm_key),
+                "flow": str(surface.flow),
+                "lane_index": int(surface.lane_index),
+                "skeleton_id": str(surface.skeleton_id),
+            }
+        )
+    else:
+        record.update(
+            {
+                "surface_kind": "merged",
+                "merged_from_surface_ids": list(surface.merged_from_surface_ids),
+                "merged_from_lane_ids": list(surface.merged_from_lane_ids),
+            }
+        )
+    return record
+
+
+def _build_cross_fusion_junction_geometry(
+    junction: Any,
+    arms: List[Dict[str, Any]],
+    *,
+    crosswalk_depth_m: float = 3.0,
+) -> Dict[str, Any]:
+    """Build junction geometry using cross strip fusion for cross_junction.
+
+    This uses the new angle-bisector approach where:
+    - Vehicle lanes go straight through as carriageway core
+    - Non-vehicle strips (nearroad_furnishing, clear_sidewalk, frontage_reserve)
+      bend along angle bisectors and are merged into continuous surfaces
+    """
+    from roadgen3d.cross_strip_fusion import build_cross_strip_fusion, cross_strip_fusion_to_junction_geometry
+
+    try:
+        fusion_result = build_cross_strip_fusion(
+            junction_id=str(junction.feature_id),
+            anchor_xy=(float(junction.anchor_x), float(junction.anchor_y)),
+            arms=arms,
+            crosswalk_depth_m=crosswalk_depth_m,
+        )
+        geometry = cross_strip_fusion_to_junction_geometry(fusion_result)
+        # Mark as auto-generated
+        geometry["generation_mode"] = "cross_strip_fusion_auto"
+        return geometry
+    except Exception:
+        # Fallback to None, will be handled by existing logic
+        return None
+
+
 def _build_manual_junction_geometry(
     composition: JunctionComposition,
 ) -> Dict[str, Any]:
@@ -228,6 +318,8 @@ def _build_manual_junction_geometry(
     sidewalk_corner_patches: List[Dict[str, Any]] = []
     nearroad_corner_patches: List[Dict[str, Any]] = []
     frontage_corner_patches: List[Dict[str, Any]] = []
+    lane_surface_patches: List[Dict[str, Any]] = []
+    merged_surface_patches: List[Dict[str, Any]] = []
     sidewalk_corner_polylines: List[Dict[str, Any]] = []
     nearroad_corner_polylines: List[Dict[str, Any]] = []
     frontage_corner_polylines: List[Dict[str, Any]] = []
@@ -243,6 +335,16 @@ def _build_manual_junction_geometry(
         "nearroad_furnishing": nearroad_corner_polylines,
         "frontage_reserve": frontage_corner_polylines,
     }
+
+    for lane_surface in composition.lane_surfaces:
+        record = _surface_polygon_record(lane_surface)
+        if record is not None:
+            lane_surface_patches.append(record)
+
+    for merged_surface in composition.merged_surfaces:
+        record = _surface_polygon_record(merged_surface)
+        if record is not None:
+            merged_surface_patches.append(record)
 
     for quadrant in composition.quadrants:
         # Build patches from bezier curves
@@ -308,28 +410,177 @@ def _build_manual_junction_geometry(
         "sidewalk_corner_patches": sidewalk_corner_patches,
         "nearroad_corner_patches": nearroad_corner_patches,
         "frontage_corner_patches": frontage_corner_patches,
+        "lane_surface_patches": lane_surface_patches,
+        "merged_surface_patches": merged_surface_patches,
     }
     return geometry
+
+
+def _try_build_cross_fusion_for_junction(
+    annotation: ReferenceAnnotation,
+    junction_geom: Dict[str, Any],
+    road_segment_graph: Any | None,
+) -> Dict[str, Any] | None:
+    """Try to build cross fusion geometry for a junction.
+
+    Returns None if fusion fails, in which case the caller should use the original geometry.
+    """
+    from roadgen3d.cross_strip_fusion import build_cross_strip_fusion, cross_strip_fusion_to_junction_geometry
+
+    junction_id = str(junction_geom.get("junction_id", "") or "")
+    anchor_xy = junction_geom.get("anchor_xy", [0.0, 0.0])
+    if len(anchor_xy) < 2:
+        return None
+
+    # Try to get arms data from road_segment_graph
+    arms = _extract_junction_arms_from_graph(road_segment_graph, junction_id, anchor_xy)
+    if arms is None or len(arms) < 4:
+        return None
+
+    try:
+        fusion_result = build_cross_strip_fusion(
+            junction_id=junction_id,
+            anchor_xy=(float(anchor_xy[0]), float(anchor_xy[1])),
+            arms=arms,
+            crosswalk_depth_m=3.0,
+        )
+        geometry = cross_strip_fusion_to_junction_geometry(fusion_result)
+        # Preserve the original junction_id and kind
+        geometry["junction_id"] = junction_id
+        geometry["kind"] = "cross_junction"
+        geometry["generation_mode"] = "cross_strip_fusion_auto"
+        # Preserve arm count from original
+        geometry["arm_count"] = len(arms)
+        return geometry
+    except Exception:
+        return None
+
+
+def _extract_junction_arms_from_graph(
+    road_segment_graph: Any | None,
+    junction_id: str,
+    anchor_xy: List[float],
+) -> List[Dict[str, Any]] | None:
+    """Extract arms data from road_segment_graph for a specific junction."""
+    if road_segment_graph is None:
+        return None
+
+    from roadgen3d.placement_zones import _road_profile_widths_from_graph
+
+    # Find the junction in the graph
+    junctions = list(getattr(road_segment_graph, "junctions", ()) or ())
+    junction_obj = None
+    for j in junctions:
+        if str(getattr(j, "junction_id", "") or "") == junction_id:
+            junction_obj = j
+            break
+
+    if junction_obj is None:
+        return None
+
+    # Get road profiles
+    road_profiles = _road_profile_widths_from_graph(road_segment_graph)
+
+    # Build arms data similar to _build_explicit_graph_junction_geometries
+    roads_by_id = {}
+    for road in getattr(road_segment_graph, "roads", ()) or ():
+        road_id = int(getattr(road, "osm_id", 0) or 0)
+        if road_id > 0:
+            roads_by_id[road_id] = road
+
+    anchor = (float(anchor_xy[0]), float(anchor_xy[1]))
+    arms: List[Dict[str, Any]] = []
+    seen_road_ids: set[int] = set()
+
+    connected_road_ids = tuple(getattr(junction_obj, "connected_road_ids", ()) or ())
+    connected_centerline_ids = tuple(getattr(junction_obj, "connected_centerline_ids", ()) or ())
+
+    for road_id, centerline_id in zip(connected_road_ids, connected_centerline_ids):
+        road_id = int(road_id)
+        if road_id <= 0 or road_id in seen_road_ids:
+            continue
+        road = roads_by_id.get(road_id)
+        if road is None:
+            continue
+        points = list(getattr(road, "coords", ()) or ())
+        if len(points) < 2:
+            continue
+
+        # Find the neighbor point closest to anchor
+        if _distance(anchor, points[0]) <= _distance(anchor, points[-1]):
+            neighbor = points[1] if len(points) > 1 else points[0]
+        else:
+            neighbor = points[-2] if len(points) > 1 else points[0]
+
+        length_m = math.hypot(float(neighbor[0]) - anchor[0], float(neighbor[1]) - anchor[1])
+        if length_m <= 1e-6:
+            continue
+
+        tangent = (
+            (float(neighbor[0]) - anchor[0]) / length_m,
+            (float(neighbor[1]) - anchor[1]) / length_m,
+        )
+        profile = road_profiles.get(road_id, {})
+
+        arms.append({
+            "road_id": road_id,
+            "centerline_id": str(centerline_id),
+            "angle_deg": _angle_deg(anchor, neighbor),
+            "tangent": tangent,
+            "normal": (float(tangent[1]), float(-tangent[0])),
+            "carriageway_width_m": max(float(profile.get("carriageway_width_m", 8.0) or 8.0), 1.0),
+            "nearroad_furnishing_width_m": float(profile.get("nearroad_furnishing_width_m", 0.0) or 0.0),
+            "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
+            "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
+        })
+        seen_road_ids.add(road_id)
+
+    return arms if len(arms) >= 4 else None
 
 
 def _apply_manual_junction_compositions(
     annotation: ReferenceAnnotation,
     junction_geometries: List[Dict[str, Any]],
+    *,
+    road_segment_graph: Any | None = None,
 ) -> List[Dict[str, Any]]:
-    if not annotation.junction_compositions:
-        return junction_geometries
+    manual_by_junction_id = {comp.junction_id: comp for comp in annotation.junction_compositions} if annotation.junction_compositions else {}
 
-    manual_by_junction_id = {comp.junction_id: comp for comp in annotation.junction_compositions}
+    # Pre-compute arms data for cross junctions without manual compositions
+    arms_by_junction_id: Dict[str, List[Dict[str, Any]]] = {}
+    if road_segment_graph is not None and not manual_by_junction_id:
+        # Only pre-compute if there are manual compositions to apply,
+        # because we only need fusion for cross_junctions without manual compositions
+        pass  # Lazy computation below
+
     result: List[Dict[str, Any]] = []
+    seen_junction_ids: set[str] = set()
     for geom in junction_geometries:
         junction_id = str(geom.get("junction_id", "") or "")
+        kind = str(geom.get("kind", "") or "")
+
         if junction_id in manual_by_junction_id:
             manual_geom = _build_manual_junction_geometry(manual_by_junction_id[junction_id])
             # Preserve fields that manual geom doesn't provide (core rect, crosswalks, etc.)
             merged = {**geom, **manual_geom}
             result.append(merged)
+            seen_junction_ids.add(junction_id)
+        elif kind == "cross_junction" and junction_id not in manual_by_junction_id:
+            # Try to generate geometry using cross strip fusion
+            fusion_geom = _try_build_cross_fusion_for_junction(
+                annotation, geom, road_segment_graph
+            )
+            if fusion_geom is not None:
+                result.append({**geom, **fusion_geom})
+            else:
+                result.append(geom)
         else:
             result.append(geom)
+
+    for junction_id, comp in manual_by_junction_id.items():
+        if junction_id in seen_junction_ids:
+            continue
+        result.append(_build_manual_junction_geometry(comp))
     return result
 
 
