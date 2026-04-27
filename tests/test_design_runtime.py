@@ -140,6 +140,118 @@ def test_generate_scene_from_draft_passes_progress_callback_to_compose(tmp_path:
     assert any(event["stage"] == "asset_composition" and event["progress"] == 66 for event in received_events)
 
 
+def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path: Path, monkeypatch):
+    from roadgen3d.llm import design_workflow
+
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 3}}), encoding="utf-8")
+    received_events: list[dict[str, object]] = []
+    captured: dict[str, object] = {}
+
+    bridge = SimpleNamespace(
+        summary_metadata={
+            "layout_mode": "graph_template",
+            "graph_template_id": "demo_template",
+            "road_count": 7,
+            "junction_count": 2,
+            "total_length_m": 123.5,
+        },
+        road_segment_graph=SimpleNamespace(),
+        projected_features=SimpleNamespace(),
+        placement_context=SimpleNamespace(),
+    )
+    monkeypatch.setattr(runtime, "build_graph_template_scene_bridge", lambda *args, **kwargs: bridge)
+
+    class _FakeLlmClient:
+        def chat_json(self, messages):
+            user_content = messages[-1]["content"][0]["text"]
+            payload = json.loads(user_content)
+            captured["graph_summary"] = payload["graph_summary"]
+            return {
+                "compose_config_patch": {
+                    "road_width_m": 9.0,
+                    "sidewalk_width_m": 4.2,
+                    "density": 0.72,
+                    "design_rule_profile": "pedestrian_priority_v1",
+                },
+                "design_summary": "LLM derived walkable street.",
+            }
+
+    class _FakeAssistant:
+        def _get_llm_client(self):
+            return _FakeLlmClient()
+
+    monkeypatch.setattr(design_workflow, "DesignAssistantService", _FakeAssistant)
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=3,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="make it very walkable",
+        compose_config_patch={},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
+        generation_options={"preset_id": "custom"},
+        progress_callback=received_events.append,
+    )
+
+    assert captured["graph_summary"]["road_count"] == 7
+    assert result.compose_config["road_width_m"] == 9.0
+    assert result.compose_config["sidewalk_width_m"] == 4.2
+    llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
+    detail = llm_event["detail"]
+    assert detail["graph_summary"]["road_count"] == 7
+    assert detail["parameter_sources_by_field"]["road_width_m"] == "llm_derived"
+    assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
+
+
+def test_generate_scene_from_draft_custom_preset_fails_when_llm_fails(monkeypatch):
+    from roadgen3d.llm import design_workflow
+
+    class _FailingAssistant:
+        def _get_llm_client(self):
+            class _Client:
+                def chat_json(self, _messages):
+                    raise RuntimeError("llm offline")
+
+            return _Client()
+
+    monkeypatch.setattr(design_workflow, "DesignAssistantService", _FailingAssistant)
+    draft = DesignDraft(
+        normalized_scene_query="make it very walkable",
+        compose_config_patch={},
+        citations_by_field={},
+        design_summary="summary",
+    )
+
+    try:
+        generate_scene_from_draft(
+            draft,
+            scene_context={"layout_mode": "graph_template", "graph_template_id": "hkust_gz_gate"},
+            generation_options={"preset_id": "custom"},
+        )
+    except RuntimeError as exc:
+        assert "LLM parameter derivation failed" in str(exc)
+    else:
+        raise AssertionError("custom LLM generation should fail when LLM derivation fails")
+
+
 def test_generate_scene_from_draft_uses_sanitized_cached_layout_summary(tmp_path: Path, monkeypatch):
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text('{"summary":{"instance_count": 8, "clearance_m": Infinity}}', encoding="utf-8")

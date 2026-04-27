@@ -455,6 +455,52 @@ class DesignAssistantService:
             "reasoning": str(payload.get("reasoning", "") or "").strip(),
         }
 
+    def propose_improvement_candidates(
+        self,
+        *,
+        current_evaluation: str,
+        comparison: Mapping[str, Any],
+        current_patch: Mapping[str, Any],
+        optimization_directives: Sequence[Mapping[str, Any]],
+        topk: int = 3,
+        weakness_queries: Sequence[str] | None = None,
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+    ) -> List[Dict[str, Any]]:
+        """Ask the LLM for bounded improvement candidates.
+
+        The LLM receives rule-based directives and must reference them. The
+        caller is still responsible for filtering returned patches against the
+        directive bounds before generation.
+        """
+        llm = self._get_llm_client()
+        evidence: List[RagEvidence] = []
+        resolved_knowledge = normalize_knowledge_source(knowledge_source)
+        if resolved_knowledge != "none" and weakness_queries:
+            try:
+                evidence = self._retrieve_evidence(
+                    queries=weakness_queries,
+                    topk=max(3, int(topk) * 2),
+                    knowledge_source=resolved_knowledge,
+                )
+            except RuntimeError:
+                evidence = []
+        payload = llm.chat_json(_build_candidate_improvement_messages(
+            current_evaluation=current_evaluation,
+            comparison=dict(comparison),
+            current_patch=dict(current_patch),
+            optimization_directives=list(optimization_directives),
+            evidence=evidence,
+            topk=max(1, int(topk)),
+        ))
+        return _parse_candidate_payload(
+            payload,
+            fallback_query=str(current_patch.get("query", "") or ""),
+            topk=max(1, int(topk)),
+            default_reason="LLM improvement candidate constrained by rule-based directives.",
+            evidence=evidence,
+            fill_defaults=False,
+        )
+
     def evaluate_scene_unified(
         self,
         *,
@@ -535,6 +581,41 @@ class DesignAssistantService:
             "compose_config_patch": patch,
             "design_summary": design_summary,
         }
+
+    def generate_initial_config_candidates_from_graph(
+        self,
+        *,
+        graph_summary: Mapping[str, Any],
+        base_map_data_url: str | None = None,
+        user_prompt: str = "",
+        current_patch: Mapping[str, Any] | None = None,
+        evidence: Sequence[RagEvidence] | Sequence[Mapping[str, Any]] | None = None,
+        topk: int = 3,
+    ) -> List[Dict[str, Any]]:
+        """Ask the LLM for multiple initial graph-aware design candidates."""
+        llm = self._get_llm_client()
+        evidence_items: List[RagEvidence] = []
+        for item in evidence or ():
+            if isinstance(item, RagEvidence):
+                evidence_items.append(item)
+            elif isinstance(item, Mapping):
+                evidence_items.append(parse_rag_evidence(item))
+        payload = llm.chat_json(_build_graph_candidate_messages(
+            graph_summary=dict(graph_summary),
+            base_map_data_url=base_map_data_url,
+            user_prompt=user_prompt,
+            current_patch=current_patch or {},
+            evidence=evidence_items,
+            topk=max(1, int(topk)),
+        ))
+        return _parse_candidate_payload(
+            payload,
+            fallback_query=user_prompt,
+            topk=max(1, int(topk)),
+            default_reason="LLM initial graph-aware candidate.",
+            evidence=evidence_items,
+            fill_defaults=True,
+        )
 
     # ========================================================================
     # Evaluation helper methods
@@ -1126,6 +1207,163 @@ def normalize_chat_messages(messages: Sequence[Mapping[str, Any]] | Sequence[Cha
         if str(content).strip():
             items.append(ChatMessage(role=role, content=content))
     return tuple(items)
+
+
+def _build_graph_candidate_messages(
+    *,
+    graph_summary: Mapping[str, Any],
+    base_map_data_url: str | None,
+    user_prompt: str,
+    current_patch: Mapping[str, Any],
+    evidence: Sequence[RagEvidence],
+    topk: int,
+) -> list[Dict[str, Any]]:
+    from ..services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
+
+    serialized_evidence = [
+        {
+            "chunk_id": item.chunk_id,
+            "section_title": item.section_title,
+            "page_start": item.page_start,
+            "page_end": item.page_end,
+            "text": item.text,
+            "score": item.score,
+            "parameter_hints": item.parameter_hints,
+        }
+        for item in evidence
+    ]
+    system_prompt = (
+        "你是 RoadGen3D 的多方案街道设计参数生成器。"
+        "你只能输出 JSON。"
+        "字段必须包含 candidates 数组。"
+        "每个 candidate 必须包含 compose_config_patch(object), design_summary(string), "
+        "reasoning(string), citations(string[])。"
+        f"compose_config_patch 只能使用这些字段：{', '.join(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)}。"
+        "请生成互相有差异但都可行的候选，不要编造资产 ID，不要输出 None/null。"
+    )
+    user_payload = {
+        "topk": int(topk),
+        "graph_summary": dict(graph_summary),
+        "user_prompt": str(user_prompt).strip() or "Generate a suitable street design",
+        "current_patch": dict(current_patch or {}),
+        "rag_evidence": serialized_evidence,
+        "instruction": "生成 topk 个初始设计参数候选；候选之间应体现不同但合理的设计取向。",
+    }
+    user_content: list[Dict[str, Any]] = [
+        {"type": "text", "text": json.dumps(user_payload, ensure_ascii=False)}
+    ]
+    if base_map_data_url:
+        user_content.append({"type": "image_url", "image_url": {"url": base_map_data_url}})
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content},
+    ]
+
+
+def _build_candidate_improvement_messages(
+    *,
+    current_evaluation: str,
+    comparison: Mapping[str, Any],
+    current_patch: Mapping[str, Any],
+    optimization_directives: Sequence[Mapping[str, Any]],
+    evidence: Sequence[RagEvidence],
+    topk: int,
+) -> list[Dict[str, str]]:
+    from ..services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
+
+    serialized_evidence = [
+        {
+            "chunk_id": item.chunk_id,
+            "section_title": item.section_title,
+            "page_start": item.page_start,
+            "page_end": item.page_end,
+            "text": item.text,
+            "score": item.score,
+            "parameter_hints": item.parameter_hints,
+        }
+        for item in evidence
+    ]
+    system_prompt = (
+        "你是 RoadGen3D 的受约束设计改进候选生成器。"
+        "你只能输出 JSON。字段必须包含 candidates 数组。"
+        "每个 candidate 必须包含 compose_config_patch(object), reasoning(string), "
+        "directive_ids(string[]), citations(string[])。"
+        "你不能自由决定大幅改动；必须遵守 rule-based optimization_directives 的 allowed_fields、"
+        "bounds、enum_values 和 forbidden_fields。"
+        f"compose_config_patch 只能使用这些字段：{', '.join(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)}。"
+        "不要编造资产 ID，不要输出 None/null。"
+    )
+    user_payload = {
+        "topk": int(topk),
+        "current_evaluation": str(current_evaluation or ""),
+        "comparison": dict(comparison or {}),
+        "current_patch": dict(current_patch or {}),
+        "optimization_directives": list(optimization_directives),
+        "rag_evidence": serialized_evidence,
+        "instruction": "基于规则方向生成 topk 个小步、可解释、可过滤的改进候选。",
+    }
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
+    ]
+
+
+def _parse_candidate_payload(
+    payload: Mapping[str, Any],
+    *,
+    fallback_query: str,
+    topk: int,
+    default_reason: str,
+    evidence: Sequence[RagEvidence],
+    fill_defaults: bool,
+) -> List[Dict[str, Any]]:
+    raw_candidates = payload.get("candidates")
+    if isinstance(raw_candidates, Mapping):
+        raw_items = list(raw_candidates.values())
+    elif isinstance(raw_candidates, Sequence) and not isinstance(raw_candidates, (str, bytes)):
+        raw_items = list(raw_candidates)
+    else:
+        raw_items = [payload]
+
+    evidence_ids = {item.chunk_id for item in evidence}
+    candidates: List[Dict[str, Any]] = []
+    for index, raw in enumerate(raw_items[: max(1, int(topk))]):
+        if not isinstance(raw, Mapping):
+            continue
+        patch = sanitize_compose_config_patch(raw.get("compose_config_patch") or raw.get("config_patch"))
+        if fill_defaults:
+            for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
+                patch.setdefault(field_name, default_value)
+        if fallback_query and "query" not in patch:
+            patch["query"] = str(fallback_query).strip()
+        citations = [
+            str(item)
+            for item in (raw.get("citations", []) or [])
+            if not evidence_ids or str(item) in evidence_ids
+        ]
+        candidates.append({
+            "candidate_id": str(raw.get("candidate_id") or f"candidate_{index + 1}"),
+            "rank": int(raw.get("rank", index + 1) or index + 1),
+            "compose_config_patch": patch,
+            "design_summary": str(raw.get("design_summary", "") or "").strip(),
+            "reasoning": str(raw.get("reasoning", default_reason) or default_reason).strip(),
+            "directive_ids": _coerce_text_list(raw.get("directive_ids")),
+            "citations": citations,
+        })
+    if candidates:
+        return candidates
+    fallback_patch = dict(DEFAULT_COMPOSE_CONFIG_PATCH_VALUES) if fill_defaults else {}
+    if fallback_query:
+        fallback_patch["query"] = str(fallback_query).strip()
+    return [{
+        "candidate_id": "candidate_1",
+        "rank": 1,
+        "compose_config_patch": fallback_patch,
+        "design_summary": "",
+        "reasoning": default_reason,
+        "directive_ids": [],
+        "citations": [],
+    }]
 
 
 def parse_design_intent(payload: Mapping[str, Any], *, fallback_query: str) -> DesignIntent:

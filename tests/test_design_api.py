@@ -190,6 +190,46 @@ class _FakeService:
         ]
 
 
+class _FakeBranchRunService:
+    def __init__(self):
+        self.created = None
+
+    def submit_run(self, **kwargs):
+        self.created = kwargs
+        return {"run_id": "branch-demo", "status": "queued", "created_at": "2026-03-23T00:00:00+00:00"}
+
+    def get_run(self, run_id: str):
+        if run_id != "branch-demo":
+            return None
+        return {
+            "run_id": run_id,
+            "status": "succeeded",
+            "stage": "succeeded",
+            "progress": 100,
+            "best_node_id": "node-a",
+            "frontier": ["node-a"],
+            "nodes": [
+                {
+                    "node_id": "node-a",
+                    "parent_id": None,
+                    "depth": 0,
+                    "rank": 1,
+                    "status": "succeeded",
+                    "score": 80,
+                    "scene_layout_path": "/tmp/layout.json",
+                    "optimization_directives": [],
+                    "rejected_edits": [],
+                }
+            ],
+            "scatter_points": [
+                {"node_id": "node-a", "x": 70, "y": 80, "overall": 80, "depth": 0, "rank": 1, "status": "succeeded"}
+            ],
+        }
+
+    def list_runs(self, *, limit=20):
+        return [self.get_run("branch-demo")][:limit]
+
+
 def test_design_api_endpoints_return_expected_shapes():
     service = _FakeService()
     client = TestClient(create_app(design_service=service))
@@ -483,6 +523,36 @@ def test_design_api_endpoints_return_expected_shapes():
         },
     )
     assert invalid_osm_response.status_code == 400
+
+
+def test_branch_run_api_endpoints_return_expected_shapes():
+    app = create_app(design_service=_FakeService())
+    branch_service = _FakeBranchRunService()
+    app.state.branch_run_service = branch_service
+    client = TestClient(app)
+
+    create_response = client.post(
+        "/api/design/branch-runs",
+        json={
+            "prompt": "Generate three walkable alternatives",
+            "topk": 3,
+            "rounds": 2,
+            "graph_template_id": "hkust_gz_gate",
+            "knowledge_source": "graph_rag",
+        },
+    )
+    assert create_response.status_code == 200
+    assert create_response.json()["run_id"] == "branch-demo"
+    assert branch_service.created["topk"] == 3
+
+    status_response = client.get("/api/design/branch-runs/branch-demo")
+    assert status_response.status_code == 200
+    assert status_response.json()["nodes"][0]["optimization_directives"] == []
+    assert status_response.json()["scatter_points"][0]["x"] == 70
+
+    list_response = client.get("/api/design/branch-runs")
+    assert list_response.status_code == 200
+    assert list_response.json()["items"][0]["run_id"] == "branch-demo"
 
 
 def test_design_api_supports_clarification_stage():

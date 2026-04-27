@@ -31,6 +31,7 @@ from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_graph_payload,
 )
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
+from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
 from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
 from roadgen3d.knowledge.source_registry import (  # noqa: E402
     add_source,
@@ -119,6 +120,21 @@ class SceneDiffRequestModel(BaseModel):
     layout_b: str
 
 
+class BranchRunCreateRequestModel(BaseModel):
+    prompt: str
+    topk: int = 3
+    rounds: int = 2
+    graph_template_id: str = "hkust_gz_gate"
+    knowledge_source: str = "graph_rag"
+    scene_context: Dict[str, Any] = Field(default_factory=dict)
+    generation_options: Dict[str, Any] = Field(default_factory=dict)
+    evaluation_weights: Dict[str, float] = Field(default_factory=lambda: {
+        "walkability": 0.4,
+        "safety": 0.3,
+        "beauty": 0.3,
+    })
+
+
 def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
     app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
     app.add_middleware(
@@ -129,6 +145,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         allow_headers=["*"],
     )
     app.state.design_service = design_service or DesignAssistantService()
+    app.state.branch_run_service = BranchRunService(design_service=app.state.design_service)
 
     @app.get("/api/health")
     def health() -> Dict[str, Any]:
@@ -266,6 +283,36 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         service = app.state.design_service
         items = service.list_recent_scenes(limit=int(limit))
         return make_json_safe({"items": [item.to_dict() for item in items]})
+
+    @app.post("/api/design/branch-runs")
+    def create_branch_run(request: BranchRunCreateRequestModel) -> Dict[str, Any]:
+        service = app.state.branch_run_service
+        try:
+            return make_json_safe(service.submit_run(
+                prompt=request.prompt,
+                topk=request.topk,
+                rounds=request.rounds,
+                graph_template_id=request.graph_template_id,
+                knowledge_source=request.knowledge_source,
+                scene_context=request.scene_context,
+                generation_options=request.generation_options,
+                evaluation_weights=request.evaluation_weights,
+            ))
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.get("/api/design/branch-runs")
+    def list_branch_runs(limit: int = Query(default=20, ge=1, le=100)) -> Dict[str, Any]:
+        service = app.state.branch_run_service
+        return make_json_safe({"items": service.list_runs(limit=int(limit))})
+
+    @app.get("/api/design/branch-runs/{run_id}")
+    def get_branch_run(run_id: str) -> Dict[str, Any]:
+        service = app.state.branch_run_service
+        result = service.get_run(run_id)
+        if result is None:
+            raise HTTPException(status_code=404, detail=f"Branch run not found: {run_id}")
+        return make_json_safe(result)
 
     @app.post("/api/scenes/diff")
     def scene_diff(request: SceneDiffRequestModel) -> Dict[str, Any]:
