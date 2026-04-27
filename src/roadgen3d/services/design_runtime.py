@@ -435,7 +435,124 @@ def generate_scene_from_draft(
         progress=10,
         message="Normalizing generation request.",
     )
-    base_config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
+
+    # LLM-driven parameter derivation: if compose_config_patch is empty or has no meaningful keys, call LLM
+    draft_to_use = draft
+    config_patch = draft.compose_config_patch or {}
+    has_meaningful_config = any(
+        config_patch.get(k) is not None and config_patch.get(k) != ""
+        for k in ("density", "design_rule_profile", "objective_profile", "ped_demand_level")
+    )
+
+    # Debug: log whether LLM will be called
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info(
+        "LLM derivation check: has_meaningful_config=%s, config_patch_keys=%s, config_patch=%s",
+        has_meaningful_config,
+        list(config_patch.keys()),
+        config_patch,
+    )
+
+    if not has_meaningful_config:
+        _emit_progress(
+            progress_callback,
+            stage="context_resolving",
+            progress=12,
+            message="LLM-driven parameter derivation: generating config from prompt.",
+            llm_derivation_start=True,
+            prompt=draft.normalized_scene_query,
+            config_patch_is_empty=not bool(config_patch),
+            config_patch_keys=list(config_patch.keys()),
+        )
+        try:
+            from ..llm.design_workflow import DesignAssistantService
+            from ..llm.prompts import build_graph_aware_design_messages
+            from ..services.design_types import (
+                ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
+                DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
+                sanitize_compose_config_patch,
+            )
+
+            logger.info("Attempting to create DesignAssistantService for LLM call...")
+            assistant = DesignAssistantService()
+            logger.info("DesignAssistantService created, building LLM messages...")
+
+            graph_template_id = None
+            if hasattr(scene_context, 'graph_template_id'):
+                graph_template_id = scene_context.graph_template_id
+            elif isinstance(scene_context, dict):
+                graph_template_id = scene_context.get('graph_template_id')
+
+            # Build a minimal graph_summary for LLM
+            minimal_graph_summary = {
+                "query": draft.normalized_scene_query or "walkable complete street",
+                "template_id": graph_template_id or "hkust_gz_gate",
+                "road_count": 1,
+                "junction_count": 0,
+                "total_length_m": 80.0,
+                "has_buildings": False,
+            }
+
+            logger.info("Calling LLM with minimal graph_summary...")
+            messages = build_graph_aware_design_messages(
+                graph_summary=minimal_graph_summary,
+                user_prompt=draft.normalized_scene_query or "walkable complete street",
+                current_patch={},
+            )
+            llm_client = assistant._get_llm_client()
+            llm_response = llm_client.chat_json(messages)
+            logger.info("LLM response received, keys: %s", list(llm_response.keys()) if isinstance(llm_response, dict) else "not a dict")
+
+            llm_patch = sanitize_compose_config_patch(llm_response.get("compose_config_patch", {}))
+            design_summary = str(llm_response.get("design_summary", "") or "").strip()
+
+            # Fill defaults for any missing fields (LLM may not return all fields)
+            for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
+                if field_name not in llm_patch:
+                    llm_patch[field_name] = default_value
+            if draft.normalized_scene_query and "query" not in llm_patch:
+                llm_patch["query"] = draft.normalized_scene_query
+
+            logger.info("LLM-derived config patch keys: %s", list(llm_patch.keys()))
+
+            # Create a new draft with LLM-derived config patch
+            draft_to_use = DesignDraft(
+                normalized_scene_query=draft.normalized_scene_query,
+                compose_config_patch=llm_patch,
+                citations_by_field=draft.citations_by_field,
+                design_summary=design_summary or draft.design_summary,
+                risk_notes=draft.risk_notes,
+                parameter_sources_by_field={k: "llm_derived" for k in llm_patch.keys()},
+            )
+            logger.info("Emitting progress with LLM-derived params: %s", list(llm_patch.keys()))
+            _emit_progress(
+                progress_callback,
+                stage="context_resolving",
+                progress=18,
+                message="LLM derived config parameters.",
+                # Pass LLM params as **detail kwargs -> wrapped into {"detail": {...}}
+                normalized_scene_query=draft.normalized_scene_query,
+                design_summary=design_summary or draft.design_summary,
+                graph_template_id=graph_template_id,
+                layout_mode="graph_template",
+                **llm_patch,  # All LLM-derived params spread into detail
+            )
+        except Exception as e:
+            # LLM not available or failed, fall back to defaults
+            import traceback
+            logger.error("LLM call failed: %s\n%s", e, traceback.format_exc())
+            _emit_progress(
+                progress_callback,
+                stage="context_resolving",
+                progress=15,
+                message=f"LLM unavailable ({type(e).__name__}), using default parameters.",
+                llm_error_type=type(e).__name__,
+                llm_error=str(e),
+                llm_traceback=traceback.format_exc()[:1000],
+            )
+
+    base_config = build_compose_config_from_draft(draft_to_use, patch_overrides=patch_overrides)
     normalized_scene_context = sanitize_scene_context(scene_context)
     if normalized_scene_context.layout_mode == "graph_template":
         return _generate_graph_template_scene_from_draft(

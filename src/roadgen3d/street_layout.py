@@ -6335,6 +6335,189 @@ def compose_street_scene(
         except Exception:
             return
 
+    def _compact_mapping(mapping: Mapping[str, Any] | None, *, limit: int = 20) -> Dict[str, Any]:
+        items = sorted((mapping or {}).items(), key=lambda item: str(item[0]))
+        return {str(key): value for key, value in items[:limit]}
+
+    def _compact_theme_segments(segments: Sequence[Any], *, limit: int = 30) -> List[Dict[str, Any]]:
+        records: List[Dict[str, Any]] = []
+        for segment in list(segments)[:limit]:
+            payload = segment.to_dict() if hasattr(segment, "to_dict") else dict(getattr(segment, "__dict__", {}))
+            records.append({
+                "theme_id": str(payload.get("theme_id", "")),
+                "theme_name": str(payload.get("theme_name", "")),
+                "x_start_m": round(float(payload.get("x_start_m", 0.0) or 0.0), 2),
+                "x_end_m": round(float(payload.get("x_end_m", 0.0) or 0.0), 2),
+                "length_m": round(float(payload.get("length_m", 0.0) or 0.0), 2),
+                "dominant_poi_types": list(payload.get("dominant_poi_types", []) or [])[:8],
+                "design_rule_profile": str(payload.get("design_rule_profile", "")),
+                "style_preset": str(payload.get("style_preset", "")),
+                "segment_ids": list(payload.get("segment_ids", []) or [])[:8],
+            })
+        return records
+
+    def _compact_program(program: Any) -> Dict[str, Any]:
+        payload = program.to_dict() if hasattr(program, "to_dict") else {}
+        bands = []
+        for band in list(payload.get("bands", []) or [])[:20]:
+            if not isinstance(band, Mapping):
+                continue
+            bands.append({
+                "name": str(band.get("name", "")),
+                "kind": str(band.get("kind", "")),
+                "side": str(band.get("side", "")),
+                "width_m": round(float(band.get("width_m", 0.0) or 0.0), 2),
+                "z_center_m": round(float(band.get("z_center_m", 0.0) or 0.0), 2),
+                "allowed_categories": list(band.get("allowed_categories", []) or [])[:8],
+            })
+        return {
+            "cross_section_type": str(payload.get("cross_section_type", "")),
+            "lane_count": int(payload.get("lane_count", 0) or 0),
+            "road_width_m": round(float(payload.get("road_width_m", 0.0) or 0.0), 2),
+            "sidewalk_width_m": round(float(payload.get("sidewalk_width_m", 0.0) or 0.0), 2),
+            "row_width_m": round(float(payload.get("row_width_m", 0.0) or 0.0), 2),
+            "width_expanded": bool(payload.get("width_expanded", False)),
+            "width_reallocation_reason": str(payload.get("width_reallocation_reason", "")),
+            "poi_fit_feasible": bool(payload.get("poi_fit_feasible", True)),
+            "furniture_requirements": _compact_mapping(payload.get("furniture_requirements", {}), limit=20),
+            "throughput_requirements": _compact_mapping(payload.get("throughput_requirements", {}), limit=20),
+            "design_goals": list(payload.get("design_goals", []) or [])[:12],
+            "bands": bands,
+        }
+
+    def _summarize_slot_plans(slots: Sequence[Any], *, sample_limit: int = 16) -> Dict[str, Any]:
+        category_counts = Counter(str(getattr(slot, "category", "") or "") for slot in slots)
+        side_counts = Counter(str(getattr(slot, "side", "") or "") for slot in slots)
+        anchor_counts = Counter(str(getattr(slot, "anchor_poi_type", "") or "") for slot in slots if str(getattr(slot, "anchor_poi_type", "") or ""))
+        sample = []
+        for slot in list(slots)[:sample_limit]:
+            sample.append({
+                "slot_id": str(getattr(slot, "slot_id", "") or ""),
+                "category": str(getattr(slot, "category", "") or ""),
+                "theme_id": str(getattr(slot, "theme_id", "") or ""),
+                "band_name": str(getattr(slot, "band_name", "") or ""),
+                "side": str(getattr(slot, "side", "") or ""),
+                "x_center_m": round(float(getattr(slot, "x_center_m", 0.0) or 0.0), 2),
+                "z_center_m": round(float(getattr(slot, "z_center_m", 0.0) or 0.0), 2),
+                "spacing_m": round(float(getattr(slot, "spacing_m", 0.0) or 0.0), 2),
+                "required": bool(getattr(slot, "required", False)),
+                "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
+            })
+        return {
+            "total_slots": int(len(slots)),
+            "required_slots": int(sum(1 for slot in slots if bool(getattr(slot, "required", False)))),
+            "anchored_slots": int(sum(1 for slot in slots if str(getattr(slot, "anchor_poi_type", "") or ""))),
+            "category_counts": dict(category_counts),
+            "side_counts": dict(side_counts),
+            "anchor_poi_counts": dict(anchor_counts),
+            "sample_slots": sample,
+        }
+
+    def _summarize_solver(result: Any, *, zone_programs: Sequence[Mapping[str, Any]] = ()) -> Dict[str, Any]:
+        rule_counts = Counter(str(evaluation.status) for evaluation in getattr(result, "rule_evaluations", ()) or ())
+        flagged_rules = [
+            evaluation.to_dict()
+            for evaluation in list(getattr(result, "rule_evaluations", ()) or [])
+            if str(getattr(evaluation, "status", "")).lower() not in {"pass", "passed", "satisfied", "ok"}
+        ][:20]
+        return {
+            "algorithm": {
+                "solver_backend_requested": str(getattr(result, "backend_requested", "")),
+                "solver_backend_used": str(getattr(result, "backend_used", "")),
+                "fallback_reason": str(getattr(result, "fallback_reason", "") or ""),
+                "objective_profile": str(getattr(result, "objective_profile", "")),
+            },
+            "metrics": {
+                "topology_validity": round(float(getattr(result, "topology_validity", 0.0) or 0.0), 4),
+                "cross_section_feasibility": round(float(getattr(result, "cross_section_feasibility", 0.0) or 0.0), 4),
+                "rule_satisfaction_rate": round(float(getattr(result, "rule_satisfaction_rate", 0.0) or 0.0), 4),
+                "editability": round(float(getattr(result, "editability", 0.0) or 0.0), 4),
+                "conflict_explainability": round(float(getattr(result, "conflict_explainability", 0.0) or 0.0), 4),
+            },
+            "active_constraints": list(getattr(result, "active_constraints", ()) or ())[:40],
+            "rule_evaluation_counts": dict(rule_counts),
+            "flagged_rule_evaluations": flagged_rules,
+            "band_solutions": [band.to_dict() for band in list(getattr(result, "band_solutions", ()) or [])[:30]],
+            "edits": [edit.to_dict() for edit in list(getattr(result, "edits", ()) or [])[:20]],
+            "conflicts": [conflict.to_dict() for conflict in list(getattr(result, "conflicts", ()) or [])[:20]],
+            "throughput_feasibility": dict(getattr(result, "throughput_feasibility", {}) or {}),
+            "objective_score_breakdown": dict(getattr(result, "objective_score_breakdown", {}) or {}),
+            "zone_programs": [dict(item) for item in list(zone_programs)[:30]],
+            "slot_plan_summary": _summarize_slot_plans(list(getattr(result, "slot_plans", ()) or [])),
+        }
+
+    def _summarize_attempt_records(records: Mapping[str, Mapping[str, Any]], *, sample_limit: int = 12) -> Dict[str, Any]:
+        blocked_counts: Counter[str] = Counter()
+        category_status: Dict[str, Dict[str, int]] = {}
+        search_tier_counts: Counter[str] = Counter()
+        samples: List[Dict[str, Any]] = []
+        placed = 0
+        unplaced = 0
+        for record in records.values():
+            category = str(record.get("category", "") or "")
+            bucket = category_status.setdefault(category, {"placed": 0, "unplaced": 0})
+            if bool(record.get("placed", False)):
+                placed += 1
+                bucket["placed"] += 1
+            else:
+                unplaced += 1
+                bucket["unplaced"] += 1
+                failure = str(record.get("failure_reason", "") or "no_candidate_after_search")
+                if failure:
+                    blocked_counts[failure] += 1
+                if len(samples) < sample_limit:
+                    samples.append({
+                        "slot_id": str(record.get("slot_id", "") or ""),
+                        "category": category,
+                        "theme_id": str(record.get("theme_id", "") or ""),
+                        "side": str(record.get("side", "") or ""),
+                        "band_name": str(record.get("band_name", "") or ""),
+                        "failure_reason": failure,
+                        "blocked_reason_counts": dict(record.get("blocked_reason_counts", {}) or {}),
+                        "required_like": bool(record.get("required_like", False)),
+                        "search_tier_reached": str(record.get("search_tier_reached", "") or ""),
+                    })
+            tier = str(record.get("search_tier_reached", "") or "")
+            if tier:
+                search_tier_counts[tier] += 1
+            for reason, count in dict(record.get("blocked_reason_counts", {}) or {}).items():
+                blocked_counts[str(reason)] += int(count)
+        return {
+            "placed_slot_records": int(placed),
+            "unplaced_slot_records": int(unplaced),
+            "blocked_reason_counts": dict(blocked_counts),
+            "search_tier_counts": dict(search_tier_counts),
+            "category_status_counts": category_status,
+            "unplaced_samples": samples,
+        }
+
+    def _placement_algorithm_detail() -> Dict[str, Any]:
+        return {
+            "policy_used": str(policy_used),
+            "placement_policy_requested": str(policy_mode),
+            "topk_per_category": int(config.topk_per_category),
+            "max_trials_per_slot": int(config.max_trials_per_slot),
+            "policy_temperature": float(policy_temperature),
+            "candidate_pipeline": [
+                "category pool filter",
+                "_pick_category_candidate retrieval or policy ranking",
+                "_iter_slot_candidate_groups pose generation",
+                "_evaluate_slot_candidate geometry and rule filters",
+                "placement_energy ranking",
+                "optional balance repair",
+            ],
+            "intercept_filters": [
+                "intrudes_carriageway",
+                "overlap_blocked",
+                "constraint_vetoed",
+                "out_of_sidewalk",
+                "out_of_target_strip",
+                "out_of_theme_range",
+                "side_mismatch",
+                "no_candidate_after_search",
+            ],
+        }
+
     _emit_progress(
         "asset_loading",
         12,
@@ -6614,6 +6797,27 @@ def compose_street_scene(
         42,
         "Generating street program from layout and guidance.",
         theme_segment_count=len(theme_segments),
+        algorithm={
+            "theme_inference": "infer_theme_segments",
+            "theme_inference_mode": str(getattr(config, "theme_inference_mode", "deterministic_auto")),
+            "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
+            "program_generator_requested": str(config.program_generator),
+            "design_rule_profile": str(config.design_rule_profile),
+            "objective_profile": str(getattr(config, "objective_profile", "balanced")),
+        },
+        theme_segments=_compact_theme_segments(theme_segments),
+        inventory_category_counts=_compact_mapping(inventory_summary.category_counts, limit=30),
+        config_parameters={
+            "layout_mode": str(config.layout_mode),
+            "length_m": float(config.length_m),
+            "road_width_m": float(config.road_width_m),
+            "sidewalk_width_m": float(config.sidewalk_width_m),
+            "density": float(config.density),
+            "ped_demand_level": str(getattr(config, "ped_demand_level", "")),
+            "bike_demand_level": str(getattr(config, "bike_demand_level", "")),
+            "transit_demand_level": str(getattr(config, "transit_demand_level", "")),
+            "vehicle_demand_level": str(getattr(config, "vehicle_demand_level", "")),
+        },
     )
 
     program_result = program_runtime.generate(
@@ -6633,6 +6837,21 @@ def compose_street_scene(
     if program_result.fallback_reason:
         program_fallback_reasons.append(program_result.fallback_reason)
     base_program = shape_program_for_style(program_result.program, config)
+    _emit_progress(
+        "layout_generation",
+        45,
+        "Generated base street program.",
+        theme_segment_count=len(theme_segments),
+        algorithm={
+            "program_generator_requested": str(program_result.backend_requested),
+            "program_generator_used": str(program_result.backend_used),
+            "fallback_reason": str(program_result.fallback_reason or ""),
+            "post_processor": "shape_program_for_style",
+        },
+        theme_segments=_compact_theme_segments(theme_segments),
+        street_program=_compact_program(base_program),
+        inventory_category_counts=_compact_mapping(inventory_summary.category_counts, limit=30),
+    )
     base_constraint_set = load_constraint_set(config.design_rule_profile)
     solver_runtime = LayoutSolverRuntime(backend=str(config.layout_solver))
 
@@ -6648,6 +6867,15 @@ def compose_street_scene(
         50,
         "Solving themed layout constraints.",
         theme_segment_count=len(theme_segments),
+        algorithm={
+            "solver_backend_requested": str(config.layout_solver),
+            "design_rule_profile": str(config.design_rule_profile),
+            "constraint_mode": str(config.constraint_mode),
+            "rule_count": int(len(base_constraint_set.rules)),
+            "zone_solver_strategy": "solve each theme segment, then aggregate",
+        },
+        theme_segments=_compact_theme_segments(theme_segments),
+        active_constraint_names=[rule.name for rule in list(base_constraint_set.rules)[:40]],
     )
 
     for theme_segment in theme_segments:
@@ -6801,6 +7029,22 @@ def compose_street_scene(
         slot_plans=slot_plans,
         road_segment_graph_summary=graph_summary,
     )
+    composition_pass_report = {
+        "trimmed_optional_slots": int(sum(int(report.get("trimmed_optional_slots", 0)) for report in composition_pass_reports)),
+        "required_slots_preserved": int(sum(int(report.get("required_slots_preserved", 0)) for report in composition_pass_reports)),
+        "composition_slot_count": int(sum(int(report.get("composition_slot_count", 0)) for report in composition_pass_reports)),
+        "composition_optional_count": int(sum(int(report.get("composition_optional_count", 0)) for report in composition_pass_reports)),
+        "theme_segment_count": int(len(theme_segments)),
+    }
+    _emit_progress(
+        "constraint_solving",
+        58,
+        "Solved layout constraints and produced slot plans.",
+        theme_segment_count=len(theme_segments),
+        solver_summary=_summarize_solver(solver_result, zone_programs=theme_zone_programs),
+        composition_pass_report=dict(composition_pass_report),
+        theme_segments=_compact_theme_segments(theme_segments),
+    )
 
     for poi_type, required_count in asset_backed_poi_anchor_counts(
         extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
@@ -6815,14 +7059,6 @@ def compose_street_scene(
             raise RuntimeError(
                 f"Layout solver did not preserve all required POI-backed {category} slots."
             )
-
-    composition_pass_report = {
-        "trimmed_optional_slots": int(sum(int(report.get("trimmed_optional_slots", 0)) for report in composition_pass_reports)),
-        "required_slots_preserved": int(sum(int(report.get("required_slots_preserved", 0)) for report in composition_pass_reports)),
-        "composition_slot_count": int(sum(int(report.get("composition_slot_count", 0)) for report in composition_pass_reports)),
-        "composition_optional_count": int(sum(int(report.get("composition_optional_count", 0)) for report in composition_pass_reports)),
-        "theme_segment_count": int(len(theme_segments)),
-    }
 
     placement_field_config = load_placement_field_config()
     spatial_hash = UniformSpatialHash(cell_size_m=float(placement_field_config["cell_size_m"]))
@@ -6851,6 +7087,15 @@ def compose_street_scene(
         60,
         "Composing street furniture and asset placements.",
         total_slots=total_scene_slots,
+        algorithm={
+            **_placement_algorithm_detail(),
+            "spatial_hash_cell_size_m": float(placement_field_config["cell_size_m"]),
+            "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
+            "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
+        },
+        slot_plan_summary=_summarize_slot_plans(ordered_slot_plans),
+        category_slot_counts=dict(category_slot_counts),
+        composition_pass_report=dict(composition_pass_report),
     )
     placed_score_sums: Dict[str, float] = {category: 0.0 for category in DEFAULT_CATEGORIES}
     placed_counts: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
@@ -7669,6 +7914,19 @@ def compose_street_scene(
                 "Placing street assets.",
                 placed_slots=slot_index,
                 total_slots=total_scene_slots,
+                placement_progress={
+                    "processed_slots": int(slot_index),
+                    "total_slots": int(total_scene_slots),
+                    "placed_count": int(len(placements)),
+                    "dropped_slots": int(dropped_slots),
+                    "placed_counts_by_category": {
+                        key: int(value)
+                        for key, value in placed_counts.items()
+                        if int(value) > 0
+                    },
+                },
+                blocker_summary=_summarize_attempt_records(slot_attempt_records),
+                algorithm=_placement_algorithm_detail(),
             )
 
     def _balance_targets_met() -> bool:
@@ -7972,6 +8230,38 @@ def compose_street_scene(
         for record in slot_attempt_records.values()
         if record.get("unplaced_diagnostic")
     ]
+
+    _emit_progress(
+        "asset_composition",
+        73,
+        "Finished asset placement and interception checks.",
+        placed_slots=int(total_scene_slots),
+        total_slots=int(total_scene_slots),
+        placement_progress={
+            "processed_slots": int(total_scene_slots),
+            "total_slots": int(total_scene_slots),
+            "placed_count": int(len(placements)),
+            "dropped_slots": int(dropped_slots),
+            "placed_counts_by_category": {
+                key: int(value)
+                for key, value in placed_counts.items()
+                if int(value) > 0
+            },
+        },
+        blocker_summary=_summarize_attempt_records(slot_attempt_records, sample_limit=20),
+        anchor_resolution_summary={
+            **dict(anchor_resolution_summary),
+            "total_required_slots": int(total_required_slots),
+            "realized_required_slots": int(realized_required_slots),
+        },
+        balance_repair_summary=dict(balance_repair_summary),
+        algorithm={
+            **_placement_algorithm_detail(),
+            "spatial_hash_cell_size_m": float(placement_field_config["cell_size_m"]),
+            "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
+            "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
+        },
+    )
 
     if not placements:
         raise RuntimeError(
