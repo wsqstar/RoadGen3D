@@ -13,7 +13,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services.design_runtime import build_compose_config_from_draft, generate_scene_from_draft
-from roadgen3d.services.design_types import DesignDraft, SceneContext
+from roadgen3d.services.design_types import DesignDraft, RagEvidence, SceneContext
 from roadgen3d.services.scene_context_service import ResolvedSceneContext
 import roadgen3d.services.design_runtime as runtime
 
@@ -166,6 +166,7 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
         def chat_json(self, messages):
             user_content = messages[-1]["content"][0]["text"]
             payload = json.loads(user_content)
+            captured["llm_payload"] = payload
             captured["graph_summary"] = payload["graph_summary"]
             return {
                 "compose_config_patch": {
@@ -178,6 +179,24 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
             }
 
     class _FakeAssistant:
+        def _retrieve_evidence(self, *, queries, topk, knowledge_source):
+            captured["rag_queries"] = tuple(queries)
+            captured["knowledge_source"] = knowledge_source
+            return [
+                RagEvidence(
+                    chunk_id="guide-001",
+                    doc_id="complete-streets",
+                    section_title="Pedestrian Clear Path",
+                    page_start=12,
+                    page_end=13,
+                    text="Keep pedestrian clear paths wide and continuous near transit stops.",
+                    source_path="guides/complete-streets.pdf",
+                    score=0.91,
+                    knowledge_source=knowledge_source,
+                    parameter_hints={"sidewalk_width_m": "Widen clear path near transit."},
+                )
+            ]
+
         def _get_llm_client(self):
             return _FakeLlmClient()
 
@@ -212,17 +231,117 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     )
 
     assert captured["graph_summary"]["road_count"] == 7
+    assert captured["rag_queries"]
+    assert captured["knowledge_source"] == "graph_rag"
+    user_payload = captured["llm_payload"]
+    assert user_payload["graph_summary"]["road_count"] == 7
+    assert user_payload["knowledge_source"] == "graph_rag"
+    assert user_payload["rag_queries"]
+    assert user_payload["rag_evidence"][0]["chunk_id"] == "guide-001"
+    assert user_payload["rag_evidence"][0]["parameter_hints"]["sidewalk_width_m"]
     assert result.compose_config["road_width_m"] == 9.0
     assert result.compose_config["sidewalk_width_m"] == 4.2
     llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
     detail = llm_event["detail"]
     assert detail["graph_summary"]["road_count"] == 7
+    assert detail["evidence_count"] == 1
+    assert detail["rag_evidence"][0]["chunk_id"] == "guide-001"
+    assert detail["parameter_sources_by_field"]["query"] == "prompt_input"
     assert detail["parameter_sources_by_field"]["road_width_m"] == "llm_derived"
     assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
+    assert "target_street_type" in detail["defaulted_fields"]
+    assert "target_street_type" not in detail["llm_raw_fields"]
+
+
+def test_generate_scene_from_draft_custom_preset_keeps_explicit_patch_over_llm(tmp_path: Path, monkeypatch):
+    from roadgen3d.llm import design_workflow
+
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 5}}), encoding="utf-8")
+    received_events: list[dict[str, object]] = []
+    captured: dict[str, object] = {}
+
+    bridge = SimpleNamespace(
+        summary_metadata={
+            "layout_mode": "graph_template",
+            "graph_template_id": "demo_template",
+            "road_count": 4,
+            "junction_count": 1,
+            "total_length_m": 88.0,
+        },
+        road_segment_graph=SimpleNamespace(),
+        projected_features=SimpleNamespace(),
+        placement_context=SimpleNamespace(),
+    )
+    monkeypatch.setattr(runtime, "build_graph_template_scene_bridge", lambda *args, **kwargs: bridge)
+
+    class _FakeLlmClient:
+        def chat_json(self, messages):
+            user_content = messages[-1]["content"][0]["text"]
+            payload = json.loads(user_content)
+            captured["current_patch"] = payload["current_patch"]
+            return {
+                "compose_config_patch": {
+                    "road_width_m": 15.0,
+                    "sidewalk_width_m": 6.0,
+                    "density": 0.72,
+                    "design_rule_profile": "pedestrian_priority_v1",
+                },
+                "design_summary": "LLM tried to widen the road.",
+            }
+
+    class _FakeAssistant:
+        def _get_llm_client(self):
+            return _FakeLlmClient()
+
+    monkeypatch.setattr(design_workflow, "DesignAssistantService", _FakeAssistant)
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=5,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="keep my explicit widths",
+        compose_config_patch={"road_width_m": 6.5, "sidewalk_width_m": 4.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
+        generation_options={"preset_id": "custom"},
+        progress_callback=received_events.append,
+    )
+
+    assert captured["current_patch"]["road_width_m"] == 6.5
+    assert result.compose_config["road_width_m"] == 6.5
+    assert result.compose_config["sidewalk_width_m"] == 4.0
+    assert result.compose_config["density"] == 0.72
+    llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
+    detail = llm_event["detail"]
+    assert detail["parameter_sources_by_field"]["road_width_m"] == "explicit_input"
+    assert detail["parameter_sources_by_field"]["sidewalk_width_m"] == "explicit_input"
+    assert detail["parameter_sources_by_field"]["density"] == "llm_derived"
+    assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
+    assert "road_width_m" in detail["overridden_llm_fields"]
+    assert "sidewalk_width_m" in detail["overridden_llm_fields"]
 
 
 def test_generate_scene_from_draft_custom_preset_fails_when_llm_fails(monkeypatch):
     from roadgen3d.llm import design_workflow
+
+    received_events: list[dict[str, object]] = []
 
     class _FailingAssistant:
         def _get_llm_client(self):
@@ -233,6 +352,11 @@ def test_generate_scene_from_draft_custom_preset_fails_when_llm_fails(monkeypatc
             return _Client()
 
     monkeypatch.setattr(design_workflow, "DesignAssistantService", _FailingAssistant)
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **_kwargs: (_ for _ in ()).throw(AssertionError("compose should not run after LLM failure")),
+    )
     draft = DesignDraft(
         normalized_scene_query="make it very walkable",
         compose_config_patch={},
@@ -245,11 +369,15 @@ def test_generate_scene_from_draft_custom_preset_fails_when_llm_fails(monkeypatc
             draft,
             scene_context={"layout_mode": "graph_template", "graph_template_id": "hkust_gz_gate"},
             generation_options={"preset_id": "custom"},
+            progress_callback=received_events.append,
         )
     except RuntimeError as exc:
         assert "LLM parameter derivation failed" in str(exc)
     else:
         raise AssertionError("custom LLM generation should fail when LLM derivation fails")
+    failure_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 15)
+    assert failure_event["detail"]["llm_derivation_status"] == "failed"
+    assert failure_event["detail"]["llm_error_type"] == "RuntimeError"
 
 
 def test_generate_scene_from_draft_uses_sanitized_cached_layout_summary(tmp_path: Path, monkeypatch):

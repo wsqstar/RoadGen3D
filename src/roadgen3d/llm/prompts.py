@@ -577,6 +577,9 @@ def build_graph_aware_design_messages(
     base_map_data_url: str | None = None,
     user_prompt: str = "",
     current_patch: Mapping[str, Any] | None = None,
+    rag_evidence: Sequence[RagEvidence] | None = None,
+    rag_queries: Sequence[str] | None = None,
+    knowledge_source: str = "",
 ) -> list[Dict[str, str]]:
     """Build messages that ask the LLM to propose design parameters based on a
     parsed road-network graph and optional reference base-map image.
@@ -590,7 +593,7 @@ def build_graph_aware_design_messages(
 
     system_prompt = (
         "你是 RoadGen3D 的街道设计专家。"
-        "你需要根据道路网络结构和参考底图设计街道家具布局参数。"
+        "你需要根据道路网络结构、RAG 设计指南证据和参考底图设计街道家具布局参数。"
         "你只能输出 JSON。"
         "字段必须包含："
         "`compose_config_patch`(object) 和 `design_summary`(string)。"
@@ -598,13 +601,30 @@ def build_graph_aware_design_messages(
         "请尽量为所有允许字段都给出非空值，不要输出 None/null。"
         "不要编造具体资产 ID。"
     )
+    serialized_evidence = [
+        {
+            "chunk_id": item.chunk_id,
+            "doc_id": item.doc_id,
+            "section_title": item.section_title,
+            "page_start": item.page_start,
+            "page_end": item.page_end,
+            "text": item.text,
+            "score": item.score,
+            "knowledge_source": item.knowledge_source,
+            "parameter_hints": dict(item.parameter_hints),
+        }
+        for item in (rag_evidence or ())
+    ]
 
     user_payload: Dict[str, Any] = {
         "graph_summary": graph_summary,
         "user_prompt": str(user_prompt).strip() or "Generate a suitable street design",
         "current_patch": dict(current_patch or {}),
+        "rag_queries": [str(item).strip() for item in (rag_queries or ()) if str(item).strip()],
+        "knowledge_source": str(knowledge_source or ""),
+        "rag_evidence": serialized_evidence,
         "instruction": (
-            "基于道路网络结构和参考底图（如有），"
+            "基于道路网络结构、RAG 设计指南片段和参考底图（如有），"
             "输出适合该道路场景的街道家具布局参数。"
         ),
     }

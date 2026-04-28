@@ -16,7 +16,6 @@ from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
 from .design_types import (
-    ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
     DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
     DesignDraft,
     SceneContext,
@@ -321,6 +320,52 @@ def _graph_summary_for_llm_derivation(
     return dict(resolved.to_summary_metadata())
 
 
+def _merge_llm_patch_with_explicit_inputs(
+    draft: DesignDraft,
+    llm_patch: Mapping[str, Any],
+) -> tuple[Dict[str, Any], Dict[str, str], list[str], list[str]]:
+    """Merge an LLM patch with explicit user inputs.
+
+    Explicit inputs always win over LLM suggestions.  The returned parameter
+    sources make that precedence visible to the UI and to diagnostics.
+    """
+
+    explicit_patch = sanitize_compose_config_patch(draft.compose_config_patch)
+    normalized_llm_patch = sanitize_compose_config_patch(llm_patch)
+    merged_patch = dict(normalized_llm_patch)
+    explicit_fields = set(explicit_patch)
+    llm_fields = set(normalized_llm_patch)
+    overridden_llm_fields: list[str] = []
+
+    for field_name, explicit_value in explicit_patch.items():
+        if field_name in normalized_llm_patch and normalized_llm_patch[field_name] != explicit_value:
+            overridden_llm_fields.append(field_name)
+        merged_patch[field_name] = explicit_value
+
+    if draft.normalized_scene_query and "query" not in merged_patch:
+        merged_patch["query"] = str(draft.normalized_scene_query).strip()
+
+    defaulted_fields: list[str] = []
+    for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
+        if field_name in merged_patch:
+            continue
+        merged_patch[field_name] = default_value
+        defaulted_fields.append(field_name)
+
+    parameter_sources: Dict[str, str] = {}
+    for field_name in merged_patch:
+        if field_name in explicit_fields:
+            parameter_sources[field_name] = "explicit_input"
+        elif field_name == "query" and draft.normalized_scene_query:
+            parameter_sources[field_name] = "prompt_input"
+        elif field_name in llm_fields:
+            parameter_sources[field_name] = "llm_derived"
+        else:
+            parameter_sources[field_name] = "default_after_llm"
+
+    return merged_patch, parameter_sources, defaulted_fields, sorted(overridden_llm_fields)
+
+
 def _derive_draft_with_llm(
     draft: DesignDraft,
     *,
@@ -385,23 +430,16 @@ def _derive_draft_with_llm(
             graph_summary=graph_summary,
             user_prompt=draft.normalized_scene_query or "walkable complete street",
             current_patch=draft.compose_config_patch,  # Preset base params passed here
+            rag_evidence=evidence,
+            rag_queries=rag_queries,
+            knowledge_source=knowledge_source,
         )
         llm_response = assistant._get_llm_client().chat_json(messages)
         raw_patch = sanitize_compose_config_patch(llm_response.get("compose_config_patch", {}))
-        llm_fields = {key for key in raw_patch if key in ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS}
-        llm_patch = dict(raw_patch)
-        defaulted_fields: list[str] = []
-        for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
-            if field_name not in llm_patch:
-                llm_patch[field_name] = default_value
-                defaulted_fields.append(field_name)
-        if draft.normalized_scene_query and "query" not in llm_patch:
-            llm_patch["query"] = draft.normalized_scene_query
-            defaulted_fields.append("query")
-        parameter_sources = {
-            key: ("llm_derived" if key in llm_fields else "default_after_llm")
-            for key in llm_patch
-        }
+        llm_patch, parameter_sources, defaulted_fields, overridden_llm_fields = _merge_llm_patch_with_explicit_inputs(
+            draft,
+            raw_patch,
+        )
         design_summary = str(llm_response.get("design_summary", "") or "").strip()
         _emit_progress(
             progress_callback,
@@ -413,11 +451,14 @@ def _derive_draft_with_llm(
             design_summary=design_summary or draft.design_summary,
             graph_summary=graph_summary,
             config_patch=llm_patch,
-            llm_raw_fields=sorted(llm_fields),
+            llm_raw_fields=sorted(raw_patch),
             defaulted_fields=sorted(defaulted_fields),
+            overridden_llm_fields=sorted(overridden_llm_fields),
             parameter_sources_by_field=parameter_sources,
             # RAG evidence fields for frontend display
             citations_by_field=citations_by_field,
+            rag_queries=list(rag_queries),
+            rag_evidence=[item.to_dict() for item in evidence],
             knowledge_source=knowledge_source,
             evidence_count=len(evidence),
             preset_id=preset_id,
