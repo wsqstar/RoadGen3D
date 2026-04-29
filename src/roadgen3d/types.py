@@ -106,6 +106,10 @@ class StreetComposeConfig:
     building_height_profile: str = "urban_default_v1"
     land_use_asymmetry_strength: float = 0.0
     left_right_bias: float = 0.0
+    auto_land_use_mode: str = "road_buffer"  # "road_buffer" | "off"
+    land_use_buffer_m: float = 35.0
+    min_land_use_polygon_area_m2: float = 12.0
+    max_frontage_lot_length_m: float = 18.0
     building_front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M
     building_front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M
     zoning_granularity: str = "fine"  # "coarse" | "balanced" | "fine"

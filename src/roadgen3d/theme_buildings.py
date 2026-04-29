@@ -1066,6 +1066,31 @@ def _preview_frontage_intervals_for_length(
     )
 
 
+def _split_frontage_interval(
+    start_m: float,
+    end_m: float,
+    *,
+    max_length_m: float,
+) -> Tuple[Tuple[float, float], ...]:
+    start = float(start_m)
+    end = float(end_m)
+    span = end - start
+    if span <= 1e-6:
+        return tuple()
+    max_length = max(float(max_length_m), 1.0)
+    if span <= max_length + 1e-6:
+        return ((start, end),)
+    count = max(1, int(math.ceil(span / max_length)))
+    step = span / float(count)
+    return tuple(
+        (
+            start + float(idx) * step,
+            end if idx == count - 1 else start + float(idx + 1) * step,
+        )
+        for idx in range(count)
+    )
+
+
 def _large_gap_threshold_m(
     land_use_type: str,
     *,
@@ -1722,7 +1747,7 @@ def _generate_lot_from_cell_interval(
         height_class=height_class,
         target_height_m=float(target_height_m),
         yaw_deg=float(yaw_deg),
-        source="grid_growth",
+        source=str(cell.get("generation_source", "") or "road_buffer"),
         cell_ids=(cell_id,) if cell_id else (),
         segment_ids=segment_ids,
         street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
@@ -1839,6 +1864,7 @@ def generate_grid_growth_lots(
     front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
+    max_frontage_lot_length_m: float = 18.0,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
     min_side_frontage_coverage_ratio = _DEFAULT_MIN_SIDE_FRONTAGE_COVERAGE_RATIO
     max_left_right_coverage_gap = _DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP
@@ -1852,6 +1878,7 @@ def generate_grid_growth_lots(
         annotated_cells.append(payload)
     normalized_granularity = _normalize_zoning_granularity(zoning_granularity)
     continuity = _clamp(float(streetwall_continuity), 0.0, 1.0)
+    max_lot_length = max(float(max_frontage_lot_length_m), 1.0)
     candidate_cells = sorted(
         [
             cell
@@ -1878,6 +1905,15 @@ def generate_grid_growth_lots(
         )
         if not parcel_frontage_intervals:
             continue
+        parcel_frontage_intervals = tuple(
+            sub_interval
+            for start_m, end_m in parcel_frontage_intervals
+            for sub_interval in _split_frontage_interval(
+                float(start_m),
+                float(end_m),
+                max_length_m=float(max_lot_length),
+            )
+        )
         cell_lot_ids: List[str] = []
         side = _cell_side(cell)
         for start_m, end_m in parcel_frontage_intervals:
@@ -1942,6 +1978,7 @@ def generate_grid_growth_lots(
         },
         "zoning_granularity": normalized_granularity,
         "streetwall_continuity": float(round(continuity, 3)),
+        "max_frontage_lot_length_m": float(max_lot_length),
         **frontage_metrics,
         "building_balance_policy": str(balance_metrics.get("building_balance_policy", "balanced_default") or "balanced_default"),
         "building_balance_ok": bool(balance_metrics.get("building_balance_ok", False)),
@@ -2970,6 +3007,30 @@ def build_zoning_grid_preview(
     building_footprints: Sequence[BuildingFootprint],
     road_buffer_m: float = 35.0,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Dict[str, Any]]:
+    auto_land_use_mode = str(getattr(config, "auto_land_use_mode", "road_buffer") or "road_buffer").strip().lower()
+    if auto_land_use_mode == "off":
+        return tuple(), {
+            "enabled": False,
+            "auto_land_use_enabled": False,
+            "cell_count": 0,
+            "theme_cell_counts": {},
+            "building_cell_counts": {},
+            "occupied_building_cells": 0,
+            "buildable_cell_count": 0,
+            "side_land_use_counts": {"left": {}, "right": {}},
+            "active_side_counts": {},
+            "building_buffer_width_m": {"left": 0.0, "right": 0.0},
+            "streetwall_reference_width_m": {"left": 0.0, "right": 0.0},
+            "streetwall_reference_gap_ratio": 0.0,
+            "zoning_preview_mode": "disabled",
+            "frontage_cell_count": 0,
+            "theme_segment_count": int(len(theme_segments)),
+            "buildable_frontage_by_side": {"left": 0.0, "right": 0.0},
+            "merged_land_use_polygon_count": 0,
+            "road_split_count": 0,
+            "sliver_removed_count": 0,
+            "junction_clip_count": 0,
+        }
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     zoning_granularity_raw = getattr(config, "zoning_granularity", "fine")
@@ -3047,6 +3108,8 @@ def build_zoning_grid_preview(
     if not raw_segments:
         return tuple(), {
             "enabled": False,
+            "auto_land_use_enabled": True,
+            "auto_land_use_mode": "road_buffer",
             "cell_count": 0,
             "theme_cell_counts": {},
             "building_cell_counts": {},
@@ -3063,6 +3126,10 @@ def build_zoning_grid_preview(
             "frontage_cell_count": 0,
             "theme_segment_count": int(len(theme_segments)),
             "buildable_frontage_by_side": {"left": 0.0, "right": 0.0},
+            "merged_land_use_polygon_count": 0,
+            "road_split_count": 0,
+            "sliver_removed_count": 0,
+            "junction_clip_count": 0,
         }
 
     try:
@@ -3070,6 +3137,7 @@ def build_zoning_grid_preview(
     except Exception:
         ShapelyPolygon = None  # type: ignore[assignment]
     building_regions = _normalized_building_region_records(placement_context)
+    min_land_use_polygon_area_m2 = max(float(getattr(config, "min_land_use_polygon_area_m2", 12.0) or 12.0), 0.0)
 
     footprint_records: List[Dict[str, Any]] = []
     for footprint in building_footprints:
@@ -3228,6 +3296,8 @@ def build_zoning_grid_preview(
 
             for polygon_xz, cell_station_start_m, cell_station_end_m, street_edge_xz, cell_id in subcells:
                 cell_geom = ShapelyPolygon(polygon_xz) if ShapelyPolygon is not None else None
+                if lane_role in building_roles and cell_geom is not None and float(getattr(cell_geom, "area", 0.0) or 0.0) < min_land_use_polygon_area_m2:
+                    continue
                 cell_bbox = _polygon_bbox(polygon_xz)
                 footprint_ids: List[str] = []
                 footprint_source_counts: Dict[str, int] = {}
@@ -3259,7 +3329,7 @@ def build_zoning_grid_preview(
                     side_land_use_counts[side_name][land_use_type] = side_land_use_counts[side_name].get(land_use_type, 0) + 1
 
                 base_buildable = bool(lane_role in building_roles and land_use_type and land_use_type != "green")
-                buildable = bool(base_buildable and (matched_region is not None if building_regions else True))
+                buildable = bool(base_buildable)
                 cell_center = _polygon_center(polygon_xz)
                 cells.append(
                     {
@@ -3348,6 +3418,24 @@ def build_zoning_grid_preview(
         ),
         "theme_segment_count": int(len(theme_segments)),
         "buildable_frontage_by_side": _buildable_frontage_by_side(cells),
+        "auto_land_use_enabled": True,
+        "auto_land_use_mode": "road_buffer",
+        "merged_land_use_polygon_count": int(
+            len(
+                {
+                    (
+                        str(cell.get("side", "") or ""),
+                        str(cell.get("theme_id", "") or ""),
+                        str(cell.get("land_use_type", "") or ""),
+                    )
+                    for cell in cells
+                    if "building_buffer" in str(cell.get("lane_role", "") or "")
+                }
+            )
+        ),
+        "road_split_count": int(len(raw_segments)),
+        "sliver_removed_count": 0,
+        "junction_clip_count": int(len(junction_anchors)),
     }
     return tuple(cells), summary
 

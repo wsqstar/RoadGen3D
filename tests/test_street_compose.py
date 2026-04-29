@@ -136,6 +136,9 @@ def _setup_fake_retrieval(monkeypatch, asset_ids: list[str]) -> None:
         def load(cls, *args, **kwargs):
             return cls()
 
+        def add(self, embeddings, ids):
+            return None
+
         def search(self, query_embeddings, topk=1):
             ranked = [
                 RetrievalHit(asset_id=asset_id, score=float(1.0 - i * 0.01))
@@ -2854,8 +2857,8 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["frontage_cell_count"] > len(summary["theme_segments"])
 
 
-def test_graph_template_building_regions_force_region_only_building_generation(tmp_path: Path, monkeypatch):
-    pytest.importorskip("trimesh")
+def test_graph_template_building_regions_keep_auto_land_use_generation(tmp_path: Path, monkeypatch):
+    trimesh = pytest.importorskip("trimesh")
     pytest.importorskip("pyproj")
     pytest.importorskip("shapely")
 
@@ -2903,31 +2906,36 @@ def test_graph_template_building_regions_force_region_only_building_generation(t
     step_ids = [step["step_id"] for step in payload["production_steps"]]
 
     assert summary["building_generation_mode_requested"] == "grid_growth"
-    assert summary["building_generation_mode"] == "building_region_direct"
-    assert summary["building_generation_mode_used"] == "building_region_direct"
-    assert "building_regions present" in summary["building_generation_fallback_reason"]
-    assert summary["building_footprint_count"] == len(region_ids)
+    assert summary["building_generation_mode"] == "grid_growth"
+    assert summary["building_generation_mode_used"] == "grid_growth"
+    assert summary["building_generation_fallback_reason"] == ""
+    assert summary["building_footprint_count"] == 0
     assert summary["building_region_count"] == len(region_ids)
-    assert payload["generated_lots"] == []
-    assert payload["zoning_grid"] == []
-    assert "land_use_zoning" not in step_ids
-    assert summary["frontage_parcel_count"] == 0
-    assert summary["zoning_preview_mode"] == "building_region_direct"
-    assert summary["land_use_summary"]["mode"] == "building_region_direct"
-    assert summary["building_summary"]["lot_count"] == 0
-    assert summary["building_summary"]["target_type"] == "footprint"
-    assert summary["building_summary"]["region_direct_mode"] is True
+    assert payload["generated_lots"]
+    assert payload["zoning_grid"]
+    assert "land_use_zoning" in step_ids
+    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["zoning_preview_mode"] == "parcel_first"
+    assert summary["zoning_preview_summary"]["auto_land_use_enabled"] is True
+    assert summary["zoning_preview_summary"]["auto_land_use_mode"] == "road_buffer"
+    assert summary["zoning_preview_summary"]["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["land_use_summary"]["buildable_cell_count"] > 0
+    assert summary["building_summary"]["lot_count"] == len(payload["generated_lots"])
+    assert summary["building_summary"]["target_type"] == "lot"
+    assert summary["building_summary"]["region_direct_mode"] is False
     assert summary["building_summary"]["building_region_count"] == len(region_ids)
     assert summary["infill_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
-    assert len(payload["building_footprints"]) == len(region_ids)
-    assert {footprint["footprint_id"] for footprint in payload["building_footprints"]} == region_ids
-    assert all(footprint["source"] == "building_region" for footprint in payload["building_footprints"])
-    assert all(placement.anchor_geom_id in region_ids for placement in result.placements if placement.placement_group == "building")
-    assert all(plan["anchor_geom_id"] in region_ids for plan in payload["building_placements"])
-    assert all(plan["placement_strategy"] == "building_region" for plan in payload["building_placements"])
+    assert payload["building_footprints"] == []
+    lot_ids = {lot["lot_id"] for lot in payload["generated_lots"]}
+    assert all(lot["source"] == "road_buffer" for lot in payload["generated_lots"])
+    assert all(placement.anchor_geom_id in lot_ids for placement in result.placements if placement.placement_group == "building")
+    assert all(plan["anchor_geom_id"] in lot_ids for plan in payload["building_placements"])
+    assert all(plan["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for plan in payload["building_placements"])
     assert summary["zoning_preview_summary"]["building_region_count"] == len(region_ids)
     assert summary["zoning_preview_summary"]["active_building_region_count"] == len(region_ids)
+    loaded_scene = trimesh.load(Path(result.outputs["scene_glb"]), force="scene")
+    assert any("zoning_proxy" in str(node_name) for node_name in loaded_scene.graph.nodes_geometry)
 
 
 def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path: Path, monkeypatch):

@@ -1079,7 +1079,7 @@ def test_collect_building_footprints_prefers_region_only_generation_when_buildin
     assert [footprint.yaw_deg for footprint in footprints] == pytest.approx([15.0, -20.0])
 
 
-def test_build_zoning_grid_preview_limits_buildable_cells_to_building_regions_and_carries_region_yaw():
+def test_build_zoning_grid_preview_keeps_auto_land_use_when_building_regions_exist():
     graph = RoadSegmentGraph(
         nodes=(
             RoadSegmentNode(
@@ -1138,8 +1138,10 @@ def test_build_zoning_grid_preview_limits_buildable_cells_to_building_regions_an
     assert left_cells
     assert right_cells
     assert any(cell["buildable"] for cell in left_cells)
-    assert all(cell["building_region_id"] == "building_region_left" for cell in left_cells if cell["buildable"])
-    assert all(cell["building_region_yaw_deg"] == pytest.approx(33.0) for cell in left_cells if cell["buildable"])
-    assert all(cell["buildable"] is False for cell in right_cells)
+    assert any(cell["building_region_id"] == "building_region_left" for cell in left_cells)
+    assert any(cell["building_region_yaw_deg"] == pytest.approx(33.0) for cell in left_cells)
+    assert any(cell["buildable"] for cell in right_cells)
+    assert summary["auto_land_use_enabled"] is True
+    assert summary["auto_land_use_mode"] == "road_buffer"
     assert summary["building_region_count"] == 1
     assert summary["active_building_region_count"] == 1

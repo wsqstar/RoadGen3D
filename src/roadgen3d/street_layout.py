@@ -228,14 +228,31 @@ class _LazyMeshCache:
 
         # Load the mesh from metadata
         metadata = self._metadata[asset_id]
-        entry = _load_single_mesh(metadata)
+        try:
+            entry = _load_single_mesh(metadata)
+        except Exception as exc:
+            raise RuntimeError(
+                f"failed to load mesh for asset '{asset_id}' from '{metadata.mesh_path}'"
+            ) from exc
 
-        # LRU eviction: remove oldest entries if cache is full
+        # LRU eviction: remove oldest reloadable entries if cache is full.
+        # Procedural fallback entries have no mesh_path and must stay resident.
         while len(self._mesh_cache) >= self._max_size:
-            if self._access_order:
-                oldest = self._access_order.pop(0)
-                if oldest in self._mesh_cache:
-                    del self._mesh_cache[oldest]
+            if not self._access_order:
+                break
+            oldest = self._access_order.pop(0)
+            oldest_meta = self._metadata.get(oldest)
+            if oldest in self._mesh_cache and str(getattr(oldest_meta, "mesh_path", "") or ""):
+                del self._mesh_cache[oldest]
+                break
+            if oldest in self._mesh_cache:
+                self._access_order.append(oldest)
+                if all(
+                    not str(getattr(self._metadata.get(candidate), "mesh_path", "") or "")
+                    for candidate in self._access_order
+                    if candidate in self._mesh_cache
+                ):
+                    break
 
         # Store in cache
         self._mesh_cache[asset_id] = entry
@@ -281,12 +298,24 @@ class _LazyMeshCache:
                 mesh_path="",  # Placeholder has no path
             )
 
-        # LRU eviction if needed
+        # LRU eviction if needed. Procedural fallback entries have no mesh_path
+        # and cannot be lazy-reloaded, so keep them resident for final export.
         while len(self._mesh_cache) >= self._max_size:
-            if self._access_order:
-                oldest = self._access_order.pop(0)
-                if oldest in self._mesh_cache:
-                    del self._mesh_cache[oldest]
+            if not self._access_order:
+                break
+            oldest = self._access_order.pop(0)
+            oldest_meta = self._metadata.get(oldest)
+            if oldest in self._mesh_cache and str(getattr(oldest_meta, "mesh_path", "") or ""):
+                del self._mesh_cache[oldest]
+                break
+            if oldest in self._mesh_cache:
+                self._access_order.append(oldest)
+                if all(
+                    not str(getattr(self._metadata.get(candidate), "mesh_path", "") or "")
+                    for candidate in self._access_order
+                    if candidate in self._mesh_cache
+                ):
+                    break
 
         self._mesh_cache[asset_id] = entry
         self._access_order.append(asset_id)
@@ -755,6 +784,14 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("building_search_topk must be >= 1")
     if str(getattr(config, "surrounding_building_mode", "grid_growth")).strip().lower() not in {"footprint_based", "grid_growth"}:
         raise ValueError("surrounding_building_mode must be 'footprint_based' or 'grid_growth'")
+    if str(getattr(config, "auto_land_use_mode", "road_buffer")).strip().lower() not in {"road_buffer", "off"}:
+        raise ValueError("auto_land_use_mode must be 'road_buffer' or 'off'")
+    if float(getattr(config, "land_use_buffer_m", 35.0)) <= 0.0:
+        raise ValueError("land_use_buffer_m must be > 0")
+    if float(getattr(config, "min_land_use_polygon_area_m2", 12.0)) < 0.0:
+        raise ValueError("min_land_use_polygon_area_m2 must be >= 0")
+    if float(getattr(config, "max_frontage_lot_length_m", 18.0)) <= 0.0:
+        raise ValueError("max_frontage_lot_length_m must be > 0")
     if str(getattr(config, "zoning_granularity", "fine")).strip().lower() not in {"coarse", "balanced", "fine"}:
         raise ValueError("zoning_granularity must be 'coarse', 'balanced' or 'fine'")
     if not 0.0 <= float(getattr(config, "streetwall_continuity", 0.95)) <= 1.0:
@@ -872,6 +909,9 @@ def _load_building_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             mesh_path = _resolve_path(mesh_path, base_dir)
         else:
             continue  # Skip if no mesh path
+        if not Path(mesh_path).is_file():
+            logger.debug("Skipping building asset '%s' with missing mesh path: %s", asset_id, mesh_path)
+            continue
 
         # Generate text description from bucket and tags if not provided
         text_desc = str(payload.get("text_desc", "")).strip()
@@ -3339,6 +3379,32 @@ def _add_zoning_proxies(
         )
 
 
+def _add_final_land_use_zoning_proxies(
+    scene,
+    zoning_grid: Sequence[Dict[str, object]],
+    *,
+    roughness: Optional[Dict[str, float]] = None,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
+) -> None:
+    land_use_cells = [
+        cell
+        for cell in zoning_grid
+        if "building_buffer" in str(cell.get("lane_role", "") or "")
+    ]
+    if not land_use_cells:
+        return
+    _add_zoning_proxies(
+        scene,
+        land_use_cells,
+        roughness=roughness,
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
+    )
+
+
 def _save_stage_companion_figure(fig: object | None, out_path: Path) -> str:
     if fig is None:
         return ""
@@ -5546,6 +5612,12 @@ def _pick_building_candidate(
         height_class=height_class,
         limit=max(int(search_topk), 1),
     )
+    reranked = [
+        (row, score)
+        for row, score in reranked
+        if str(row.get("category", "") or "").strip().lower() == "building"
+        and str(row.get("asset_role", "") or "").strip().lower() == "building"
+    ]
     payload = {
         "query": query_text,
         "hit_count": len(hits),
@@ -5954,7 +6026,9 @@ def _place_surrounding_buildings(
     mode = requested_mode
     generation_fallback_reason = ""
     building_regions_present = bool(getattr(placement_ctx, "building_regions", ()) or ())
-    if building_regions_present:
+    auto_land_use_mode = str(getattr(config, "auto_land_use_mode", "road_buffer") or "road_buffer").strip().lower()
+    road_buffer_m = float(getattr(config, "land_use_buffer_m", 35.0) or 35.0)
+    if building_regions_present and auto_land_use_mode == "off":
         mode = "footprint_based"
         generation_fallback_reason = (
             "building_regions present; bypassed land_use_zoning/grid generation and used region-only footprints."
@@ -5970,7 +6044,7 @@ def _place_surrounding_buildings(
     zoning_granularity = str(getattr(config, "zoning_granularity", "fine") or "fine")
     streetwall_continuity = float(getattr(config, "streetwall_continuity", 0.95) or 0.95)
     infill_policy = str(getattr(config, "infill_policy", "aggressive") or "aggressive")
-    region_direct_mode = bool(building_regions_present)
+    region_direct_mode = bool(building_regions_present and auto_land_use_mode == "off")
     footprint_frontage_summary: Dict[str, object] = {
         "real_footprint_count": 0,
         "infill_footprint_count": 0,
@@ -5989,7 +6063,7 @@ def _place_surrounding_buildings(
                 placement_context=placement_ctx,
                 theme_segments=theme_segments,
                 road_segment_graph=road_segment_graph,
-                road_buffer_m=35.0,
+                road_buffer_m=road_buffer_m,
                 seed=int(getattr(config, "seed", 0) or 0),
                 height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
                 height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
@@ -6035,7 +6109,7 @@ def _place_surrounding_buildings(
             road_segment_graph=road_segment_graph,
             theme_segments=theme_segments,
             building_footprints=building_footprints,
-            road_buffer_m=35.0,
+            road_buffer_m=road_buffer_m,
         )
     zoning_grid = zoning_grid_base
     lot_generation_summary: Dict[str, object] = {"lot_count": 0}
@@ -6062,7 +6136,7 @@ def _place_surrounding_buildings(
                 road_segment_graph=road_segment_graph,
                 theme_segments=theme_segments,
                 building_footprints=building_footprints,
-                road_buffer_m=35.0,
+                road_buffer_m=road_buffer_m,
             )
             zoning_grid = zoning_grid_base
     if mode == "grid_growth":
@@ -6078,6 +6152,7 @@ def _place_surrounding_buildings(
             front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
             zoning_granularity=zoning_granularity,
             streetwall_continuity=streetwall_continuity,
+            max_frontage_lot_length_m=float(getattr(config, "max_frontage_lot_length_m", 18.0) or 18.0),
         )
     if region_direct_mode:
         land_use_summary = _summarize_building_region_direct_footprints(building_footprints)
@@ -6149,6 +6224,10 @@ def _place_surrounding_buildings(
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
         "building_front_setback_max_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
+        "auto_land_use_mode": str(auto_land_use_mode),
+        "land_use_buffer_m": float(road_buffer_m),
+        "min_land_use_polygon_area_m2": float(getattr(config, "min_land_use_polygon_area_m2", 12.0) or 12.0),
+        "max_frontage_lot_length_m": float(getattr(config, "max_frontage_lot_length_m", 18.0) or 18.0),
         "zoning_granularity": str(zoning_granularity),
         "streetwall_continuity": float(streetwall_continuity),
         "infill_policy": str(infill_policy),
@@ -6190,7 +6269,7 @@ def _place_surrounding_buildings(
         "infill_footprint_count": int(footprint_frontage_summary.get("infill_footprint_count", 0) or 0),
         "frontage_coverage_by_side": dict(frontage_metrics_source.get("frontage_coverage_by_side", {}) or {}),
         "frontage_gap_stats_by_side": dict(frontage_metrics_source.get("frontage_gap_stats_by_side", {}) or {}),
-        "building_region_count": int(len(building_footprints)) if region_direct_mode else 0,
+        "building_region_count": int(len(getattr(placement_ctx, "building_regions", ()) or ())),
         "region_direct_mode": bool(region_direct_mode),
     }
     # Attach continuous height stats when available
@@ -8355,6 +8434,14 @@ def compose_street_scene(
         placement_ctx=placement_ctx,
         poi_ctx=poi_ctx,
         placements=placements,
+        texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+        texture_tracker=scene_texture_tracker,
+        texture_overrides=texture_overrides,
+    )
+    _add_final_land_use_zoning_proxies(
+        scene,
+        zoning_grid,
+        roughness=rough,
         texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
         texture_tracker=scene_texture_tracker,
         texture_overrides=texture_overrides,
