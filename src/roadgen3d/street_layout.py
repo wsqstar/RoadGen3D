@@ -168,6 +168,8 @@ class _MeshMetadata:
     is_scene: bool = False
     native_height_y: float = 0.0
     mesh_path: str = ""  # Path for lazy loading
+    source_scale: float = 1.0
+    source_scale_source: str = ""
 
 
 @dataclass(frozen=True)
@@ -181,6 +183,8 @@ class _MeshCacheEntry:
     center_z: float = 0.0
     is_scene: bool = False
     native_height_y: float = 0.0
+    source_scale: float = 1.0
+    source_scale_source: str = ""
 
 
 class _LazyMeshCache:
@@ -296,6 +300,8 @@ class _LazyMeshCache:
                 is_scene=entry.is_scene,
                 native_height_y=entry.native_height_y,
                 mesh_path="",  # Placeholder has no path
+                source_scale=entry.source_scale,
+                source_scale_source=entry.source_scale_source,
             )
 
         # LRU eviction if needed. Procedural fallback entries have no mesh_path
@@ -323,9 +329,9 @@ class _LazyMeshCache:
     def __contains__(self, asset_id: str) -> bool:
         return asset_id in self._metadata
 
-    def __getitem__(self, asset_id: str) -> _MeshCacheEntry | _MeshMetadata:
-        """Direct access - returns metadata by default."""
-        return self._metadata[asset_id]
+    def __getitem__(self, asset_id: str) -> _MeshCacheEntry:
+        """Direct dict-like access returns the full mesh entry."""
+        return self.get_entry(asset_id)
 
     def __iter__(self):
         """Iterate over metadata keys for backward compatibility."""
@@ -406,6 +412,52 @@ def _safe_int(value: object, default: int = 0) -> int:
         return int(value)  # type: ignore[arg-type]
     except (TypeError, ValueError):
         return int(default)
+
+
+def _positive_float(value: object, default: float = 0.0) -> float:
+    try:
+        parsed = float(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return float(default)
+    if not math.isfinite(parsed) or parsed <= 0.0:
+        return float(default)
+    return float(parsed)
+
+
+def _metric_dimensions_from_row(row: Mapping[str, object]) -> Tuple[float, float, float, str]:
+    width = _positive_float(row.get("metric_width_m"))
+    depth = _positive_float(row.get("metric_depth_m"))
+    height = _positive_float(row.get("metric_height_m"))
+    if width > 0.0 or depth > 0.0 or height > 0.0:
+        return width, depth, height, "metric_fields"
+
+    dimensions = row.get("dimensions_m")
+    if isinstance(dimensions, Mapping):
+        width = _positive_float(dimensions.get("width") or dimensions.get("width_m"))
+        depth = _positive_float(dimensions.get("depth") or dimensions.get("depth_m"))
+        height = _positive_float(dimensions.get("height") or dimensions.get("height_m"))
+        if width > 0.0 or depth > 0.0 or height > 0.0:
+            return width, depth, height, "metric_dimensions_m"
+
+    return 0.0, 0.0, 0.0, ""
+
+
+def _source_scale_for_row(row: Mapping[str, object], span: np.ndarray) -> Tuple[float, str]:
+    explicit = _positive_float(row.get("scale"))
+    if explicit > 0.0:
+        return explicit, "manifest_scale"
+
+    width, depth, height, source = _metric_dimensions_from_row(row)
+    candidates: List[float] = []
+    if width > 0.0 and float(span[0]) > 1e-6:
+        candidates.append(width / float(span[0]))
+    if depth > 0.0 and float(span[2]) > 1e-6:
+        candidates.append(depth / float(span[2]))
+    if height > 0.0 and float(span[1]) > 1e-6:
+        candidates.append(height / float(span[1]))
+    if candidates:
+        return float(min(candidates)), source
+    return 1.0, "native_bbox"
 
 
 def _row_scene_eligible(row: Mapping[str, object]) -> bool:
@@ -683,13 +735,16 @@ def _street_furniture_scale_info(
     config: StreetComposeConfig,
 ) -> Dict[str, Any]:
     native_size = _native_size_for_entry(entry)
-    return compute_asset_scale(
+    scale_info = compute_asset_scale(
         category=category,
         width_m=float(native_size["width_m"]),
         depth_m=float(native_size["depth_m"]),
         height_m=float(native_size["height_m"]),
         mode=str(getattr(config, "asset_scale_mode", "canonical_v1")),
     )
+    scale_info["source_scale"] = float(getattr(entry, "source_scale", 1.0) or 1.0)
+    scale_info["source_scale_source"] = str(getattr(entry, "source_scale_source", "") or "")
+    return scale_info
 
 
 def _is_corridor_layout_mode(layout_mode: object) -> bool:
@@ -873,6 +928,11 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "scene_eligible",
             "mesh_face_count",
             "quality_notes",
+            "scale",
+            "metric_width_m",
+            "metric_depth_m",
+            "metric_height_m",
+            "dimensions_m",
         ):
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
@@ -940,6 +1000,10 @@ def _load_building_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             row["frontage_width_m"] = float(dims.get("width", 0))
             row["depth_m"] = float(dims.get("depth", 0))
             row["height_m"] = float(dims.get("height", 0))
+            row["dimensions_m"] = dict(dims)
+        for optional_key in ("scale", "metric_width_m", "metric_depth_m", "metric_height_m"):
+            if optional_key in payload:
+                row[optional_key] = payload[optional_key]
 
         rows.append(row)
 
@@ -1047,6 +1111,13 @@ def _load_single_mesh(metadata: _MeshMetadata) -> _MeshCacheEntry:
         bounds = np.asarray(display_geom.bounds, dtype=np.float64)
         is_scene = False
 
+    source_scale = float(getattr(metadata, "source_scale", 1.0) or 1.0)
+    if not math.isfinite(source_scale) or source_scale <= 0.0:
+        source_scale = 1.0
+    if abs(source_scale - 1.0) > 1e-9:
+        display_geom.apply_scale(source_scale)
+        bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+
     span = bounds[1] - bounds[0]
     return _MeshCacheEntry(
         mesh=display_geom,
@@ -1057,6 +1128,8 @@ def _load_single_mesh(metadata: _MeshMetadata) -> _MeshCacheEntry:
         center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
         is_scene=bool(is_scene),
         native_height_y=float(max(span[1], 1e-3)),
+        source_scale=source_scale,
+        source_scale_source=str(getattr(metadata, "source_scale_source", "") or ""),
     )
 
 
@@ -1120,16 +1193,23 @@ def _load_mesh_metadata(rows: List[Dict[str, str]]) -> Dict[str, _MeshMetadata]:
                 span = bounds[1] - bounds[0]
                 is_scene = False
 
+            source_scale, source_scale_source = _source_scale_for_row(row, span)
+            effective_span = span * float(source_scale)
+            effective_bounds = bounds * float(source_scale)
+            effective_min_y = float(min_y_val) * float(source_scale)
+
             metadata[asset_id] = _MeshMetadata(
                 asset_id=asset_id,
-                half_x=float(max(span[0] / 2.0, 1e-3)),
-                half_z=float(max(span[2] / 2.0, 1e-3)),
-                min_y=float(max(min_y_val, 0.0)),  # Normalized to >= 0
-                center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
-                center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
+                half_x=float(max(effective_span[0] / 2.0, 1e-3)),
+                half_z=float(max(effective_span[2] / 2.0, 1e-3)),
+                min_y=float(max(effective_min_y, 0.0)),  # Normalized to >= 0
+                center_x=float((effective_bounds[0][0] + effective_bounds[1][0]) / 2.0),
+                center_z=float((effective_bounds[0][2] + effective_bounds[1][2]) / 2.0),
                 is_scene=bool(is_scene),
-                native_height_y=float(max(span[1], 1e-3)),
+                native_height_y=float(max(effective_span[1], 1e-3)),
                 mesh_path=str(mesh_path),
+                source_scale=float(source_scale),
+                source_scale_source=str(source_scale_source),
             )
         finally:
             # Explicitly delete to help GC reclaim memory faster
@@ -5565,6 +5645,8 @@ def _evaluate_slot_candidate(
             "canonical_target": dict(scale_info.get("canonical_target", {}) or {}),
             "asset_scale_mode": str(scale_info.get("asset_scale_mode", "")),
             "scale_fallback_used": bool(scale_info.get("scale_fallback_used", False)),
+            "source_scale": float(scale_info.get("source_scale", 1.0) or 1.0),
+            "source_scale_source": str(scale_info.get("source_scale_source", "") or ""),
             "constraint_penalty": float(constraint_penalty),
             "feasibility_score": float(feasibility_score),
             "violated_rules": tuple(violated_rules),
@@ -5815,26 +5897,28 @@ def _place_building_targets(
         _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
         if row is not None:
             entry = mesh_cache.get_metadata(row["asset_id"])
-            # Calculate individual scales for width and depth
-            raw_scale_x = max(frontage_width_m / max(entry.half_x * 2.0, 1e-3), 0.1)
-            raw_scale_z = max(depth_m / max(entry.half_z * 2.0, 1e-3), 0.1)
-
-            # FIX: Enforce uniform scaling (isotropic) to prevent asset stretching/distortion.
-            # We take the minimum scale to ensure the asset fits within the slot bounds without deformation.
-            uniform_scale_xz = min(raw_scale_x, raw_scale_z)
-
+            scale_candidates = [
+                frontage_width_m / max(entry.half_x * 2.0, 1e-3),
+                depth_m / max(entry.half_z * 2.0, 1e-3),
+            ]
             if _target_height_m > 0.0 and entry.native_height_y > 0.01:
-                scale_y = max(0.75, min(3.0, _target_height_m / entry.native_height_y))
+                scale_candidates.append(_target_height_m / entry.native_height_y)
             else:
                 height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
                     str(row.get("height_class", target.get("height_class", "midrise"))),
                     {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(target.get("height_class", "midrise")), 1.2),
                 )
-                # Use the uniform scale for height estimation to maintain proportions
-                scale_y = uniform_scale_xz * float(height_multiplier)
-
-            # Apply uniform scale to X and Z axes
-            scale_xyz = [float(uniform_scale_xz), float(scale_y), float(uniform_scale_xz)]
+                if entry.native_height_y > 0.01:
+                    desired_height_m = max(4.0, min(60.0, frontage_width_m * float(height_multiplier)))
+                    scale_candidates.append(desired_height_m / entry.native_height_y)
+            finite_candidates = [
+                float(value)
+                for value in scale_candidates
+                if math.isfinite(float(value)) and float(value) > 0.0
+            ]
+            uniform_scale = min(finite_candidates) if finite_candidates else 1.0
+            uniform_scale = max(0.02, min(20.0, float(uniform_scale)))
+            scale_xyz = [float(uniform_scale), float(uniform_scale), float(uniform_scale)]
             asset_id = str(row["asset_id"])
             asset_count += 1
             fallback_reason = ""
@@ -5903,7 +5987,7 @@ def _place_building_targets(
                 selection_source=source,
                 position_xyz=[float(center_xz[0]), float(y), float(center_xz[1])],
                 yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
-                scale=1.0,
+                scale=float(scale_xyz[0]),
                 scale_xyz=[float(value) for value in scale_xyz],
                 bbox_xz=[float(value) for value in bbox],
                 frontage_width_m=frontage_width_m,
@@ -5936,13 +6020,22 @@ def _place_building_targets(
                 score=float(score),
                 position_xyz=[float(center_xz[0]), float(y), float(center_xz[1])],
                 yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
-                scale=1.0,
+                scale=float(scale_xyz[0]),
                 bbox_xz=[float(value) for value in bbox],
                 selection_source=source,
                 placement_group="building",
                 theme_id=theme_id,
                 anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
                 scale_xyz=[float(value) for value in scale_xyz],
+                native_size_m=_native_size_for_entry(entry),
+                canonical_target={
+                    "frontage_width_m": float(frontage_width_m),
+                    "depth_m": float(depth_m),
+                    "target_height_m": float(_target_height_m),
+                },
+                asset_scale_mode="building_uniform_fit",
+                source_scale=float(getattr(entry, "source_scale", 1.0) or 1.0),
+                source_scale_source=str(getattr(entry, "source_scale_source", "") or ""),
             )
         )
         source_name = str(target.get("source", "") or "")
@@ -6711,9 +6804,12 @@ def compose_street_scene(
                 asset_ids = list(building_embeddings.keys())
                 embeddings_list = [building_embeddings[aid] for aid in asset_ids]
                 embedding_matrix = np.stack(embeddings_list)
-                index_store.add(embedding_matrix, asset_ids)
-                building_asset_count = len(asset_ids)
-                logger.info("Added %d building assets to retrieval index", building_asset_count)
+                if hasattr(index_store, "add"):
+                    index_store.add(embedding_matrix, asset_ids)
+                    building_asset_count = len(asset_ids)
+                    logger.info("Added %d building assets to retrieval index", building_asset_count)
+                else:
+                    logger.debug("Skipping building asset index add; index store has no add() method")
     building_index_enabled = building_asset_count > 0
 
     _emit_progress(
@@ -7684,6 +7780,8 @@ def compose_street_scene(
             canonical_target=dict(chosen_candidate.get("canonical_target", {}) or {}),
             asset_scale_mode=str(chosen_candidate.get("asset_scale_mode", "")),
             scale_fallback_used=bool(chosen_candidate.get("scale_fallback_used", False)),
+            source_scale=float(chosen_candidate.get("source_scale", 1.0) or 1.0),
+            source_scale_source=str(chosen_candidate.get("source_scale_source", "") or ""),
             constraint_penalty=float(bpenalty),
             feasibility_score=float(bfeas),
             violated_rules=bviolated,

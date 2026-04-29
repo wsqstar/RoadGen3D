@@ -11,49 +11,49 @@ _CANONICAL_PRIORS: Dict[str, Dict[str, Any]] = {
         "primary_fit": "height_m",
         "target": {"height_m": 7.0, "canopy_width_m": 4.5},
         "secondary_fit": "canopy_width_m",
-        "scale_range": (0.35, 8.0),
+        "scale_range": (0.02, 20.0),
     },
     "bench": {
         "primary_fit": "width_m",
         "target": {"width_m": 1.8, "height_m": 0.8},
         "secondary_fit": "height_m",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 12.0),
     },
     "lamp": {
         "primary_fit": "height_m",
         "target": {"height_m": 6.0},
         "secondary_fit": "",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 20.0),
     },
     "trash": {
         "primary_fit": "height_m",
         "target": {"height_m": 1.1, "width_m": 0.55},
         "secondary_fit": "width_m",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 12.0),
     },
     "mailbox": {
         "primary_fit": "height_m",
         "target": {"height_m": 1.15, "width_m": 0.45},
         "secondary_fit": "width_m",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 12.0),
     },
     "hydrant": {
         "primary_fit": "height_m",
         "target": {"height_m": 0.75},
         "secondary_fit": "",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 12.0),
     },
     "bollard": {
         "primary_fit": "height_m",
         "target": {"height_m": 0.95},
         "secondary_fit": "",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 12.0),
     },
     "bus_stop": {
         "primary_fit": "width_m",
         "target": {"width_m": 3.2, "height_m": 2.6},
         "secondary_fit": "height_m",
-        "scale_range": (0.35, 6.0),
+        "scale_range": (0.02, 12.0),
     },
 }
 
@@ -124,9 +124,11 @@ def compute_asset_scale(
 def summarize_asset_scales(placements: list[Mapping[str, Any]]) -> Dict[str, Dict[str, Any]]:
     grouped: Dict[str, list[float]] = {}
     fallback_counts: Dict[str, int] = {}
+    source_scaled_counts: Dict[str, int] = {}
+    metric_source_counts: Dict[str, int] = {}
     for placement in placements:
         category = str(placement.get("category", "") or "").strip().lower()
-        if category not in _CANONICAL_PRIORS:
+        if not category:
             continue
         scale_raw = placement.get("scale", 1.0)
         if isinstance(scale_raw, (list, tuple)):
@@ -136,6 +138,10 @@ def summarize_asset_scales(placements: list[Mapping[str, Any]]) -> Dict[str, Dic
         grouped.setdefault(category, []).append(scale_value)
         if bool(placement.get("scale_fallback_used", False)):
             fallback_counts[category] = fallback_counts.get(category, 0) + 1
+        if abs(float(placement.get("source_scale", 1.0) or 1.0) - 1.0) > 1e-6:
+            source_scaled_counts[category] = source_scaled_counts.get(category, 0) + 1
+        if str(placement.get("source_scale_source", "") or "").startswith("metric_"):
+            metric_source_counts[category] = metric_source_counts.get(category, 0) + 1
 
     summary: Dict[str, Dict[str, Any]] = {}
     for category, values in grouped.items():
@@ -150,5 +156,7 @@ def summarize_asset_scales(placements: list[Mapping[str, Any]]) -> Dict[str, Dic
             "min_scale": round(float(ordered[0]), 3),
             "max_scale": round(float(ordered[-1]), 3),
             "fallback_count": int(fallback_counts.get(category, 0)),
+            "source_scaled_count": int(source_scaled_counts.get(category, 0)),
+            "metric_source_count": int(metric_source_counts.get(category, 0)),
         }
     return summary

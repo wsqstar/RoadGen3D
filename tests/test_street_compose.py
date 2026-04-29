@@ -443,6 +443,28 @@ def test_compute_asset_scale_canonical_tree_uses_height_target():
     assert scale_info["scale_fallback_used"] is False
 
 
+def test_compute_asset_scale_canonical_can_correct_extreme_asset_sizes():
+    huge_tree = compute_asset_scale(
+        category="tree",
+        width_m=8.0,
+        depth_m=8.0,
+        height_m=100.0,
+        mode="canonical_v1",
+    )
+    tiny_lamp = compute_asset_scale(
+        category="lamp",
+        width_m=0.05,
+        depth_m=0.05,
+        height_m=0.5,
+        mode="canonical_v1",
+    )
+
+    assert huge_tree["applied_scale"] == pytest.approx(0.07, rel=1e-3)
+    assert tiny_lamp["applied_scale"] == pytest.approx(12.0, rel=1e-3)
+    assert huge_tree["native_size_m"]["height_m"] == pytest.approx(100.0)
+    assert tiny_lamp["canonical_target"]["height_m"] == pytest.approx(6.0)
+
+
 def test_compute_asset_scale_native_raw_keeps_identity():
     scale_info = compute_asset_scale(
         category="bench",
@@ -454,6 +476,31 @@ def test_compute_asset_scale_native_raw_keeps_identity():
 
     assert scale_info["applied_scale"] == pytest.approx(1.0)
     assert scale_info["asset_scale_mode"] == "native_raw"
+
+
+def test_mesh_metadata_and_loaded_mesh_apply_manifest_source_scale(tmp_path: Path):
+    trimesh = pytest.importorskip("trimesh")
+    mesh_path = tmp_path / "huge_tree.glb"
+    mesh_path.parent.mkdir(parents=True, exist_ok=True)
+    trimesh.creation.box(extents=(100.0, 50.0, 20.0)).export(mesh_path)
+
+    row = {
+        "asset_id": "huge_tree",
+        "category": "tree",
+        "text_desc": "oversized external tree",
+        "mesh_path": str(mesh_path),
+        "latent_path": str(tmp_path / "latent.pt"),
+        "scale": 0.01,
+    }
+    metadata = street_layout._load_mesh_metadata([row])["huge_tree"]
+    entry = street_layout._load_single_mesh(metadata)
+
+    assert metadata.source_scale == pytest.approx(0.01)
+    assert metadata.source_scale_source == "manifest_scale"
+    assert metadata.half_x * 2.0 == pytest.approx(1.0)
+    assert metadata.native_height_y == pytest.approx(0.5)
+    assert entry.half_x * 2.0 == pytest.approx(1.0)
+    assert entry.native_height_y == pytest.approx(0.5)
 
 
 class _UnitFakeEmbedder:
@@ -2670,6 +2717,12 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["frontage_gap_stats_by_side"]["left"]["gap_count"] >= 0
     assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
     assert summary["building_summary"]["frontage_cell_count"] == summary["frontage_cell_count"]
+    assert all(
+        len(plan.get("scale_xyz", [])) == 3
+        and plan["scale_xyz"][0] == pytest.approx(plan["scale_xyz"][1])
+        and plan["scale_xyz"][0] == pytest.approx(plan["scale_xyz"][2])
+        for plan in payload["building_placements"]
+    )
     assert all(bool(plan["door_added"]) for plan in payload["building_placements"])
     assert all(str(plan["door_facing"]) in {"front", "back", "left", "right"} for plan in payload["building_placements"])
     assert all(float((plan.get("door_dims_m", {}) or {}).get("width_m", 0.0)) >= 1.0 for plan in payload["building_placements"])

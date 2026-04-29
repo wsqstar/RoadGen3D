@@ -987,6 +987,8 @@ class StreetPlacement:
     canonical_target: Dict[str, float] = field(default_factory=dict)
     asset_scale_mode: str = ""
     scale_fallback_used: bool = False
+    source_scale: float = 1.0
+    source_scale_source: str = ""
 
     # -- M5 constraint fields --
     constraint_penalty: float = 0.0
