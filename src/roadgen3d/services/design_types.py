@@ -23,13 +23,15 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "sidewalk_width_m",
     "lane_count",
     "density",
+    "building_density",
+    "building_max_per_100m",
     "ped_demand_level",
     "bike_demand_level",
     "transit_demand_level",
     "vehicle_demand_level",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
-_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density"})
+_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m"})
 _INT_FIELDS = frozenset({"lane_count"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
@@ -56,6 +58,8 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "sidewalk_width_m": 2.4,
     "lane_count": 2,
     "density": 1.0,
+    "building_density": 0.55,
+    "building_max_per_100m": 10.0,
     "ped_demand_level": "medium",
     "bike_demand_level": "low",
     "transit_demand_level": "medium",

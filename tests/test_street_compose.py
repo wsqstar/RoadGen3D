@@ -22,6 +22,7 @@ from roadgen3d.types import (
     BuildingPlacementPlan,
     DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    GeneratedLot,
     LayoutSlotPlan,
     RetrievalHit,
     StreetComposeConfig,
@@ -463,6 +464,21 @@ def test_compute_asset_scale_canonical_can_correct_extreme_asset_sizes():
     assert tiny_lamp["applied_scale"] == pytest.approx(12.0, rel=1e-3)
     assert huge_tree["native_size_m"]["height_m"] == pytest.approx(100.0)
     assert tiny_lamp["canonical_target"]["height_m"] == pytest.approx(6.0)
+    assert tiny_lamp["scale_gate_failed"] is False
+
+
+def test_compute_asset_scale_flags_assets_that_cannot_meet_category_bounds():
+    scale_info = compute_asset_scale(
+        category="lamp",
+        width_m=20.0,
+        depth_m=20.0,
+        height_m=6.0,
+        mode="canonical_v1",
+    )
+
+    assert scale_info["applied_scale"] == pytest.approx(1.0)
+    assert scale_info["scale_gate_failed"] is True
+    assert "width_m_outside" in scale_info["scale_gate_reason"]
 
 
 def test_compute_asset_scale_native_raw_keeps_identity():
@@ -476,6 +492,39 @@ def test_compute_asset_scale_native_raw_keeps_identity():
 
     assert scale_info["applied_scale"] == pytest.approx(1.0)
     assert scale_info["asset_scale_mode"] == "native_raw"
+
+
+def test_building_density_selector_keeps_balanced_spacing():
+    lots = []
+    for idx in range(20):
+        side = "left" if idx < 10 else "right"
+        local_idx = idx if side == "left" else idx - 10
+        lots.append(
+            GeneratedLot(
+                lot_id=f"lot_{idx:03d}",
+                polygon_xz=((float(local_idx), 0.0), (float(local_idx + 1), 0.0), (float(local_idx + 1), 4.0), (float(local_idx), 4.0)),
+                center_xz=(float(local_idx) + 0.5, 2.0 if side == "left" else -2.0),
+                side=side,
+                land_use_type="commercial",
+                theme_id="theme_000",
+                frontage_width_m=8.0,
+                depth_m=8.0,
+                street_edge_xz=(float(local_idx) + 0.5, 0.0),
+                placement_xz=(float(local_idx) + 0.5, 2.0 if side == "left" else -2.0),
+            )
+        )
+
+    selected, summary = street_layout._select_building_lots_for_density(
+        lots,
+        density=0.5,
+        max_per_100m=8.0,
+        buildable_frontage_by_side={"left": 80.0, "right": 80.0},
+    )
+
+    assert len(selected) == 10
+    assert summary["removed_lot_count"] == 10
+    assert summary["selected_by_side"] == {"left": 5, "right": 5}
+    assert {lot.side for lot in selected} == {"left", "right"}
 
 
 def test_mesh_metadata_and_loaded_mesh_apply_manifest_source_scale(tmp_path: Path):
@@ -497,10 +546,88 @@ def test_mesh_metadata_and_loaded_mesh_apply_manifest_source_scale(tmp_path: Pat
 
     assert metadata.source_scale == pytest.approx(0.01)
     assert metadata.source_scale_source == "manifest_scale"
+    assert metadata.source_scale_confidence == "explicit"
     assert metadata.half_x * 2.0 == pytest.approx(1.0)
     assert metadata.native_height_y == pytest.approx(0.5)
     assert entry.half_x * 2.0 == pytest.approx(1.0)
     assert entry.native_height_y == pytest.approx(0.5)
+
+
+def test_source_scale_infers_consistent_metric_dimensions_and_rejects_conflicts():
+    scale, source, confidence, rejected, metric_size = street_layout._source_scale_for_row(
+        {"dimensions_m": {"width": 20.0, "depth": 4.0, "height": 10.0}},
+        np.asarray([10.0, 5.0, 2.0], dtype=np.float64),
+    )
+
+    assert scale == pytest.approx(2.0)
+    assert source == "metric_dimensions_m"
+    assert confidence == "metric_high"
+    assert rejected == ""
+    assert metric_size["width_m"] == pytest.approx(20.0)
+
+    rejected_scale, rejected_source, rejected_confidence, rejected_reason, _ = street_layout._source_scale_for_row(
+        {"dimensions_m": {"width": 20.0, "depth": 999.0, "height": 10.0}},
+        np.asarray([10.0, 5.0, 2.0], dtype=np.float64),
+    )
+
+    assert rejected_scale == pytest.approx(1.0)
+    assert rejected_source == "native_bbox"
+    assert rejected_confidence == "rejected"
+    assert rejected_reason.startswith("metric_ratio_conflict")
+
+
+def test_source_scale_accepts_swapped_horizontal_metric_axes():
+    scale, source, confidence, rejected, _ = street_layout._source_scale_for_row(
+        {"dimensions_m": {"width": 20.0, "depth": 4.0, "height": 10.0}},
+        np.asarray([4.0, 10.0, 20.0], dtype=np.float64),
+    )
+
+    assert scale == pytest.approx(1.0)
+    assert source == "metric_dimensions_m"
+    assert confidence == "metric_high_swapped_axes"
+    assert rejected == ""
+
+
+def test_real_building_scale_rejects_assets_that_need_extreme_fit_scale():
+    entry = street_layout._MeshMetadata(
+        asset_id="oversized_building",
+        half_x=50.0,
+        half_z=50.0,
+        min_y=0.0,
+        native_height_y=20.0,
+    )
+
+    decision = street_layout._resolve_real_building_scale(
+        entry=entry,
+        frontage_width_m=10.0,
+        depth_m=10.0,
+        target_height_m=12.0,
+    )
+
+    assert decision["accepted"] is False
+    assert decision["reason"] == "building_asset_rejected_size_mismatch"
+    assert decision["scale"] < 0.75
+
+
+def test_real_building_scale_preserves_reasonable_native_size():
+    entry = street_layout._MeshMetadata(
+        asset_id="reasonable_building",
+        half_x=5.0,
+        half_z=4.0,
+        min_y=0.0,
+        native_height_y=12.0,
+    )
+
+    decision = street_layout._resolve_real_building_scale(
+        entry=entry,
+        frontage_width_m=12.0,
+        depth_m=10.0,
+        target_height_m=12.0,
+    )
+
+    assert decision["accepted"] is True
+    assert decision["scale"] == pytest.approx(1.0)
+    assert decision["final_size_m"]["height_m"] == pytest.approx(12.0)
 
 
 class _UnitFakeEmbedder:
@@ -756,7 +883,7 @@ def test_load_real_manifest_preserves_scene_ready_fields(tmp_path: Path):
     assert rows[0]["quality_notes"] == ["scene_ready", "high_face_count"]
 
 
-def test_add_instance_meshes_adds_attached_building_door_geometry(tmp_path: Path):
+def test_add_instance_meshes_adds_doors_only_for_procedural_buildings(tmp_path: Path):
     trimesh = pytest.importorskip("trimesh")
     mesh_path = tmp_path / "building_asset.glb"
     building_mesh = trimesh.creation.box(extents=(10.0, 12.0, 8.0))
@@ -789,12 +916,46 @@ def test_add_instance_meshes_adds_attached_building_door_geometry(tmp_path: Path
         placement_group="building",
         scale_xyz=[1.0, 1.0, 1.0],
     )
-    building_plan = BuildingPlacementPlan(
+    real_building_plan = BuildingPlacementPlan(
         instance_id="inst_bldg_0001",
         footprint_id="lot_001",
         theme_id="theme_000",
         asset_id="building_asset",
         selection_source="building_asset",
+        position_xyz=[0.0, placement_y, 0.0],
+        yaw_deg=0.0,
+        scale=1.0,
+        scale_xyz=[1.0, 1.0, 1.0],
+        bbox_xz=[-5.0, 5.0, -4.0, 4.0],
+        frontage_width_m=10.0,
+        depth_m=8.0,
+        side="left",
+        land_use_type="commercial",
+        street_edge_xz=(0.0, -4.0),
+        placement_xz=(0.0, 0.0),
+        anchor_geom_id="lot_001",
+        door_added=False,
+        door_missing_reason="real_building_asset_has_native_door",
+    )
+
+    real_scene = trimesh.Scene()
+    street_layout._add_instance_meshes(
+        scene=real_scene,
+        placements=[placement],
+        mesh_cache=cache,
+        building_plans_by_instance={real_building_plan.instance_id: real_building_plan},
+    )
+
+    node_names = set(real_scene.graph.nodes_geometry)
+    assert any(node_name.startswith("inst_bldg_0001") for node_name in node_names)
+    assert not any(node_name.startswith("inst_bldg_0001_door_") for node_name in node_names)
+
+    fallback_plan = BuildingPlacementPlan(
+        instance_id="inst_bldg_0001",
+        footprint_id="lot_001",
+        theme_id="theme_000",
+        asset_id="building_asset",
+        selection_source="procedural_fallback",
         position_xyz=[0.0, placement_y, 0.0],
         yaw_deg=0.0,
         scale=1.0,
@@ -815,19 +976,17 @@ def test_add_instance_meshes_adds_attached_building_door_geometry(tmp_path: Path
         door_dims_m={"width_m": 1.2, "height_m": 2.4, "thickness_m": 0.08},
         door_center_world_xyz=[0.0, 1.2, -4.055],
     )
-
-    scene = trimesh.Scene()
+    fallback_scene = trimesh.Scene()
     street_layout._add_instance_meshes(
-        scene=scene,
+        scene=fallback_scene,
         placements=[placement],
         mesh_cache=cache,
-        building_plans_by_instance={building_plan.instance_id: building_plan},
+        building_plans_by_instance={fallback_plan.instance_id: fallback_plan},
     )
 
-    node_names = set(scene.graph.nodes_geometry)
-    assert any(node_name.startswith("inst_bldg_0001") for node_name in node_names)
-    assert any(node_name.startswith("inst_bldg_0001_door_") for node_name in node_names)
-    assert len(scene.geometry) >= 4
+    fallback_node_names = set(fallback_scene.graph.nodes_geometry)
+    assert any(node_name.startswith("inst_bldg_0001_door_") for node_name in fallback_node_names)
+    assert len(fallback_scene.geometry) >= 4
 
 
 def test_building_door_local_pose_selects_facade_nearest_road():
@@ -2706,10 +2865,13 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["building_summary"]["infill_footprint_count"] == 0
     assert summary["door_enabled"] is True
     assert summary["door_strategy"] == "attached_3d_v1"
-    assert summary["door_count"] == len(payload["building_placements"])
-    assert summary["building_summary"]["door_count"] == len(payload["building_placements"])
-    assert summary["door_count_by_side"]["left"] > 0
-    assert summary["door_count_by_side"]["right"] > 0
+    assert summary["door_policy"] == "procedural_fallback_only"
+    assert summary["door_count"] == 0
+    assert summary["building_summary"]["door_count"] == 0
+    assert summary["door_required_count"] == 0
+    assert summary["door_skipped_existing_asset_count"] == len(payload["building_placements"])
+    assert summary["building_summary"]["door_skipped_existing_asset_count"] == len(payload["building_placements"])
+    assert summary["door_count_by_side"] == {}
     assert summary["door_missing_building_count"] == 0
     assert summary["building_summary"]["door_missing_reason_counts"] == {}
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
@@ -2723,11 +2885,12 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
         and plan["scale_xyz"][0] == pytest.approx(plan["scale_xyz"][2])
         for plan in payload["building_placements"]
     )
-    assert all(bool(plan["door_added"]) for plan in payload["building_placements"])
-    assert all(str(plan["door_facing"]) in {"front", "back", "left", "right"} for plan in payload["building_placements"])
-    assert all(float((plan.get("door_dims_m", {}) or {}).get("width_m", 0.0)) >= 1.0 for plan in payload["building_placements"])
-    assert all(float((plan.get("door_dims_m", {}) or {}).get("height_m", 0.0)) >= 2.2 for plan in payload["building_placements"])
-    assert all(len(plan.get("door_center_world_xyz", []) or []) == 3 for plan in payload["building_placements"])
+    assert all(plan["asset_scale_mode"] == "building_real_preserve" for plan in payload["building_placements"])
+    assert all(0.75 <= float(plan["scale"]) <= 1.35 for plan in payload["building_placements"])
+    assert summary["building_asset_rejected_size_mismatch_count"] >= 0
+    assert "building_asset_rejected_size_mismatch_count" in summary["asset_scale_summary"]["_diagnostics"]
+    assert all(not bool(plan["door_added"]) for plan in payload["building_placements"])
+    assert all(plan["door_missing_reason"] == "real_building_asset_has_native_door" for plan in payload["building_placements"])
 
 
 def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, monkeypatch):
@@ -2892,11 +3055,16 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert building_plans
     assert all(placement.asset_id.startswith("building_fallback_") for placement in building_group)
     assert all(placement.selection_source == "procedural_fallback" for placement in building_group)
+    assert all(plan["asset_scale_mode"] == "procedural_fallback_fit" for plan in building_plans)
     assert summary["building_summary"]["fallback_count"] > 0
+    assert summary["procedural_building_fallback_count"] == summary["building_summary"]["fallback_count"]
     assert summary["building_generation_mode"] == "grid_growth"
     assert summary["building_summary"]["real_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
     assert summary["building_summary"]["door_count"] == len(payload["building_placements"])
+    assert summary["building_summary"]["door_policy"] == "procedural_fallback_only"
+    assert summary["building_summary"]["door_required_count"] == len(payload["building_placements"])
+    assert summary["building_summary"]["door_skipped_existing_asset_count"] == 0
     assert summary["building_summary"]["door_missing_building_count"] == 0
     assert summary["building_balance_ok"] is True
     assert summary["street_furniture_balance_ok"] is True

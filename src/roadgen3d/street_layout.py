@@ -30,7 +30,7 @@ from .beauty import (
     style_palette,
     surface_roughness,
 )
-from .asset_scale import VALID_ASSET_SCALE_MODES, compute_asset_scale, summarize_asset_scales
+from .asset_scale import VALID_ASSET_SCALE_MODES, asset_scale_prior, compute_asset_scale, summarize_asset_scales
 from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
 from .entrance_analysis import (
@@ -170,6 +170,10 @@ class _MeshMetadata:
     mesh_path: str = ""  # Path for lazy loading
     source_scale: float = 1.0
     source_scale_source: str = ""
+    source_scale_confidence: str = ""
+    source_scale_rejected_reason: str = ""
+    raw_size_m: Dict[str, float] = dataclasses.field(default_factory=dict)
+    metric_size_m: Dict[str, float] = dataclasses.field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -185,6 +189,10 @@ class _MeshCacheEntry:
     native_height_y: float = 0.0
     source_scale: float = 1.0
     source_scale_source: str = ""
+    source_scale_confidence: str = ""
+    source_scale_rejected_reason: str = ""
+    raw_size_m: Dict[str, float] = dataclasses.field(default_factory=dict)
+    metric_size_m: Dict[str, float] = dataclasses.field(default_factory=dict)
 
 
 class _LazyMeshCache:
@@ -302,6 +310,10 @@ class _LazyMeshCache:
                 mesh_path="",  # Placeholder has no path
                 source_scale=entry.source_scale,
                 source_scale_source=entry.source_scale_source,
+                source_scale_confidence=entry.source_scale_confidence,
+                source_scale_rejected_reason=entry.source_scale_rejected_reason,
+                raw_size_m=dict(entry.raw_size_m or _native_size_for_entry(entry)),
+                metric_size_m=dict(entry.metric_size_m or {}),
             )
 
         # LRU eviction if needed. Procedural fallback entries have no mesh_path
@@ -442,22 +454,72 @@ def _metric_dimensions_from_row(row: Mapping[str, object]) -> Tuple[float, float
     return 0.0, 0.0, 0.0, ""
 
 
-def _source_scale_for_row(row: Mapping[str, object], span: np.ndarray) -> Tuple[float, str]:
-    explicit = _positive_float(row.get("scale"))
-    if explicit > 0.0:
-        return explicit, "manifest_scale"
+def _size_payload_from_dimensions(width: float, depth: float, height: float) -> Dict[str, float]:
+    payload: Dict[str, float] = {}
+    if float(width) > 0.0:
+        payload["width_m"] = float(width)
+    if float(depth) > 0.0:
+        payload["depth_m"] = float(depth)
+    if float(height) > 0.0:
+        payload["height_m"] = float(height)
+    return payload
 
-    width, depth, height, source = _metric_dimensions_from_row(row)
-    candidates: List[float] = []
-    if width > 0.0 and float(span[0]) > 1e-6:
-        candidates.append(width / float(span[0]))
-    if depth > 0.0 and float(span[2]) > 1e-6:
-        candidates.append(depth / float(span[2]))
-    if height > 0.0 and float(span[1]) > 1e-6:
-        candidates.append(height / float(span[1]))
-    if candidates:
-        return float(min(candidates)), source
-    return 1.0, "native_bbox"
+
+def _source_scale_for_row(row: Mapping[str, object], span: np.ndarray) -> Tuple[float, str, str, str, Dict[str, float]]:
+    explicit = _positive_float(row.get("scale"))
+    width, depth, height, metric_source = _metric_dimensions_from_row(row)
+    metric_size = _size_payload_from_dimensions(width, depth, height)
+    if explicit > 0.0:
+        return explicit, "manifest_scale", "explicit", "", metric_size
+
+    if not metric_source:
+        return 1.0, "native_bbox", "native", "", metric_size
+
+    span_x = float(span[0])
+    span_y = float(span[1])
+    span_z = float(span[2])
+
+    def _candidate_ratios(*, swapped_horizontal_axes: bool) -> List[float]:
+        ratios: List[float] = []
+        x_metric = depth if swapped_horizontal_axes else width
+        z_metric = width if swapped_horizontal_axes else depth
+        if x_metric > 0.0 and span_x > 1e-6:
+            ratios.append(float(x_metric) / span_x)
+        if z_metric > 0.0 and span_z > 1e-6:
+            ratios.append(float(z_metric) / span_z)
+        if height > 0.0 and span_y > 1e-6:
+            ratios.append(float(height) / span_y)
+        return ratios
+
+    candidates: List[Tuple[float, float, bool, List[float]]] = []
+    for swapped in (False, True):
+        ratios = _candidate_ratios(swapped_horizontal_axes=swapped)
+        if len(ratios) < 2:
+            continue
+        ordered = sorted(float(value) for value in ratios if float(value) > 0.0 and math.isfinite(float(value)))
+        if len(ordered) < 2:
+            continue
+        spread = float(ordered[-1] / max(ordered[0], 1e-9))
+        median = float(ordered[len(ordered) // 2]) if len(ordered) % 2 else float((ordered[len(ordered) // 2 - 1] + ordered[len(ordered) // 2]) / 2.0)
+        candidates.append((spread, median, swapped, ordered))
+
+    if not candidates:
+        return 1.0, "native_bbox", "rejected", "insufficient_metric_axes", metric_size
+
+    spread, median, swapped, ratios = min(candidates, key=lambda item: (item[0], abs(math.log(max(item[1], 1e-9)))))
+    if spread <= 1.35:
+        confidence = "metric_high_swapped_axes" if swapped else "metric_high"
+        return float(median), metric_source, confidence, "", metric_size
+    if spread <= 1.75:
+        confidence = "metric_medium_swapped_axes" if swapped else "metric_medium"
+        return float(median), metric_source, confidence, "", metric_size
+    return (
+        1.0,
+        "native_bbox",
+        "rejected",
+        f"metric_ratio_conflict_{spread:.2f}",
+        metric_size,
+    )
 
 
 def _row_scene_eligible(row: Mapping[str, object]) -> bool:
@@ -725,7 +787,17 @@ def _native_size_for_entry(entry: _MeshCacheEntry | _MeshMetadata) -> Dict[str, 
         "width_m": float(max(entry.half_x * 2.0, 0.0)),
         "depth_m": float(max(entry.half_z * 2.0, 0.0)),
         "height_m": float(max(entry.native_height_y, 0.0)),
+        "canopy_width_m": float(max(entry.half_x * 2.0, entry.half_z * 2.0, 0.0)),
     }
+
+
+def _raw_size_for_entry(entry: _MeshCacheEntry | _MeshMetadata) -> Dict[str, float]:
+    raw_size = dict(getattr(entry, "raw_size_m", {}) or {})
+    return raw_size or _native_size_for_entry(entry)
+
+
+def _metric_size_for_entry(entry: _MeshCacheEntry | _MeshMetadata) -> Dict[str, float]:
+    return dict(getattr(entry, "metric_size_m", {}) or {})
 
 
 def _street_furniture_scale_info(
@@ -735,15 +807,53 @@ def _street_furniture_scale_info(
     config: StreetComposeConfig,
 ) -> Dict[str, Any]:
     native_size = _native_size_for_entry(entry)
+    scale_native_size = dict(native_size)
+    semantic_axis_remap = ""
+    if str(category).strip().lower() in {"tree", "lamp", "hydrant", "bollard"}:
+        horizontal_max = max(float(native_size["width_m"]), float(native_size["depth_m"]))
+        native_height = float(native_size["height_m"])
+        if horizontal_max > 0.0 and native_height > 0.0 and native_height < horizontal_max * 0.5:
+            scale_native_size["height_m"] = float(horizontal_max)
+            semantic_axis_remap = "max_horizontal_axis_as_height"
     scale_info = compute_asset_scale(
         category=category,
-        width_m=float(native_size["width_m"]),
-        depth_m=float(native_size["depth_m"]),
-        height_m=float(native_size["height_m"]),
+        width_m=float(scale_native_size["width_m"]),
+        depth_m=float(scale_native_size["depth_m"]),
+        height_m=float(scale_native_size["height_m"]),
         mode=str(getattr(config, "asset_scale_mode", "canonical_v1")),
     )
+    applied_scale = float(scale_info.get("applied_scale", 1.0) or 1.0)
+    sanity_bounds = dict(asset_scale_prior(category).get("sanity_bounds", {}) or {})
+    footprint_caps: List[float] = []
+    for dim_key, native_key in (("width_m", "width_m"), ("depth_m", "depth_m"), ("canopy_width_m", "canopy_width_m")):
+        bounds = sanity_bounds.get(dim_key)
+        native_value = float(native_size.get(native_key, 0.0) or 0.0)
+        if bounds and native_value > 1e-6:
+            footprint_caps.append(float(bounds[1]) / native_value)
+    if footprint_caps:
+        footprint_cap = max(0.02, min(float(value) for value in footprint_caps if float(value) > 0.0))
+        if applied_scale > footprint_cap:
+            applied_scale = float(footprint_cap)
+            scale_info["applied_scale"] = applied_scale
+            existing_reason = str(scale_info.get("scale_gate_reason", "") or "")
+            scale_info["scale_gate_failed"] = True
+            scale_info["scale_gate_blocking"] = False
+            scale_info["scale_gate_reason"] = ",".join(
+                reason for reason in (existing_reason, "footprint_capped_for_placement") if reason
+            )
+    scale_info["native_size_m"] = dict(native_size)
+    scale_info["final_size_m"] = {
+        key: float(value) * applied_scale
+        for key, value in native_size.items()
+    }
+    if semantic_axis_remap:
+        scale_info["semantic_axis_remap"] = semantic_axis_remap
     scale_info["source_scale"] = float(getattr(entry, "source_scale", 1.0) or 1.0)
     scale_info["source_scale_source"] = str(getattr(entry, "source_scale_source", "") or "")
+    scale_info["source_scale_confidence"] = str(getattr(entry, "source_scale_confidence", "") or "")
+    scale_info["source_scale_rejected_reason"] = str(getattr(entry, "source_scale_rejected_reason", "") or "")
+    scale_info["raw_size_m"] = _raw_size_for_entry(entry)
+    scale_info["metric_size_m"] = _metric_size_for_entry(entry)
     return scale_info
 
 
@@ -851,6 +961,10 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("zoning_granularity must be 'coarse', 'balanced' or 'fine'")
     if not 0.0 <= float(getattr(config, "streetwall_continuity", 0.95)) <= 1.0:
         raise ValueError("streetwall_continuity must be in [0.0, 1.0]")
+    if not 0.0 <= float(getattr(config, "building_density", 0.55)) <= 1.0:
+        raise ValueError("building_density must be in [0.0, 1.0]")
+    if float(getattr(config, "building_max_per_100m", 10.0)) <= 0.0:
+        raise ValueError("building_max_per_100m must be > 0")
     if str(getattr(config, "infill_policy", "aggressive")).strip().lower() not in {
         "off",
         "large_gap_only",
@@ -1130,6 +1244,10 @@ def _load_single_mesh(metadata: _MeshMetadata) -> _MeshCacheEntry:
         native_height_y=float(max(span[1], 1e-3)),
         source_scale=source_scale,
         source_scale_source=str(getattr(metadata, "source_scale_source", "") or ""),
+        source_scale_confidence=str(getattr(metadata, "source_scale_confidence", "") or ""),
+        source_scale_rejected_reason=str(getattr(metadata, "source_scale_rejected_reason", "") or ""),
+        raw_size_m=dict(getattr(metadata, "raw_size_m", {}) or {}),
+        metric_size_m=dict(getattr(metadata, "metric_size_m", {}) or {}),
     )
 
 
@@ -1193,10 +1311,16 @@ def _load_mesh_metadata(rows: List[Dict[str, str]]) -> Dict[str, _MeshMetadata]:
                 span = bounds[1] - bounds[0]
                 is_scene = False
 
-            source_scale, source_scale_source = _source_scale_for_row(row, span)
+            source_scale, source_scale_source, source_scale_confidence, source_scale_rejected_reason, metric_size_m = _source_scale_for_row(row, span)
             effective_span = span * float(source_scale)
             effective_bounds = bounds * float(source_scale)
             effective_min_y = float(min_y_val) * float(source_scale)
+            raw_size_m = {
+                "width_m": float(max(span[0], 0.0)),
+                "depth_m": float(max(span[2], 0.0)),
+                "height_m": float(max(span[1], 0.0)),
+                "canopy_width_m": float(max(span[0], span[2], 0.0)),
+            }
 
             metadata[asset_id] = _MeshMetadata(
                 asset_id=asset_id,
@@ -1210,6 +1334,10 @@ def _load_mesh_metadata(rows: List[Dict[str, str]]) -> Dict[str, _MeshMetadata]:
                 mesh_path=str(mesh_path),
                 source_scale=float(source_scale),
                 source_scale_source=str(source_scale_source),
+                source_scale_confidence=str(source_scale_confidence),
+                source_scale_rejected_reason=str(source_scale_rejected_reason),
+                raw_size_m=raw_size_m,
+                metric_size_m=dict(metric_size_m),
             )
         finally:
             # Explicitly delete to help GC reclaim memory faster
@@ -1777,6 +1905,12 @@ def _placeholder_building_entry(
         center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
         center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
         native_height_y=float(max(span[1], 1e-3)),
+        raw_size_m={
+            "width_m": float(max(span[0], 0.0)),
+            "depth_m": float(max(span[2], 0.0)),
+            "height_m": float(max(span[1], 0.0)),
+            "canopy_width_m": float(max(span[0], span[2], 0.0)),
+        },
     )
 
 
@@ -5518,6 +5652,8 @@ def _evaluate_slot_candidate(
         return None, "out_of_target_strip"
     if not _point_within_theme_segment(point_xz, theme_segment=theme_segment, road_segment_graph=road_segment_graph):
         return None, "out_of_theme_range"
+    if bool(scale_info.get("scale_gate_blocking", False)):
+        return None, "scale_gate_failed"
 
     bbox = _compute_bbox(
         x=float(point_xz[0]),
@@ -5642,11 +5778,18 @@ def _evaluate_slot_candidate(
             "bbox": bbox,
             "scale": float(scale_info.get("applied_scale", 1.0) or 1.0),
             "native_size_m": dict(scale_info.get("native_size_m", {}) or {}),
+            "raw_size_m": dict(scale_info.get("raw_size_m", {}) or {}),
+            "metric_size_m": dict(scale_info.get("metric_size_m", {}) or {}),
+            "final_size_m": dict(scale_info.get("final_size_m", {}) or {}),
             "canonical_target": dict(scale_info.get("canonical_target", {}) or {}),
             "asset_scale_mode": str(scale_info.get("asset_scale_mode", "")),
             "scale_fallback_used": bool(scale_info.get("scale_fallback_used", False)),
             "source_scale": float(scale_info.get("source_scale", 1.0) or 1.0),
             "source_scale_source": str(scale_info.get("source_scale_source", "") or ""),
+            "source_scale_confidence": str(scale_info.get("source_scale_confidence", "") or ""),
+            "source_scale_rejected_reason": str(scale_info.get("source_scale_rejected_reason", "") or ""),
+            "scale_gate_failed": bool(scale_info.get("scale_gate_failed", False)),
+            "scale_gate_reason": str(scale_info.get("scale_gate_reason", "") or ""),
             "constraint_penalty": float(constraint_penalty),
             "feasibility_score": float(feasibility_score),
             "violated_rules": tuple(violated_rules),
@@ -5661,7 +5804,7 @@ def _evaluate_slot_candidate(
         None,
     )
 
-def _pick_building_candidate(
+def _rank_building_candidates_for_target(
     *,
     query: str,
     theme_name: str,
@@ -5673,8 +5816,7 @@ def _pick_building_candidate(
     index_store: FaissIndexStore,
     asset_by_id: Dict[str, Dict[str, object]],
     search_topk: int,
-    rng: random.Random,
-) -> Tuple[Optional[Dict[str, object]], float, str, Dict[str, object]]:
+) -> Tuple[List[Tuple[Dict[str, object], float]], Dict[str, object]]:
     query_text = building_query(
         query,
         theme_name=theme_name,
@@ -5713,6 +5855,35 @@ def _pick_building_candidate(
             for row, score in reranked
         ],
     }
+    return reranked, payload
+
+
+def _pick_building_candidate(
+    *,
+    query: str,
+    theme_name: str,
+    frontage_width_m: float,
+    depth_m: float,
+    road_type: str,
+    height_class: str,
+    embedder: ClipTextEmbedder,
+    index_store: FaissIndexStore,
+    asset_by_id: Dict[str, Dict[str, object]],
+    search_topk: int,
+    rng: random.Random,
+) -> Tuple[Optional[Dict[str, object]], float, str, Dict[str, object]]:
+    reranked, payload = _rank_building_candidates_for_target(
+        query=query,
+        theme_name=theme_name,
+        frontage_width_m=frontage_width_m,
+        depth_m=depth_m,
+        road_type=road_type,
+        height_class=height_class,
+        embedder=embedder,
+        index_store=index_store,
+        asset_by_id=asset_by_id,
+        search_topk=search_topk,
+    )
     if not reranked:
         return None, 0.0, "procedural_fallback", payload
     weights = _softmax_weights([float(score) for _row, score in reranked], SOFTMAX_TEMPERATURE)
@@ -5720,6 +5891,77 @@ def _pick_building_candidate(
     row, score = reranked[pick_idx]
     payload["chosen_index"] = pick_idx
     return row, float(score), "building_asset", payload
+
+
+def _resolve_real_building_scale(
+    *,
+    entry: _MeshCacheEntry | _MeshMetadata,
+    frontage_width_m: float,
+    depth_m: float,
+    target_height_m: float,
+) -> Dict[str, object]:
+    native_size = _native_size_for_entry(entry)
+    native_width = float(native_size.get("width_m", 0.0) or 0.0)
+    native_depth = float(native_size.get("depth_m", 0.0) or 0.0)
+    native_height = float(native_size.get("height_m", 0.0) or 0.0)
+    if native_width <= 1e-6 or native_depth <= 1e-6 or native_height <= 1e-6:
+        return {
+            "accepted": False,
+            "reason": "invalid_native_building_bbox",
+            "native_size_m": native_size,
+            "final_size_m": dict(native_size),
+            "scale": 1.0,
+        }
+
+    min_scale = 0.75
+    max_scale = 1.35
+    footprint_allowance = 1.10
+    max_footprint_scale = min(
+        float(frontage_width_m) * footprint_allowance / native_width,
+        float(depth_m) * footprint_allowance / native_depth,
+    )
+    preferred_scale = 1.0
+    if float(target_height_m) > 0.0:
+        preferred_scale = float(target_height_m) / native_height
+        preferred_scale = max(min_scale, min(max_scale, preferred_scale))
+    scale = min(float(preferred_scale), float(max_footprint_scale))
+    if scale < min_scale:
+        return {
+            "accepted": False,
+            "reason": "building_asset_rejected_size_mismatch",
+            "native_size_m": native_size,
+            "final_size_m": {
+                "width_m": native_width * max(scale, 0.0),
+                "depth_m": native_depth * max(scale, 0.0),
+                "height_m": native_height * max(scale, 0.0),
+            },
+            "scale": float(scale),
+            "required_scale_to_fit": float(max_footprint_scale),
+        }
+    scale = min(max_scale, max(min_scale, scale))
+    final_size = {
+        "width_m": native_width * scale,
+        "depth_m": native_depth * scale,
+        "height_m": native_height * scale,
+        "canopy_width_m": max(native_width, native_depth) * scale,
+    }
+    if final_size["width_m"] > float(frontage_width_m) * footprint_allowance or final_size["depth_m"] > float(depth_m) * footprint_allowance:
+        return {
+            "accepted": False,
+            "reason": "building_asset_rejected_size_mismatch",
+            "native_size_m": native_size,
+            "final_size_m": final_size,
+            "scale": float(scale),
+            "required_scale_to_fit": float(max_footprint_scale),
+        }
+    return {
+        "accepted": True,
+        "reason": "",
+        "native_size_m": native_size,
+        "final_size_m": final_size,
+        "scale": float(scale),
+        "required_scale_to_fit": float(max_footprint_scale),
+    }
 
 
 def _dominant_building_road_type(
@@ -5801,6 +6043,97 @@ def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]
     ]
 
 
+def _evenly_sample_lots(lots: Sequence[GeneratedLot], count: int) -> List[GeneratedLot]:
+    if count <= 0:
+        return []
+    ordered = sorted(
+        lots,
+        key=lambda lot: (
+            float(lot.street_edge_xz[0]),
+            float(lot.center_xz[0]),
+            str(lot.lot_id),
+        ),
+    )
+    if int(count) >= len(ordered):
+        return list(ordered)
+    if int(count) == 1:
+        return [ordered[len(ordered) // 2]]
+    last_index = len(ordered) - 1
+    selected_indices = {
+        int(round(float(idx) * float(last_index) / float(count - 1)))
+        for idx in range(int(count))
+    }
+    selected = [ordered[idx] for idx in sorted(selected_indices)]
+    cursor = 0
+    while len(selected) < int(count) and cursor < len(ordered):
+        candidate = ordered[cursor]
+        if candidate not in selected:
+            selected.append(candidate)
+        cursor += 1
+    return sorted(selected[: int(count)], key=lambda lot: str(lot.lot_id))
+
+
+def _select_building_lots_for_density(
+    lots: Sequence[GeneratedLot],
+    *,
+    density: float,
+    max_per_100m: float,
+    buildable_frontage_by_side: Mapping[str, object],
+) -> Tuple[Tuple[GeneratedLot, ...], Dict[str, object]]:
+    lot_list = list(lots)
+    density_value = max(0.0, min(1.0, float(density)))
+    max_per_100m_value = max(0.1, float(max_per_100m))
+    if not lot_list or density_value <= 0.0:
+        return tuple(), {
+            "enabled": True,
+            "density": float(density_value),
+            "max_per_100m": float(max_per_100m_value),
+            "input_lot_count": int(len(lot_list)),
+            "selected_lot_count": 0,
+            "removed_lot_count": int(len(lot_list)),
+            "selected_by_side": {},
+            "target_by_side": {},
+        }
+
+    selected: List[GeneratedLot] = []
+    target_by_side: Dict[str, int] = {}
+    selected_by_side: Dict[str, int] = {}
+    for side in ("left", "right", ""):
+        side_lots = [
+            lot
+            for lot in lot_list
+            if (str(lot.side) in {"left", "right"} and str(lot.side) == side)
+            or (side == "" and str(lot.side) not in {"left", "right"})
+        ]
+        if not side_lots:
+            continue
+        side_frontage_m = float(buildable_frontage_by_side.get(side, 0.0) or 0.0)
+        if side_frontage_m <= 0.0:
+            side_frontage_m = sum(float(max(lot.frontage_width_m, 0.0)) for lot in side_lots)
+        density_target = int(round(float(len(side_lots)) * density_value))
+        length_cap = int(math.ceil((side_frontage_m / 100.0) * max_per_100m_value)) if side_frontage_m > 0.0 else len(side_lots)
+        target_count = max(1, min(len(side_lots), density_target, max(length_cap, 1)))
+        if density_value >= 0.999:
+            target_count = min(len(side_lots), max(length_cap, len(side_lots)))
+        side_selected = _evenly_sample_lots(side_lots, target_count)
+        selected.extend(side_selected)
+        side_key = side or "unknown"
+        target_by_side[side_key] = int(target_count)
+        selected_by_side[side_key] = int(len(side_selected))
+
+    selected_ids = {str(lot.lot_id) for lot in selected}
+    return tuple(lot for lot in lot_list if str(lot.lot_id) in selected_ids), {
+        "enabled": True,
+        "density": float(density_value),
+        "max_per_100m": float(max_per_100m_value),
+        "input_lot_count": int(len(lot_list)),
+        "selected_lot_count": int(len(selected_ids)),
+        "removed_lot_count": int(max(len(lot_list) - len(selected_ids), 0)),
+        "selected_by_side": selected_by_side,
+        "target_by_side": target_by_side,
+    }
+
+
 def _summarize_building_region_direct_footprints(
     footprints: Sequence[BuildingFootprint],
 ) -> Dict[str, object]:
@@ -5860,6 +6193,9 @@ def _place_building_targets(
     front_setbacks: List[float] = []
     door_count_by_side: Dict[str, int] = {}
     door_missing_reason_counts: Dict[str, int] = {}
+    door_required_count = 0
+    door_skipped_existing_asset_count = 0
+    building_asset_rejected_size_mismatch_count = 0
 
     for target_idx, target in enumerate(targets):
         theme_id = str(target.get("theme_id", "") or "")
@@ -5868,18 +6204,20 @@ def _place_building_targets(
             str(target.get("land_use_type", "") or "")
             or (theme_segment.theme_name if theme_segment is not None else "commercial")
         )
-        row, score, source, retrieval_payload = _pick_building_candidate(
+        frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
+        depth_m = float(target.get("depth_m", 10.0) or 10.0)
+        _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
+        ranked_candidates, retrieval_payload = _rank_building_candidates_for_target(
             query=config.query,
             theme_name=theme_name,
-            frontage_width_m=float(target.get("frontage_width_m", 12.0) or 12.0),
-            depth_m=float(target.get("depth_m", 10.0) or 10.0),
+            frontage_width_m=frontage_width_m,
+            depth_m=depth_m,
             road_type=str(road_type),
             height_class=str(target.get("height_class", "") or ""),
             embedder=embedder,
             index_store=index_store,
             asset_by_id=asset_by_id,
             search_topk=int(getattr(config, "building_search_topk", 5)),
-            rng=rng,
         )
         retrieval_payload.update(
             {
@@ -5890,34 +6228,45 @@ def _place_building_targets(
                 "target_height_m": float(target.get("target_height_m", 0.0) or 0.0),
             }
         )
+
+        row: Optional[Dict[str, object]] = None
+        score = 0.0
+        source = "procedural_fallback"
+        scale_decision: Dict[str, object] = {}
+        rejected_candidates: List[Dict[str, object]] = []
+        for candidate_idx, (candidate_row, candidate_score) in enumerate(ranked_candidates):
+            candidate_entry = mesh_cache.get_metadata(candidate_row["asset_id"])
+            candidate_scale = _resolve_real_building_scale(
+                entry=candidate_entry,
+                frontage_width_m=frontage_width_m,
+                depth_m=depth_m,
+                target_height_m=_target_height_m,
+            )
+            if bool(candidate_scale.get("accepted", False)):
+                row = candidate_row
+                score = float(candidate_score)
+                source = "building_asset"
+                scale_decision = candidate_scale
+                retrieval_payload["chosen_index"] = int(candidate_idx)
+                retrieval_payload["scale_decision"] = dict(candidate_scale)
+                break
+            building_asset_rejected_size_mismatch_count += 1
+            rejected_candidates.append(
+                {
+                    "asset_id": str(candidate_row.get("asset_id", "") or ""),
+                    "reason": str(candidate_scale.get("reason", "building_asset_rejected_size_mismatch") or "building_asset_rejected_size_mismatch"),
+                    "scale": float(candidate_scale.get("scale", 1.0) or 1.0),
+                    "native_size_m": dict(candidate_scale.get("native_size_m", {}) or {}),
+                    "final_size_m": dict(candidate_scale.get("final_size_m", {}) or {}),
+                }
+            )
+        if rejected_candidates:
+            retrieval_payload["rejected_candidates"] = rejected_candidates
         retrieval_predictions.append(retrieval_payload)
 
-        frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
-        depth_m = float(target.get("depth_m", 10.0) or 10.0)
-        _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
         if row is not None:
             entry = mesh_cache.get_metadata(row["asset_id"])
-            scale_candidates = [
-                frontage_width_m / max(entry.half_x * 2.0, 1e-3),
-                depth_m / max(entry.half_z * 2.0, 1e-3),
-            ]
-            if _target_height_m > 0.0 and entry.native_height_y > 0.01:
-                scale_candidates.append(_target_height_m / entry.native_height_y)
-            else:
-                height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
-                    str(row.get("height_class", target.get("height_class", "midrise"))),
-                    {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(target.get("height_class", "midrise")), 1.2),
-                )
-                if entry.native_height_y > 0.01:
-                    desired_height_m = max(4.0, min(60.0, frontage_width_m * float(height_multiplier)))
-                    scale_candidates.append(desired_height_m / entry.native_height_y)
-            finite_candidates = [
-                float(value)
-                for value in scale_candidates
-                if math.isfinite(float(value)) and float(value) > 0.0
-            ]
-            uniform_scale = min(finite_candidates) if finite_candidates else 1.0
-            uniform_scale = max(0.02, min(20.0, float(uniform_scale)))
+            uniform_scale = float(scale_decision.get("scale", 1.0) or 1.0)
             scale_xyz = [float(uniform_scale), float(uniform_scale), float(uniform_scale)]
             asset_id = str(row["asset_id"])
             asset_count += 1
@@ -5964,12 +6313,40 @@ def _place_building_targets(
             clearance=0.15,
         )
         y = -entry.min_y * float(scale_xyz[1])
+        building_native_size = _native_size_for_entry(entry)
+        building_final_size = dict(scale_decision.get("final_size_m", {}) or {})
+        if not building_final_size:
+            uniform_scale_for_size = float(scale_xyz[0]) if scale_xyz else 1.0
+            building_final_size = {
+                key: float(value) * uniform_scale_for_size
+                for key, value in building_native_size.items()
+            }
+        building_asset_scale_mode = "building_real_preserve" if row is not None else "procedural_fallback_fit"
         instance_id = f"inst_{instance_index:04d}"
-        door_spec = _resolve_building_door_spec(target=target, entry=entry, scale_xyz=scale_xyz)
+        should_attach_door = (
+            str(source).strip().lower() == "procedural_fallback"
+            or str(asset_id).startswith("building_fallback_")
+            or str(fallback_reason).strip() == "no_building_asset_match"
+        )
+        if should_attach_door:
+            door_required_count += 1
+            door_spec = _resolve_building_door_spec(target=target, entry=entry, scale_xyz=scale_xyz)
+        else:
+            door_skipped_existing_asset_count += 1
+            door_spec = {
+                "door_added": False,
+                "door_facing": "",
+                "door_center_local_x": 0.0,
+                "door_width_m": 0.0,
+                "door_height_m": 0.0,
+                "door_dims_m": {},
+                "door_center_world_xyz": [],
+                "door_missing_reason": "real_building_asset_has_native_door",
+            }
         if bool(door_spec.get("door_added")):
             side_key = str(target.get("side", "") or "").strip().lower() or "unknown"
             door_count_by_side[side_key] = door_count_by_side.get(side_key, 0) + 1
-        else:
+        elif should_attach_door:
             reason_key = str(door_spec.get("door_missing_reason", "") or "").strip()
             if reason_key:
                 door_missing_reason_counts[reason_key] = door_missing_reason_counts.get(reason_key, 0) + 1
@@ -6002,6 +6379,15 @@ def _place_building_targets(
                 target_height_m=_target_height_m,
                 placement_strategy=placement_strategy,
                 front_setback_m=front_setback_m,
+                asset_scale_mode=building_asset_scale_mode,
+                native_size_m=building_native_size,
+                final_size_m=building_final_size,
+                raw_size_m=_raw_size_for_entry(entry),
+                metric_size_m=_metric_size_for_entry(entry),
+                source_scale=float(getattr(entry, "source_scale", 1.0) or 1.0),
+                source_scale_source=str(getattr(entry, "source_scale_source", "") or ""),
+                source_scale_confidence=str(getattr(entry, "source_scale_confidence", "") or ""),
+                source_scale_rejected_reason=str(getattr(entry, "source_scale_rejected_reason", "") or ""),
                 door_added=bool(door_spec.get("door_added", False)),
                 door_facing=str(door_spec.get("door_facing", "") or ""),
                 door_center_local_x=float(door_spec.get("door_center_local_x", 0.0) or 0.0),
@@ -6027,15 +6413,20 @@ def _place_building_targets(
                 theme_id=theme_id,
                 anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
                 scale_xyz=[float(value) for value in scale_xyz],
-                native_size_m=_native_size_for_entry(entry),
+                native_size_m=building_native_size,
+                raw_size_m=_raw_size_for_entry(entry),
+                metric_size_m=_metric_size_for_entry(entry),
+                final_size_m=building_final_size,
                 canonical_target={
                     "frontage_width_m": float(frontage_width_m),
                     "depth_m": float(depth_m),
                     "target_height_m": float(_target_height_m),
                 },
-                asset_scale_mode="building_uniform_fit",
+                asset_scale_mode=building_asset_scale_mode,
                 source_scale=float(getattr(entry, "source_scale", 1.0) or 1.0),
                 source_scale_source=str(getattr(entry, "source_scale_source", "") or ""),
+                source_scale_confidence=str(getattr(entry, "source_scale_confidence", "") or ""),
+                source_scale_rejected_reason=str(getattr(entry, "source_scale_rejected_reason", "") or ""),
             )
         )
         source_name = str(target.get("source", "") or "")
@@ -6052,13 +6443,18 @@ def _place_building_targets(
         "placed_count": int(len(placements)),
         "asset_count": int(asset_count),
         "fallback_count": int(fallback_count),
+        "building_asset_rejected_size_mismatch_count": int(building_asset_rejected_size_mismatch_count),
+        "procedural_building_fallback_count": int(fallback_count),
         "sources": source_counts,
         "placement_strategy_counts": placement_strategy_counts,
         "door_enabled": True,
         "door_strategy": "attached_3d_v1",
+        "door_policy": "procedural_fallback_only",
         "door_count": int(sum(1 for plan in plans if bool(plan.door_added))),
         "door_count_by_side": dict(door_count_by_side),
-        "door_missing_building_count": int(sum(1 for plan in plans if not bool(plan.door_added))),
+        "door_required_count": int(door_required_count),
+        "door_skipped_existing_asset_count": int(door_skipped_existing_asset_count),
+        "door_missing_building_count": int(max(door_required_count - sum(1 for plan in plans if bool(plan.door_added)), 0)),
         "door_missing_reason_counts": dict(door_missing_reason_counts),
     }
     if front_setbacks:
@@ -6101,6 +6497,8 @@ def _place_surrounding_buildings(
                 "lot_count": 0,
                 "placed_count": 0,
                 "fallback_count": 0,
+                "building_asset_rejected_size_mismatch_count": 0,
+                "procedural_building_fallback_count": 0,
                 "door_enabled": True,
                 "door_count": 0,
                 "door_count_by_side": {},
@@ -6252,8 +6650,26 @@ def _place_surrounding_buildings(
     else:
         land_use_summary = summarize_land_use_grid(zoning_grid)
 
+    building_density_summary: Dict[str, object] = {
+        "enabled": False,
+        "density": float(getattr(config, "building_density", 0.55) or 0.55),
+        "max_per_100m": float(getattr(config, "building_max_per_100m", 10.0) or 10.0),
+        "input_lot_count": int(len(generated_lots)),
+        "selected_lot_count": int(len(generated_lots)),
+        "removed_lot_count": 0,
+        "selected_by_side": {},
+        "target_by_side": {},
+    }
+    placement_lots = tuple(generated_lots)
     if mode == "grid_growth":
-        target_records = _lot_target_records(generated_lots)
+        placement_lots, building_density_summary = _select_building_lots_for_density(
+            generated_lots,
+            density=float(getattr(config, "building_density", 0.55) or 0.55),
+            max_per_100m=float(getattr(config, "building_max_per_100m", 10.0) or 10.0),
+            buildable_frontage_by_side=dict(lot_generation_summary.get("buildable_frontage_by_side", {}) or {}),
+        )
+    if mode == "grid_growth":
+        target_records = _lot_target_records(placement_lots)
     else:
         target_records = _footprint_target_records(building_footprints)
     building_placements, building_plans, building_retrieval_predictions, placement_summary, instance_index = _place_building_targets(
@@ -6323,6 +6739,11 @@ def _place_surrounding_buildings(
         "max_frontage_lot_length_m": float(getattr(config, "max_frontage_lot_length_m", 18.0) or 18.0),
         "zoning_granularity": str(zoning_granularity),
         "streetwall_continuity": float(streetwall_continuity),
+        "building_density": float(getattr(config, "building_density", 0.55) or 0.55),
+        "building_max_per_100m": float(getattr(config, "building_max_per_100m", 10.0) or 10.0),
+        "building_density_summary": dict(building_density_summary),
+        "building_target_lot_count": int(len(placement_lots) if mode == "grid_growth" else len(building_footprints)),
+        "building_density_removed_lot_count": int(building_density_summary.get("removed_lot_count", 0) or 0),
         "infill_policy": str(infill_policy),
         "building_balance_policy": str(
             lot_generation_summary.get("building_balance_policy", "balanced_default")
@@ -7616,6 +8037,7 @@ def compose_street_scene(
             "out_of_target_strip": 0,
             "out_of_theme_range": 0,
             "side_mismatch": 0,
+            "scale_gate_failed": 0,
             "no_candidate_after_search": 0,
         }
         chosen_candidate: Optional[Dict[str, object]] = None
@@ -7777,11 +8199,18 @@ def compose_street_scene(
             placement_energy=float(chosen_candidate["placement_energy"]),
             placement_status=placement_status,
             native_size_m=dict(chosen_candidate.get("native_size_m", {}) or {}),
+            raw_size_m=dict(chosen_candidate.get("raw_size_m", {}) or {}),
+            metric_size_m=dict(chosen_candidate.get("metric_size_m", {}) or {}),
+            final_size_m=dict(chosen_candidate.get("final_size_m", {}) or {}),
             canonical_target=dict(chosen_candidate.get("canonical_target", {}) or {}),
             asset_scale_mode=str(chosen_candidate.get("asset_scale_mode", "")),
             scale_fallback_used=bool(chosen_candidate.get("scale_fallback_used", False)),
             source_scale=float(chosen_candidate.get("source_scale", 1.0) or 1.0),
             source_scale_source=str(chosen_candidate.get("source_scale_source", "") or ""),
+            source_scale_confidence=str(chosen_candidate.get("source_scale_confidence", "") or ""),
+            source_scale_rejected_reason=str(chosen_candidate.get("source_scale_rejected_reason", "") or ""),
+            scale_gate_failed=bool(chosen_candidate.get("scale_gate_failed", False)),
+            scale_gate_reason=str(chosen_candidate.get("scale_gate_reason", "") or ""),
             constraint_penalty=float(bpenalty),
             feasibility_score=float(bfeas),
             violated_rules=bviolated,
@@ -8799,6 +9228,13 @@ def compose_street_scene(
         selected_highway_type=selected_highway_type,
     )
     asset_scale_summary = summarize_asset_scales([placement.to_dict() for placement in placements])
+    asset_scale_summary.setdefault("_diagnostics", {})
+    asset_scale_summary["_diagnostics"].update(
+        {
+            "building_asset_rejected_size_mismatch_count": int(building_summary.get("building_asset_rejected_size_mismatch_count", 0) or 0),
+            "procedural_building_fallback_count": int(building_summary.get("procedural_building_fallback_count", building_summary.get("fallback_count", 0)) or 0),
+        }
+    )
     locked_asset_selection_counts = {
         category: int(
             sum(
@@ -9057,6 +9493,13 @@ def compose_street_scene(
         "building_front_setback_max_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
         "zoning_granularity": str("fine" if zoning_granularity_raw is None else zoning_granularity_raw),
         "streetwall_continuity": float(0.95 if streetwall_continuity_raw is None else streetwall_continuity_raw),
+        "building_density": float(building_summary.get("building_density", getattr(config, "building_density", 0.55)) or 0.55),
+        "building_max_per_100m": float(building_summary.get("building_max_per_100m", getattr(config, "building_max_per_100m", 10.0)) or 10.0),
+        "building_density_summary": dict(building_summary.get("building_density_summary", {}) or {}),
+        "building_target_lot_count": int(building_summary.get("building_target_lot_count", 0) or 0),
+        "building_density_removed_lot_count": int(building_summary.get("building_density_removed_lot_count", 0) or 0),
+        "building_asset_rejected_size_mismatch_count": int(building_summary.get("building_asset_rejected_size_mismatch_count", 0) or 0),
+        "procedural_building_fallback_count": int(building_summary.get("procedural_building_fallback_count", building_summary.get("fallback_count", 0)) or 0),
         "infill_policy": str("aggressive" if infill_policy_raw is None else infill_policy_raw),
         "building_balance_policy": str(building_summary.get("building_balance_policy", "")),
         "building_balance_ok": bool(building_summary.get("building_balance_ok", False)),
@@ -9067,6 +9510,9 @@ def compose_street_scene(
         "door_count": int(building_summary.get("door_count", 0) or 0),
         "door_count_by_side": dict(building_summary.get("door_count_by_side", {}) or {}),
         "door_strategy": str(building_summary.get("door_strategy", "attached_3d_v1") or "attached_3d_v1"),
+        "door_policy": str(building_summary.get("door_policy", "") or ""),
+        "door_required_count": int(building_summary.get("door_required_count", 0) or 0),
+        "door_skipped_existing_asset_count": int(building_summary.get("door_skipped_existing_asset_count", 0) or 0),
         "door_missing_building_count": int(building_summary.get("door_missing_building_count", 0) or 0),
         "door_missing_reason_counts": dict(building_summary.get("door_missing_reason_counts", {}) or {}),
         "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),

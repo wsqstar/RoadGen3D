@@ -114,6 +114,8 @@ class StreetComposeConfig:
     building_front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M
     zoning_granularity: str = "fine"  # "coarse" | "balanced" | "fine"
     streetwall_continuity: float = 0.95
+    building_density: float = 0.55
+    building_max_per_100m: float = 10.0
     infill_policy: str = "aggressive"  # "off" | "large_gap_only" | "balanced" | "aggressive"
     tree_species_policy: str = "per_theme_single_species"  # "per_theme_single_species" | "free_mixed"
     furniture_balance_policy: str = "overall_balanced"  # "overall_balanced" | "side_biased_legacy"
@@ -894,6 +896,15 @@ class BuildingPlacementPlan:
     target_height_m: float = 0.0
     placement_strategy: str = ""
     front_setback_m: float = 0.0
+    asset_scale_mode: str = ""
+    native_size_m: Dict[str, float] = field(default_factory=dict)
+    final_size_m: Dict[str, float] = field(default_factory=dict)
+    raw_size_m: Dict[str, float] = field(default_factory=dict)
+    metric_size_m: Dict[str, float] = field(default_factory=dict)
+    source_scale: float = 1.0
+    source_scale_source: str = ""
+    source_scale_confidence: str = ""
+    source_scale_rejected_reason: str = ""
     door_added: bool = False
     door_facing: str = ""
     door_center_local_x: float = 0.0
@@ -989,6 +1000,13 @@ class StreetPlacement:
     scale_fallback_used: bool = False
     source_scale: float = 1.0
     source_scale_source: str = ""
+    source_scale_confidence: str = ""
+    source_scale_rejected_reason: str = ""
+    raw_size_m: Dict[str, float] = field(default_factory=dict)
+    metric_size_m: Dict[str, float] = field(default_factory=dict)
+    final_size_m: Dict[str, float] = field(default_factory=dict)
+    scale_gate_failed: bool = False
+    scale_gate_reason: str = ""
 
     # -- M5 constraint fields --
     constraint_penalty: float = 0.0

@@ -104,6 +104,8 @@ def build_compose_config_from_draft(
         sidewalk_width_m=float(patch.get("sidewalk_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["sidewalk_width_m"])),
         lane_count=int(patch.get("lane_count", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["lane_count"])),
         density=float(patch.get("density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["density"])),
+        building_density=float(patch.get("building_density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["building_density"])),
+        building_max_per_100m=float(patch.get("building_max_per_100m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["building_max_per_100m"])),
         seed=int(patch.get("seed", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.get("seed", 42))),
         topk_per_category=20,
         max_trials_per_slot=30,
