@@ -4770,6 +4770,13 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             "to_strip_id": str(patch.get("to_strip_id", "") or ""),
             "to_strip_zone": str(patch.get("to_strip_zone", "") or ""),
             "generation_mode": str(patch.get("generation_mode", "") or ""),
+            "chamfer_depth_m": round(float(patch.get("chamfer_depth_m", 0.0) or 0.0), 3),
+            "effective_chamfer_depth_m": round(float(patch.get("effective_chamfer_depth_m", 0.0) or 0.0), 3),
+            "fillet_radius_m": round(float(patch.get("fillet_radius_m", 0.0) or 0.0), 3),
+            "tangent_setback_m": round(float(patch.get("tangent_setback_m", 0.0) or 0.0), 3),
+            "reference_q_m": round(float(patch.get("reference_q_m", 0.0) or 0.0), 3),
+            "center_q_m": round(float(patch.get("center_q_m", 0.0) or 0.0), 3),
+            "radius_floor_m": round(float(patch.get("radius_floor_m", 0.0) or 0.0), 3),
             "surface_role": str(patch.get("surface_role", "") or ""),
             "rings": _extract_rings(patch.get("geometry")),
         }
@@ -4983,6 +4990,14 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                         "surface_role": str(patch.get("surface_role", "") or ""),
                         "strip_kind": str(patch.get("strip_kind", "") or ""),
                         "source_kind": str(patch.get("source_kind", "") or ""),
+                        "paired_connector_id": str(patch.get("paired_connector_id", "") or ""),
+                        "endpoint_role": str(patch.get("endpoint_role", "") or ""),
+                        "chamfer_depth_m": round(float(patch.get("chamfer_depth_m", 0.0) or 0.0), 3),
+                        "effective_chamfer_depth_m": round(float(patch.get("effective_chamfer_depth_m", 0.0) or 0.0), 3),
+                        "fillet_radius_m": round(float(patch.get("fillet_radius_m", 0.0) or 0.0), 3),
+                        "tangent_setback_m": round(float(patch.get("tangent_setback_m", 0.0) or 0.0), 3),
+                        "reference_q_m": round(float(patch.get("reference_q_m", 0.0) or 0.0), 3),
+                        "center_q_m": round(float(patch.get("center_q_m", 0.0) or 0.0), 3),
                         "rings": _extract_rings(patch.get("geometry")),
                     }
                     for patch in item.get("canonical_surface_patches", []) or ()

@@ -118,10 +118,12 @@ class TestBuildCrossStripFusion:
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                     "right": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                 },
             },
@@ -134,10 +136,12 @@ class TestBuildCrossStripFusion:
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                     "right": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                 },
             },
@@ -150,10 +154,12 @@ class TestBuildCrossStripFusion:
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                     "right": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                 },
             },
@@ -166,10 +172,12 @@ class TestBuildCrossStripFusion:
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                     "right": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
                         {"kind": "clear_sidewalk", "width_m": 2.5},
+                        {"kind": "frontage_reserve", "width_m": 2.0},
                     ],
                 },
             },
@@ -228,7 +236,7 @@ class TestBuildCrossStripFusion:
         # Check that corner strips are generated
         assert "nearroad_furnishing" in result.fused_corner_strips
         assert "clear_sidewalk" in result.fused_corner_strips
-        # frontage_reserve not in test arms, so should not be present
+        assert "frontage_reserve" in result.fused_corner_strips
 
         # Check fused strips are valid
         for kind, polygon in result.fused_corner_strips.items():
@@ -327,6 +335,7 @@ class TestBuildCrossStripFusion:
         # strips should skip the corner rather than inventing a triangular fill.
         assert result.fused_corner_strips == {}
         assert result.debug_info["corner_connector_patch_count"] == 0
+        assert result.debug_info["endpoint_fill_patch_count"] == 0
 
     def test_roadpen_style_corner_connectors_keep_provenance(self):
         """Corner connectors should carry from/to strip metadata for diagnostics."""
@@ -351,6 +360,70 @@ class TestBuildCrossStripFusion:
             assert record["from_strip_id"].startswith("left_")
             assert record["to_strip_id"].startswith("right_")
             assert record["geometry"].area > 0
+
+    def test_corner_chamfer_uses_shared_reference_turn(self):
+        """All side strips in a quadrant share one reference turn skeleton."""
+        arms = self._standard_cross_arms()
+        result = build_cross_strip_fusion(
+            junction_id="test_cross",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        assert result.debug_info["corner_chamfer_mode"] == "diagonal_depth"
+        assert result.debug_info["corner_chamfer_depth_m"] == pytest.approx(1.0)
+        first_quadrant = [
+            record for record in result.fused_corner_patch_records
+            if record["quadrant_id"] == "test_cross_quadrant_00"
+        ]
+        assert {record["strip_kind"] for record in first_quadrant} == {
+            "nearroad_furnishing",
+            "clear_sidewalk",
+            "frontage_reserve",
+        }
+        reference_q_values = {record["reference_q_m"] for record in first_quadrant}
+        radius_values = {record["fillet_radius_m"] for record in first_quadrant}
+        setback_values = {record["tangent_setback_m"] for record in first_quadrant}
+        assert len(reference_q_values) == 1
+        assert len(radius_values) == 1
+        assert len(setback_values) == 1
+        assert next(iter(radius_values)) >= 1.0 / (math.sqrt(2.0) - 1.0)
+        assert all(record["effective_chamfer_depth_m"] >= record["chamfer_depth_m"] for record in first_quadrant)
+
+    def test_endpoint_fill_patches_connect_chamfers_to_straight_strips(self):
+        """Each side connector should have from/to endpoint fill surfaces."""
+        arms = self._standard_cross_arms()
+        result = build_cross_strip_fusion(
+            junction_id="test_cross",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        assert result.debug_info["endpoint_fill_patch_count"] == 24
+        assert len(result.fused_corner_patch_records) == 12
+        assert len(result.endpoint_fill_patch_records) == 24
+        connectors = {
+            record["patch_id"]: record["geometry"]
+            for record in result.fused_corner_patch_records
+        }
+        for fill in result.endpoint_fill_patch_records:
+            assert fill["generation_mode"] == "roadpen_style_endpoint_fill"
+            assert fill["endpoint_role"] in {"from", "to"}
+            assert fill["paired_connector_id"] in connectors
+            assert fill["geometry"].area > 0
+            contact = fill["geometry"].intersection(connectors[fill["paired_connector_id"]])
+            assert contact.area > 0 or contact.length > 0
+            assert fill["fill_length_m"] == pytest.approx(
+                max(fill["tangent_setback_m"], fill["chamfer_depth_m"] * 2.0) + 0.25,
+                abs=1e-3,
+            )
+
+        geometry = cross_strip_fusion_to_junction_geometry(result)
+        endpoint_sources = [
+            patch for patch in geometry["canonical_surface_patches"]
+            if patch.get("source_kind") == "roadpen_style_endpoint_fill"
+        ]
+        assert len(endpoint_sources) == 24
 
     def test_roadpen_style_sidewalk_connectors_do_not_cover_junction_anchor(self):
         """Sidewalk corner surfaces should stay outside the carriageway center."""

@@ -546,8 +546,13 @@ def test_hkust_gate_cross_junctions_use_canonical_roadpen_surfaces_without_trian
     for geometry in cross_junctions:
         assert geometry.get("generation_mode") == "cross_strip_fusion_auto"
         assert geometry.get("debug_info", {}).get("generation_mode") == "roadpen_style_junction_fusion_v1"
-        assert len(geometry.get("canonical_surface_patches", [])) >= 13
-        assert geometry["surface_normalization_debug"]["input_counts"]["canonical_surface_patch"] >= 13
+        canonical_patches = geometry.get("canonical_surface_patches", [])
+        assert len(canonical_patches) >= 37
+        assert geometry["surface_normalization_debug"]["input_counts"]["canonical_surface_patch"] >= 37
+        assert sum(
+            1 for patch in canonical_patches
+            if patch.get("source_kind") == "roadpen_style_endpoint_fill"
+        ) >= 24
         planar = [
             patch for patch in geometry["normalized_surface_patches"]
             if not patch.get("is_overlay")
