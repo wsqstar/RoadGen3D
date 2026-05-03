@@ -265,7 +265,12 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
 
 def build_web_viewer_url(layout_path: str | Path) -> str:
     resolved_layout = resolve_scene_layout_path(layout_path)
-    return f"http://127.0.0.1:4173/?layout={quote(str(resolved_layout), safe='')}"
+    host = str(os.environ.get("ROADGEN_VIEWER_HOST") or "127.0.0.1").strip() or "127.0.0.1"
+    try:
+        port = int(os.environ.get("ROADGEN_VIEWER_PORT") or 4173)
+    except (TypeError, ValueError):
+        port = 4173
+    return f"http://{host}:{port}/?layout={quote(str(resolved_layout), safe='')}"
 
 
 def build_web_viewer_dev_url(

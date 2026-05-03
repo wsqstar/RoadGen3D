@@ -7,7 +7,8 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
 from .osm_ingest import OsmRoad, ProjectedFeatures
-from .placement_zones import PlacementContext, build_placement_context
+from .placement_zones import PlacementContext, build_placement_context, build_sidewalk_zones_from_roads
+from .junction_surface_normalization import normalize_junction_surface_geometries
 from .reference_annotation import (
     BezierCurve3,
     JunctionComposition,
@@ -166,6 +167,15 @@ def build_reference_annotation_scene_bridge(
         annotation,
         list(getattr(placement_context, "junction_geometries", []) or []),
         road_segment_graph=road_segment_graph,
+        roads=synthetic_roads,
+    )
+    _refresh_road_surfaces_for_junction_geometries(
+        placement_context,
+        synthetic_roads,
+        list(getattr(placement_context, "junction_geometries", []) or []),
+    )
+    placement_context.junction_geometries = normalize_junction_surface_geometries(
+        list(getattr(placement_context, "junction_geometries", []) or [])
     )
     placement_context.building_regions = _annotation_building_region_records(annotation)
     center_x = float(annotation.image_width_px) * 0.5
@@ -205,6 +215,113 @@ def build_reference_annotation_scene_bridge(
         placement_context=placement_context,
         summary_metadata=summary_metadata,
     )
+
+
+def _refresh_road_surfaces_for_junction_geometries(
+    placement_context: PlacementContext,
+    roads: Sequence[OsmRoad],
+    junction_geometries: Sequence[Mapping[str, Any]],
+) -> None:
+    """Re-trim road arm surfaces after derived junction geometry is replaced.
+
+    ``build_placement_context`` initially trims roads against its own junction
+    geometry. The reference bridge may then replace cross junctions with the
+    RoadPen-style fusion geometry, so the rendered road arms must be clipped
+    again against the final carriageway core. Otherwise 3D still shows the old
+    diagonal cuts from the pre-fusion geometry.
+    """
+
+    if not junction_geometries:
+        return
+    try:
+        from shapely.geometry import LineString, MultiPolygon
+        from shapely.ops import unary_union
+    except ImportError:
+        return
+
+    def clean(geometry: Any) -> Any:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return MultiPolygon()
+        if not getattr(geometry, "is_valid", True):
+            try:
+                geometry = geometry.buffer(0)
+            except Exception:
+                return MultiPolygon()
+        return geometry
+
+    aoi_polygon = getattr(placement_context, "aoi_polygon", None)
+    road_polygons: List[Any] = []
+    for road in roads:
+        coords = list(getattr(road, "coords", ()) or ())
+        if len(coords) < 2:
+            continue
+        line = LineString(coords)
+        if getattr(line, "is_empty", True):
+            continue
+        half_width_m = max(float(getattr(road, "width_m", 0.0) or 0.0) * 0.5, 0.5)
+        polygon = clean(line.buffer(half_width_m, cap_style="flat"))
+        if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+            polygon = clean(polygon.intersection(aoi_polygon))
+        if not getattr(polygon, "is_empty", True):
+            road_polygons.append(polygon)
+
+    if not road_polygons:
+        return
+
+    trim_sources = [
+        junction.get("carriageway_core") or junction.get("junction_core_rect")
+        for junction in junction_geometries
+    ]
+    trim_sources = [clean(item) for item in trim_sources if item is not None]
+    trim_geometry = clean(unary_union(trim_sources)) if trim_sources else MultiPolygon()
+
+    trimmed_road_polygons: List[Any] = []
+    for polygon in road_polygons:
+        trimmed = polygon
+        if not getattr(trim_geometry, "is_empty", True):
+            trimmed = clean(trimmed.difference(trim_geometry))
+        if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+            trimmed = clean(trimmed.intersection(aoi_polygon))
+        if not getattr(trimmed, "is_empty", True):
+            trimmed_road_polygons.append(trimmed)
+
+    carriageway = clean(unary_union(trimmed_road_polygons)) if trimmed_road_polygons else MultiPolygon()
+    placement_context.carriageway = carriageway
+    placement_context.carriageway_polygon = carriageway
+    placement_context.road_arm_geometries = trimmed_road_polygons
+
+    carriageway_width_m = max(float(getattr(placement_context, "carriageway_width_m", 0.0) or 0.0), 1.0)
+    left_sidewalk_width_m = max(
+        float(getattr(placement_context, "required_left_width_m", 0.0) or 0.0),
+        float(getattr(placement_context, "left_clear_path_width_m", 0.0) or 0.0)
+        + float(getattr(placement_context, "left_furnishing_width_m", 0.0) or 0.0),
+    )
+    right_sidewalk_width_m = max(
+        float(getattr(placement_context, "required_right_width_m", 0.0) or 0.0),
+        float(getattr(placement_context, "right_clear_path_width_m", 0.0) or 0.0)
+        + float(getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0),
+    )
+    if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+        left_sidewalk, right_sidewalk, sidewalk = build_sidewalk_zones_from_roads(
+            list(roads),
+            carriageway_width_m=carriageway_width_m,
+            left_sidewalk_width_m=left_sidewalk_width_m,
+            right_sidewalk_width_m=right_sidewalk_width_m,
+            aoi_polygon=aoi_polygon,
+        )
+        sidewalk_trim_sources = [
+            junction.get("sidewalk_trim_zone")
+            for junction in junction_geometries
+            if junction.get("sidewalk_trim_zone") is not None
+        ]
+        sidewalk_trim = clean(unary_union([clean(item) for item in sidewalk_trim_sources])) if sidewalk_trim_sources else MultiPolygon()
+        if not getattr(sidewalk_trim, "is_empty", True):
+            left_sidewalk = clean(left_sidewalk.difference(sidewalk_trim))
+            right_sidewalk = clean(right_sidewalk.difference(sidewalk_trim))
+            sidewalk = clean(sidewalk.difference(sidewalk_trim))
+        placement_context.left_sidewalk_zone = left_sidewalk
+        placement_context.right_sidewalk_zone = right_sidewalk
+        placement_context.sidewalk_zone = sidewalk
 
 
 def _sample_bezier_points(curve: BezierCurve3, steps: int = 16) -> Sequence[Tuple[float, float]]:
@@ -420,6 +537,7 @@ def _try_build_cross_fusion_for_junction(
     annotation: ReferenceAnnotation,
     junction_geom: Dict[str, Any],
     road_segment_graph: Any | None,
+    roads: Sequence[OsmRoad] = (),
 ) -> Dict[str, Any] | None:
     """Try to build cross fusion geometry for a junction.
 
@@ -433,7 +551,7 @@ def _try_build_cross_fusion_for_junction(
         return None
 
     # Try to get arms data from road_segment_graph
-    arms = _extract_junction_arms_from_graph(road_segment_graph, junction_id, anchor_xy)
+    arms = _extract_junction_arms_from_graph(road_segment_graph, junction_id, anchor_xy, roads=roads)
     if arms is None or len(arms) < 4:
         return None
 
@@ -460,6 +578,8 @@ def _extract_junction_arms_from_graph(
     road_segment_graph: Any | None,
     junction_id: str,
     anchor_xy: List[float],
+    *,
+    roads: Sequence[OsmRoad] = (),
 ) -> List[Dict[str, Any]] | None:
     """Extract arms data from road_segment_graph for a specific junction."""
     if road_segment_graph is None:
@@ -474,6 +594,19 @@ def _extract_junction_arms_from_graph(
         if str(getattr(j, "junction_id", "") or "") == junction_id:
             junction_obj = j
             break
+    if junction_obj is None:
+        anchor = (float(anchor_xy[0]), float(anchor_xy[1]))
+        candidates = [
+            j
+            for j in junctions
+            if str(getattr(j, "kind", "") or "") == "cross_junction"
+            and math.hypot(
+                anchor[0] - float(tuple(getattr(j, "anchor_xy", (0.0, 0.0)) or (0.0, 0.0))[0]),
+                anchor[1] - float(tuple(getattr(j, "anchor_xy", (0.0, 0.0)) or (0.0, 0.0))[1]),
+            ) <= 0.75
+        ]
+        if candidates:
+            junction_obj = candidates[0]
 
     if junction_obj is None:
         return None
@@ -483,12 +616,19 @@ def _extract_junction_arms_from_graph(
 
     # Build arms data similar to _build_explicit_graph_junction_geometries
     roads_by_id = {}
-    for road in getattr(road_segment_graph, "roads", ()) or ():
+    for road in roads or getattr(road_segment_graph, "roads", ()) or ():
         road_id = int(getattr(road, "osm_id", 0) or 0)
         if road_id > 0:
             roads_by_id[road_id] = road
 
     anchor = (float(anchor_xy[0]), float(anchor_xy[1]))
+    def point_distance(point: Tuple[float, float], other: Tuple[float, float]) -> float:
+        return math.hypot(float(point[0]) - float(other[0]), float(point[1]) - float(other[1]))
+
+    def angle_deg(point: Tuple[float, float], other: Tuple[float, float]) -> float:
+        value = math.degrees(math.atan2(float(other[1]) - float(point[1]), float(other[0]) - float(point[0])))
+        return value + 360.0 if value < 0.0 else value
+
     arms: List[Dict[str, Any]] = []
     seen_road_ids: set[int] = set()
 
@@ -507,7 +647,7 @@ def _extract_junction_arms_from_graph(
             continue
 
         # Find the neighbor point closest to anchor
-        if _distance(anchor, points[0]) <= _distance(anchor, points[-1]):
+        if point_distance(anchor, points[0]) <= point_distance(anchor, points[-1]):
             neighbor = points[1] if len(points) > 1 else points[0]
         else:
             neighbor = points[-2] if len(points) > 1 else points[0]
@@ -525,13 +665,15 @@ def _extract_junction_arms_from_graph(
         arms.append({
             "road_id": road_id,
             "centerline_id": str(centerline_id),
-            "angle_deg": _angle_deg(anchor, neighbor),
+            "angle_deg": angle_deg(anchor, neighbor),
             "tangent": tangent,
             "normal": (float(tangent[1]), float(-tangent[0])),
             "carriageway_width_m": max(float(profile.get("carriageway_width_m", 8.0) or 8.0), 1.0),
             "nearroad_furnishing_width_m": float(profile.get("nearroad_furnishing_width_m", 0.0) or 0.0),
             "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
             "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
+            "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
+            "center_strip_layouts": list(profile.get("center_strip_layouts", []) or ()),
         })
         seen_road_ids.add(road_id)
 
@@ -543,6 +685,7 @@ def _apply_manual_junction_compositions(
     junction_geometries: List[Dict[str, Any]],
     *,
     road_segment_graph: Any | None = None,
+    roads: Sequence[OsmRoad] = (),
 ) -> List[Dict[str, Any]]:
     manual_by_junction_id = {comp.junction_id: comp for comp in annotation.junction_compositions} if annotation.junction_compositions else {}
 
@@ -568,7 +711,7 @@ def _apply_manual_junction_compositions(
         elif kind == "cross_junction" and junction_id not in manual_by_junction_id:
             # Try to generate geometry using cross strip fusion
             fusion_geom = _try_build_cross_fusion_for_junction(
-                annotation, geom, road_segment_graph
+                annotation, geom, road_segment_graph, roads
             )
             if fusion_geom is not None:
                 result.append({**geom, **fusion_geom})

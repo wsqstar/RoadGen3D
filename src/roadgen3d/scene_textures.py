@@ -23,12 +23,19 @@ _TEXTURE_PATHS = {
     "transit_pad": _ASSET_ROOT / "tiles" / "plaza_concrete.png",
     "curb": _ASSET_ROOT / "tiles" / "plaza_concrete.png",
     "grass": _ASSET_ROOT / "tiles" / "grass_soft.png",
+    "grass_belt": _ASSET_ROOT / "tiles" / "grass_soft.png",
     "building_buffer": _ASSET_ROOT / "tiles" / "grass_soft.png",
     "tree_pit": _ASSET_ROOT / "tiles" / "tree_pit.png",
     "crossing": _ASSET_ROOT / "overlays" / "crosswalk_stripes.png",
     "lane_mark": _ASSET_ROOT / "overlays" / "lane_dashes.png",
+    "lane_edge": _ASSET_ROOT / "overlays" / "lane_dashes.png",
+    "lane_edge_mark": _ASSET_ROOT / "overlays" / "lane_dashes.png",
     "bike_lane": _ASSET_ROOT / "tiles" / "asphalt_base.png",
+    "bus_lane": _ASSET_ROOT / "tiles" / "asphalt_base.png",
+    "parking_lane": _ASSET_ROOT / "tiles" / "asphalt_base.png",
     "median_green": _ASSET_ROOT / "tiles" / "grass_soft.png",
+    "shared_street_surface": _ASSET_ROOT / "tiles" / "plaza_concrete.png",
+    "colored_pavement": _ASSET_ROOT / "tiles" / "sidewalk_pavers.png",
 }
 
 _TEXTURE_TILE_SCALE_M = {
@@ -44,6 +51,15 @@ _TEXTURE_TILE_SCALE_M = {
     "tree_pit": 1.0,
     "crossing": 1.4,
     "lane_mark": 1.2,
+    "lane_edge": 1.2,
+    "lane_edge_mark": 1.2,
+    "bike_lane": 4.0,
+    "bus_lane": 4.0,
+    "parking_lane": 4.0,
+    "median_green": 3.0,
+    "grass_belt": 3.0,
+    "shared_street_surface": 2.5,
+    "colored_pavement": 1.8,
 }
 
 

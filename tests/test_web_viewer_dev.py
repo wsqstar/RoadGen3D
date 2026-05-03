@@ -48,6 +48,21 @@ def test_build_web_viewer_url_accepts_scene_directory(tmp_path: Path, monkeypatc
     assert "scene_layout.json" in url
 
 
+def test_build_web_viewer_url_uses_viewer_port_environment(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    repo_root = (tmp_path / "repo").resolve()
+    layout_path = repo_root / "artifacts" / "real" / "scene_layout.json"
+    layout_path.parent.mkdir(parents=True, exist_ok=True)
+    layout_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(viewer, "ROOT", repo_root)
+    monkeypatch.setenv("ROADGEN_VIEWER_HOST", "127.0.0.1")
+    monkeypatch.setenv("ROADGEN_VIEWER_PORT", "4181")
+
+    url = viewer.build_web_viewer_url(layout_path)
+
+    assert url.startswith("http://127.0.0.1:4181/?layout=")
+
+
 def test_infer_spawn_payload_defaults_to_street_center():
     payload = viewer.infer_spawn_payload({"summary": {"length_m": 120.0}})
 

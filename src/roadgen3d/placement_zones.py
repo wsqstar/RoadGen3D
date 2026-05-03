@@ -752,6 +752,41 @@ def _junction_rectangle_patch(
     return Polygon(corners)
 
 
+def _junction_carriageway_surface(
+    *,
+    anchor: Tuple[float, float],
+    arms: Sequence[Dict[str, Any]],
+    junction_core_rect: Any,
+    aoi_polygon: Any | None = None,
+) -> Any:
+    """Build the drivable junction surface from the center core plus approach throats."""
+
+    patches: List[Any] = [junction_core_rect]
+    for arm in arms:
+        split_distance_m = float(
+            arm.get("split_distance_m", arm.get("core_exit_distance_m", 0.0)) or 0.0
+        )
+        if split_distance_m <= 1e-6:
+            continue
+        tangent = tuple(float(value) for value in arm.get("tangent", (0.0, 0.0)))
+        normal = tuple(float(value) for value in arm.get("normal", (0.0, 0.0)))
+        width_m = max(float(arm.get("carriageway_width_m", 0.0) or 0.0), 1.0)
+        center = (
+            float(anchor[0]) + float(tangent[0]) * split_distance_m * 0.5,
+            float(anchor[1]) + float(tangent[1]) * split_distance_m * 0.5,
+        )
+        patches.append(
+            _rectangle_patch(
+                center=center,
+                tangent=tangent,
+                normal=normal,
+                length_m=split_distance_m,
+                width_m=width_m,
+            )
+        )
+    return _merge_polygon_geometries(patches, aoi_polygon=aoi_polygon)
+
+
 def _line_intersection(
     point_a: Tuple[float, float],
     direction_a: Tuple[float, float],
@@ -1480,6 +1515,147 @@ def _sample_tapered_arc(
     return points
 
 
+def _corner_fillet_turn_radius(
+    *,
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    target_segment_length_m: float,
+    strip_width_m: float = 0.0,
+) -> float:
+    split_a = float(arm.get("split_distance_m", arm.get("core_exit_distance_m", 0.0)) or 0.0)
+    split_b = float(next_arm.get("split_distance_m", next_arm.get("core_exit_distance_m", 0.0)) or 0.0)
+    max_radius_m = max(min(split_a, split_b) * 0.62, 1.0)
+    preferred_radius_m = max(2.8, float(strip_width_m) * 1.35, float(target_segment_length_m) * 3.0)
+    return max(min(preferred_radius_m, max_radius_m), 0.5)
+
+
+def _corner_quadrant_fillet_turn_radius(
+    *,
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    corner_center: Tuple[float, float],
+    target_segment_length_m: float,
+) -> float:
+    widths: List[float] = []
+    for strip_kind in _SIDE_TURN_LANE_KINDS:
+        offsets_a = _corner_strip_offset_range(arm, corner_center, strip_kind)
+        offsets_b = _corner_strip_offset_range(next_arm, corner_center, strip_kind)
+        if offsets_a is None or offsets_b is None:
+            continue
+        widths.append(
+            max(
+                (
+                    abs(float(offsets_a[3]) - float(offsets_a[2]))
+                    + abs(float(offsets_b[3]) - float(offsets_b[2]))
+                ) * 0.5,
+                0.0,
+            )
+        )
+    return _corner_fillet_turn_radius(
+        arm=arm,
+        next_arm=next_arm,
+        target_segment_length_m=target_segment_length_m,
+        strip_width_m=max(widths, default=0.0),
+    )
+
+
+def _corner_edge_join_point(
+    *,
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    offset_a_m: float,
+    offset_b_m: float,
+) -> Tuple[float, float] | None:
+    boundary_a = tuple(float(value) for value in arm["split_boundary_center"])
+    normal_a = tuple(float(value) for value in arm["normal"])
+    tangent_a = tuple(float(value) for value in arm["tangent"])
+    boundary_b = tuple(float(value) for value in next_arm["split_boundary_center"])
+    normal_b = tuple(float(value) for value in next_arm["normal"])
+    tangent_b = tuple(float(value) for value in next_arm["tangent"])
+    point_a = _point_on_boundary_with_offset(boundary_a, normal_a, float(offset_a_m))
+    point_b = _point_on_boundary_with_offset(boundary_b, normal_b, float(offset_b_m))
+    return _line_intersection(point_a, tangent_a, point_b, tangent_b)
+
+
+def _corner_fillet_arc_kernel(
+    *,
+    corner_point: Tuple[float, float],
+    tangent_a: Tuple[float, float],
+    tangent_b: Tuple[float, float],
+    radius_m: float,
+    target_segment_length_m: float,
+) -> Dict[str, Any] | None:
+    ray_a = _normalize_vector((float(tangent_a[0]), float(tangent_a[1])))
+    ray_b = _normalize_vector((float(tangent_b[0]), float(tangent_b[1])))
+    if ray_a is None or ray_b is None:
+        return None
+    dot = max(min(float(ray_a[0]) * float(ray_b[0]) + float(ray_a[1]) * float(ray_b[1]), 1.0), -1.0)
+    theta = math.acos(dot)
+    if theta <= math.radians(5.0) or theta >= math.radians(175.0):
+        return None
+    bisector = _normalize_vector((float(ray_a[0]) + float(ray_b[0]), float(ray_a[1]) + float(ray_b[1])))
+    if bisector is None:
+        return None
+    radius = max(float(radius_m), 0.1)
+    tangent_distance = radius / max(math.tan(theta * 0.5), 1e-6)
+    center_distance = radius / max(math.sin(theta * 0.5), 1e-6)
+    start_point = (
+        float(corner_point[0]) + float(ray_a[0]) * tangent_distance,
+        float(corner_point[1]) + float(ray_a[1]) * tangent_distance,
+    )
+    end_point = (
+        float(corner_point[0]) + float(ray_b[0]) * tangent_distance,
+        float(corner_point[1]) + float(ray_b[1]) * tangent_distance,
+    )
+    center = (
+        float(corner_point[0]) + float(bisector[0]) * center_distance,
+        float(corner_point[1]) + float(bisector[1]) * center_distance,
+    )
+    start_angle = math.atan2(float(start_point[1]) - float(center[1]), float(start_point[0]) - float(center[0]))
+    end_angle = math.atan2(float(end_point[1]) - float(center[1]), float(end_point[0]) - float(center[0]))
+    _sweep, direction = _short_arc_sweep(start_angle, end_angle)
+    return {
+        "kernel_kind": "circular_arc",
+        "center": center,
+        "radius_m": radius,
+        "start_point": start_point,
+        "end_point": end_point,
+        "clockwise": direction < 0.0,
+        "sampled_points": _sample_tapered_arc(
+            center=center,
+            start_point=start_point,
+            end_point=end_point,
+            target_segment_length_m=target_segment_length_m,
+        ),
+    }
+
+
+def _corner_offset_fillet_kernel(
+    *,
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    offset_a_m: float,
+    offset_b_m: float,
+    radius_m: float,
+    target_segment_length_m: float,
+) -> Dict[str, Any] | None:
+    corner_point = _corner_edge_join_point(
+        arm=arm,
+        next_arm=next_arm,
+        offset_a_m=float(offset_a_m),
+        offset_b_m=float(offset_b_m),
+    )
+    if corner_point is None:
+        return None
+    return _corner_fillet_arc_kernel(
+        corner_point=corner_point,
+        tangent_a=tuple(float(value) for value in arm["tangent"]),
+        tangent_b=tuple(float(value) for value in next_arm["tangent"]),
+        radius_m=radius_m,
+        target_segment_length_m=target_segment_length_m,
+    )
+
+
 def _dedupe_ring_points(points: Sequence[Tuple[float, float]], tolerance_m: float = 1e-6) -> List[Tuple[float, float]]:
     deduped: List[Tuple[float, float]] = []
     for point in points:
@@ -1492,37 +1668,39 @@ def _dedupe_ring_points(points: Sequence[Tuple[float, float]], tolerance_m: floa
     return deduped
 
 
-def _turn_lane_sector_patch(
+def _corner_strip_ribbon_patch(
     *,
     corner_center: Tuple[float, float],
     arm: Dict[str, Any],
     next_arm: Dict[str, Any],
     strip_a: Dict[str, Any],
     strip_b: Dict[str, Any],
+    turn_radius_m: float,
     target_segment_length_m: float,
 ) -> Any:
     from shapely.geometry import Polygon
 
-    boundary_a = tuple(float(value) for value in arm["split_boundary_center"])
-    normal_a = tuple(float(value) for value in arm["normal"])
-    boundary_b = tuple(float(value) for value in next_arm["split_boundary_center"])
-    normal_b = tuple(float(value) for value in next_arm["normal"])
-    near_start = _point_on_boundary_with_offset(boundary_a, normal_a, float(strip_a["near_offset_m"]))
-    far_start = _point_on_boundary_with_offset(boundary_a, normal_a, float(strip_a["far_offset_m"]))
-    near_end = _point_on_boundary_with_offset(boundary_b, normal_b, float(strip_b["near_offset_m"]))
-    far_end = _point_on_boundary_with_offset(boundary_b, normal_b, float(strip_b["far_offset_m"]))
-    near_arc = _sample_tapered_arc(
-        center=corner_center,
-        start_point=near_start,
-        end_point=near_end,
+    _ = corner_center
+    near_kernel = _corner_offset_fillet_kernel(
+        arm=arm,
+        next_arm=next_arm,
+        offset_a_m=float(strip_a["near_offset_m"]),
+        offset_b_m=float(strip_b["near_offset_m"]),
+        radius_m=turn_radius_m,
         target_segment_length_m=target_segment_length_m,
     )
-    far_arc = _sample_tapered_arc(
-        center=corner_center,
-        start_point=far_start,
-        end_point=far_end,
+    far_kernel = _corner_offset_fillet_kernel(
+        arm=arm,
+        next_arm=next_arm,
+        offset_a_m=float(strip_a["far_offset_m"]),
+        offset_b_m=float(strip_b["far_offset_m"]),
+        radius_m=turn_radius_m,
         target_segment_length_m=target_segment_length_m,
     )
+    if near_kernel is None or far_kernel is None:
+        return Polygon()
+    near_arc = list(near_kernel["sampled_points"])
+    far_arc = list(far_kernel["sampled_points"])
     ring = _dedupe_ring_points([*near_arc, *reversed(far_arc)])
     if len(ring) < 3:
         return Polygon()
@@ -1532,7 +1710,7 @@ def _turn_lane_sector_patch(
     return patch
 
 
-def _build_cross_turn_lane_patches(
+def _build_cross_corner_strip_patches(
     junction_id: str,
     quadrant_id: str,
     arm_index: int,
@@ -1544,7 +1722,6 @@ def _build_cross_turn_lane_patches(
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     patches: List[Dict[str, Any]] = []
     debug_records: List[Dict[str, Any]] = []
-    lane_index = 0
     stack_a = {
         str(strip["strip_kind"]): strip
         for strip in _corner_turn_strip_stack(arm, corner_center, stack_kind="side")
@@ -1555,6 +1732,12 @@ def _build_cross_turn_lane_patches(
         for strip in _corner_turn_strip_stack(next_arm, corner_center, stack_kind="side")
         if str(strip.get("strip_kind", "") or "") in _SIDE_TURN_LANE_KINDS
     }
+    turn_radius_m = _corner_quadrant_fillet_turn_radius(
+        arm=arm,
+        next_arm=next_arm,
+        corner_center=corner_center,
+        target_segment_length_m=target_segment_length_m,
+    )
     for strip_kind in _SIDE_TURN_LANE_KINDS:
         strip_a = stack_a.get(strip_kind)
         strip_b = stack_b.get(strip_kind)
@@ -1569,12 +1752,13 @@ def _build_cross_turn_lane_patches(
                 }
             )
             continue
-        patch = _turn_lane_sector_patch(
+        patch = _corner_strip_ribbon_patch(
             corner_center=corner_center,
             arm=arm,
             next_arm=next_arm,
             strip_a=strip_a,
             strip_b=strip_b,
+            turn_radius_m=turn_radius_m,
             target_segment_length_m=target_segment_length_m,
         )
         if getattr(patch, "is_empty", True) or float(getattr(patch, "area", 0.0) or 0.0) <= 1e-6:
@@ -1582,26 +1766,26 @@ def _build_cross_turn_lane_patches(
                 {
                     "quadrant_id": quadrant_id,
                     "strip_kind": strip_kind,
-                    "reason": "empty_or_invalid_sector",
+                    "reason": "empty_or_invalid_corner_strip",
                 }
             )
             continue
+        patch_prefix = {
+            "nearroad_furnishing": "nearroad",
+            "clear_sidewalk": "sidewalk",
+            "frontage_reserve": "frontage",
+        }.get(strip_kind, strip_kind)
         patches.append(
             {
-                "patch_id": f"{junction_id}_turn_{arm_index:02d}_{lane_index:02d}_{strip_kind}",
+                "patch_id": f"{junction_id}_{patch_prefix}_{arm_index:02d}",
                 "quadrant_id": quadrant_id,
                 "strip_kind": strip_kind,
                 "strip_id_a": str(strip_a.get("strip_id", "") or ""),
                 "strip_id_b": str(strip_b.get("strip_id", "") or ""),
-                "lane_index": int(lane_index),
-                "flow": "none",
-                "direction": "none",
                 "surface_role": str(strip_a.get("surface_role", "sidewalk") or "sidewalk"),
-                "stack_kind": "side",
                 "geometry": patch,
             }
         )
-        lane_index += 1
     return patches, debug_records
 
 
@@ -1611,8 +1795,6 @@ def _build_cross_corner_kernel_geometries(
     *,
     target_segment_length_m: float = 0.75,
 ) -> Dict[str, List[Dict[str, Any]]]:
-    from shapely.geometry import Polygon
-
     quadrant_corner_kernels: List[Dict[str, Any]] = []
     sidewalk_corner_polylines: List[Dict[str, Any]] = []
     nearroad_corner_polylines: List[Dict[str, Any]] = []
@@ -1678,8 +1860,6 @@ def _build_cross_corner_kernel_geometries(
 
         quadrant_id = f"{junction_id}_quadrant_{arm_index:02d}"
         kernel_id = f"{quadrant_id}_kernel"
-        start_tangent = (float(arm["tangent"][0]), float(arm["tangent"][1]))
-        end_tangent = (float(next_arm["tangent"][0]), float(next_arm["tangent"][1]))
         if arm_index in arm_skeletons_by_index:
             arm_skeletons_by_index[arm_index]["corner_facing_sides"].append(
                 {
@@ -1696,7 +1876,7 @@ def _build_cross_corner_kernel_geometries(
                     "side": _facing_zone_for_corner(next_arm, corner_center),
                 }
             )
-        quadrant_turn_patches, quadrant_turn_debug = _build_cross_turn_lane_patches(
+        quadrant_corner_patches, quadrant_turn_debug = _build_cross_corner_strip_patches(
             junction_id,
             quadrant_id,
             arm_index,
@@ -1705,38 +1885,42 @@ def _build_cross_corner_kernel_geometries(
             corner_center,
             target_segment_length_m=target_segment_length_m,
         )
-        turn_lane_patches.extend(quadrant_turn_patches)
         turn_lane_debug_records.extend(quadrant_turn_debug)
+        for patch in quadrant_corner_patches:
+            strip_kind = str(patch.get("strip_kind", "") or "")
+            if strip_kind == "nearroad_furnishing":
+                nearroad_corner_patches.append(patch)
+            elif strip_kind == "clear_sidewalk":
+                sidewalk_corner_patches.append(patch)
+            elif strip_kind == "frontage_reserve":
+                frontage_corner_patches.append(patch)
+        quadrant_turn_radius_m = _corner_quadrant_fillet_turn_radius(
+            arm=arm,
+            next_arm=next_arm,
+            corner_center=corner_center,
+            target_segment_length_m=target_segment_length_m,
+        )
 
-        canonical_start = None
-        canonical_end = None
+        canonical_kernel = None
         for canonical_kind in ("clear_sidewalk", "nearroad_furnishing", "frontage_reserve"):
             canonical_offsets_a = _corner_strip_offset_range(arm, corner_center, canonical_kind)
             canonical_offsets_b = _corner_strip_offset_range(next_arm, corner_center, canonical_kind)
             if canonical_offsets_a is None or canonical_offsets_b is None:
                 continue
-            canonical_start = _point_on_boundary_with_offset(
-                tuple(float(value) for value in arm["split_boundary_center"]),
-                tuple(float(value) for value in arm["normal"]),
-                float(canonical_offsets_a[1]),
+            canonical_kernel = _corner_offset_fillet_kernel(
+                arm=arm,
+                next_arm=next_arm,
+                offset_a_m=float(canonical_offsets_a[1]),
+                offset_b_m=float(canonical_offsets_b[1]),
+                radius_m=quadrant_turn_radius_m,
+                target_segment_length_m=target_segment_length_m,
             )
-            canonical_end = _point_on_boundary_with_offset(
-                tuple(float(value) for value in next_arm["split_boundary_center"]),
-                tuple(float(value) for value in next_arm["normal"]),
-                float(canonical_offsets_b[1]),
-            )
+            if canonical_kernel is None:
+                continue
             break
-        if canonical_start is None or canonical_end is None:
+        if canonical_kernel is None:
             continue
 
-        canonical_kernel = _corner_lane_kernel(
-            start_point=canonical_start,
-            end_point=canonical_end,
-            start_tangent=start_tangent,
-            end_tangent=end_tangent,
-            corner_center=corner_center,
-            target_segment_length_m=target_segment_length_m,
-        )
         quadrant_corner_kernels.append(
             {
                 "kernel_id": kernel_id,
@@ -1748,10 +1932,10 @@ def _build_cross_corner_kernel_geometries(
                 "kernel_kind": str(canonical_kernel["kernel_kind"]),
                 "center_xy": _round_xy(tuple(canonical_kernel["center"])),
                 "radius_m": round(float(canonical_kernel["radius_m"]), 3),
-                "start_xy": _round_xy(canonical_start),
-                "end_xy": _round_xy(canonical_end),
-                "start_heading_deg": round(float(canonical_kernel["start_heading_deg"]), 3),
-                "end_heading_deg": round(float(canonical_kernel["end_heading_deg"]), 3),
+                "start_xy": _round_xy(tuple(canonical_kernel["start_point"])),
+                "end_xy": _round_xy(tuple(canonical_kernel["end_point"])),
+                "start_heading_deg": round(_heading_deg_for_vector(tuple(float(value) for value in arm["tangent"])), 3),
+                "end_heading_deg": round(_heading_deg_for_vector(tuple(float(value) for value in next_arm["tangent"])), 3),
                 "clockwise": canonical_kernel["clockwise"],
                 "sampled_points_xy": [
                     _round_xy(point)
@@ -1760,33 +1944,15 @@ def _build_cross_corner_kernel_geometries(
             }
         )
 
-        for kind, prefix, bucket, patch_bucket in (
-            ("nearroad_furnishing", "nearroad", nearroad_corner_polylines, nearroad_corner_patches),
-            ("clear_sidewalk", "sidewalk", sidewalk_corner_polylines, sidewalk_corner_patches),
-            ("frontage_reserve", "frontage", frontage_corner_polylines, frontage_corner_patches),
+        for kind, prefix, bucket in (
+            ("nearroad_furnishing", "nearroad", nearroad_corner_polylines),
+            ("clear_sidewalk", "sidewalk", sidewalk_corner_polylines),
+            ("frontage_reserve", "frontage", frontage_corner_polylines),
         ):
             offsets_a = _corner_strip_offset_range(arm, corner_center, kind)
             offsets_b = _corner_strip_offset_range(next_arm, corner_center, kind)
             if offsets_a is None or offsets_b is None:
                 continue
-            start_point = _point_on_boundary_with_offset(
-                tuple(float(value) for value in arm["split_boundary_center"]),
-                tuple(float(value) for value in arm["normal"]),
-                float(offsets_a[1]),
-            )
-            end_point = _point_on_boundary_with_offset(
-                tuple(float(value) for value in next_arm["split_boundary_center"]),
-                tuple(float(value) for value in next_arm["normal"]),
-                float(offsets_b[1]),
-            )
-            polyline_kernel = _corner_lane_kernel(
-                start_point=start_point,
-                end_point=end_point,
-                start_tangent=start_tangent,
-                end_tangent=end_tangent,
-                corner_center=corner_center,
-                target_segment_length_m=target_segment_length_m,
-            )
             width_m = max(
                 (
                     abs(float(offsets_a[3]) - float(offsets_a[2]))
@@ -1794,6 +1960,16 @@ def _build_cross_corner_kernel_geometries(
                 ) * 0.5,
                 0.05,
             )
+            polyline_kernel = _corner_offset_fillet_kernel(
+                arm=arm,
+                next_arm=next_arm,
+                offset_a_m=float(offsets_a[1]),
+                offset_b_m=float(offsets_b[1]),
+                radius_m=quadrant_turn_radius_m,
+                target_segment_length_m=target_segment_length_m,
+            )
+            if polyline_kernel is None:
+                continue
             bucket.append(
                 {
                     "polyline_id": f"{junction_id}_{prefix}_{arm_index:02d}",
@@ -1806,46 +1982,6 @@ def _build_cross_corner_kernel_geometries(
                     "width_m": round(float(width_m), 3),
                 }
             )
-
-            inner_start = _point_on_boundary_with_offset(
-                tuple(float(value) for value in arm["split_boundary_center"]),
-                tuple(float(value) for value in arm["normal"]),
-                float(offsets_a[2]),
-            )
-            outer_start = _point_on_boundary_with_offset(
-                tuple(float(value) for value in arm["split_boundary_center"]),
-                tuple(float(value) for value in arm["normal"]),
-                float(offsets_a[3]),
-            )
-            inner_end = _point_on_boundary_with_offset(
-                tuple(float(value) for value in next_arm["split_boundary_center"]),
-                tuple(float(value) for value in next_arm["normal"]),
-                float(offsets_b[2]),
-            )
-            outer_end = _point_on_boundary_with_offset(
-                tuple(float(value) for value in next_arm["split_boundary_center"]),
-                tuple(float(value) for value in next_arm["normal"]),
-                float(offsets_b[3]),
-            )
-            patch = Polygon(
-                [
-                    _round_xy(corner_center),
-                    _round_xy(inner_start),
-                    _round_xy(outer_start),
-                    _round_xy(outer_end),
-                    _round_xy(inner_end),
-                    _round_xy(corner_center),
-                ]
-            )
-            if not patch.is_valid:
-                patch = patch.buffer(0)
-            if not getattr(patch, "is_empty", True):
-                patch_bucket.append(
-                    {
-                        "patch_id": f"{junction_id}_{prefix}_{arm_index:02d}",
-                        "geometry": patch,
-                    }
-                )
 
     return {
         "quadrant_corner_kernels": quadrant_corner_kernels,
@@ -2089,7 +2225,12 @@ def _build_explicit_graph_junction_geometries(
             arm["split_boundary_start"] = boundary_start
             arm["split_boundary_end"] = boundary_end
 
-        carriageway_core = junction_core_rect
+        carriageway_core = _junction_carriageway_surface(
+            anchor=anchor,
+            arms=arms,
+            junction_core_rect=junction_core_rect,
+            aoi_polygon=aoi_polygon,
+        )
         sidewalk_corner_patches = []
         nearroad_corner_patches = []
         frontage_corner_patches = []
@@ -2485,7 +2626,12 @@ def build_junction_geometries(
                 split_boundary_center[1] + float(arm["normal"][1]) * half_width,
             )
 
-        carriageway_core = junction_core_rect
+        carriageway_core = _junction_carriageway_surface(
+            anchor=anchor,
+            arms=arms,
+            junction_core_rect=junction_core_rect,
+            aoi_polygon=aoi_polygon,
+        )
         sidewalk_corner_patches = []
         nearroad_corner_patches = []
         frontage_corner_patches = []
@@ -2941,7 +3087,7 @@ def build_placement_context(
 
     if junction_geometries:
         carriageway_trim = _merge_polygon_geometries(
-            [item.get("junction_core_rect") for item in junction_geometries],
+            [item.get("carriageway_core") or item.get("junction_core_rect") for item in junction_geometries],
             aoi_polygon=aoi_polygon,
         )
         if carriageway_trim is not None and not getattr(carriageway_trim, "is_empty", True):
@@ -2969,7 +3115,7 @@ def build_placement_context(
         poly = _clip_to_aoi(poly, aoi_polygon)
         if junction_geometries:
             carriageway_trim = _merge_polygon_geometries(
-                [item.get("junction_core_rect") for item in junction_geometries],
+                [item.get("carriageway_core") or item.get("junction_core_rect") for item in junction_geometries],
                 aoi_polygon=aoi_polygon,
             )
             if carriageway_trim is not None and not getattr(carriageway_trim, "is_empty", True):

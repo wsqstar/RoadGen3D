@@ -2607,7 +2607,7 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
     mesh.apply_translation([float(x_m), 0.0, float(z_m)])
 
 
-SIDEWALK_ELEVATION_M = 0.15
+SIDEWALK_ELEVATION_M = 0.20
 
 
 def _apply_pbr_material(mesh, rgba, roughness=0.9):
@@ -2874,47 +2874,63 @@ def _add_lane_edge_markings(
 
     # Sort offsets from left (negative) to right (positive)
     edge_offsets.sort()
+    internal_edge_offsets = list(edge_offsets)
+    if len(internal_edge_offsets) >= 3:
+        internal_edge_offsets = internal_edge_offsets[1:-1]
+    internal_edge_offsets = [
+        offset
+        for offset in internal_edge_offsets
+        if abs(float(offset)) > 0.08
+    ]
+
+    if not internal_edge_offsets:
+        return
 
     coords = tuple((float(point[0]), float(point[1])) for point in (road_coords or ()))
 
     # If we have road coordinates, render continuous lines along the road
     if len(coords) >= 2:
         road_len = max(float(road_length_m), _polyline_length_m(coords))
-        for edge_offset in edge_offsets:
-            # Skip the outermost edges (carriageway edges) - we want internal lane edges only
-            # Actually, let's include them but make them white (curb line) instead of yellow
-            # For now, let's just render all edge lines
-            edge_idx = edge_offsets.index(edge_offset)
-            _add_road_box(
-                scene,
-                length_m=road_len,
-                width_m=0.12,  # Solid edge line width
-                height_m=0.01,
-                local_x_m=float(edge_offset),
-                local_z_m=0.0,
-                road_center_x_m=road_center_x_m,
-                road_center_z_m=road_center_z_m,
-                road_yaw_deg=road_yaw_deg,
-                y_min_m=0.005,
-                color=edge_color,
-                surface_role="lane_edge_mark",
-                node_name=f"{node_name_prefix}_{edge_idx}",
-                roughness=roughness,
-                texture_mode=texture_mode,
-                texture_tracker=texture_tracker,
-                texture_overrides=texture_overrides,
-            )
+        mark_length_m = 1.8
+        mark_step_m = 1.55
+        if road_len < mark_length_m:
+            return
+        for edge_idx, edge_offset in enumerate(internal_edge_offsets):
+            mark_idx = 0
+            distance_m = mark_length_m * 0.5
+            while distance_m < road_len - mark_length_m * 0.35:
+                center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
+                _add_road_box(
+                    scene,
+                    length_m=mark_length_m,
+                    width_m=0.12,
+                    height_m=0.01,
+                    local_x_m=0.0,
+                    local_z_m=float(edge_offset),
+                    road_center_x_m=center_x_m,
+                    road_center_z_m=center_z_m,
+                    road_yaw_deg=yaw_deg,
+                    y_min_m=0.005,
+                    color=edge_color,
+                    surface_role="lane_edge_mark",
+                    node_name=f"{node_name_prefix}_{edge_idx}_{mark_idx}",
+                    roughness=roughness,
+                    texture_mode=texture_mode,
+                    texture_tracker=texture_tracker,
+                    texture_overrides=texture_overrides,
+                )
+                mark_idx += 1
+                distance_m += mark_step_m
     else:
         # Fallback: render lines without following road shape
-        for edge_offset in edge_offsets:
-            edge_idx = edge_offsets.index(edge_offset)
+        for edge_idx, edge_offset in enumerate(internal_edge_offsets):
             _add_road_box(
                 scene,
                 length_m=float(road_length_m),
                 width_m=0.12,
                 height_m=0.01,
-                local_x_m=float(edge_offset),
-                local_z_m=0.0,
+                local_x_m=0.0,
+                local_z_m=float(edge_offset),
                 road_center_x_m=road_center_x_m,
                 road_center_z_m=road_center_z_m,
                 road_yaw_deg=road_yaw_deg,
@@ -3964,9 +3980,58 @@ def _build_osm_base_scene(
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
     colors = palette or {}
+    junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
+    junction_sidewalk_surface_roles = {"sidewalk", "furnishing", "context_ground"}
+
+    def _clean_scene_polygonal_geometry(geometry: Any) -> Any:
+        from shapely.geometry import GeometryCollection, MultiPolygon, Polygon as ShapelyPolygon
+        from shapely.ops import unary_union
+
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return MultiPolygon()
+        if not getattr(geometry, "is_valid", True):
+            try:
+                geometry = geometry.buffer(0)
+            except Exception:
+                return MultiPolygon()
+        if isinstance(geometry, ShapelyPolygon):
+            return geometry
+        if isinstance(geometry, MultiPolygon):
+            return geometry
+        if isinstance(geometry, GeometryCollection):
+            polygons = [
+                item
+                for item in geometry.geoms
+                if isinstance(item, (ShapelyPolygon, MultiPolygon)) and not getattr(item, "is_empty", True)
+            ]
+            return _clean_scene_polygonal_geometry(unary_union(polygons)) if polygons else MultiPolygon()
+        return MultiPolygon()
+
+    def _union_scene_polygonal_geometries(geometries: Sequence[Any]) -> Any:
+        from shapely.geometry import MultiPolygon
+        from shapely.ops import unary_union
+
+        valid = [
+            _clean_scene_polygonal_geometry(geometry)
+            for geometry in geometries
+            if geometry is not None and not getattr(geometry, "is_empty", True)
+        ]
+        valid = [geometry for geometry in valid if not getattr(geometry, "is_empty", True)]
+        if not valid:
+            return MultiPolygon()
+        return _clean_scene_polygonal_geometry(unary_union(valid))
+
+    junction_sidewalk_surfaces: List[Any] = []
+    for junction in junction_geometries:
+        for patch in junction.get("normalized_surface_patches", []) or ():
+            role = str(patch.get("surface_role", "") or "").strip().lower()
+            geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
+            if role in junction_sidewalk_surface_roles and geometry is not None and not getattr(geometry, "is_empty", True):
+                junction_sidewalk_surfaces.append(geometry)
+    sidewalk_render_zone = _union_scene_polygonal_geometries([sidewalk_zone, *junction_sidewalk_surfaces])
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
-    for geom in (carriageway, sidewalk_zone):
+    for geom in (carriageway, sidewalk_render_zone):
         if geom is None or getattr(geom, "is_empty", True):
             continue
         bounds = getattr(geom, "bounds", None)
@@ -4181,9 +4246,9 @@ def _build_osm_base_scene(
             roughness_key="carriageway",
             surface_role="carriageway",
         )
-    if not sidewalk_zone.is_empty:
+    if not sidewalk_render_zone.is_empty:
         _extrude_polygon(
-            sidewalk_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
+            sidewalk_render_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
             y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
         )
 
@@ -4254,16 +4319,98 @@ def _build_osm_base_scene(
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
-                    y_offset=0.0, roughness_key="curb", surface_role="curb",
+                    y_offset=SIDEWALK_ELEVATION_M, roughness_key="curb", surface_role="curb",
                 )
         except Exception:
             logger.debug("Skipping curb geometry in OSM base scene")
 
-    junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
+    def _turn_lane_patch_surface_key(patch: Mapping[str, Any]) -> str:
+        surface_role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
+        strip_kind = str(patch.get("strip_kind", "") or "").strip().lower()
+        if surface_role in {"bike_lane", "bus_lane", "parking_lane"}:
+            return surface_role
+        if surface_role == "furnishing" or "furnishing" in strip_kind or "buffer" in strip_kind:
+            return "furnishing"
+        if surface_role == "context_ground" or strip_kind == "frontage_reserve":
+            return "context_ground"
+        if surface_role == "sidewalk" or strip_kind == "clear_sidewalk":
+            return "sidewalk"
+        return "carriageway"
+
+    def _is_vehicle_turn_lane_patch(patch: Mapping[str, Any]) -> bool:
+        surface_role = str(patch.get("surface_role", "") or "").strip().lower()
+        strip_kind = str(patch.get("strip_kind", "") or "").strip().lower()
+        stack_kind = str(patch.get("stack_kind", "") or "").strip().lower()
+        return (
+            stack_kind == "center"
+            or surface_role in {"carriageway", "bike_lane", "bus_lane", "parking_lane"}
+            or strip_kind in {"drive_lane", "bike_lane", "bus_lane", "parking_lane"}
+        )
+
+    def _has_corner_surface_patches(junction: Mapping[str, Any]) -> bool:
+        for bucket_name in ("sidewalk_corner_patches", "nearroad_corner_patches", "frontage_corner_patches"):
+            for patch in junction.get(bucket_name, []) or ():
+                geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
+                if geometry is not None and not getattr(geometry, "is_empty", True):
+                    return True
+        return False
+
+    def _render_corner_patch_bucket(
+        junction: Mapping[str, Any],
+        *,
+        bucket_name: str,
+        node_name: str,
+        color_key: str,
+        height_m: float,
+        surface_role: str,
+    ) -> None:
+        for patch_index, patch in enumerate(junction.get(bucket_name, []) or ()):
+            geometry = patch.get("geometry")
+            if geometry is None or getattr(geometry, "is_empty", True):
+                continue
+            _extrude_polygon(
+                geometry,
+                height_m,
+                list(colors.get(color_key, colors.get("sidewalk", (165, 168, 172, 255)))),
+                f"junction_{node_name}_{junction_index}_{patch_index}",
+                y_offset=SIDEWALK_ELEVATION_M,
+                roughness_key=color_key,
+                surface_role=surface_role,
+            )
+
+    def _normalized_surface_render_spec(patch: Mapping[str, Any]) -> Tuple[float, List[int], float, str, str]:
+        role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
+        if role == "crossing":
+            return 0.01, list(colors.get("lane_mark", (245, 245, 245, 255))), 0.008, "crossing", "crossing"
+        if role in {"sidewalk", "furnishing", "context_ground"}:
+            return 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), SIDEWALK_ELEVATION_M, "sidewalk", "sidewalk"
+        if role in {"bike_lane", "bus_lane", "parking_lane"}:
+            return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
+        return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
+
     if junction_geometries:
         for junction_index, junction in enumerate(junction_geometries):
-            junction_kind = str(junction.get("kind", "") or "")
-            carriageway_core = junction.get("junction_core_rect") or junction.get("carriageway_core")
+            normalized_surface_patches = list(junction.get("normalized_surface_patches", []) or ())
+            if normalized_surface_patches:
+                for patch_index, patch in enumerate(normalized_surface_patches):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
+                    if role in junction_sidewalk_surface_roles:
+                        continue
+                    height_m, color, y_offset, roughness_key, surface_role = _normalized_surface_render_spec(patch)
+                    _extrude_polygon(
+                        geometry,
+                        height_m,
+                        color,
+                        f"junction_normalized_surface_{junction_index}_{patch_index}",
+                        y_offset=y_offset,
+                        roughness_key=roughness_key,
+                        surface_role=surface_role,
+                    )
+                continue
+            carriageway_core = junction.get("carriageway_core") or junction.get("junction_core_rect")
             if carriageway_core is not None and not getattr(carriageway_core, "is_empty", True):
                 _extrude_polygon(
                     carriageway_core,
@@ -4288,23 +4435,19 @@ def _build_osm_base_scene(
                     surface_role="crossing",
                 )
             turn_lane_patches = list(junction.get("turn_lane_patches", []) or ())
-            for patch_index, patch in enumerate(turn_lane_patches):
+            has_corner_surface_patches = _has_corner_surface_patches(junction)
+            visible_turn_lane_patches = [
+                patch
+                for patch in turn_lane_patches
+                if _is_vehicle_turn_lane_patch(patch) or not has_corner_surface_patches
+            ]
+            for patch_index, patch in enumerate(visible_turn_lane_patches):
                 geometry = patch.get("geometry")
                 if geometry is None or getattr(geometry, "is_empty", True):
                     continue
-                surface_role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
-                strip_kind = str(patch.get("strip_kind", "") or "").strip().lower()
                 stack_kind = str(patch.get("stack_kind", "") or "").strip().lower()
-                if surface_role in {"bike_lane", "bus_lane", "parking_lane"}:
-                    color_key = surface_role
-                elif surface_role == "furnishing" or "furnishing" in strip_kind or "buffer" in strip_kind:
-                    color_key = "furnishing"
-                elif surface_role == "context_ground" or strip_kind == "frontage_reserve":
-                    color_key = "context_ground"
-                elif surface_role == "sidewalk" or strip_kind == "clear_sidewalk":
-                    color_key = "sidewalk"
-                else:
-                    color_key = "carriageway"
+                surface_role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
+                color_key = _turn_lane_patch_surface_key(patch)
                 if color_key == "furnishing":
                     color = list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255))))
                 elif color_key == "bike_lane":
@@ -4325,46 +4468,47 @@ def _build_osm_base_scene(
                     roughness_key=color_key,
                     surface_role=surface_role,
                 )
-            if not turn_lane_patches:
-                for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
+            for patch_group, group_name in (
+                (junction.get("lane_surface_patches", []) or (), "lane_surface"),
+                (junction.get("merged_surface_patches", []) or (), "merged_surface"),
+            ):
+                for patch_index, patch in enumerate(patch_group):
                     geometry = patch.get("geometry")
                     if geometry is None or getattr(geometry, "is_empty", True):
                         continue
                     _extrude_polygon(
                         geometry,
-                        0.08,
-                        list(colors.get("sidewalk", (165, 168, 172, 255))),
-                        f"junction_sidewalk_corner_{junction_index}_{patch_index}",
-                        y_offset=SIDEWALK_ELEVATION_M,
-                        roughness_key="sidewalk",
-                        surface_role="sidewalk",
+                        0.014,
+                        list(colors.get("carriageway", (65, 68, 72, 255))),
+                        f"junction_{group_name}_{junction_index}_{patch_index}",
+                        y_offset=0.012,
+                        roughness_key="carriageway",
+                        surface_role="carriageway",
                     )
-                for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
-                    geometry = patch.get("geometry")
-                    if geometry is None or getattr(geometry, "is_empty", True):
-                        continue
-                    _extrude_polygon(
-                        geometry,
-                        0.05,
-                        list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
-                        f"junction_nearroad_corner_{junction_index}_{patch_index}",
-                        y_offset=SIDEWALK_ELEVATION_M,
-                        roughness_key="furnishing",
-                        surface_role="furnishing",
-                    )
-                for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
-                    geometry = patch.get("geometry")
-                    if geometry is None or getattr(geometry, "is_empty", True):
-                        continue
-                    _extrude_polygon(
-                        geometry,
-                        0.05,
-                        list(colors.get("context_ground", (168, 163, 150, 255))),
-                        f"junction_frontage_corner_{junction_index}_{patch_index}",
-                        y_offset=SIDEWALK_ELEVATION_M,
-                        roughness_key="context_ground",
-                        surface_role="context_ground",
-                    )
+            _render_corner_patch_bucket(
+                junction,
+                bucket_name="frontage_corner_patches",
+                node_name="frontage_corner",
+                color_key="context_ground",
+                height_m=0.05,
+                surface_role="context_ground",
+            )
+            _render_corner_patch_bucket(
+                junction,
+                bucket_name="nearroad_corner_patches",
+                node_name="nearroad_corner",
+                color_key="furnishing",
+                height_m=0.05,
+                surface_role="furnishing",
+            )
+            _render_corner_patch_bucket(
+                junction,
+                bucket_name="sidewalk_corner_patches",
+                node_name="sidewalk_corner",
+                color_key="sidewalk",
+                height_m=0.08,
+                surface_role="sidewalk",
+            )
 
     fallback_length_m = 20.0
     if scene_bounds:
@@ -4612,6 +4756,37 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             return [0.0, 0.0]
         return [round(float(point[0]), 3), round(float(point[1]), 3)]
 
+    def _serialize_corner_patch(patch) -> dict:
+        return {
+            "patch_id": str(patch.get("patch_id", "") or ""),
+            "quadrant_id": str(patch.get("quadrant_id", "") or ""),
+            "strip_kind": str(patch.get("strip_kind", "") or ""),
+            "strip_id_a": str(patch.get("strip_id_a", "") or ""),
+            "strip_id_b": str(patch.get("strip_id_b", "") or ""),
+            "from_centerline_id": str(patch.get("from_centerline_id", "") or ""),
+            "from_strip_id": str(patch.get("from_strip_id", "") or ""),
+            "from_strip_zone": str(patch.get("from_strip_zone", "") or ""),
+            "to_centerline_id": str(patch.get("to_centerline_id", "") or ""),
+            "to_strip_id": str(patch.get("to_strip_id", "") or ""),
+            "to_strip_zone": str(patch.get("to_strip_zone", "") or ""),
+            "generation_mode": str(patch.get("generation_mode", "") or ""),
+            "surface_role": str(patch.get("surface_role", "") or ""),
+            "rings": _extract_rings(patch.get("geometry")),
+        }
+
+    def _serialize_normalized_surface_patch(patch) -> dict:
+        return {
+            "surface_id": str(patch.get("surface_id", "") or ""),
+            "surface_kind": str(patch.get("surface_kind", "") or "normalized"),
+            "surface_role": str(patch.get("surface_role", "") or ""),
+            "component_index": int(patch.get("component_index", 0) or 0),
+            "source_ids": [str(value) for value in patch.get("source_ids", []) or ()],
+            "source_kinds": [str(value) for value in patch.get("source_kinds", []) or ()],
+            "is_overlay": bool(patch.get("is_overlay", False)),
+            "area_m2": round(float(patch.get("area_m2", 0.0) or 0.0), 3),
+            "rings": _extract_rings(patch.get("geometry")),
+        }
+
     result: dict = {}
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
@@ -4640,7 +4815,7 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                 "arm_count": int(item.get("arm_count", 0) or 0),
                 "connected_road_ids": [int(value) for value in item.get("connected_road_ids", []) or ()],
                 "junction_core_rect_rings": _extract_rings(item.get("junction_core_rect")),
-                "carriageway_core_rings": _extract_rings(item.get("junction_core_rect") or item.get("carriageway_core")),
+                "carriageway_core_rings": _extract_rings(item.get("carriageway_core") or item.get("junction_core_rect")),
                 "approach_boundaries": [
                     {
                         "boundary_id": str(boundary.get("boundary_id", "") or ""),
@@ -4801,6 +4976,22 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     }
                     for patch in item.get("merged_surface_patches", []) or ()
                 ],
+                "canonical_surface_patches": [
+                    {
+                        "surface_id": str(patch.get("surface_id", "") or ""),
+                        "surface_kind": str(patch.get("surface_kind", "") or "canonical"),
+                        "surface_role": str(patch.get("surface_role", "") or ""),
+                        "strip_kind": str(patch.get("strip_kind", "") or ""),
+                        "source_kind": str(patch.get("source_kind", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("canonical_surface_patches", []) or ()
+                ],
+                "normalized_surface_patches": [
+                    _serialize_normalized_surface_patch(patch)
+                    for patch in item.get("normalized_surface_patches", []) or ()
+                ],
+                "surface_normalization_debug": dict(item.get("surface_normalization_debug", {}) or {}),
             }
             if str(item.get("kind", "") or "") == "cross_junction":
                 junction_item["quadrant_corner_kernels"] = [
@@ -4854,24 +5045,15 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     for polyline in item.get("frontage_corner_polylines", []) or ()
                 ]
                 junction_item["sidewalk_corner_patches"] = [
-                    {
-                        "patch_id": str(patch.get("patch_id", "") or ""),
-                        "rings": _extract_rings(patch.get("geometry")),
-                    }
+                    _serialize_corner_patch(patch)
                     for patch in item.get("sidewalk_corner_patches", []) or ()
                 ]
                 junction_item["nearroad_corner_patches"] = [
-                    {
-                        "patch_id": str(patch.get("patch_id", "") or ""),
-                        "rings": _extract_rings(patch.get("geometry")),
-                    }
+                    _serialize_corner_patch(patch)
                     for patch in item.get("nearroad_corner_patches", []) or ()
                 ]
                 junction_item["frontage_corner_patches"] = [
-                    {
-                        "patch_id": str(patch.get("patch_id", "") or ""),
-                        "rings": _extract_rings(patch.get("geometry")),
-                    }
+                    _serialize_corner_patch(patch)
                     for patch in item.get("frontage_corner_patches", []) or ()
                 ]
                 junction_item["lane_surface_patches"] = [
@@ -4900,24 +5082,15 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                 ]
             else:
                 junction_item["sidewalk_corner_patches"] = [
-                    {
-                        "patch_id": str(patch.get("patch_id", "") or ""),
-                        "rings": _extract_rings(patch.get("geometry")),
-                    }
+                    _serialize_corner_patch(patch)
                     for patch in item.get("sidewalk_corner_patches", []) or ()
                 ]
                 junction_item["nearroad_corner_patches"] = [
-                    {
-                        "patch_id": str(patch.get("patch_id", "") or ""),
-                        "rings": _extract_rings(patch.get("geometry")),
-                    }
+                    _serialize_corner_patch(patch)
                     for patch in item.get("nearroad_corner_patches", []) or ()
                 ]
                 junction_item["frontage_corner_patches"] = [
-                    {
-                        "patch_id": str(patch.get("patch_id", "") or ""),
-                        "rings": _extract_rings(patch.get("geometry")),
-                    }
+                    _serialize_corner_patch(patch)
                     for patch in item.get("frontage_corner_patches", []) or ()
                 ]
                 junction_item["lane_surface_patches"] = [

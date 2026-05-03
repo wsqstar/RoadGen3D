@@ -193,6 +193,8 @@ class TestBuildCrossStripFusion:
 
     def test_carriageway_core_is_valid_polygon(self):
         """Test that carriageway core is a valid polygon."""
+        from shapely.geometry import Point
+
         arms = self._standard_cross_arms()
         result = build_cross_strip_fusion(
             junction_id="test_cross",
@@ -203,6 +205,16 @@ class TestBuildCrossStripFusion:
         polygon = result.carriageway_core_polygon
         assert polygon.is_valid, "Carriageway core should be valid"
         assert polygon.geom_type == "Polygon", "Should be a Polygon"
+        assert len(list(polygon.exterior.coords)) >= 12, "Core should be a merged straight-through throat surface"
+        for arm in result.arms:
+            profile_offset = arm.carriageway_half_width_m + sum(max(float(value), 0.0) for value in arm.strip_widths_by_kind.values())
+            depth = max(3.0 + arm.carriageway_half_width_m, arm.carriageway_half_width_m * 2.4, profile_offset * 1.35, 4.0)
+            mouth_center = (
+                arm.tangent[0] * depth,
+                arm.tangent[1] * depth,
+            )
+            assert polygon.buffer(1e-6).covers(Point(*mouth_center))
+        assert not polygon.buffer(1e-6).covers(Point(10.8, 10.8)), "Core should not be the old diagonal convex hull"
 
     def test_fused_corner_strips_generated(self):
         """Test that fused corner strips are generated for each kind."""
@@ -311,8 +323,49 @@ class TestBuildCrossStripFusion:
 
         # Should still produce valid geometry
         assert result.carriageway_core_polygon.is_valid
-        # Only clear_sidewalk should be present (from road_east)
-        assert "clear_sidewalk" in result.fused_corner_strips
+        # RoadPen-style side connectors need both adjacent side bands. Missing
+        # strips should skip the corner rather than inventing a triangular fill.
+        assert result.fused_corner_strips == {}
+        assert result.debug_info["corner_connector_patch_count"] == 0
+
+    def test_roadpen_style_corner_connectors_keep_provenance(self):
+        """Corner connectors should carry from/to strip metadata for diagnostics."""
+        arms = self._standard_cross_arms()
+        result = build_cross_strip_fusion(
+            junction_id="test_cross",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        assert result.debug_info["generation_mode"] == "roadpen_style_junction_fusion_v1"
+        assert result.fused_corner_patch_records
+        sidewalk_records = [
+            record for record in result.fused_corner_patch_records
+            if record["strip_kind"] == "clear_sidewalk"
+        ]
+        assert len(sidewalk_records) == 4
+        for record in sidewalk_records:
+            assert record["generation_mode"] == "roadpen_style_lane_connector"
+            assert record["from_centerline_id"]
+            assert record["to_centerline_id"]
+            assert record["from_strip_id"].startswith("left_")
+            assert record["to_strip_id"].startswith("right_")
+            assert record["geometry"].area > 0
+
+    def test_roadpen_style_sidewalk_connectors_do_not_cover_junction_anchor(self):
+        """Sidewalk corner surfaces should stay outside the carriageway center."""
+        from shapely.geometry import Point
+
+        arms = self._standard_cross_arms()
+        result = build_cross_strip_fusion(
+            junction_id="test_cross",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        anchor = Point(0.0, 0.0)
+        for record in result.fused_corner_patch_records:
+            assert not record["geometry"].buffer(1e-6).covers(anchor)
 
 
 class TestArmSorting:
