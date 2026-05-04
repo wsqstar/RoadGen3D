@@ -256,6 +256,35 @@ class TestBuildCrossStripFusion:
             area = float(polygon.area)
             assert area > 0, f"{kind} should have non-zero area"
 
+    def test_carriageway_aprons_fill_road_side_corner_pockets(self):
+        """Road surface should continue to the inner curb curve at each corner."""
+        from roadgen3d.junction_surface_normalization import normalize_junction_surface_geometry
+
+        arms = self._standard_cross_arms()
+        result = build_cross_strip_fusion(
+            junction_id="test_cross",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        assert len(result.carriageway_apron_patch_records) == 4
+        assert all(patch["geometry"].area > 1.0 for patch in result.carriageway_apron_patch_records)
+
+        geometry = cross_strip_fusion_to_junction_geometry(result)
+        apron_sources = [
+            patch for patch in geometry["canonical_surface_patches"]
+            if patch.get("source_kind") == "roadpen_style_carriageway_apron"
+        ]
+        assert len(apron_sources) == 4
+
+        normalized = normalize_junction_surface_geometry(geometry)
+        carriageway = [
+            patch for patch in normalized["normalized_surface_patches"]
+            if patch["surface_role"] == "carriageway"
+        ]
+        assert len(carriageway) == 1
+        assert carriageway[0]["geometry"].area > result.carriageway_core_polygon.area
+
     def test_debug_info_contains_stats(self):
         """Test that debug info contains expected statistics."""
         arms = self._standard_cross_arms()

@@ -376,6 +376,7 @@ class CrossStripFusionResult:
     fused_corner_strips: Dict[str, Any]  # {strip_kind: shapely Polygon}
     fused_corner_patch_records: List[Dict[str, Any]]
     endpoint_fill_patch_records: List[Dict[str, Any]]
+    carriageway_apron_patch_records: List[Dict[str, Any]]
     debug_info: Dict[str, Any]  # Debugging information
 
 
@@ -618,6 +619,8 @@ def _build_lane_connector_polygon(
     Tuple[float, float],
     Tuple[Tuple[float, float], Tuple[float, float]],
     Tuple[Tuple[float, float], Tuple[float, float]],
+    List[Tuple[float, float]],
+    List[Tuple[float, float]],
     Dict[str, float],
 ] | None:
     a_inner, a_outer = _signed_band_bounds(strip_a)
@@ -655,6 +658,8 @@ def _build_lane_connector_polygon(
         tuple(float(value) for value in center_curve[-1]),
         from_edge,
         to_edge,
+        outer_curve,
+        inner_curve,
         metrics,
     )
 
@@ -747,6 +752,49 @@ def _endpoint_fill_patch_record(
     }
 
 
+def _build_carriageway_apron_polygon(
+    *,
+    anchor_xy: Tuple[float, float],
+    arm: JunctionArm,
+    next_arm: JunctionArm,
+    road_edge_curve: Sequence[Tuple[float, float]],
+) -> Any | None:
+    """Fill the road-side pocket between an L-shaped throat and a curb arc.
+
+    The side-strip connector's inner curve is the curved curb-side boundary. The
+    carriageway core remains a straight RoadPen-style throat union, so each corner
+    has a small pocket between that L edge and the curved curb boundary. That
+    pocket should be road, not context ground.
+    """
+
+    if len(road_edge_curve) < 2:
+        return None
+
+    incoming_boundary_origin = _add_points(
+        anchor_xy,
+        _scale_point(arm.normal, float(arm.carriageway_half_width_m)),
+    )
+    outgoing_boundary_origin = _add_points(
+        anchor_xy,
+        _scale_point(next_arm.normal, -float(next_arm.carriageway_half_width_m)),
+    )
+    core_corner = _line_intersection(
+        incoming_boundary_origin,
+        arm.tangent,
+        outgoing_boundary_origin,
+        next_arm.tangent,
+    )
+    if core_corner is None:
+        return None
+
+    points = [
+        *(tuple(float(value) for value in point) for point in road_edge_curve),
+        core_corner,
+        tuple(float(value) for value in road_edge_curve[0]),
+    ]
+    return _polygon_from_points(points)
+
+
 def _build_corner_connector_patch_records(
     junction_id: str,
     anchor_xy: Tuple[float, float],
@@ -754,11 +802,12 @@ def _build_corner_connector_patch_records(
     strip_kinds: Sequence[str],
     *,
     corner_chamfer_depth_m: float,
-) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], List[Dict[str, Any]]]:
     """Build RoadPen-style side-strip connector patches between adjacent arms."""
 
     patch_records: List[Dict[str, Any]] = []
     endpoint_fill_records: List[Dict[str, Any]] = []
+    carriageway_apron_records: List[Dict[str, Any]] = []
     pass_through = _pass_through_pairs(arms)
     for arm_index, arm in enumerate(arms):
         next_arm = arms[(arm_index + 1) % len(arms)]
@@ -804,6 +853,7 @@ def _build_corner_connector_patch_records(
         )
         if reference_turn is None:
             continue
+        apron_candidate: Tuple[int, List[Tuple[float, float]], Dict[str, Any]] | None = None
         for strip_kind, strip_a, strip_b, _inner_q, _center_q, _outer_q in strip_pairs:
             connector = _build_lane_connector_polygon(
                 anchor_xy,
@@ -816,7 +866,17 @@ def _build_corner_connector_patch_records(
             )
             if connector is None:
                 continue
-            polygon_points, center_curve, from_stop, to_stop, from_edge, to_edge, metrics = connector
+            (
+                polygon_points,
+                center_curve,
+                from_stop,
+                to_stop,
+                from_edge,
+                to_edge,
+                _outer_curve,
+                inner_curve,
+                metrics,
+            ) = connector
             polygon = _polygon_from_points(polygon_points)
             if polygon is None:
                 continue
@@ -848,6 +908,13 @@ def _build_corner_connector_patch_records(
                 "radius_floor_m": round(float(metrics["radius_floor_m"]), 3),
             }
             patch_records.append(record)
+            apron_priority = {
+                "nearroad_furnishing": 0,
+                "clear_sidewalk": 1,
+                "frontage_reserve": 2,
+            }.get(strip_kind, 9)
+            if apron_priority < 9 and (apron_candidate is None or apron_priority < apron_candidate[0]):
+                apron_candidate = (apron_priority, inner_curve, record)
             fill_length_m = max(float(metrics["tangent_setback_m"]), float(metrics["chamfer_depth_m"]) * 2.0) + 0.25
             for endpoint_role, edge, direction in (
                 ("from", from_edge, arm.tangent),
@@ -864,7 +931,37 @@ def _build_corner_connector_patch_records(
                         fill_length_m=fill_length_m,
                     )
                 )
-    return patch_records, endpoint_fill_records
+        if apron_candidate is not None:
+            _priority, road_edge_curve, connector_record = apron_candidate
+            apron_polygon = _build_carriageway_apron_polygon(
+                anchor_xy=anchor_xy,
+                arm=arm,
+                next_arm=next_arm,
+                road_edge_curve=road_edge_curve,
+            )
+            if apron_polygon is not None:
+                carriageway_apron_records.append(
+                    {
+                        "patch_id": f"{junction_id}_carriageway_apron_{arm_index:02d}",
+                        "strip_kind": "drive_lane",
+                        "surface_role": "carriageway",
+                        "geometry": apron_polygon,
+                        "generation_mode": "roadpen_style_carriageway_apron",
+                        "paired_connector_id": str(connector_record.get("patch_id", "") or ""),
+                        "quadrant_id": quadrant_id,
+                        "from_road_id": int(arm.road_id),
+                        "from_centerline_id": arm.centerline_id,
+                        "to_road_id": int(next_arm.road_id),
+                        "to_centerline_id": next_arm.centerline_id,
+                        "chamfer_depth_m": float(connector_record.get("chamfer_depth_m", 0.0) or 0.0),
+                        "effective_chamfer_depth_m": float(connector_record.get("effective_chamfer_depth_m", 0.0) or 0.0),
+                        "fillet_radius_m": float(connector_record.get("fillet_radius_m", 0.0) or 0.0),
+                        "tangent_setback_m": float(connector_record.get("tangent_setback_m", 0.0) or 0.0),
+                        "reference_q_m": float(connector_record.get("reference_q_m", 0.0) or 0.0),
+                        "center_q_m": float(connector_record.get("center_q_m", 0.0) or 0.0),
+                    }
+                )
+    return patch_records, endpoint_fill_records, carriageway_apron_records
 
 
 def build_cross_strip_fusion(
@@ -973,7 +1070,7 @@ def build_cross_strip_fusion(
     # angle-bisector wedges started at the junction anchor and produced visible
     # triangular slivers in the exported layout.
     fused_corner_strips: Dict[str, Any] = {}
-    fused_corner_patch_records, endpoint_fill_patch_records = _build_corner_connector_patch_records(
+    fused_corner_patch_records, endpoint_fill_patch_records, carriageway_apron_patch_records = _build_corner_connector_patch_records(
         junction_id,
         anchor_xy,
         junction_arms,
@@ -1008,6 +1105,7 @@ def build_cross_strip_fusion(
         "strip_kinds_generated": list(fused_corner_strips.keys()),
         "corner_connector_patch_count": len(fused_corner_patch_records),
         "endpoint_fill_patch_count": len(endpoint_fill_patch_records),
+        "carriageway_apron_patch_count": len(carriageway_apron_patch_records),
         "corner_chamfer_depth_m": max(float(corner_chamfer_depth_m), float(min_corner_radius_m), 0.05),
         "corner_chamfer_mode": "diagonal_depth",
         "carriageway_core_area_m2": float(carriageway_core.area),
@@ -1024,6 +1122,7 @@ def build_cross_strip_fusion(
         fused_corner_strips=fused_corner_strips,
         fused_corner_patch_records=fused_corner_patch_records,
         endpoint_fill_patch_records=endpoint_fill_patch_records,
+        carriageway_apron_patch_records=carriageway_apron_patch_records,
         debug_info=debug_info,
     )
 
@@ -1064,6 +1163,28 @@ def cross_strip_fusion_to_junction_geometry(
         "nearroad_furnishing": "nearroad_corner_patches",
         "frontage_reserve": "frontage_corner_patches",
     }
+
+    for patch in fusion_result.carriageway_apron_patch_records:
+        polygon = patch.get("geometry")
+        if polygon is None or getattr(polygon, "is_empty", True):
+            continue
+        result["canonical_surface_patches"].append(
+            {
+                "surface_id": str(patch.get("patch_id", f"{fusion_result.junction_id}_carriageway_apron")),
+                "surface_role": "carriageway",
+                "surface_kind": "canonical",
+                "strip_kind": "drive_lane",
+                "geometry": polygon,
+                "source_kind": "roadpen_style_carriageway_apron",
+                "paired_connector_id": str(patch.get("paired_connector_id", "") or ""),
+                "chamfer_depth_m": float(patch.get("chamfer_depth_m", 0.0) or 0.0),
+                "effective_chamfer_depth_m": float(patch.get("effective_chamfer_depth_m", 0.0) or 0.0),
+                "fillet_radius_m": float(patch.get("fillet_radius_m", 0.0) or 0.0),
+                "tangent_setback_m": float(patch.get("tangent_setback_m", 0.0) or 0.0),
+                "reference_q_m": float(patch.get("reference_q_m", 0.0) or 0.0),
+                "center_q_m": float(patch.get("center_q_m", 0.0) or 0.0),
+            }
+        )
 
     for patch in fusion_result.fused_corner_patch_records:
         strip_kind = str(patch.get("strip_kind", "") or "")
