@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import json
 from pathlib import Path
 from threading import Event
 
@@ -194,3 +195,93 @@ def test_scene_job_service_records_graph_template_scene_summary_in_recent_scenes
     assert recent[0].summary["graph_template_id"] == "hkust_gz_gate"
     assert recent[0].summary["building_generation_mode"] == "building_region_direct"
     assert recent[0].summary["building_footprint_count"] == 2
+
+
+def test_scene_job_service_builds_generation_trace_and_writes_artifact(tmp_path: Path):
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {}, "placements": []}), encoding="utf-8")
+
+    def _generator(draft, **kwargs):
+        kwargs["progress_callback"]({
+            "stage": "context_resolving",
+            "progress": 18,
+            "message": "LLM derived config parameters.",
+            "detail": {
+                "llm_derivation_status": "succeeded",
+                "design_summary": "LLM selected wider sidewalks.",
+                "config_patch": {"sidewalk_width_m": 4.0, "density": 0.7},
+                "llm_raw_fields": ["sidewalk_width_m"],
+                "defaulted_fields": ["density"],
+                "parameter_sources_by_field": {"sidewalk_width_m": "llm_derived"},
+                "citations_by_field": {"sidewalk_width_m": ["scenario_parameters::demo"]},
+                "rag_queries": ["walkable sidewalk width"],
+                "rag_evidence": [
+                    {
+                        "chunk_id": "scenario_parameters::demo",
+                        "doc_id": "scenario_parameter_triples",
+                        "section_title": "Walkable / sidewalk_width_m",
+                        "page_start": 0,
+                        "page_end": 0,
+                        "text": "{\"scenario_label\":\"Walkable\",\"parameter_name\":\"sidewalk_width_m\"}",
+                        "source_path": "knowledge/scenario_parameter_triples.jsonl",
+                        "score": 0.97,
+                        "knowledge_source": "scenario_parameters",
+                    }
+                ],
+                "knowledge_source": "graph_rag",
+            },
+        })
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={"instance_count": 7},
+            scene_layout_path=str(layout_path),
+            scene_glb_path=str(tmp_path / "scene.glb"),
+            viewer_url="http://127.0.0.1:4173/?layout=demo",
+        )
+
+    def _evaluator(**kwargs):
+        assert kwargs["layout_path"] == str(layout_path)
+        return {"walkability": 88, "safety": None, "beauty": None, "overall": None, "evaluation": "solid"}
+
+    service = SceneJobService(generator=_generator, evaluator=_evaluator)
+    created = service.submit_job(draft=_draft())
+    status = service.wait_for_job(created.job_id, timeout_s=2.0)
+
+    assert status is not None
+    assert status.status == "succeeded"
+    trace = status.trace
+    assert trace["schema_version"] == "generation_trace_v1"
+    assert trace["provenance"]["rag_evidence"][0]["knowledge_source"] == "scenario_parameters"
+    assert trace["provenance"]["citations_by_field"]["sidewalk_width_m"] == ["scenario_parameters::demo"]
+    assert trace["llm_recommendation"]["config_patch"]["sidewalk_width_m"] == 4.0
+    assert trace["evaluation"]["status"] == "succeeded"
+    assert trace["evaluation"]["walkability"] == 88
+    trace_path = tmp_path / "generation_trace.json"
+    assert trace_path.exists()
+    saved = json.loads(trace_path.read_text(encoding="utf-8"))
+    assert saved["job_id"] == created.job_id
+    assert saved["result"]["generation_trace_path"] == str(trace_path)
+
+
+def test_scene_job_service_evaluation_failure_does_not_fail_generation(tmp_path: Path):
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {}, "placements": []}), encoding="utf-8")
+
+    def _generator(draft, **_kwargs):
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={"instance_count": 1},
+            scene_layout_path=str(layout_path),
+        )
+
+    def _evaluator(**_kwargs):
+        raise RuntimeError("evaluation unavailable")
+
+    service = SceneJobService(generator=_generator, evaluator=_evaluator)
+    created = service.submit_job(draft=_draft())
+    status = service.wait_for_job(created.job_id, timeout_s=2.0)
+
+    assert status is not None
+    assert status.status == "succeeded"
+    assert status.trace["evaluation"]["status"] == "failed"
+    assert "evaluation unavailable" in status.trace["evaluation"]["error"]

@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, List, Mapping
 
 from ..osm_ingest import ProjectedFeatures
 from ..placement_zones import PlacementContext
@@ -48,7 +48,11 @@ def load_graph_from_exported_json(graph_json_path: str | Path) -> GraphSceneCont
     bridge_result = build_reference_annotation_scene_bridge(annotation_payload)
 
     annotation = bridge_result.annotation
-    graph_summary = _extract_graph_summary(annotation, bridge_result.summary_metadata)
+    graph_summary = _extract_graph_summary(
+        annotation,
+        bridge_result.summary_metadata,
+        exported_summary=raw.get("summary") if isinstance(raw.get("summary"), Mapping) else None,
+    )
 
     return GraphSceneContext(
         road_segment_graph=bridge_result.road_segment_graph,
@@ -66,30 +70,40 @@ def load_graph_from_exported_json(graph_json_path: str | Path) -> GraphSceneCont
 def _extract_graph_summary(
     annotation: ReferenceAnnotation,
     bridge_metadata: Dict[str, Any],
+    exported_summary: Mapping[str, Any] | None = None,
 ) -> Dict[str, Any]:
     """Derive a compact summary dict for LLM prompts."""
     centerline_count = len(annotation.centerlines)
     road_widths: List[float] = []
+    strip_count = 0
     for cl in annotation.centerlines:
         road_widths.append(float(cl.carriageway_width_m()))
+        strip_count += len(getattr(cl, "cross_section_strips", ()) or ())
 
     junction_count = len(annotation.junctions) if hasattr(annotation, "junctions") else 0
     building_count = len(annotation.building_regions) if hasattr(annotation, "building_regions") else 0
-    cross_section_strips: List[Any] = []
-    if hasattr(annotation, "cross_section_strips"):
-        cross_section_strips = list(annotation.cross_section_strips)
 
-    return {
+    summary: Dict[str, Any] = {
+        "plan_id": str(annotation.plan_id),
+        "source_image_path": str(annotation.image_path),
         "centerline_count": centerline_count,
         "road_widths": road_widths,
         "junction_count": junction_count,
         "building_regions_count": building_count,
-        "cross_section_strip_count": len(cross_section_strips),
+        "functional_zone_count": len(getattr(annotation, "functional_zones", ()) or ()),
+        "cross_section_strip_count": strip_count,
         "image_width_px": float(annotation.image_width_px),
         "image_height_px": float(annotation.image_height_px),
         "pixels_per_meter": float(annotation.pixels_per_meter),
         **{k: v for k, v in bridge_metadata.items() if isinstance(v, (int, float, str, bool))},
     }
+    if exported_summary:
+        summary["exported_summary"] = {
+            str(k): v
+            for k, v in exported_summary.items()
+            if isinstance(v, (int, float, str, bool))
+        }
+    return summary
 
 
 def build_graph_context_description(graph_summary: Dict[str, Any]) -> str:
@@ -123,7 +137,7 @@ def build_initial_design_messages(
 ) -> List[Dict[str, Any]]:
     """Build LLM messages that ask the model to propose initial design parameters.
 
-    Returns a list of message dicts suitable for ``GLMClient.chat_json()``.
+    Returns a list of message dicts suitable for ``LLMClient.chat_json()``.
     """
     from ..services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
 

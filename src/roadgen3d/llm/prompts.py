@@ -117,6 +117,9 @@ def build_design_draft_messages(
     current_patch: Mapping[str, Any] | None,
     missing_fields: Sequence[str] | None = None,
 ) -> list[Dict[str, str]]:
+    from ..services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
+
+    allowed_fields = ", ".join(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
     serialized_evidence = [
         {
             "chunk_id": item.chunk_id,
@@ -124,6 +127,7 @@ def build_design_draft_messages(
             "page_start": item.page_start,
             "page_end": item.page_end,
             "text": item.text,
+            "knowledge_source": item.knowledge_source,
             "parameter_hints": item.parameter_hints,
         }
         for item in evidence
@@ -138,12 +142,10 @@ def build_design_draft_messages(
         "`citations_by_field`(object<string,string[]>)、"
         "`design_summary`(string)、"
         "`risk_notes`(string[])。"
-        "compose_config_patch 只能使用这些字段："
-        "query, design_rule_profile, target_street_type, objective_profile, city_context, "
-        "style_preset, beauty_mode, "
-        "length_m, road_width_m, sidewalk_width_m, lane_count, density, "
-        "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level。"
+        f"compose_config_patch 只能使用这些字段：{allowed_fields}。"
         "compose_config_patch 必须尽量为这些允许字段都给出非空值，不要留空。"
+        "如果 evidence 中 knowledge_source 为 scenario_parameters，text 是结构化情景-参数-值 JSON，"
+        "应优先用于对应参数的数值、单位和引用。"
         "如果某个字段能从 RAG 证据中得到支持，就在 citations_by_field 中给出 chunk_id。"
         "如果某个字段缺少直接证据，也要根据用户目标与已有证据给出合理推断值，不要输出 None/null。"
         "引用必须使用证据中的 chunk_id。"
@@ -599,6 +601,8 @@ def build_graph_aware_design_messages(
         "`compose_config_patch`(object) 和 `design_summary`(string)。"
         f"compose_config_patch 只能使用这些字段：{allowed_fields}。"
         "请尽量为所有允许字段都给出非空值，不要输出 None/null。"
+        "如果 RAG evidence 中 knowledge_source 为 scenario_parameters，text 是结构化情景-参数-值 JSON，"
+        "请优先用于可匹配场景和参数的数值推导。"
         "不要编造具体资产 ID。"
     )
     serialized_evidence = [

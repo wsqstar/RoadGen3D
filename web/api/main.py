@@ -1,4 +1,4 @@
-"""Canonical FastAPI entrypoint for the LLM + RAG workbench."""
+"""Canonical FastAPI entrypoint for the LLM + RAG design API."""
 
 from __future__ import annotations
 

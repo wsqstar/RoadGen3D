@@ -46,6 +46,14 @@ _SCENE_SURFACE_ROLES: Tuple[str, ...] = (
     "tree_pit",
     "crossing",
     "lane_mark",
+    "lane_edge_mark",
+    "bike_lane",
+    "bus_lane",
+    "parking_lane",
+    "median_green",
+    "grass_belt",
+    "shared_street_surface",
+    "colored_pavement",
 )
 _SURFACE_FALLBACKS: Dict[str, Tuple[str, ...]] = {
     "clear_path": ("sidewalk",),
@@ -55,6 +63,14 @@ _SURFACE_FALLBACKS: Dict[str, Tuple[str, ...]] = {
     "building_buffer": ("grass", "context_ground"),
     "crossing": ("sidewalk",),
     "lane_mark": ("carriageway",),
+    "lane_edge_mark": ("lane_mark", "carriageway"),
+    "bike_lane": ("carriageway",),
+    "bus_lane": ("carriageway",),
+    "parking_lane": ("carriageway",),
+    "median_green": ("grass",),
+    "grass_belt": ("grass",),
+    "shared_street_surface": ("context_ground", "sidewalk"),
+    "colored_pavement": ("sidewalk", "context_ground"),
 }
 
 

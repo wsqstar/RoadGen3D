@@ -69,6 +69,7 @@ class BranchNode:
     scene_glb_path: str = ""
     preview_path: str = ""
     evaluation: Dict[str, Any] = field(default_factory=dict)
+    trace: Dict[str, Any] = field(default_factory=dict)
     score: float = 0.0
     error: str = ""
     blocker_details: Dict[str, Any] = field(default_factory=dict)
@@ -232,6 +233,12 @@ class BranchRunService:
             for parent in frontier:
                 if parent.status != "succeeded":
                     continue
+                weakness_queries = _weakness_queries(parent.optimization_directives)
+                child_evidence = self._retrieve_branch_evidence(
+                    state,
+                    queries=weakness_queries,
+                    topk=max(state.topk, 6),
+                )
                 self._update_state(
                     state.run_id,
                     "llm_improvement",
@@ -244,8 +251,9 @@ class BranchRunService:
                     current_patch=parent.config_patch,
                     optimization_directives=parent.optimization_directives,
                     topk=state.topk,
-                    weakness_queries=_weakness_queries(parent.optimization_directives),
+                    weakness_queries=weakness_queries,
                     knowledge_source=state.knowledge_source,
+                    evidence=child_evidence,
                 )
                 for index, candidate in enumerate(child_candidates[: state.topk]):
                     accepted_patch, rejected = self.planner.sanitize_candidate_patch(
@@ -265,7 +273,7 @@ class BranchRunService:
                         depth=depth,
                         rank=index + 1,
                         parent=parent,
-                        evidence=[],
+                        evidence=child_evidence,
                     )
                     self._run_node(state, child)
                     next_level.append(child)
@@ -301,7 +309,7 @@ class BranchRunService:
         for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
             patch.setdefault(field_name, default_value)
         patch.setdefault("query", state.prompt)
-        return BranchNode(
+        node = BranchNode(
             node_id=node_id,
             parent_id=parent.node_id if parent else None,
             depth=depth,
@@ -313,11 +321,14 @@ class BranchRunService:
             directive_ids=[str(item) for item in candidate.get("directive_ids", []) or []],
             rejected_edits=list(candidate.get("rejected_edits", []) or []),
         )
+        node.trace = _build_branch_node_trace(state, node)
+        return node
 
     def _run_node(self, state: _BranchRunState, node: BranchNode) -> None:
         node_dir = state.output_dir / node.node_id
         node_dir.mkdir(parents=True, exist_ok=True)
         node.status = "running"
+        node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
         self._append_node(state.run_id, node)
         _write_json(node_dir / "config_patch.json", node.config_patch)
         try:
@@ -357,6 +368,7 @@ class BranchRunService:
             node.optimization_directives = [directive.to_dict() for directive in directives]
             node.status = "succeeded"
             node.finished_at = _utc_now()
+            node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
             _write_json(node_dir / "evaluation.json", node.evaluation)
             _write_json(node_dir / "optimization_directives.json", node.optimization_directives)
         except Exception as exc:
@@ -364,19 +376,50 @@ class BranchRunService:
             node.error = str(exc)
             node.blocker_details = {"error": str(exc), "stage": "generate_or_evaluate"}
             node.finished_at = _utc_now()
+            node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
         finally:
+            _write_json(node_dir / "generation_trace.json", node.trace)
             _write_json(node_dir / "node.json", node.to_dict())
             self._replace_node(state.run_id, node)
 
     def _retrieve_initial_evidence(self, state: _BranchRunState) -> List[RagEvidence]:
-        try:
-            return list(self.design_service.search_knowledge(
-                query=state.prompt,
-                topk=state.topk,
-                knowledge_source=state.knowledge_source,
-            ))
-        except Exception:
-            return []
+        return self._retrieve_branch_evidence(
+            state,
+            queries=(state.prompt,),
+            topk=max(state.topk, 6),
+        )
+
+    def _retrieve_branch_evidence(
+        self,
+        state: _BranchRunState,
+        *,
+        queries: Sequence[str],
+        topk: int,
+    ) -> List[RagEvidence]:
+        items: List[RagEvidence] = []
+        if state.knowledge_source != "none":
+            for query in queries:
+                query_text = str(query or "").strip()
+                if not query_text:
+                    continue
+                try:
+                    items.extend(self.design_service.search_knowledge(
+                        query=query_text,
+                        topk=topk,
+                        knowledge_source=state.knowledge_source,
+                    ))
+                except Exception:
+                    continue
+        retrieve_scenario_parameters = getattr(self.design_service, "_retrieve_scenario_parameter_evidence", None)
+        if callable(retrieve_scenario_parameters) and state.knowledge_source != "none":
+            try:
+                items.extend(retrieve_scenario_parameters(
+                    queries=queries,
+                    topk=topk,
+                ))
+            except Exception:
+                pass
+        return _merge_rag_evidence(items, topk=max(1, int(topk)))
 
     def _build_graph_summary(self, graph_template_id: str) -> Dict[str, Any]:
         try:
@@ -480,6 +523,98 @@ def _combined_score(evaluation: Mapping[str, Any], weights: Mapping[str, float])
     return sum(float(weights.get(key, 0.0)) * value for key, value in available.items()) / total_weight
 
 
+def _build_branch_node_trace(
+    state: _BranchRunState,
+    node: BranchNode,
+    *,
+    artifact_dir: Path | None = None,
+) -> Dict[str, Any]:
+    evaluation_status = "pending"
+    if node.status == "failed":
+        evaluation_status = "failed"
+    elif node.evaluation:
+        evaluation_status = "succeeded"
+    parameter_sources = {key: "branch_llm_candidate" for key in node.config_patch}
+    return dict(make_json_safe({
+        "schema_version": "generation_trace_v1",
+        "run_id": state.run_id,
+        "node_id": node.node_id,
+        "status": node.status,
+        "created_at": node.created_at,
+        "finished_at": node.finished_at,
+        "error": node.error,
+        "provenance": {
+            "rag_evidence": list(node.rag_evidence),
+            "rag_queries": [state.prompt],
+            "citations_by_field": {},
+            "parameter_sources_by_field": parameter_sources,
+            "knowledge_source": state.knowledge_source,
+            "evidence_count": len(node.rag_evidence),
+        },
+        "llm_recommendation": {
+            "normalized_scene_query": str(node.config_patch.get("query", state.prompt)),
+            "design_summary": node.llm_candidate_reasoning,
+            "config_patch": dict(node.config_patch),
+            "raw_fields": sorted(node.config_patch),
+            "defaulted_fields": [],
+            "overridden_fields": [],
+            "risk_notes": [],
+            "derivation_status": "branch_candidate",
+        },
+        "process": {
+            "growth_tree_node": {
+                "node_id": node.node_id,
+                "parent_id": node.parent_id,
+                "depth": node.depth,
+                "rank": node.rank,
+                "status": node.status,
+                "score": node.score,
+            },
+            "stage_tree": [
+                {
+                    "id": "llm_candidate",
+                    "stage": "llm_candidate",
+                    "label": "LLM candidate generated.",
+                    "status": "completed",
+                    "progress": 15,
+                    "children": [{"id": f"{node.node_id}:config_patch", "label": "config_patch", "kind": "artifact"}],
+                },
+                {
+                    "id": "scene_generation",
+                    "stage": "scene_generation",
+                    "label": "Scene generated from branch candidate.",
+                    "status": "completed" if node.scene_layout_path else ("failed" if node.status == "failed" else "active"),
+                    "progress": 75 if node.scene_layout_path else 45,
+                    "children": [{"id": f"{node.node_id}:layout", "label": node.scene_layout_path, "kind": "artifact"}] if node.scene_layout_path else [],
+                },
+                {
+                    "id": "evaluation",
+                    "stage": "evaluation",
+                    "label": "Unified scene evaluation.",
+                    "status": evaluation_status,
+                    "progress": 100 if node.evaluation else 80,
+                    "children": [{"id": f"{node.node_id}:evaluation", "label": "evaluation", "kind": "artifact"}] if node.evaluation else [],
+                },
+            ],
+            "operations": [
+                {"stage": "llm_candidate", "progress": 15, "message": node.llm_candidate_reasoning},
+                {"stage": "scene_generation", "progress": 75, "message": node.scene_layout_path or node.error},
+                {"stage": "evaluation", "progress": 100 if node.evaluation else 80, "message": str(node.evaluation.get("evaluation", "") if node.evaluation else node.error)},
+            ],
+        },
+        "result": {
+            "compose_config": dict(node.config_patch),
+            "summary": {},
+            "scene_layout_path": node.scene_layout_path,
+            "scene_glb_path": node.scene_glb_path,
+            "preview_path": node.preview_path,
+            "artifact_dir": str(artifact_dir or (state.output_dir / node.node_id)),
+            "generation_trace_path": str((artifact_dir or (state.output_dir / node.node_id)) / "generation_trace.json"),
+        },
+        "evaluation": {"status": evaluation_status, **dict(node.evaluation), **({"error": node.error} if node.error else {})},
+    }))
+
+
 def _normalize_weights(payload: Mapping[str, float] | None) -> Dict[str, float]:
     values = dict(payload or {})
     return {
@@ -523,6 +658,15 @@ def _scatter_points(nodes: Sequence[BranchNode]) -> List[BranchScatterPoint]:
     return points
 
 
+def _merge_rag_evidence(items: Sequence[RagEvidence], *, topk: int) -> List[RagEvidence]:
+    merged: Dict[str, RagEvidence] = {}
+    for item in items:
+        existing = merged.get(item.chunk_id)
+        if existing is None or float(item.score) > float(existing.score):
+            merged[item.chunk_id] = item
+    return sorted(merged.values(), key=lambda item: float(item.score), reverse=True)[: max(1, int(topk))]
+
+
 def _operation(stage: str, progress: int, message: str, detail: Mapping[str, Any] | None = None) -> Dict[str, Any]:
     return {
         "timestamp": _utc_now(),
@@ -552,4 +696,3 @@ def _progress_for_depth(depth: int, rounds: int) -> int:
     if rounds <= 1:
         return 80
     return min(90, 20 + int((depth / max(rounds - 1, 1)) * 60))
-

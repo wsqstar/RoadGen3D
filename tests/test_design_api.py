@@ -82,6 +82,16 @@ class _FakeService:
                 "artifact_count": 1,
                 "item_count": 2,
             },
+            {
+                "key": "scenario_parameters",
+                "label": "Scenario Parameters",
+                "available": True,
+                "description": "Structured scenario-parameter-value triples.",
+                "artifact_count": 1,
+                "item_count": 146,
+                "artifact_path": "/tmp/scenario_parameter_triples.jsonl",
+                "fingerprint": "demo-fingerprint",
+            },
         ]
 
     def search_knowledge(self, *, query: str, topk: int = 6, knowledge_source: str = "hybrid"):
@@ -153,6 +163,24 @@ class _FakeService:
                     scene_ply_path="/tmp/scene.ply",
                     viewer_url="http://127.0.0.1:4173/?layout=demo",
                 ),
+                trace={
+                    "schema_version": "generation_trace_v1",
+                    "provenance": {
+                        "rag_evidence": [
+                            {
+                                "chunk_id": "scenario_parameters::demo",
+                                "knowledge_source": "scenario_parameters",
+                            }
+                        ],
+                        "citations_by_field": {"sidewalk_width_m": ["scenario_parameters::demo"]},
+                    },
+                    "llm_recommendation": {
+                        "config_patch": {"sidewalk_width_m": 4.0},
+                    },
+                    "process": {"stage_tree": []},
+                    "result": {"scene_layout_path": "/tmp/layout.json"},
+                    "evaluation": {"status": "succeeded", "walkability": 80},
+                },
             )
         ][:limit]
 
@@ -217,6 +245,15 @@ class _FakeBranchRunService:
                     "status": "succeeded",
                     "score": 80,
                     "scene_layout_path": "/tmp/layout.json",
+                    "trace": {
+                        "schema_version": "generation_trace_v1",
+                        "node_id": "node-a",
+                        "provenance": {"rag_evidence": []},
+                        "llm_recommendation": {"config_patch": {"sidewalk_width_m": 4.0}},
+                        "process": {"growth_tree_node": {"node_id": "node-a"}},
+                        "result": {"scene_layout_path": "/tmp/layout.json"},
+                        "evaluation": {"status": "succeeded", "walkability": 70},
+                    },
                     "optimization_directives": [],
                     "rejected_edits": [],
                 }
@@ -309,6 +346,9 @@ def test_design_api_endpoints_return_expected_shapes():
     assert job_status_response.json()["operations"][-1]["message"] == "Scene generation completed."
     assert "Infinity" not in job_status_response.text
     assert job_status_response.json()["result"]["summary"]["clearance_m"] is None
+    assert job_status_response.json()["trace"]["schema_version"] == "generation_trace_v1"
+    assert job_status_response.json()["trace"]["evaluation"]["status"] == "succeeded"
+    assert job_status_response.json()["trace"]["provenance"]["rag_evidence"][0]["knowledge_source"] == "scenario_parameters"
 
     recent_response = client.get("/api/scenes/recent")
     assert recent_response.status_code == 200
@@ -323,6 +363,7 @@ def test_design_api_endpoints_return_expected_shapes():
     source_response = client.get("/api/knowledge/sources")
     assert source_response.status_code == 200
     assert source_response.json()["items"][0]["key"] == "hybrid"
+    assert any(item["key"] == "scenario_parameters" for item in source_response.json()["items"])
 
     search_response = client.post(
         "/api/knowledge/search",
@@ -339,6 +380,15 @@ def test_design_api_endpoints_return_expected_shapes():
     assert default_search_response.status_code == 200
     assert default_search_response.json()["knowledge_source"] == "graph_rag"
     assert service.last_knowledge_source == "graph_rag"
+
+    scenario_search_response = client.post(
+        "/api/knowledge/search",
+        json={"query": "walkable commercial sidewalk width", "knowledge_source": "scenario_parameters", "topk": 1},
+    )
+    assert scenario_search_response.status_code == 200
+    assert scenario_search_response.json()["knowledge_source"] == "scenario_parameters"
+    assert scenario_search_response.json()["items"][0]["knowledge_source"] == "scenario_parameters"
+    assert service.last_knowledge_source == "scenario_parameters"
 
     geo_response = client.get("/api/geo/china-cities")
     assert geo_response.status_code == 200
@@ -548,6 +598,7 @@ def test_branch_run_api_endpoints_return_expected_shapes():
     status_response = client.get("/api/design/branch-runs/branch-demo")
     assert status_response.status_code == 200
     assert status_response.json()["nodes"][0]["optimization_directives"] == []
+    assert status_response.json()["nodes"][0]["trace"]["process"]["growth_tree_node"]["node_id"] == "node-a"
     assert status_response.json()["scatter_points"][0]["x"] == 70
 
     list_response = client.get("/api/design/branch-runs")

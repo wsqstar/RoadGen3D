@@ -124,6 +124,10 @@ from .theme_buildings import (
     summarize_land_use_grid,
     theme_profile_style,
 )
+from .building_placement import (
+    resolve_building_pose,
+    vehicle_lane_forbidden_geometry,
+)
 from .types import (
     DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
@@ -2651,11 +2655,21 @@ def _build_curb_boundary_zone(carriageway: Any, elevated_side_zone: Any, curb_wi
         return MultiPolygon()
 
     try:
-        raw_ring = carriageway.buffer(curb_width).difference(carriageway)
+        # Road arms and normalized junction patches often meet on exact split
+        # lines, or with sub-centimeter numerical gaps. Close those only for
+        # curb derivation so split lines do not become tiny curb caps.
+        topology_tolerance = min(curb_width * 0.25, 0.03)
+        curb_source = carriageway
+        if topology_tolerance > 0.0:
+            curb_source = _clean(carriageway.buffer(topology_tolerance).buffer(-topology_tolerance))
+        raw_ring = curb_source.buffer(curb_width).difference(curb_source)
         # A tiny tolerance makes the operation robust when normalized junction
         # surfaces are numerically adjacent but do not overlap exactly.
-        tolerance = min(curb_width * 0.25, 0.03)
-        side_contact_zone = elevated_side_zone.buffer(tolerance) if tolerance > 0.0 else elevated_side_zone
+        side_contact_zone = (
+            elevated_side_zone.buffer(topology_tolerance)
+            if topology_tolerance > 0.0
+            else elevated_side_zone
+        )
         curb_zone = raw_ring.intersection(side_contact_zone)
         return _clean(curb_zone)
     except Exception:
@@ -4035,6 +4049,7 @@ def _build_osm_base_scene(
     colors = palette or {}
     junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
     junction_sidewalk_surface_roles = {"sidewalk", "furnishing", "context_ground"}
+    junction_vehicle_surface_roles = {"carriageway", "bike_lane", "bus_lane", "parking_lane"}
 
     def _clean_scene_polygonal_geometry(geometry: Any) -> Any:
         from shapely.geometry import GeometryCollection, MultiPolygon, Polygon as ShapelyPolygon
@@ -4075,12 +4090,15 @@ def _build_osm_base_scene(
         return _clean_scene_polygonal_geometry(unary_union(valid))
 
     junction_sidewalk_surfaces: List[Any] = []
+    junction_vehicle_surfaces: List[Any] = []
     for junction in junction_geometries:
         for patch in junction.get("normalized_surface_patches", []) or ():
             role = str(patch.get("surface_role", "") or "").strip().lower()
             geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
             if role in junction_sidewalk_surface_roles and geometry is not None and not getattr(geometry, "is_empty", True):
                 junction_sidewalk_surfaces.append(geometry)
+            elif role in junction_vehicle_surface_roles and geometry is not None and not getattr(geometry, "is_empty", True):
+                junction_vehicle_surfaces.append(geometry)
     sidewalk_render_zone = _union_scene_polygonal_geometries([sidewalk_zone, *junction_sidewalk_surfaces])
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
@@ -4364,11 +4382,17 @@ def _build_osm_base_scene(
         )
 
     # Curb: only along the raised facility-lane boundary, not around road-arm endpoints.
+    # Include normalized junction carriageway surfaces so curved turn/apron edges
+    # receive the same curb treatment as straight road arms.
     curb_width = 0.12
     curb_color = list(colors.get("curb", (145, 145, 145, 255)))
-    if not carriageway.is_empty:
+    rendered_vehicle_surfaces = (
+        list(road_arm_geometries) if road_arm_geometries else [carriageway]
+    )
+    curb_source_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
+    if not curb_source_surface.is_empty:
         try:
-            curb_zone = _build_curb_boundary_zone(carriageway, sidewalk_render_zone, curb_width)
+            curb_zone = _build_curb_boundary_zone(curb_source_surface, sidewalk_render_zone, curb_width)
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
@@ -6414,6 +6438,7 @@ def _place_building_targets(
     config: StreetComposeConfig,
     theme_segments: Sequence[ThemeSegment],
     resolved_program: object,
+    placement_ctx: object | None,
     embedder: ClipTextEmbedder,
     index_store: FaissIndexStore,
     asset_by_id: Dict[str, Dict[str, object]],
@@ -6437,6 +6462,11 @@ def _place_building_targets(
     door_required_count = 0
     door_skipped_existing_asset_count = 0
     building_asset_rejected_size_mismatch_count = 0
+    lane_intrusion_adjusted_count = 0
+    lane_intrusion_rejected_count = 0
+    mesh_origin_centered_count = 0
+    total_lane_guard_push_m = 0.0
+    vehicle_forbidden_geometry = vehicle_lane_forbidden_geometry(placement_ctx)
 
     for target_idx, target in enumerate(targets):
         theme_id = str(target.get("theme_id", "") or "")
@@ -6537,22 +6567,68 @@ def _place_building_targets(
             fallback_count += 1
             fallback_reason = "no_building_asset_match"
 
-        placement_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
+        target_center_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
+        target_center_xz = (
+            float(target_center_xz_raw[0]),
+            float(target_center_xz_raw[1]),
+        )
+        street_edge_xz_raw = target.get("street_edge_xz", ()) or ()
+        if len(street_edge_xz_raw) >= 2:
+            street_edge_xz = (float(street_edge_xz_raw[0]), float(street_edge_xz_raw[1]))
+        else:
+            street_edge_xz = (float(target_center_xz[0]), float(target_center_xz[1]))
+        safe_pose = resolve_building_pose(
+            target_center_xz=target_center_xz,
+            street_edge_xz=street_edge_xz if len(street_edge_xz_raw) >= 2 else None,
+            side=str(target.get("side", "") or ""),
+            yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+            half_x=float(entry.half_x),
+            half_z=float(entry.half_z),
+            center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
+            center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
+            scale=scale_xyz,
+            placement_ctx=placement_ctx,
+            forbidden_geometry=vehicle_forbidden_geometry,
+            config=config,
+            bbox_clearance_m=0.15,
+            vehicle_clearance_m=0.10,
+        )
+        if safe_pose.rejected:
+            lane_intrusion_rejected_count += 1
+            if row is not None:
+                asset_count = max(asset_count - 1, 0)
+            else:
+                fallback_count = max(fallback_count - 1, 0)
+            retrieval_payload["placement_rejected_reason"] = safe_pose.reject_reason
+            retrieval_payload["target_center_xz"] = [float(value) for value in target_center_xz]
+            retrieval_payload["bbox_xz"] = [float(value) for value in safe_pose.bbox_xz]
+            continue
+        if safe_pose.adjusted:
+            lane_intrusion_adjusted_count += 1
+            total_lane_guard_push_m += float(safe_pose.push_distance_m)
+            retrieval_payload["lane_guard_push_m"] = float(round(safe_pose.push_distance_m, 3))
+        if abs(float(getattr(entry, "center_x", 0.0) or 0.0)) > 1e-6 or abs(float(getattr(entry, "center_z", 0.0) or 0.0)) > 1e-6:
+            mesh_origin_centered_count += 1
+        center_xz = (
+            float(safe_pose.placement_xz[0]),
+            float(safe_pose.placement_xz[1]),
+        )
+        visual_center_xz = (
+            float(safe_pose.visual_center_xz[0]),
+            float(safe_pose.visual_center_xz[1]),
+        )
+        adjusted_target = dict(target)
+        adjusted_target["placement_xz"] = center_xz
+        adjusted_target["center_xz"] = visual_center_xz
+        adjusted_target["street_edge_xz"] = street_edge_xz
+        placement_xz_raw = center_xz
         center_xz = (
             float(placement_xz_raw[0]),
             float(placement_xz_raw[1]),
         )
         placement_strategy = str(target.get("placement_strategy", "") or "")
         front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
-        bbox = _compute_bbox(
-            x=float(center_xz[0]),
-            z=float(center_xz[1]),
-            yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
-            half_x=entry.half_x,
-            half_z=entry.half_z,
-            scale=scale_xyz,
-            clearance=0.15,
-        )
+        bbox = tuple(float(value) for value in safe_pose.bbox_xz)
         y = -entry.min_y * float(scale_xyz[1])
         building_native_size = _native_size_for_entry(entry)
         building_final_size = dict(scale_decision.get("final_size_m", {}) or {})
@@ -6571,7 +6647,7 @@ def _place_building_targets(
         )
         if should_attach_door:
             door_required_count += 1
-            door_spec = _resolve_building_door_spec(target=target, entry=entry, scale_xyz=scale_xyz)
+            door_spec = _resolve_building_door_spec(target=adjusted_target, entry=entry, scale_xyz=scale_xyz)
         else:
             door_skipped_existing_asset_count += 1
             door_spec = {
@@ -6591,11 +6667,6 @@ def _place_building_targets(
             reason_key = str(door_spec.get("door_missing_reason", "") or "").strip()
             if reason_key:
                 door_missing_reason_counts[reason_key] = door_missing_reason_counts.get(reason_key, 0) + 1
-        street_edge_xz_raw = target.get("street_edge_xz", ()) or ()
-        if len(street_edge_xz_raw) >= 2:
-            street_edge_xz = (float(street_edge_xz_raw[0]), float(street_edge_xz_raw[1]))
-        else:
-            street_edge_xz = (float(center_xz[0]), float(center_xz[1]))
         plans.append(
             BuildingPlacementPlan(
                 instance_id=instance_id,
@@ -6685,6 +6756,10 @@ def _place_building_targets(
         "asset_count": int(asset_count),
         "fallback_count": int(fallback_count),
         "building_asset_rejected_size_mismatch_count": int(building_asset_rejected_size_mismatch_count),
+        "building_lane_intrusion_adjusted_count": int(lane_intrusion_adjusted_count),
+        "building_lane_intrusion_rejected_count": int(lane_intrusion_rejected_count),
+        "building_mesh_origin_centered_count": int(mesh_origin_centered_count),
+        "building_lane_guard_total_push_m": float(round(total_lane_guard_push_m, 3)),
         "procedural_building_fallback_count": int(fallback_count),
         "sources": source_counts,
         "placement_strategy_counts": placement_strategy_counts,
@@ -6918,6 +6993,7 @@ def _place_surrounding_buildings(
         config=config,
         theme_segments=theme_segments,
         resolved_program=resolved_program,
+        placement_ctx=placement_ctx,
         embedder=embedder,
         index_store=index_store,
         asset_by_id=asset_by_id,

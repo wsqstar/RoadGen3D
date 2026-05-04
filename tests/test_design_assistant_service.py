@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -18,8 +19,19 @@ from roadgen3d.llm.design_workflow import DesignAssistantService
 class _FakeLLM:
     def __init__(self):
         self.calls = 0
+        self.draft_payloads: list[dict] = []
 
-    def chat_json(self, _messages, *, temperature=0.2):
+    def _capture_draft_payload(self, messages) -> str:
+        payload = json.loads(messages[-1]["content"])
+        self.draft_payloads.append(payload)
+        triple_ids = [
+            item["chunk_id"]
+            for item in payload.get("evidence", [])
+            if item.get("knowledge_source") == "scenario_parameters"
+        ]
+        return triple_ids[0] if triple_ids else "complete_streets_0001"
+
+    def chat_json(self, messages, *, temperature=0.2):
         self.calls += 1
         if self.calls == 1:
             return {
@@ -34,6 +46,7 @@ class _FakeLLM:
                 "english_queries": ["sidewalk width complete streets", "bus stop placement"],
             }
         if self.calls == 3:
+            sidewalk_citation = self._capture_draft_payload(messages)
             return {
                 "normalized_scene_query": "walkable all-age complete street with safe sidewalks",
                 "compose_config_patch": {
@@ -41,7 +54,7 @@ class _FakeLLM:
                     "sidewalk_width_m": 4.2,
                 },
                 "citations_by_field": {
-                    "sidewalk_width_m": ["complete_streets_0001"],
+                    "sidewalk_width_m": [sidewalk_citation],
                     "design_rule_profile": ["complete_streets_0002"],
                 },
                 "design_summary": "Use a pedestrian-priority complete street with generous sidewalks.",
@@ -55,6 +68,7 @@ class _FakeLLM:
                     "transit_demand_level": ["bus stop placement"],
                 }
             }
+        sidewalk_citation = self._capture_draft_payload(messages)
         return {
             "normalized_scene_query": "walkable all-age complete street with safe sidewalks and moderate transit access",
             "compose_config_patch": {
@@ -73,7 +87,7 @@ class _FakeLLM:
                 "vehicle_demand_level": "low",
             },
             "citations_by_field": {
-                "sidewalk_width_m": ["complete_streets_0001"],
+                "sidewalk_width_m": [sidewalk_citation],
                 "design_rule_profile": ["complete_streets_0002"],
                 "road_width_m": ["complete_streets_0003"],
                 "lane_count": ["complete_streets_0003"],
@@ -157,8 +171,9 @@ class _FakeGraphRetriever:
 
 
 def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
+    llm = _FakeLLM()
     service = DesignAssistantService(
-        llm_client=_FakeLLM(),
+        llm_client=llm,
         knowledge_retriever=_FakeRetriever(),
         draft_cache_dir=tmp_path,
     )
@@ -173,13 +188,18 @@ def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
 
     assert bundle.stage == "draft_ready"
     assert bundle.intent.safety_priorities == ("pedestrian safety",)
-    assert len(bundle.evidence) == 3
+    assert len(bundle.evidence) >= 4
+    assert any(item.knowledge_source == "scenario_parameters" for item in bundle.evidence)
+    assert any(
+        item.get("knowledge_source") == "scenario_parameters"
+        for item in llm.draft_payloads[-1].get("evidence", [])
+    )
     assert all(field in bundle.draft.compose_config_patch for field in ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
     assert bundle.draft.compose_config_patch["target_street_type"] == "mixed_use"
     assert bundle.draft.compose_config_patch["sidewalk_width_m"] == 4.2
     assert bundle.draft.compose_config_patch["style_preset"] == "civic_clean_v1"
     assert bundle.draft.compose_config_patch["beauty_mode"] == "presentation_v1"
-    assert bundle.draft.citations_by_field["sidewalk_width_m"] == ("complete_streets_0001",)
+    assert bundle.draft.citations_by_field["sidewalk_width_m"][0].startswith("scenario_parameters::")
     assert bundle.draft.citations_by_field["road_width_m"] == ("complete_streets_0003",)
     assert bundle.draft.parameter_sources_by_field["sidewalk_width_m"] == "rag"
     assert bundle.draft.parameter_sources_by_field["city_context"] == "llm_inferred"
@@ -203,15 +223,17 @@ def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search(tmp
     )
     hybrid_results = service.search_knowledge(
         query="sidewalk width near transit",
-        topk=4,
+        topk=8,
         knowledge_source="hybrid",
     )
 
     assert len(graph_results) == 1
     assert graph_results[0].knowledge_source == "graph_rag"
     assert graph_results[0].chunk_id == "graph_0001"
-    assert len(hybrid_results) >= 2
-    assert {item.knowledge_source for item in hybrid_results} == {"pdf_rag", "graph_rag"}
+    assert len(hybrid_results) >= 3
+    assert {"pdf_rag", "graph_rag", "scenario_parameters"}.issubset(
+        {item.knowledge_source for item in hybrid_results}
+    )
 
 
 def test_design_assistant_service_defaults_to_graph_rag(tmp_path: Path):
@@ -230,6 +252,30 @@ def test_design_assistant_service_defaults_to_graph_rag(tmp_path: Path):
     assert len(results) == 1
     assert results[0].knowledge_source == "graph_rag"
     assert results[0].chunk_id == "graph_0001"
+
+
+def test_design_assistant_service_exposes_scenario_parameter_source(tmp_path: Path):
+    service = DesignAssistantService(
+        llm_client=_FakeLLM(),
+        knowledge_retriever=_FakeRetriever(),
+        graph_knowledge_retriever=_FakeGraphRetriever(),
+        draft_cache_dir=tmp_path,
+    )
+
+    sources = {item["key"]: item for item in service.list_knowledge_sources()}
+    hits = service.search_knowledge(
+        query="walkable commercial sidewalk width",
+        topk=3,
+        knowledge_source="scenario_parameters",
+    )
+
+    assert sources["scenario_parameters"]["available"] is True
+    assert sources["scenario_parameters"]["item_count"] == 146
+    assert sources["scenario_parameters"]["fingerprint"]
+    assert sources["hybrid"]["item_count"] >= sources["scenario_parameters"]["item_count"]
+    assert hits
+    assert hits[0].knowledge_source == "scenario_parameters"
+    assert hits[0].chunk_id.startswith("scenario_parameters::matrix::")
 
 
 class _ClarificationFirstLLM:
@@ -258,6 +304,17 @@ class _FailIfRetrieverRuns:
 class _FailIfLLMRuns:
     def chat_json(self, _messages, *, temperature=0.2):
         raise AssertionError("llm should not run on cache hit")
+
+
+class _FingerprintStore:
+    def __init__(self, fingerprint: str):
+        self.fingerprint = fingerprint
+
+    def artifact_fingerprint(self) -> str:
+        return self.fingerprint
+
+    def search(self, *_args, **_kwargs):
+        return []
 
 
 def test_design_assistant_service_returns_clarification_stage_before_rag(tmp_path: Path):
@@ -350,3 +407,25 @@ def test_design_assistant_service_loads_cached_bundle_from_disk(tmp_path: Path):
     assert produced.draft is not None
     assert cached.draft.normalized_scene_query == produced.draft.normalized_scene_query
     assert cached.evidence[0].chunk_id == produced.evidence[0].chunk_id
+
+
+def test_design_assistant_cache_key_includes_scenario_parameter_fingerprint(tmp_path: Path):
+    store = _FingerprintStore("fingerprint-a")
+    service = DesignAssistantService(
+        llm_client=_FakeLLM(),
+        knowledge_retriever=_FakeRetriever(),
+        scenario_parameter_store=store,
+        draft_cache_dir=tmp_path,
+    )
+
+    first_key = service._build_draft_cache_key(
+        user_input="walkable complete street",
+        knowledge_source="pdf_rag",
+    )
+    store.fingerprint = "fingerprint-b"
+    second_key = service._build_draft_cache_key(
+        user_input="walkable complete street",
+        knowledge_source="pdf_rag",
+    )
+
+    assert first_key != second_key

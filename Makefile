@@ -7,20 +7,23 @@ UI_API_HOST := 127.0.0.1
 UI_API_PORT := 8010
 WORKBENCH_WEB_HOST := 127.0.0.1
 WORKBENCH_WEB_PORT := 4174
-VIEWER_HOST := 127.0.0.1
-VIEWER_PORT := 4173
+VIEWER_HOST ?= 127.0.0.1
+VIEWER_PORT ?= 4173
+VIEWER_PORT_SCAN_LIMIT := 20
+VIEWER_IDENTITY_TEXT := RoadGen3D Viewer
 GRAPH_TEMPLATE := hkust_gz_gate
+ENABLE_ARCHIVED_WORKBENCH ?= 0
 
 .PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-preset help
 
 help:
-	@echo "make dev               - Launch workbench API + workbench web + viewer web"
-	@echo "make workbench-api     - Launch the FastAPI design assistant"
-	@echo "make workbench-web     - Launch the new Vite generation workbench"
-	@echo "make workbench-install - Install web/workbench dependencies"
-	@echo "make viewer-web        - Launch the standalone web viewer"
+	@echo "make dev               - Launch API + Viewer web"
+	@echo "make workbench-api     - Launch the FastAPI design assistant API"
+	@echo "make workbench-web     - Archived legacy React workbench; set ENABLE_ARCHIVED_WORKBENCH=1 to launch"
+	@echo "make workbench-install - Archived legacy React workbench install; opt in with ENABLE_ARCHIVED_WORKBENCH=1"
+	@echo "make viewer-web        - Launch the standalone web viewer (auto-selects a free port if 4173 is busy)"
 	@echo "make viewer-install    - Install web/viewer dependencies"
-	@echo "make ui-api/ui-web/ui-install - Backward-compatible aliases"
+	@echo "make ui-api/ui-web/ui-install - Backward-compatible aliases (ui-web/ui-install now target Viewer)"
 	@echo "make knowledge-build   - Build the complete-streets PDF knowledge base"
 	@echo "make collect           - Collect layout policy training data"
 	@echo "make train             - Train layout policy"
@@ -48,20 +51,40 @@ help:
 	@echo "  TEST_PYTEST_ARGS=... - Extra pytest arguments (default: -v --tb=short)"
 
 dev:
-	@trap 'kill 0' INT TERM EXIT; \
-	$(MAKE) workbench-api & \
-	$(MAKE) workbench-web & \
-	$(MAKE) viewer-web & \
+	@set -e; \
+	viewer_port="$(VIEWER_PORT)"; \
+	search_end=$$(( $(VIEWER_PORT) + $(VIEWER_PORT_SCAN_LIMIT) )); \
+	if curl -fsS --max-time 1 "http://$(VIEWER_HOST):$$viewer_port/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then \
+		echo "RoadGen3D Viewer already available at http://$(VIEWER_HOST):$$viewer_port"; \
+	elif lsof -nP -iTCP:$$viewer_port -sTCP:LISTEN >/dev/null 2>&1; then \
+		echo "Port $$viewer_port is occupied by another service; looking for a free Viewer port."; \
+		found_port=""; \
+		for candidate in $$(seq $$(( $$viewer_port + 1 )) $$search_end); do \
+			if ! lsof -nP -iTCP:$$candidate -sTCP:LISTEN >/dev/null 2>&1; then \
+				found_port="$$candidate"; \
+				break; \
+			fi; \
+		done; \
+		if [ -z "$$found_port" ]; then \
+			echo "No free Viewer port found in $(VIEWER_PORT)-$$search_end."; \
+			exit 1; \
+		fi; \
+		viewer_port="$$found_port"; \
+		echo "RoadGen3D Viewer will start at http://$(VIEWER_HOST):$$viewer_port"; \
+	fi; \
+	trap 'kill 0' INT TERM EXIT; \
+	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) workbench-api & \
+	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & \
 	wait
 
 gradio-dev:
 	@echo "ERROR: gradio-dev 已废弃。请使用 'make dev' 启动新的前后端分离架构"
-	@echo "  - make dev: 启动 workbench API + workbench web + viewer web"
+	@echo "  - make dev: 启动 API + Viewer web"
 	@exit 1
 
 workbench-api:
 	@if lsof -nP -iTCP:$(UI_API_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
-		echo "Workbench API already available at http://$(UI_API_HOST):$(UI_API_PORT)"; \
+		echo "Design API already available at http://$(UI_API_HOST):$(UI_API_PORT)"; \
 	else \
 		MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT); \
 	fi
@@ -69,25 +92,53 @@ workbench-api:
 ui-api: workbench-api
 
 workbench-web:
-	@if lsof -nP -iTCP:$(WORKBENCH_WEB_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
+	@if [ "$(ENABLE_ARCHIVED_WORKBENCH)" != "1" ]; then \
+		echo "web/workbench is archived and is not started by default."; \
+		echo "Use ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web to launch the legacy UI."; \
+	elif lsof -nP -iTCP:$(WORKBENCH_WEB_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
 		echo "Workbench web already available at http://$(WORKBENCH_WEB_HOST):$(WORKBENCH_WEB_PORT)"; \
 	else \
 		npm --prefix web/workbench run dev; \
 	fi
 
-ui-web: workbench-web
+ui-web: viewer-web
 
 workbench-install:
-	npm --prefix web/workbench install
+	@if [ "$(ENABLE_ARCHIVED_WORKBENCH)" != "1" ]; then \
+		echo "web/workbench is archived; skipping install."; \
+		echo "Use ENABLE_ARCHIVED_WORKBENCH=1 make workbench-install if you need the legacy UI."; \
+	else \
+		npm --prefix web/workbench install; \
+	fi
 
-ui-install: workbench-install
+ui-install: viewer-install
 
 viewer-web:
-	@if lsof -nP -iTCP:$(VIEWER_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
-		echo "Viewer already available at http://$(VIEWER_HOST):$(VIEWER_PORT)"; \
+	@set -e; \
+	viewer_port="$(VIEWER_PORT)"; \
+	search_end=$$(( $(VIEWER_PORT) + $(VIEWER_PORT_SCAN_LIMIT) )); \
+	if curl -fsS --max-time 1 "http://$(VIEWER_HOST):$$viewer_port/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then \
+		echo "RoadGen3D Viewer already available at http://$(VIEWER_HOST):$$viewer_port"; \
+		exit 0; \
+	elif lsof -nP -iTCP:$$viewer_port -sTCP:LISTEN >/dev/null 2>&1; then \
+		echo "Port $$viewer_port is occupied by another service; looking for a free Viewer port."; \
+		found_port=""; \
+		for candidate in $$(seq $$(( $$viewer_port + 1 )) $$search_end); do \
+			if ! lsof -nP -iTCP:$$candidate -sTCP:LISTEN >/dev/null 2>&1; then \
+				found_port="$$candidate"; \
+				break; \
+			fi; \
+		done; \
+		if [ -z "$$found_port" ]; then \
+			echo "No free Viewer port found in $(VIEWER_PORT)-$$search_end."; \
+			exit 1; \
+		fi; \
+		viewer_port="$$found_port"; \
+		echo "RoadGen3D Viewer will start at http://$(VIEWER_HOST):$$viewer_port"; \
 	else \
-		npm --prefix web/viewer run dev; \
-	fi
+		echo "RoadGen3D Viewer will start at http://$(VIEWER_HOST):$$viewer_port"; \
+	fi; \
+	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port npm --prefix web/viewer run dev
 
 viewer-install:
 	npm --prefix web/viewer install
@@ -161,7 +212,7 @@ TEST_REPORTS_DIR := artifacts/test_reports
 #   USE_LLM=1           - Enable LLM dynamic config generation
 test-pipeline:
 	@echo "=========================================="
-	@echo "Workbench 自动化测试 Pipeline"
+	@echo "Viewer 自动化测试 Pipeline"
 	@echo "=========================================="
 	@echo ""
 	@mkdir -p $(TEST_REPORTS_DIR)

@@ -13,6 +13,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services.scene_backends import (  # noqa: E402
+    DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
     ManifestGroundMaterialBackend,
     ManifestObjectAssetBackend,
     ManifestSkyBackend,
@@ -147,3 +148,32 @@ def test_material_and_sky_backends_select_matching_records(tmp_path: Path):
     assert ground_selection.texture_overrides["sidewalk"].endswith("sidewalk.png")
     assert sky_selection is not None
     assert sky_selection.sky_id == "warm_evening"
+
+
+def test_default_course_material_manifest_covers_viewer_surface_roles():
+    config = SimpleNamespace(
+        query="course demo complete street with lanes and sidewalks",
+        objective_profile="balanced",
+        design_rule_profile="balanced_complete_street_v1",
+        city_context="generic_city",
+        style_preset="civic_clean_v1",
+    )
+
+    selection = ManifestGroundMaterialBackend(
+        manifest_path=DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
+    ).select_for_config(config)
+
+    for role in (
+        "carriageway",
+        "sidewalk",
+        "curb",
+        "crossing",
+        "lane_mark",
+        "lane_edge_mark",
+        "grass",
+        "bus_lane",
+        "parking_lane",
+        "shared_street_surface",
+    ):
+        assert selection.material_ids_by_role[role]
+        assert selection.texture_overrides[role]

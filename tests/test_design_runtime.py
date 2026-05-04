@@ -13,7 +13,8 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services.design_runtime import build_compose_config_from_draft, generate_scene_from_draft
-from roadgen3d.services.design_types import DesignDraft, RagEvidence, SceneContext
+from roadgen3d.presets import COURSE_DELIVERY_CONFIG_PATCH, SCENE_PRESETS
+from roadgen3d.services.design_types import DesignDraft, RagEvidence, SceneContext, sanitize_compose_config_patch
 from roadgen3d.services.scene_context_service import ResolvedSceneContext
 import roadgen3d.services.design_runtime as runtime
 
@@ -33,7 +34,44 @@ def test_build_compose_config_from_draft_applies_defaults():
     assert config.design_rule_profile == "pedestrian_priority_v1"
     assert config.style_preset == "civic_clean_v1"
     assert config.beauty_mode == "presentation_v1"
+    assert config.layout_solver == "hybrid_milp_v1"
+    assert config.program_generator == "heuristic_v1"
+    assert config.allow_solver_fallback is True
+    assert config.asset_scale_mode == "canonical_v1"
+    assert config.asset_curation_mode == "scene_ready_first"
+    assert config.curated_street_assets_profile == "fixed_hq_v1"
+    assert config.scene_texture_mode == "topdown_tiles_v1"
+    assert config.topdown_render_mode == "design_tiles_v1"
     assert config.lane_count == 2
+
+
+def test_sanitize_compose_config_patch_accepts_course_delivery_fields():
+    patch = sanitize_compose_config_patch(
+        {
+            "layout_solver": "hybrid_milp_v1",
+            "program_generator": "heuristic_v1",
+            "allow_solver_fallback": "true",
+            "asset_scale_mode": "canonical_v1",
+            "asset_curation_mode": "scene_ready_first",
+            "curated_street_assets_profile": "fixed_hq_v1",
+            "scene_texture_mode": "topdown_tiles_v1",
+            "topdown_render_mode": "design_tiles_v1",
+            "render_preset": "axonometric_board_v1",
+            "beauty_mode": "presentation_v1",
+            "unsupported": "drop-me",
+        }
+    )
+
+    for key, value in COURSE_DELIVERY_CONFIG_PATCH.items():
+        assert patch[key] == value
+    assert "unsupported" not in patch
+
+
+def test_shared_presets_include_course_delivery_defaults():
+    for preset in SCENE_PRESETS:
+        config_patch = preset["configPatch"]
+        for key, value in COURSE_DELIVERY_CONFIG_PATCH.items():
+            assert config_patch[key] == value
 
 
 def test_build_compose_config_from_draft_applies_explicit_beauty_fields():
@@ -197,6 +235,29 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
                 )
             ]
 
+        def _retrieve_scenario_parameter_evidence(self, *, queries, topk, parameter_names=None):
+            captured["structured_rag_queries"] = tuple(queries)
+            return [
+                RagEvidence(
+                    chunk_id=(
+                        "scenario_parameters::matrix::street_type_walkable_commercial_corridor::"
+                        "sidewalk_width_m"
+                    ),
+                    doc_id="scenario_parameter_triples",
+                    section_title="Walkable Commercial Corridor / sidewalk_width_m",
+                    page_start=0,
+                    page_end=0,
+                    text=(
+                        '{"scenario_id":"street_type.walkable_commercial_corridor",'
+                        '"parameter_name":"sidewalk_width_m","normalized_value":3.658,"unit":"m"}'
+                    ),
+                    source_path="knowledge/scenario_parameter_triples.jsonl",
+                    score=0.97,
+                    knowledge_source="scenario_parameters",
+                    parameter_hints={"sidewalk_width_m": "Structured sidewalk width triple."},
+                )
+            ]
+
         def _get_llm_client(self):
             return _FakeLlmClient()
 
@@ -239,13 +300,15 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     assert user_payload["rag_queries"]
     assert user_payload["rag_evidence"][0]["chunk_id"] == "guide-001"
     assert user_payload["rag_evidence"][0]["parameter_hints"]["sidewalk_width_m"]
+    assert any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
     assert result.compose_config["road_width_m"] == 9.0
     assert result.compose_config["sidewalk_width_m"] == 4.2
     llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
     detail = llm_event["detail"]
     assert detail["graph_summary"]["road_count"] == 7
-    assert detail["evidence_count"] == 1
+    assert detail["evidence_count"] == 2
     assert detail["rag_evidence"][0]["chunk_id"] == "guide-001"
+    assert any(item["knowledge_source"] == "scenario_parameters" for item in detail["rag_evidence"])
     assert detail["parameter_sources_by_field"]["query"] == "prompt_input"
     assert detail["parameter_sources_by_field"]["road_width_m"] == "llm_derived"
     assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
@@ -558,7 +621,7 @@ def test_generate_scene_from_draft_supports_metaurban_reference_layout(tmp_path:
     )
     result = generate_scene_from_draft(
         draft,
-        generation_options={"out_dir": str(tmp_path)},
+        generation_options={"out_dir": str(tmp_path), "preset_id": "skip_llm"},
         scene_context=SceneContext(
             layout_mode="metaurban",
             reference_plan_id="hkust_gz_gate",
@@ -638,7 +701,7 @@ def test_generate_scene_from_draft_supports_graph_template_layout(tmp_path: Path
     )
     result = generate_scene_from_draft(
         draft,
-        generation_options={"out_dir": str(tmp_path)},
+        generation_options={"out_dir": str(tmp_path), "preset_id": "skip_llm"},
         scene_context=SceneContext(
             layout_mode="graph_template",
             graph_template_id="hkust_gz_gate",

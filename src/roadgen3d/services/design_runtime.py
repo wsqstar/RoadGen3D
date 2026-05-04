@@ -115,10 +115,19 @@ def build_compose_config_from_draft(
         city_context=str(patch.get("city_context", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["city_context"])),
         style_preset=str(patch.get("style_preset", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["style_preset"])),
         beauty_mode=str(patch.get("beauty_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["beauty_mode"])),
+        render_preset=str(patch.get("render_preset", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["render_preset"])),
+        topdown_render_mode=str(patch.get("topdown_render_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["topdown_render_mode"])),
+        scene_texture_mode=str(patch.get("scene_texture_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["scene_texture_mode"])),
+        asset_curation_mode=str(patch.get("asset_curation_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["asset_curation_mode"])),
+        asset_scale_mode=str(patch.get("asset_scale_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["asset_scale_mode"])),
+        curated_street_assets_profile=str(patch.get("curated_street_assets_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["curated_street_assets_profile"])),
+        program_generator=str(patch.get("program_generator", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["program_generator"])),
+        layout_solver=str(patch.get("layout_solver", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["layout_solver"])),
         ped_demand_level=str(patch.get("ped_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["ped_demand_level"])),
         bike_demand_level=str(patch.get("bike_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["bike_demand_level"])),
         transit_demand_level=str(patch.get("transit_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["transit_demand_level"])),
         vehicle_demand_level=str(patch.get("vehicle_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["vehicle_demand_level"])),
+        allow_solver_fallback=bool(patch.get("allow_solver_fallback", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["allow_solver_fallback"])),
     )
 
 
@@ -418,6 +427,15 @@ def _derive_draft_with_llm(
                 topk=5,
                 knowledge_source=knowledge_source,
             )
+            retrieve_scenario_parameters = getattr(assistant, "_retrieve_scenario_parameter_evidence", None)
+            if callable(retrieve_scenario_parameters):
+                structured_evidence = retrieve_scenario_parameters(
+                    queries=rag_queries,
+                    topk=24,
+                )
+                if structured_evidence:
+                    merged_evidence = {item.chunk_id: item for item in [*evidence, *structured_evidence]}
+                    evidence = list(merged_evidence.values())
             citations_by_field = {
                 f"{preset_id}_design": tuple(e.chunk_id for e in evidence[:2]),
                 "general": tuple(e.chunk_id for e in evidence[2:4]),

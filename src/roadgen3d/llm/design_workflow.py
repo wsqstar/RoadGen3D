@@ -13,6 +13,7 @@ from ..knowledge import (
     GraphRagKnowledgeRetriever,
     PdfKnowledgeBaseBuilder,
     PdfKnowledgeBaseRetriever,
+    ScenarioParameterTripleStore,
 )
 from ..knowledge.pdf_rag import KnowledgeSearchHit
 from . import (
@@ -50,12 +51,13 @@ DEFAULT_COMPLETE_STREETS_ARTIFACT_DIR = (ROOT / "knowledge" / "complete_streets"
 DEFAULT_GRAPHRAG_PROJECT_DIR = (ROOT / "knowledge" / "graphRAG").resolve()
 DEFAULT_CLIP_MODEL_DIR = (ROOT / "models" / "clip-vit-base-patch32").resolve()
 DEFAULT_DESIGN_DRAFT_CACHE_DIR = (ROOT / "artifacts" / "workbench_cache" / "design_draft_cache").resolve()
+DEFAULT_SCENARIO_PARAMETER_TRIPLES_PATH = (ROOT / "knowledge" / "scenario_parameter_triples.jsonl").resolve()
 _CJK_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 _RAG_SOURCE = "rag"
 _LLM_INFERRED_SOURCE = "llm_inferred"
 _SYSTEM_DEFAULT_SOURCE = "system_default"
 _DEFAULT_KNOWLEDGE_SOURCE = "graph_rag"
-_ALLOWED_KNOWLEDGE_SOURCES = frozenset({"hybrid", "pdf_rag", "graph_rag"})
+_ALLOWED_KNOWLEDGE_SOURCES = frozenset({"hybrid", "pdf_rag", "graph_rag", "scenario_parameters"})
 _DRAFT_CACHE_VERSION = "roadgen3d_design_draft_cache_v1"
 _DRAFT_CACHE_HIT_WARNING = "Loaded cached design analysis for the exact same prompt; skipped new LLM and GraphRAG work."
 
@@ -73,6 +75,8 @@ class DesignAssistantService:
         default_pdf_path: Path | None = None,
         default_artifact_dir: Path | None = None,
         default_graphrag_project_dir: Path | None = None,
+        scenario_parameter_triples_path: Path | None = None,
+        scenario_parameter_store: ScenarioParameterTripleStore | Any | None = None,
         draft_cache_dir: Path | None = None,
         scene_job_service: SceneJobService | None = None,
     ) -> None:
@@ -85,8 +89,12 @@ class DesignAssistantService:
         self.default_graphrag_project_dir = Path(
             default_graphrag_project_dir or DEFAULT_GRAPHRAG_PROJECT_DIR
         ).expanduser().resolve()
+        self.scenario_parameter_triples_path = Path(
+            scenario_parameter_triples_path or DEFAULT_SCENARIO_PARAMETER_TRIPLES_PATH
+        ).expanduser().resolve()
+        self._scenario_parameter_store = scenario_parameter_store
         self.draft_cache_dir = Path(draft_cache_dir or DEFAULT_DESIGN_DRAFT_CACHE_DIR).expanduser().resolve()
-        self.scene_job_service = scene_job_service or SceneJobService(generator=generate_scene_from_draft)
+        self.scene_job_service = scene_job_service
         
         # Initialize evaluation engine from road-metrics submodule
         import sys
@@ -96,6 +104,13 @@ class DesignAssistantService:
         
         from road_metrics import EvalEngine, EvalConfig
         self.eval_engine = EvalEngine(EvalConfig(enable_llm_eval=True))
+        if self.scene_job_service is None:
+            self.scene_job_service = SceneJobService(
+                generator=generate_scene_from_draft,
+                evaluator=self.evaluate_scene_unified,
+            )
+        elif isinstance(self.scene_job_service, SceneJobService) and self.scene_job_service.evaluator is None:
+            self.scene_job_service.evaluator = self.evaluate_scene_unified
 
     def rebuild_knowledge(
         self,
@@ -177,6 +192,14 @@ class DesignAssistantService:
                 knowledge_source=resolved_knowledge_source,
             )
         )
+        scenario_evidence = tuple(
+            self._retrieve_scenario_parameter_evidence(
+                queries=retrieval_queries,
+                topk=24,
+            )
+        )
+        if scenario_evidence:
+            evidence = tuple(merge_evidence_collections(evidence, scenario_evidence))
         draft = self._generate_design_draft(
             llm=llm,
             chat_messages=chat_messages,
@@ -202,6 +225,21 @@ class DesignAssistantService:
                         knowledge_source=resolved_knowledge_source,
                     )
                 )
+                structured_followup_evidence = tuple(
+                    self._retrieve_scenario_parameter_evidence(
+                        queries=_scenario_parameter_followup_queries(
+                            intent=intent,
+                            missing_fields=missing_fields,
+                            followup_queries=followup_queries,
+                        ),
+                        topk=24,
+                        parameter_names=missing_fields,
+                    )
+                )
+                if structured_followup_evidence:
+                    extra_evidence = tuple(
+                        merge_evidence_collections(extra_evidence, structured_followup_evidence)
+                    )
                 if extra_evidence:
                     evidence = tuple(merge_evidence_collections(evidence, extra_evidence))
                     draft = self._generate_design_draft(
@@ -254,16 +292,29 @@ class DesignAssistantService:
     def list_knowledge_sources(self) -> List[Dict[str, Any]]:
         pdf_status = self._build_pdf_knowledge_status()
         graph_status = self._build_graph_knowledge_status()
-        hybrid_available = bool(pdf_status["available"] or graph_status["available"])
+        scenario_status = self._build_scenario_parameter_status()
+        hybrid_available = bool(
+            pdf_status["available"]
+            or graph_status["available"]
+            or scenario_status["available"]
+        )
         hybrid_status = {
             "key": "hybrid",
             "label": "Hybrid",
             "available": hybrid_available,
-            "description": "Merge the existing PDF RAG chunks with GraphRAG txt/community artifacts.",
-            "artifact_count": int(pdf_status.get("artifact_count", 0)) + int(graph_status.get("artifact_count", 0)),
-            "item_count": int(pdf_status.get("item_count", 0)) + int(graph_status.get("item_count", 0)),
+            "description": "Merge PDF RAG chunks, GraphRAG txt/community artifacts, and structured scenario-parameter triples.",
+            "artifact_count": (
+                int(pdf_status.get("artifact_count", 0))
+                + int(graph_status.get("artifact_count", 0))
+                + int(scenario_status.get("artifact_count", 0))
+            ),
+            "item_count": (
+                int(pdf_status.get("item_count", 0))
+                + int(graph_status.get("item_count", 0))
+                + int(scenario_status.get("item_count", 0))
+            ),
         }
-        return [hybrid_status, pdf_status, graph_status]
+        return [hybrid_status, pdf_status, graph_status, scenario_status]
 
     def search_knowledge(
         self,
@@ -409,6 +460,8 @@ class DesignAssistantService:
             "safety": int(current_result.safety.final_score * 100) if safety_available else None,
             "beauty": int(current_result.beauty.final_score * 100) if beauty_available else None,
             "overall": int(current_result.evaluation_score * 100) if visual_scores_available else None,
+            "score_weights": self._score_weights_payload(),
+            "score_formula": self._score_formula_text(),
             "evaluation": self._generate_evaluation_text(current_result),
             "suggestions": self._generate_suggestions(current_result),
             "indicators": self._extract_indicators(current_result),
@@ -437,6 +490,12 @@ class DesignAssistantService:
                     topk=6,
                     knowledge_source=resolved_knowledge,
                 )
+                structured_evidence = self._retrieve_scenario_parameter_evidence(
+                    queries=weakness_queries,
+                    topk=6,
+                )
+                if structured_evidence:
+                    evidence = merge_evidence_collections(evidence, structured_evidence)
             except RuntimeError:
                 evidence = []
 
@@ -465,6 +524,7 @@ class DesignAssistantService:
         topk: int = 3,
         weakness_queries: Sequence[str] | None = None,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+        evidence: Sequence[RagEvidence] | Sequence[Mapping[str, Any]] | None = None,
     ) -> List[Dict[str, Any]]:
         """Ask the LLM for bounded improvement candidates.
 
@@ -473,23 +533,34 @@ class DesignAssistantService:
         directive bounds before generation.
         """
         llm = self._get_llm_client()
-        evidence: List[RagEvidence] = []
+        evidence_items: List[RagEvidence] = []
+        for item in evidence or ():
+            if isinstance(item, RagEvidence):
+                evidence_items.append(item)
+            elif isinstance(item, Mapping):
+                evidence_items.append(parse_rag_evidence(item))
         resolved_knowledge = normalize_knowledge_source(knowledge_source)
-        if resolved_knowledge != "none" and weakness_queries:
+        if not evidence_items and resolved_knowledge != "none" and weakness_queries:
             try:
-                evidence = self._retrieve_evidence(
+                evidence_items = self._retrieve_evidence(
                     queries=weakness_queries,
                     topk=max(3, int(topk) * 2),
                     knowledge_source=resolved_knowledge,
                 )
+                structured_evidence = self._retrieve_scenario_parameter_evidence(
+                    queries=weakness_queries,
+                    topk=max(3, int(topk) * 2),
+                )
+                if structured_evidence:
+                    evidence_items = merge_evidence_collections(evidence_items, structured_evidence)
             except RuntimeError:
-                evidence = []
+                evidence_items = []
         payload = llm.chat_json(_build_candidate_improvement_messages(
             current_evaluation=current_evaluation,
             comparison=dict(comparison),
             current_patch=dict(current_patch),
             optimization_directives=list(optimization_directives),
-            evidence=evidence,
+            evidence=evidence_items,
             topk=max(1, int(topk)),
         ))
         return _parse_candidate_payload(
@@ -497,7 +568,7 @@ class DesignAssistantService:
             fallback_query=str(current_patch.get("query", "") or ""),
             topk=max(1, int(topk)),
             default_reason="LLM improvement candidate constrained by rule-based directives.",
-            evidence=evidence,
+            evidence=evidence_items,
             fill_defaults=False,
         )
 
@@ -542,6 +613,8 @@ class DesignAssistantService:
             "safety": int(result.safety.final_score * 100) if safety_available else None,
             "beauty": int(result.beauty.final_score * 100) if beauty_available else None,
             "overall": int(result.evaluation_score * 100) if visual_scores_available else None,
+            "score_weights": self._score_weights_payload(),
+            "score_formula": self._score_formula_text(),
             "evaluation": self._generate_evaluation_text(result),
             "suggestions": self._generate_suggestions(result),
             "indicators": self._extract_indicators(result),
@@ -621,6 +694,24 @@ class DesignAssistantService:
     # Evaluation helper methods
     # ========================================================================
 
+    def _score_weights_payload(self) -> Dict[str, float]:
+        """Return the active unified-evaluation aggregation weights."""
+        aggregation = getattr(getattr(self.eval_engine, "config", None), "aggregation", None)
+        return {
+            "walkability": float(getattr(aggregation, "walkability_weight", 0.45)),
+            "safety": float(getattr(aggregation, "safety_weight", 0.35)),
+            "beauty": float(getattr(aggregation, "beauty_weight", 0.20)),
+        }
+
+    def _score_formula_text(self) -> str:
+        weights = self._score_weights_payload()
+        return (
+            "overall = "
+            f"walkability {weights['walkability']:.2f} + "
+            f"safety {weights['safety']:.2f} + "
+            f"beauty {weights['beauty']:.2f}"
+        )
+
     def _generate_evaluation_text(self, result) -> str:
         """Generate human-readable evaluation text."""
         w = result.walkability
@@ -664,6 +755,7 @@ class DesignAssistantService:
             parts.append(f"最弱安全维度: {s.diagnosis['weakest']}")
         if beauty_available and b.diagnosis.get("weakest"):
             parts.append(f"最弱美观维度: {b.diagnosis['weakest']}")
+        parts.append(f"评分公式: {self._score_formula_text()}")
         
         return "。".join(parts) + "。"
 
@@ -917,6 +1009,17 @@ class DesignAssistantService:
             )
         return self._graph_knowledge_retriever
 
+    def _get_scenario_parameter_store(self) -> ScenarioParameterTripleStore | Any:
+        if self._scenario_parameter_store is None:
+            self._scenario_parameter_store = ScenarioParameterTripleStore(self.scenario_parameter_triples_path)
+        return self._scenario_parameter_store
+
+    def _scenario_parameter_fingerprint(self) -> str:
+        try:
+            return str(self._get_scenario_parameter_store().artifact_fingerprint())
+        except Exception:
+            return ""
+
     def _build_draft_cache_key(
         self,
         *,
@@ -926,6 +1029,7 @@ class DesignAssistantService:
         normalized_prompt = _normalize_cache_prompt(user_input)
         key_payload = {
             "knowledge_source": normalize_knowledge_source(knowledge_source),
+            "scenario_parameter_fingerprint": self._scenario_parameter_fingerprint(),
             "user_input": normalized_prompt,
         }
         digest = hashlib.sha256(
@@ -1035,8 +1139,37 @@ class DesignAssistantService:
     def _build_graph_knowledge_status(self) -> Dict[str, Any]:
         return self._get_graph_retriever().describe().to_dict()
 
+    def _build_scenario_parameter_status(self) -> Dict[str, Any]:
+        path = self.scenario_parameter_triples_path
+        try:
+            triples = self._get_scenario_parameter_store().load()
+            available = path.exists()
+            item_count = len(triples) if available else 0
+            fingerprint = self._scenario_parameter_fingerprint() if available else ""
+            error = ""
+        except Exception as exc:
+            available = False
+            item_count = 0
+            fingerprint = ""
+            error = str(exc)
+        status: Dict[str, Any] = {
+            "key": "scenario_parameters",
+            "label": "Scenario Parameters",
+            "available": available,
+            "description": "Structured scenario-parameter-value triples from the design matrix and scene presets.",
+            "artifact_count": 1 if available else 0,
+            "item_count": item_count,
+            "artifact_path": str(path),
+            "fingerprint": fingerprint,
+        }
+        if error:
+            status["error"] = error
+        return status
+
     def _resolve_retrievers_for_source(self, knowledge_source: str) -> Tuple[Tuple[str, Any], ...]:
         resolved = normalize_knowledge_source(knowledge_source)
+        if resolved == "scenario_parameters":
+            return ()
         if resolved == "pdf_rag":
             return (("pdf_rag", self._get_pdf_retriever()),)
         if resolved == "graph_rag":
@@ -1073,7 +1206,15 @@ class DesignAssistantService:
         topk: int,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> List[RagEvidence]:
-        retrievers = self._resolve_retrievers_for_source(knowledge_source)
+        resolved_source = normalize_knowledge_source(knowledge_source)
+        if resolved_source == "scenario_parameters":
+            return self._retrieve_scenario_parameter_evidence(queries, topk=topk)
+        try:
+            retrievers = self._resolve_retrievers_for_source(knowledge_source)
+        except RuntimeError:
+            if resolved_source != "hybrid":
+                raise
+            retrievers = ()
         items: List[RagEvidence] = []
         seen = set()
         for query in queries:
@@ -1097,6 +1238,49 @@ class DesignAssistantService:
                         continue
                     seen.add(evidence.chunk_id)
                     items.append(evidence)
+        if resolved_source == "hybrid":
+            for evidence in self._retrieve_scenario_parameter_evidence(queries, topk=topk):
+                if evidence.chunk_id in seen:
+                    continue
+                seen.add(evidence.chunk_id)
+                items.append(evidence)
+        if resolved_source == "hybrid":
+            return _limit_evidence_with_source_diversity(items, topk=max(1, int(topk)))
+        items.sort(key=lambda item: float(item.score), reverse=True)
+        return items[: max(1, int(topk))]
+
+    def _retrieve_scenario_parameter_evidence(
+        self,
+        queries: Iterable[str],
+        *,
+        topk: int = 24,
+        parameter_names: Sequence[str] | None = None,
+    ) -> List[RagEvidence]:
+        store = self._get_scenario_parameter_store()
+        items: List[RagEvidence] = []
+        seen = set()
+        for query in queries:
+            query_text = str(query or "").strip()
+            if not query_text:
+                continue
+            try:
+                hits = store.search(
+                    query_text,
+                    topk=max(1, int(topk)),
+                    parameter_names=parameter_names,
+                )
+            except Exception:
+                continue
+            for hit in hits:
+                evidence = convert_search_hit_to_evidence(
+                    hit,
+                    rag_query=query_text,
+                    knowledge_source="scenario_parameters",
+                )
+                if evidence.chunk_id in seen:
+                    continue
+                seen.add(evidence.chunk_id)
+                items.append(evidence)
         items.sort(key=lambda item: float(item.score), reverse=True)
         return items[: max(1, int(topk))]
 
@@ -1492,6 +1676,29 @@ def merge_evidence_collections(*groups: Sequence[RagEvidence]) -> List[RagEviden
     return sorted(merged.values(), key=lambda item: float(item.score), reverse=True)
 
 
+def _limit_evidence_with_source_diversity(items: Sequence[RagEvidence], *, topk: int) -> List[RagEvidence]:
+    ranked = sorted(items, key=lambda item: float(item.score), reverse=True)
+    limit = max(1, int(topk))
+    selected: List[RagEvidence] = []
+    seen_chunks: set[str] = set()
+    for source_name in ("pdf_rag", "graph_rag", "scenario_parameters"):
+        match = next((item for item in ranked if item.knowledge_source == source_name), None)
+        if match is None or match.chunk_id in seen_chunks:
+            continue
+        selected.append(match)
+        seen_chunks.add(match.chunk_id)
+        if len(selected) >= limit:
+            return selected
+    for item in ranked:
+        if item.chunk_id in seen_chunks:
+            continue
+        selected.append(item)
+        seen_chunks.add(item.chunk_id)
+        if len(selected) >= limit:
+            break
+    return selected
+
+
 def finalize_design_draft(draft: DesignDraft) -> Tuple[DesignDraft, Tuple[str, ...]]:
     patch = sanitize_compose_config_patch(draft.compose_config_patch)
     citations = {
@@ -1580,6 +1787,31 @@ def _clean_text(value: object) -> str:
 
 def _normalize_cache_prompt(value: object) -> str:
     return re.sub(r"\s+", " ", str(value or "").strip())
+
+
+def _scenario_parameter_followup_queries(
+    *,
+    intent: DesignIntent,
+    missing_fields: Sequence[str],
+    followup_queries: Sequence[str],
+) -> Tuple[str, ...]:
+    queries: List[str] = []
+    queries.extend(str(item).strip() for item in followup_queries if str(item).strip())
+    queries.extend(str(item).strip() for item in missing_fields if str(item).strip())
+    intent_terms = [
+        *intent.user_goals,
+        *intent.style_preferences,
+        *intent.safety_priorities,
+    ]
+    for field_name in missing_fields:
+        field_text = str(field_name).strip()
+        if not field_text:
+            continue
+        for term in intent_terms[:4]:
+            term_text = str(term).strip()
+            if term_text:
+                queries.append(f"{term_text} {field_text}")
+    return tuple(dict.fromkeys(item for item in queries if item))
 
 
 def normalize_knowledge_source(value: object) -> str:

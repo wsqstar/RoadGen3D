@@ -258,7 +258,7 @@ def run(self):
 
 1. **Heuristic Fallback**: StreetProgram uses `heuristic_v1`, not learned generator
 2. **Banded Layout Solver**: Uses heuristic, not MILP optimization
-3. **Single-segment**: Only straight road template, no complex intersections
+3. **Scoped street networks**: Course delivery supports `graph_template` cross junctions; open-ended arbitrary street networks are still out of scope
 4. **Single-modal Retrieval**: CLIP text-only, no cross-modal training (OpenShape/ULIP)
 5. **LLM Dependency**: Requires API access for automated generation
 

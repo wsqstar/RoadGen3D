@@ -3,7 +3,7 @@
 #
 # Usage:
 #   ./test_llm_api.sh                    # Test with default model
-#   ./test_llm_api.sh gpt-4o-mini       # Test with specific model
+#   ./test_llm_api.sh gemini-3-flash-preview  # Test with specific model
 #   ./test_llm_api.sh --list            # List available models
 
 # Load environment variables
@@ -20,19 +20,33 @@ else
 fi
 set +a
 
-ENDPOINT="${GRAPHRAG_API_BASE:-https://api.zetatechs.com/v1/}chat/completions"
-KEY="${GRAPHRAG_API_KEY:-}"
-DEFAULT_MODEL="gpt-4o-mini"
+BASE_URL="${GRAPHRAG_API_BASE:-${llm_base_url:-}}"
+KEY="${GRAPHRAG_API_KEY:-${key:-}}"
+DEFAULT_MODEL="${LLM_MODEL:-gemini-3-flash-preview}"
 MODEL="${1:-$DEFAULT_MODEL}"
 
-if [ -z "$KEY" ]; then
-    echo "Error: GRAPHRAG_API_KEY not set in .env"
+if [ -z "$BASE_URL" ]; then
+    echo "Error: GRAPHRAG_API_BASE or llm_base_url not set in .env"
     exit 1
 fi
 
+if [ -z "$KEY" ]; then
+    echo "Error: GRAPHRAG_API_KEY or key not set in .env"
+    exit 1
+fi
+
+BASE_URL="${BASE_URL%/}"
+if [[ "$BASE_URL" == */chat/completions ]]; then
+    ENDPOINT="$BASE_URL"
+    MODELS_ENDPOINT="${BASE_URL%/chat/completions}/models"
+else
+    ENDPOINT="${BASE_URL}/chat/completions"
+    MODELS_ENDPOINT="${BASE_URL}/models"
+fi
+
 if [ "$1" = "--list" ]; then
-    echo "Available models from $ENDPOINT:"
-    curl -s -X GET "${GRAPHRAG_API_BASE:-https://api.zetatechs.com/v1/}models" \
+    echo "Available models from $MODELS_ENDPOINT:"
+    curl -s -X GET "$MODELS_ENDPOINT" \
       -H "Authorization: Bearer $KEY" 2>/dev/null | \
       python3 -c "import sys,json; data=json.load(sys.stdin); [print('  -', m['id']) for m in data.get('data',[])]" 2>/dev/null || \
       echo "  (Failed to parse models)"

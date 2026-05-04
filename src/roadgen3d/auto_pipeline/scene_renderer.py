@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
 try:
     import matplotlib
@@ -50,10 +51,13 @@ def render_topdown_preview(
     layout_path: str | Path,
     output_path: str | Path,
     *,
+    annotation: Any | None = None,
+    base_map_path: str | Path | None = None,
     image_width: int = 1024,
     image_height: int = 600,
     dpi: int = 120,
     draw_road_region: bool = True,
+    base_map_alpha: float = 0.35,
 ) -> str:
     """Render a top-down schematic from *scene_layout.json* and save as PNG.
 
@@ -78,8 +82,12 @@ def render_topdown_preview(
     ax.set_facecolor("#f8f9fa")
     fig.patch.set_facecolor("white")
 
-    # --- Road region background ---
-    if draw_road_region:
+    # --- Graph/base-map background ---
+    if base_map_path:
+        _draw_base_map(ax, base_map_path, annotation, alpha=base_map_alpha)
+    if annotation is not None:
+        _draw_annotation_context(ax, annotation)
+    elif draw_road_region:
         _draw_road_region(ax, config, placements)
 
     # --- Placements ---
@@ -87,23 +95,15 @@ def render_topdown_preview(
         _draw_placement(ax, p)
 
     # --- Axes limits ---
-    if placements:
-        all_x: List[float] = []
-        all_z: List[float] = []
-        for p in placements:
-            pos = p.get("position_xyz")
-            if pos and len(pos) >= 3:
-                all_x.append(float(pos[0]))
-                all_z.append(float(pos[2]))
-            bbox = p.get("bbox_xz")
-            if bbox and len(bbox) >= 4:
-                all_x.extend([float(bbox[0]), float(bbox[1])])
-                all_z.extend([float(bbox[2]), float(bbox[3])])
-        if all_x and all_z:
-            pad_x = max(5.0, (max(all_x) - min(all_x)) * 0.1)
-            pad_z = max(5.0, (max(all_z) - min(all_z)) * 0.1)
-            ax.set_xlim(min(all_x) - pad_x, max(all_x) + pad_x)
-            ax.set_ylim(min(all_z) - pad_z, max(all_z) + pad_z)
+    all_x, all_z = _collect_layout_extent(placements)
+    graph_x, graph_z = _collect_annotation_extent(annotation)
+    all_x.extend(graph_x)
+    all_z.extend(graph_z)
+    if all_x and all_z:
+        pad_x = max(5.0, (max(all_x) - min(all_x)) * 0.1)
+        pad_z = max(5.0, (max(all_z) - min(all_z)) * 0.1)
+        ax.set_xlim(min(all_x) - pad_x, max(all_x) + pad_x)
+        ax.set_ylim(min(all_z) - pad_z, max(all_z) + pad_z)
 
     # --- Labels & scale ---
     ax.set_xlabel("X (m)")
@@ -187,6 +187,224 @@ def _draw_placement(ax: Axes, p: Dict[str, Any]) -> None:
             linewidth=0.3, edgecolor=color, facecolor="none", alpha=0.35, zorder=4,
         )
         ax.add_patch(rect)
+
+
+def _draw_base_map(
+    ax: Axes,
+    base_map_path: str | Path,
+    annotation: Any | None,
+    *,
+    alpha: float,
+) -> None:
+    """Draw a reference PNG using annotation scale when available."""
+    path = Path(base_map_path).expanduser().resolve()
+    if not path.exists():
+        return
+    try:
+        image = plt.imread(str(path))
+    except Exception:
+        return
+
+    width_px = _annotation_number(annotation, "image_width_px", 0.0)
+    height_px = _annotation_number(annotation, "image_height_px", 0.0)
+    ppm = max(_annotation_number(annotation, "pixels_per_meter", 1.0), 1e-6)
+    if width_px <= 0 or height_px <= 0:
+        height_px = float(getattr(image, "shape", [0, 0])[0] or 0)
+        width_px = float(getattr(image, "shape", [0, 0])[1] or 0)
+    if width_px <= 0 or height_px <= 0:
+        return
+
+    half_w = width_px / ppm * 0.5
+    half_h = height_px / ppm * 0.5
+    ax.imshow(
+        image,
+        extent=(-half_w, half_w, -half_h, half_h),
+        origin="upper",
+        alpha=max(0.0, min(float(alpha), 1.0)),
+        zorder=-10,
+    )
+
+
+def _draw_annotation_context(ax: Axes, annotation: Any) -> None:
+    """Draw graph centerlines, junctions, and building regions from annotation."""
+    for region in _iter_annotation_items(annotation, "building_regions"):
+        _draw_building_region(ax, annotation, region)
+
+    for centerline in _iter_annotation_items(annotation, "centerlines"):
+        points = _centerline_local_points(annotation, centerline)
+        if len(points) < 2:
+            continue
+        xs = [p[0] for p in points]
+        zs = [p[1] for p in points]
+        width_m = _item_number(centerline, "road_width_m", 7.0)
+        ax.plot(
+            xs,
+            zs,
+            color="#aeb6bf",
+            linewidth=max(2.5, min(width_m * 0.55, 16.0)),
+            alpha=0.55,
+            solid_capstyle="round",
+            zorder=0,
+        )
+        ax.plot(
+            xs,
+            zs,
+            color="#4b5563",
+            linewidth=0.9,
+            alpha=0.9,
+            linestyle="--",
+            zorder=2,
+        )
+
+    for junction in _iter_annotation_items(annotation, "junctions"):
+        x_px = _item_number(junction, "anchor_x", _item_number(junction, "x", 0.0))
+        y_px = _item_number(junction, "anchor_y", _item_number(junction, "y", 0.0))
+        x, z = _pixel_to_local(annotation, x=x_px, y=y_px)
+        radius = max(1.6, _item_number(junction, "crosswalk_depth_m", 3.0) * 0.6)
+        ax.add_patch(
+            mpatches.Circle(
+                (x, z),
+                radius=radius,
+                facecolor="#ffffff",
+                edgecolor="#111827",
+                linewidth=0.8,
+                alpha=0.85,
+                zorder=3,
+            )
+        )
+
+
+def _draw_building_region(ax: Axes, annotation: Any, region: Any) -> None:
+    center_x = _item_number(region, "center_x_px", 0.0)
+    center_y = _item_number(region, "center_y_px", 0.0)
+    if isinstance(region, Mapping) and isinstance(region.get("center_px"), Mapping):
+        center = region["center_px"]
+        center_x = float(center.get("x", center_x) or center_x)
+        center_y = float(center.get("y", center_y) or center_y)
+
+    ppm = max(_annotation_number(annotation, "pixels_per_meter", 1.0), 1e-6)
+    cx, cz = _pixel_to_local(annotation, x=center_x, y=center_y)
+    width_m = _item_number(region, "width_px", 0.0) / ppm
+    height_m = _item_number(region, "height_px", 0.0) / ppm
+    if width_m <= 0 or height_m <= 0:
+        return
+    yaw_deg = _item_number(region, "yaw_deg", 0.0)
+    rect = mpatches.Rectangle(
+        (cx - width_m * 0.5, cz - height_m * 0.5),
+        width_m,
+        height_m,
+        angle=yaw_deg,
+        rotation_point="center",
+        facecolor="#d7ccc8",
+        edgecolor="#8d6e63",
+        linewidth=0.6,
+        alpha=0.45,
+        zorder=-1,
+    )
+    ax.add_patch(rect)
+
+
+def _collect_layout_extent(placements: Sequence[Mapping[str, Any]]) -> Tuple[List[float], List[float]]:
+    all_x: List[float] = []
+    all_z: List[float] = []
+    for p in placements:
+        pos = p.get("position_xyz")
+        if pos and len(pos) >= 3:
+            all_x.append(float(pos[0]))
+            all_z.append(float(pos[2]))
+        bbox = p.get("bbox_xz")
+        if bbox and len(bbox) >= 4:
+            all_x.extend([float(bbox[0]), float(bbox[1])])
+            all_z.extend([float(bbox[2]), float(bbox[3])])
+    return all_x, all_z
+
+
+def _collect_annotation_extent(annotation: Any | None) -> Tuple[List[float], List[float]]:
+    if annotation is None:
+        return [], []
+    xs: List[float] = []
+    zs: List[float] = []
+    width_px = _annotation_number(annotation, "image_width_px", 0.0)
+    height_px = _annotation_number(annotation, "image_height_px", 0.0)
+    ppm = max(_annotation_number(annotation, "pixels_per_meter", 1.0), 1e-6)
+    if width_px > 0 and height_px > 0:
+        xs.extend([-width_px / ppm * 0.5, width_px / ppm * 0.5])
+        zs.extend([-height_px / ppm * 0.5, height_px / ppm * 0.5])
+    for centerline in _iter_annotation_items(annotation, "centerlines"):
+        for x, z in _centerline_local_points(annotation, centerline):
+            xs.append(x)
+            zs.append(z)
+    for region in _iter_annotation_items(annotation, "building_regions"):
+        center_x = _item_number(region, "center_x_px", 0.0)
+        center_y = _item_number(region, "center_y_px", 0.0)
+        if isinstance(region, Mapping) and isinstance(region.get("center_px"), Mapping):
+            center = region["center_px"]
+            center_x = float(center.get("x", center_x) or center_x)
+            center_y = float(center.get("y", center_y) or center_y)
+        cx, cz = _pixel_to_local(annotation, x=center_x, y=center_y)
+        width_m = _item_number(region, "width_px", 0.0) / ppm
+        height_m = _item_number(region, "height_px", 0.0) / ppm
+        xs.extend([cx - width_m * 0.5, cx + width_m * 0.5])
+        zs.extend([cz - height_m * 0.5, cz + height_m * 0.5])
+    return xs, zs
+
+
+def _centerline_local_points(annotation: Any, centerline: Any) -> List[Tuple[float, float]]:
+    points: List[Tuple[float, float]] = []
+    for point in _item_sequence(centerline, "points"):
+        x_px = _item_number(point, "x", 0.0)
+        y_px = _item_number(point, "y", 0.0)
+        xy = _pixel_to_local(annotation, x=x_px, y=y_px)
+        if not points or points[-1] != xy:
+            points.append(xy)
+    return points
+
+
+def _pixel_to_local(annotation: Any, *, x: float, y: float) -> Tuple[float, float]:
+    width_px = _annotation_number(annotation, "image_width_px", 0.0)
+    height_px = _annotation_number(annotation, "image_height_px", 0.0)
+    ppm = max(_annotation_number(annotation, "pixels_per_meter", 1.0), 1e-6)
+    return (
+        (float(x) - width_px * 0.5) / ppm,
+        (height_px * 0.5 - float(y)) / ppm,
+    )
+
+
+def _iter_annotation_items(annotation: Any, field_name: str) -> Sequence[Any]:
+    if annotation is None:
+        return ()
+    value = annotation.get(field_name) if isinstance(annotation, Mapping) else getattr(annotation, field_name, ())
+    if value is None:
+        return ()
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
+        return value
+    return ()
+
+
+def _item_sequence(item: Any, field_name: str) -> Sequence[Any]:
+    value = item.get(field_name) if isinstance(item, Mapping) else getattr(item, field_name, ())
+    if value is None:
+        return ()
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes, bytearray)):
+        return value
+    return ()
+
+
+def _annotation_number(annotation: Any, field_name: str, default: float) -> float:
+    if annotation is None:
+        return float(default)
+    return _item_number(annotation, field_name, default)
+
+
+def _item_number(item: Any, field_name: str, default: float) -> float:
+    value = item.get(field_name, default) if isinstance(item, Mapping) else getattr(item, field_name, default)
+    try:
+        parsed = float(value)
+    except (TypeError, ValueError):
+        return float(default)
+    if not math.isfinite(parsed):
+        return float(default)
+    return parsed
 
 
 def _add_scale_bar(ax: Axes) -> None:

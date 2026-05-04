@@ -18,6 +18,14 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "city_context",
     "style_preset",
     "beauty_mode",
+    "render_preset",
+    "topdown_render_mode",
+    "scene_texture_mode",
+    "asset_curation_mode",
+    "asset_scale_mode",
+    "curated_street_assets_profile",
+    "program_generator",
+    "layout_solver",
     "length_m",
     "road_width_m",
     "sidewalk_width_m",
@@ -29,11 +37,13 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "bike_demand_level",
     "transit_demand_level",
     "vehicle_demand_level",
+    "allow_solver_fallback",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
 _FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m"})
 _INT_FIELDS = frozenset({"lane_count"})
-_STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS
+_BOOL_FIELDS = frozenset({"allow_solver_fallback"})
+_STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
 
 # Enum fields: value (lowercased) must be one of these sets, otherwise dropped.
@@ -44,6 +54,14 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "transit_demand_level": frozenset({"low", "medium", "high"}),
     "vehicle_demand_level": frozenset({"low", "medium", "high"}),
     "beauty_mode": frozenset({"presentation_v1"}),
+    "render_preset": frozenset({"axonometric_board_v1"}),
+    "topdown_render_mode": frozenset({"legacy_vector", "design_tiles_v1"}),
+    "scene_texture_mode": frozenset({"topdown_tiles_v1", "solid_color_legacy"}),
+    "asset_curation_mode": frozenset({"scene_ready_first", "curated_first", "parametric_first", "legacy"}),
+    "asset_scale_mode": frozenset({"canonical_v1", "native_raw"}),
+    "curated_street_assets_profile": frozenset({"fixed_hq_v1", "disabled"}),
+    "program_generator": frozenset({"heuristic_v1", "learned_v1"}),
+    "layout_solver": frozenset({"banded", "milp_template_v1", "hybrid_milp_v1"}),
 }
 
 DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
@@ -53,6 +71,14 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "city_context": "generic_city",
     "style_preset": "civic_clean_v1",
     "beauty_mode": "presentation_v1",
+    "render_preset": "axonometric_board_v1",
+    "topdown_render_mode": "design_tiles_v1",
+    "scene_texture_mode": "topdown_tiles_v1",
+    "asset_curation_mode": "scene_ready_first",
+    "asset_scale_mode": "canonical_v1",
+    "curated_street_assets_profile": "fixed_hq_v1",
+    "program_generator": "heuristic_v1",
+    "layout_solver": "hybrid_milp_v1",
     "length_m": 80.0,
     "road_width_m": 7.0,
     "sidewalk_width_m": 2.4,
@@ -64,6 +90,7 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "bike_demand_level": "low",
     "transit_demand_level": "medium",
     "vehicle_demand_level": "medium",
+    "allow_solver_fallback": True,
 }
 
 
@@ -90,6 +117,21 @@ def sanitize_compose_config_patch(payload: Mapping[str, Any] | None) -> Dict[str
             try:
                 patch[key] = int(value)
             except (TypeError, ValueError):
+                continue
+        elif key in _BOOL_FIELDS:
+            if isinstance(value, bool):
+                patch[key] = value
+            elif isinstance(value, str):
+                normalized_bool = value.strip().lower()
+                if normalized_bool in {"1", "true", "yes", "on"}:
+                    patch[key] = True
+                elif normalized_bool in {"0", "false", "no", "off"}:
+                    patch[key] = False
+                else:
+                    continue
+            elif isinstance(value, (int, float)):
+                patch[key] = bool(value)
+            else:
                 continue
         elif key in _STRING_FIELDS:
             text = _clean_text(value)
@@ -381,6 +423,7 @@ class SceneJobStatusResponse:
     progress: int = 0
     operations: Tuple[Dict[str, Any], ...] = ()
     result: SceneGenerationResult | None = None
+    trace: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)

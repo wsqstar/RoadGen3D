@@ -8,8 +8,8 @@
 
 - [1. 系统总览](#1-系统总览)
 - [2. 核心工作流：街道生成的"一条龙"](#2-核心工作流街道生成的一条龙)
-- [3. 三大界面组件](#3-三大界面组件)
-- [4. Workbench vs Test-Pipeline](#4-workbench-vs-test-pipeline)
+- [3. 当前界面组件](#3-当前界面组件)
+- [4. Viewer vs Test-Pipeline](#4-viewer-vs-test-pipeline)
 - [5. 评估引擎架构](#5-评估引擎架构)
 - [6. 完整闭环：从生成到优化](#6-完整闭环从生成到优化)
 - [7. 开发者快速开始](#7-开发者快速开始)
@@ -26,8 +26,8 @@ RoadGen3D 是一个**AI 驱动的街道场景生成与评估系统**。它能够
 ┌─────────────────────────────────────────────────────────────┐
 │                     用户交互层 (UI)                          │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐  │
-│  │  Workbench   │  │   Viewer     │  │  Test Pipeline   │  │
-│  │  (操作台)     │  │  (3D显示器)  │  │  (自动化脚本)     │  │
+│  │   Viewer     │  │  Test Pipeline   │  │ Legacy Workbench│  │
+│  │  (主界面)     │  │  (自动化脚本)      │  │   (已归档)       │  │
 │  └──────────────┘  └──────────────┘  └──────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
                             ↓ HTTP API
@@ -88,35 +88,32 @@ RoadGen3D 是一个**AI 驱动的街道场景生成与评估系统**。它能够
 
 ---
 
-## 3. 三大界面组件
+## 3. 当前界面组件
 
-### 🎛️ Workbench (`web/workbench`)
-**角色**: 用户操作台
+### 🖥️ Viewer (`web/viewer`)
+**角色**: 当前主界面与 3D 渲染器
 
 **功能**:
 - 选择预设模板 / 自由文本描述
-- 生成 3 个备选方案 (A/B/C)
-- 方案对比查看
-- 评估结果可视化（雷达图、柱状图、详细指标）
-- **一键优化**: 应用建议并自动重新生成
+- 触发普通生成和 branch run 生长树
+- 展示 RAG 溯源、LLM 推荐、生成过程、结果与评价
+- 加载 `scene_layout.json` 并渲染 3D 街道场景（Three.js）
+- 支持对比、评价、历史分析和场景编辑辅助工具
 
-**使用场景**: 设计师想要交互式地探索不同街道设计方案。
+**使用场景**: 设计师或研究者在同一个界面完成生成、追溯、评价和 3D 预览。
 
 ---
 
-### 🖥️ Viewer (`web/viewer`)
-**角色**: 纯 3D 渲染器
+### 🗄️ Legacy Workbench (`web/workbench`)
+**角色**: 已归档旧 React 设计工作台
 
-**功能**:
-- 加载 `scene_layout.json`
-- 渲染 3D 街道场景（Three.js）
-- 支持鼠标旋转、缩放
-- 环境音频播放（根据场景特征生成）
+`web/workbench` 保留源码用于迁移追溯，但默认不再启动，也不再承接新功能。需要查看旧 UI 时显式 opt-in：
 
-**特点**: 
-- 不参与任何业务逻辑
-- 可以独立运行，只需传入布局文件路径
-- 轻量级，专注于视觉呈现
+```bash
+ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web
+```
+
+新的产品功能应接入 `web/viewer`。
 
 ---
 
@@ -137,25 +134,25 @@ RoadGen3D 是一个**AI 驱动的街道场景生成与评估系统**。它能够
 
 ---
 
-## 4. Workbench vs Test-Pipeline
+## 4. Viewer vs Test-Pipeline
 
-| 维度 | Workbench | Test Pipeline |
+| 维度 | Viewer | Test Pipeline |
 |:---|:---|:---|
-| **使用者** | 设计师/用户 | 开发者/CI 系统 |
-| **触发方式** | 手动点击 UI | 命令行 `make test-pipeline` |
-| **交互性** | 高（实时反馈） | 无（全自动） |
-| **输出** | 3D 可视化 + 评估面板 | Markdown 报告 + JSON 日志 |
-| **目的** | 探索设计方案 | 验证系统健康度 |
+| **使用者** | 设计师/用户/研究者 | 开发者/CI 系统 |
+| **触发方式** | 手动点击 Viewer Design UI | 命令行 `make test-pipeline` |
+| **交互性** | 高（实时反馈、3D 查看、trace 展示） | 无（全自动） |
+| **输出** | 3D 可视化 + 溯源 + 评估面板 | Markdown 报告 + JSON 日志 |
+| **目的** | 探索与解释设计方案 | 验证系统健康度 |
 | **运行时长** | 按需（通常几分钟） | 固定（约 3-5 分钟/场景） |
 
 ### 它们操作的是同一条链条
 
 ```
-Workbench:  你点按钮 → HTTP API → 生成 → 评估 → 返回 UI 展示
+Viewer:     你点按钮 → HTTP API → 生成 → 评估 → 返回 UI 展示
 Pipeline:   脚本调用 → HTTP API → 生成 → 评估 → 写入报告文件
 ```
 
-**本质区别**: Workbench 是**交互式**的，Pipeline 是**批处理式**的。
+**本质区别**: Viewer 是**交互式**的，Pipeline 是**批处理式**的。
 
 ---
 
@@ -270,19 +267,17 @@ cd RoadGen3D
 uv sync
 
 # 3. 安装前端依赖
-npm --prefix web/workbench install
 npm --prefix web/viewer install
 ```
 
 ### 启动服务
 
 ```bash
-# 一键启动所有服务（API + Workbench + Viewer）
+# 一键启动当前服务（API + Viewer）
 make dev
 ```
 
 访问:
-- **Workbench**: http://127.0.0.1:4174
 - **Viewer**: http://127.0.0.1:4173
 - **API Docs**: http://127.0.0.1:8010/docs
 

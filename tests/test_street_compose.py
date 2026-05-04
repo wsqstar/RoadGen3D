@@ -32,6 +32,7 @@ from roadgen3d.types import (
 from roadgen3d.asset_scale import compute_asset_scale
 from roadgen3d.reference_annotation import ANNOTATION_SCHEMA_VERSION, build_reference_annotation_compose_config
 from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
+from roadgen3d.building_placement import building_footprint_points
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
 from roadgen3d.poi_rules import PoiContext
@@ -1042,6 +1043,113 @@ def test_building_door_rotation_helpers_match_yaw_transform_convention():
     assert roundtrip_z == pytest.approx(local_z, abs=1e-6)
 
 
+def test_place_building_targets_centers_offset_mesh_and_keeps_lanes_clear(monkeypatch):
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    road = shapely_geometry.box(-20.0, -2.0, 20.0, 2.0)
+    placement_ctx = SimpleNamespace(
+        carriageway_polygon=road,
+        carriageway=road,
+        strip_zones={},
+        junction_geometries=[],
+    )
+    mesh_cache = street_layout._LazyMeshCache(
+        {
+            "offset_building": street_layout._MeshMetadata(
+                asset_id="offset_building",
+                half_x=5.0,
+                half_z=4.0,
+                min_y=0.0,
+                center_x=0.0,
+                center_z=-4.0,
+                native_height_y=12.0,
+            )
+        }
+    )
+    row = {
+        "asset_id": "offset_building",
+        "category": "building",
+        "asset_role": "building",
+    }
+
+    def fake_rank_buildings(**_kwargs):
+        return [(row, 1.0)], {
+            "query": "fake building",
+            "hit_count": 1,
+            "candidate_count": 1,
+            "candidates": [{"asset_id": "offset_building", "category": "building", "score": 1.0}],
+        }
+
+    monkeypatch.setattr(street_layout, "_rank_building_candidates_for_target", fake_rank_buildings)
+    config = StreetComposeConfig(
+        query="offset building lane guard",
+        length_m=40.0,
+        road_width_m=4.0,
+        sidewalk_width_m=2.0,
+        lane_count=2,
+        density=1.0,
+        seed=7,
+        topk_per_category=1,
+        max_trials_per_slot=1,
+        layout_mode="osm",
+        constraint_mode="off",
+    )
+    targets = [
+        {
+            "target_id": "lot_001",
+            "target_kind": "lot",
+            "source": "road_buffer",
+            "placement_xz": (0.0, 6.0),
+            "center_xz": (0.0, 6.0),
+            "street_edge_xz": (0.0, 2.0),
+            "frontage_width_m": 10.0,
+            "depth_m": 8.0,
+            "yaw_deg": 0.0,
+            "theme_id": "theme_000",
+            "land_use_type": "commercial",
+            "side": "left",
+            "height_class": "midrise",
+            "target_height_m": 12.0,
+            "front_setback_m": 0.25,
+            "placement_strategy": "frontage_setback",
+        }
+    ]
+
+    placements, plans, _predictions, summary, _next_idx = street_layout._place_building_targets(
+        targets=targets,
+        config=config,
+        theme_segments=(),
+        resolved_program=SimpleNamespace(),
+        placement_ctx=placement_ctx,
+        embedder=object(),
+        index_store=object(),
+        asset_by_id={"offset_building": row},
+        mesh_cache=mesh_cache,
+        rng=random.Random(7),
+        start_instance_index=1,
+        road_type="urban",
+    )
+
+    assert len(placements) == 1
+    assert len(plans) == 1
+    placement = placements[0]
+    assert placement.position_xyz[2] > 10.0
+    assert summary["building_mesh_origin_centered_count"] == 1
+    assert summary["building_lane_intrusion_adjusted_count"] == 1
+    footprint = shapely_geometry.Polygon(
+        building_footprint_points(
+            placement_xz=(placement.position_xyz[0], placement.position_xyz[2]),
+            yaw_deg=placement.yaw_deg,
+            half_x=5.0,
+            half_z=4.0,
+            center_x=0.0,
+            center_z=-4.0,
+            scale=placement.scale_xyz,
+        )
+    )
+    assert footprint.intersection(road.buffer(0.05)).area == pytest.approx(0.0)
+
+
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
@@ -2012,6 +2120,40 @@ def test_osm_curb_zone_excludes_road_endpoint_caps():
     assert curb_zone.intersection(shapely_geometry.box(-4.5, -1.22, 4.5, -1.0)).area > 1.0
     assert curb_zone.intersection(shapely_geometry.box(5.01, -0.9, 5.22, 0.9)).area == pytest.approx(0.0)
     assert curb_zone.intersection(shapely_geometry.box(-5.22, -0.9, -5.01, 0.9)).area == pytest.approx(0.0)
+
+
+def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
+    trimesh = pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    road_arm = shapely_geometry.box(-5.0, -1.0, 0.0, 1.0)
+    junction_carriageway = shapely_geometry.box(0.0, -1.0, 2.0, 1.0)
+    sidewalk_zone = shapely_geometry.box(-5.0, 1.0, 0.0, 3.0)
+    junction_sidewalk = shapely_geometry.box(0.0, 1.0, 2.0, 3.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=road_arm,
+        sidewalk_zone=sidewalk_zone,
+        road_arm_geometries=[road_arm],
+        junction_geometries=[
+            {
+                "normalized_surface_patches": [
+                    {"surface_role": "carriageway", "geometry": junction_carriageway},
+                    {"surface_role": "sidewalk", "geometry": junction_sidewalk},
+                ]
+            }
+        ],
+        strip_zones={},
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+    curb_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("curb_")
+    ]
+
+    assert curb_meshes
+    assert max(float(mesh.bounds[1][0]) for mesh in curb_meshes) > 1.8
 
 
 def test_base_scene_adds_centerline_markings():

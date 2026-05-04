@@ -11,6 +11,12 @@ from .pdf_rag import (
     SentenceTransformerEmbedder,
     build_pdf_knowledge_base,
 )
+from .scenario_parameters import (
+    ScenarioParameterTriple,
+    ScenarioParameterTripleStore,
+    read_triples_jsonl,
+    write_triples_jsonl,
+)
 
 __all__ = [
     "KnowledgeBuildArtifacts",
@@ -21,6 +27,10 @@ __all__ = [
     "GraphRagSourceStatus",
     "PdfKnowledgeBaseBuilder",
     "PdfKnowledgeBaseRetriever",
+    "ScenarioParameterTriple",
+    "ScenarioParameterTripleStore",
     "SentenceTransformerEmbedder",
     "build_pdf_knowledge_base",
+    "read_triples_jsonl",
+    "write_triples_jsonl",
 ]

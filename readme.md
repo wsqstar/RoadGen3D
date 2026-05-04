@@ -15,8 +15,8 @@ RoadGen3D 是一个**分层架构**的生成式设计系统，由 **4 层**和 *
 ```
 RoadGen3D/
 ├── 🌐 Web 交互层 (web/)
-│   ├── workbench/          # React 设计工作台 (模板选择、方案生成、评估可视化)
-│   ├── viewer/             # Three.js 3D 场景查看器 (独立渲染器)
+│   ├── viewer/             # 当前主界面：设计生成、溯源、评价与 Three.js 3D 查看
+│   ├── workbench/          # 已归档的旧 React 设计工作台 (默认不启动)
 │   └── api/                # FastAPI 后端 (意图理解、场景生成、评估接口)
 │
 ├── 🧠 核心引擎层 (src/roadgen3d/)
@@ -110,7 +110,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 
 # 3. 安装前端依赖
-make workbench-install
 make viewer-install
 
 # 4. 下载 CLIP 模型 (离线)
@@ -124,18 +123,23 @@ huggingface-cli download openai/clip-vit-base-patch32 \
 
 ### 启动服务
 
-**启动完整开发环境** (API + Workbench + Viewer):
+**启动完整开发环境** (API + Viewer):
 
 ```bash
 make dev
 ```
 
-这将启动三个服务：
+这将启动两个服务：
 - **API** — `http://127.0.0.1:8010` (FastAPI 后端)
-- **Workbench** — `http://127.0.0.1:4174` (React 设计工作台)
-- **Viewer** — `http://127.0.0.1:4173` (Three.js 3D 查看器)
+- **Viewer** — 默认 `http://127.0.0.1:4173`；如果端口被其他服务占用，会自动选择后续空闲端口。
 
-或单独启动：`make workbench-api`, `make workbench-web`, `make viewer-web`。
+或单独启动：`make workbench-api`, `make viewer-web`。
+
+旧版 `web/workbench` 已归档，默认不再启动。需要查看历史 UI 时显式执行：
+
+```bash
+ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web
+```
 
 ### 测试 Pipeline
 
@@ -162,7 +166,7 @@ make test-report
 
 - Python 3.11+ (tested on macOS arm64)
 - Git (with submodule support)
-- Node.js (for web workbench & viewer)
+- Node.js (for web viewer)
 
 ### Install
 
@@ -179,7 +183,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 
 # Frontend dependencies
-make workbench-install
 make viewer-install
 
 # Download CLIP model (offline)
@@ -189,18 +192,23 @@ huggingface-cli download openai/clip-vit-base-patch32 \
 
 ### Run
 
-**Start the full development environment** (API + Workbench + Viewer):
+**Start the full development environment** (API + Viewer):
 
 ```bash
 make dev
 ```
 
-This launches three services:
+This launches two services:
 - **API** — `http://127.0.0.1:8010`
-- **Workbench** — `http://127.0.0.1:4174`
-- **Viewer** — `http://127.0.0.1:4173`
+- **Viewer** — defaults to `http://127.0.0.1:4173`; if that port belongs to another service, Make picks the next free port.
 
-Or start individual services via `make workbench-api`, `make workbench-web`, `make viewer-web`.
+Or start individual services via `make workbench-api` and `make viewer-web`.
+
+The legacy `web/workbench` app is archived and hidden from default startup. To inspect it explicitly:
+
+```bash
+ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web
+```
 
 ### Workflow
 
@@ -217,7 +225,7 @@ Or start individual services via `make workbench-api`, `make workbench-web`, `ma
 └─────────────┘     └─────────────┘     └─────────────────────┘
 ```
 
-> 📖 **想了解完整的系统架构和工作流？** 请查看 [系统架构与工作流程文档](docs/ARCHITECTURE.md)，其中详细描述了 Workbench、Viewer、Test Pipeline 之间的关系，以及"生成-评估-优化"闭环的完整实现。
+> 📖 **想了解完整的系统架构和工作流？** 请查看 [系统架构与工作流程文档](docs/ARCHITECTURE.md)，其中详细描述了 Viewer、Test Pipeline、归档 Workbench 之间的关系，以及"生成-评估-优化"闭环的完整实现。
 
 启动服务：
 
@@ -226,12 +234,11 @@ make dev
 ```
 
 访问地址：
-- **Workbench** — `http://127.0.0.1:4174` (主界面)
-- **Viewer** — `http://127.0.0.1:4173` (3D 预览)
+- **Viewer** — 查看 `make dev` 输出的 Viewer URL，默认是 `http://127.0.0.1:4173`
 
 ### 场景模板
 
-Workbench 提供六种预设模板：
+Viewer 的 Design 面板提供六种预设模板：
 - **步行友好** — 行人优先，安全舒适
 - **商业活力** — 商业活跃，人流密集
 - **公交优先** — 公交导向，换乘便利
@@ -313,8 +320,8 @@ RoadGen3D/
 │   └── run_auto_eval.py            # Multi-version auto evaluation
 ├── web/
 │   ├── api/                # FastAPI backend service (port 8010)
-│   ├── workbench/          # Vite + React design workbench (port 4174)
-│   └── viewer/             # Three.js 3D scene viewer (port 4173, submodule)
+│   ├── viewer/             # Active design + Three.js scene viewer (port 4173, submodule)
+│   └── workbench/          # Archived legacy React workbench (opt-in only)
 ├── data/                   # Asset manifests, materials, training data
 ├── knowledge/              # Complete Streets design guide + RAG index
 ├── models/                 # Pre-trained CLIP model
@@ -614,7 +621,7 @@ Swagger UI: `http://127.0.0.1:8010/docs`
 
 ## 评估可视化
 
-Workbench 提供交互式评估可视化功能：
+Viewer 提供交互式评估可视化功能：
 
 ### 评估维度
 
@@ -710,9 +717,9 @@ LLM_MODEL=gpt-4o-mini
 
 ```bash
 make help                 # Show all available targets
-make dev                  # Start API + workbench + viewer
+make dev                  # Start API + viewer
 make workbench-api        # Start FastAPI backend (port 8010)
-make workbench-web        # Start Vite workbench (port 4174)
+make workbench-web        # Archived legacy workbench; requires ENABLE_ARCHIVED_WORKBENCH=1
 make viewer-web           # Start 3D viewer (port 4173)
 make knowledge-build      # Build RAG knowledge base from design guide PDF
 make collect              # Collect policy training data
@@ -724,7 +731,7 @@ make eval                 # Run engineering evaluation
 
 ### Completed ✓
 
-- **简化 Workbench UI** — 从 5-tab 架构简化为 3-step 流程 (模板选择 → 方案生成 → 评估预览)
+- **归档旧 Workbench UI** — 当前交互式流程迁入 Viewer，`web/workbench` 默认不再启动
 - **评估可视化** — 雷达图、柱状图、综合评分展示
 - **方案对比** — 多方案并行生成与评分排序
 - **Viewer URL 透传** — 正确传递场景布局路径到 3D 预览器
@@ -743,7 +750,7 @@ make eval                 # Run engineering evaluation
 
 ### Long-term
 
-- Support small street networks (multi-road, junctions)
+- Generalize beyond the curated graph-template cross-junction demo path
 - Evolve from "asset placement" to a full "street design system" with editable cross-section presets
 - Standardize research loop with versioned training data, fixed evaluation protocols, and result dashboards
 
@@ -751,7 +758,7 @@ make eval                 # Run engineering evaluation
 
 - No cross-modal training (OpenShape/ULIP) — retrieval is CLIP text-only
 - `shapee` direct latent decoding requires matching latent dimensions; production use recommends `mesh_ref`
-- Single-segment straight road template — no complex intersections or curved networks
+- Course delivery path supports `graph_template` cross junctions; open-ended arbitrary street networks are still out of scope
 - `StreetProgram` uses heuristic generator (`heuristic_v1`) — not yet replaced by a learned program generator
 - Layout solver uses `banded` heuristic — not MILP or diffusion-based
 

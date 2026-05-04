@@ -14,6 +14,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services.branch_runs import BranchRunService
+from roadgen3d.services.design_types import RagEvidence
 from roadgen3d.services.optimization_planner import RuleBasedOptimizationPlanner
 
 
@@ -82,6 +83,32 @@ def test_branch_run_beam_top3_creates_expected_nodes(tmp_path: Path):
     assert json.loads(manifest.read_text(encoding="utf-8"))["run_id"] == created["run_id"]
 
 
+def test_branch_run_initial_nodes_include_scenario_parameter_evidence(tmp_path: Path):
+    service = BranchRunService(design_service=_FakeBranchDesignService(tmp_path), output_root=tmp_path)
+    created = service.submit_run(
+        prompt="Create a safer walkable commercial street",
+        topk=1,
+        rounds=1,
+        graph_template_id="hkust_gz_gate",
+        knowledge_source="graph_rag",
+    )
+    result = _wait_for_run(service, created["run_id"])
+
+    assert result["status"] == "succeeded"
+    assert len(result["nodes"]) == 1
+    evidence = result["nodes"][0]["rag_evidence"]
+    assert any(item["knowledge_source"] == "scenario_parameters" for item in evidence)
+    trace = result["nodes"][0]["trace"]
+    assert trace["schema_version"] == "generation_trace_v1"
+    assert trace["process"]["growth_tree_node"]["node_id"] == result["nodes"][0]["node_id"]
+    assert any(item["knowledge_source"] == "scenario_parameters" for item in trace["provenance"]["rag_evidence"])
+    assert trace["llm_recommendation"]["derivation_status"] == "branch_candidate"
+    assert trace["evaluation"]["status"] == "succeeded"
+    trace_path = Path(trace["result"]["generation_trace_path"])
+    assert trace_path.exists()
+    assert json.loads(trace_path.read_text(encoding="utf-8"))["node_id"] == result["nodes"][0]["node_id"]
+
+
 def _wait_for_run(service: BranchRunService, run_id: str) -> Mapping[str, Any]:
     deadline = time.time() + 5
     while time.time() < deadline:
@@ -97,8 +124,44 @@ class _FakeBranchDesignService:
         self.tmp_path = tmp_path
         self.generated = 0
 
-    def search_knowledge(self, **_kwargs):
-        return []
+    def search_knowledge(self, **kwargs):
+        knowledge_source = str(kwargs.get("knowledge_source", "graph_rag"))
+        if knowledge_source == "none":
+            return []
+        return [
+            RagEvidence(
+                chunk_id="guide-001",
+                doc_id="complete-streets",
+                section_title="Pedestrian guidance",
+                page_start=1,
+                page_end=1,
+                text="Use generous clear paths.",
+                source_path="/tmp/guide.pdf",
+                score=0.84,
+                knowledge_source=knowledge_source,
+            )
+        ]
+
+    def _retrieve_scenario_parameter_evidence(self, *, queries, topk, parameter_names=None):
+        return [
+            RagEvidence(
+                chunk_id=(
+                    "scenario_parameters::matrix::street_type_walkable_commercial_corridor::"
+                    "sidewalk_width_m"
+                ),
+                doc_id="scenario_parameter_triples",
+                section_title="Walkable Commercial Corridor / sidewalk_width_m",
+                page_start=0,
+                page_end=0,
+                text=(
+                    '{"scenario_label":"Walkable Commercial Corridor",'
+                    '"parameter_name":"sidewalk_width_m","normalized_value":3.658,"unit":"m"}'
+                ),
+                source_path="knowledge/scenario_parameter_triples.jsonl",
+                score=0.97,
+                knowledge_source="scenario_parameters",
+            )
+        ][:topk]
 
     def generate_initial_config_candidates_from_graph(self, **kwargs):
         topk = int(kwargs.get("topk", 3))

@@ -2,6 +2,19 @@
 
 from __future__ import annotations
 
+COURSE_DELIVERY_CONFIG_PATCH: dict[str, object] = {
+    "layout_solver": "hybrid_milp_v1",
+    "program_generator": "heuristic_v1",
+    "allow_solver_fallback": True,
+    "asset_scale_mode": "canonical_v1",
+    "asset_curation_mode": "scene_ready_first",
+    "curated_street_assets_profile": "fixed_hq_v1",
+    "scene_texture_mode": "topdown_tiles_v1",
+    "topdown_render_mode": "design_tiles_v1",
+    "render_preset": "axonometric_board_v1",
+    "beauty_mode": "presentation_v1",
+}
+
 SCENE_PRESETS: list[dict] = [
     {
         "id": "pedestrian_friendly",
@@ -12,6 +25,7 @@ SCENE_PRESETS: list[dict] = [
         "color": "#4CAF50",
         "prompt": "步行安全，全龄友好的完整街道，安静、安全、舒适",
         "configPatch": {
+            **COURSE_DELIVERY_CONFIG_PATCH,
             "design_rule_profile": "pedestrian_priority_v1",
             "objective_profile": "balanced",
             "density": 0.5,
@@ -30,6 +44,7 @@ SCENE_PRESETS: list[dict] = [
         "color": "#FF9800",
         "prompt": "商业活跃的街道，商业设施密集，人流穿梭",
         "configPatch": {
+            **COURSE_DELIVERY_CONFIG_PATCH,
             "design_rule_profile": "balanced_complete_street_v1",
             "objective_profile": "commerce",
             "density": 0.9,
@@ -48,6 +63,7 @@ SCENE_PRESETS: list[dict] = [
         "color": "#2196F3",
         "prompt": "公交优先的街道，公交可达性高，换乘便利",
         "configPatch": {
+            **COURSE_DELIVERY_CONFIG_PATCH,
             "design_rule_profile": "transit_priority_v1",
             "objective_profile": "transit",
             "density": 0.85,
@@ -66,6 +82,7 @@ SCENE_PRESETS: list[dict] = [
         "color": "#8BC34A",
         "prompt": "公园景观街道，绿化丰富，自然生态，休闲舒适",
         "configPatch": {
+            **COURSE_DELIVERY_CONFIG_PATCH,
             "design_rule_profile": "pedestrian_priority_v1",
             "objective_profile": "greening",
             "density": 0.25,
@@ -84,6 +101,7 @@ SCENE_PRESETS: list[dict] = [
         "color": "#9C27B0",
         "prompt": "安静居住街道，绿树成荫，步行安全，适合全龄",
         "configPatch": {
+            **COURSE_DELIVERY_CONFIG_PATCH,
             "design_rule_profile": "pedestrian_priority_v1",
             "objective_profile": "greening",
             "density": 0.35,
@@ -102,6 +120,7 @@ SCENE_PRESETS: list[dict] = [
         "color": "#607D8B",
         "prompt": "各类使用者平衡的完整街道，行人、自行车、公交、机动车和谐共处",
         "configPatch": {
+            **COURSE_DELIVERY_CONFIG_PATCH,
             "design_rule_profile": "balanced_complete_street_v1",
             "objective_profile": "balanced",
             "density": 0.6,
@@ -113,4 +132,4 @@ SCENE_PRESETS: list[dict] = [
     },
 ]
 
-__all__ = ["SCENE_PRESETS"]
+__all__ = ["COURSE_DELIVERY_CONFIG_PATCH", "SCENE_PRESETS"]

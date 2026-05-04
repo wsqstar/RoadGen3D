@@ -7,15 +7,14 @@ queries and evaluates them meaningfully.
 
 Test 5 uses a mock service to deterministically verify the early-stop logic.
 
-Set environment variables ``llm_base_url`` and ``key`` (as read by
-``LLMSettings.from_env()``) to run the real-LLM tests.  They will be
+Set environment variables ``GRAPHRAG_API_BASE`` and ``GRAPHRAG_API_KEY`` (or
+legacy ``llm_base_url`` and ``key``) to run the real-LLM tests.  They will be
 automatically skipped otherwise.
 """
 
 from __future__ import annotations
 
 import json
-import os
 import shutil
 import sys
 from pathlib import Path
@@ -38,6 +37,7 @@ from roadgen3d.auto_pipeline.iteration_controller import (
     IterationSnapshot,
 )
 from roadgen3d.llm.design_workflow import DesignAssistantService
+from roadgen3d.llm import LLMConfigurationError, LLMSettings
 from roadgen3d.services.design_types import (
     DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
     SceneGenerationResult,
@@ -48,20 +48,17 @@ from roadgen3d.services.design_types import (
 # ---------------------------------------------------------------------------
 
 def _llm_available() -> bool:
-    """Check whether the LLM API env vars are present (loads .env if needed)."""
+    """Check whether the unified LLM settings can be loaded."""
     try:
-        from dotenv import load_dotenv  # type: ignore
-        load_dotenv()
-    except ImportError:
-        pass
-    return bool(os.environ.get("llm_base_url", "").strip()) and bool(
-        os.environ.get("key", "").strip()
-    )
+        LLMSettings.from_env()
+    except LLMConfigurationError:
+        return False
+    return True
 
 
 requires_llm = pytest.mark.skipif(
     not _llm_available(),
-    reason="LLM API not configured (need llm_base_url and key env vars)",
+    reason="LLM API not configured (need GRAPHRAG_API_BASE + GRAPHRAG_API_KEY or legacy llm_base_url + key)",
 )
 
 # ---------------------------------------------------------------------------

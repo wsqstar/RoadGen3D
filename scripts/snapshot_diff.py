@@ -48,7 +48,7 @@ from roadgen3d.beauty import render_presentation_views
 from roadgen3d.embedder import ClipTextEmbedder
 from roadgen3d.graph_template_scene_bridge import build_graph_template_scene_bridge
 from roadgen3d.index_store import FaissIndexStore
-from roadgen3d.llm.glm_client import GLMClient
+from roadgen3d.llm import LLMClient
 from roadgen3d.llm.prompts import (
     build_layout_edit_messages,
     build_layout_evaluation_messages,
@@ -379,7 +379,7 @@ def run_layout_edit_loop(
     When *manifest_path* is provided, also re-exports a 3D GLB after each
     successful edit and produces a final GLB with viewer URL at the end.
     """
-    client = GLMClient()
+    client = LLMClient()
     edit_dir = output_dir / "layout_edits"
     edit_dir.mkdir(parents=True, exist_ok=True)
 

@@ -135,7 +135,7 @@ class AutoIterationController:
         if self.query and "query" not in current_patch:
             current_patch["query"] = self.query
 
-        best_score = -1.0
+        best_metric_score = -1.0
         best_iteration = 0
         no_improvement_count = 0
 
@@ -167,30 +167,25 @@ class AutoIterationController:
             # Step – Render preview
             preview_path = str(iter_dir / "preview.png")
             try:
-                render_topdown_preview(layout_path, preview_path)
+                render_topdown_preview(
+                    layout_path,
+                    preview_path,
+                    annotation=self.graph_ctx.annotation,
+                    base_map_path=self.base_map_path,
+                )
             except Exception as exc:
                 print(f"[auto_pipeline] Warning: preview rendering failed: {exc}")
                 preview_path = ""
 
             # Step – LLM evaluation (with before/after comparison from iteration 1 onward)
             print(f"[auto_pipeline] Iteration {i}: evaluating scene ...")
-            if i > 0 and snapshots:
-                prev = snapshots[i - 1]
-                eval_result = self.design_service.evaluate_scene_with_history(
-                    layout_path=layout_path,
-                    image_path=preview_path or None,
-                    previous_layout_path=prev.layout_path,
-                    previous_image_path=prev.preview_path or None,
-                    previous_score=prev.score,
-                    previous_evaluation=prev.evaluation,
-                )
-            else:
-                eval_result = self.design_service.evaluate_scene_unified(
-                    layout_path=layout_path,
-                    image_path=preview_path or None,
-                )
+            eval_result = self._evaluate_scene_compat(
+                layout_path=layout_path,
+                image_path=preview_path or None,
+                previous=snapshots[-1] if snapshots else None,
+            )
 
-            score = float(eval_result.get("overall", eval_result.get("score", 0)) or 0) / 10.0
+            score = _score_from_eval_payload(eval_result)
             evaluation_text = str(eval_result.get("evaluation", ""))
             suggestions = list(eval_result.get("suggestions", []) or [])
             comparison = dict(eval_result.get("comparison", {}))
@@ -283,8 +278,8 @@ class AutoIterationController:
                 print(f"[auto_pipeline] Warning: regression detected in {regressed_areas}")
 
             # Track best by evaluation_score (combined metric)
-            if evaluation_score > best_score:
-                best_score = evaluation_score
+            if evaluation_score > best_metric_score:
+                best_metric_score = evaluation_score
                 best_iteration = i
                 no_improvement_count = 0
             else:
@@ -308,7 +303,8 @@ class AutoIterationController:
                 weakness_queries.append("urban street beauty aesthetics landscape design")
 
             # Generate reference-grounded improvement patch
-            improvement_result = self.design_service.propose_improvement(
+            improvement_result = self._propose_improvement_compat(
+                eval_result=eval_result,
                 current_evaluation=evaluation_text,
                 comparison=comparison,
                 current_patch=current_patch,
@@ -351,7 +347,7 @@ class AutoIterationController:
         result = IterationResult(
             iterations=snapshots,
             best_iteration=best_iteration,
-            best_score=best_score,
+            best_score=round(best_metric_score * 10.0, 3),
             best_layout_path=str(final_dir / "scene_layout.json"),
             best_scene_path=str(final_dir / "scene.glb"),
             total_iterations=len(snapshots),
@@ -382,6 +378,91 @@ class AutoIterationController:
             return f"data:image/png;base64,{base64.b64encode(data).decode('ascii')}"
         except Exception:
             return None
+
+    def _evaluate_scene_compat(
+        self,
+        *,
+        layout_path: str,
+        image_path: str | None,
+        previous: IterationSnapshot | None,
+    ) -> Dict[str, Any]:
+        """Evaluate using the newest service API, with legacy fallback."""
+        if previous is not None and hasattr(self.design_service, "evaluate_scene_with_history"):
+            return dict(
+                self.design_service.evaluate_scene_with_history(
+                    layout_path=layout_path,
+                    image_path=image_path,
+                    previous_layout_path=previous.layout_path,
+                    previous_image_path=previous.preview_path or None,
+                    previous_score=previous.score,
+                    previous_evaluation=previous.evaluation,
+                )
+            )
+        if hasattr(self.design_service, "evaluate_scene_unified"):
+            return dict(
+                self.design_service.evaluate_scene_unified(
+                    layout_path=layout_path,
+                    image_path=image_path,
+                )
+            )
+        if hasattr(self.design_service, "evaluate_scene"):
+            return dict(
+                self.design_service.evaluate_scene(
+                    layout_path=layout_path,
+                    image_path=image_path,
+                )
+            )
+        raise AttributeError(
+            "design_service must provide evaluate_scene_unified, "
+            "evaluate_scene_with_history, or evaluate_scene."
+        )
+
+    def _propose_improvement_compat(
+        self,
+        *,
+        eval_result: Mapping[str, Any],
+        current_evaluation: str,
+        comparison: Mapping[str, Any],
+        current_patch: Mapping[str, Any],
+        weakness_queries: List[str] | None,
+    ) -> Dict[str, Any]:
+        """Return an improvement patch from the service or legacy eval payload."""
+        if hasattr(self.design_service, "propose_improvement"):
+            return dict(
+                self.design_service.propose_improvement(
+                    current_evaluation=current_evaluation,
+                    comparison=comparison,
+                    current_patch=current_patch,
+                    weakness_queries=weakness_queries,
+                )
+            )
+        return {
+            "config_patch": dict(eval_result.get("config_patch", {}) or {}),
+            "citations": [],
+            "reasoning": "Legacy evaluate_scene config_patch fallback.",
+        }
+
+
+def _score_from_eval_payload(eval_result: Mapping[str, Any]) -> float:
+    """Normalize known evaluation payload score shapes to a 0-10 score."""
+    if eval_result.get("overall") is not None:
+        score = float(eval_result.get("overall") or 0.0)
+        if score > 10.0:
+            score /= 10.0
+        return max(0.0, min(score, 10.0))
+    if eval_result.get("score") is not None:
+        score = float(eval_result.get("score") or 0.0)
+        if 0.0 <= score <= 1.0:
+            return score * 10.0
+        return max(0.0, min(score, 10.0))
+    if eval_result.get("evaluation_score") is not None:
+        score = float(eval_result.get("evaluation_score") or 0.0)
+        if 0.0 <= score <= 1.0:
+            return score * 10.0
+        if score > 10.0:
+            score /= 10.0
+        return max(0.0, min(score, 10.0))
+    return 0.0
 
 
 def _result_to_log(result: IterationResult) -> Dict[str, Any]:
