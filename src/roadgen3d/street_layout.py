@@ -1000,8 +1000,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
 
 def _validate_export_format(export_format: str) -> str:
     value = export_format.strip().lower()
-    if value not in {"glb", "ply", "both"}:
-        raise ValueError("export_format must be one of: glb, ply, both")
+    if value not in {"glb", "ply", "both", "none"}:
+        raise ValueError("export_format must be one of: glb, ply, both, none")
     return value
 
 
@@ -3216,6 +3216,8 @@ def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
     export_format = _validate_export_format(export_format)
     out_dir.mkdir(parents=True, exist_ok=True)
     outputs = {"scene_glb": "", "scene_ply": ""}
+    if export_format == "none":
+        return outputs
     if export_format in {"glb", "both"}:
         glb_path = (out_dir / "scene.glb").resolve()
         scene.export(glb_path)
@@ -7214,6 +7216,8 @@ def compose_street_scene(
     road_segment_graph_override: object | None = None,
     projected_features_override: object | None = None,
     placement_context_override: object | None = None,
+    build_production_artifacts: bool = True,
+    render_presentation_artifacts: bool = True,
     progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
 ) -> StreetComposeResult:
     """
@@ -9328,36 +9332,45 @@ def compose_street_scene(
         else None
     )
 
-    _emit_progress(
-        "scene_rendering",
-        92,
-        "Building production step artifacts.",
-        placement_count=len(placements),
-    )
-    production_steps = _build_production_steps(
-        out_dir=out_dir,
-        config=config,
-        resolved_program=resolved_program,
-        placement_ctx=placement_ctx,
-        poi_ctx=poi_ctx,
-        spatial_ctx=spatial_ctx,
-        placements=placements,
-        zoning_grid=zoning_grid,
-        building_footprints=building_footprints,
-        generated_lots=generated_lots,
-        building_plans=building_plans,
-        mesh_cache=trimmed_mesh_cache,
-        exclusion_zones=exclusion_zones,
-        palette=palette,
-        osm_geometry=serialized_osm_geometry,
-        overall_texture_tracker=scene_texture_tracker,
-        texture_overrides=texture_overrides,
-    )
     production_steps_dir = (out_dir / "production_steps").resolve()
     production_steps_manifest = (production_steps_dir / "production_steps.json").resolve()
-    outputs["production_steps_dir"] = str(production_steps_dir)
-    if production_steps_manifest.exists():
-        outputs["production_steps_manifest"] = str(production_steps_manifest)
+    if build_production_artifacts:
+        _emit_progress(
+            "scene_rendering",
+            92,
+            "Building production step artifacts.",
+            placement_count=len(placements),
+        )
+        production_steps = _build_production_steps(
+            out_dir=out_dir,
+            config=config,
+            resolved_program=resolved_program,
+            placement_ctx=placement_ctx,
+            poi_ctx=poi_ctx,
+            spatial_ctx=spatial_ctx,
+            placements=placements,
+            zoning_grid=zoning_grid,
+            building_footprints=building_footprints,
+            generated_lots=generated_lots,
+            building_plans=building_plans,
+            mesh_cache=trimmed_mesh_cache,
+            exclusion_zones=exclusion_zones,
+            palette=palette,
+            osm_geometry=serialized_osm_geometry,
+            overall_texture_tracker=scene_texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        outputs["production_steps_dir"] = str(production_steps_dir)
+        if production_steps_manifest.exists():
+            outputs["production_steps_manifest"] = str(production_steps_manifest)
+    else:
+        _emit_progress(
+            "scene_rendering",
+            92,
+            "Skipping production step artifacts.",
+            placement_count=len(placements),
+        )
+        production_steps = tuple()
 
     _emit_progress(
         "finalizing",
@@ -9954,13 +9967,22 @@ def compose_street_scene(
     layout_payload["summary"]["scene_graph_available_categories"] = list(
         scene_graph.get("filters", {}).get("categories", []) or []
     )
-    _emit_progress(
-        "scene_rendering",
-        97,
-        "Rendering presentation views.",
-        layout_path=str(layout_path),
-    )
-    render_views = render_presentation_views(layout_payload, out_dir=out_dir, config=config)
+    render_views: list[Mapping[str, object]] = []
+    if render_presentation_artifacts:
+        _emit_progress(
+            "scene_rendering",
+            97,
+            "Rendering presentation views.",
+            layout_path=str(layout_path),
+        )
+        render_views = render_presentation_views(layout_payload, out_dir=out_dir, config=config)
+    else:
+        _emit_progress(
+            "scene_rendering",
+            97,
+            "Skipping presentation views.",
+            layout_path=str(layout_path),
+        )
     layout_payload["summary"]["render_views"] = render_views
     render_preset_used = str(getattr(config, "render_preset", "axonometric_board_v1") or "axonometric_board_v1")
     final_render_views = [

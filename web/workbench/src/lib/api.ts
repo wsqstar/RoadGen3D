@@ -104,6 +104,7 @@ export interface DraftResponse {
     citations_by_field: Record<string, string[]>;
     design_summary: string;
     risk_notes: string[];
+    parameter_sources_by_field?: Record<string, string>;
   } | null;
   warnings?: string[];
   evidence?: unknown[];
@@ -113,6 +114,7 @@ export interface DraftResponse {
   citations_by_field?: Record<string, string[]>;
   design_summary?: string;
   risk_notes?: string[];
+  parameter_sources_by_field?: Record<string, string>;
 }
 
 export interface DraftDesignOptions {

@@ -102,15 +102,191 @@ def test_branch_run_initial_nodes_include_scenario_parameter_evidence(tmp_path: 
     assert trace["schema_version"] == "generation_trace_v1"
     assert trace["process"]["growth_tree_node"]["node_id"] == result["nodes"][0]["node_id"]
     assert any(item["knowledge_source"] == "scenario_parameters" for item in trace["provenance"]["rag_evidence"])
-    assert trace["llm_recommendation"]["derivation_status"] == "branch_candidate"
+    assert trace["llm_recommendation"]["derivation_status"] == "branch_llm_candidate"
     assert trace["evaluation"]["status"] == "succeeded"
     trace_path = Path(trace["result"]["generation_trace_path"])
     assert trace_path.exists()
     assert json.loads(trace_path.read_text(encoding="utf-8"))["node_id"] == result["nodes"][0]["node_id"]
 
 
+def test_branch_run_target_samples_builds_100_scored_provenance_points(tmp_path: Path):
+    service = BranchRunService(design_service=_FakeBranchDesignService(tmp_path), output_root=tmp_path)
+    created = service.submit_run(
+        prompt="Create one hundred scored alternatives with provenance",
+        topk=5,
+        rounds=2,
+        target_samples=100,
+        graph_template_id="hkust_gz_gate",
+        knowledge_source="graph_rag",
+    )
+    result = _wait_for_run(service, created["run_id"])
+
+    assert result["status"] == "succeeded"
+    assert result["target_samples"] == 100
+    assert result["completed_samples"] == 100
+    assert result["attempted_samples"] == 100
+    assert len(result["nodes"]) == 100
+    assert len(result["scatter_points"]) == 100
+    point = result["scatter_points"][0]
+    assert point["walkability"] is not None
+    assert point["safety"] is not None
+    assert point["beauty"] is not None
+    assert point["z"] == point["beauty"]
+    assert "is_pareto_front" in point
+    assert "pareto_rank" in point
+    assert "dominated_by_count" in point
+    child_point = next(item for item in result["scatter_points"] if item["parent_id"])
+    assert child_point["delta_walkability"] is not None
+    node = next(item for item in result["nodes"] if item["rejected_edits"])
+    row_types = {item["source_type"] for item in node["influence_rows"]}
+    assert {"rag", "parameter_triple", "llm_patch", "directive", "constraint"}.issubset(row_types)
+    assert any(item["active"] for item in node["influence_rows"] if item["source_type"] == "parameter_triple")
+    assert service.design_service.generation_options[0]["export_format"] == "none"
+    assert service.design_service.generation_options[0]["preset_id"] == "skip_llm"
+    assert service.design_service.generation_options[0]["build_production_artifacts"] is False
+    assert service.design_service.generation_options[0]["render_presentation_artifacts"] is False
+
+    manifest = json.loads((Path(result["artifact_dir"]) / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["target_samples"] == 100
+    assert manifest["completed_samples"] == 100
+
+
+def test_branch_run_pareto_mode_uses_traditional_search_and_early_stops(tmp_path: Path):
+    fake_service = _DominatedParetoDesignService(tmp_path)
+    service = BranchRunService(design_service=fake_service, output_root=tmp_path)
+    created = service.submit_run(
+        prompt="Find a Pareto surface for street scores",
+        topk=5,
+        rounds=5,
+        target_samples=100,
+        search_mode="pareto",
+        early_stop_patience=3,
+        graph_template_id="hkust_gz_gate",
+        knowledge_source="graph_rag",
+    )
+    result = _wait_for_run(service, created["run_id"])
+
+    assert result["status"] == "succeeded"
+    assert result["search_mode"] == "pareto"
+    assert result["early_stop_triggered"] is True
+    assert result["completed_samples"] == 4
+    assert result["attempted_samples"] == 4
+    assert fake_service.initial_candidate_calls == 0
+    assert fake_service.improvement_candidate_calls == 0
+    assert result["pareto_front"]
+    assert result["pareto_front_size"] == len(result["pareto_front"])
+    first_point = result["scatter_points"][0]
+    dominated_point = result["scatter_points"][-1]
+    assert first_point["is_pareto_front"] is True
+    assert dominated_point["is_pareto_front"] is False
+    assert dominated_point["dominated_by_count"] >= 1
+    node = result["nodes"][0]
+    row_types = {item["source_type"] for item in node["influence_rows"]}
+    assert {"rag", "parameter_triple", "search_patch"}.issubset(row_types)
+    assert all(item["source"] != "branch_llm_candidate" for item in node["influence_rows"] if item["source_type"] == "search_patch")
+
+
+def test_branch_run_retains_only_top_scored_artifacts(tmp_path: Path):
+    fake_service = _FakeBranchDesignService(tmp_path)
+    service = BranchRunService(design_service=fake_service, output_root=tmp_path)
+    created = service.submit_run(
+        prompt="Score scenes with temporary render artifacts",
+        topk=5,
+        rounds=5,
+        target_samples=12,
+        search_mode="pareto",
+        graph_template_id="hkust_gz_gate",
+        knowledge_source="graph_rag",
+        retain_topk_artifacts=3,
+        score_with_rendered_views=True,
+    )
+    result = _wait_for_run(service, created["run_id"])
+
+    assert result["status"] == "succeeded"
+    assert result["retain_topk_artifacts"] == 3
+    assert result["score_with_rendered_views"] is True
+    assert result["retained_artifact_count"] == 3
+    retained_ids = set(result["retained_artifact_nodes"])
+    expected_ids = {
+        item["node_id"]
+        for item in sorted(result["nodes"], key=lambda node: node["score"], reverse=True)[:3]
+    }
+    assert retained_ids == expected_ids
+    assert all(len(item) == 3 for item in fake_service.rendered_view_batches)
+
+    for node in result["nodes"]:
+        glb_path = Path(node.get("scene_glb_path") or "")
+        view_dir = Path(result["artifact_dir"]) / node["node_id"] / "presentation_views"
+        if node["node_id"] in retained_ids:
+            assert node["artifacts_retained"] is True
+            assert glb_path.exists()
+            assert view_dir.exists()
+        else:
+            assert node["artifacts_retained"] is False
+            assert node.get("scene_glb_path") in {"", None}
+            assert not (Path(result["artifact_dir"]) / node["node_id"] / "scene.glb").exists()
+            assert not view_dir.exists()
+
+
+def test_branch_run_fills_branch_scores_when_visual_eval_is_unavailable(tmp_path: Path):
+    service = BranchRunService(
+        design_service=_FakeBranchDesignService(tmp_path, visual_scores=False),
+        output_root=tmp_path,
+    )
+    created = service.submit_run(
+        prompt="Create scored alternatives without visual LLM inputs",
+        topk=1,
+        rounds=1,
+        target_samples=1,
+        graph_template_id="hkust_gz_gate",
+        knowledge_source="none",
+    )
+    result = _wait_for_run(service, created["run_id"])
+
+    assert result["status"] == "succeeded"
+    point = result["scatter_points"][0]
+    assert point["walkability"] is not None
+    assert point["safety"] is not None
+    assert point["beauty"] is not None
+    assert point["overall"] is not None
+    evaluation = result["nodes"][0]["evaluation"]
+    assert evaluation["branch_score_fallback"]["safety"]["source"] == "structural_walkability_proxy"
+    assert evaluation["branch_score_fallback"]["beauty"]["source"] == "structural_walkability_proxy"
+    assert evaluation["branch_score_fallback"]["overall"]["source"] == "weighted_branch_scores"
+
+
+def test_branch_run_service_lists_historical_manifests_after_restart(tmp_path: Path):
+    run_dir = tmp_path / "historic-100"
+    run_dir.mkdir(parents=True)
+    manifest = {
+        "run_id": "historic-100",
+        "status": "succeeded",
+        "stage": "succeeded",
+        "progress": 100,
+        "created_at": "2026-05-04T06:00:00+00:00",
+        "target_samples": 100,
+        "completed_samples": 84,
+        "attempted_samples": 84,
+        "nodes": [{"node_id": "node-a", "status": "succeeded"}],
+        "scatter_points": [{"node_id": "node-a", "walkability": 70, "safety": 68, "beauty": 72}],
+    }
+    (run_dir / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+
+    service = BranchRunService(design_service=_FakeBranchDesignService(tmp_path), output_root=tmp_path)
+
+    listed = service.list_runs(limit=10)
+    assert listed[0]["run_id"] == "historic-100"
+    assert listed[0]["nodes"] == []
+    assert listed[0]["target_samples"] == 100
+
+    loaded = service.get_run("historic-100")
+    assert loaded is not None
+    assert loaded["completed_samples"] == 84
+    assert loaded["nodes"][0]["node_id"] == "node-a"
+
+
 def _wait_for_run(service: BranchRunService, run_id: str) -> Mapping[str, Any]:
-    deadline = time.time() + 5
+    deadline = time.time() + 90
     while time.time() < deadline:
         payload = service.get_run(run_id)
         if payload and payload["status"] in {"succeeded", "failed"}:
@@ -120,9 +296,14 @@ def _wait_for_run(service: BranchRunService, run_id: str) -> Mapping[str, Any]:
 
 
 class _FakeBranchDesignService:
-    def __init__(self, tmp_path: Path) -> None:
+    def __init__(self, tmp_path: Path, *, visual_scores: bool = True) -> None:
         self.tmp_path = tmp_path
         self.generated = 0
+        self.visual_scores = visual_scores
+        self.generation_options: list[Mapping[str, Any]] = []
+        self.rendered_view_batches: list[list[Mapping[str, Any]]] = []
+        self.initial_candidate_calls = 0
+        self.improvement_candidate_calls = 0
 
     def search_knowledge(self, **kwargs):
         knowledge_source = str(kwargs.get("knowledge_source", "graph_rag"))
@@ -164,6 +345,7 @@ class _FakeBranchDesignService:
         ][:topk]
 
     def generate_initial_config_candidates_from_graph(self, **kwargs):
+        self.initial_candidate_calls += 1
         topk = int(kwargs.get("topk", 3))
         return [
             {
@@ -182,6 +364,7 @@ class _FakeBranchDesignService:
         ]
 
     def propose_improvement_candidates(self, **kwargs):
+        self.improvement_candidate_calls += 1
         topk = int(kwargs.get("topk", 3))
         current = dict(kwargs.get("current_patch", {}) or {})
         return [
@@ -202,29 +385,77 @@ class _FakeBranchDesignService:
 
     def generate_scene(self, draft, **_kwargs):
         self.generated += 1
-        layout_path = self.tmp_path / f"layout_{self.generated}.json"
+        generation_options = dict(_kwargs.get("generation_options", {}) or {})
+        self.generation_options.append(generation_options)
+        out_dir = Path(str(generation_options.get("out_dir") or self.tmp_path))
+        out_dir.mkdir(parents=True, exist_ok=True)
+        layout_path = out_dir / f"layout_{self.generated}.json"
+        glb_path = out_dir / "scene.glb"
+        render_views = []
+        if generation_options.get("export_format") == "glb":
+            glb_path.write_text("glb", encoding="utf-8")
+        if generation_options.get("render_presentation_artifacts"):
+            view_dir = out_dir / "presentation_views"
+            view_dir.mkdir(parents=True, exist_ok=True)
+            for index in range(3):
+                view_path = view_dir / f"final_view_{index + 1}.png"
+                view_path.write_bytes(b"png")
+                render_views.append({
+                    "name": f"final_view_{index + 1}",
+                    "title": f"Final View {index + 1}",
+                    "path": str(view_path),
+                })
         layout_path.write_text(
-            json.dumps({"summary": {"length_m": 80}, "config": draft.compose_config_patch, "placements": []}),
+            json.dumps({
+                "summary": {"length_m": 80, "render_views": render_views},
+                "config": draft.compose_config_patch,
+                "placements": [],
+            }),
             encoding="utf-8",
         )
         return {
             "compose_config": dict(draft.compose_config_patch),
             "summary": {"instance_count": self.generated},
             "scene_layout_path": str(layout_path),
-            "scene_glb_path": str(self.tmp_path / f"scene_{self.generated}.glb"),
+            "scene_glb_path": str(glb_path),
         }
 
     def evaluate_scene_unified(self, *, layout_path: str, **_kwargs):
+        self.rendered_view_batches.append(list(_kwargs.get("rendered_views", []) or []))
         index = int(Path(layout_path).stem.split("_")[-1])
         return {
             "walkability": min(100, 45 + index),
-            "safety": None,
-            "beauty": None,
+            "safety": min(100, 50 + index * 0.7) if self.visual_scores else None,
+            "beauty": min(100, 55 + index * 0.5) if self.visual_scores else None,
             "overall": None,
-            "evaluation": "walkability only",
+            "evaluation": "three-system score",
             "suggestions": ["improve comfort"],
             "indicators": {
+                "protection": 48 + index,
                 "comfort": 40,
+                "delight": 42 + index,
+                "sidewalk_adequacy": "Low",
+                "tree_shading_rate": "Low",
+            },
+            "config_patch": {},
+        }
+
+
+class _DominatedParetoDesignService(_FakeBranchDesignService):
+    def evaluate_scene_unified(self, *, layout_path: str, **_kwargs):
+        index = int(Path(layout_path).stem.split("_")[-1])
+        score = 91 - index * 5
+        return {
+            "walkability": score,
+            "safety": score,
+            "beauty": score,
+            "overall": None,
+            "evaluation": "dominated synthetic score",
+            "suggestions": ["stop if dominated"],
+            "indicators": {
+                "protection": score,
+                "comfort": score,
+                "delight": score,
                 "sidewalk_adequacy": "Low",
                 "tree_shading_rate": "Low",
             },

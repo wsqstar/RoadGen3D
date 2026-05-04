@@ -1,6 +1,6 @@
 // ── Type definitions for React Workbench ──
 
-export type KnowledgeSourceKey = "hybrid" | "pdf_rag" | "graph_rag";
+export type KnowledgeSourceKey = "hybrid" | "pdf_rag" | "graph_rag" | "scenario_parameters";
 
 export type DesignDraft = {
   normalized_scene_query: string;

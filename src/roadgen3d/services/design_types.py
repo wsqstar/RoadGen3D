@@ -329,6 +329,8 @@ class SceneGenerationOptions:
     manifest_path: Path
     artifacts_dir: Path
     out_dir: Path
+    preset_id: str = ""
+    random_seed: int | None = None
     object_manifest_v2_path: Path | None = None
     ground_material_manifest_path: Path | None = None
     sky_manifest_path: Path | None = None
@@ -341,9 +343,13 @@ class SceneGenerationOptions:
     policy_ckpt: Path | None = None
     program_ckpt: Path | None = None
     policy_temperature: float = 0.12
+    build_production_artifacts: bool = True
+    render_presentation_artifacts: bool = True
 
     def to_dict(self) -> Dict[str, Any]:
         return {
+            "preset_id": self.preset_id,
+            "random_seed": self.random_seed,
             "manifest_path": str(self.manifest_path),
             "artifacts_dir": str(self.artifacts_dir),
             "out_dir": str(self.out_dir),
@@ -361,6 +367,8 @@ class SceneGenerationOptions:
             "policy_ckpt": str(self.policy_ckpt) if self.policy_ckpt is not None else None,
             "program_ckpt": str(self.program_ckpt) if self.program_ckpt is not None else None,
             "policy_temperature": float(self.policy_temperature),
+            "build_production_artifacts": bool(self.build_production_artifacts),
+            "render_presentation_artifacts": bool(self.render_presentation_artifacts),
         }
 
 

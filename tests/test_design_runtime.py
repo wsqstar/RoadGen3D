@@ -74,6 +74,13 @@ def test_shared_presets_include_course_delivery_defaults():
             assert config_patch[key] == value
 
 
+def test_preset_rag_config_loads_from_repo_assets():
+    config = runtime._load_preset_rag_config("pedestrian_friendly")
+
+    assert config["knowledge_source"] == "graph_rag"
+    assert "pedestrian priority street design safety" in config["rag_queries"]
+
+
 def test_build_compose_config_from_draft_applies_explicit_beauty_fields():
     draft = DesignDraft(
         normalized_scene_query="lush neighborhood street",
@@ -314,6 +321,113 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
     assert "target_street_type" in detail["defaulted_fields"]
     assert "target_street_type" not in detail["llm_raw_fields"]
+
+
+def test_generate_scene_from_draft_uses_preset_rag_queries(tmp_path: Path, monkeypatch):
+    from roadgen3d.llm import design_workflow
+
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 2}}), encoding="utf-8")
+    captured: dict[str, object] = {}
+
+    monkeypatch.setattr(
+        runtime,
+        "build_graph_template_scene_bridge",
+        lambda *args, **kwargs: SimpleNamespace(
+            summary_metadata={"layout_mode": "graph_template", "road_count": 2},
+            road_segment_graph=SimpleNamespace(),
+            projected_features=SimpleNamespace(),
+            placement_context=SimpleNamespace(),
+        ),
+    )
+
+    class _FakeLlmClient:
+        def chat_json(self, messages):
+            payload = json.loads(messages[-1]["content"][0]["text"])
+            captured["llm_payload"] = payload
+            return {
+                "compose_config_patch": {"road_width_m": 8.0, "sidewalk_width_m": 3.2},
+                "design_summary": "Preset RAG adjusted street.",
+            }
+
+    class _FakeAssistant:
+        def _retrieve_evidence(self, *, queries, topk, knowledge_source):
+            captured["rag_queries"] = tuple(queries)
+            captured["knowledge_source"] = knowledge_source
+            return [
+                RagEvidence(
+                    chunk_id="preset-guide-001",
+                    doc_id="complete-streets",
+                    section_title="Pedestrian Priority",
+                    page_start=1,
+                    page_end=1,
+                    text="Prioritize pedestrian safety on walkable streets.",
+                    source_path="guides/complete-streets.pdf",
+                    score=0.9,
+                    knowledge_source=knowledge_source,
+                )
+            ]
+
+        def _retrieve_scenario_parameter_evidence(self, *, queries, topk, parameter_names=None):
+            captured["structured_rag_queries"] = tuple(queries)
+            return [
+                RagEvidence(
+                    chunk_id="scenario_parameters::preset::pedestrian_friendly::sidewalk_width_m",
+                    doc_id="scenario_parameter_triples",
+                    section_title="Pedestrian Friendly / sidewalk_width_m",
+                    page_start=0,
+                    page_end=0,
+                    text=(
+                        '{"scenario_id":"preset.pedestrian_friendly",'
+                        '"parameter_name":"sidewalk_width_m","normalized_value":3.2,"unit":"m"}'
+                    ),
+                    source_path="knowledge/scenario_parameter_triples.jsonl",
+                    score=0.95,
+                    knowledge_source="scenario_parameters",
+                )
+            ]
+
+        def _get_llm_client(self):
+            return _FakeLlmClient()
+
+    monkeypatch.setattr(design_workflow, "DesignAssistantService", _FakeAssistant)
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=2,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="make it safer",
+        compose_config_patch={},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
+        generation_options={"preset_id": "pedestrian_friendly"},
+    )
+
+    assert captured["knowledge_source"] == "graph_rag"
+    assert captured["rag_queries"][0] == "make it safer"
+    assert "pedestrian priority street design safety" in captured["rag_queries"]
+    assert captured["structured_rag_queries"] == captured["rag_queries"]
+    user_payload = captured["llm_payload"]
+    assert user_payload["knowledge_source"] == "graph_rag"
+    assert "pedestrian priority street design safety" in user_payload["rag_queries"]
+    assert any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
+    assert result.compose_config["sidewalk_width_m"] == 3.2
 
 
 def test_generate_scene_from_draft_custom_preset_keeps_explicit_patch_over_llm(tmp_path: Path, monkeypatch):

@@ -145,10 +145,27 @@ def normalize_scene_generation_options(
             return fallback
         return Path(str(value)).expanduser().resolve()
 
+    def _resolve_optional_int(value: object) -> int | None:
+        if value in (None, ""):
+            return None
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return None
+
+    def _resolve_bool(value: object, fallback: bool) -> bool:
+        if value in (None, ""):
+            return bool(fallback)
+        if isinstance(value, str):
+            return value.strip().lower() not in {"0", "false", "no", "off"}
+        return bool(value)
+
     return SceneGenerationOptions(
         manifest_path=Path(str(payload.get("manifest_path", DEFAULT_SCENE_GENERATION_OPTIONS.manifest_path))).expanduser().resolve(),
         artifacts_dir=Path(str(payload.get("artifacts_dir", DEFAULT_SCENE_GENERATION_OPTIONS.artifacts_dir))).expanduser().resolve(),
         out_dir=Path(str(payload.get("out_dir", DEFAULT_SCENE_GENERATION_OPTIONS.out_dir))).expanduser().resolve(),
+        preset_id=str(payload.get("preset_id", DEFAULT_SCENE_GENERATION_OPTIONS.preset_id) or "").strip(),
+        random_seed=_resolve_optional_int(payload.get("random_seed", DEFAULT_SCENE_GENERATION_OPTIONS.random_seed)),
         object_manifest_v2_path=_resolve_optional_path(
             payload.get("object_manifest_v2_path"),
             DEFAULT_SCENE_GENERATION_OPTIONS.object_manifest_v2_path,
@@ -182,6 +199,14 @@ def normalize_scene_generation_options(
             else DEFAULT_SCENE_GENERATION_OPTIONS.program_ckpt
         ),
         policy_temperature=float(payload.get("policy_temperature", DEFAULT_SCENE_GENERATION_OPTIONS.policy_temperature)),
+        build_production_artifacts=_resolve_bool(
+            payload.get("build_production_artifacts"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.build_production_artifacts,
+        ),
+        render_presentation_artifacts=_resolve_bool(
+            payload.get("render_presentation_artifacts"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.render_presentation_artifacts,
+        ),
     )
 
 
@@ -295,12 +320,11 @@ def _wants_llm_parameter_derivation(
 def _load_preset_rag_config(preset_id: str) -> Dict[str, Any]:
     """Load RAG configuration for a specific preset."""
     import json
-    from pathlib import Path
-    
-    preset_rag_path = Path(__file__).resolve().parent.parent.parent / "assets" / "presets" / "preset_rag_config.json"
+
+    preset_rag_path = ROOT / "assets" / "presets" / "preset_rag_config.json"
     if not preset_rag_path.exists():
         return {}
-    
+
     try:
         with open(preset_rag_path, "r", encoding="utf-8") as f:
             config = json.load(f)
@@ -401,24 +425,24 @@ def _derive_draft_with_llm(
         from ..llm.prompts import build_graph_aware_design_messages
 
         # Determine preset_id for RAG configuration
-        preset_id = str(options.preset_id or "custom").strip().lower() if hasattr(options, 'preset_id') else "custom"
-        
+        preset_id = str(options.preset_id or "custom").strip().lower()
+
         graph_summary = _graph_summary_for_llm_derivation(
             base_config,
             scene_context=scene_context,
             options=options,
         )
         assistant = DesignAssistantService()
-        
+
         # Load preset RAG configuration
         preset_rag_config = _load_preset_rag_config(preset_id)
         knowledge_source = preset_rag_config.get("knowledge_source", "graph_rag")
         rag_queries = preset_rag_config.get("rag_queries", [draft.normalized_scene_query or "walkable complete street"])
-        
+
         # For presets, also use preset-specific RAG queries
         if preset_id not in {"custom", "__custom__", "llm", "llm-driven"}:
             rag_queries = [draft.normalized_scene_query or "walkable complete street"] + rag_queries
-        
+
         # RAG evidence retrieval
         evidence = []
         try:
@@ -445,7 +469,7 @@ def _derive_draft_with_llm(
             logging.getLogger(__name__).warning("RAG retrieval failed: %s", rag_exc)
             citations_by_field = {}
             evidence = []
-        
+
         messages = build_graph_aware_design_messages(
             graph_summary=graph_summary,
             user_prompt=draft.normalized_scene_query or "walkable complete street",
@@ -572,6 +596,8 @@ def _generate_metaurban_scene_from_draft(
         road_segment_graph_override=bridge.road_segment_graph,
         projected_features_override=bridge.projected_features,
         placement_context_override=bridge.placement_context,
+        build_production_artifacts=options.build_production_artifacts,
+        render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
@@ -633,6 +659,8 @@ def _generate_graph_template_scene_from_draft(
         road_segment_graph_override=bridge.road_segment_graph,
         projected_features_override=bridge.projected_features,
         placement_context_override=bridge.placement_context,
+        build_production_artifacts=options.build_production_artifacts,
+        render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
@@ -657,6 +685,8 @@ def generate_scene_from_draft(
     seed = None
     if isinstance(generation_options, Mapping):
         seed = generation_options.get("random_seed")
+    elif isinstance(generation_options, SceneGenerationOptions):
+        seed = generation_options.random_seed
     if seed is not None:
         try:
             seed = int(seed)
@@ -749,6 +779,8 @@ def generate_scene_from_draft(
         object_asset_backend=object_backend,
         ground_material_backend=ground_backend,
         sky_backend=sky_backend,
+        build_production_artifacts=options.build_production_artifacts,
+        render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
     return _build_scene_generation_result(
@@ -820,6 +852,8 @@ def generate_scene_from_graph_context(
         road_segment_graph_override=road_segment_graph_override,
         projected_features_override=projected_features_override,
         placement_context_override=placement_context_override,
+        build_production_artifacts=options.build_production_artifacts,
+        render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
     return _build_scene_generation_result(

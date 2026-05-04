@@ -124,6 +124,11 @@ class BranchRunCreateRequestModel(BaseModel):
     prompt: str
     topk: int = 3
     rounds: int = 2
+    target_samples: Optional[int] = Field(default=None, ge=1, le=100)
+    search_mode: str = "llm_branch"
+    early_stop_patience: Optional[int] = Field(default=None, ge=1, le=100)
+    retain_topk_artifacts: Optional[int] = Field(default=None, ge=1, le=20)
+    score_with_rendered_views: bool = False
     graph_template_id: str = "hkust_gz_gate"
     knowledge_source: str = "graph_rag"
     scene_context: Dict[str, Any] = Field(default_factory=dict)
@@ -297,6 +302,11 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
                 scene_context=request.scene_context,
                 generation_options=request.generation_options,
                 evaluation_weights=request.evaluation_weights,
+                target_samples=request.target_samples,
+                search_mode=request.search_mode,
+                early_stop_patience=request.early_stop_patience,
+                retain_topk_artifacts=request.retain_topk_artifacts,
+                score_with_rendered_views=request.score_with_rendered_views,
             ))
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc

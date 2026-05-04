@@ -234,8 +234,21 @@ class _FakeBranchRunService:
             "status": "succeeded",
             "stage": "succeeded",
             "progress": 100,
+            "target_samples": 100,
+            "search_mode": "pareto",
+            "early_stop_patience": 20,
+            "early_stop_triggered": False,
+            "early_stop_reason": "",
+            "retain_topk_artifacts": 10,
+            "score_with_rendered_views": True,
+            "retained_artifact_nodes": ["node-a"],
+            "retained_artifact_count": 1,
+            "completed_samples": 1,
+            "attempted_samples": 1,
             "best_node_id": "node-a",
             "frontier": ["node-a"],
+            "pareto_front": ["node-a"],
+            "pareto_front_size": 1,
             "nodes": [
                 {
                     "node_id": "node-a",
@@ -245,6 +258,10 @@ class _FakeBranchRunService:
                     "status": "succeeded",
                     "score": 80,
                     "scene_layout_path": "/tmp/layout.json",
+                    "scene_glb_path": "/tmp/scene.glb",
+                    "artifacts_retained": True,
+                    "artifact_rank": 1,
+                    "artifact_paths": ["/tmp/scene.glb"],
                     "trace": {
                         "schema_version": "generation_trace_v1",
                         "node_id": "node-a",
@@ -256,10 +273,38 @@ class _FakeBranchRunService:
                     },
                     "optimization_directives": [],
                     "rejected_edits": [],
+                    "influence_rows": [
+                        {
+                            "id": "llm_patch:sidewalk_width_m",
+                            "group": "llm_constraints",
+                            "source_type": "llm_patch",
+                            "label": "sidewalk_width_m",
+                            "active": True,
+                        }
+                    ],
                 }
             ],
             "scatter_points": [
-                {"node_id": "node-a", "x": 70, "y": 80, "overall": 80, "depth": 0, "rank": 1, "status": "succeeded"}
+                {
+                    "node_id": "node-a",
+                    "x": 70,
+                    "y": 75,
+                    "z": 72,
+                    "walkability": 70,
+                    "safety": 75,
+                    "beauty": 72,
+                    "overall": 80,
+                    "delta_walkability": None,
+                    "delta_safety": None,
+                    "delta_beauty": None,
+                    "delta_overall": None,
+                    "depth": 0,
+                    "rank": 1,
+                    "status": "succeeded",
+                    "is_pareto_front": True,
+                    "pareto_rank": 0,
+                    "dominated_by_count": 0,
+                }
             ],
         }
 
@@ -587,6 +632,11 @@ def test_branch_run_api_endpoints_return_expected_shapes():
             "prompt": "Generate three walkable alternatives",
             "topk": 3,
             "rounds": 2,
+            "target_samples": 100,
+            "search_mode": "pareto",
+            "early_stop_patience": 20,
+            "retain_topk_artifacts": 10,
+            "score_with_rendered_views": True,
             "graph_template_id": "hkust_gz_gate",
             "knowledge_source": "graph_rag",
         },
@@ -594,12 +644,22 @@ def test_branch_run_api_endpoints_return_expected_shapes():
     assert create_response.status_code == 200
     assert create_response.json()["run_id"] == "branch-demo"
     assert branch_service.created["topk"] == 3
+    assert branch_service.created["target_samples"] == 100
+    assert branch_service.created["search_mode"] == "pareto"
+    assert branch_service.created["early_stop_patience"] == 20
+    assert branch_service.created["retain_topk_artifacts"] == 10
+    assert branch_service.created["score_with_rendered_views"] is True
 
     status_response = client.get("/api/design/branch-runs/branch-demo")
     assert status_response.status_code == 200
     assert status_response.json()["nodes"][0]["optimization_directives"] == []
     assert status_response.json()["nodes"][0]["trace"]["process"]["growth_tree_node"]["node_id"] == "node-a"
     assert status_response.json()["scatter_points"][0]["x"] == 70
+    assert status_response.json()["scatter_points"][0]["z"] == 72
+    assert status_response.json()["pareto_front_size"] == 1
+    assert status_response.json()["retained_artifact_count"] == 1
+    assert status_response.json()["scatter_points"][0]["is_pareto_front"] is True
+    assert status_response.json()["nodes"][0]["influence_rows"][0]["source_type"] == "llm_patch"
 
     list_response = client.get("/api/design/branch-runs")
     assert list_response.status_code == 200

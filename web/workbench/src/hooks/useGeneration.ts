@@ -309,7 +309,7 @@ export function useGeneration(
         citations_by_field: draft.citations_by_field || {},
         design_summary: draft.design_summary,
         risk_notes: draft.risk_notes || [],
-        parameter_sources_by_field: {},
+        parameter_sources_by_field: draft.parameter_sources_by_field || {},
       },
       scene_context: {
         layout_mode: "graph_template",
