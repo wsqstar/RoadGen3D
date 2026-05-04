@@ -2610,6 +2610,59 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
 SIDEWALK_ELEVATION_M = 0.20
 
 
+def _build_curb_boundary_zone(carriageway: Any, elevated_side_zone: Any, curb_width_m: float) -> Any:
+    """Build curb only where carriageway borders elevated side/facility surfaces.
+
+    A raw ``carriageway.buffer(width) - carriageway`` ring also creates caps at
+    road-arm endpoints. Those caps read as curbs across the road mouth at
+    junctions. Curbs should instead live on the facility-lane boundary, so keep
+    only the part of the ring that overlaps the raised sidewalk/furnishing zone.
+    """
+    from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+    def _clean(geometry: Any) -> Any:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return MultiPolygon()
+        try:
+            if not getattr(geometry, "is_valid", True):
+                geometry = geometry.buffer(0)
+        except Exception:
+            return MultiPolygon()
+        if isinstance(geometry, (ShapelyPolygon, MultiPolygon)):
+            return geometry
+        polygons = [
+            item
+            for item in getattr(geometry, "geoms", ()) or ()
+            if isinstance(item, (ShapelyPolygon, MultiPolygon)) and not getattr(item, "is_empty", True)
+        ]
+        if not polygons:
+            return MultiPolygon()
+        from shapely.ops import unary_union
+
+        return _clean(unary_union(polygons))
+
+    carriageway = _clean(carriageway)
+    elevated_side_zone = _clean(elevated_side_zone)
+    if carriageway.is_empty or elevated_side_zone.is_empty:
+        return MultiPolygon()
+
+    curb_width = max(float(curb_width_m), 0.0)
+    if curb_width <= 0.0:
+        return MultiPolygon()
+
+    try:
+        raw_ring = carriageway.buffer(curb_width).difference(carriageway)
+        # A tiny tolerance makes the operation robust when normalized junction
+        # surfaces are numerically adjacent but do not overlap exactly.
+        tolerance = min(curb_width * 0.25, 0.03)
+        side_contact_zone = elevated_side_zone.buffer(tolerance) if tolerance > 0.0 else elevated_side_zone
+        curb_zone = raw_ring.intersection(side_contact_zone)
+        return _clean(curb_zone)
+    except Exception:
+        logger.debug("Failed to build curb boundary zone", exc_info=True)
+        return MultiPolygon()
+
+
 def _apply_pbr_material(mesh, rgba, roughness=0.9):
     """Apply a PBR material to a mesh instead of plain face colors."""
     trimesh = _require_trimesh()
@@ -4310,12 +4363,12 @@ def _build_osm_base_scene(
             surface_role="colored_pavement",
         )
 
-    # Curb: thin ring around the carriageway edge, extruded to sidewalk elevation
+    # Curb: only along the raised facility-lane boundary, not around road-arm endpoints.
     curb_width = 0.12
     curb_color = list(colors.get("curb", (145, 145, 145, 255)))
     if not carriageway.is_empty:
         try:
-            curb_zone = carriageway.buffer(curb_width).difference(carriageway)
+            curb_zone = _build_curb_boundary_zone(carriageway, sidewalk_render_zone, curb_width)
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",

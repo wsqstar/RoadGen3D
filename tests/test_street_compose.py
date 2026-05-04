@@ -1998,6 +1998,22 @@ def test_osm_beauty_scene_proxies_skip_linear_road_overlays():
     assert not any(name.startswith("crossing_patch_") for name in node_names)
 
 
+def test_osm_curb_zone_excludes_road_endpoint_caps():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-5.0, -1.0, 5.0, 1.0)
+    elevated_side_zone = shapely_geometry.box(-5.0, 1.0, 5.0, 3.0).union(
+        shapely_geometry.box(-5.0, -3.0, 5.0, -1.0)
+    )
+
+    curb_zone = street_layout._build_curb_boundary_zone(carriageway, elevated_side_zone, 0.2)
+
+    assert curb_zone.intersection(shapely_geometry.box(-4.5, 1.0, 4.5, 1.22)).area > 1.0
+    assert curb_zone.intersection(shapely_geometry.box(-4.5, -1.22, 4.5, -1.0)).area > 1.0
+    assert curb_zone.intersection(shapely_geometry.box(5.01, -0.9, 5.22, 0.9)).area == pytest.approx(0.0)
+    assert curb_zone.intersection(shapely_geometry.box(-5.22, -0.9, -5.01, 0.9)).area == pytest.approx(0.0)
+
+
 def test_base_scene_adds_centerline_markings():
     pytest.importorskip("trimesh")
 
