@@ -23,7 +23,7 @@ RoadGen3D/
 │   ├── auto_pipeline/      # 自动生成流水线 (graph_loader, iteration_controller)
 │   ├── llm/                # LLM 设计助手 (prompts, design_workflow)
 │   ├── knowledge/          # RAG 知识库 (PDF/GraphRAG 检索)
-│   ├── services/           # 运行时服务 (design_runtime, scene_jobs)
+│   ├── services/           # 运行时服务 (design_runtime, branch_runs, branch_benchmarks)
 │   └── eval_engine_ext/    # 📦 [Submodule] 独立评估引擎 → road-metrics
 │
 ├── 📊 评估引擎 (road-metrics) ← 独立 Git Submodule
@@ -36,6 +36,10 @@ RoadGen3D/
 │   ├── real/latents/       # CLIP 特征向量缓存 (154 个资产，600KB)
 │   ├── real/meshes/        # 3D 资产 GLB 文件 (本地存储，不提交到 Git)
 │   └── knowledge/          # GraphRAG 知识库索引
+│
+├── 🧪 生成实验与 Benchmark (artifacts/)
+│   ├── branch_runs/        # 分支搜索 manifest、trace、layout、保留的 GLB
+│   └── branch_benchmarks/  # 持久化 benchmark samples 与汇总索引
 │
 └── 📖 文档 (docs/)
     ├── ARCHITECTURE.md     # 完整系统架构与工作流说明
@@ -79,6 +83,19 @@ RoadGen3D/
 3. **Evaluate**: 场景 → 多维度评分 (步行性/安全性/美观性)
 4. **Diagnose**: 识别短板 → 生成改进建议 (`config_patch`)
 5. **Loop**: 应用建议 → 回到第 2 步重新生成
+
+### 🧭 Pareto Trace 与 Benchmark Explorer
+
+Viewer 的 Design 面板现在包含一套面向生成实验的分析工作流：
+
+- **Branch Run**: 从一个 prompt / preset 出发，生成多个候选节点并记录每个节点的 RAG evidence、参数三元组、config patch、优化指令、rejected edits、评分和父子 delta。
+- **100 Sample Trace**: 通过 `target_samples=100` 持续扩展 frontier，直到达到目标样本数、触发安全上限、触发早停，或没有可扩展节点。
+- **Pareto Search**: 将 `walkability / safety / beauty` 作为三目标搜索空间，使用传统参数采样与 Pareto frontier 选择候选；LLM 不再承担每个节点的参数推导，LLM 主要保留在视觉/截图评价等尚未替代的环节。
+- **Artifact Retention**: 批量生成时默认只保留评分前若干个 GLB，例如 top 10；新候选会临时渲染、评分，然后如果没有进入保留集合就删除 GLB。`scene_layout.json` 会保留，用于后续分析或按需重建 GLB。
+- **Persistent Benchmark Explorer**: 读取 `artifacts/branch_benchmarks/samples.jsonl`，支持按 preset / batch / run 过滤历史样本，比较不同 preset 的评分集群。
+- **Correlation Analysis**: 连接 `输入参数 / preset / patch` → `scene_layout.json` 落地参数 → `walkability / safety / beauty / overall`，提供相关热力图、参数散点、类别效应和 feature importance。
+
+> 当前的“导致”定义为可追溯解释和相关性分析：展示某个结果使用了哪些知识、参数、patch、约束，以及相对父节点的评分变化；不声明严格统计因果。
 
 ### 📦 独立子模块
 
@@ -246,6 +263,65 @@ Viewer 的 Design 面板提供六种预设模板：
 - **安静居住** — 住宅区安静，绿树成荫
 - **平衡街道** — 各类使用者平衡
 
+### 100/600 组 Benchmark 与相关性分析
+
+在 Viewer 的 Design 面板中打开 **Persistent Benchmark Explorer**：
+
+1. 选择 preset 或自定义 prompt，启动 **100 Sample Trace**。
+2. 对单个 preset，后端会创建一个 branch run，最多保存 100 个已评分样本。
+3. 对全部六个 preset，后端会创建 batch run，目标规模是 `6 * 100`；如果多轮没有改进，会按 `early_stop_patience` 早停。
+4. 每个样本都会持久化为 benchmark sample，之后无需 GLB 也可以参与统计分析。
+5. 切到 **Correlation Analysis** tab，查看参数-评分热力图、参数散点、feature importance、preset 类别效应，以及 3D Pareto scatter 的参数着色。
+
+主要输出位置：
+
+| 路径 | 内容 |
+|------|------|
+| `artifacts/branch_runs/<run_id>/manifest.json` | 单次 branch run 的节点、评分、trace、scatter points、artifact 保留信息 |
+| `artifacts/branch_runs/<run_id>/<node_id>/.../scene_layout.json` | 可恢复的场景布局清单 |
+| `artifacts/branch_runs/<run_id>/<node_id>/.../scene.glb` | 仅对 top-k 保留节点长期保存 |
+| `artifacts/branch_benchmarks/samples.jsonl` | 跨 run / batch 持久化样本表 |
+| `artifacts/branch_benchmarks/summary.json` | 按 preset 聚合的 benchmark 摘要 |
+
+API 示例：
+
+```bash
+# 单 preset 的 100 组 Pareto Trace
+curl -X POST http://127.0.0.1:8010/api/design/branch-runs \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "行人优先、树荫充足、商业活跃的完整街道",
+    "preset_id": "pedestrian_friendly",
+    "search_mode": "pareto",
+    "target_samples": 100,
+    "persist_to_benchmark": true,
+    "retain_topk_artifacts": 10,
+    "score_with_rendered_views": true
+  }'
+
+# 六个 preset 各跑最多 100 组
+curl -X POST http://127.0.0.1:8010/api/design/benchmark-batches \
+  -H "Content-Type: application/json" \
+  -d '{
+    "target_samples": 100,
+    "early_stop_patience": 20,
+    "retain_topk_artifacts": 10,
+    "score_with_rendered_views": true
+  }'
+
+# 读取持久化样本
+curl "http://127.0.0.1:8010/api/design/benchmark-samples?limit=10000"
+
+# 读取相关性分析 payload
+curl "http://127.0.0.1:8010/api/design/benchmark-analysis?limit=10000"
+```
+
+GLB 恢复策略：
+
+- 如果 `scene.glb` 仍存在，Viewer 会直接加载对应 GLB。
+- 如果只保留了 `scene_layout.json`，Viewer 可调用 `/api/design/rebuild-layout-glb` 重新组装 GLB。
+- 如果布局清单也缺失，则只能重新生成新结果；这不等价于无损恢复当时的样本。
+
 ### 自动化测试 Pipeline
 
 持续测试整个工作流，确保系统稳定运行：
@@ -313,7 +389,9 @@ RoadGen3D/
 │   │   ├── generation_api.py       # FastAPI routes
 │   │   ├── design_runtime.py       # LLM design runtime
 │   │   ├── design_types.py         # Data types
-│   │   └── scene_jobs.py           # Async job queue
+│   │   ├── scene_jobs.py           # Async job queue
+│   │   ├── branch_runs.py          # Branch / Pareto generation, trace payloads, artifact retention
+│   │   └── branch_benchmarks.py    # Persistent benchmark store, feature extraction, correlations
 │   └── ...
 ├── scripts/                # CLI tools (rag_*, asset_*, street_*, layout_*, osm_*, program_*)
 │   ├── auto_scene_pipeline.py      # Auto pipeline CLI entry point
@@ -325,7 +403,7 @@ RoadGen3D/
 ├── data/                   # Asset manifests, materials, training data
 ├── knowledge/              # Complete Streets design guide + RAG index
 ├── models/                 # Pre-trained CLIP model
-├── artifacts/              # Generated outputs (scenes, meshes, eval reports)
+├── artifacts/              # Generated outputs (scenes, meshes, eval reports, branch benchmark samples)
 ├── tests/                  # Test suites
 └── tools/
     └── download3dAssets/   # UrbanVerse asset batch downloader (submodule)
@@ -376,6 +454,35 @@ graph.json (Viewer export)       base_map.png (optional)
               Yes → apply patch → loop
               No  ×2 → early stop
 ```
+
+### Branch / Pareto Benchmark Pipeline
+
+```
+preset / prompt / patch
+        │
+        ▼
+┌──────────────────┐
+│ BranchRunService │──▶ candidate nodes + parent_id + influence_rows
+└────────┬─────────┘
+         ▼
+┌──────────────────┐
+│ compose scene    │──▶ scene_layout.json + temporary / retained scene.glb
+└────────┬─────────┘
+         ▼
+┌──────────────────┐
+│ score scene      │──▶ walkability / safety / beauty / overall
+└────────┬─────────┘
+         ▼
+┌──────────────────┐
+│ Pareto frontier  │──▶ top-k artifacts retained, weak branches early-stopped
+└────────┬─────────┘
+         ▼
+┌──────────────────┐
+│ BenchmarkStore   │──▶ samples.jsonl + correlation analysis payload
+└──────────────────┘
+```
+
+For v1 benchmark search, the generation parameter space is solved with deterministic / traditional search over preset patches. RAG evidence, scene parameter triples, LLM config patches, optimization directives, and rejected edits are preserved as trace rows so the Viewer can explain why a point appears where it does in the 3D score space. Visual scoring from rendered views may still call the LLM evaluator when enabled.
 
 ### Neuro-Symbolic Street Generation
 
@@ -608,6 +715,15 @@ The canonical API entry point is `web/api/main.py`. Scene generation runs as asy
 |--------|----------|-------------|
 | POST | `/api/design/draft` | Generate a design draft with LLM + RAG |
 | POST | `/api/design/generate` | Direct scene generation |
+| POST | `/api/design/branch-runs` | Start a branch / Pareto generation run; supports `target_samples`, `search_mode`, artifact retention, benchmark persistence |
+| GET | `/api/design/branch-runs` | List recent branch runs |
+| GET | `/api/design/branch-runs/{run_id}` | Read a branch run manifest payload, including nodes, scatter points, influence rows, and artifact status |
+| GET | `/api/design/benchmark-samples` | Query persistent benchmark samples by `preset_id`, `batch_id`, or `run_id` |
+| GET | `/api/design/benchmark-analysis` | Query extracted features, Spearman correlations, Kruskal effects, and feature importance |
+| POST | `/api/design/benchmark-batches` | Run benchmark generation across multiple presets, defaulting to all six presets |
+| GET | `/api/design/benchmark-batches/{batch_id}` | Read batch status and per-preset run progress |
+| POST | `/api/design/rebuild-layout-glb` | Rebuild a missing `scene.glb` from a retained `scene_layout.json` |
+| POST | `/api/design/evaluate/unified` | Unified scene evaluation endpoint |
 | POST | `/api/scene/jobs` | Submit a generation job |
 | GET | `/api/scene/jobs` | List all jobs |
 | GET | `/api/scene/jobs/{job_id}` | Get job status / result |
@@ -636,6 +752,9 @@ Viewer 提供交互式评估可视化功能：
 - **雷达图** — 多维度综合评分可视化
 - **柱状图** — 各维度得分对比
 - **综合评分** — 加权总分 (0-100)
+- **3D Pareto Scatter** — X/Y/Z 对应 `walkability / safety / beauty`，每个点代表一个已评分场景；支持 hover、click 选中、按 preset 或参数着色
+- **溯源矩阵** — 按 `Knowledge / RAG`、`Parameter Triples`、`LLM Changes & Constraints` 展示当前点的激活知识、参数和约束
+- **Correlation Analysis** — 热力图、参数散点、feature importance、Kruskal-Wallis 类别效应，用于分析输入参数、落地场景参数和评分之间的关系
 
 ### 3D 预览
 
@@ -643,6 +762,22 @@ Viewer 提供交互式评估可视化功能：
 - 轨道控制 (旋转、缩放、平移)
 - 场景布局路径透传
 - 最近场景历史记录
+- 缺失 GLB 时从 `scene_layout.json` 按需重建
+
+### Benchmark Explorer
+
+Benchmark Explorer 是当前分析历史生成结果的主入口：
+
+- **Overview**: 查看所有持久化样本、preset 聚类、Pareto frontier、artifact 是否可恢复。
+- **Correlation Analysis**: 在同一批 filtered samples 上计算并展示相关性和特征重要性。
+- **Preset Filter**: 对不同 preset 的样本集群进行过滤和对比。
+- **Color by Parameter**: 在 3D Pareto scatter 上用 `tree_count`、`sidewalk_width_m`、`road_width_m`、`density`、`building_density` 等参数重新着色。
+
+分析使用三层数据，避免把输入和落地结果混在一起：
+
+1. **输入参数**: `preset_id`、prompt/template、`config_patch`、RAG/triple active 状态、directives、rejected edits。
+2. **场景落地参数**: 从 `scene_layout.json.summary / config / placements / building_placements` 抽取道路宽度、人行道宽度、树/长椅/灯/建筑数量、密度、dropped/overlap/compliance/rule satisfaction 等。
+3. **最终结果**: `walkability / safety / beauty / overall`、Pareto rank、parent-child delta。
 
 ## UI 设计主题
 
@@ -671,6 +806,17 @@ Viewer 子模块提供共享 UI 组件 (`ui.ts`):
 - `setupNavigation()` — 统一的页面导航
 
 ## Testing
+
+Current focused checks for the Viewer + benchmark workflow:
+
+```bash
+# Backend branch runs, benchmark store, API compatibility
+uv run pytest tests/test_branch_runs.py tests/test_design_api.py -q
+
+# Viewer TypeScript API/types/UI wiring
+cd web/viewer
+npm run typecheck
+```
 
 The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `llm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
 
@@ -735,12 +881,17 @@ make eval                 # Run engineering evaluation
 - **评估可视化** — 雷达图、柱状图、综合评分展示
 - **方案对比** — 多方案并行生成与评分排序
 - **Viewer URL 透传** — 正确传递场景布局路径到 3D 预览器
+- **Pareto / 100 Sample Trace** — 支持单 preset 最多 100 个已评分样本、三目标 3D scatter、top-k artifact retention 和早停
+- **Persistent Benchmark Store** — `samples.jsonl` 持久化历史样本，可跨 run / batch 复用
+- **Correlation Analysis 面板** — 后端抽取 input / scene / derived 特征并计算 Spearman、preset residual、delta、Kruskal-Wallis、feature importance
+- **GLB 按需重建** — 对保留 `scene_layout.json` 但缺失 `scene.glb` 的样本可重新组装 GLB
 
 ### Near-term
 
 - Stabilize OSM + POI + width synthesis as the default generation path
 - Strengthen constraint-type POI influence on layout (crossing, traffic_signals, subway_entrance, parking_entrance)
 - Improve cross-section synthesis readability in UI summaries
+- Add lighter async caching for full benchmark-analysis payloads when historical samples grow beyond the current 100/600 scale
 
 ### Mid-term
 
@@ -761,6 +912,9 @@ make eval                 # Run engineering evaluation
 - Course delivery path supports `graph_template` cross junctions; open-ended arbitrary street networks are still out of scope
 - `StreetProgram` uses heuristic generator (`heuristic_v1`) — not yet replaced by a learned program generator
 - Layout solver uses `banded` heuristic — not MILP or diffusion-based
+- Benchmark conclusions are correlations and trace explanations, not strict causal estimates
+- Visual scoring from rendered screenshots can still depend on the configured LLM evaluator; this is intentional until a non-LLM visual evaluator is available
+- GLB is losslessly recoverable only when the corresponding `scene_layout.json` and referenced assets still exist
 
 ## GraphRAG Knowledge Base
 
