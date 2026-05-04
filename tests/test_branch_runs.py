@@ -14,6 +14,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services.branch_runs import BranchRunService
+from roadgen3d.services.branch_benchmarks import BranchBenchmarkStore
 from roadgen3d.services.design_types import RagEvidence
 from roadgen3d.services.optimization_planner import RuleBasedOptimizationPlanner
 
@@ -184,6 +185,49 @@ def test_branch_run_pareto_mode_uses_traditional_search_and_early_stops(tmp_path
     row_types = {item["source_type"] for item in node["influence_rows"]}
     assert {"rag", "parameter_triple", "search_patch"}.issubset(row_types)
     assert all(item["source"] != "branch_llm_candidate" for item in node["influence_rows"] if item["source_type"] == "search_patch")
+
+
+def test_branch_run_preset_pareto_samples_are_persisted_to_benchmark_store(tmp_path: Path):
+    store = BranchBenchmarkStore(tmp_path / "bench")
+    fake_service = _FakeBranchDesignService(tmp_path)
+    service = BranchRunService(design_service=fake_service, output_root=tmp_path / "runs", benchmark_store=store)
+    created = service.submit_run(
+        prompt="Run a pedestrian preset benchmark sample",
+        topk=2,
+        rounds=2,
+        target_samples=3,
+        search_mode="pareto",
+        graph_template_id="hkust_gz_gate",
+        knowledge_source="graph_rag",
+        preset_id="pedestrian_friendly",
+        preset_config_patch={
+            "objective_profile": "balanced",
+            "design_rule_profile": "pedestrian_priority_v1",
+            "ped_demand_level": "high",
+            "vehicle_demand_level": "low",
+        },
+        benchmark_id="batch-demo",
+        batch_id="batch-demo",
+        persist_to_benchmark=True,
+        retain_topk_artifacts=2,
+    )
+    result = _wait_for_run(service, created["run_id"])
+
+    assert result["status"] == "succeeded"
+    assert result["preset_id"] == "pedestrian_friendly"
+    assert result["benchmark_id"] == "batch-demo"
+    assert result["nodes"][0]["config_patch"]["objective_profile"] == "balanced"
+    assert result["nodes"][0]["config_patch"]["ped_demand_level"] == "high"
+    assert fake_service.generation_options[0]["preset_id"] == "skip_llm"
+    assert fake_service.generation_options[0]["benchmark_preset_id"] == "pedestrian_friendly"
+    assert any(node["can_restore_artifact"] for node in result["nodes"])
+
+    stored = store.query_samples(preset_id="pedestrian_friendly", limit=10)
+    assert stored["total"] == 3
+    assert stored["items"][0]["preset_id"] == "pedestrian_friendly"
+    assert stored["items"][0]["batch_id"] == "batch-demo"
+    assert any(item["can_restore_artifact"] for item in stored["items"])
+    assert any(item["is_pareto_front"] for item in stored["items"])
 
 
 def test_branch_run_retains_only_top_scored_artifacts(tmp_path: Path):

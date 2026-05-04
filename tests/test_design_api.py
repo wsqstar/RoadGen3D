@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -23,6 +24,7 @@ from roadgen3d.services.design_types import (  # noqa: E402
     SceneJobStatusResponse,
     SceneRecord,
 )
+from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from web.api.main import create_app  # noqa: E402
 
 
@@ -204,6 +206,17 @@ class _FakeService:
             )
         ][:limit]
 
+    def evaluate_scene_unified(self, **kwargs):
+        return {
+            "walkability": 77,
+            "safety": 74,
+            "beauty": 81,
+            "overall": 77.3,
+            "evaluation": "synthetic visual evaluation",
+            "suggestions": [],
+            "config_patch": {},
+        }
+
     def rebuild_knowledge(self, **kwargs):
         return {"output_dir": "/tmp/knowledge", "chunk_count": 42}
 
@@ -236,6 +249,12 @@ class _FakeBranchRunService:
             "progress": 100,
             "target_samples": 100,
             "search_mode": "pareto",
+            "preset_id": "pedestrian_friendly",
+            "preset_name": "Pedestrian Friendly",
+            "preset_color": "#4CAF50",
+            "benchmark_id": "batch-demo",
+            "batch_id": "batch-demo",
+            "persist_to_benchmark": True,
             "early_stop_patience": 20,
             "early_stop_triggered": False,
             "early_stop_reason": "",
@@ -639,6 +658,11 @@ def test_branch_run_api_endpoints_return_expected_shapes():
             "score_with_rendered_views": True,
             "graph_template_id": "hkust_gz_gate",
             "knowledge_source": "graph_rag",
+            "preset_id": "pedestrian_friendly",
+            "preset_config_patch": {"density": 0.5},
+            "benchmark_id": "batch-demo",
+            "batch_id": "batch-demo",
+            "persist_to_benchmark": True,
         },
     )
     assert create_response.status_code == 200
@@ -649,6 +673,10 @@ def test_branch_run_api_endpoints_return_expected_shapes():
     assert branch_service.created["early_stop_patience"] == 20
     assert branch_service.created["retain_topk_artifacts"] == 10
     assert branch_service.created["score_with_rendered_views"] is True
+    assert branch_service.created["preset_id"] == "pedestrian_friendly"
+    assert branch_service.created["preset_config_patch"] == {"density": 0.5}
+    assert branch_service.created["benchmark_id"] == "batch-demo"
+    assert branch_service.created["persist_to_benchmark"] is True
 
     status_response = client.get("/api/design/branch-runs/branch-demo")
     assert status_response.status_code == 200
@@ -658,12 +686,153 @@ def test_branch_run_api_endpoints_return_expected_shapes():
     assert status_response.json()["scatter_points"][0]["z"] == 72
     assert status_response.json()["pareto_front_size"] == 1
     assert status_response.json()["retained_artifact_count"] == 1
+    assert status_response.json()["preset_id"] == "pedestrian_friendly"
     assert status_response.json()["scatter_points"][0]["is_pareto_front"] is True
     assert status_response.json()["nodes"][0]["influence_rows"][0]["source_type"] == "llm_patch"
 
     list_response = client.get("/api/design/branch-runs")
     assert list_response.status_code == 200
     assert list_response.json()["items"][0]["run_id"] == "branch-demo"
+
+
+def test_benchmark_api_persists_branch_and_manual_evaluation_samples(tmp_path: Path):
+    store = BranchBenchmarkStore(tmp_path / "bench")
+    app = create_app(design_service=_FakeService(), benchmark_store=store)
+    branch_service = _FakeBranchRunService()
+    app.state.branch_run_service = branch_service
+    app.state.benchmark_batch_service = BranchBenchmarkBatchService(
+        branch_run_service=branch_service,
+        benchmark_store=store,
+    )
+    client = TestClient(app)
+
+    store.upsert_branch_run(branch_service.get_run("branch-demo"), default_preset_id="pedestrian_friendly")
+    samples_response = client.get("/api/design/benchmark-samples?refresh=false")
+    assert samples_response.status_code == 200
+    payload = samples_response.json()
+    assert payload["total"] == 1
+    assert payload["items"][0]["preset_id"] == "pedestrian_friendly"
+    assert payload["items"][0]["walkability"] == 70
+    assert payload["items"][0]["is_pareto_front"] is True
+
+    eval_response = client.post(
+        "/api/design/evaluate/unified",
+        json={
+            "layout_path": str(tmp_path / "manual_layout.json"),
+            "preset_id": "balanced_complete",
+            "persist_to_benchmark": True,
+        },
+    )
+    assert eval_response.status_code == 200
+    filtered_response = client.get("/api/design/benchmark-samples?preset_id=balanced_complete&refresh=false")
+    assert filtered_response.status_code == 200
+    assert filtered_response.json()["total"] == 1
+    assert filtered_response.json()["items"][0]["source"] == "manual_evaluation"
+
+    batch_response = client.post(
+        "/api/design/benchmark-batches",
+        json={"preset_ids": ["pedestrian_friendly"], "target_samples": 1},
+    )
+    assert batch_response.status_code == 200
+    assert batch_response.json()["children"][0]["preset_id"] == "pedestrian_friendly"
+
+
+def test_benchmark_analysis_endpoint_extracts_features_and_statistics(tmp_path: Path):
+    store = BranchBenchmarkStore(tmp_path / "bench")
+    samples = []
+    for pair in range(4):
+        preset_id = "pedestrian_friendly" if pair < 2 else "balanced_complete"
+        for child_index in range(2):
+            node_id = f"n{pair}_{child_index}"
+            layout_path = tmp_path / f"{node_id}" / "scene_layout.json"
+            layout_path.parent.mkdir(parents=True, exist_ok=True)
+            road_width = 8.0 + pair * 2.0 + child_index * (pair + 1)
+            tree_count = 2 + pair + child_index
+            layout_path.write_text(
+                json.dumps({
+                    "config": {
+                        "road_width_m": road_width,
+                        "sidewalk_width_m": 3.0 + child_index,
+                        "density": 0.5 + pair * 0.1,
+                        "target_street_type": "walkable",
+                    },
+                    "summary": {
+                        "road_width_m": road_width,
+                        "sidewalk_width_m": 3.0 + child_index,
+                        "left_clear_path_width_m": 2.0 + child_index,
+                        "right_clear_path_width_m": 2.0 + child_index,
+                        "length_m": 80.0,
+                        "rule_satisfaction_rate": 0.5 + pair * 0.1,
+                        "compliance_rate_total": 0.6 + pair * 0.08,
+                    },
+                    "placements": [
+                        {"category": "tree", "asset_id": f"tree-{idx}"}
+                        for idx in range(tree_count)
+                    ] + [
+                        {"category": "bench", "asset_id": "bench-a"},
+                    ],
+                    "building_placements": [{"instance_id": f"b{idx}"} for idx in range(pair + 1)],
+                    "building_footprints": [{"id": f"fp{idx}"} for idx in range(pair + 1)],
+                }),
+                encoding="utf-8",
+            )
+            walkability = 40 + pair * 8 + child_index * (pair + 2)
+            samples.append({
+                "sample_id": f"run-demo:{node_id}",
+                "source": "branch_run",
+                "run_id": "run-demo",
+                "node_id": node_id,
+                "parent_id": f"n{pair}_0" if child_index else "",
+                "preset_id": preset_id,
+                "preset_name": preset_id,
+                "preset_color": "#4CAF50" if preset_id == "pedestrian_friendly" else "#607D8B",
+                "label": node_id,
+                "created_at": f"2026-05-04T00:00:0{pair}{child_index}+00:00",
+                "status": "succeeded",
+                "scene_layout_path": str(layout_path),
+                "config_patch": {
+                    "road_width_m": road_width,
+                    "density": 0.5 + pair * 0.1,
+                    "target_street_type": "walkable",
+                },
+                "influence_rows": [
+                    {
+                        "source_type": "search_patch",
+                        "field": "road_width_m",
+                        "value": road_width,
+                        "active": True,
+                    }
+                ],
+                "walkability": walkability,
+                "safety": 45 + pair * 5 + child_index,
+                "beauty": 50 + pair * 4 + child_index,
+                "overall": walkability,
+                "delta_walkability": pair + 2 if child_index else None,
+                "delta_safety": 1 if child_index else None,
+                "delta_beauty": 1 if child_index else None,
+                "delta_overall": pair + 2 if child_index else None,
+            })
+    store.upsert_samples(samples)
+    client = TestClient(create_app(design_service=_FakeService(), benchmark_store=store))
+
+    response = client.get("/api/design/benchmark-analysis?refresh=false&limit=20")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["total"] == 8
+    first_sample = payload["samples"][0]
+    assert "input_features" in first_sample
+    assert "scene_features" in first_sample
+    assert any(sample["scene_features"]["tree_count"] >= 2 for sample in payload["samples"])
+    assert any(
+        row["mode"] == "pooled"
+        and row["feature"] == "scene.road_width_m"
+        and row["outcome"] == "walkability"
+        for row in payload["correlations"]
+    )
+    assert any(row["mode"] == "delta" for row in payload["correlations"])
+    assert any(row["feature"] == "meta.preset_id" for row in payload["categorical_effects"])
+    assert any("Feature importance skipped" in warning for warning in payload["warnings"])
 
 
 def test_design_api_supports_clarification_stage():
@@ -716,3 +885,41 @@ def test_design_api_defaults_draft_requests_to_graph_rag():
 
     assert response.status_code == 200
     assert service.last_knowledge_source == "graph_rag"
+
+
+def test_rebuild_layout_glb_reexports_and_updates_layout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    manifest_path = tmp_path / "real_assets_manifest.jsonl"
+    manifest_path.write_text("", encoding="utf-8")
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(
+        json.dumps({
+            "outputs": {"scene_glb": ""},
+            "summary": {"instance_count": 3},
+            "config": {},
+            "street_program": {"bands": []},
+            "placements": [],
+        }),
+        encoding="utf-8",
+    )
+
+    def fake_rebuild_glb_from_layout(*, layout_path: Path, manifest_path: Path, out_dir: Path):
+        out_dir.mkdir(parents=True, exist_ok=True)
+        glb_path = out_dir / "scene.glb"
+        glb_path.write_bytes(b"glb")
+        return {"scene_glb": str(glb_path)}
+
+    monkeypatch.setattr("web.api.main.rebuild_glb_from_layout", fake_rebuild_glb_from_layout)
+
+    client = TestClient(create_app(design_service=_FakeService()))
+    response = client.post(
+        "/api/design/rebuild-layout-glb",
+        json={"layout_path": str(layout_path), "manifest_path": str(manifest_path)},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["rebuilt"] is True
+    assert Path(payload["scene_glb_path"]).exists()
+    updated = json.loads(layout_path.read_text(encoding="utf-8"))
+    assert updated["outputs"]["scene_glb"] == payload["scene_glb_path"]
+    assert updated["summary"]["scene_glb_rebuilt_from_layout"] is True

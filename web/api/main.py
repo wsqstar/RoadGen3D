@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -31,6 +32,7 @@ from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_graph_payload,
 )
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
+from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
 from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
 from roadgen3d.knowledge.source_registry import (  # noqa: E402
@@ -41,6 +43,7 @@ from roadgen3d.knowledge.source_registry import (  # noqa: E402
 from roadgen3d.knowledge.pdf_rag import PdfKnowledgeBaseBuilder  # noqa: E402
 from roadgen3d.diff_engine import compute_scene_diff  # noqa: E402
 from roadgen3d.diff_render import render_diff_overlay, render_delta_map  # noqa: E402
+from roadgen3d.street_layout import rebuild_glb_from_layout  # noqa: E402
 
 
 class ChatMessageModel(BaseModel):
@@ -97,6 +100,8 @@ class EvaluateRequestModel(BaseModel):
     layout_path: str
     image_path: str | None = None
     rendered_views: List[RenderedViewModel] = Field(default_factory=list)
+    preset_id: str | None = None
+    persist_to_benchmark: bool = False
 
 
 class EvaluateCompareRequestModel(BaseModel):
@@ -133,6 +138,11 @@ class BranchRunCreateRequestModel(BaseModel):
     knowledge_source: str = "graph_rag"
     scene_context: Dict[str, Any] = Field(default_factory=dict)
     generation_options: Dict[str, Any] = Field(default_factory=dict)
+    preset_id: str = ""
+    preset_config_patch: Dict[str, Any] = Field(default_factory=dict)
+    benchmark_id: str = ""
+    batch_id: str = ""
+    persist_to_benchmark: bool = False
     evaluation_weights: Dict[str, float] = Field(default_factory=lambda: {
         "walkability": 0.4,
         "safety": 0.3,
@@ -140,7 +150,37 @@ class BranchRunCreateRequestModel(BaseModel):
     })
 
 
-def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
+class BenchmarkBatchCreateRequestModel(BaseModel):
+    preset_ids: List[str] = Field(default_factory=lambda: [str(item.get("id")) for item in SCENE_PRESETS])
+    target_samples: int = Field(default=100, ge=1, le=100)
+    graph_template_id: str = "hkust_gz_gate"
+    knowledge_source: str = "graph_rag"
+    early_stop_patience: int = Field(default=20, ge=1, le=100)
+    retain_topk_artifacts: int = Field(default=10, ge=1, le=20)
+    score_with_rendered_views: bool = True
+
+
+class RebuildLayoutGlbRequestModel(BaseModel):
+    layout_path: str
+    manifest_path: Optional[str] = None
+    force: bool = False
+
+
+def _resolve_layout_referenced_path(value: str, layout_path: Path) -> Path | None:
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+    candidate = Path(raw).expanduser()
+    if not candidate.is_absolute():
+        candidate = layout_path.parent / candidate
+    return candidate.resolve()
+
+
+def create_app(
+    *,
+    design_service: DesignAssistantService | Any | None = None,
+    benchmark_store: BranchBenchmarkStore | None = None,
+) -> FastAPI:
     app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
     app.add_middleware(
         CORSMiddleware,
@@ -150,7 +190,15 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         allow_headers=["*"],
     )
     app.state.design_service = design_service or DesignAssistantService()
-    app.state.branch_run_service = BranchRunService(design_service=app.state.design_service)
+    app.state.benchmark_store = benchmark_store or BranchBenchmarkStore()
+    app.state.branch_run_service = BranchRunService(
+        design_service=app.state.design_service,
+        benchmark_store=app.state.benchmark_store,
+    )
+    app.state.benchmark_batch_service = BranchBenchmarkBatchService(
+        branch_run_service=app.state.branch_run_service,
+        benchmark_store=app.state.benchmark_store,
+    )
 
     @app.get("/api/health")
     def health() -> Dict[str, Any]:
@@ -302,6 +350,11 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
                 scene_context=request.scene_context,
                 generation_options=request.generation_options,
                 evaluation_weights=request.evaluation_weights,
+                preset_id=request.preset_id or str(request.generation_options.get("preset_id") or ""),
+                preset_config_patch=request.preset_config_patch,
+                benchmark_id=request.benchmark_id,
+                batch_id=request.batch_id,
+                persist_to_benchmark=request.persist_to_benchmark,
                 target_samples=request.target_samples,
                 search_mode=request.search_mode,
                 early_stop_patience=request.early_stop_patience,
@@ -323,6 +376,132 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         if result is None:
             raise HTTPException(status_code=404, detail=f"Branch run not found: {run_id}")
         return make_json_safe(result)
+
+    @app.get("/api/design/benchmark-samples")
+    def list_benchmark_samples(
+        preset_id: str | None = Query(default=None),
+        batch_id: str | None = Query(default=None),
+        run_id: str | None = Query(default=None),
+        limit: int = Query(default=5000, ge=1, le=10000),
+        refresh: bool = Query(default=True),
+    ) -> Dict[str, Any]:
+        store = app.state.benchmark_store
+        if refresh:
+            store.import_branch_manifests()
+        return make_json_safe(store.query_samples(
+            preset_id=preset_id,
+            batch_id=batch_id,
+            run_id=run_id,
+            limit=int(limit),
+        ))
+
+    @app.get("/api/design/benchmark-analysis")
+    def benchmark_analysis(
+        preset_id: str | None = Query(default=None),
+        batch_id: str | None = Query(default=None),
+        run_id: str | None = Query(default=None),
+        limit: int = Query(default=5000, ge=1, le=10000),
+        refresh: bool = Query(default=True),
+    ) -> Dict[str, Any]:
+        store = app.state.benchmark_store
+        if refresh:
+            store.import_branch_manifests()
+        return make_json_safe(store.query_analysis(
+            preset_id=preset_id,
+            batch_id=batch_id,
+            run_id=run_id,
+            limit=int(limit),
+        ))
+
+    @app.post("/api/design/benchmark-batches")
+    def create_benchmark_batch(request: BenchmarkBatchCreateRequestModel) -> Dict[str, Any]:
+        service = app.state.benchmark_batch_service
+        try:
+            return make_json_safe(service.submit_batch(
+                preset_ids=request.preset_ids,
+                target_samples=request.target_samples,
+                graph_template_id=request.graph_template_id,
+                knowledge_source=request.knowledge_source,
+                early_stop_patience=request.early_stop_patience,
+                retain_topk_artifacts=request.retain_topk_artifacts,
+                score_with_rendered_views=request.score_with_rendered_views,
+            ))
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.get("/api/design/benchmark-batches/{batch_id}")
+    def get_benchmark_batch(batch_id: str) -> Dict[str, Any]:
+        result = app.state.benchmark_batch_service.get_batch(batch_id)
+        if result is None:
+            raise HTTPException(status_code=404, detail=f"Benchmark batch not found: {batch_id}")
+        return make_json_safe(result)
+
+    @app.post("/api/design/rebuild-layout-glb")
+    def rebuild_layout_glb(request: RebuildLayoutGlbRequestModel) -> Dict[str, Any]:
+        raw_layout_path = request.layout_path.strip()
+        if not raw_layout_path:
+            raise HTTPException(status_code=400, detail="layout_path is required")
+        layout_path = Path(raw_layout_path).expanduser().resolve()
+        if not layout_path.exists() or not layout_path.is_file():
+            raise HTTPException(status_code=404, detail=f"Layout file not found: {layout_path}")
+
+        manifest_path = (
+            Path(request.manifest_path).expanduser().resolve()
+            if request.manifest_path
+            else (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+        )
+        if not manifest_path.exists() or not manifest_path.is_file():
+            raise HTTPException(status_code=404, detail=f"Asset manifest not found: {manifest_path}")
+
+        try:
+            payload = json.loads(layout_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=400, detail=f"Invalid scene_layout.json: {exc}") from exc
+
+        outputs = dict(payload.get("outputs", {}) or {})
+        existing_glb_path = _resolve_layout_referenced_path(str(outputs.get("scene_glb", "") or ""), layout_path)
+        if existing_glb_path is not None and existing_glb_path.exists() and not request.force:
+            return make_json_safe({
+                "layout_path": str(layout_path),
+                "scene_glb_path": str(existing_glb_path),
+                "manifest_path": str(manifest_path),
+                "rebuilt": False,
+            })
+
+        try:
+            rebuild_outputs = rebuild_glb_from_layout(
+                layout_path=layout_path,
+                manifest_path=manifest_path,
+                out_dir=layout_path.parent / "rebuild",
+            )
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Failed to rebuild GLB from layout: {exc}") from exc
+
+        scene_glb_path = Path(str(rebuild_outputs.get("scene_glb", "") or "")).expanduser().resolve()
+        if not scene_glb_path.exists():
+            raise HTTPException(status_code=500, detail="GLB rebuild did not create scene_glb output")
+
+        payload = json.loads(layout_path.read_text(encoding="utf-8"))
+        outputs = dict(payload.get("outputs", {}) or {})
+        outputs["scene_glb"] = str(scene_glb_path)
+        outputs["scene_layout"] = str(layout_path)
+        payload["outputs"] = outputs
+        summary = dict(payload.get("summary", {}) or {})
+        summary["scene_glb_rebuilt_from_layout"] = True
+        summary["scene_glb_rebuilt_at"] = datetime.now(timezone.utc).isoformat()
+        summary["scene_glb_rebuild_manifest_path"] = str(manifest_path)
+        payload["summary"] = summary
+        layout_path.write_text(
+            json.dumps(make_json_safe(payload), ensure_ascii=True, indent=2),
+            encoding="utf-8",
+        )
+
+        return make_json_safe({
+            "layout_path": str(layout_path),
+            "scene_glb_path": str(scene_glb_path),
+            "manifest_path": str(manifest_path),
+            "rebuilt": True,
+        })
 
     @app.post("/api/scenes/diff")
     def scene_diff(request: SceneDiffRequestModel) -> Dict[str, Any]:
@@ -466,6 +645,12 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+        if request.persist_to_benchmark:
+            app.state.benchmark_store.upsert_evaluation(
+                layout_path=request.layout_path,
+                evaluation=result,
+                preset_id=request.preset_id or _infer_layout_preset_id(request.layout_path),
+            )
         return make_json_safe(result)
 
     @app.post("/api/design/evaluate/compare")
@@ -521,3 +706,18 @@ def _parse_draft_payload(payload: Dict[str, Any]) -> Any:
         fallback_query=str(payload.get("normalized_scene_query", "") or ""),
         current_patch=payload.get("compose_config_patch", {}) or {},
     )
+
+
+def _infer_layout_preset_id(layout_path: str) -> str:
+    try:
+        payload = json.loads(Path(layout_path).expanduser().read_text(encoding="utf-8"))
+    except Exception:
+        return "custom"
+    summary = payload.get("summary", {}) if isinstance(payload, dict) else {}
+    config = payload.get("config", {}) if isinstance(payload, dict) else {}
+    for source in (summary, config):
+        if isinstance(source, dict):
+            preset_id = str(source.get("preset_id") or source.get("benchmark_preset_id") or "").strip()
+            if preset_id:
+                return preset_id
+    return "custom"

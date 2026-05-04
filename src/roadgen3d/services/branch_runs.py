@@ -16,6 +16,7 @@ from uuid import uuid4
 from ..graph_templates import get_graph_template
 from ..json_safe import make_json_safe
 from ..llm.design_workflow import DesignAssistantService
+from ..presets import SCENE_PRESETS
 from .design_types import (
     DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
     DesignDraft,
@@ -86,6 +87,7 @@ class BranchNode:
     artifacts_retained: bool = False
     artifact_rank: int | None = None
     artifact_paths: List[str] = field(default_factory=list)
+    can_restore_artifact: bool = False
     score: float = 0.0
     error: str = ""
     blocker_details: Dict[str, Any] = field(default_factory=dict)
@@ -108,6 +110,13 @@ class _BranchRunState:
     generation_options: Dict[str, Any]
     evaluation_weights: Dict[str, float]
     output_dir: Path
+    preset_id: str = ""
+    preset_name: str = ""
+    preset_color: str = ""
+    preset_config_patch: Dict[str, Any] = field(default_factory=dict)
+    benchmark_id: str = ""
+    batch_id: str = ""
+    persist_to_benchmark: bool = False
     target_samples: int | None = None
     search_mode: str = "llm_branch"
     early_stop_patience: int | None = None
@@ -138,10 +147,12 @@ class BranchRunService:
         design_service: DesignAssistantService | None = None,
         output_root: str | Path | None = None,
         planner: RuleBasedOptimizationPlanner | None = None,
+        benchmark_store: Any | None = None,
     ) -> None:
         self.design_service = design_service or DesignAssistantService()
         self.output_root = Path(output_root or DEFAULT_BRANCH_RUN_DIR).expanduser().resolve()
         self.planner = planner or RuleBasedOptimizationPlanner()
+        self.benchmark_store = benchmark_store
         self._runs: Dict[str, _BranchRunState] = {}
         self._queue: Queue[str] = Queue()
         self._lock = Lock()
@@ -159,6 +170,11 @@ class BranchRunService:
         scene_context: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
         evaluation_weights: Mapping[str, float] | None = None,
+        preset_id: str = "",
+        preset_config_patch: Mapping[str, Any] | None = None,
+        benchmark_id: str = "",
+        batch_id: str = "",
+        persist_to_benchmark: bool = False,
         target_samples: int | None = None,
         search_mode: str = "llm_branch",
         early_stop_patience: int | None = None,
@@ -171,6 +187,8 @@ class BranchRunService:
         bounded_target = _bounded_target_samples(target_samples)
         bounded_rounds = max(1, min(int(rounds or 2), 5 if bounded_target else 3))
         normalized_search_mode = _normalize_search_mode(search_mode)
+        preset_meta = _preset_meta(preset_id)
+        normalized_preset_patch = dict(preset_config_patch or preset_meta.get("configPatch") or {})
         output_dir = self.output_root / run_id
         state = _BranchRunState(
             run_id=run_id,
@@ -183,6 +201,13 @@ class BranchRunService:
             generation_options=dict(generation_options or {}),
             evaluation_weights=_normalize_weights(evaluation_weights),
             output_dir=output_dir,
+            preset_id=str(preset_meta.get("id") or preset_id or "").strip(),
+            preset_name=str(preset_meta.get("nameEn") or preset_meta.get("name") or "").strip(),
+            preset_color=str(preset_meta.get("color") or "").strip(),
+            preset_config_patch=normalized_preset_patch,
+            benchmark_id=str(benchmark_id or "").strip(),
+            batch_id=str(batch_id or "").strip(),
+            persist_to_benchmark=bool(persist_to_benchmark),
             target_samples=bounded_target,
             search_mode=normalized_search_mode,
             early_stop_patience=_bounded_early_stop_patience(
@@ -511,6 +536,7 @@ class BranchRunService:
                 **state.generation_options,
                 "out_dir": str(node_dir),
                 "preset_id": "skip_llm",
+                "benchmark_preset_id": state.preset_id,
                 "random_seed": int(1000 + node.depth * 100 + node.rank),
             }
             if state.target_samples:
@@ -534,6 +560,7 @@ class BranchRunService:
             )
             node.scene_layout_path = result.get("scene_layout_path", "") if isinstance(result, Mapping) else result.scene_layout_path
             node.scene_glb_path = result.get("scene_glb_path", "") if isinstance(result, Mapping) else result.scene_glb_path
+            node.can_restore_artifact = _node_has_restorable_glb(node)
             rendered_views = (
                 _rendered_views_for_evaluation(node.scene_layout_path, limit=3)
                 if state.score_with_rendered_views
@@ -667,10 +694,17 @@ class BranchRunService:
                 if node.node_id in keep_ids:
                     paths = _existing_retained_artifact_paths(node, node_dir)
                     next_rank = rank_by_id.get(node.node_id)
-                    if not node.artifacts_retained or node.artifact_rank != next_rank or node.artifact_paths != paths:
+                    can_restore = _node_has_restorable_glb(node)
+                    if (
+                        not node.artifacts_retained
+                        or node.artifact_rank != next_rank
+                        or node.artifact_paths != paths
+                        or node.can_restore_artifact != can_restore
+                    ):
                         node.artifacts_retained = True
                         node.artifact_rank = next_rank
                         node.artifact_paths = paths
+                        node.can_restore_artifact = can_restore
                         node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
                         _write_json(node_dir / "generation_trace.json", node.trace)
                         _write_json(node_dir / "node.json", node.to_dict())
@@ -684,6 +718,7 @@ class BranchRunService:
                     node.artifact_paths = []
                     node.scene_glb_path = ""
                     node.preview_path = ""
+                    node.can_restore_artifact = False
                     node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
                     _write_json(node_dir / "generation_trace.json", node.trace)
                     _write_json(node_dir / "node.json", node.to_dict())
@@ -748,6 +783,13 @@ class BranchRunService:
             "rounds": state.rounds,
             "target_samples": state.target_samples,
             "search_mode": state.search_mode,
+            "preset_id": state.preset_id,
+            "preset_name": state.preset_name,
+            "preset_color": state.preset_color,
+            "preset_config_patch": state.preset_config_patch,
+            "benchmark_id": state.benchmark_id,
+            "batch_id": state.batch_id,
+            "persist_to_benchmark": state.persist_to_benchmark,
             "early_stop_patience": state.early_stop_patience,
             "early_stop_triggered": state.early_stop_triggered,
             "early_stop_reason": state.early_stop_reason,
@@ -771,7 +813,13 @@ class BranchRunService:
 
     def _write_manifest(self, state: _BranchRunState) -> None:
         state.output_dir.mkdir(parents=True, exist_ok=True)
-        _write_json(state.output_dir / "manifest.json", self._to_payload(state))
+        payload = self._to_payload(state)
+        _write_json(state.output_dir / "manifest.json", payload)
+        if state.persist_to_benchmark and self.benchmark_store is not None:
+            try:
+                self.benchmark_store.upsert_branch_run(payload, default_preset_id=state.preset_id or "custom_legacy")
+            except Exception:
+                pass
 
     def _read_manifest_payload(self, run_id: str) -> Dict[str, Any] | None:
         if not run_id or "/" in run_id or "\\" in run_id:
@@ -818,6 +866,16 @@ def _run_sort_key(payload: Mapping[str, Any]) -> str:
     )
 
 
+def _preset_meta(preset_id: str | None) -> Dict[str, Any]:
+    normalized = str(preset_id or "").strip()
+    if not normalized:
+        return {}
+    for preset in SCENE_PRESETS:
+        if str(preset.get("id") or "") == normalized:
+            return dict(preset)
+    return {"id": normalized}
+
+
 def _select_pareto_parent(nodes: Sequence[BranchNode], sample_index: int) -> BranchNode | None:
     if not nodes:
         return None
@@ -856,6 +914,7 @@ def _pareto_search_patch(
     evidence: Sequence[RagEvidence],
     sample_index: int,
 ) -> Dict[str, Any]:
+    base_patch = sanitize_compose_config_patch(state.preset_config_patch)
     hints = _numeric_parameter_hints(evidence)
     n = sample_index + 1
     sidewalk_min, sidewalk_max = _hinted_range(2.0, 6.2, hints.get("sidewalk_width_m"))
@@ -875,23 +934,26 @@ def _pareto_search_patch(
     demand_levels = ("low", "medium", "high")
     lane_count = 1 + min(3, int(_halton(n, 17) * 4))
 
-    return {
+    sampled_patch = {
         "query": state.prompt,
-        "target_street_type": street_types[sample_index % len(street_types)],
-        "objective_profile": objective_profiles[(sample_index // len(street_types)) % len(objective_profiles)],
+        "target_street_type": base_patch.get("target_street_type") or street_types[sample_index % len(street_types)],
+        "objective_profile": base_patch.get("objective_profile") or objective_profiles[(sample_index // len(street_types)) % len(objective_profiles)],
         "sidewalk_width_m": round(_lerp(sidewalk_min, sidewalk_max, _halton(n, 2)), 2),
         "road_width_m": round(_lerp(road_min, road_max, _halton(n, 3)), 2),
         "density": round(_lerp(density_min, density_max, _halton(n, 5)), 3),
         "building_density": round(_lerp(building_density_min, building_density_max, _halton(n, 7)), 3),
         "building_max_per_100m": round(_lerp(building_max_min, building_max_max, _halton(n, 11)), 1),
         "lane_count": lane_count,
-        "ped_demand_level": demand_levels[min(2, int(_halton(n, 13) * 3))],
-        "bike_demand_level": demand_levels[min(2, int(_halton(n + 7, 13) * 3))],
-        "transit_demand_level": demand_levels[min(2, int(_halton(n, 19) * 3))],
-        "vehicle_demand_level": demand_levels[min(2, int(_halton(n + 11, 19) * 3))],
+        "ped_demand_level": base_patch.get("ped_demand_level") or demand_levels[min(2, int(_halton(n, 13) * 3))],
+        "bike_demand_level": base_patch.get("bike_demand_level") or demand_levels[min(2, int(_halton(n + 7, 13) * 3))],
+        "transit_demand_level": base_patch.get("transit_demand_level") or demand_levels[min(2, int(_halton(n, 19) * 3))],
+        "vehicle_demand_level": base_patch.get("vehicle_demand_level") or demand_levels[min(2, int(_halton(n + 11, 19) * 3))],
         "layout_solver": "hybrid_milp_v1",
         "allow_solver_fallback": True,
     }
+    merged = dict(base_patch)
+    merged.update(sampled_patch)
+    return merged
 
 
 def _numeric_parameter_hints(evidence: Sequence[RagEvidence]) -> Dict[str, float]:
@@ -1007,6 +1069,15 @@ def _existing_retained_artifact_paths(node: BranchNode, node_dir: Path) -> List[
         seen.add(text)
         existing.append(text)
     return existing
+
+
+def _node_has_restorable_glb(node: BranchNode) -> bool:
+    if not node.scene_layout_path or not node.scene_glb_path:
+        return False
+    try:
+        return Path(node.scene_layout_path).expanduser().exists() and Path(node.scene_glb_path).expanduser().exists()
+    except Exception:
+        return False
 
 
 def _prune_node_artifacts(node: BranchNode, node_dir: Path, run_dir: Path) -> bool:
@@ -1178,6 +1249,9 @@ def _build_branch_node_trace(
             "parameter_sources_by_field": parameter_sources,
             "knowledge_source": state.knowledge_source,
             "evidence_count": len(node.rag_evidence),
+            "preset_id": state.preset_id,
+            "benchmark_id": state.benchmark_id,
+            "batch_id": state.batch_id,
         },
         "llm_recommendation": {
             "normalized_scene_query": str(node.config_patch.get("query", state.prompt)),
@@ -1239,11 +1313,15 @@ def _build_branch_node_trace(
             "scene_layout_path": node.scene_layout_path,
             "scene_glb_path": node.scene_glb_path,
             "preview_path": node.preview_path,
+            "can_restore_artifact": node.can_restore_artifact,
             "artifacts_retained": node.artifacts_retained,
             "artifact_rank": node.artifact_rank,
             "artifact_paths": list(node.artifact_paths),
             "artifact_dir": str(artifact_dir or (state.output_dir / node.node_id)),
             "generation_trace_path": str((artifact_dir or (state.output_dir / node.node_id)) / "generation_trace.json"),
+            "preset_id": state.preset_id,
+            "benchmark_id": state.benchmark_id,
+            "batch_id": state.batch_id,
         },
         "evaluation": {"status": evaluation_status, **dict(node.evaluation), **({"error": node.error} if node.error else {})},
     }))
