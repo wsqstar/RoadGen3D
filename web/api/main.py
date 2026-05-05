@@ -106,6 +106,13 @@ class RenderedViewModel(BaseModel):
     view_id: str
     label: str
     image_data_url: str
+    kind: str | None = None
+    camera: List[float] | None = None
+    target: List[float] | None = None
+    priority: int | None = None
+    width: int | None = None
+    height: int | None = None
+    source: str | None = None
 
 
 class EvaluateRequestModel(BaseModel):
@@ -183,7 +190,7 @@ class CaptureViewsRequestModel(BaseModel):
     scene_glb_path: Optional[str] = None
     manifest_path: Optional[str] = None
     capture_3d_views: bool = True
-    capture_profile: str = "review_24"
+    capture_profile: str = "review_expanded"
     capture_resolution: List[int] = Field(default_factory=lambda: [1280, 720])
     capture_failure_policy: str = "warn"
     retain_glb_policy: str = "top_k"
@@ -724,7 +731,7 @@ def create_app(
                 layout_path=request.layout_path,
                 image_path=request.image_path,
                 rendered_views=[
-                    view.model_dump() if hasattr(view, "model_dump") else view.dict()
+                    view.model_dump(exclude_none=True) if hasattr(view, "model_dump") else view.dict(exclude_none=True)
                     for view in request.rendered_views
                 ],
             )

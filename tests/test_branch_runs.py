@@ -256,7 +256,12 @@ def test_branch_run_retains_only_top_scored_artifacts(tmp_path: Path):
         for item in sorted(result["nodes"], key=lambda node: node["score"], reverse=True)[:3]
     }
     assert retained_ids == expected_ids
-    assert all(len(item) == 3 for item in fake_service.rendered_view_batches)
+    assert all(len(item) == 8 for item in fake_service.rendered_view_batches)
+    assert {"bench_eye", "junction_pedestrian", "window_view", "rooftop"}.issubset({
+        view.get("kind")
+        for batch in fake_service.rendered_view_batches
+        for view in batch
+    })
 
     for node in result["nodes"]:
         glb_path = Path(node.get("scene_glb_path") or "")
@@ -456,14 +461,26 @@ class _FakeBranchDesignService:
         capture_dir = out_dir / "view_captures"
         capture_dir.mkdir(parents=True, exist_ok=True)
         capture_views = []
-        for index, kind in enumerate(("street", "junction", "overview"), start=1):
+        for index, kind in enumerate((
+            "street",
+            "junction_pedestrian",
+            "junction_pedestrian",
+            "bench_eye",
+            "window_view",
+            "rooftop",
+            "overview",
+            "junction",
+            "building",
+        ), start=1):
             capture_path = capture_dir / f"{index:02d}_{kind}.png"
             capture_path.write_bytes(b"png")
             capture_views.append({
-                "view_id": f"{kind}_1",
+                "view_id": f"{kind}_{index}",
                 "kind": kind,
                 "priority": 90 - index,
                 "path": str(capture_path),
+                "camera": [float(index), 1.5, 0.0],
+                "target": [float(index), 0.0, 4.0],
             })
         capture_manifest = capture_dir / "capture_manifest.json"
         capture_manifest.write_text(json.dumps({"views": capture_views}), encoding="utf-8")

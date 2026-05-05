@@ -353,7 +353,7 @@ class SceneGenerationOptions:
     build_production_artifacts: bool = True
     render_presentation_artifacts: bool = True
     capture_3d_views: bool = True
-    capture_profile: str = "review_24"
+    capture_profile: str = "review_expanded"
     capture_resolution: tuple[int, int] = (1280, 720)
     capture_failure_policy: str = "warn"
     retain_glb_policy: str = "top_k"

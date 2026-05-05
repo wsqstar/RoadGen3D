@@ -115,7 +115,7 @@ class GenerationOptions:
     program_ckpt: Optional[Path] = None
     policy_temperature: float = 0.12
     capture_3d_views: bool = True
-    capture_profile: str = "review_24"
+    capture_profile: str = "review_expanded"
     capture_resolution: Tuple[int, int] = (1280, 720)
     capture_failure_policy: str = "warn"
     retain_glb_policy: str = "top_k"

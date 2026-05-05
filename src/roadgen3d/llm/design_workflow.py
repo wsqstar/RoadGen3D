@@ -16,6 +16,10 @@ from ..knowledge import (
     ScenarioParameterTripleStore,
 )
 from ..knowledge.pdf_rag import KnowledgeSearchHit
+from ..evaluation_views import (
+    DEFAULT_EVALUATION_RENDER_VIEW_LIMIT,
+    rendered_views_for_evaluation_from_payload,
+)
 from . import (
     LLMClient,
     build_parameter_followup_query_messages,
@@ -598,7 +602,11 @@ class DesignAssistantService:
         payload = json.loads(layout.read_text(encoding="utf-8"))
         effective_rendered_views = list(rendered_views or [])
         if not effective_rendered_views:
-            effective_rendered_views = _captured_views_for_evaluation(payload, limit=3)
+            effective_rendered_views = rendered_views_for_evaluation_from_payload(
+                payload,
+                limit=DEFAULT_EVALUATION_RENDER_VIEW_LIMIT,
+                base_dir=layout.parent,
+            )
         
         # Use EvalEngine from road-metrics submodule
         result = self.eval_engine.evaluate(
@@ -1819,55 +1827,6 @@ def _scenario_parameter_followup_queries(
             if term_text:
                 queries.append(f"{term_text} {field_text}")
     return tuple(dict.fromkeys(item for item in queries if item))
-
-
-def _captured_views_for_evaluation(layout_payload: Mapping[str, Any], *, limit: int = 3) -> List[Dict[str, str]]:
-    import base64
-
-    summary = dict(layout_payload.get("summary", {}) or {})
-    views = list(summary.get("render_views_3d", []) or [])
-    ranked = _rank_captured_views_for_evaluation(views)
-    result: List[Dict[str, str]] = []
-    for index, view in enumerate(ranked):
-        if len(result) >= max(1, int(limit)):
-            break
-        path_text = str(view.get("path", "") or view.get("image_path", "") or "").strip()
-        if not path_text:
-            continue
-        image_path = Path(path_text).expanduser()
-        if not image_path.exists():
-            continue
-        mime = "image/jpeg" if image_path.suffix.lower() in {".jpg", ".jpeg"} else "image/png"
-        try:
-            image_data_url = f"data:{mime};base64,{base64.b64encode(image_path.read_bytes()).decode('ascii')}"
-        except Exception:
-            continue
-        result.append({
-            "view_id": str(view.get("view_id", "") or view.get("name", "") or f"capture_{index + 1}"),
-            "label": str(view.get("label", "") or view.get("name", "") or f"3D capture {index + 1}"),
-            "image_data_url": image_data_url,
-        })
-    return result
-
-
-def _rank_captured_views_for_evaluation(views: Sequence[Mapping[str, Any]]) -> List[Mapping[str, Any]]:
-    selected: List[Mapping[str, Any]] = []
-    used: set[int] = set()
-    for kinds in ({"pedestrian", "street"}, {"junction"}, {"overview"}):
-        candidates = [
-            (idx, view)
-            for idx, view in enumerate(views)
-            if idx not in used and str(view.get("kind", "") or "").strip().lower() in kinds
-        ]
-        if not candidates:
-            continue
-        idx, view = max(candidates, key=lambda item: int(item[1].get("priority", 0) or 0))
-        used.add(idx)
-        selected.append(view)
-    remaining = [(idx, view) for idx, view in enumerate(views) if idx not in used]
-    remaining.sort(key=lambda item: -int(item[1].get("priority", 0) or 0))
-    selected.extend(view for _, view in remaining)
-    return selected
 
 
 def normalize_knowledge_source(value: object) -> str:

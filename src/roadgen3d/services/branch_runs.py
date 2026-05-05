@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import base64
 import shutil
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
@@ -15,6 +14,10 @@ from uuid import uuid4
 
 from ..graph_templates import get_graph_template
 from ..capture_3d import capture_view_paths, layout_capture_failed
+from ..evaluation_views import (
+    DEFAULT_EVALUATION_RENDER_VIEW_LIMIT,
+    rendered_views_for_evaluation_from_layout,
+)
 from ..json_safe import make_json_safe
 from ..llm.design_workflow import DesignAssistantService
 from ..presets import SCENE_PRESETS
@@ -564,7 +567,7 @@ class BranchRunService:
             node.scene_glb_path = result.get("scene_glb_path", "") if isinstance(result, Mapping) else result.scene_glb_path
             node.can_restore_artifact = _node_has_restorable_glb(node)
             rendered_views = (
-                _rendered_views_for_evaluation(node.scene_layout_path, limit=3)
+                _rendered_views_for_evaluation(node.scene_layout_path)
                 if state.score_with_rendered_views
                 else []
             )
@@ -999,93 +1002,12 @@ def _lerp(min_value: float, max_value: float, unit: float) -> float:
     return float(min_value) + (float(max_value) - float(min_value)) * max(0.0, min(1.0, float(unit)))
 
 
-def _rendered_views_for_evaluation(layout_path: str, *, limit: int = 3) -> List[Dict[str, str]]:
-    layout = Path(str(layout_path or "")).expanduser()
-    if not layout.exists():
-        return []
-    try:
-        payload = json.loads(layout.read_text(encoding="utf-8"))
-    except Exception:
-        return []
-    summary = dict(payload.get("summary", {}) or {})
-    render_views_3d = list(summary.get("render_views_3d", []) or [])
-    views_3d = _encoded_render_views(
-        _rank_3d_render_views(render_views_3d),
-        limit=limit,
-        label_prefix="3D capture",
-    )
-    if views_3d:
-        return views_3d
-    render_views = list(summary.get("render_views", []) or [])
-    ranked = sorted(render_views, key=lambda item: (
-        0 if str(item.get("name", "") or "").startswith("final_") else 1,
-        str(item.get("name", "") or ""),
-    ))
-    return _encoded_render_views(ranked, limit=limit, label_prefix="Rendered view")
-
-
-def _rank_3d_render_views(render_views: Sequence[Mapping[str, Any]]) -> List[Mapping[str, Any]]:
-    selected: List[Mapping[str, Any]] = []
-    used_ids: set[int] = set()
-    kind_groups = (
-        {"pedestrian", "street"},
-        {"junction"},
-        {"overview"},
-    )
-    for kinds in kind_groups:
-        candidates = [
-            (idx, view)
-            for idx, view in enumerate(render_views)
-            if idx not in used_ids and str(view.get("kind", "") or "").strip().lower() in kinds
-        ]
-        if not candidates:
-            continue
-        idx, view = max(
-            candidates,
-            key=lambda item: (int(item[1].get("priority", 0) or 0), str(item[1].get("view_id", item[1].get("name", "")) or "")),
-        )
-        used_ids.add(idx)
-        selected.append(view)
-    remaining = [
-        (idx, view)
-        for idx, view in enumerate(render_views)
-        if idx not in used_ids
-    ]
-    remaining.sort(
-        key=lambda item: (
-            -int(item[1].get("priority", 0) or 0),
-            str(item[1].get("view_id", item[1].get("name", "")) or ""),
-        )
-    )
-    selected.extend(view for _, view in remaining)
-    return selected
-
-
-def _encoded_render_views(
-    ranked: Sequence[Mapping[str, Any]],
+def _rendered_views_for_evaluation(
+    layout_path: str,
     *,
-    limit: int,
-    label_prefix: str,
-) -> List[Dict[str, str]]:
-    views: List[Dict[str, str]] = []
-    for index, view in enumerate(ranked):
-        if len(views) >= max(1, int(limit)):
-            break
-        path = Path(str(view.get("path", "") or view.get("image_path", "") or "")).expanduser()
-        if not path.exists():
-            continue
-        mime = "image/jpeg" if path.suffix.lower() in {".jpg", ".jpeg"} else "image/png"
-        try:
-            image_data_url = f"data:{mime};base64,{base64.b64encode(path.read_bytes()).decode('ascii')}"
-        except Exception:
-            continue
-        view_id = str(view.get("view_id", "") or view.get("name", "") or f"view_{index + 1}")
-        views.append({
-            "view_id": view_id,
-            "label": str(view.get("label", "") or view.get("title", "") or view.get("name", "") or f"{label_prefix} {index + 1}"),
-            "image_data_url": image_data_url,
-        })
-    return views
+    limit: int = DEFAULT_EVALUATION_RENDER_VIEW_LIMIT,
+) -> List[Dict[str, Any]]:
+    return rendered_views_for_evaluation_from_layout(layout_path, limit=limit)
 
 
 def _render_view_paths(layout_path: str) -> List[Path]:

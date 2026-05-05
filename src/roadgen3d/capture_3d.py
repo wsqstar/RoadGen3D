@@ -14,12 +14,52 @@ from .json_safe import make_json_safe
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_CAPTURE_PROFILE = "review_24"
+DEFAULT_CAPTURE_PROFILE = "review_expanded"
 DEFAULT_CAPTURE_RESOLUTION = (1280, 720)
 CAPTURE_MANIFEST_VERSION = "capture_manifest_v1"
-VALID_CAPTURE_PROFILES = frozenset({"quick_12", "review_24", "exhaustive_keypoints"})
+VALID_CAPTURE_PROFILES = frozenset({"quick_12", "review_24", "review_expanded", "exhaustive_keypoints"})
 VALID_CAPTURE_FAILURE_POLICIES = frozenset({"warn", "fail"})
 VALID_RETAIN_GLB_POLICIES = frozenset({"top_k", "always", "debug_only"})
+CAPTURE_PROFILE_BUDGETS = {
+    "quick_12": 12,
+    "review_24": 24,
+    "review_expanded": 40,
+    "exhaustive_keypoints": 10_000,
+}
+CAPTURE_PROFILE_KIND_QUOTAS = {
+    "quick_12": (
+        ("pedestrian", 1),
+        ("overview", 2),
+        ("junction_pedestrian", 2),
+        ("junction", 2),
+        ("street", 2),
+        ("bench_eye", 1),
+        ("window_view", 1),
+        ("rooftop", 1),
+    ),
+    "review_24": (
+        ("pedestrian", 1),
+        ("overview", 2),
+        ("junction_pedestrian", 4),
+        ("junction", 4),
+        ("street", 3),
+        ("bench_eye", 2),
+        ("window_view", 3),
+        ("rooftop", 2),
+        ("building", 3),
+    ),
+    "review_expanded": (
+        ("pedestrian", 1),
+        ("overview", 2),
+        ("junction_pedestrian", 8),
+        ("junction", 6),
+        ("street", 5),
+        ("bench_eye", 4),
+        ("window_view", 6),
+        ("rooftop", 4),
+        ("building", 4),
+    ),
+}
 
 
 @dataclass(frozen=True)
@@ -121,12 +161,13 @@ def plan_capture_targets(
     profile_key = str(profile or DEFAULT_CAPTURE_PROFILE).strip().lower()
     if profile_key not in VALID_CAPTURE_PROFILES:
         raise ValueError(f"capture profile must be one of: {', '.join(sorted(VALID_CAPTURE_PROFILES))}")
-    budget = {"quick_12": 12, "review_24": 24, "exhaustive_keypoints": 10_000}[profile_key]
+    budget = CAPTURE_PROFILE_BUDGETS[profile_key]
 
     bounds = _layout_bounds(layout_payload)
     center_x, center_z = bounds["center_xz"]
     min_x, max_x, min_z, max_z = bounds["bbox_xz"]
     extent = max(bounds["extent"], 20.0)
+    axis_is_x = _bounds_axis_is_x(bounds)
     road_half_width = max(2.0, _float_at_path(layout_payload, ("summary", "spatial_context", "road_half_width_m"), 4.0))
 
     candidates: List[Dict[str, Any]] = []
@@ -216,16 +257,43 @@ def plan_capture_targets(
             source="entrance",
         )
 
-    for idx, (x, z) in enumerate(_spatial_points(layout_payload, "junction_points_xz")):
+    junction_points = _spatial_points(layout_payload, "junction_points_xz")
+    for idx, (x, z) in enumerate(junction_points):
         add_target(
             f"junction_{idx + 1}",
             "junction",
             f"Junction {idx + 1}",
             (x - 12.0, 8.5, z - 12.0),
             (x, 1.0, z),
-            priority=92 - min(idx, 20),
+            priority=82 - min(idx, 20),
             fov=60.0,
             source="junction",
+        )
+
+    pedestrian_junction_limits = {"quick_12": 2, "review_24": 4, "review_expanded": 8}
+    pedestrian_junction_limit = (
+        len(junction_points)
+        if profile_key == "exhaustive_keypoints"
+        else pedestrian_junction_limits.get(profile_key, 4)
+    )
+    sampled_pedestrian_junctions = _spatially_diverse_points(junction_points, limit=pedestrian_junction_limit)
+    for idx, (x, z) in enumerate(sampled_pedestrian_junctions):
+        corner_sign = -1.0 if idx % 2 == 0 else 1.0
+        if axis_is_x:
+            camera = (x - 5.0, 1.62, z + corner_sign * (road_half_width + 1.1))
+            target = (x + 7.0, 1.42, z - corner_sign * min(road_half_width * 0.4, 2.2))
+        else:
+            camera = (x + corner_sign * (road_half_width + 1.1), 1.62, z - 5.0)
+            target = (x - corner_sign * min(road_half_width * 0.4, 2.2), 1.42, z + 7.0)
+        add_target(
+            f"junction_pedestrian_{idx + 1}",
+            "junction_pedestrian",
+            f"Pedestrian junction view {idx + 1}",
+            camera,
+            target,
+            priority=92 - min(idx, 20),
+            fov=68.0,
+            source="junction_pedestrian",
         )
 
     street_samples = 2 if profile_key == "quick_12" else 5
@@ -241,6 +309,35 @@ def plan_capture_targets(
             priority=74 - idx,
             fov=68.0,
             source="street_sample",
+        )
+
+    bench_targets = _bench_targets(layout_payload)
+    bench_limits = {"quick_12": 1, "review_24": 2, "review_expanded": 4}
+    sampled_benches = _spatially_diverse_records(
+        bench_targets,
+        limit=len(bench_targets) if profile_key == "exhaustive_keypoints" else bench_limits.get(profile_key, 2),
+    )
+    for idx, item in enumerate(sampled_benches):
+        x, z = item["center_xz"]
+        if axis_is_x:
+            away_sign = 1.0 if z >= center_z else -1.0
+            along_sign = 1.0 if x <= center_x else -1.0
+            camera = (x, 1.35, z + away_sign * 0.75)
+            target = (x + along_sign * 8.0, 1.32, center_z)
+        else:
+            away_sign = 1.0 if x >= center_x else -1.0
+            along_sign = 1.0 if z <= center_z else -1.0
+            camera = (x + away_sign * 0.75, 1.35, z)
+            target = (center_x, 1.32, z + along_sign * 8.0)
+        add_target(
+            f"bench_eye_{item['id']}",
+            "bench_eye",
+            f"Bench eye view {idx + 1}",
+            camera,
+            target,
+            priority=76 - min(idx, 20),
+            fov=66.0,
+            source="bench",
         )
 
     building_targets = _building_targets(layout_payload)
@@ -262,7 +359,57 @@ def plan_capture_targets(
             source=str(item.get("source") or "building"),
         )
 
-    selected, skipped = _select_targets(candidates, budget)
+    building_view_limits = {"quick_12": 2, "review_24": 5, "review_expanded": 10}
+    sampled_building_views = _spatially_diverse_records(
+        building_targets,
+        limit=len(building_targets) if profile_key == "exhaustive_keypoints" else building_view_limits.get(profile_key, 5),
+    )
+    for idx, item in enumerate(sampled_building_views):
+        x, z = item["center_xz"]
+        height = max(6.0, float(item.get("height_m", 10.0) or 10.0))
+        bbox = _coerce_bbox_xz(item.get("bbox_xz"))
+        if axis_is_x:
+            along_sign = 1.0 if x <= center_x else -1.0
+            road_target = (x + along_sign * 10.0, 1.4, center_z)
+            roof_target = (x + along_sign * 12.0, 0.3, center_z)
+            if bbox is not None:
+                front_z = bbox[2] if z >= center_z else bbox[3]
+            else:
+                front_z = z
+            toward_road = -1.0 if z >= center_z else 1.0
+            window_camera = (x, min(max(3.0, height * 0.45), height - 0.6), front_z + toward_road * 0.35)
+        else:
+            along_sign = 1.0 if z <= center_z else -1.0
+            road_target = (center_x, 1.4, z + along_sign * 10.0)
+            roof_target = (center_x, 0.3, z + along_sign * 12.0)
+            if bbox is not None:
+                front_x = bbox[0] if x >= center_x else bbox[1]
+            else:
+                front_x = x
+            toward_road = -1.0 if x >= center_x else 1.0
+            window_camera = (front_x + toward_road * 0.35, min(max(3.0, height * 0.45), height - 0.6), z)
+        add_target(
+            f"window_view_{item['id']}",
+            "window_view",
+            f"Window street view {idx + 1}",
+            window_camera,
+            road_target,
+            priority=68 - min(idx, 20),
+            fov=60.0,
+            source="building_window",
+        )
+        add_target(
+            f"rooftop_{item['id']}",
+            "rooftop",
+            f"Rooftop view {idx + 1}",
+            (x, height + 2.4, z),
+            roof_target,
+            priority=66 - min(idx, 20),
+            fov=58.0,
+            source="building_rooftop",
+        )
+
+    selected, skipped = _select_targets(candidates, budget, profile=profile_key)
     for target in selected:
         target.pop("_sequence", None)
     for target in skipped:
@@ -298,6 +445,7 @@ def capture_views_for_layout(
 
     view_dir = (layout.parent / "view_captures").resolve()
     view_dir.mkdir(parents=True, exist_ok=True)
+    _clear_previous_capture_artifacts(view_dir)
     target_plan = plan_capture_targets(payload, profile=capture_options.capture_profile)
     targets = list(target_plan.get("targets", []) or [])
     skipped_targets = list(target_plan.get("skipped_targets", []) or [])
@@ -469,6 +617,13 @@ def capture_view_paths(layout_path: str | Path) -> List[Path]:
     if paths:
         paths.append(path.parent / "view_captures")
     return paths
+
+
+def _clear_previous_capture_artifacts(view_dir: Path) -> None:
+    for pattern in ("*.png", "*.jpg", "*.jpeg"):
+        for image_path in view_dir.glob(pattern):
+            if image_path.is_file():
+                image_path.unlink()
 
 
 def _run_playwright_capture(
@@ -747,6 +902,31 @@ def _street_sample_points(
     return samples
 
 
+def _bounds_axis_is_x(bounds: Mapping[str, Any]) -> bool:
+    min_x, max_x, min_z, max_z = bounds["bbox_xz"]
+    return (max_x - min_x) >= (max_z - min_z)
+
+
+def _bench_targets(layout_payload: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    result: List[Dict[str, Any]] = []
+    for index, item in enumerate(_records(layout_payload.get("placements"))):
+        category = str(item.get("category", "") or "").strip().lower()
+        asset_id = str(item.get("asset_id", "") or "").strip().lower()
+        if category != "bench" and "bench" not in asset_id:
+            continue
+        point = _coerce_xyz_to_xz(item.get("position_xyz")) or _bbox_center(item.get("bbox_xz"))
+        if point is None:
+            continue
+        result.append({
+            "id": str(item.get("instance_id") or item.get("slot_id") or f"bench_{index + 1}"),
+            "center_xz": point,
+            "bbox_xz": _coerce_bbox_xz(item.get("bbox_xz")),
+            "yaw_deg": _float_or_none(item.get("yaw_deg")),
+            "source": "placement",
+        })
+    return sorted(result, key=lambda item: (round(item["center_xz"][0], 6), round(item["center_xz"][1], 6), item["id"]))
+
+
 def _building_targets(layout_payload: Mapping[str, Any]) -> List[Dict[str, Any]]:
     footprints = _records(layout_payload.get("building_footprints"))
     region_footprints = [
@@ -766,7 +946,9 @@ def _building_targets(layout_payload: Mapping[str, Any]) -> List[Dict[str, Any]]
             "id": str(item.get("footprint_id") or item.get("lot_id") or f"footprint_{index + 1}"),
             "center_xz": point,
             "side": str(item.get("side", "") or ""),
-            "height_m": float(item.get("target_height_m", 8.0) or 8.0),
+            "height_m": _record_height_m(item, fallback=8.0),
+            "bbox_xz": _polygon_bbox(item.get("polygon_xz")),
+            "street_edge_xz": _coerce_xz(item.get("street_edge_xz")),
             "source": str(item.get("source", "building_footprint") or "building_footprint"),
         })
     if result:
@@ -780,8 +962,26 @@ def _building_targets(layout_payload: Mapping[str, Any]) -> List[Dict[str, Any]]
             "id": str(item.get("instance_id") or item.get("footprint_id") or f"building_{index + 1}"),
             "center_xz": point,
             "side": str(item.get("side", "") or ""),
-            "height_m": 8.0,
+            "height_m": _record_height_m(item, fallback=8.0),
+            "bbox_xz": _coerce_bbox_xz(item.get("bbox_xz")),
+            "street_edge_xz": _coerce_xz(item.get("street_edge_xz")),
             "source": "building_placement",
+        })
+    if result:
+        return sorted(result, key=lambda item: (round(item["center_xz"][0], 6), round(item["center_xz"][1], 6), item["id"]))
+
+    for index, item in enumerate(_records(layout_payload.get("generated_lots"))):
+        point = _coerce_xz(item.get("placement_xz")) or _coerce_xz(item.get("center_xz")) or _polygon_center(item.get("polygon_xz"))
+        if point is None:
+            continue
+        result.append({
+            "id": str(item.get("lot_id") or f"lot_{index + 1}"),
+            "center_xz": point,
+            "side": str(item.get("side", "") or ""),
+            "height_m": _record_height_m(item, fallback=8.0),
+            "bbox_xz": _polygon_bbox(item.get("polygon_xz")),
+            "street_edge_xz": _coerce_xz(item.get("street_edge_xz")),
+            "source": str(item.get("source", "generated_lot") or "generated_lot"),
         })
     return sorted(result, key=lambda item: (round(item["center_xz"][0], 6), round(item["center_xz"][1], 6), item["id"]))
 
@@ -809,16 +1009,47 @@ def _spatially_diverse_records(records: Sequence[Mapping[str, Any]], *, limit: i
     return sorted(selected, key=lambda item: (round(item["center_xz"][0], 6), round(item["center_xz"][1], 6), str(item.get("id", ""))))
 
 
+def _spatially_diverse_points(points: Sequence[Tuple[float, float]], *, limit: int) -> List[Tuple[float, float]]:
+    if limit <= 0:
+        return []
+    records = [
+        {"id": f"point_{index + 1}", "center_xz": point}
+        for index, point in enumerate(points)
+    ]
+    return [item["center_xz"] for item in _spatially_diverse_records(records, limit=limit)]
+
+
 def _select_targets(
     candidates: Sequence[Mapping[str, Any]],
     budget: int,
+    *,
+    profile: str = "",
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     ordered = sorted(
         [dict(item) for item in candidates],
         key=lambda item: (-int(item.get("priority", 0)), int(item.get("_sequence", 0)), str(item.get("target_id", ""))),
     )
-    selected = ordered[: max(1, int(budget))]
-    skipped = ordered[max(1, int(budget)):]
+    selected: List[Dict[str, Any]] = []
+    selected_ids: set[str] = set()
+    profile_key = str(profile or "").strip().lower()
+    for kind, quota in CAPTURE_PROFILE_KIND_QUOTAS.get(profile_key, ()):
+        for item in ordered:
+            if len([entry for entry in selected if entry.get("kind") == kind]) >= quota:
+                break
+            target_id = str(item.get("target_id") or "")
+            if target_id in selected_ids or str(item.get("kind") or "") != kind:
+                continue
+            selected.append(item)
+            selected_ids.add(target_id)
+    for item in ordered:
+        if len(selected) >= max(1, int(budget)):
+            break
+        target_id = str(item.get("target_id") or "")
+        if target_id in selected_ids:
+            continue
+        selected.append(item)
+        selected_ids.add(target_id)
+    skipped = [item for item in ordered if str(item.get("target_id") or "") not in selected_ids]
     return selected, skipped
 
 
@@ -844,6 +1075,21 @@ def _coerce_xyz_to_xz(value: Any) -> Tuple[float, float] | None:
         return None
 
 
+def _coerce_bbox_xz(value: Any) -> Tuple[float, float, float, float] | None:
+    if not isinstance(value, Sequence) or len(value) < 4:
+        return None
+    try:
+        min_x = float(value[0])
+        max_x = float(value[1])
+        min_z = float(value[2])
+        max_z = float(value[3])
+    except (TypeError, ValueError):
+        return None
+    if not all(component == component for component in (min_x, max_x, min_z, max_z)):
+        return None
+    return (min(min_x, max_x), max(min_x, max_x), min(min_z, max_z), max(min_z, max_z))
+
+
 def _polygon_center(value: Any) -> Tuple[float, float] | None:
     points = [_coerce_xz(point) for point in _records(value)]
     valid = [point for point in points if point is not None]
@@ -855,6 +1101,16 @@ def _polygon_center(value: Any) -> Tuple[float, float] | None:
     )
 
 
+def _polygon_bbox(value: Any) -> Tuple[float, float, float, float] | None:
+    points = [_coerce_xz(point) for point in _records(value)]
+    valid = [point for point in points if point is not None]
+    if not valid:
+        return None
+    xs = [point[0] for point in valid]
+    zs = [point[1] for point in valid]
+    return (min(xs), max(xs), min(zs), max(zs))
+
+
 def _bbox_center(value: Any) -> Tuple[float, float] | None:
     if not isinstance(value, Sequence) or len(value) < 4:
         return None
@@ -862,6 +1118,29 @@ def _bbox_center(value: Any) -> Tuple[float, float] | None:
         return ((float(value[0]) + float(value[1])) / 2.0, (float(value[2]) + float(value[3])) / 2.0)
     except (TypeError, ValueError):
         return None
+
+
+def _float_or_none(value: Any) -> float | None:
+    try:
+        result = float(value)
+    except (TypeError, ValueError):
+        return None
+    return result if result == result else None
+
+
+def _record_height_m(record: Mapping[str, Any], *, fallback: float) -> float:
+    for key in ("target_height_m", "height_m"):
+        value = _float_or_none(record.get(key))
+        if value is not None and value > 0:
+            return value
+    for key in ("final_size_m", "native_size_m", "raw_size_m", "canonical_target"):
+        nested = record.get(key)
+        if not isinstance(nested, Mapping):
+            continue
+        value = _float_or_none(nested.get("height_m"))
+        if value is not None and value > 0:
+            return value
+    return float(fallback)
 
 
 def _float_at_path(payload: Mapping[str, Any], keys: Iterable[str], fallback: float) -> float:

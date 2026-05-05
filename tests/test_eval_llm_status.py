@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 from fastapi.testclient import TestClient
 
@@ -19,6 +20,7 @@ if str(EVAL_ENGINE_EXT) not in sys.path:
 from roadgen3d.eval_engine_ext.road_metrics.core import engine as eval_engine_module
 from roadgen3d.eval_engine_ext.road_metrics.core.engine import EvalEngine
 from roadgen3d.eval_engine_ext.road_metrics.core.config import EvalConfig
+from roadgen3d.eval_engine_ext.road_metrics.evaluators import beauty_eval, safety_eval
 from roadgen3d.llm.design_workflow import DesignAssistantService
 from web.api.main import create_app
 from road_metrics.core import engine as standalone_eval_engine_module
@@ -213,6 +215,112 @@ def test_eval_engine_passes_rendered_views_to_visual_evaluators(monkeypatch):
     assert result.beauty.llm_status["visual_input"] == "provided"
     assert result.safety.llm_scores is not None
     assert result.beauty.llm_scores is not None
+
+
+def test_visual_evaluator_normalizers_preserve_view_context():
+    rendered_views = [
+        {
+            "view_id": "bench_eye_1",
+            "label": "Bench eye view",
+            "kind": "bench_eye",
+            "camera": [4.0, 1.35, 2.0],
+            "target": [4.0, 0.8, 0.0],
+            "priority": 75,
+            "image_data_url": "data:image/png;base64,ZmFrZQ==",
+        }
+    ]
+
+    safety_views = safety_eval._normalize_rendered_views(rendered_views, None)
+    beauty_views = beauty_eval._normalize_rendered_views(rendered_views, None)
+
+    assert safety_views[0]["kind"] == "bench_eye"
+    assert beauty_views[0]["camera"] == [4.0, 1.35, 2.0]
+    safety_messages = safety_eval._build_safety_eval_messages({}, safety_views)
+    beauty_messages = beauty_eval._build_beauty_eval_messages({}, beauty_views)
+    assert "bench_eye" in safety_messages[1]["content"][0]["text"]
+    assert "bench_eye" in beauty_messages[1]["content"][0]["text"]
+
+
+def test_design_assistant_auto_selects_representative_captured_views(tmp_path: Path):
+    payload = _minimal_layout_payload()
+    capture_dir = tmp_path / "view_captures"
+    capture_dir.mkdir()
+    capture_views = []
+    for index, kind in enumerate((
+        "street",
+        "junction_pedestrian",
+        "junction_pedestrian",
+        "bench_eye",
+        "window_view",
+        "rooftop",
+        "overview",
+        "junction",
+        "building",
+    ), start=1):
+        path = capture_dir / f"{index:02d}_{kind}.png"
+        path.write_bytes(b"png")
+        capture_views.append({
+            "view_id": f"{kind}_{index}",
+            "label": f"{kind} view",
+            "kind": kind,
+            "priority": 100 - index,
+            "path": str(path),
+        })
+    payload["summary"]["render_views_3d"] = capture_views
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps(payload), encoding="utf-8")
+
+    class _FakeEngine:
+        def __init__(self):
+            self.rendered_views = None
+            self.config = SimpleNamespace(
+                aggregation=SimpleNamespace(
+                    walkability_weight=0.45,
+                    safety_weight=0.35,
+                    beauty_weight=0.20,
+                )
+            )
+
+        def evaluate(self, payload, *, rendered_views=None, image_path=None):
+            self.rendered_views = list(rendered_views or [])
+            return SimpleNamespace(
+                walkability=SimpleNamespace(
+                    walkability_index=0.8,
+                    protection=0.7,
+                    comfort=0.8,
+                    delight=0.75,
+                    sid_clr=0.8,
+                    furn_d=0.6,
+                    tree_shade=0.7,
+                    transit_prox=0.5,
+                ),
+                safety=SimpleNamespace(
+                    final_score=0.72,
+                    llm_scores={"lighting": 0.7, "visibility": 0.8, "protection": 0.6, "activation": 0.7},
+                    llm_status={"available": True, "visual_input": "provided"},
+                    diagnosis={},
+                ),
+                beauty=SimpleNamespace(
+                    final_score=0.74,
+                    llm_scores={"coherence": 0.7, "human_scale": 0.8, "material_contrast": 0.7, "visual_interest": 0.75},
+                    llm_status={"available": True, "visual_input": "provided"},
+                    diagnosis={},
+                ),
+                evaluation_score=0.76,
+            )
+
+    service = DesignAssistantService()
+    fake_engine = _FakeEngine()
+    service.eval_engine = fake_engine
+
+    result = service.evaluate_scene_unified(layout_path=str(layout_path))
+
+    assert result["llm_status"]["safety"]["visual_input"] == "provided"
+    assert len(fake_engine.rendered_views) == 8
+    assert {"bench_eye", "junction_pedestrian", "window_view", "rooftop"}.issubset({
+        view.get("kind")
+        for view in fake_engine.rendered_views
+    })
 
 
 def test_unified_api_passes_rendered_views_to_service():

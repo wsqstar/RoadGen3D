@@ -28,6 +28,18 @@ def _layout_payload(building_count: int = 30) -> dict:
             "side": "right" if z > 0 else "left",
             "target_height_m": 12.0,
         })
+    placements = []
+    for idx in range(4):
+        x = -42.0 + idx * 28.0
+        z = 7.0 if idx % 2 == 0 else -7.0
+        placements.append({
+            "instance_id": f"bench_{idx:02d}",
+            "asset_id": "bench_modern_production",
+            "category": "bench",
+            "position_xyz": [x, 0.0, z],
+            "bbox_xz": [x - 1.0, x + 1.0, z - 0.4, z + 0.4],
+            "yaw_deg": 0.0,
+        })
     return {
         "config": {"length_m": 120.0},
         "summary": {
@@ -37,7 +49,7 @@ def _layout_payload(building_count: int = 30) -> dict:
                 "road_half_width_m": 4.5,
             }
         },
-        "placements": [],
+        "placements": placements,
         "building_footprints": footprints,
         "outputs": {},
     }
@@ -58,6 +70,14 @@ def test_review_24_capture_target_planner_is_deterministic_and_budgeted():
     assert "building" in kinds
 
 
+def test_review_expanded_capture_target_planner_adds_human_and_building_views():
+    plan = plan_capture_targets(_layout_payload(), profile="review_expanded")
+
+    assert len(plan["targets"]) == 40
+    kinds = {target["kind"] for target in plan["targets"]}
+    assert {"bench_eye", "junction_pedestrian", "rooftop", "window_view"}.issubset(kinds)
+
+
 def test_capture_success_patches_layout_and_deletes_non_retained_glb(tmp_path: Path, monkeypatch):
     layout_path = tmp_path / "scene_layout.json"
     glb_path = tmp_path / "scene.glb"
@@ -65,6 +85,9 @@ def test_capture_success_patches_layout_and_deletes_non_retained_glb(tmp_path: P
     payload = _layout_payload(building_count=2)
     payload["outputs"] = {"scene_glb": str(glb_path), "scene_layout": str(layout_path)}
     layout_path.write_text(json.dumps(payload), encoding="utf-8")
+    stale_image = tmp_path / "view_captures" / "stale.png"
+    stale_image.parent.mkdir()
+    stale_image.write_bytes(b"old")
 
     def fake_capture(**kwargs):
         out_dir = Path(kwargs["out_dir"])
@@ -97,6 +120,7 @@ def test_capture_success_patches_layout_and_deletes_non_retained_glb(tmp_path: P
     assert result.view_count == 3
     assert result.glb_deleted is True
     assert not glb_path.exists()
+    assert not stale_image.exists()
     patched = json.loads(layout_path.read_text(encoding="utf-8"))
     assert patched["outputs"]["scene_glb"] == ""
     assert Path(patched["outputs"]["capture_manifest"]).exists()
@@ -130,35 +154,81 @@ def test_capture_failure_keeps_glb_and_records_warning(tmp_path: Path, monkeypat
     assert patched["summary"]["capture_3d"]["error"] == "playwright unavailable"
 
 
-def test_rendered_views_for_evaluation_prefers_backend_3d_captures(tmp_path: Path):
+def test_rendered_views_for_evaluation_selects_representative_3d_captures(tmp_path: Path):
     capture_dir = tmp_path / "view_captures"
     capture_dir.mkdir()
-    overview = capture_dir / "overview.png"
-    street = capture_dir / "street.png"
-    junction = capture_dir / "junction.png"
-    overview.write_bytes(b"overview")
-    street.write_bytes(b"street")
-    junction.write_bytes(b"junction")
+    capture_views = []
+    kinds = [
+        "street",
+        "junction_pedestrian",
+        "junction_pedestrian",
+        "bench_eye",
+        "window_view",
+        "rooftop",
+        "overview",
+        "junction",
+        "building",
+        *("street" for _ in range(31)),
+    ]
+    for index, kind in enumerate(kinds, start=1):
+        path = capture_dir / f"{index:02d}_{kind}.png"
+        path.write_bytes(f"{kind}-{index}".encode("utf-8"))
+        capture_views.append({
+            "view_id": f"{kind}_{index}",
+            "label": f"{kind} view {index}",
+            "kind": kind,
+            "priority": 100 - index,
+            "path": str(path),
+            "camera": [float(index), 1.5, 0.0],
+            "target": [float(index), 0.0, 4.0],
+        })
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(
+        json.dumps({
+            "summary": {
+                "render_views_3d": capture_views,
+                "render_views": [],
+            }
+        }),
+        encoding="utf-8",
+    )
+
+    views = _rendered_views_for_evaluation(str(layout_path))
+
+    assert len(views) == 8
+    selected_kinds = [view["kind"] for view in views]
+    assert selected_kinds[:7] == [
+        "street",
+        "junction_pedestrian",
+        "junction_pedestrian",
+        "bench_eye",
+        "window_view",
+        "rooftop",
+        "overview",
+    ]
+    assert selected_kinds[7] == "junction"
+    assert views[0]["camera"] == [1.0, 1.5, 0.0]
+    assert all(view["image_data_url"].startswith("data:image/png;base64,") for view in views)
+
+
+def test_rendered_views_for_evaluation_falls_back_to_legacy_render_views(tmp_path: Path):
     legacy = tmp_path / "legacy.png"
     legacy.write_bytes(b"legacy")
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text(
         json.dumps({
             "summary": {
-                "render_views_3d": [
-                    {"view_id": "overview_top", "kind": "overview", "priority": 80, "path": str(overview)},
-                    {"view_id": "street_1", "kind": "street", "priority": 70, "path": str(street)},
-                    {"view_id": "junction_1", "kind": "junction", "priority": 90, "path": str(junction)},
-                ],
+                "render_views_3d": [],
                 "render_views": [
-                    {"name": "final_legacy", "path": str(legacy)},
+                    {"name": "debug_side", "path": str(tmp_path / "missing.png")},
+                    {"name": "final_legacy", "title": "Final legacy", "path": str(legacy)},
                 ],
             }
         }),
         encoding="utf-8",
     )
 
-    views = _rendered_views_for_evaluation(str(layout_path), limit=3)
+    views = _rendered_views_for_evaluation(str(layout_path), limit=8)
 
-    assert [view["view_id"] for view in views] == ["street_1", "junction_1", "overview_top"]
-    assert all(view["image_data_url"].startswith("data:image/png;base64,") for view in views)
+    assert [view["view_id"] for view in views] == ["final_legacy"]
+    assert views[0]["label"] == "Final legacy"

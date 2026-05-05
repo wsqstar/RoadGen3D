@@ -228,7 +228,7 @@ def normalize_scene_generation_options(
             payload.get("capture_3d_views"),
             DEFAULT_SCENE_GENERATION_OPTIONS.capture_3d_views,
         ),
-        capture_profile=str(payload.get("capture_profile", DEFAULT_SCENE_GENERATION_OPTIONS.capture_profile) or "review_24"),
+        capture_profile=str(payload.get("capture_profile", DEFAULT_SCENE_GENERATION_OPTIONS.capture_profile) or "review_expanded"),
         capture_resolution=_resolve_resolution(
             payload.get("capture_resolution", DEFAULT_SCENE_GENERATION_OPTIONS.capture_resolution),
             DEFAULT_SCENE_GENERATION_OPTIONS.capture_resolution,
