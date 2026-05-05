@@ -341,7 +341,10 @@ def _graph_summary_for_llm_derivation(
 ) -> Dict[str, Any]:
     if scene_context.layout_mode == "graph_template":
         template_id = str(scene_context.graph_template_id or DEFAULT_GRAPH_TEMPLATE_ID).strip().lower()
-        bridge = build_graph_template_scene_bridge(base_config, template_id=template_id)
+        bridge_kwargs: Dict[str, Any] = {"template_id": template_id}
+        if scene_context.template_patch:
+            bridge_kwargs["template_patch"] = scene_context.template_patch
+        bridge = build_graph_template_scene_bridge(base_config, **bridge_kwargs)
         return dict(bridge.summary_metadata)
     if scene_context.layout_mode == "metaurban":
         plan_id = str(scene_context.reference_plan_id or DEFAULT_METAURBAN_REFERENCE_PLAN_ID).strip().lower()
@@ -515,6 +518,7 @@ def _derive_draft_with_llm(
             design_summary=design_summary or draft.design_summary,
             risk_notes=draft.risk_notes,
             parameter_sources_by_field=parameter_sources,
+            template_patch=draft.template_patch,
         )
     except Exception as exc:
         import traceback
@@ -623,10 +627,10 @@ def _generate_graph_template_scene_from_draft(
         graph_template_id=template_id,
     )
     try:
-        bridge = build_graph_template_scene_bridge(
-            base_config,
-            template_id=template_id,
-        )
+        bridge_kwargs: Dict[str, Any] = {"template_id": template_id}
+        if scene_context.template_patch:
+            bridge_kwargs["template_patch"] = scene_context.template_patch
+        bridge = build_graph_template_scene_bridge(base_config, **bridge_kwargs)
     except KeyError as exc:
         raise RuntimeError(str(exc)) from exc
     config = replace(base_config, layout_mode="graph_template")
@@ -724,6 +728,15 @@ def generate_scene_from_draft(
             progress_callback=progress_callback,
         )
         base_config = build_compose_config_from_draft(draft_to_use, patch_overrides=patch_overrides)
+    if (
+        normalized_scene_context.layout_mode == "graph_template"
+        and not normalized_scene_context.template_patch
+        and isinstance(draft_to_use.template_patch, Mapping)
+    ):
+        normalized_scene_context = replace(
+            normalized_scene_context,
+            template_patch=dict(draft_to_use.template_patch),
+        )
     if normalized_scene_context.layout_mode == "graph_template":
         return _generate_graph_template_scene_from_draft(
             base_config,

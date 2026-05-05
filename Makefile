@@ -14,10 +14,11 @@ VIEWER_IDENTITY_TEXT := RoadGen3D Viewer
 GRAPH_TEMPLATE := hkust_gz_gate
 ENABLE_ARCHIVED_WORKBENCH ?= 0
 
-.PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-preset help
+.PHONY: dev stop ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-preset help
 
 help:
 	@echo "make dev               - Launch API + Viewer web"
+	@echo "make stop              - Stop running API + Viewer dev services (ports $(VIEWER_PORT) and $(UI_API_PORT))"
 	@echo "make workbench-api     - Launch the FastAPI design assistant API"
 	@echo "make workbench-web     - Archived legacy React workbench; set ENABLE_ARCHIVED_WORKBENCH=1 to launch"
 	@echo "make workbench-install - Archived legacy React workbench install; opt in with ENABLE_ARCHIVED_WORKBENCH=1"
@@ -74,8 +75,28 @@ dev:
 	fi; \
 	trap 'kill 0' INT TERM EXIT; \
 	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) workbench-api & \
-	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & \
+		ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & \
 	wait
+
+stop:
+	@echo "Stopping RoadGen3D dev services (viewer + design API) ..."
+	@set -e; \
+	for port in $(VIEWER_PORT) $(UI_API_PORT); do \
+		pids=""; \
+		pids=$$(lsof -nP -iTCP:$$port -sTCP:LISTEN -t 2>/dev/null || true); \
+		if [ -n "$$pids" ]; then \
+			echo "Found PID(s) on port $$port: $$pids"; \
+			kill -TERM $$pids || true; \
+			sleep 1; \
+			remaining=$$(lsof -nP -iTCP:$$port -sTCP:LISTEN -t 2>/dev/null || true); \
+			if [ -n "$$remaining" ]; then \
+				echo "Forcing shutdown on port $$port: $$remaining"; \
+				kill -KILL $$remaining || true; \
+			fi; \
+		else \
+			echo "Port $$port is idle."; \
+		fi; \
+	done
 
 gradio-dev:
 	@echo "ERROR: gradio-dev 已废弃。请使用 'make dev' 启动新的前后端分离架构"

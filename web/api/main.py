@@ -23,7 +23,11 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
 from roadgen3d.llm import LLMConfigurationError, LLMResponseError  # noqa: E402
-from roadgen3d.graph_templates import get_graph_template, list_graph_templates  # noqa: E402
+from roadgen3d.graph_templates import (  # noqa: E402
+    get_graph_template,
+    list_graph_templates,
+    load_graph_template_annotation_payload,
+)
 from roadgen3d.presets import SCENE_PRESETS  # noqa: E402
 from roadgen3d.metaurban_procedural import get_metaurban_reference_plan, list_metaurban_reference_plans  # noqa: E402
 from roadgen3d.api.junction_templates import router as junction_templates_router  # noqa: E402
@@ -31,6 +35,7 @@ from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
 )
+from roadgen3d.template_patch import TemplatePatchError, apply_template_patch  # noqa: E402
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
@@ -88,6 +93,12 @@ class KnowledgeSearchRequestModel(BaseModel):
 class ReferenceAnnotationConvertRequestModel(BaseModel):
     annotation: Dict[str, Any]
     compose_config: Dict[str, Any] = Field(default_factory=dict)
+
+
+class TemplatePatchPreviewRequestModel(BaseModel):
+    patch: Dict[str, Any]
+    compose_config: Dict[str, Any] = Field(default_factory=dict)
+    include_graph_payload: bool = True
 
 
 class RenderedViewModel(BaseModel):
@@ -256,6 +267,27 @@ def create_app(
         if not template.image_path.exists():
             raise HTTPException(status_code=404, detail=f"Graph template image not found: {template.image_path}")
         return FileResponse(template.image_path)
+
+    @app.post("/api/graph-templates/{template_id}/template-patch/preview")
+    def preview_graph_template_patch(template_id: str, request: TemplatePatchPreviewRequestModel) -> Dict[str, Any]:
+        try:
+            base_annotation = load_graph_template_annotation_payload(template_id)
+            application = apply_template_patch(base_annotation, request.patch)
+            payload: Dict[str, Any] = {
+                "annotation": application.annotation,
+                "summary": application.summary,
+            }
+            if request.include_graph_payload:
+                compose_config = build_reference_annotation_compose_config(request.compose_config)
+                payload["graph_payload"] = build_reference_annotation_graph_payload(
+                    application.annotation,
+                    config=compose_config,
+                )
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except (TemplatePatchError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(payload)
 
     @app.post("/api/reference-annotations/convert")
     def convert_reference_annotation(request: ReferenceAnnotationConvertRequestModel) -> Dict[str, Any]:

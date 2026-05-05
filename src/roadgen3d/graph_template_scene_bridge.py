@@ -10,6 +10,7 @@ from .osm_ingest import ProjectedFeatures
 from .placement_zones import PlacementContext
 from .reference_annotation import ReferenceAnnotation, build_reference_annotation_compose_config
 from .reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
+from .template_patch import apply_template_patch
 from .types import RoadSegmentGraph, StreetComposeConfig
 
 
@@ -29,6 +30,7 @@ def build_graph_template_scene_bridge(
     compose_config: StreetComposeConfig | Mapping[str, Any] | None = None,
     *,
     template_id: str,
+    template_patch: Mapping[str, Any] | None = None,
 ) -> GraphTemplateSceneBridgeResult:
     """Build synthetic corridor geometry/context for a built-in graph template."""
 
@@ -38,8 +40,14 @@ def build_graph_template_scene_bridge(
         if isinstance(compose_config, StreetComposeConfig)
         else build_reference_annotation_compose_config(compose_config or {})
     )
+    annotation_payload = load_graph_template_annotation_payload(graph_template.template_id)
+    patch_summary: Dict[str, Any] = {}
+    if template_patch:
+        patch_application = apply_template_patch(annotation_payload, template_patch)
+        annotation_payload = patch_application.annotation
+        patch_summary = dict(patch_application.summary)
     bridge = build_reference_annotation_scene_bridge(
-        load_graph_template_annotation_payload(graph_template.template_id),
+        annotation_payload,
         compose_config=resolved_config,
     )
     summary_metadata = {
@@ -50,6 +58,8 @@ def build_graph_template_scene_bridge(
         "graph_template_label": graph_template.label,
         "graph_template_source_format": graph_template.source_format,
     }
+    if patch_summary:
+        summary_metadata["template_patch"] = patch_summary
     return GraphTemplateSceneBridgeResult(
         graph_template=graph_template,
         annotation=bridge.annotation,

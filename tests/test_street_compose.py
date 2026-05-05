@@ -3236,6 +3236,57 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["frontage_cell_count"] > len(summary["theme_segments"])
 
 
+def test_analytical_diorama_visual_style_metadata_uses_procedural_buildings(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=False))
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=replace(
+            _build_osm_config(tmp_path, seed=37, surrounding_building_mode="grid_growth"),
+            style_preset="analytical_diorama_v1",
+            beauty_mode="presentation_v1",
+            render_preset="axonometric_board_v1",
+            asset_curation_mode="curated_first",
+            scene_texture_mode="topdown_tiles_v1",
+        ),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    visual_style = payload["visual_style"]
+
+    assert visual_style["preset"] == "analytical_diorama_v1"
+    assert visual_style["lighting_preset"] == "analytical_diorama"
+    assert visual_style["material_finish_version"] == "analytical_diorama_finish_v1"
+    assert visual_style["building_profile"]["mode"] == "procedural_background"
+    assert summary["visual_style_preset"] == "analytical_diorama_v1"
+    assert summary["visual_lighting_preset"] == "analytical_diorama"
+    assert summary["scene_texture_pack"] == "topdown_tiles_v1"
+    assert summary["visual_surface_role_count"]["carriageway"] > 0
+    assert summary["visual_surface_role_count"]["sidewalk"] > 0
+    assert payload["building_placements"]
+    assert all(plan["selection_source"] == "procedural_fallback" for plan in payload["building_placements"])
+    assert summary["procedural_building_fallback_count"] == summary["building_summary"]["fallback_count"]
+    assert summary["procedural_building_fallback_count"] == len(payload["building_placements"])
+
+
 def test_graph_template_building_regions_keep_auto_land_use_generation(tmp_path: Path, monkeypatch):
     trimesh = pytest.importorskip("trimesh")
     pytest.importorskip("pyproj")

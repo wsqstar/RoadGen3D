@@ -244,6 +244,7 @@ class DesignDraft:
     design_summary: str
     risk_notes: Tuple[str, ...] = ()
     parameter_sources_by_field: Dict[str, str] = field(default_factory=dict)
+    template_patch: Dict[str, Any] | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -256,6 +257,7 @@ class DesignDraft:
             "design_summary": self.design_summary,
             "risk_notes": list(self.risk_notes),
             "parameter_sources_by_field": dict(self.parameter_sources_by_field),
+            "template_patch": dict(self.template_patch) if isinstance(self.template_patch, Mapping) else None,
         }
 
 
@@ -268,6 +270,7 @@ class SceneContext:
     city_name_en: str | None = None
     reference_plan_id: str | None = None
     graph_template_id: str | None = None
+    template_patch: Dict[str, Any] | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -276,6 +279,7 @@ class SceneContext:
             "city_name_en": self.city_name_en,
             "reference_plan_id": self.reference_plan_id,
             "graph_template_id": self.graph_template_id,
+            "template_patch": dict(self.template_patch) if isinstance(self.template_patch, Mapping) else None,
         }
 
 
@@ -291,12 +295,15 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
     city_name_en = _clean_text(raw.get("city_name_en")) or None
     reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None
     graph_template_id = _clean_text(raw.get("graph_template_id")) or None
+    raw_template_patch = raw.get("template_patch")
+    template_patch = dict(raw_template_patch) if isinstance(raw_template_patch, Mapping) else None
     return SceneContext(
         layout_mode=layout_mode,
         aoi_bbox=_coerce_bbox_tuple(raw.get("aoi_bbox")),
         city_name_en=city_name_en,
         reference_plan_id=reference_plan_id if layout_mode == "metaurban" else None,
         graph_template_id=graph_template_id if layout_mode == "graph_template" else None,
+        template_patch=template_patch if layout_mode == "graph_template" else None,
     )
 
 

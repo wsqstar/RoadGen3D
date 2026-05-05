@@ -2589,6 +2589,8 @@ def _build_base_scene(
         road_center_z_m=0.0,
         road_yaw_deg=0.0,
         lane_count=lane_count,
+        highway_type=str(getattr(street_program, "road_type", "")),
+        base_lane_width_m=(float(road_width_m) / float(lane_count)) if lane_count > 0 else None,
         road_coords=_road_reference_coords(street_program) if street_program is not None else (),
         color=colors.get("lane_mark", (245, 245, 245, 255)),
         roughness=(roughness or {}).get("lane_mark", 0.30),
@@ -2700,15 +2702,21 @@ def _apply_surface_finish(
     texture_mode: str,
     texture_tracker=None,
     texture_overrides: Mapping[str, str] | None = None,
+    horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
 ):
+    resolved_surface_role = str(surface_role)
+    resolved_texture_mode = str(texture_mode)
+    if resolved_surface_role.strip().lower() in {"lane_mark", "lane_edge", "lane_edge_mark", "crossing"}:
+        resolved_texture_mode = "solid_color_legacy"
     return apply_default_scene_texture(
         mesh,
-        surface_role=str(surface_role),
+        surface_role=resolved_surface_role,
         tint_rgba=list(rgba),
         roughness=float(roughness),
-        texture_mode=str(texture_mode),
+        texture_mode=resolved_texture_mode,
         tracker=texture_tracker,
         texture_overrides=texture_overrides,
+        horizontal_axes=horizontal_axes,
     )
 
 
@@ -2782,6 +2790,58 @@ def _polyline_pose_at_distance(
     return (0.0, 0.0, 0.0)
 
 
+def _marking_dash_pattern(
+    *,
+    road_width_m: float,
+    lane_count: int | None = None,
+    base_lane_width_m: float | None = None,
+    highway_type: str | None = None,
+) -> Tuple[float, float]:
+    """Return (dash_length_m, dash_gap_m) according to road class.
+
+    - 高速/高等级道路: 6m 线段 + 9m 间隙
+    - 城市/普通道路: 4m 线段 + 6m 间隙
+    """
+    normalized_highway_type = str(highway_type or "").strip().lower()
+    if normalized_highway_type in {
+        "motorway",
+        "motorway_link",
+        "trunk",
+        "trunk_link",
+        "expressway",
+        "primary",
+        "primary_link",
+    }:
+        return 6.0, 9.0
+
+    road_width = float(road_width_m)
+    lanes = int(lane_count) if lane_count is not None else 0
+    if lanes > 0 and road_width > 0.0:
+        lane_width = road_width / float(lanes)
+    elif base_lane_width_m is not None and float(base_lane_width_m) > 0.0:
+        lane_width = float(base_lane_width_m)
+    elif road_width > 0.0:
+        lane_width = road_width / 2.0
+    else:
+        lane_width = 0.0
+
+    if lane_width >= 3.65:
+        return 6.0, 9.0
+    if lane_width > 0.0:
+        return 4.0, 6.0
+    if road_width >= 16.0:
+        return 6.0, 9.0
+    return 4.0, 6.0
+
+
+def _road_axes_from_yaw_deg(yaw_deg: float) -> Tuple[tuple[float, float], tuple[float, float]]:
+    yaw_rad = math.radians(float(yaw_deg))
+    return (
+        (math.cos(yaw_rad), math.sin(yaw_rad)),
+        (-math.sin(yaw_rad), math.cos(yaw_rad)),
+    )
+
+
 def _add_road_box(
     scene,
     *,
@@ -2801,6 +2861,7 @@ def _add_road_box(
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
     texture_overrides: Mapping[str, str] | None = None,
+    horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
 ) -> None:
     trimesh = _require_trimesh()
     mesh = trimesh.creation.box(extents=(float(length_m), float(height_m), float(width_m)))
@@ -2814,6 +2875,7 @@ def _add_road_box(
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
         texture_overrides=texture_overrides,
+        horizontal_axes=horizontal_axes,
     )
     scene.add_geometry(mesh, node_name=node_name)
 
@@ -2822,6 +2884,91 @@ def _should_render_centerline_marking(*, carriageway_width_m: float, lane_count:
     if lane_count is not None and int(lane_count) > 1:
         return True
     return float(carriageway_width_m) >= 5.5
+
+
+def _drive_lane_boundary_offsets(detailed_strip_profiles: Sequence[Mapping[str, Any]]) -> List[float]:
+    edge_offsets: List[float] = []
+    for profile in detailed_strip_profiles:
+        if str(profile.get("side", "")).lower() == "center" and profile.get("kind") == "drive_lane":
+            inner = float(profile.get("inner_m", 0))
+            outer = float(profile.get("outer_m", 0))
+            if inner not in edge_offsets:
+                edge_offsets.append(inner)
+            if outer not in edge_offsets:
+                edge_offsets.append(outer)
+    edge_offsets.sort()
+    return edge_offsets
+
+
+def _drive_lane_internal_offsets(detailed_strip_profiles: Sequence[Mapping[str, Any]]) -> List[float]:
+    edge_offsets = _drive_lane_boundary_offsets(detailed_strip_profiles)
+    if len(edge_offsets) < 3:
+        return []
+    return [
+        offset
+        for offset in edge_offsets[1:-1]
+        if abs(float(offset)) < max(abs(float(edge_offsets[0])), abs(float(edge_offsets[-1]))) - 0.08
+    ]
+
+
+def _junction_marking_exclusion_geometries(
+    junction_geometries: Sequence[Mapping[str, Any]],
+    *,
+    padding_m: float = 0.35,
+) -> List[Any]:
+    geometries: List[Any] = []
+
+    def _add_geometry(geometry: Any) -> None:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return
+        try:
+            geometry = geometry.buffer(float(padding_m)) if float(padding_m) > 0.0 else geometry
+        except Exception:
+            pass
+        if geometry is not None and not getattr(geometry, "is_empty", True):
+            geometries.append(geometry)
+
+    for junction in junction_geometries or ():
+        normalized_surface_patches = list(junction.get("normalized_surface_patches", []) or ())
+        if normalized_surface_patches:
+            for patch in normalized_surface_patches:
+                role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
+                if role in {"sidewalk", "furnishing", "context_ground"}:
+                    continue
+                _add_geometry(patch.get("geometry"))
+            continue
+        _add_geometry(junction.get("carriageway_core") or junction.get("junction_core_rect"))
+        for bucket_name in ("crosswalk_patches", "turn_lane_patches", "lane_surface_patches", "merged_surface_patches"):
+            for patch in junction.get(bucket_name, []) or ():
+                if isinstance(patch, Mapping):
+                    _add_geometry(patch.get("geometry"))
+
+    if not geometries:
+        return []
+    try:
+        from shapely.ops import unary_union
+
+        merged = unary_union(geometries)
+        return [merged] if merged is not None and not getattr(merged, "is_empty", True) else []
+    except Exception:
+        return geometries
+
+
+def _marking_point_in_exclusion(x_m: float, z_m: float, exclusion_geometries: Sequence[Any] | None) -> bool:
+    if not exclusion_geometries:
+        return False
+    from shapely.geometry import Point
+
+    point = Point(float(x_m), float(z_m))
+    for geometry in exclusion_geometries:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            continue
+        try:
+            if geometry.covers(point):
+                return True
+        except Exception:
+            continue
+    return False
 
 
 def _add_centerline_markings(
@@ -2833,7 +2980,11 @@ def _add_centerline_markings(
     road_center_z_m: float,
     road_yaw_deg: float,
     lane_count: int | None,
+    base_lane_width_m: float | None = None,
+    highway_type: str | None = None,
     road_coords: Sequence[Tuple[float, float]] | None = None,
+    lane_separator_offsets_m: Sequence[float] | None = None,
+    marking_exclusion_geometries: Sequence[Any] | None = None,
     color: Sequence[int],
     roughness: float,
     node_name_prefix: str = "centerline_mark",
@@ -2841,67 +2992,133 @@ def _add_centerline_markings(
     texture_tracker=None,
     texture_overrides: Mapping[str, str] | None = None,
 ) -> None:
-    if not _should_render_centerline_marking(
+    explicit_offsets = tuple(float(offset) for offset in (lane_separator_offsets_m or ()))
+    if not explicit_offsets and not _should_render_centerline_marking(
         carriageway_width_m=float(road_width_m),
         lane_count=lane_count,
     ):
         return
-    dash_length_m = 2.4
-    dash_gap_m = 3.6
+    separator_offsets: List[float] = []
+    if explicit_offsets:
+        separator_offsets = list(explicit_offsets)
+    else:
+        lane_count_int = int(lane_count or 0)
+        if lane_count_int > 1 and lane_count_int <= 8 and float(road_width_m) > 0.0:
+            lane_width_m = float(road_width_m) / float(lane_count_int)
+            separator_offsets = [
+                -float(road_width_m) / 2.0 + lane_width_m * float(lane_idx)
+                for lane_idx in range(1, lane_count_int)
+            ]
+        else:
+            separator_offsets = [0.0]
+    if float(road_width_m) > 0.0:
+        half_width_m = float(road_width_m) / 2.0
+        separator_offsets = [
+            offset
+            for offset in separator_offsets
+            if abs(float(offset)) < half_width_m - 0.08
+        ]
+    deduped_offsets: List[float] = []
+    for offset in sorted(separator_offsets):
+        if not any(abs(float(offset) - float(existing)) <= 0.02 for existing in deduped_offsets):
+            deduped_offsets.append(float(offset))
+    if not deduped_offsets:
+        return
+    separator_offsets = deduped_offsets
+    dash_length_m, dash_gap_m = _marking_dash_pattern(
+        road_width_m=float(road_width_m),
+        lane_count=lane_count,
+        base_lane_width_m=base_lane_width_m,
+        highway_type=highway_type,
+    )
+    highway_key = str(highway_type or "").strip().lower()
+    if any(token in highway_key for token in ("motorway", "trunk", "express", "freeway")):
+        dash_length_m, dash_gap_m = 6.0, 9.0
+    else:
+        dash_length_m, dash_gap_m = 4.0, 6.0
+
     coords = tuple((float(point[0]), float(point[1])) for point in (road_coords or ()))
     if len(coords) >= 2:
         road_length_m = max(float(road_length_m), _polyline_length_m(coords))
-        dash_distance = 2.4
-        dash_idx = 0
-        while dash_distance < float(road_length_m) - 1.6:
-            center_distance = dash_distance + dash_length_m / 2.0
-            center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, center_distance)
+        if float(road_length_m) <= dash_length_m:
+            return
+        dash_step_m = float(dash_length_m) + float(dash_gap_m)
+        for separator_idx, lane_z in enumerate(separator_offsets):
+            dash_idx = 0
+            distance_m = float(dash_length_m) * 0.5
+            while distance_m < float(road_length_m) - float(dash_length_m) * 0.5:
+                center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
+                if _marking_point_in_exclusion(center_x_m, center_z_m, marking_exclusion_geometries):
+                    dash_idx += 1
+                    distance_m += dash_step_m
+                    continue
+                horizontal_axes = _road_axes_from_yaw_deg(yaw_deg)
+                node_name = (
+                    f"{node_name_prefix}_{dash_idx}"
+                    if len(separator_offsets) == 1
+                    else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
+                )
+                _add_road_box(
+                    scene,
+                    length_m=float(dash_length_m),
+                    width_m=0.14,
+                    height_m=0.01,
+                    local_x_m=0.0,
+                    local_z_m=float(lane_z),
+                    road_center_x_m=center_x_m,
+                    road_center_z_m=center_z_m,
+                    road_yaw_deg=yaw_deg,
+                    y_min_m=0.004,
+                    color=color,
+                    surface_role="lane_mark",
+                    node_name=node_name,
+                    roughness=roughness,
+                    texture_mode=texture_mode,
+                    texture_tracker=texture_tracker,
+                    texture_overrides=texture_overrides,
+                    horizontal_axes=horizontal_axes,
+                )
+                dash_idx += 1
+                distance_m += dash_step_m
+        return
+    horizontal_axes = _road_axes_from_yaw_deg(road_yaw_deg)
+    dash_x = -float(road_length_m) / 2.0 + float(dash_length_m) * 0.5
+    dash_idx = 0
+    while dash_x < float(road_length_m) / 2.0 - float(dash_length_m) * 0.5:
+        world_center_x_m = float(road_center_x_m) + math.cos(math.radians(float(road_yaw_deg))) * float(dash_x)
+        world_center_z_m = float(road_center_z_m) + math.sin(math.radians(float(road_yaw_deg))) * float(dash_x)
+        if _marking_point_in_exclusion(world_center_x_m, world_center_z_m, marking_exclusion_geometries):
+            dash_idx += 1
+            dash_x += float(dash_length_m) + float(dash_gap_m)
+            continue
+        for separator_idx, lane_z in enumerate(separator_offsets):
+            node_name = (
+                f"{node_name_prefix}_{dash_idx}"
+                if len(separator_offsets) == 1
+                else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
+            )
             _add_road_box(
                 scene,
-                length_m=dash_length_m,
+                length_m=float(dash_length_m),
                 width_m=0.14,
                 height_m=0.01,
-                local_x_m=0.0,
-                local_z_m=0.0,
-                road_center_x_m=center_x_m,
-                road_center_z_m=center_z_m,
-                road_yaw_deg=yaw_deg,
+                local_x_m=float(dash_x),
+                local_z_m=float(lane_z),
+                road_center_x_m=road_center_x_m,
+                road_center_z_m=road_center_z_m,
+                road_yaw_deg=road_yaw_deg,
                 y_min_m=0.004,
                 color=color,
                 surface_role="lane_mark",
-                node_name=f"{node_name_prefix}_{dash_idx}",
+                node_name=node_name,
                 roughness=roughness,
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
                 texture_overrides=texture_overrides,
+                horizontal_axes=horizontal_axes,
             )
-            dash_idx += 1
-            dash_distance += dash_length_m + dash_gap_m
-        return
-    dash_x = -float(road_length_m) / 2.0 + 2.4
-    dash_idx = 0
-    while dash_x < float(road_length_m) / 2.0 - 1.6:
-        _add_road_box(
-            scene,
-            length_m=dash_length_m,
-            width_m=0.14,
-            height_m=0.01,
-            local_x_m=dash_x,
-            local_z_m=0.0,
-            road_center_x_m=road_center_x_m,
-            road_center_z_m=road_center_z_m,
-            road_yaw_deg=road_yaw_deg,
-            y_min_m=0.004,
-            color=color,
-            surface_role="lane_mark",
-            node_name=f"{node_name_prefix}_{dash_idx}",
-            roughness=roughness,
-            texture_mode=texture_mode,
-            texture_tracker=texture_tracker,
-            texture_overrides=texture_overrides,
-        )
         dash_idx += 1
-        dash_x += dash_length_m + dash_gap_m
+        dash_x += float(dash_length_m) + float(dash_gap_m)
 
 
 def _add_lane_edge_markings(
@@ -2912,7 +3129,10 @@ def _add_lane_edge_markings(
     road_center_z_m: float,
     road_yaw_deg: float,
     detailed_strip_profiles: list,
+    road_width_m: float | None = None,
+    highway_type: str | None = None,
     road_coords: Sequence[Tuple[float, float]] | None = None,
+    marking_exclusion_geometries: Sequence[Any] | None = None,
     edge_color: Sequence[int] = (230, 200, 50, 255),  # Yellow for lane edges
     roughness: float = 0.30,
     node_name_prefix: str = "lane_edge",
@@ -2925,52 +3145,54 @@ def _add_lane_edge_markings(
     Renders continuous yellow solid lines at the edges of each drive_lane strip.
     Uses the inner_m and outer_m values from detailed_strip_profiles to determine positions.
     """
-    # Collect all edge positions from center drive_lane strips
-    edge_offsets: List[float] = []
-    for profile in detailed_strip_profiles:
-        if str(profile.get("side", "")).lower() == "center" and profile.get("kind") == "drive_lane":
-            inner = float(profile.get("inner_m", 0))
-            outer = float(profile.get("outer_m", 0))
-            if inner not in edge_offsets:
-                edge_offsets.append(inner)
-            if outer not in edge_offsets:
-                edge_offsets.append(outer)
-
+    # Collect the outer drive-lane boundaries. Internal lane separators are
+    # rendered by _add_centerline_markings so they can share the lane_mark role.
+    edge_offsets = _drive_lane_boundary_offsets(detailed_strip_profiles)
     if not edge_offsets:
-        return
+        if road_width_m is None or float(road_width_m) <= 0.0:
+            return
+        edge_inset_m = 0.25
+        edge_offsets = [
+            -float(road_width_m) / 2.0 + edge_inset_m,
+            float(road_width_m) / 2.0 - edge_inset_m,
+        ]
 
-    # Sort offsets from left (negative) to right (positive)
-    edge_offsets.sort()
-    internal_edge_offsets = list(edge_offsets)
-    if len(internal_edge_offsets) >= 3:
-        internal_edge_offsets = internal_edge_offsets[1:-1]
-    internal_edge_offsets = [
+    edge_marking_offsets = list(edge_offsets)
+    if len(edge_marking_offsets) >= 2:
+        edge_marking_offsets = [edge_marking_offsets[0], edge_marking_offsets[-1]]
+    edge_marking_offsets = [
         offset
-        for offset in internal_edge_offsets
+        for offset in edge_marking_offsets
         if abs(float(offset)) > 0.08
     ]
 
-    if not internal_edge_offsets:
+    if not edge_marking_offsets:
         return
 
     coords = tuple((float(point[0]), float(point[1])) for point in (road_coords or ()))
 
-    # If we have road coordinates, render continuous lines along the road
+    # If we have road coordinates, render solid edge lines as short overlapping
+    # segments so curved roads still follow the reference polyline.
     if len(coords) >= 2:
         road_len = max(float(road_length_m), _polyline_length_m(coords))
-        mark_length_m = 1.8
-        mark_step_m = 1.55
+        mark_length_m = max(2.0, min(6.0, road_len / 48.0 if road_len > 0.0 else 4.0))
+        mark_step_m = max(0.5, mark_length_m - 0.08)
         if road_len < mark_length_m:
             return
-        for edge_idx, edge_offset in enumerate(internal_edge_offsets):
+        for edge_idx, edge_offset in enumerate(edge_marking_offsets):
             mark_idx = 0
             distance_m = mark_length_m * 0.5
-            while distance_m < road_len - mark_length_m * 0.35:
+            while distance_m < road_len - mark_length_m * 0.15:
                 center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
+                if _marking_point_in_exclusion(center_x_m, center_z_m, marking_exclusion_geometries):
+                    mark_idx += 1
+                    distance_m += mark_step_m
+                    continue
+                horizontal_axes = _road_axes_from_yaw_deg(yaw_deg)
                 _add_road_box(
                     scene,
                     length_m=mark_length_m,
-                    width_m=0.12,
+                    width_m=0.10,
                     height_m=0.01,
                     local_x_m=0.0,
                     local_z_m=float(edge_offset),
@@ -2985,16 +3207,19 @@ def _add_lane_edge_markings(
                     texture_mode=texture_mode,
                     texture_tracker=texture_tracker,
                     texture_overrides=texture_overrides,
+                    horizontal_axes=horizontal_axes,
                 )
                 mark_idx += 1
                 distance_m += mark_step_m
     else:
         # Fallback: render lines without following road shape
-        for edge_idx, edge_offset in enumerate(internal_edge_offsets):
+        for edge_idx, edge_offset in enumerate(edge_marking_offsets):
+            if _marking_point_in_exclusion(road_center_x_m, road_center_z_m, marking_exclusion_geometries):
+                continue
             _add_road_box(
                 scene,
                 length_m=float(road_length_m),
-                width_m=0.12,
+                width_m=0.10,
                 height_m=0.01,
                 local_x_m=0.0,
                 local_z_m=float(edge_offset),
@@ -3009,6 +3234,7 @@ def _add_lane_edge_markings(
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
                 texture_overrides=texture_overrides,
+                horizontal_axes=_road_axes_from_yaw_deg(road_yaw_deg),
             )
 
 
@@ -3037,9 +3263,14 @@ def _add_beauty_scene_proxies(
     if render_linear_road_overlays:
         if lane_count > 1:
             lane_width_m = road_width_m / float(lane_count)
-            dash_length_m = 2.2
-            dash_gap_m = 3.8
-            dash_x = -road_length_m / 2.0 + 2.5
+            dash_length_m, dash_gap_m = _marking_dash_pattern(
+                road_width_m=road_width_m,
+                lane_count=lane_count,
+                base_lane_width_m=lane_width_m,
+                highway_type=str(getattr(street_program, "road_type", "")),
+            )
+            dash_x = -road_length_m / 2.0 + dash_length_m
+            horizontal_axes = _road_axes_from_yaw_deg(road_yaw_deg)
             dash_idx = 0
             while dash_x < road_length_m / 2.0 - 1.5:
                 for lane_idx in range(1, lane_count):
@@ -3064,6 +3295,7 @@ def _add_beauty_scene_proxies(
                         texture_mode=texture_mode,
                         texture_tracker=texture_tracker,
                         texture_overrides=texture_overrides,
+                        horizontal_axes=horizontal_axes,
                     )
                 dash_idx += 1
                 dash_x += dash_length_m + dash_gap_m
@@ -3091,6 +3323,7 @@ def _add_beauty_scene_proxies(
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
                 texture_overrides=texture_overrides,
+                horizontal_axes=_road_axes_from_yaw_deg(road_yaw_deg),
             )
 
     for idx, placement in enumerate(placements):
@@ -4149,6 +4382,7 @@ def _build_osm_base_scene(
         y_offset: float = 0.0,
         roughness_key: str = "",
         surface_role: str = "",
+        horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
     ) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
 
@@ -4185,11 +4419,31 @@ def _build_osm_base_scene(
                     texture_mode=texture_mode,
                     texture_tracker=texture_tracker,
                     texture_overrides=texture_overrides,
+                    horizontal_axes=horizontal_axes,
                 )
                 scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
             except (ValueError, RuntimeError, IndexError):
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
+
+
+    def _coerce_horizontal_axes(
+        value: object,
+    ) -> tuple[tuple[float, float], tuple[float, float]] | None:
+        if not isinstance(value, (list, tuple)) or len(value) != 2:
+            return None
+        u_axis = value[0]
+        v_axis = value[1]
+        if not isinstance(u_axis, (list, tuple)) or not isinstance(v_axis, (list, tuple)):
+            return None
+        if len(u_axis) != 2 or len(v_axis) != 2:
+            return None
+        try:
+            u = (float(u_axis[0]), float(u_axis[1]))
+            v = (float(v_axis[0]), float(v_axis[1]))
+        except (TypeError, ValueError):
+            return None
+        return u, v
 
     def _inject_functional_zone(zone: Dict[str, Any]) -> None:
         from shapely import make_valid
@@ -4467,6 +4721,112 @@ def _build_osm_base_scene(
             return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
         return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
 
+    def _render_crosswalk_zebra_patch(
+        geometry,
+        *,
+        node_name_prefix: str,
+        horizontal_axes: Sequence[Sequence[float]] | None = None,
+    ) -> None:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return
+        from shapely.geometry import Polygon
+
+        def _unit_axis(vector: Sequence[float], fallback: Tuple[float, float]) -> Tuple[float, float]:
+            x = float(vector[0]) if len(vector) >= 1 else float(fallback[0])
+            z = float(vector[1]) if len(vector) >= 2 else float(fallback[1])
+            length = math.hypot(x, z)
+            if length <= 1e-9:
+                return fallback
+            return x / length, z / length
+
+        def _orthogonal_axis(
+            vector: Sequence[float],
+            *,
+            against: Tuple[float, float],
+        ) -> Tuple[float, float]:
+            raw = _unit_axis(vector, (-against[1], against[0]))
+            dot_value = raw[0] * against[0] + raw[1] * against[1]
+            orthogonal = (raw[0] - dot_value * against[0], raw[1] - dot_value * against[1])
+            return _unit_axis(orthogonal, (-against[1], against[0]))
+
+        def _axes_from_geometry() -> Tuple[Tuple[float, float], Tuple[float, float]]:
+            rectangle = geometry.minimum_rotated_rectangle
+            coords = list(getattr(rectangle, "exterior", rectangle).coords)
+            if len(coords) < 4:
+                return (1.0, 0.0), (0.0, 1.0)
+            edges: List[Tuple[float, Tuple[float, float]]] = []
+            for index in range(4):
+                start = coords[index]
+                end = coords[(index + 1) % 4]
+                vector = (float(end[0]) - float(start[0]), float(end[1]) - float(start[1]))
+                edges.append((math.hypot(vector[0], vector[1]), vector))
+            edges.sort(key=lambda item: item[0])
+            short_axis = _unit_axis(edges[0][1], (1.0, 0.0))
+            long_axis = _orthogonal_axis(edges[-1][1], against=short_axis)
+            return short_axis, long_axis
+
+        coerced_axes = _coerce_horizontal_axes(horizontal_axes)
+        if coerced_axes is not None:
+            axis_u = _unit_axis(coerced_axes[0], (1.0, 0.0))
+            axis_v = _orthogonal_axis(coerced_axes[1], against=axis_u)
+        else:
+            axis_u, axis_v = _axes_from_geometry()
+
+        rectangle = geometry.minimum_rotated_rectangle
+        rect_coords = list(getattr(rectangle, "exterior", rectangle).coords)
+        if len(rect_coords) < 4:
+            return
+        u_values = [float(point[0]) * axis_u[0] + float(point[1]) * axis_u[1] for point in rect_coords[:4]]
+        v_values = [float(point[0]) * axis_v[0] + float(point[1]) * axis_v[1] for point in rect_coords[:4]]
+        u_min, u_max = min(u_values), max(u_values)
+        v_min, v_max = min(v_values), max(v_values)
+        crosswalk_depth_m = max(0.1, float(u_max - u_min))
+        if crosswalk_depth_m > max(0.1, float(v_max - v_min)):
+            axis_u, axis_v = axis_v, axis_u
+            u_values = [float(point[0]) * axis_u[0] + float(point[1]) * axis_u[1] for point in rect_coords[:4]]
+            v_values = [float(point[0]) * axis_v[0] + float(point[1]) * axis_v[1] for point in rect_coords[:4]]
+            u_min, u_max = min(u_values), max(u_values)
+            v_min, v_max = min(v_values), max(v_values)
+            crosswalk_depth_m = max(0.1, float(u_max - u_min))
+
+        stripe_width_m = min(0.55, max(0.28, crosswalk_depth_m / 5.0))
+        stripe_gap_m = min(0.50, max(0.24, stripe_width_m * 0.85))
+        stripe_period_m = stripe_width_m + stripe_gap_m
+        stripe_count = max(1, int(math.floor((crosswalk_depth_m + stripe_gap_m) / stripe_period_m)))
+        used_width_m = stripe_count * stripe_width_m + max(0, stripe_count - 1) * stripe_gap_m
+        cursor_u = u_min + max(0.0, (crosswalk_depth_m - used_width_m) / 2.0)
+
+        def _point(local_u: float, local_v: float) -> Tuple[float, float]:
+            return (
+                axis_u[0] * local_u + axis_v[0] * local_v,
+                axis_u[1] * local_u + axis_v[1] * local_v,
+            )
+
+        for stripe_idx in range(stripe_count):
+            stripe_u0 = cursor_u + float(stripe_idx) * stripe_period_m
+            stripe_u1 = min(stripe_u0 + stripe_width_m, u_max)
+            if stripe_u1 <= stripe_u0:
+                continue
+            stripe_rect = Polygon([
+                _point(stripe_u0, v_min),
+                _point(stripe_u1, v_min),
+                _point(stripe_u1, v_max),
+                _point(stripe_u0, v_max),
+            ])
+            stripe_geometry = stripe_rect.intersection(geometry)
+            if stripe_geometry is None or getattr(stripe_geometry, "is_empty", True):
+                continue
+            _extrude_polygon(
+                stripe_geometry,
+                0.012,
+                list(colors.get("lane_mark", (245, 245, 245, 255))),
+                f"{node_name_prefix}_stripe_{stripe_idx}",
+                y_offset=0.010,
+                roughness_key="crossing",
+                surface_role="crossing",
+                horizontal_axes=(axis_u, axis_v),
+            )
+
     if junction_geometries:
         for junction_index, junction in enumerate(junction_geometries):
             normalized_surface_patches = list(junction.get("normalized_surface_patches", []) or ())
@@ -4477,6 +4837,13 @@ def _build_osm_base_scene(
                         continue
                     role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
                     if role in junction_sidewalk_surface_roles:
+                        continue
+                    if role == "crossing":
+                        _render_crosswalk_zebra_patch(
+                            geometry,
+                            node_name_prefix=f"junction_crosswalk_{junction_index}_{patch_index}",
+                            horizontal_axes=patch.get("horizontal_axes"),
+                        )
                         continue
                     height_m, color, y_offset, roughness_key, surface_role = _normalized_surface_render_spec(patch)
                     _extrude_polygon(
@@ -4504,14 +4871,11 @@ def _build_osm_base_scene(
                 geometry = patch.get("geometry")
                 if geometry is None or getattr(geometry, "is_empty", True):
                     continue
-                _extrude_polygon(
+                patch_axes = _coerce_horizontal_axes(patch.get("horizontal_axes"))
+                _render_crosswalk_zebra_patch(
                     geometry,
-                    0.01,
-                    list(colors.get("lane_mark", (245, 245, 245, 255))),
-                    f"junction_crosswalk_{junction_index}_{patch_index}",
-                    y_offset=0.008,
-                    roughness_key="crossing",
-                    surface_role="crossing",
+                    horizontal_axes=patch_axes,
+                    node_name_prefix=f"junction_crosswalk_{junction_index}_{patch_index}",
                 )
             turn_lane_patches = list(junction.get("turn_lane_patches", []) or ())
             has_corner_surface_patches = _has_corner_surface_patches(junction)
@@ -4601,6 +4965,9 @@ def _build_osm_base_scene(
         float(fallback_length_m),
     )
     road_references = list(getattr(placement_ctx, "road_references", []) or [])
+    marking_exclusion_geometries = _junction_marking_exclusion_geometries(
+        list(getattr(placement_ctx, "junction_geometries", []) or ())
+    )
     if not road_references:
         fallback_reference = getattr(placement_ctx, "road_reference", None)
         if fallback_reference is not None:
@@ -4608,15 +4975,40 @@ def _build_osm_base_scene(
     if road_references:
         for road_index, road_reference in enumerate(road_references):
             coords = _road_reference_coords(road_reference)
+            road_reference_width_m = float(getattr(road_reference, "width_m", 0.0) or 0.0)
+            road_reference_width_m = road_reference_width_m or float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0)
+            lane_count_hint: int | None = None
+            lane_separator_offsets = _drive_lane_internal_offsets(
+                list(getattr(placement_ctx, "detailed_strip_profiles", []) or ())
+            )
+            for strip in list(getattr(placement_ctx, "detailed_strip_profiles", []) or ()):
+                if (
+                    str(strip.get("side", "")).strip().lower() == "center"
+                    and str(strip.get("kind", "")).strip().lower() == "drive_lane"
+                ):
+                    lane_count_hint = int(lane_count_hint or 0) + 1
+            lane_count_for_markings = (
+                len(lane_separator_offsets) + 1
+                if lane_separator_offsets
+                else lane_count_hint
+            )
             _add_centerline_markings(
                 scene,
                 road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
-                road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+                road_width_m=road_reference_width_m,
                 road_center_x_m=float(road_center_x_m),
                 road_center_z_m=float(road_center_z_m),
                 road_yaw_deg=float(road_yaw_deg),
-                lane_count=None,
+                lane_count=lane_count_for_markings,
+                highway_type=str(getattr(road_reference, "highway_type", "")),
+                base_lane_width_m=(
+                    road_reference_width_m / float(lane_count_for_markings)
+                    if lane_count_for_markings and road_reference_width_m > 0.0
+                    else None
+                ),
                 road_coords=coords,
+                lane_separator_offsets_m=lane_separator_offsets,
+                marking_exclusion_geometries=marking_exclusion_geometries,
                 color=colors.get("lane_mark", (245, 245, 245, 255)),
                 roughness=(roughness or {}).get("lane_mark", 0.30),
                 node_name_prefix=f"centerline_mark_{road_index}",
@@ -4631,8 +5023,11 @@ def _build_osm_base_scene(
                 road_center_x_m=float(road_center_x_m),
                 road_center_z_m=float(road_center_z_m),
                 road_yaw_deg=float(road_yaw_deg),
+                road_width_m=road_reference_width_m,
                 detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
+                highway_type=str(getattr(road_reference, "highway_type", "")),
                 road_coords=coords,
+                marking_exclusion_geometries=marking_exclusion_geometries,
                 edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
                 roughness=(roughness or {}).get("lane_edge", 0.30),
                 node_name_prefix=f"lane_edge_{road_index}",
@@ -4649,7 +5044,12 @@ def _build_osm_base_scene(
             road_center_z_m=float(road_center_z_m),
             road_yaw_deg=float(road_yaw_deg),
             lane_count=None,
+            highway_type="",
             road_coords=_road_reference_coords(placement_ctx),
+            lane_separator_offsets_m=_drive_lane_internal_offsets(
+                list(getattr(placement_ctx, "detailed_strip_profiles", []) or ())
+            ),
+            marking_exclusion_geometries=marking_exclusion_geometries,
             color=colors.get("lane_mark", (245, 245, 245, 255)),
             roughness=(roughness or {}).get("lane_mark", 0.30),
             texture_mode=texture_mode,
@@ -4663,8 +5063,11 @@ def _build_osm_base_scene(
             road_center_x_m=float(road_center_x_m),
             road_center_z_m=float(road_center_z_m),
             road_yaw_deg=float(road_yaw_deg),
+            road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+            highway_type="",
             detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
             road_coords=_road_reference_coords(placement_ctx),
+            marking_exclusion_geometries=marking_exclusion_geometries,
             edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
             roughness=(roughness or {}).get("lane_edge", 0.30),
             texture_mode=texture_mode,
@@ -6473,10 +6876,15 @@ def _place_building_targets(
     for target_idx, target in enumerate(targets):
         theme_id = str(target.get("theme_id", "") or "")
         theme_segment = theme_by_id.get(theme_id, theme_segments[0] if theme_segments else None)
+        force_analytical_procedural_building = (
+            str(getattr(config, "style_preset", "") or "").strip().lower() == "analytical_diorama_v1"
+        )
         theme_name = (
             str(target.get("land_use_type", "") or "")
             or (theme_segment.theme_name if theme_segment is not None else "commercial")
         )
+        if force_analytical_procedural_building:
+            theme_name = "analytical"
         frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
         depth_m = float(target.get("depth_m", 10.0) or 10.0)
         _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
@@ -6501,6 +6909,9 @@ def _place_building_targets(
                 "target_height_m": float(target.get("target_height_m", 0.0) or 0.0),
             }
         )
+        if force_analytical_procedural_building:
+            ranked_candidates = ()
+            retrieval_payload["forced_procedural_fallback"] = "analytical_diorama_v1"
 
         row: Optional[Dict[str, object]] = None
         score = 0.0
@@ -9603,6 +10014,73 @@ def compose_street_scene(
     zoning_granularity_raw = getattr(config, "zoning_granularity", "fine")
     streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.95)
     infill_policy_raw = getattr(config, "infill_policy", "aggressive")
+    style_preset_used = str(
+        resolved_program.context_conditions.get("style_preset", getattr(config, "style_preset", "civic_clean_v1"))
+    )
+    visual_lighting_preset = (
+        "analytical_diorama"
+        if style_preset_used.strip().lower() == "analytical_diorama_v1"
+        else _derive_lighting_preset(sky_selection)
+    )
+    visual_surface_roles = (
+        "carriageway",
+        "sidewalk",
+        "clear_path",
+        "furnishing",
+        "bike_lane",
+        "bus_lane",
+        "grass",
+        "grass_belt",
+        "crossing",
+        "lane_mark",
+        "context_ground",
+        "building_buffer",
+        "tree_pit",
+        "transit_pad",
+        "curb",
+        "parking_lane",
+        "median_green",
+        "shared_street_surface",
+        "colored_pavement",
+    )
+    visual_palette = style_palette(style_preset_used)
+    visual_roughness = surface_roughness(style_preset_used)
+    visual_style_payload = {
+        "preset": style_preset_used,
+        "lighting_preset": visual_lighting_preset,
+        "surface_palette": {
+            role: list(visual_palette[role])
+            for role in visual_surface_roles
+            if role in visual_palette
+        },
+        "surface_roughness": {
+            role: float(visual_roughness[role])
+            for role in visual_surface_roles
+            if role in visual_roughness
+        },
+        "building_profile": {
+            "mode": (
+                "procedural_background"
+                if style_preset_used.strip().lower() == "analytical_diorama_v1"
+                else str(building_summary.get("generation_mode_used") or getattr(config, "surrounding_building_mode", "grid_growth"))
+            ),
+            "profile": (
+                "low_saturation_parametric_facade_v1"
+                if style_preset_used.strip().lower() == "analytical_diorama_v1"
+                else "default_building_profile"
+            ),
+            "preferred_theme": "analytical" if style_preset_used.strip().lower() == "analytical_diorama_v1" else "",
+            "background_layer": bool(style_preset_used.strip().lower() == "analytical_diorama_v1"),
+            "procedural_fallback_count": int(building_summary.get("procedural_building_fallback_count", building_summary.get("fallback_count", 0)) or 0),
+        },
+        "material_finish_version": (
+            "analytical_diorama_finish_v1"
+            if style_preset_used.strip().lower() == "analytical_diorama_v1"
+            else "presentation_material_finish_v1"
+        ),
+        "scene_texture_pack": scene_texture_pack_name(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1"))),
+    }
+
     summary_payload = {
         "instance_count": len(placements),
         "dropped_slots": int(dropped_slots),
@@ -9686,6 +10164,9 @@ def compose_street_scene(
         "scene_texture_pack": scene_texture_pack_name(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1"))),
         "scene_texture_fallback_used": bool(scene_texture_tracker.fallback_used),
         "scene_texture_missing_assets": sorted(scene_texture_tracker.missing_assets),
+        "visual_style_preset": style_preset_used,
+        "visual_lighting_preset": visual_lighting_preset,
+        "visual_surface_role_count": dict(sorted(scene_texture_tracker.surface_role_counts.items())),
         "layout_mode": config.layout_mode,
         "constraint_mode": config.constraint_mode,
         "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
@@ -9770,9 +10251,7 @@ def compose_street_scene(
         "selected_road_required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
         "selected_road_final_row_width_m": float(getattr(placement_ctx, "row_width_m", resolved_program.row_width_m) or 0.0),
         "observed_poi_counts": dict(resolved_program.observed_poi_counts),
-        "style_preset": str(
-            resolved_program.context_conditions.get("style_preset", getattr(config, "style_preset", "civic_clean_v1"))
-        ),
+        "style_preset": style_preset_used,
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
         "render_preset": str(getattr(config, "render_preset", "axonometric_board_v1")),
         "asset_curation_mode": str(getattr(config, "asset_curation_mode", "scene_ready_first")),
@@ -9929,6 +10408,7 @@ def compose_street_scene(
         "constraint_set": base_constraint_set.to_dict(),
         "solver": solver_result.to_dict(),
         "summary": summary_payload,
+        "visual_style": visual_style_payload,
         "placements": [placement.to_dict() for placement in placements],
         "building_footprints": [footprint.to_dict() for footprint in building_footprints],
         "generated_lots": [lot.to_dict() for lot in generated_lots],
@@ -10019,7 +10499,7 @@ def compose_street_scene(
         if str(view.get("path", "")).strip():
             outputs[f"presentation_{view.get('name', 'view')}"] = str(view["path"])
 
-    outputs["lighting_preset"] = _derive_lighting_preset(sky_selection)
+    outputs["lighting_preset"] = str(visual_style_payload.get("lighting_preset") or _derive_lighting_preset(sky_selection))
     outputs["lighting_params"] = _derive_lighting_params(sky_selection)
 
     _emit_progress(

@@ -1595,12 +1595,14 @@ def parse_design_draft(
     filtered_citations = {key: value for key, value in filtered_citations.items() if value}
     summary = str(payload.get("design_summary", "") or "").strip()
     risk_notes = tuple(dict.fromkeys(_coerce_text_list(payload.get("risk_notes"))))
+    raw_template_patch = payload.get("template_patch")
     return DesignDraft(
         normalized_scene_query=normalized_scene_query,
         compose_config_patch=patch,
         citations_by_field=filtered_citations,
         design_summary=summary,
         risk_notes=risk_notes,
+        template_patch=dict(raw_template_patch) if isinstance(raw_template_patch, Mapping) else None,
     )
 
 
@@ -1733,6 +1735,7 @@ def finalize_design_draft(draft: DesignDraft) -> Tuple[DesignDraft, Tuple[str, .
             design_summary=draft.design_summary,
             risk_notes=draft.risk_notes,
             parameter_sources_by_field=sources,
+            template_patch=draft.template_patch,
         ),
         tuple(defaulted_fields),
     )
@@ -1762,6 +1765,7 @@ def _merge_current_patch_into_cached_draft(
             citations_by_field=citations,
             design_summary=draft.design_summary,
             risk_notes=draft.risk_notes,
+            template_patch=draft.template_patch,
         )
     )
     return merged_draft

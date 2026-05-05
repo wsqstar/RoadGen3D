@@ -73,6 +73,11 @@ class SceneTextureTracker:
     fallback_used: bool = False
     textured_geometry_count: int = 0
     fallback_geometry_count: int = 0
+    surface_role_counts: dict[str, int] = field(default_factory=dict)
+
+    def note_role(self, surface_role: str) -> None:
+        normalized_role = str(surface_role or "").strip().lower() or "unknown"
+        self.surface_role_counts[normalized_role] = int(self.surface_role_counts.get(normalized_role, 0)) + 1
 
     def note_textured(self) -> None:
         self.textured_geometry_count += 1
@@ -90,6 +95,9 @@ class SceneTextureTracker:
         self.textured_geometry_count += int(other.textured_geometry_count)
         self.fallback_geometry_count += int(other.fallback_geometry_count)
         self.missing_assets.update(set(other.missing_assets))
+        for role, count in dict(other.surface_role_counts).items():
+            normalized_role = str(role or "").strip().lower() or "unknown"
+            self.surface_role_counts[normalized_role] = int(self.surface_role_counts.get(normalized_role, 0)) + int(count)
 
     def summary_dict(self) -> dict[str, object]:
         return {
@@ -99,6 +107,7 @@ class SceneTextureTracker:
             "scene_texture_missing_assets": sorted(self.missing_assets),
             "textured_geometry_count": int(self.textured_geometry_count),
             "fallback_geometry_count": int(self.fallback_geometry_count),
+            "visual_surface_role_count": dict(sorted(self.surface_role_counts.items())),
         }
 
 
@@ -177,7 +186,36 @@ def _projection_axes(normal: np.ndarray) -> tuple[int, int]:
     return 0, 1
 
 
-def _build_facewise_uv_mesh(mesh, *, tile_scale_m: float):
+def _normalize_2d_axis(axis: np.ndarray) -> np.ndarray:
+    length = float(np.linalg.norm(axis))
+    if length <= 1e-12:
+        return np.array([1.0, 0.0], dtype=np.float64)
+    return axis / length
+
+
+def _resolve_horizontal_axes(
+    axes: tuple[tuple[float, float], tuple[float, float]] | None,
+) -> tuple[np.ndarray, np.ndarray]:
+    if axes is None:
+        return np.array([1.0, 0.0], dtype=np.float64), np.array([0.0, 1.0], dtype=np.float64)
+
+    u_axis = _normalize_2d_axis(np.asarray(axes[0], dtype=np.float64))
+    v_axis = _normalize_2d_axis(np.asarray(axes[1], dtype=np.float64))
+
+    # Ensure orthonormal basis to keep UV metric stable.
+    v_axis -= np.dot(v_axis, u_axis) * u_axis
+    v_axis = _normalize_2d_axis(v_axis)
+    if np.dot(v_axis, v_axis) <= 1e-12:
+        v_axis = np.array([-u_axis[1], u_axis[0]], dtype=np.float64)
+    return u_axis, v_axis
+
+
+def _build_facewise_uv_mesh(
+    mesh,
+    *,
+    tile_scale_m: float,
+    horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
+):
     trimesh = _require_trimesh()
     if trimesh is None:
         return mesh, None
@@ -189,10 +227,19 @@ def _build_facewise_uv_mesh(mesh, *, tile_scale_m: float):
     faces = np.arange(len(vertices), dtype=np.int64).reshape(-1, 3)
     uv = np.zeros((len(vertices), 2), dtype=np.float64)
     scale = max(float(tile_scale_m), 1e-6)
+    u_axis, v_axis = _resolve_horizontal_axes(horizontal_axes)
     for face_index, normal in enumerate(face_normals):
         axis_u, axis_v = _projection_axes(normal)
         tri = triangles[face_index]
-        uv_face = tri[:, [axis_u, axis_v]] / scale
+        if abs(float(normal[1])) > 0.999:
+            uv_face = np.column_stack(
+                (
+                    tri[:, 0] * u_axis[0] + tri[:, 2] * u_axis[1],
+                    tri[:, 0] * v_axis[0] + tri[:, 2] * v_axis[1],
+                )
+            ) / scale
+        else:
+            uv_face = tri[:, [axis_u, axis_v]] / scale
         start = face_index * 3
         uv[start : start + 3] = uv_face
     textured = trimesh.Trimesh(vertices=vertices, faces=faces, process=False, maintain_order=True)
@@ -220,17 +267,20 @@ def apply_default_scene_texture(
     texture_mode: str,
     tracker: SceneTextureTracker | None = None,
     texture_overrides: Mapping[str, str] | None = None,
+    horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
 ):
     """Return a textured copy of *mesh* or a legacy solid-material fallback."""
 
     normalized_mode = str(texture_mode or "topdown_tiles_v1").strip().lower() or "topdown_tiles_v1"
     if normalized_mode not in VALID_SCENE_TEXTURE_MODES:
         normalized_mode = "topdown_tiles_v1"
+    normalized_role = str(surface_role or "").strip().lower() or "unknown"
+    if tracker is not None:
+        tracker.note_role(normalized_role)
     if normalized_mode == "solid_color_legacy":
         return _solid_pbr_mesh(mesh, rgba=tint_rgba, roughness=roughness)
 
     trimesh = _require_trimesh()
-    normalized_role = str(surface_role or "").strip().lower()
     override_path = ""
     if texture_overrides:
         override_path = str(texture_overrides.get(normalized_role, "") or "").strip()
@@ -244,6 +294,7 @@ def apply_default_scene_texture(
     textured_mesh, uv = _build_facewise_uv_mesh(
         mesh,
         tile_scale_m=float(_TEXTURE_TILE_SCALE_M.get(str(surface_role or "").strip().lower(), 2.0)),
+        horizontal_axes=horizontal_axes,
     )
     if uv is None:
         if tracker is not None:

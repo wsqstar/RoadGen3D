@@ -2197,6 +2197,10 @@ def _build_explicit_graph_junction_geometries(
                     "patch_id": f"{junction.junction_id}_crosswalk_{arm_index:02d}",
                     "road_id": int(arm["road_id"]),
                     "centerline_id": str(arm["centerline_id"]),
+                    "horizontal_axes": [
+                        [float(arm["tangent"][0]), float(arm["tangent"][1])],
+                        [float(arm["normal"][0]), float(arm["normal"][1])],
+                    ],
                     "geometry": patch,
                 }
             )
@@ -2587,6 +2591,10 @@ def build_junction_geometries(
                 {
                     "patch_id": f"junction_{index:02d}_crosswalk_{arm_index:02d}",
                     "road_id": int(arm["road_id"]),
+                    "horizontal_axes": [
+                        [float(arm["tangent"][0]), float(arm["tangent"][1])],
+                        [float(arm["normal"][0]), float(arm["normal"][1])],
+                    ],
                     "geometry": patch,
                 }
             )

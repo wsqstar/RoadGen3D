@@ -24,6 +24,7 @@ from roadgen3d.services.design_types import (  # noqa: E402
     SceneJobStatusResponse,
     SceneRecord,
 )
+from roadgen3d.template_patch import TEMPLATE_PATCH_SCHEMA_VERSION  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from web.api.main import create_app  # noqa: E402
 
@@ -473,6 +474,25 @@ def test_design_api_endpoints_return_expected_shapes():
     graph_template_image_response = client.get("/api/graph-templates/hkust_gz_gate/image")
     assert graph_template_image_response.status_code == 200
     assert graph_template_image_response.headers["content-type"].startswith("image/")
+
+    template_patch_response = client.post(
+        "/api/graph-templates/hkust_gz_gate/template-patch/preview",
+        json={
+            "include_graph_payload": False,
+            "patch": {
+                "schema_version": TEMPLATE_PATCH_SCHEMA_VERSION,
+                "variant_id": "api_patch_demo",
+                "operations": [
+                    {"op": "remove_strip", "centerline_id": "centerline_04", "strip_id": "center_02"},
+                    {"op": "remove_strip", "centerline_id": "centerline_04", "strip_id": "center_05"},
+                ],
+            },
+        },
+    )
+    assert template_patch_response.status_code == 200
+    assert template_patch_response.json()["summary"]["variant_id"] == "api_patch_demo"
+    patched_centerline = template_patch_response.json()["annotation"]["centerlines"][0]
+    assert patched_centerline["lane_count"] == 2
 
     annotation_convert_response = client.post(
         "/api/reference-annotations/convert",

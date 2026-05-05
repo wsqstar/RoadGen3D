@@ -351,6 +351,7 @@ _BUILDING_WALL_COLORS = {
     "commercial": _rgba((176, 184, 192)),
     "transit": _rgba((151, 165, 182)),
     "green": _rgba((166, 171, 148)),
+    "analytical": _rgba((186, 193, 190)),
 }
 _BUILDING_WINDOW_COLOR = _rgba((68, 82, 96))
 

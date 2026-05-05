@@ -9,6 +9,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Tuple
 
+from .template_patch import apply_template_patch
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -129,9 +131,22 @@ def load_graph_template_annotation_payload(template_id: str) -> Dict[str, Any]:
     return copy.deepcopy(_load_template_payload(template_id))
 
 
+def load_graph_template_variant_annotation_payload(
+    template_id: str,
+    template_patch: Dict[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """Load a graph template annotation and apply an optional template patch."""
+
+    payload = load_graph_template_annotation_payload(template_id)
+    if not template_patch:
+        return payload
+    return apply_template_patch(payload, template_patch).annotation
+
+
 __all__ = [
     "GraphTemplate",
     "get_graph_template",
     "list_graph_templates",
     "load_graph_template_annotation_payload",
+    "load_graph_template_variant_annotation_payload",
 ]

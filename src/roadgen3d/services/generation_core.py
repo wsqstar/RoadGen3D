@@ -58,6 +58,7 @@ class TemplateDesignParams:
     """Parameters for direct graph template design generation."""
 
     template_id: str = DEFAULT_GRAPH_TEMPLATE_ID
+    template_patch: Optional[Dict[str, Any]] = None
     lane_count: int = 2
     lane_width_m: float = 3.5
     sidewalk_width_m: float = 2.5
@@ -361,10 +362,10 @@ def generate_template_scene(
     try:
         config = _build_compose_config(params, layout_mode="graph_template")
 
-        bridge = build_graph_template_scene_bridge(
-            config,
-            template_id=params.template_id,
-        )
+        bridge_kwargs: Dict[str, Any] = {"template_id": params.template_id}
+        if params.template_patch:
+            bridge_kwargs["template_patch"] = params.template_patch
+        bridge = build_graph_template_scene_bridge(config, **bridge_kwargs)
 
         out_dir = _build_out_dir(options.out_dir, "graph_template", params.template_id)
         object_backend, ground_backend, sky_backend = _build_scene_backends(options)

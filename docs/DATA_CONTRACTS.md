@@ -78,10 +78,32 @@ allow_solver_fallback
 | `city_name_en` | string \| null | 城市名 |
 | `reference_plan_id` | string \| null | MetaUrban reference plan，仅 `metaurban` 生效 |
 | `graph_template_id` | string \| null | Graph template id，仅 `graph_template` 生效 |
+| `template_patch` | object \| null | Graph template 变体 patch，仅 `graph_template` 生效 |
 
-注意：`SceneContext` 是运行时上下文，不应混入 `compose_config_patch`。
+注意：`SceneContext` 是运行时上下文，不应混入 `compose_config_patch`。`template_patch` 不是 `StreetComposeConfig` 参数，它在 graph-template bridge 之前应用到 base annotation。
 
-### 2.4 `generation_options`
+### 2.4 `template_patch`
+
+代码来源：`src/roadgen3d/template_patch.py`
+Schema：`data/schemas/template_patch.schema.json`
+
+`template_patch` 是 Base Template 和 Scene Generation 之间的变体层。它可以修改 `cross_section_strips` 和 `functional_zones`，但不移动道路中心线、路口、建筑区域。
+
+支持的 operation：
+
+| op | 作用 |
+| --- | --- |
+| `resize_strip` | 调整某个 strip 宽度，例如缩窄机动车道或加宽人行道 |
+| `update_strip` | 修改 strip 的 `zone/kind/width_m/direction` |
+| `remove_strip` | 删除某个 strip，例如把四车道减到双向两车道 |
+| `add_strip` | 添加新 strip，例如公交专用道、自行车道、中央绿带 |
+| `replace_strips` | 替换某条 centerline 的完整横断面 |
+| `add_functional_zone` / `upsert_functional_zone` | 添加或替换小广场、花园、户外座椅区等功能区 |
+| `remove_functional_zone` | 删除功能区 |
+
+默认约束会保证车道宽度、人行净宽、双向机动车通行等底线；例如默认至少保留双向各一条机动车道。
+
+### 2.5 `generation_options`
 
 代码来源：`SceneGenerationOptions`
 

@@ -37,6 +37,7 @@ from .graph_templates import (
     get_graph_template,
     list_graph_templates,
     load_graph_template_annotation_payload,
+    load_graph_template_variant_annotation_payload,
 )
 from .index_store import FaissIndexStore
 from .latent_store import LatentStore, load_asset_records
@@ -109,6 +110,12 @@ from .reference_annotation_scene_bridge import (
 from .runtime_device import resolve_device_backend, resolve_torch_device
 from .street_layout import compose_street_scene
 from .street_program import infer_street_program
+from .template_patch import (
+    TEMPLATE_PATCH_SCHEMA_VERSION,
+    TemplatePatchApplication,
+    TemplatePatchError,
+    apply_template_patch,
+)
 from .theme_buildings import infer_theme_segments
 from .types import (
     AssetRecord,
@@ -187,6 +194,9 @@ __all__ = [
     "MetaUrbanProceduralConfig",
     "MetaUrbanReferencePlan",
     "MetaUrbanSceneBridgeResult",
+    "TEMPLATE_PATCH_SCHEMA_VERSION",
+    "TemplatePatchApplication",
+    "TemplatePatchError",
     "ModelLoadError",
     "LampParams",
     "PipelineResult",
@@ -270,10 +280,12 @@ __all__ = [
     "load_asset_records",
     "load_constraint_set",
     "load_graph_template_annotation_payload",
+    "load_graph_template_variant_annotation_payload",
     "load_rule_set",
     "parse_osm_features",
     "parse_reference_annotation",
     "project_to_local",
+    "apply_template_patch",
     "resolve_device_backend",
     "get_metaurban_reference_plan",
     "METAURBAN_SCENE_BBOX_PADDING_M",

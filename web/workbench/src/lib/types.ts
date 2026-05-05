@@ -9,6 +9,7 @@ export type DesignDraft = {
   design_summary: string;
   risk_notes: string[];
   parameter_sources_by_field: Record<string, string>;
+  template_patch?: Record<string, unknown> | null;
 };
 
 export type SceneContext = {
@@ -17,6 +18,7 @@ export type SceneContext = {
   city_name_en: string | null;
   reference_plan_id: string | null;
   graph_template_id: string | null;
+  template_patch?: Record<string, unknown> | null;
 };
 
 export type SceneJobCreateResponse = {
