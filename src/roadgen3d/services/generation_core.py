@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Literal, Optional, Tuple
 
 from ..json_safe import make_json_safe
+from ..capture_3d import capture_views_for_layout
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_procedural import MetaUrbanProceduralConfig
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
@@ -113,6 +114,12 @@ class GenerationOptions:
     policy_ckpt: Optional[Path] = None
     program_ckpt: Optional[Path] = None
     policy_temperature: float = 0.12
+    capture_3d_views: bool = True
+    capture_profile: str = "review_24"
+    capture_resolution: Tuple[int, int] = (1280, 720)
+    capture_failure_policy: str = "warn"
+    retain_glb_policy: str = "top_k"
+    capture_defer_glb_retention: bool = False
 
     def to_legacy_options(self) -> SceneGenerationOptions:
         """Convert to legacy SceneGenerationOptions for compatibility."""
@@ -132,6 +139,12 @@ class GenerationOptions:
             policy_ckpt=self.policy_ckpt,
             program_ckpt=self.program_ckpt,
             policy_temperature=self.policy_temperature,
+            capture_3d_views=self.capture_3d_views,
+            capture_profile=self.capture_profile,
+            capture_resolution=self.capture_resolution,
+            capture_failure_policy=self.capture_failure_policy,
+            retain_glb_policy=self.retain_glb_policy,
+            capture_defer_glb_retention=self.capture_defer_glb_retention,
         )
 
 
@@ -265,6 +278,23 @@ def _build_result(
     )
 
 
+def _capture_scene_views_if_requested(compose_result: Any, *, options: GenerationOptions) -> None:
+    if not options.capture_3d_views:
+        return
+    scene_layout_path = str(compose_result.outputs.get("scene_layout", "") or "").strip()
+    if not scene_layout_path:
+        return
+    capture_result = capture_views_for_layout(
+        layout_path=scene_layout_path,
+        scene_glb_path=str(compose_result.outputs.get("scene_glb", "") or ""),
+        options=options.to_legacy_options().to_dict(),
+        manifest_path=options.manifest_path,
+    )
+    if capture_result.capture_manifest_path:
+        compose_result.outputs["capture_manifest"] = capture_result.capture_manifest_path
+    compose_result.outputs["scene_glb"] = capture_result.scene_glb_path
+
+
 def generate_metaurban_scene(
     params: MetaurbanDesignParams,
     options: Optional[GenerationOptions] = None,
@@ -323,6 +353,7 @@ def generate_metaurban_scene(
             placement_context_override=bridge.placement_context,
         )
 
+        _capture_scene_views_if_requested(result, options=options)
         return _build_result(job_id, config, result, extra_summary=bridge.summary_metadata)
 
     except KeyError as exc:
@@ -392,6 +423,7 @@ def generate_template_scene(
             placement_context_override=bridge.placement_context,
         )
 
+        _capture_scene_views_if_requested(result, options=options)
         return _build_result(job_id, config, result, extra_summary=bridge.summary_metadata)
 
     except KeyError as exc:

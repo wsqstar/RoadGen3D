@@ -48,6 +48,7 @@ from roadgen3d.knowledge.source_registry import (  # noqa: E402
 from roadgen3d.knowledge.pdf_rag import PdfKnowledgeBaseBuilder  # noqa: E402
 from roadgen3d.diff_engine import compute_scene_diff  # noqa: E402
 from roadgen3d.diff_render import render_diff_overlay, render_delta_map  # noqa: E402
+from roadgen3d.capture_3d import capture_views_for_layout  # noqa: E402
 from roadgen3d.street_layout import rebuild_glb_from_layout  # noqa: E402
 
 
@@ -175,6 +176,18 @@ class RebuildLayoutGlbRequestModel(BaseModel):
     layout_path: str
     manifest_path: Optional[str] = None
     force: bool = False
+
+
+class CaptureViewsRequestModel(BaseModel):
+    layout_path: str
+    scene_glb_path: Optional[str] = None
+    manifest_path: Optional[str] = None
+    capture_3d_views: bool = True
+    capture_profile: str = "review_24"
+    capture_resolution: List[int] = Field(default_factory=lambda: [1280, 720])
+    capture_failure_policy: str = "warn"
+    retain_glb_policy: str = "top_k"
+    viewer_url: str = ""
 
 
 def _resolve_layout_referenced_path(value: str, layout_path: Path) -> Path | None:
@@ -534,6 +547,46 @@ def create_app(
             "manifest_path": str(manifest_path),
             "rebuilt": True,
         })
+
+    @app.post("/api/design/capture-views")
+    def capture_design_views(request: CaptureViewsRequestModel) -> Dict[str, Any]:
+        raw_layout_path = request.layout_path.strip()
+        if not raw_layout_path:
+            raise HTTPException(status_code=400, detail="layout_path is required")
+        layout_path = Path(raw_layout_path).expanduser().resolve()
+        if not layout_path.exists() or not layout_path.is_file():
+            raise HTTPException(status_code=404, detail=f"Layout file not found: {layout_path}")
+
+        manifest_path = (
+            Path(request.manifest_path).expanduser().resolve()
+            if request.manifest_path
+            else (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+        )
+        if not manifest_path.exists() or not manifest_path.is_file():
+            raise HTTPException(status_code=404, detail=f"Asset manifest not found: {manifest_path}")
+
+        try:
+            capture_result = capture_views_for_layout(
+                layout_path=layout_path,
+                scene_glb_path=request.scene_glb_path,
+                manifest_path=manifest_path,
+                options={
+                    "capture_3d_views": request.capture_3d_views,
+                    "capture_profile": request.capture_profile,
+                    "capture_resolution": request.capture_resolution,
+                    "capture_failure_policy": request.capture_failure_policy,
+                    "retain_glb_policy": request.retain_glb_policy,
+                    "viewer_url": request.viewer_url,
+                },
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except RuntimeError as exc:
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Failed to capture 3D views: {exc}") from exc
+
+        return make_json_safe(capture_result.to_dict())
 
     @app.post("/api/scenes/diff")
     def scene_diff(request: SceneDiffRequestModel) -> Dict[str, Any]:

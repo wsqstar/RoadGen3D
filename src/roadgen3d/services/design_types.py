@@ -352,6 +352,12 @@ class SceneGenerationOptions:
     policy_temperature: float = 0.12
     build_production_artifacts: bool = True
     render_presentation_artifacts: bool = True
+    capture_3d_views: bool = True
+    capture_profile: str = "review_24"
+    capture_resolution: tuple[int, int] = (1280, 720)
+    capture_failure_policy: str = "warn"
+    retain_glb_policy: str = "top_k"
+    capture_defer_glb_retention: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -376,6 +382,12 @@ class SceneGenerationOptions:
             "policy_temperature": float(self.policy_temperature),
             "build_production_artifacts": bool(self.build_production_artifacts),
             "render_presentation_artifacts": bool(self.render_presentation_artifacts),
+            "capture_3d_views": bool(self.capture_3d_views),
+            "capture_profile": self.capture_profile,
+            "capture_resolution": list(self.capture_resolution),
+            "capture_failure_policy": self.capture_failure_policy,
+            "retain_glb_policy": self.retain_glb_policy,
+            "capture_defer_glb_retention": bool(self.capture_defer_glb_retention),
         }
 
 

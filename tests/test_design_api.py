@@ -24,6 +24,7 @@ from roadgen3d.services.design_types import (  # noqa: E402
     SceneJobStatusResponse,
     SceneRecord,
 )
+from roadgen3d.capture_3d import Capture3DResult  # noqa: E402
 from roadgen3d.template_patch import TEMPLATE_PATCH_SCHEMA_VERSION  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from web.api.main import create_app  # noqa: E402
@@ -943,3 +944,45 @@ def test_rebuild_layout_glb_reexports_and_updates_layout(tmp_path: Path, monkeyp
     updated = json.loads(layout_path.read_text(encoding="utf-8"))
     assert updated["outputs"]["scene_glb"] == payload["scene_glb_path"]
     assert updated["summary"]["scene_glb_rebuilt_from_layout"] is True
+
+
+def test_capture_views_endpoint_invokes_backend_capture(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    manifest_path = tmp_path / "real_assets_manifest.jsonl"
+    manifest_path.write_text("", encoding="utf-8")
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"outputs": {}, "summary": {}}), encoding="utf-8")
+    captured: dict[str, object] = {}
+
+    def fake_capture_views_for_layout(**kwargs):
+        captured.update(kwargs)
+        return Capture3DResult(
+            status="succeeded",
+            layout_path=str(layout_path),
+            capture_manifest_path=str(tmp_path / "view_captures" / "capture_manifest.json"),
+            scene_glb_path="",
+            view_count=1,
+            views=[{"view_id": "street_1", "path": str(tmp_path / "street.png")}],
+        )
+
+    monkeypatch.setattr("web.api.main.capture_views_for_layout", fake_capture_views_for_layout)
+
+    client = TestClient(create_app(design_service=_FakeService()))
+    response = client.post(
+        "/api/design/capture-views",
+        json={
+            "layout_path": str(layout_path),
+            "manifest_path": str(manifest_path),
+            "capture_profile": "quick_12",
+            "capture_resolution": [640, 360],
+            "retain_glb_policy": "always",
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["status"] == "succeeded"
+    assert payload["view_count"] == 1
+    assert captured["layout_path"] == layout_path
+    assert captured["manifest_path"] == manifest_path
+    assert captured["options"]["capture_profile"] == "quick_12"
+    assert captured["options"]["capture_resolution"] == [640, 360]

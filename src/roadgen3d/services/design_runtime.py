@@ -7,9 +7,10 @@ import logging
 from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Dict, Mapping
+from typing import Any, Callable, Dict, Mapping, Sequence
 
 from ..json_safe import make_json_safe
+from ..capture_3d import capture_views_for_layout
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
 from ..street_layout import compose_street_scene
@@ -160,6 +161,22 @@ def normalize_scene_generation_options(
             return value.strip().lower() not in {"0", "false", "no", "off"}
         return bool(value)
 
+    def _resolve_resolution(value: object, fallback: tuple[int, int]) -> tuple[int, int]:
+        if isinstance(value, str):
+            parts = value.lower().replace("x", ",").split(",")
+        elif isinstance(value, Sequence):
+            parts = list(value)
+        else:
+            parts = list(fallback)
+        if len(parts) < 2:
+            return fallback
+        try:
+            width = max(64, min(4096, int(float(parts[0]))))
+            height = max(64, min(4096, int(float(parts[1]))))
+        except (TypeError, ValueError):
+            return fallback
+        return (width, height)
+
     return SceneGenerationOptions(
         manifest_path=Path(str(payload.get("manifest_path", DEFAULT_SCENE_GENERATION_OPTIONS.manifest_path))).expanduser().resolve(),
         artifacts_dir=Path(str(payload.get("artifacts_dir", DEFAULT_SCENE_GENERATION_OPTIONS.artifacts_dir))).expanduser().resolve(),
@@ -206,6 +223,21 @@ def normalize_scene_generation_options(
         render_presentation_artifacts=_resolve_bool(
             payload.get("render_presentation_artifacts"),
             DEFAULT_SCENE_GENERATION_OPTIONS.render_presentation_artifacts,
+        ),
+        capture_3d_views=_resolve_bool(
+            payload.get("capture_3d_views"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.capture_3d_views,
+        ),
+        capture_profile=str(payload.get("capture_profile", DEFAULT_SCENE_GENERATION_OPTIONS.capture_profile) or "review_24"),
+        capture_resolution=_resolve_resolution(
+            payload.get("capture_resolution", DEFAULT_SCENE_GENERATION_OPTIONS.capture_resolution),
+            DEFAULT_SCENE_GENERATION_OPTIONS.capture_resolution,
+        ),
+        capture_failure_policy=str(payload.get("capture_failure_policy", DEFAULT_SCENE_GENERATION_OPTIONS.capture_failure_policy) or "warn"),
+        retain_glb_policy=str(payload.get("retain_glb_policy", DEFAULT_SCENE_GENERATION_OPTIONS.retain_glb_policy) or "top_k"),
+        capture_defer_glb_retention=_resolve_bool(
+            payload.get("capture_defer_glb_retention"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.capture_defer_glb_retention,
         ),
     )
 
@@ -285,6 +317,52 @@ def _build_scene_generation_result(
         scene_glb_path=str(compose_result.outputs.get("scene_glb", "") or ""),
         scene_ply_path=str(compose_result.outputs.get("scene_ply", "") or ""),
         viewer_url=viewer_url,
+    )
+
+
+def _capture_scene_views_if_requested(
+    compose_result: Any,
+    *,
+    options: SceneGenerationOptions,
+    progress_callback: ProgressCallback | None = None,
+) -> None:
+    if not options.capture_3d_views:
+        return
+    layout_path = str(compose_result.outputs.get("scene_layout", "") or "").strip()
+    if not layout_path:
+        return
+    _emit_progress(
+        progress_callback,
+        stage="capture_3d_views",
+        progress=99,
+        message="Capturing backend 3D review views.",
+        layout_path=layout_path,
+        capture_profile=options.capture_profile,
+    )
+    capture_result = capture_views_for_layout(
+        layout_path=layout_path,
+        scene_glb_path=str(compose_result.outputs.get("scene_glb", "") or ""),
+        options=options.to_dict(),
+        manifest_path=options.manifest_path,
+    )
+    if capture_result.capture_manifest_path:
+        compose_result.outputs["capture_manifest"] = capture_result.capture_manifest_path
+    compose_result.outputs["scene_glb"] = capture_result.scene_glb_path
+    _emit_progress(
+        progress_callback,
+        stage="capture_3d_views",
+        progress=99,
+        message=(
+            "Captured backend 3D review views."
+            if capture_result.status == "succeeded"
+            else "Backend 3D capture failed; generation kept the GLB for debugging."
+        ),
+        layout_path=layout_path,
+        capture_manifest_path=capture_result.capture_manifest_path,
+        capture_status=capture_result.status,
+        capture_error=capture_result.error,
+        capture_view_count=capture_result.view_count,
+        glb_deleted=capture_result.glb_deleted,
     )
 
 
@@ -604,6 +682,7 @@ def _generate_metaurban_scene_from_draft(
         render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
+    _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
@@ -667,6 +746,7 @@ def _generate_graph_template_scene_from_draft(
         render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
+    _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
@@ -796,6 +876,7 @@ def generate_scene_from_draft(
         render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
+    _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
@@ -869,6 +950,7 @@ def generate_scene_from_graph_context(
         render_presentation_artifacts=options.render_presentation_artifacts,
         progress_callback=progress_callback,
     )
+    _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
     return _build_scene_generation_result(
         config=config,
         compose_result=result,

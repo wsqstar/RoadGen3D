@@ -14,6 +14,7 @@ from typing import Any, Dict, List, Mapping, Sequence
 from uuid import uuid4
 
 from ..graph_templates import get_graph_template
+from ..capture_3d import capture_view_paths, layout_capture_failed
 from ..json_safe import make_json_safe
 from ..llm.design_workflow import DesignAssistantService
 from ..presets import SCENE_PRESETS
@@ -542,6 +543,7 @@ class BranchRunService:
             if state.target_samples:
                 if state.retain_topk_artifacts:
                     generation_options.setdefault("export_format", "glb")
+                    generation_options.setdefault("capture_defer_glb_retention", True)
                     generation_options.setdefault("build_production_artifacts", False)
                     generation_options.setdefault("render_presentation_artifacts", bool(state.score_with_rendered_views))
                 else:
@@ -710,15 +712,17 @@ class BranchRunService:
                         _write_json(node_dir / "node.json", node.to_dict())
                         changed = True
                     continue
+                capture_failed = layout_capture_failed(node.scene_layout_path)
                 if _prune_node_artifacts(node, node_dir, state.output_dir):
                     changed = True
-                if node.artifacts_retained or node.artifact_rank is not None or node.artifact_paths or node.scene_glb_path:
+                if node.artifacts_retained or node.artifact_rank is not None or node.artifact_paths or (node.scene_glb_path and not capture_failed):
                     node.artifacts_retained = False
                     node.artifact_rank = None
                     node.artifact_paths = []
-                    node.scene_glb_path = ""
+                    if not capture_failed:
+                        node.scene_glb_path = ""
                     node.preview_path = ""
-                    node.can_restore_artifact = False
+                    node.can_restore_artifact = bool(capture_failed and _node_has_restorable_glb(node))
                     node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
                     _write_json(node_dir / "generation_trace.json", node.trace)
                     _write_json(node_dir / "node.json", node.to_dict())
@@ -1004,16 +1008,70 @@ def _rendered_views_for_evaluation(layout_path: str, *, limit: int = 3) -> List[
     except Exception:
         return []
     summary = dict(payload.get("summary", {}) or {})
+    render_views_3d = list(summary.get("render_views_3d", []) or [])
+    views_3d = _encoded_render_views(
+        _rank_3d_render_views(render_views_3d),
+        limit=limit,
+        label_prefix="3D capture",
+    )
+    if views_3d:
+        return views_3d
     render_views = list(summary.get("render_views", []) or [])
     ranked = sorted(render_views, key=lambda item: (
         0 if str(item.get("name", "") or "").startswith("final_") else 1,
         str(item.get("name", "") or ""),
     ))
+    return _encoded_render_views(ranked, limit=limit, label_prefix="Rendered view")
+
+
+def _rank_3d_render_views(render_views: Sequence[Mapping[str, Any]]) -> List[Mapping[str, Any]]:
+    selected: List[Mapping[str, Any]] = []
+    used_ids: set[int] = set()
+    kind_groups = (
+        {"pedestrian", "street"},
+        {"junction"},
+        {"overview"},
+    )
+    for kinds in kind_groups:
+        candidates = [
+            (idx, view)
+            for idx, view in enumerate(render_views)
+            if idx not in used_ids and str(view.get("kind", "") or "").strip().lower() in kinds
+        ]
+        if not candidates:
+            continue
+        idx, view = max(
+            candidates,
+            key=lambda item: (int(item[1].get("priority", 0) or 0), str(item[1].get("view_id", item[1].get("name", "")) or "")),
+        )
+        used_ids.add(idx)
+        selected.append(view)
+    remaining = [
+        (idx, view)
+        for idx, view in enumerate(render_views)
+        if idx not in used_ids
+    ]
+    remaining.sort(
+        key=lambda item: (
+            -int(item[1].get("priority", 0) or 0),
+            str(item[1].get("view_id", item[1].get("name", "")) or ""),
+        )
+    )
+    selected.extend(view for _, view in remaining)
+    return selected
+
+
+def _encoded_render_views(
+    ranked: Sequence[Mapping[str, Any]],
+    *,
+    limit: int,
+    label_prefix: str,
+) -> List[Dict[str, str]]:
     views: List[Dict[str, str]] = []
     for index, view in enumerate(ranked):
         if len(views) >= max(1, int(limit)):
             break
-        path = Path(str(view.get("path", "") or "")).expanduser()
+        path = Path(str(view.get("path", "") or view.get("image_path", "") or "")).expanduser()
         if not path.exists():
             continue
         mime = "image/jpeg" if path.suffix.lower() in {".jpg", ".jpeg"} else "image/png"
@@ -1021,9 +1079,10 @@ def _rendered_views_for_evaluation(layout_path: str, *, limit: int = 3) -> List[
             image_data_url = f"data:{mime};base64,{base64.b64encode(path.read_bytes()).decode('ascii')}"
         except Exception:
             continue
+        view_id = str(view.get("view_id", "") or view.get("name", "") or f"view_{index + 1}")
         views.append({
-            "view_id": str(view.get("name", "") or f"view_{index + 1}"),
-            "label": str(view.get("title", "") or view.get("name", "") or f"Rendered view {index + 1}"),
+            "view_id": view_id,
+            "label": str(view.get("label", "") or view.get("title", "") or view.get("name", "") or f"{label_prefix} {index + 1}"),
             "image_data_url": image_data_url,
         })
     return views
@@ -1050,6 +1109,7 @@ def _existing_retained_artifact_paths(node: BranchNode, node_dir: Path) -> List[
     paths: List[Path] = []
     if node.scene_glb_path:
         paths.append(Path(node.scene_glb_path).expanduser())
+    paths.extend(capture_view_paths(node.scene_layout_path))
     paths.extend(_render_view_paths(node.scene_layout_path))
     view_dir = node_dir / "presentation_views"
     if view_dir.exists():
@@ -1083,7 +1143,7 @@ def _node_has_restorable_glb(node: BranchNode) -> bool:
 def _prune_node_artifacts(node: BranchNode, node_dir: Path, run_dir: Path) -> bool:
     changed = False
     candidates: List[Path] = []
-    if node.scene_glb_path:
+    if node.scene_glb_path and not layout_capture_failed(node.scene_layout_path):
         candidates.append(Path(node.scene_glb_path).expanduser())
     candidates.extend(_render_view_paths(node.scene_layout_path))
     candidates.append(node_dir / "presentation_views")

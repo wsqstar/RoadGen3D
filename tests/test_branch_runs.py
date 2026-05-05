@@ -261,15 +261,19 @@ def test_branch_run_retains_only_top_scored_artifacts(tmp_path: Path):
     for node in result["nodes"]:
         glb_path = Path(node.get("scene_glb_path") or "")
         view_dir = Path(result["artifact_dir"]) / node["node_id"] / "presentation_views"
+        capture_dir = Path(result["artifact_dir"]) / node["node_id"] / "view_captures"
         if node["node_id"] in retained_ids:
             assert node["artifacts_retained"] is True
             assert glb_path.exists()
             assert view_dir.exists()
+            assert capture_dir.exists()
         else:
             assert node["artifacts_retained"] is False
             assert node.get("scene_glb_path") in {"", None}
             assert not (Path(result["artifact_dir"]) / node["node_id"] / "scene.glb").exists()
             assert not view_dir.exists()
+            assert capture_dir.exists()
+            assert (capture_dir / "capture_manifest.json").exists()
 
 
 def test_branch_run_fills_branch_scores_when_visual_eval_is_unavailable(tmp_path: Path):
@@ -449,11 +453,30 @@ class _FakeBranchDesignService:
                     "title": f"Final View {index + 1}",
                     "path": str(view_path),
                 })
+        capture_dir = out_dir / "view_captures"
+        capture_dir.mkdir(parents=True, exist_ok=True)
+        capture_views = []
+        for index, kind in enumerate(("street", "junction", "overview"), start=1):
+            capture_path = capture_dir / f"{index:02d}_{kind}.png"
+            capture_path.write_bytes(b"png")
+            capture_views.append({
+                "view_id": f"{kind}_1",
+                "kind": kind,
+                "priority": 90 - index,
+                "path": str(capture_path),
+            })
+        capture_manifest = capture_dir / "capture_manifest.json"
+        capture_manifest.write_text(json.dumps({"views": capture_views}), encoding="utf-8")
         layout_path.write_text(
             json.dumps({
-                "summary": {"length_m": 80, "render_views": render_views},
+                "summary": {
+                    "length_m": 80,
+                    "render_views": render_views,
+                    "render_views_3d": capture_views,
+                },
                 "config": draft.compose_config_patch,
                 "placements": [],
+                "outputs": {"capture_manifest": str(capture_manifest)},
             }),
             encoding="utf-8",
         )
