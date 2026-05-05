@@ -631,6 +631,12 @@ class DesignAssistantService:
             "indicators": self._extract_indicators(result),
             "config_patch": self._generate_config_patch(result),
             "llm_status": self._extract_llm_status(result),
+            "quality_layers": dict(getattr(result, "quality_layers", {}) or {}),
+            "generation_quality_score": (
+                int(float(getattr(result, "generation_quality_score")) * 100)
+                if getattr(result, "generation_quality_score", None) is not None
+                else None
+            ),
         }
 
     def generate_initial_config_from_graph(
@@ -870,6 +876,10 @@ class DesignAssistantService:
                 if self._llm_report_available(s) and self._llm_report_available(b)
                 else None
             ),
+            "amenity_service_density": round(float(getattr(w, "amenity_service_density_score", 0.0)) * 100, 1),
+            "furniture_occupation_ratio": round(float(getattr(w, "furniture_occupation_ratio", 0.0)) * 100, 1),
+            "clear_path_conflict_penalty": round(float(getattr(w, "clear_path_conflict_penalty", 0.0)) * 100, 1),
+            "walkability_top_contributors": list(getattr(w, "top_contributors", []) or []),
         }
 
     def _llm_report_available(self, report) -> bool:

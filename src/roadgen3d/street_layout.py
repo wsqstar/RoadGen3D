@@ -3429,12 +3429,19 @@ def _add_instance_meshes(
                     geom,
                     node_name=f"{placement.instance_id}_{geom_name}_{gidx}",
                     transform=combined @ local_tf,
+                    metadata={
+                        **_placement_glb_metadata(placement),
+                        "component_node_name": str(node_name),
+                        "component_geom_name": str(geom_name),
+                        "component_index": int(gidx),
+                    },
                 )
         else:
             scene.add_geometry(
                 mesh,
                 node_name=placement.instance_id,
                 transform=combined,
+                metadata=_placement_glb_metadata(placement),
             )
         if building_plan is not None and bool(building_plan.door_added):
             door_meshes = _create_attached_building_door_meshes(plan=building_plan, entry=entry)
@@ -3442,7 +3449,34 @@ def _add_instance_meshes(
                 placed_door = door_mesh.copy()
                 placed_door.apply_transform(rotation)
                 placed_door.apply_transform(translation)
-                scene.add_geometry(placed_door, node_name=f"{placement.instance_id}_door_{didx}")
+                scene.add_geometry(
+                    placed_door,
+                    node_name=f"{placement.instance_id}_door_{didx}",
+                    metadata={
+                        **_placement_glb_metadata(placement),
+                        "component_kind": "building_door",
+                        "component_index": int(didx),
+                    },
+                )
+
+
+def _placement_glb_metadata(placement: StreetPlacement) -> Dict[str, object]:
+    """Metadata exported to GLB node ``extras`` for layout/GLB fidelity checks."""
+
+    return {
+        "schema": "roadgen3d_instance_metadata_v1",
+        "instance_id": str(placement.instance_id),
+        "category": str(placement.category),
+        "asset_id": str(placement.asset_id),
+        "placement_group": str(placement.placement_group),
+        "selection_source": str(placement.selection_source),
+        "position_xyz": [float(value) for value in placement.position_xyz],
+        "yaw_deg": float(placement.yaw_deg),
+        "scale": float(placement.scale),
+        "scale_xyz": [float(value) for value in (placement.scale_xyz or [])],
+        "bbox_xz": [float(value) for value in (placement.bbox_xz or [])],
+        "source_bbox": [float(value) for value in (placement.bbox_xz or [])],
+    }
 
 
 def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
