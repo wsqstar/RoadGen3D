@@ -154,6 +154,15 @@ FILL_PRIORITY = True
 # Default maximum number of full meshes to keep in memory at once
 # This limits memory usage while still allowing mesh reuse
 DEFAULT_MAX_MESH_CACHE_SIZE = 20
+DEFAULT_SKY_DOME_ASSET_ID = "objaverse_tree_a90b8cca57b44f5492e796cf94d64e80-sky-dome"
+DEFAULT_SKY_DOME_MESH_PATH = (
+    ROOT / "data" / "real" / "split_meshes" / f"{DEFAULT_SKY_DOME_ASSET_ID}.glb"
+).resolve()
+DEFAULT_SKY_DOME_DIMENSIONS_M = {
+    "width": 160.2875,
+    "height": 161.4326,
+    "depth": 131.2546,
+}
 
 
 @dataclass(frozen=True)
@@ -1060,6 +1069,76 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
     if not rows:
         raise ValueError(f"real manifest is empty: {manifest_path}")
     return rows
+
+
+def _default_sky_dome_row() -> Dict[str, object] | None:
+    if not DEFAULT_SKY_DOME_MESH_PATH.exists():
+        return None
+    return {
+        "asset_id": DEFAULT_SKY_DOME_ASSET_ID,
+        "category": "sky_dome",
+        "text_desc": "Default extracted sky dome used as the generated scene environment dome.",
+        "mesh_path": str(DEFAULT_SKY_DOME_MESH_PATH),
+        "latent_path": "",
+        "style_tags": ["sky", "sky_dome", "environment"],
+        "quality_tier": 3,
+        "asset_role": "environment",
+        "source": "asset_editor_sky_dome_extract",
+        "scene_eligible": True,
+        "mesh_face_count": 960,
+        "scale": 1.0,
+        "dimensions_m": dict(DEFAULT_SKY_DOME_DIMENSIONS_M),
+        "origin_alignment": "center",
+    }
+
+
+def _ensure_default_sky_dome_row(rows: List[Dict[str, object]]) -> List[Dict[str, object]]:
+    if any(str(row.get("asset_id", "")) == DEFAULT_SKY_DOME_ASSET_ID for row in rows):
+        return rows
+    sky_row = _default_sky_dome_row()
+    if sky_row is None:
+        return rows
+    return [*rows, sky_row]
+
+
+def _default_sky_dome_placement(
+    config: StreetComposeConfig,
+    row: Mapping[str, object] | None,
+) -> StreetPlacement | None:
+    if row is None:
+        return None
+    dims = row.get("dimensions_m") if isinstance(row.get("dimensions_m"), Mapping) else DEFAULT_SKY_DOME_DIMENSIONS_M
+    native_diameter_m = max(
+        float(dims.get("width", DEFAULT_SKY_DOME_DIMENSIONS_M["width"])),
+        float(dims.get("height", DEFAULT_SKY_DOME_DIMENSIONS_M["height"])),
+        float(dims.get("depth", DEFAULT_SKY_DOME_DIMENSIONS_M["depth"])),
+        1.0,
+    )
+    scene_span_m = max(
+        float(getattr(config, "length_m", 80.0) or 80.0),
+        float(getattr(config, "road_width_m", 12.0) or 12.0)
+        + 2.0 * float(getattr(config, "sidewalk_width_m", 4.0) or 4.0)
+        + 40.0,
+        80.0,
+    )
+    target_diameter_m = max(native_diameter_m, scene_span_m * 2.25)
+    scale = max(1.0, target_diameter_m / native_diameter_m)
+    half_extent = 0.5 * native_diameter_m * scale
+    return StreetPlacement(
+        instance_id="environment_default_sky_dome",
+        asset_id=DEFAULT_SKY_DOME_ASSET_ID,
+        category="sky_dome",
+        score=1.0,
+        position_xyz=[0.0, 0.0, 0.0],
+        yaw_deg=0.0,
+        scale=float(scale),
+        bbox_xz=[-half_extent, -half_extent, half_extent, half_extent],
+        selection_source="default_sky_dome",
+        placement_group="environment",
+        constraint_penalty=0.0,
+        feasibility_score=1.0,
+        violated_rules=(),
+    )
 
 
 def _load_building_manifest(manifest_path: Path) -> List[Dict[str, object]]:
@@ -3394,8 +3473,12 @@ def _add_instance_meshes(
             [0.0, 1.0, 0.0],
             [0.0, 0.0, 0.0],
         )
-        # Street furniture sits on the elevated sidewalk; buildings stay at ground.
-        y_offset = SIDEWALK_ELEVATION_M if placement.placement_group != "building" else 0.0
+        # Street furniture sits on the elevated sidewalk; buildings and environment shells stay at scene origin.
+        is_environment_shell = (
+            placement.placement_group == "environment"
+            or str(placement.category).strip().lower() == "sky_dome"
+        )
+        y_offset = 0.0 if placement.placement_group == "building" or is_environment_shell else SIDEWALK_ELEVATION_M
         translation = trimesh.transformations.translation_matrix(
             [
                 float(placement.position_xyz[0]),
@@ -3572,10 +3655,13 @@ def rebuild_glb_from_layout(
             setattr(program_proxy, attr, float(sp_dict[attr]))
 
     # --- 3. Load manifest rows, filter to referenced asset_ids ---
-    placements_data: List[Dict[str, Any]] = layout_payload.get("placements") or []
+    placements_data: List[Dict[str, Any]] = [
+        *(layout_payload.get("placements") or []),
+        *(layout_payload.get("environment_placements") or []),
+    ]
     referenced_asset_ids = {str(p.get("asset_id", "")) for p in placements_data}
 
-    rows = _load_real_manifest(Path(manifest_path))
+    rows = _ensure_default_sky_dome_row(_load_real_manifest(Path(manifest_path)))
     filtered_rows = [r for r in rows if str(r["asset_id"]) in referenced_asset_ids]
 
     # --- 4. Build lazy mesh cache for referenced assets ---
@@ -7889,6 +7975,7 @@ def compose_street_scene(
         object_backend_name, rows = object_asset_backend.load_rows(manifest_path=manifest_path)
     else:
         rows = _load_real_manifest(manifest_path)
+    rows = _ensure_default_sky_dome_row(rows)
     ground_selection = None
     if ground_material_backend is not None:
         try:
@@ -7914,6 +8001,10 @@ def compose_street_scene(
     )
     rows = _inject_curated_virtual_assets(rows, mesh_cache, profile=curated_asset_profile)
     asset_by_id = {row["asset_id"]: row for row in rows}
+    default_sky_dome_placement = _default_sky_dome_placement(
+        config,
+        asset_by_id.get(DEFAULT_SKY_DOME_ASSET_ID),
+    )
     configured_locked_asset_ids = _curated_locked_asset_ids_for_profile(curated_asset_profile)
     locked_asset_ids = _validate_curated_locked_assets(
         asset_by_id=asset_by_id,
@@ -7925,8 +8016,10 @@ def compose_street_scene(
     for row in rows:
         category = row["category"]
         if category in category_to_rows:
+            if not _row_scene_eligible(row):
+                continue
             if category == "tree":
-                if not _row_scene_eligible(row) or not _is_external_tree_asset(row):
+                if not _is_external_tree_asset(row):
                     continue
             category_to_rows[category].append(row)
     tree_assets_unavailable = not bool(category_to_rows.get("tree"))
@@ -9739,12 +9832,16 @@ def compose_street_scene(
         texture_tracker=scene_texture_tracker,
         texture_overrides=texture_overrides,
     )
-    # Trim mesh_cache to only assets that are actually placed
-    used_asset_ids = {placement.asset_id for placement in placements}
+    final_render_placements = list(placements)
+    if default_sky_dome_placement is not None:
+        final_render_placements.append(default_sky_dome_placement)
+
+    # Trim mesh_cache to only assets that are actually placed in the final scene
+    used_asset_ids = {placement.asset_id for placement in final_render_placements}
     trimmed_mesh_cache = mesh_cache.get_trimmed_cache(used_asset_ids)
     _add_instance_meshes(
         scene=scene,
-        placements=placements,
+        placements=final_render_placements,
         mesh_cache=trimmed_mesh_cache,
         building_plans_by_instance={
             str(plan.instance_id): plan
@@ -10113,10 +10210,18 @@ def compose_street_scene(
             else "presentation_material_finish_v1"
         ),
         "scene_texture_pack": scene_texture_pack_name(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1"))),
+        "default_sky_dome_asset_id": (
+            DEFAULT_SKY_DOME_ASSET_ID if default_sky_dome_placement is not None else ""
+        ),
+        "default_sky_dome_enabled": bool(default_sky_dome_placement is not None),
     }
 
     summary_payload = {
         "instance_count": len(placements),
+        "environment_instance_count": 1 if default_sky_dome_placement is not None else 0,
+        "default_sky_dome_asset_id": (
+            DEFAULT_SKY_DOME_ASSET_ID if default_sky_dome_placement is not None else ""
+        ),
         "dropped_slots": int(dropped_slots),
         "dropped_slot_rate": float(dropped_slot_rate),
         "unique_asset_count": int(unique_asset_count),
@@ -10444,6 +10549,11 @@ def compose_street_scene(
         "summary": summary_payload,
         "visual_style": visual_style_payload,
         "placements": [placement.to_dict() for placement in placements],
+        "environment_placements": (
+            [default_sky_dome_placement.to_dict()]
+            if default_sky_dome_placement is not None
+            else []
+        ),
         "building_footprints": [footprint.to_dict() for footprint in building_footprints],
         "generated_lots": [lot.to_dict() for lot in generated_lots],
         "building_placements": [plan.to_dict() for plan in building_plans],
