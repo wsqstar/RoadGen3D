@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, MutableMapping, Sequence, Tuple
 
@@ -82,12 +82,60 @@ VALID_FUNCTIONAL_ZONE_KINDS = frozenset(
         "sculpture",
     }
 )
+VALID_SURFACE_ANNOTATION_KINDS = frozenset(
+    {
+        "bus_lane_widening",
+        "safety_island",
+        "colored_pavement",
+        "shared_surface",
+        "transit_pad",
+        "paving_zone",
+    }
+)
+VALID_SURFACE_ROLES = frozenset(
+    {
+        "carriageway",
+        "bus_lane",
+        "bike_lane",
+        "parking_lane",
+        "median",
+        "median_green",
+        "grass_belt",
+        "safety_island",
+        "shared_street_surface",
+        "colored_pavement",
+        "sidewalk",
+        "furnishing",
+        "context_ground",
+        "transit_pad",
+        "crossing",
+    }
+)
+SURFACE_ROLE_BY_KIND: Dict[str, str] = {
+    "bus_lane_widening": "bus_lane",
+    "safety_island": "safety_island",
+    "colored_pavement": "colored_pavement",
+    "shared_surface": "shared_street_surface",
+    "transit_pad": "transit_pad",
+    "paving_zone": "colored_pavement",
+}
+SURFACE_MATERIAL_PRESET_BY_KIND: Dict[str, str] = {
+    "bus_lane_widening": "bus_lane_green",
+    "safety_island": "safety_island_concrete",
+    "colored_pavement": "colored_pavement",
+    "shared_surface": "shared_street_surface",
+    "transit_pad": "transit_pad",
+    "paving_zone": "paving_zone",
+}
 NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
     "drive_lane": DEFAULT_DRIVE_LANE_WIDTH_M,
     "bus_lane": 3.5,
     "bike_lane": 1.8,
     "parking_lane": 2.5,
     "median": 0.3,
+    "grass_belt": 2.0,
+    "shared_street_surface": 4.0,
+    "colored_pavement": 1.5,
     "nearroad_buffer": 0.5,
     "nearroad_furnishing": 1.5,
     "clear_sidewalk": 2.5,
@@ -809,6 +857,49 @@ class AnnotatedFunctionalZone:
 
 
 @dataclass(frozen=True)
+class AnnotatedSurfaceMaterial:
+    preset: str = ""
+    color_hex: str = ""
+    texture_key: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        result: Dict[str, Any] = {"preset": self.preset}
+        if self.color_hex:
+            result["color_hex"] = self.color_hex
+        if self.texture_key:
+            result["texture_key"] = self.texture_key
+        return result
+
+
+@dataclass(frozen=True)
+class AnnotatedSurfaceAnnotation:
+    feature_id: str
+    label: str
+    kind: str
+    surface_role: str
+    centerline_id: str
+    station_start_m: float
+    station_end_m: float
+    lateral_start_m: float
+    lateral_end_m: float
+    material: AnnotatedSurfaceMaterial = field(default_factory=AnnotatedSurfaceMaterial)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.feature_id,
+            "label": self.label,
+            "kind": self.kind,
+            "surface_role": self.surface_role,
+            "centerline_id": self.centerline_id,
+            "station_start_m": float(self.station_start_m),
+            "station_end_m": float(self.station_end_m),
+            "lateral_start_m": float(self.lateral_start_m),
+            "lateral_end_m": float(self.lateral_end_m),
+            "material": self.material.to_dict(),
+        }
+
+
+@dataclass(frozen=True)
 class BezierCurve3:
     start: AnnotationPoint
     end: AnnotationPoint
@@ -986,6 +1077,7 @@ class ReferenceAnnotation:
     control_points: Tuple[AnnotatedMarker, ...]
     building_regions: Tuple[AnnotatedBuildingRegion, ...] = ()
     functional_zones: Tuple[AnnotatedFunctionalZone, ...] = ()
+    surface_annotations: Tuple[AnnotatedSurfaceAnnotation, ...] = ()
     junction_compositions: Tuple[JunctionComposition, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
@@ -1002,6 +1094,7 @@ class ReferenceAnnotation:
             "control_points": [item.to_dict() for item in self.control_points],
             "building_regions": [item.to_dict() for item in self.building_regions],
             "functional_zones": [item.to_dict() for item in self.functional_zones],
+            "surface_annotations": [item.to_dict() for item in self.surface_annotations],
             "junction_compositions": [item.to_dict() for item in self.junction_compositions],
         }
 
@@ -1509,6 +1602,70 @@ def _parse_functional_zone(value: Any, index: int) -> AnnotatedFunctionalZone:
     )
 
 
+def _parse_surface_material(value: Any, *, label: str, default_preset: str) -> AnnotatedSurfaceMaterial:
+    if value is None:
+        return AnnotatedSurfaceMaterial(preset=default_preset)
+    if isinstance(value, str):
+        return AnnotatedSurfaceMaterial(preset=_safe_slug(_as_string(value, default_preset), default_preset))
+    if not _is_record(value):
+        raise ValueError(f"{label} must be an object when provided.")
+    color_hex = _as_string(value.get("color_hex"), "")
+    if color_hex and not color_hex.startswith("#"):
+        color_hex = f"#{color_hex}"
+    return AnnotatedSurfaceMaterial(
+        preset=_safe_slug(_as_string(value.get("preset"), default_preset), default_preset),
+        color_hex=color_hex,
+        texture_key=_safe_slug(_as_string(value.get("texture_key"), ""), ""),
+    )
+
+
+def _parse_surface_annotation(value: Any, index: int) -> AnnotatedSurfaceAnnotation:
+    if not _is_record(value):
+        raise ValueError(f"surface_annotations[{index}] must be an object.")
+    fallback_id = f"surface_{index + 1:02d}"
+    feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
+    kind = _safe_slug(_as_string(value.get("kind"), "paving_zone"), "paving_zone")
+    if kind not in VALID_SURFACE_ANNOTATION_KINDS:
+        raise ValueError(
+            f"surface_annotations[{index}].kind must be one of {sorted(VALID_SURFACE_ANNOTATION_KINDS)}."
+        )
+    role_default = SURFACE_ROLE_BY_KIND.get(kind, "colored_pavement")
+    surface_role = _safe_slug(_as_string(value.get("surface_role"), role_default), role_default)
+    if surface_role not in VALID_SURFACE_ROLES:
+        raise ValueError(
+            f"surface_annotations[{index}].surface_role must be one of {sorted(VALID_SURFACE_ROLES)}."
+        )
+    material = _parse_surface_material(
+        value.get("material"),
+        label=f"surface_annotations[{index}].material",
+        default_preset=SURFACE_MATERIAL_PRESET_BY_KIND.get(kind, surface_role),
+    )
+    return AnnotatedSurfaceAnnotation(
+        feature_id=feature_id,
+        label=_as_string(value.get("label"), feature_id),
+        kind=kind,
+        surface_role=surface_role,
+        centerline_id=_as_string(value.get("centerline_id"), ""),
+        station_start_m=_as_float(
+            value.get("station_start_m"),
+            f"surface_annotations[{index}].station_start_m",
+        ),
+        station_end_m=_as_float(
+            value.get("station_end_m"),
+            f"surface_annotations[{index}].station_end_m",
+        ),
+        lateral_start_m=_as_float(
+            value.get("lateral_start_m"),
+            f"surface_annotations[{index}].lateral_start_m",
+        ),
+        lateral_end_m=_as_float(
+            value.get("lateral_end_m"),
+            f"surface_annotations[{index}].lateral_end_m",
+        ),
+        material=material,
+    )
+
+
 def functional_zone_to_local_coords(
     zone: AnnotatedFunctionalZone,
     annotation: ReferenceAnnotation,
@@ -1525,6 +1682,15 @@ def functional_zone_to_local_coords(
 
 def _annotation_point_xy(point: AnnotationPoint) -> Tuple[float, float]:
     return (float(point.x), float(point.y))
+
+
+def _polyline_length(points: Sequence[Tuple[float, float]]) -> float:
+    return float(sum(_distance(a, b) for a, b in zip(points[:-1], points[1:])))
+
+
+def _centerline_length_m(centerline: AnnotatedCenterline, annotation: ReferenceAnnotation) -> float:
+    ppm = max(float(annotation.pixels_per_meter), 1e-6)
+    return _polyline_length([_annotation_point_xy(point) for point in centerline.points]) / ppm
 
 
 def _junction_anchor_xy(junction: AnnotatedJunction) -> Tuple[float, float]:
@@ -1776,6 +1942,34 @@ def _validate_explicit_junction_model(annotation: ReferenceAnnotation) -> None:
                 )
 
 
+def _validate_surface_annotations(annotation: ReferenceAnnotation) -> None:
+    if not annotation.surface_annotations:
+        return
+    centerlines_by_id = {str(centerline.feature_id): centerline for centerline in annotation.centerlines}
+    for index, surface in enumerate(annotation.surface_annotations):
+        centerline = centerlines_by_id.get(str(surface.centerline_id))
+        if centerline is None:
+            raise ValueError(
+                f"surface_annotations[{index}].centerline_id references missing centerline '{surface.centerline_id}'."
+            )
+        if float(surface.station_start_m) < 0.0:
+            raise ValueError(f"surface_annotations[{index}].station_start_m must be non-negative.")
+        if float(surface.station_end_m) <= float(surface.station_start_m):
+            raise ValueError(f"surface_annotations[{index}].station_end_m must be greater than station_start_m.")
+        centerline_length_m = _centerline_length_m(centerline, annotation)
+        if float(surface.station_end_m) > centerline_length_m + 1e-6:
+            raise ValueError(
+                f"surface_annotations[{index}].station_end_m exceeds centerline '{surface.centerline_id}' length "
+                f"({centerline_length_m:.3f}m)."
+            )
+        if float(surface.lateral_end_m) <= float(surface.lateral_start_m):
+            raise ValueError(
+                f"surface_annotations[{index}].lateral_end_m must be greater than lateral_start_m."
+            )
+        if float(surface.lateral_end_m) - float(surface.lateral_start_m) < 0.05:
+            raise ValueError(f"surface_annotations[{index}] lateral width must be at least 0.05m.")
+
+
 def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotation:
     if not _is_record(payload):
         raise ValueError("Annotation JSON must be an object.")
@@ -1786,6 +1980,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     control_points_raw = payload.get("control_points") or []
     building_regions_raw = payload.get("building_regions") or []
     functional_zones_raw = payload.get("functional_zones") or []
+    surface_annotations_raw = payload.get("surface_annotations") or []
     junction_compositions_raw = payload.get("junction_compositions") or payload.get("compositions") or []
     if not isinstance(junction_compositions_raw, Sequence) or isinstance(junction_compositions_raw, (str, bytes)):
         raise ValueError("junction_compositions must be an array.")
@@ -1802,6 +1997,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         raise ValueError("building_regions must be an array.")
     if not isinstance(functional_zones_raw, Sequence) or isinstance(functional_zones_raw, (str, bytes)):
         raise ValueError("functional_zones must be an array.")
+    if not isinstance(surface_annotations_raw, Sequence) or isinstance(surface_annotations_raw, (str, bytes)):
+        raise ValueError("surface_annotations must be an array.")
 
     centerlines = tuple(_parse_centerline(item, index) for index, item in enumerate(centerlines_raw))
     if not centerlines:
@@ -1839,11 +2036,16 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
             _parse_functional_zone(item, index)
             for index, item in enumerate(functional_zones_raw)
         ),
+        surface_annotations=tuple(
+            _parse_surface_annotation(item, index)
+            for index, item in enumerate(surface_annotations_raw)
+        ),
         junction_compositions=tuple(
             _parse_junction_composition(item, index)
             for index, item in enumerate(junction_compositions_raw)
         ),
     )
+    _validate_surface_annotations(annotation)
     _validate_explicit_junction_model(annotation)
     return annotation
 
@@ -1939,6 +2141,10 @@ def _build_street_furniture_instances(annotation: ReferenceAnnotation) -> List[D
         for instance in centerline.street_furniture_instances:
             items.append(instance.to_dict())
     return items
+
+
+def _build_surface_annotation_records(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
+    return [surface.to_dict() for surface in annotation.surface_annotations]
 
 
 def _collect_local_centerlines(
@@ -2753,6 +2959,9 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         if item.get("reference_width_px") is not None
     ]
     strip_count = sum(int(item["strip_count"]) for item in cross_section_profiles)
+    surface_roles: Dict[str, int] = {}
+    for surface in annotation.surface_annotations:
+        surface_roles[surface.surface_role] = surface_roles.get(surface.surface_role, 0) + 1
     return {
         "plan_id": annotation.plan_id,
         "image_path": annotation.image_path,
@@ -2779,6 +2988,8 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         "control_point_count": len(annotation.control_points),
         "control_point_kinds": sorted({item.kind for item in annotation.control_points}),
         "building_region_count": len(annotation.building_regions),
+        "surface_annotation_count": len(annotation.surface_annotations),
+        "surface_annotation_role_counts": surface_roles,
         "cross_section_strip_count": strip_count,
         "street_furniture_instance_count": len(furniture_instances),
         "total_drive_lane_count": sum(int(item["lane_profile"]["total_drive_lane_count"]) for item in road_profiles),
@@ -2821,6 +3032,7 @@ def build_reference_annotation_graph_payload(
     road_profiles = _build_annotation_road_profiles(annotation)
     cross_section_profiles = _build_cross_section_profiles(annotation)
     street_furniture_instances = _build_street_furniture_instances(annotation)
+    surface_annotations = _build_surface_annotation_records(annotation)
     metaurban_asset_hints = _build_metaurban_asset_hint_records(annotation)
     metaurban_asset_guide = _build_metaurban_asset_guide()
     derived_junctions = _derive_topology_junctions(
@@ -2832,6 +3044,7 @@ def build_reference_annotation_graph_payload(
     summary["road_profile_count"] = len(road_profiles)
     summary["cross_section_profile_count"] = len(cross_section_profiles)
     summary["street_furniture_instance_count"] = len(street_furniture_instances)
+    summary["surface_annotation_count"] = len(surface_annotations)
     summary["metaurban_asset_hint_count"] = len(metaurban_asset_hints)
     summary["metaurban_assets_dir_present"] = bool(metaurban_asset_guide["assets_dir_present"])
     summary["metaurban_pedestrian_assets_dir_present"] = bool(metaurban_asset_guide["assets_pedestrian_dir_present"])
@@ -2845,6 +3058,7 @@ def build_reference_annotation_graph_payload(
         "road_profiles": road_profiles,
         "cross_section_profiles": cross_section_profiles,
         "street_furniture_instances": street_furniture_instances,
+        "surface_annotations": surface_annotations,
         "metaurban_asset_hints": metaurban_asset_hints,
         "metaurban_asset_guide": metaurban_asset_guide,
         "derived_junctions": derived_junctions,
@@ -2860,6 +3074,8 @@ __all__ = [
     "AnnotatedJunction",
     "AnnotatedMarker",
     "AnnotatedRoundabout",
+    "AnnotatedSurfaceAnnotation",
+    "AnnotatedSurfaceMaterial",
     "AnnotatedStreetFurnitureInstance",
     "AnnotationPoint",
     "DEFAULT_PIXELS_PER_METER",

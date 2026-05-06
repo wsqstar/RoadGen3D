@@ -99,6 +99,12 @@ def _build_real_rows(base_dir: Path, *, include_buildings: bool = False) -> list
                 "split": "train",
             }
         )
+        if category in {"lamp", "trash", "bollard", "tree"}:
+            rows[-1]["quality_tier"] = 3
+            rows[-1]["scene_eligible"] = True
+        if category == "tree":
+            rows[-1]["source"] = "external_import"
+            rows[-1]["quality_notes"] = ["tree_upright_validated", "scene_ready"]
     if include_buildings:
         for idx, asset_id in enumerate(("building_01", "building_02"), start=len(rows)):
             mesh_path = base_dir / "meshes" / f"{asset_id}.glb"
@@ -1995,12 +2001,19 @@ def test_pick_category_candidate_scene_ready_first_falls_back_when_only_ineligib
     assert row["asset_id"] == "tree_lowpoly"
 
 
-def test_pick_category_candidate_curated_lock_uses_fixed_hq_assets(monkeypatch):
+def test_pick_category_candidate_fixed_hq_uses_seeded_allowlist(monkeypatch):
     asset_by_id = {
         "lamp_modern_production": _asset_row(
             "lamp_modern_production",
             "lamp",
             source="parametric_generated",
+            quality_tier=3,
+            scene_eligible=True,
+        ),
+        "lamp_allowlist_alt": _asset_row(
+            "lamp_allowlist_alt",
+            "lamp",
+            source="urbanverse",
             quality_tier=3,
             scene_eligible=True,
         ),
@@ -2052,7 +2065,37 @@ def test_pick_category_candidate_curated_lock_uses_fixed_hq_assets(monkeypatch):
         used_asset_ids=set(),
         rng=random.Random(0),
         config=config,
+        stable_selection_key="seed=0:lamp:theme_a",
     )
+    lamp_row_repeat, _lamp_score_repeat, lamp_source_repeat = street_layout._pick_category_candidate(
+        query="street",
+        category="lamp",
+        topk=3,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=[row for row in asset_by_id.values() if row["category"] == "lamp"],
+        used_asset_ids=set(),
+        rng=random.Random(999),
+        config=config,
+        stable_selection_key="seed=0:lamp:theme_a",
+    )
+    lamp_ids_by_theme = {
+        street_layout._pick_category_candidate(
+            query="street",
+            category="lamp",
+            topk=3,
+            embedder=_UnitFakeEmbedder(),
+            index_store=_UnitFakeIndexStore(hits),
+            asset_by_id=asset_by_id,
+            category_pool=[row for row in asset_by_id.values() if row["category"] == "lamp"],
+            used_asset_ids=set(),
+            rng=random.Random(0),
+            config=config,
+            stable_selection_key=f"seed={seed}:lamp:theme_a",
+        )[0]["asset_id"]
+        for seed in range(12)
+    }
     trash_row, trash_score, trash_source = street_layout._pick_category_candidate(
         query="street",
         category="trash",
@@ -2064,6 +2107,7 @@ def test_pick_category_candidate_curated_lock_uses_fixed_hq_assets(monkeypatch):
         used_asset_ids=set(),
         rng=random.Random(0),
         config=config,
+        stable_selection_key="seed=0:trash:theme_a",
     )
     bollard_row, bollard_score, bollard_source = street_layout._pick_category_candidate(
         query="street",
@@ -2076,25 +2120,36 @@ def test_pick_category_candidate_curated_lock_uses_fixed_hq_assets(monkeypatch):
         used_asset_ids=set(),
         rng=random.Random(0),
         config=config,
+        stable_selection_key="seed=0:bollard:theme_a",
     )
 
-    assert (lamp_row["asset_id"], lamp_score, lamp_source) == ("lamp_modern_production", 1.0, "curated_asset_lock")
+    assert lamp_row["asset_id"] in {"lamp_modern_production", "lamp_allowlist_alt"}
+    assert (lamp_score, lamp_source) == (1.0, "curated_allowlist_stable")
+    assert (lamp_row_repeat["asset_id"], lamp_source_repeat) == (lamp_row["asset_id"], "curated_allowlist_stable")
+    assert len(lamp_ids_by_theme) >= 2
     assert (trash_row["asset_id"], trash_score, trash_source) == (
         "objaverse_trash_f16b7d84113d4cba869412ee95769910",
         1.0,
-        "curated_asset_lock",
+        "curated_allowlist_stable",
     )
-    assert (bollard_row["asset_id"], bollard_score, bollard_source) == ("curated_railing_module_v1", 1.0, "curated_asset_lock")
+    assert (bollard_row["asset_id"], bollard_score, bollard_source) == (
+        "curated_railing_module_v1",
+        1.0,
+        "curated_allowlist_stable",
+    )
 
 
-def test_validate_curated_locked_assets_raises_for_missing_locked_asset():
+def test_validate_curated_locked_assets_reports_available_fallbacks():
     asset_by_id = {
         "lamp_modern_production": _asset_row("lamp_modern_production", "lamp", scene_eligible=True),
         "curated_railing_module_v1": _asset_row("curated_railing_module_v1", "bollard", source="curated_virtual", scene_eligible=True),
     }
 
-    with pytest.raises(RuntimeError, match="requires trash asset"):
-        street_layout._validate_curated_locked_assets(asset_by_id=asset_by_id, profile="fixed_hq_v1")
+    usable = street_layout._validate_curated_locked_assets(asset_by_id=asset_by_id, profile="fixed_hq_v1")
+
+    assert usable["lamp"] == "lamp_modern_production"
+    assert usable["bollard"] == "curated_railing_module_v1"
+    assert "trash" not in usable
 
 
 def test_osm_bench_yaw_aligns_parallel_to_carriageway():
@@ -2904,49 +2959,37 @@ def test_scene_layout_contains_asset_source_usage_summary(tmp_path: Path, monkey
     assert any(item.get("source") == "objaverse_import" for item in summary.get("asset_usage_by_source", []))
 
 
-def test_scene_layout_contains_curated_asset_lock_summary(tmp_path: Path, monkeypatch):
-    pytest.importorskip("trimesh")
+def test_fixed_hq_profile_builds_curated_asset_allowlists(tmp_path: Path):
     rows = _build_real_rows(tmp_path / "data")
-    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
-    _write_manifest(manifest, rows)
-    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in reversed(rows)])
+    rows.append(
+        _asset_row(
+            "lamp_allowlist_alt",
+            "lamp",
+            source="urbanverse",
+            quality_tier=3,
+            scene_eligible=True,
+        )
+    )
+    for row in rows:
+        if row["category"] in {"lamp", "trash", "bollard", "tree"}:
+            row["quality_tier"] = 3
+            row["scene_eligible"] = True
+        if row["category"] == "tree":
+            row["source"] = "external_import"
+            row["quality_notes"] = ["tree_upright_validated", "scene_ready"]
 
-    result = compose_street_scene(
+    category_to_rows = {category: [] for category in street_layout.DEFAULT_CATEGORIES}
+    for row in rows:
+        category_to_rows[str(row["category"])].append(row)
+
+    allowlists = street_layout._curated_allowlist_ids_by_category(
+        category_to_rows,
         config=_build_config(seed=42),
-        manifest_path=manifest,
-        artifacts_dir=tmp_path / "artifacts",
-        local_files_only=True,
-        device="cpu",
-        export_format="glb",
-        out_dir=tmp_path / "artifacts",
     )
-    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
-    summary = payload["summary"]
 
-    assert summary["asset_lock_profile"] == "fixed_hq_v1"
-    assert summary["curated_asset_lock_enabled"] is True
-    assert summary["locked_asset_ids"]["lamp"] == "lamp_modern_production"
-    assert summary["locked_asset_ids"]["trash"] == "objaverse_trash_f16b7d84113d4cba869412ee95769910"
-    assert summary["locked_asset_ids"]["bollard"] == "curated_railing_module_v1"
-    assert summary["fallback_blocked_categories"] == ["bollard", "lamp", "trash"]
-    assert summary["asset_lock_fallback_violations"] == {"lamp": 0, "trash": 0, "bollard": 0}
-
-    locked_by_category = {
-        "lamp": "lamp_modern_production",
-        "trash": "objaverse_trash_f16b7d84113d4cba869412ee95769910",
-        "bollard": "curated_railing_module_v1",
-    }
-    curated_placements = [
-        placement
-        for placement in payload["placements"]
-        if str(placement.get("category", "")).strip().lower() in locked_by_category
-    ]
-    assert curated_placements
-    assert all(
-        str(placement.get("asset_id", "")) == locked_by_category[str(placement.get("category", "")).strip().lower()]
-        for placement in curated_placements
-    )
-    assert all(str(placement.get("selection_source", "")) == "curated_asset_lock" for placement in curated_placements)
+    assert set(allowlists["lamp"]) == {"lamp_modern_production", "lamp_allowlist_alt"}
+    assert allowlists["trash"] == ["objaverse_trash_f16b7d84113d4cba869412ee95769910"]
+    assert "tree_01" in allowlists["tree"]
 
 
 def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, monkeypatch):

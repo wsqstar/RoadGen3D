@@ -17,6 +17,7 @@
 
 | 文档 | 说明 |
 | --- | --- |
+| [SCENARIO_DESIGN_OPTIONS.md](SCENARIO_DESIGN_OPTIONS.md) | `场景方案.pptx.pdf` 的设计解读，提炼更多道路与公共空间场景类型 |
 | [CURRENT_PROJECT_ARCHITECTURE_ANALYSIS.md](CURRENT_PROJECT_ARCHITECTURE_ANALYSIS.md) | 代码级架构审查记录，部分内容可能随迁移过时 |
 | [cross-junction-ribbon-corner-data-layer.md](cross-junction-ribbon-corner-data-layer.md) | cross junction surface 数据层设计 |
 | [junction-editor.md](junction-editor.md) | junction editor 说明 |

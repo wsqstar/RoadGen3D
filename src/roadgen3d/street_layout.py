@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import gc
+import hashlib
 import json
 import logging
 import math
@@ -587,6 +588,7 @@ _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
     "bollard": "curated_railing_module_v1",
     "tree": "objaverse_tree_909de376b61d4a2fb073e195fb719619",
 }
+_CURATED_ALLOWLIST_SELECTION_SOURCE = "curated_allowlist_stable"
 
 
 def _normalize_curated_street_assets_profile(value: object) -> str:
@@ -607,6 +609,92 @@ def _curated_locked_asset_ids(config: StreetComposeConfig | None) -> Dict[str, s
         getattr(config, "curated_street_assets_profile", "fixed_hq_v1")
     )
     return _curated_locked_asset_ids_for_profile(profile)
+
+
+def _stable_index_for_key(key: str, count: int) -> int:
+    if count <= 0:
+        return 0
+    digest = hashlib.sha256(str(key).encode("utf-8")).digest()
+    return int.from_bytes(digest[:8], "big") % int(count)
+
+
+def _curated_allowlist_rows_for_category(
+    category_pool: Sequence[Mapping[str, object]],
+    *,
+    category: str,
+    config: StreetComposeConfig | None,
+) -> List[Mapping[str, object]]:
+    if config is None:
+        return []
+    profile = _normalize_curated_street_assets_profile(
+        getattr(config, "curated_street_assets_profile", "fixed_hq_v1")
+    )
+    if profile == "disabled":
+        return []
+    category_key = str(category).strip().lower()
+    if category_key not in _curated_locked_asset_ids_for_profile(profile):
+        return []
+
+    rows: List[Mapping[str, object]] = []
+    for row in category_pool:
+        if str(row.get("category", "")).strip().lower() != category_key:
+            continue
+        if not _row_scene_eligible(row):
+            continue
+        if row.get("scene_eligible") is None and _safe_int(row.get("quality_tier"), 0) < 2:
+            continue
+        if category_key == "tree" and not _is_external_tree_asset(row):
+            continue
+        rows.append(row)
+
+    return sorted(rows, key=lambda row: str(row.get("asset_id", "")))
+
+
+def _stable_curated_allowlist_row(
+    category_pool: Sequence[Mapping[str, object]],
+    *,
+    category: str,
+    config: StreetComposeConfig | None,
+    stable_selection_key: str,
+    asset_id_whitelist: Optional[set[str]] = None,
+) -> Tuple[Mapping[str, object], List[Mapping[str, object]]] | Tuple[None, List[Mapping[str, object]]]:
+    allowlist_rows = _curated_allowlist_rows_for_category(
+        category_pool,
+        category=category,
+        config=config,
+    )
+    if asset_id_whitelist:
+        allowlist_rows = [
+            row
+            for row in allowlist_rows
+            if str(row.get("asset_id", "")) in asset_id_whitelist
+        ]
+    if not allowlist_rows:
+        return None, []
+    key = str(stable_selection_key or f"{category}:default")
+    row = allowlist_rows[_stable_index_for_key(key, len(allowlist_rows))]
+    return row, allowlist_rows
+
+
+def _curated_allowlist_ids_by_category(
+    category_to_rows: Mapping[str, Sequence[Mapping[str, object]]],
+    *,
+    config: StreetComposeConfig,
+) -> Dict[str, List[str]]:
+    profile = _normalize_curated_street_assets_profile(
+        getattr(config, "curated_street_assets_profile", "fixed_hq_v1")
+    )
+    categories = sorted(_curated_locked_asset_ids_for_profile(profile))
+    allowlists: Dict[str, List[str]] = {}
+    for category in categories:
+        rows = _curated_allowlist_rows_for_category(
+            category_to_rows.get(category, ()),
+            category=category,
+            config=config,
+        )
+        if rows:
+            allowlists[category] = [str(row.get("asset_id", "")) for row in rows]
+    return allowlists
 
 
 def _create_curated_railing_entry(*, asset_id: str = "curated_railing_module_v1") -> Tuple[Dict[str, object], _MeshCacheEntry]:
@@ -2428,29 +2516,41 @@ def _pick_category_candidate(
     feature_context: Optional[PolicyFeatureContext] = None,
     return_details: bool = False,
     asset_id_whitelist: Optional[set[str]] = None,
+    stable_selection_key: str = "",
 ) -> Tuple[Dict[str, object], float, str] | Tuple[Dict[str, object], float, str, Dict[str, object]]:
-    locked_row = _curated_locked_row_for_category(
+    allowlist_row, allowlist_rows = _stable_curated_allowlist_row(
+        category_pool,
         category=category,
-        asset_by_id=asset_by_id,
         config=config,
+        stable_selection_key=stable_selection_key or f"{query}:{category}",
+        asset_id_whitelist=asset_id_whitelist,
     )
-    if locked_row is not None:
+    if allowlist_row is not None:
         decision_payload: Dict[str, object] = {
             "candidates": [
                 {
-                    "asset_id": str(locked_row.get("asset_id", "")),
-                    "category": str(locked_row.get("category", "")),
+                    "asset_id": str(row.get("asset_id", "")),
+                    "category": str(row.get("category", "")),
                     "score": 1.0,
                 }
+                for row in allowlist_rows
             ],
-            "chosen_index": 0,
+            "chosen_index": next(
+                (
+                    idx
+                    for idx, row in enumerate(allowlist_rows)
+                    if str(row.get("asset_id", "")) == str(allowlist_row.get("asset_id", ""))
+                ),
+                0,
+            ),
             "top3_hit": True,
-            "curated_asset_lock": True,
-            "locked_asset_id": str(locked_row.get("asset_id", "")),
+            "curated_asset_allowlist": True,
+            "stable_selection_key": str(stable_selection_key or f"{query}:{category}"),
+            "allowlist_candidate_count": int(len(allowlist_rows)),
         }
         if return_details:
-            return dict(locked_row), 1.0, "curated_asset_lock", decision_payload
-        return dict(locked_row), 1.0, "curated_asset_lock"
+            return dict(allowlist_row), 1.0, _CURATED_ALLOWLIST_SELECTION_SOURCE, decision_payload
+        return dict(allowlist_row), 1.0, _CURATED_ALLOWLIST_SELECTION_SOURCE
 
     def _pick_weighted(
         candidates: List[Tuple[Dict[str, object], float]],
@@ -4935,6 +5035,62 @@ def _build_osm_base_scene(
             return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
         return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
 
+    def _material_color(material: Mapping[str, Any], fallback: Sequence[int]) -> List[int]:
+        value = str(material.get("color_hex", "") or "").strip()
+        if value.startswith("#") and len(value) in {7, 9}:
+            try:
+                rgba = [
+                    int(value[1:3], 16),
+                    int(value[3:5], 16),
+                    int(value[5:7], 16),
+                    int(value[7:9], 16) if len(value) == 9 else 255,
+                ]
+                return rgba
+            except ValueError:
+                pass
+        return list(fallback)
+
+    def _surface_annotation_render_spec(patch: Mapping[str, Any]) -> Tuple[float, List[int], float, str, str]:
+        role = str(patch.get("surface_role", "") or "colored_pavement").strip().lower()
+        material = patch.get("material", {}) if isinstance(patch.get("material", {}), Mapping) else {}
+        preset = str(material.get("preset", "") or "").strip().lower()
+        texture_key = str(material.get("texture_key", "") or "").strip().lower()
+
+        if role == "bus_lane" or preset == "bus_lane_green":
+            color = list(colors.get("bus_lane", (74, 142, 96, 255)))
+            if preset == "bus_lane_green":
+                color = [64, 148, 92, 255]
+            return 0.014, _material_color(material, color), 0.016, texture_key or "bus_lane", "bus_lane"
+        if role == "bike_lane":
+            return 0.014, _material_color(material, colors.get("bike_lane", (50, 110, 80, 255))), 0.016, texture_key or "bike_lane", "bike_lane"
+        if role == "parking_lane":
+            return 0.014, _material_color(material, colors.get("parking_lane", (156, 126, 84, 255))), 0.016, texture_key or "parking_lane", "parking_lane"
+        if role in {"median", "median_green", "safety_island"}:
+            fallback = colors.get("sidewalk", (180, 178, 168, 255)) if role == "safety_island" else colors.get("median_green", (95, 125, 75, 255))
+            return 0.065, _material_color(material, fallback), 0.028, texture_key or ("sidewalk" if role == "safety_island" else "median_green"), role
+        if role == "grass_belt":
+            return 0.065, _material_color(material, colors.get("grass_belt", (100, 150, 80, 255))), 0.024, texture_key or "grass_belt", "grass_belt"
+        if role == "shared_street_surface":
+            return 0.014, _material_color(material, colors.get("shared_street_surface", (180, 160, 140, 255))), 0.016, texture_key or "shared_street_surface", "shared_street_surface"
+        if role == "transit_pad":
+            return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), 0.018, texture_key or "transit_pad", "transit_pad"
+        return 0.014, _material_color(material, colors.get("colored_pavement", (200, 175, 150, 255))), 0.016, texture_key or "colored_pavement", "colored_pavement"
+
+    for patch_index, patch in enumerate(getattr(placement_ctx, "surface_annotations", []) or []):
+        geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
+        if geometry is None or getattr(geometry, "is_empty", True):
+            continue
+        height_m, color, y_offset, roughness_key, surface_role = _surface_annotation_render_spec(patch)
+        _extrude_polygon(
+            geometry,
+            height_m,
+            color,
+            f"surface_annotation_{patch.get('surface_id', patch_index)}",
+            y_offset=y_offset,
+            roughness_key=roughness_key,
+            surface_role=surface_role,
+        )
+
     def _render_crosswalk_zebra_patch(
         geometry,
         *,
@@ -5055,7 +5211,7 @@ def _build_osm_base_scene(
                     if role == "crossing":
                         _render_crosswalk_zebra_patch(
                             geometry,
-                            node_name_prefix=f"junction_crosswalk_{junction_index}_{patch_index}",
+                            node_name_prefix=f"junction_normalized_crossing_{junction_index}_{patch_index}",
                             horizontal_axes=patch.get("horizontal_axes"),
                         )
                         continue
@@ -5490,6 +5646,24 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             "rings": _extract_rings(patch.get("geometry")),
         }
 
+    def _serialize_surface_annotation_patch(patch) -> dict:
+        return {
+            "surface_id": str(patch.get("surface_id", "") or ""),
+            "annotation_id": str(patch.get("annotation_id", patch.get("surface_id", "")) or ""),
+            "label": str(patch.get("label", "") or ""),
+            "kind": str(patch.get("kind", "") or ""),
+            "surface_kind": str(patch.get("surface_kind", patch.get("kind", "")) or ""),
+            "surface_role": str(patch.get("surface_role", "") or ""),
+            "centerline_id": str(patch.get("centerline_id", "") or ""),
+            "station_start_m": round(float(patch.get("station_start_m", 0.0) or 0.0), 3),
+            "station_end_m": round(float(patch.get("station_end_m", 0.0) or 0.0), 3),
+            "lateral_start_m": round(float(patch.get("lateral_start_m", 0.0) or 0.0), 3),
+            "lateral_end_m": round(float(patch.get("lateral_end_m", 0.0) or 0.0), 3),
+            "material": dict(patch.get("material", {}) or {}),
+            "area_m2": round(float(patch.get("area_m2", 0.0) or 0.0), 3),
+            "rings": _extract_rings(patch.get("geometry")),
+        }
+
     result: dict = {}
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
@@ -5503,6 +5677,12 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
         result["left_sidewalk_rings"] = _extract_rings(left_sidewalk)
     if right_sidewalk is not None and not right_sidewalk.is_empty:
         result["right_sidewalk_rings"] = _extract_rings(right_sidewalk)
+    surface_annotations = list(getattr(placement_ctx, "surface_annotations", []) or [])
+    if surface_annotations:
+        result["surface_annotations"] = [
+            _serialize_surface_annotation_patch(patch)
+            for patch in surface_annotations
+        ]
     aoi = getattr(placement_ctx, "aoi_polygon", None)
     if aoi is not None and not aoi.is_empty:
         b = aoi.bounds  # (minx, miny, maxx, maxy)
@@ -8105,10 +8285,11 @@ def compose_street_scene(
         mesh_cache.get(DEFAULT_SKY_DOME_ASSET_ID) if DEFAULT_SKY_DOME_ASSET_ID in mesh_cache else None,
     )
     configured_locked_asset_ids = _curated_locked_asset_ids_for_profile(curated_asset_profile)
-    locked_asset_ids = _validate_curated_locked_assets(
+    curated_asset_fallback_ids = _validate_curated_locked_assets(
         asset_by_id=asset_by_id,
         profile=curated_asset_profile,
     )
+    locked_asset_ids: Dict[str, str] = {}
 
     category_to_rows: Dict[str, List[Dict[str, str]]] = {category: [] for category in DEFAULT_CATEGORIES}
     raw_tree_inventory_count = sum(1 for row in rows if str(row.get("category", "")).strip().lower() == "tree")
@@ -8122,12 +8303,16 @@ def compose_street_scene(
                     continue
             category_to_rows[category].append(row)
     tree_assets_unavailable = not bool(category_to_rows.get("tree"))
+    curated_asset_allowlist_ids = _curated_allowlist_ids_by_category(
+        category_to_rows,
+        config=config,
+    )
 
     available_categories = [category for category, pool in category_to_rows.items() if pool]
     fallback_blocked_categories = sorted(
         str(category)
-        for category, asset_id in configured_locked_asset_ids.items()
-        if str(category) not in locked_asset_ids and not category_to_rows.get(str(category), [])
+        for category in configured_locked_asset_ids
+        if str(category) not in curated_asset_allowlist_ids and not category_to_rows.get(str(category), [])
     )
     if not available_categories:
         raise RuntimeError(
@@ -8859,6 +9044,11 @@ def compose_street_scene(
                 feature_context=feature_ctx,
                 return_details=True,
                 asset_id_whitelist=asset_id_whitelist,
+                stable_selection_key=(
+                    f"{int(getattr(config, 'seed', 0))}:"
+                    f"{category}:"
+                    f"{theme_id or 'scene'}"
+                ),
             )
         except RuntimeError:
             _append_placement_decision_event(
@@ -8911,6 +9101,9 @@ def compose_street_scene(
             extra={
                 "repair_phase": bool(repair_phase),
                 "top3_hit": bool(decision_details.get("top3_hit", False)),
+                "curated_asset_allowlist": bool(decision_details.get("curated_asset_allowlist", False)),
+                "allowlist_candidate_count": int(decision_details.get("allowlist_candidate_count", 0) or 0),
+                "stable_selection_key": str(decision_details.get("stable_selection_key", "") or ""),
                 "tree_locked_asset_id": (
                     str(next(iter(asset_id_whitelist))) if asset_id_whitelist else ""
                 ),
@@ -10217,6 +10410,27 @@ def compose_street_scene(
         )
         for category, asset_id in locked_asset_ids.items()
     }
+    curated_allowlist_selection_counts = {
+        category: int(
+            sum(
+                1
+                for placement in placements
+                if str(placement.category).strip().lower() == str(category)
+                and str(placement.selection_source).strip().lower() == _CURATED_ALLOWLIST_SELECTION_SOURCE
+            )
+        )
+        for category in curated_asset_allowlist_ids
+    }
+    curated_allowlist_selected_asset_counts: Dict[str, Dict[str, int]] = {}
+    for placement in placements:
+        category = str(placement.category).strip().lower()
+        if category not in curated_asset_allowlist_ids:
+            continue
+        if str(placement.selection_source).strip().lower() != _CURATED_ALLOWLIST_SELECTION_SOURCE:
+            continue
+        by_asset = curated_allowlist_selected_asset_counts.setdefault(category, {})
+        asset_id = str(placement.asset_id)
+        by_asset[asset_id] = int(by_asset.get(asset_id, 0)) + 1
     asset_lock_fallback_violations = {
         category: int(
             sum(
@@ -10270,6 +10484,7 @@ def compose_street_scene(
         "curb",
         "parking_lane",
         "median_green",
+        "safety_island",
         "shared_street_surface",
         "colored_pavement",
     )
@@ -10339,12 +10554,24 @@ def compose_street_scene(
             for source_key, asset_ids in asset_source_unique_assets.items()
         },
         "asset_scale_mode": str(getattr(config, "asset_scale_mode", "canonical_v1")),
-        "curated_asset_lock_enabled": bool(curated_asset_profile != "disabled"),
+        "curated_asset_lock_enabled": bool(locked_asset_ids),
+        "curated_asset_selection_enabled": bool(curated_asset_profile != "disabled"),
+        "curated_asset_selection_policy": (
+            "fixed_hq_allowlist_seeded" if curated_asset_profile != "disabled" else "disabled"
+        ),
         "asset_lock_profile": str(curated_asset_profile),
         "curated_street_assets_profile": str(curated_asset_profile),
         "locked_asset_ids": dict(locked_asset_ids),
         "locked_asset_selection_counts": dict(locked_asset_selection_counts),
         "locked_asset_counts": dict(locked_asset_selection_counts),
+        "curated_asset_fallback_ids": dict(curated_asset_fallback_ids),
+        "curated_asset_allowlist_ids": dict(curated_asset_allowlist_ids),
+        "curated_asset_allowlist_counts": {
+            category: int(len(asset_ids))
+            for category, asset_ids in curated_asset_allowlist_ids.items()
+        },
+        "curated_allowlist_selection_counts": dict(curated_allowlist_selection_counts),
+        "curated_allowlist_selected_asset_counts": dict(curated_allowlist_selected_asset_counts),
         "fallback_blocked_categories": list(fallback_blocked_categories),
         "asset_lock_fallback_violations": dict(asset_lock_fallback_violations),
         "asset_scale_summary": asset_scale_summary,
@@ -10534,6 +10761,7 @@ def compose_street_scene(
         "building_generation_fallback_reason": str(building_summary.get("generation_fallback_reason", "") or ""),
         "building_footprint_count": int(len(building_footprints)),
         "building_region_count": int(building_summary.get("building_region_count", 0) or 0),
+        "surface_annotation_count": int(len(getattr(placement_ctx, "surface_annotations", []) or [])),
         "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
@@ -10659,6 +10887,14 @@ def compose_street_scene(
         "building_retrieval_predictions": building_retrieval_predictions,
         "zoning_grid": list(zoning_grid),
         "functional_zones": list(getattr(placement_ctx, "functional_zones", []) or []),
+        "surface_annotations": [
+            {
+                key: value
+                for key, value in dict(record).items()
+                if key != "geometry"
+            }
+            for record in getattr(placement_ctx, "surface_annotations", []) or []
+        ],
         "production_steps": [record.to_dict() for record in production_steps],
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "placement_decision_log": {

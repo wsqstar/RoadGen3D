@@ -366,6 +366,55 @@ def test_reference_annotation_scene_bridge_builds_junction_geometry():
     assert bridge.summary_metadata["building_region_count"] == 2
 
 
+def test_reference_annotation_scene_bridge_builds_surface_annotation_patches():
+    pytest.importorskip("shapely")
+
+    payload = _sample_annotation_payload()
+    payload["surface_annotations"] = [
+        {
+            "id": "surface_bus_01",
+            "label": "Temporary Bus Lane",
+            "kind": "bus_lane_widening",
+            "surface_role": "bus_lane",
+            "centerline_id": "main_axis",
+            "station_start_m": 10.0,
+            "station_end_m": 30.0,
+            "lateral_start_m": 3.0,
+            "lateral_end_m": 6.5,
+            "material": {"preset": "bus_lane_green"},
+        },
+        {
+            "id": "surface_island_01",
+            "label": "Safety Island",
+            "kind": "safety_island",
+            "surface_role": "safety_island",
+            "centerline_id": "main_axis",
+            "station_start_m": 36.0,
+            "station_end_m": 46.0,
+            "lateral_start_m": -0.8,
+            "lateral_end_m": 0.8,
+            "material": {"preset": "safety_island_concrete"},
+        },
+    ]
+
+    bridge = build_reference_annotation_scene_bridge(
+        payload,
+        compose_config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 13.2}),
+    )
+
+    patches = bridge.placement_context.surface_annotations
+    assert bridge.summary_metadata["surface_annotation_count"] == 2
+    assert {patch["surface_role"] for patch in patches} == {"bus_lane", "safety_island"}
+    bus_patch = next(patch for patch in patches if patch["surface_id"] == "surface_bus_01")
+    assert bus_patch["geometry"].is_valid
+    assert bus_patch["geometry"].area == pytest.approx(70.0, rel=0.08)
+
+    serialized = _serialize_osm_geometry(bridge.placement_context)
+    assert len(serialized["surface_annotations"]) == 2
+    assert serialized["surface_annotations"][0]["rings"]
+    assert serialized["surface_annotations"][0]["material"]["preset"] == "bus_lane_green"
+
+
 def test_reference_annotation_scene_bridge_builds_cross_corner_polylines_for_derived_cross():
     pytest.importorskip("shapely")
     from shapely.geometry import Point

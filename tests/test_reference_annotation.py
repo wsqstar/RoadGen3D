@@ -209,6 +209,71 @@ def test_parse_reference_annotation_normalizes_payload():
     assert annotation.to_dict()["building_regions"][1]["label"] == "South Court"
 
 
+def test_parse_reference_annotation_normalizes_surface_annotations():
+    payload = _sample_annotation_payload()
+    payload["surface_annotations"] = [
+        {
+            "id": "surface_bus_01",
+            "label": "Temporary Bus Lane",
+            "kind": "bus_lane_widening",
+            "surface_role": "bus_lane",
+            "centerline_id": "main_axis",
+            "station_start_m": 5.0,
+            "station_end_m": 20.0,
+            "lateral_start_m": 3.2,
+            "lateral_end_m": 6.7,
+            "material": {"preset": "bus_lane_green", "color_hex": "#40945c"},
+        }
+    ]
+
+    annotation = parse_reference_annotation(payload)
+
+    assert len(annotation.surface_annotations) == 1
+    surface = annotation.surface_annotations[0]
+    assert surface.feature_id == "surface_bus_01"
+    assert surface.kind == "bus_lane_widening"
+    assert surface.surface_role == "bus_lane"
+    assert surface.centerline_id == "main_axis"
+    assert surface.material.preset == "bus_lane_green"
+    assert annotation.to_dict()["surface_annotations"][0]["material"]["color_hex"] == "#40945c"
+
+
+def test_parse_reference_annotation_rejects_surface_annotation_with_missing_centerline():
+    payload = _sample_annotation_payload()
+    payload["surface_annotations"] = [
+        {
+            "id": "surface_missing",
+            "kind": "safety_island",
+            "centerline_id": "missing_axis",
+            "station_start_m": 1.0,
+            "station_end_m": 4.0,
+            "lateral_start_m": -0.5,
+            "lateral_end_m": 0.5,
+        }
+    ]
+
+    with pytest.raises(ValueError, match="missing centerline"):
+        parse_reference_annotation(payload)
+
+
+def test_parse_reference_annotation_rejects_surface_annotation_outside_centerline_station_range():
+    payload = _sample_annotation_payload()
+    payload["surface_annotations"] = [
+        {
+            "id": "surface_too_long",
+            "kind": "colored_pavement",
+            "centerline_id": "north_branch",
+            "station_start_m": 1.0,
+            "station_end_m": 999.0,
+            "lateral_start_m": 0.0,
+            "lateral_end_m": 2.0,
+        }
+    ]
+
+    with pytest.raises(ValueError, match="exceeds centerline"):
+        parse_reference_annotation(payload)
+
+
 def test_build_segment_graph_from_annotation_builds_junctions_and_roundabout():
     annotation = parse_reference_annotation(_sample_annotation_payload())
     config = build_reference_annotation_compose_config({"segment_length_m": 10.0, "road_width_m": 11.0})
@@ -251,13 +316,28 @@ def test_build_segment_graph_from_annotation_detects_shared_vertex_junction_with
 
 
 def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
+    sample_payload = _sample_annotation_payload()
+    sample_payload["surface_annotations"] = [
+        {
+            "id": "surface_paving_01",
+            "kind": "colored_pavement",
+            "centerline_id": "main_axis",
+            "station_start_m": 2.0,
+            "station_end_m": 14.0,
+            "lateral_start_m": -6.0,
+            "lateral_end_m": -3.0,
+            "material": {"preset": "colored_pavement"},
+        }
+    ]
     payload = build_reference_annotation_graph_payload(
-        _sample_annotation_payload(),
+        sample_payload,
         config=build_reference_annotation_compose_config({"segment_length_m": 9.0}),
     )
 
     assert payload["annotation"]["plan_id"] == "hkust_gz_gate"
     assert payload["graph"]["mode"] == "annotation"
+    assert payload["summary"]["surface_annotation_count"] == 1
+    assert payload["surface_annotations"][0]["surface_role"] == "colored_pavement"
     assert len(payload["road_profiles"]) == 2
     assert len(payload["cross_section_profiles"]) == 2
     assert len(payload["street_furniture_instances"]) == 2

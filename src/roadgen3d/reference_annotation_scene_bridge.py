@@ -120,6 +120,161 @@ def _annotation_building_region_records(annotation: ReferenceAnnotation) -> List
     return regions
 
 
+def _distance(a: Tuple[float, float], b: Tuple[float, float]) -> float:
+    return math.hypot(float(a[0]) - float(b[0]), float(a[1]) - float(b[1]))
+
+
+def _point_at_station(points: Sequence[Tuple[float, float]], station_m: float) -> Tuple[float, float]:
+    if len(points) < 2:
+        return tuple(points[0]) if points else (0.0, 0.0)
+    remaining = max(float(station_m), 0.0)
+    for start, end in zip(points[:-1], points[1:]):
+        segment_length = _distance(start, end)
+        if segment_length <= 1e-9:
+            continue
+        if remaining <= segment_length:
+            ratio = remaining / segment_length
+            return (
+                float(start[0]) + (float(end[0]) - float(start[0])) * ratio,
+                float(start[1]) + (float(end[1]) - float(start[1])) * ratio,
+            )
+        remaining -= segment_length
+    return tuple(float(value) for value in points[-1])
+
+
+def _polyline_points_between_stations(
+    points: Sequence[Tuple[float, float]],
+    station_start_m: float,
+    station_end_m: float,
+) -> List[Tuple[float, float]]:
+    if len(points) < 2:
+        return list(points)
+    station_start_m = max(float(station_start_m), 0.0)
+    station_end_m = max(float(station_end_m), station_start_m)
+    result: List[Tuple[float, float]] = [_point_at_station(points, station_start_m)]
+    cumulative = 0.0
+    for start, end in zip(points[:-1], points[1:]):
+        cumulative += _distance(start, end)
+        if station_start_m < cumulative < station_end_m:
+            result.append((float(end[0]), float(end[1])))
+    result.append(_point_at_station(points, station_end_m))
+
+    deduped: List[Tuple[float, float]] = []
+    for point in result:
+        if not deduped or _distance(deduped[-1], point) > 1e-6:
+            deduped.append(point)
+    return deduped
+
+
+def _offset_polyline_by_lateral(
+    points: Sequence[Tuple[float, float]],
+    lateral_offset_m: float,
+) -> List[Tuple[float, float]]:
+    if len(points) < 2:
+        return list(points)
+    tangents: List[Tuple[float, float]] = []
+    for start, end in zip(points[:-1], points[1:]):
+        dx = float(end[0]) - float(start[0])
+        dy = float(end[1]) - float(start[1])
+        length = math.hypot(dx, dy)
+        if length <= 1e-9:
+            tangents.append((1.0, 0.0))
+        else:
+            tangents.append((dx / length, dy / length))
+
+    result: List[Tuple[float, float]] = []
+    for index, point in enumerate(points):
+        if index == 0:
+            tangent = tangents[0]
+        elif index == len(points) - 1:
+            tangent = tangents[-1]
+        else:
+            prev_tangent = tangents[index - 1]
+            next_tangent = tangents[index]
+            tx = prev_tangent[0] + next_tangent[0]
+            ty = prev_tangent[1] + next_tangent[1]
+            length = math.hypot(tx, ty)
+            tangent = (tx / length, ty / length) if length > 1e-9 else next_tangent
+        normal = (float(tangent[1]), -float(tangent[0]))
+        result.append(
+            (
+                float(point[0]) + normal[0] * float(lateral_offset_m),
+                float(point[1]) + normal[1] * float(lateral_offset_m),
+            )
+        )
+    return result
+
+
+def _surface_annotation_polygon(
+    centerline_points: Sequence[Tuple[float, float]],
+    *,
+    station_start_m: float,
+    station_end_m: float,
+    lateral_start_m: float,
+    lateral_end_m: float,
+) -> Any | None:
+    from shapely.geometry import Polygon
+
+    spine = _polyline_points_between_stations(centerline_points, station_start_m, station_end_m)
+    if len(spine) < 2:
+        return None
+    edge_a = _offset_polyline_by_lateral(spine, lateral_start_m)
+    edge_b = _offset_polyline_by_lateral(spine, lateral_end_m)
+    ring = [*edge_a, *reversed(edge_b)]
+    if len(ring) < 3:
+        return None
+    polygon = Polygon(ring)
+    if not polygon.is_valid:
+        polygon = polygon.buffer(0)
+    if getattr(polygon, "is_empty", True):
+        return None
+    return polygon
+
+
+def _annotation_surface_records(
+    annotation: ReferenceAnnotation,
+    local_centerlines: Sequence[Tuple[int, Any, Sequence[Tuple[float, float]]]],
+) -> List[Dict[str, Any]]:
+    records: List[Dict[str, Any]] = []
+    centerline_points_by_id = {
+        str(centerline.feature_id): tuple((float(x), float(y)) for x, y in points)
+        for _, centerline, points in local_centerlines
+    }
+    for order_index, surface in enumerate(annotation.surface_annotations):
+        centerline_points = centerline_points_by_id.get(str(surface.centerline_id))
+        if not centerline_points:
+            continue
+        geometry = _surface_annotation_polygon(
+            centerline_points,
+            station_start_m=float(surface.station_start_m),
+            station_end_m=float(surface.station_end_m),
+            lateral_start_m=float(surface.lateral_start_m),
+            lateral_end_m=float(surface.lateral_end_m),
+        )
+        if geometry is None or getattr(geometry, "is_empty", True):
+            continue
+        records.append(
+            {
+                "surface_id": str(surface.feature_id),
+                "annotation_id": str(surface.feature_id),
+                "label": str(surface.label),
+                "kind": str(surface.kind),
+                "surface_kind": str(surface.kind),
+                "surface_role": str(surface.surface_role),
+                "centerline_id": str(surface.centerline_id),
+                "station_start_m": float(surface.station_start_m),
+                "station_end_m": float(surface.station_end_m),
+                "lateral_start_m": float(surface.lateral_start_m),
+                "lateral_end_m": float(surface.lateral_end_m),
+                "material": surface.material.to_dict(),
+                "geometry": geometry,
+                "area_m2": float(getattr(geometry, "area", 0.0) or 0.0),
+                "order_index": int(order_index),
+            }
+        )
+    return records
+
+
 def build_reference_annotation_scene_bridge(
     annotation_input: ReferenceAnnotation | Mapping[str, Any],
     *,
@@ -178,6 +333,7 @@ def build_reference_annotation_scene_bridge(
         list(getattr(placement_context, "junction_geometries", []) or [])
     )
     placement_context.building_regions = _annotation_building_region_records(annotation)
+    placement_context.surface_annotations = _annotation_surface_records(annotation, local_centerlines)
     center_x = float(annotation.image_width_px) * 0.5
     center_y = float(annotation.image_height_px) * 0.5
     ppm = max(float(annotation.pixels_per_meter), 1e-6)
@@ -207,6 +363,7 @@ def build_reference_annotation_scene_bridge(
         "generator": "reference_annotation_bridge_v1",
         "synthetic_road_count": int(len(projected_features.roads)),
         "junction_geometry_count": int(len(getattr(placement_context, "junction_geometries", []) or [])),
+        "surface_annotation_count": int(len(getattr(placement_context, "surface_annotations", []) or [])),
     }
     return ReferenceAnnotationSceneBridgeResult(
         annotation=annotation,

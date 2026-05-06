@@ -77,6 +77,7 @@ class PlacementContext:
     strip_zones: Dict[str, Any] = field(default_factory=dict)
     segment_strip_zones: Dict[str, Dict[str, Any]] = field(default_factory=dict)
     functional_zones: List[Dict[str, Any]] = field(default_factory=list)
+    surface_annotations: List[Dict[str, Any]] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
