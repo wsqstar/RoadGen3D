@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from collections import Counter
 from dataclasses import replace
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Set, Tuple
@@ -18,7 +19,7 @@ from .street_band_semantics import (
     detailed_strip_kind_from_band_name,
     resolve_band_by_alias,
 )
-from .street_priors import CATEGORY_SUBSTITUTIONS, SIDE_PREF
+from .street_priors import CATEGORY_PLACEMENT_RANK, CATEGORY_SUBSTITUTIONS, SIDE_PREF
 from .types import (
     BandSolution,
     ConstraintSet,
@@ -30,6 +31,7 @@ from .types import (
     LayoutSolverResult,
     RuleEvaluation,
     StreetBand,
+    StreetComposeConfig,
     StreetProgram,
 )
 
@@ -42,10 +44,30 @@ except ImportError:
 _BALANCED_FURNITURE_CATEGORIES = {
     category for category, side_pref in SIDE_PREF.items() if str(side_pref) == "both"
 }
+_SLOT_COUNT_REFERENCE_LENGTH_M = 80.0
+
+
+def _category_placement_rank(category: str) -> int:
+    return int(CATEGORY_PLACEMENT_RANK.get(str(category), len(CATEGORY_PLACEMENT_RANK)))
 
 
 def _rule_parameter(rule: DesignRuleSpec, key: str, default: object = None) -> object:
     return rule.parameters.get(key, default)
+
+
+def _slot_count_rule_target(rule: DesignRuleSpec, config: StreetComposeConfig) -> int:
+    try:
+        base_value = float(rule.value)
+    except (TypeError, ValueError):
+        return 0
+    if (
+        rule.target in {"category_min_count", "slot_count_min"}
+        and str(rule.operator).strip() == ">="
+        and base_value > 0.0
+    ):
+        length_m = max(float(getattr(config, "length_m", _SLOT_COUNT_REFERENCE_LENGTH_M) or _SLOT_COUNT_REFERENCE_LENGTH_M), 1.0)
+        return max(1, int(math.ceil(base_value * length_m / _SLOT_COUNT_REFERENCE_LENGTH_M)))
+    return int(round(base_value))
 
 
 def _apply_numeric_rule(actual: float, operator: str, target: float) -> Tuple[float, bool]:
@@ -809,7 +831,8 @@ def _compile_program(
                 rule_effects.setdefault(rule.name, {"edits": [], "conflicts": []})["conflicts"].append(category)
                 continue
             current = int(requirements.get(category, 0))
-            desired, changed = _apply_numeric_rule(float(current), str(rule.operator), float(rule.value))
+            target_count = _slot_count_rule_target(rule, solver_input.config)
+            desired, changed = _apply_numeric_rule(float(current), str(rule.operator), float(target_count))
             if changed:
                 requirements[category] = int(desired)
                 edits.append(
@@ -818,7 +841,7 @@ def _compile_program(
                         target=category,
                         before=str(current),
                         after=str(int(desired)),
-                        reason=f"{rule.name}: adjusted {category} count to satisfy {rule.operator} {rule.value}",
+                        reason=f"{rule.name}: adjusted {category} count to satisfy {rule.operator} {target_count}",
                     )
                 )
                 rule_effects.setdefault(rule.name, {"edits": [], "conflicts": []})["edits"].append(category)
@@ -1197,7 +1220,10 @@ def _build_slot_plans(
             ))
         return results
 
-    for category, count in resolved_program.furniture_requirements.items():
+    for category, count in sorted(
+        resolved_program.furniture_requirements.items(),
+        key=lambda item: (_category_placement_rank(str(item[0])), str(item[0])),
+    ):
         count = int(count)
         if count <= 0 or category not in solver_input.available_categories:
             continue
@@ -1333,7 +1359,7 @@ def _build_slot_plans(
             edits=edits,
         )
     )
-    repaired_slot_plans.sort(key=lambda slot: (slot.category, slot.x_center_m, slot.z_center_m))
+    repaired_slot_plans.sort(key=lambda slot: (_category_placement_rank(slot.category), slot.x_center_m, slot.z_center_m))
     return tuple(repaired_slot_plans)
 
 
@@ -1387,7 +1413,7 @@ def _evaluate_rule(
     elif rule.target in {"category_min_count", "slot_count_min"}:
         category = str(_rule_parameter(rule, "category", ""))
         actual = sum(1 for slot in slot_plans if slot.category == category)
-        satisfied = actual >= int(rule.value)
+        satisfied = actual >= _slot_count_rule_target(rule, solver_input.config)
     elif rule.target == "slot_count_max":
         category = str(_rule_parameter(rule, "category", ""))
         actual = sum(1 for slot in slot_plans if slot.category == category)

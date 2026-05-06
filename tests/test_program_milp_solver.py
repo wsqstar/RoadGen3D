@@ -158,6 +158,33 @@ def test_milp_template_solver_returns_feasible_template_solution():
     assert all(slot.category in available for slot in result.slot_plans)
 
 
+def test_short_segment_min_counts_scale_by_length():
+    config = replace(
+        _config(profile="pedestrian_priority_v1", layout_solver="banded"),
+        length_m=12.0,
+        segment_length_m=12.0,
+        style_preset="civic_clean_v1",
+    )
+    available = ("bench", "lamp", "tree")
+    program = infer_street_program(config, available)
+    runtime = LayoutSolverRuntime(backend="banded")
+
+    result = runtime.solve(
+        LayoutSolverInput(
+            program=program,
+            config=config,
+            available_categories=available,
+            constraint_set=load_constraint_set("pedestrian_priority_v1"),
+            inventory_summary=_inventory(*available),
+        )
+    )
+
+    counts = {category: sum(1 for slot in result.slot_plans if slot.category == category) for category in available}
+    assert counts["lamp"] >= counts["tree"]
+    assert counts["tree"] <= 1
+    assert counts["bench"] <= 1
+
+
 def test_milp_template_solver_reports_segment_graph_summary_for_osm():
     config = _config(profile="transit_priority_v1", layout_mode="osm")
     available = ("bench", "lamp", "tree", "bus_stop")

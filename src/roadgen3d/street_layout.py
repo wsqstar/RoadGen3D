@@ -102,7 +102,7 @@ from .spatial_viz import (
     plot_poi_exclusion_overview,
     plot_zoning_grid_preview as plot_zoning_grid_preview_2d,
 )
-from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
+from .street_priors import CATEGORY_PLACEMENT_RANK, DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
 from .street_band_semantics import (
     band_name_aliases,
@@ -159,10 +159,14 @@ DEFAULT_SKY_DOME_MESH_PATH = (
     ROOT / "data" / "real" / "split_meshes" / f"{DEFAULT_SKY_DOME_ASSET_ID}.glb"
 ).resolve()
 DEFAULT_SKY_DOME_DIMENSIONS_M = {
-    "width": 160.2875,
-    "height": 161.4326,
-    "depth": 131.2546,
+    "width": 96.1440,
+    "height": 96.1379,
+    "depth": 96.0366,
 }
+DEFAULT_SKY_DOME_MIN_DIAMETER_M = 1200.0
+DEFAULT_SKY_DOME_SCENE_SPAN_MULTIPLIER = 6.0
+DEFAULT_SKY_DOME_TEXTURE_SIZE = (1024, 512)
+DEFAULT_SKY_DOME_MATERIAL_NAME = "roadgen3d_default_sky_gradient"
 
 
 @dataclass(frozen=True)
@@ -1071,6 +1075,80 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
     return rows
 
 
+def _default_sky_dome_texture_image():
+    from PIL import Image
+
+    width, height = DEFAULT_SKY_DOME_TEXTURE_SIZE
+    stops = (
+        (0.0, np.array([99, 158, 223], dtype=np.float64)),
+        (0.45, np.array([158, 203, 245], dtype=np.float64)),
+        (0.70, np.array([222, 239, 255], dtype=np.float64)),
+        (1.0, np.array([248, 230, 198], dtype=np.float64)),
+    )
+    rows: list[np.ndarray] = []
+    for y in range(height):
+        t = y / max(1, height - 1)
+        lower = stops[0]
+        upper = stops[-1]
+        for idx in range(len(stops) - 1):
+            if stops[idx][0] <= t <= stops[idx + 1][0]:
+                lower = stops[idx]
+                upper = stops[idx + 1]
+                break
+        span = max(1e-6, upper[0] - lower[0])
+        local_t = (t - lower[0]) / span
+        color = lower[1] * (1.0 - local_t) + upper[1] * local_t
+        rows.append(np.tile(np.clip(color, 0, 255).astype(np.uint8), (width, 1)))
+    return Image.fromarray(np.stack(rows, axis=0))
+
+
+def _spherical_uv_for_vertices(vertices: np.ndarray) -> np.ndarray:
+    vertices = np.asarray(vertices, dtype=np.float64)
+    if vertices.size == 0:
+        return np.zeros((0, 2), dtype=np.float64)
+    centered = vertices - vertices.mean(axis=0)
+    x = centered[:, 0]
+    y = centered[:, 1]
+    z = centered[:, 2]
+    radius_xz = np.hypot(x, z)
+    u = (np.arctan2(z, x) / (2.0 * math.pi) + 0.5) % 1.0
+    v = 1.0 - (np.arctan2(y, radius_xz) / math.pi + 0.5)
+    return np.column_stack([u, np.clip(v, 0.0, 1.0)])
+
+
+def _default_sky_dome_uv(geom) -> np.ndarray:
+    vertices = np.asarray(getattr(geom, "vertices", []), dtype=np.float64)
+    existing = getattr(getattr(geom, "visual", None), "uv", None)
+    existing_uv = np.asarray(existing, dtype=np.float64) if existing is not None else np.empty((0, 2))
+    if existing_uv.ndim == 2 and existing_uv.shape[0] == vertices.shape[0] and existing_uv.shape[1] >= 2:
+        return existing_uv[:, :2]
+    return _spherical_uv_for_vertices(vertices)
+
+
+def _apply_default_sky_dome_material(scene_or_mesh):
+    trimesh = _require_trimesh()
+    from trimesh.visual.material import PBRMaterial
+
+    texture_image = _default_sky_dome_texture_image()
+    if isinstance(scene_or_mesh, trimesh.Scene):
+        geometries = tuple(scene_or_mesh.geometry.values())
+    else:
+        geometries = (scene_or_mesh,)
+    for geom in geometries:
+        uv = _default_sky_dome_uv(geom)
+        material = PBRMaterial(
+            name=DEFAULT_SKY_DOME_MATERIAL_NAME,
+            baseColorTexture=texture_image.copy(),
+            emissiveTexture=texture_image.copy(),
+            emissiveFactor=[1.0, 1.0, 1.0],
+            metallicFactor=0.0,
+            roughnessFactor=1.0,
+            doubleSided=True,
+        )
+        geom.visual = trimesh.visual.TextureVisuals(uv=uv, material=material)
+    return scene_or_mesh
+
+
 def _default_sky_dome_row() -> Dict[str, object] | None:
     if not DEFAULT_SKY_DOME_MESH_PATH.exists():
         return None
@@ -1104,16 +1182,25 @@ def _ensure_default_sky_dome_row(rows: List[Dict[str, object]]) -> List[Dict[str
 def _default_sky_dome_placement(
     config: StreetComposeConfig,
     row: Mapping[str, object] | None,
+    mesh_metadata: _MeshCacheEntry | _MeshMetadata | None = None,
 ) -> StreetPlacement | None:
     if row is None:
         return None
-    dims = row.get("dimensions_m") if isinstance(row.get("dimensions_m"), Mapping) else DEFAULT_SKY_DOME_DIMENSIONS_M
-    native_diameter_m = max(
-        float(dims.get("width", DEFAULT_SKY_DOME_DIMENSIONS_M["width"])),
-        float(dims.get("height", DEFAULT_SKY_DOME_DIMENSIONS_M["height"])),
-        float(dims.get("depth", DEFAULT_SKY_DOME_DIMENSIONS_M["depth"])),
-        1.0,
-    )
+    native_diameter_m = 0.0
+    if mesh_metadata is not None:
+        native_diameter_m = max(
+            float(getattr(mesh_metadata, "half_x", 0.0) or 0.0) * 2.0,
+            float(getattr(mesh_metadata, "native_height_y", 0.0) or 0.0),
+            float(getattr(mesh_metadata, "half_z", 0.0) or 0.0) * 2.0,
+        )
+    if native_diameter_m <= 0.0 or not math.isfinite(native_diameter_m):
+        dims = row.get("dimensions_m") if isinstance(row.get("dimensions_m"), Mapping) else DEFAULT_SKY_DOME_DIMENSIONS_M
+        native_diameter_m = max(
+            float(dims.get("width", DEFAULT_SKY_DOME_DIMENSIONS_M["width"])),
+            float(dims.get("height", DEFAULT_SKY_DOME_DIMENSIONS_M["height"])),
+            float(dims.get("depth", DEFAULT_SKY_DOME_DIMENSIONS_M["depth"])),
+            1.0,
+        )
     scene_span_m = max(
         float(getattr(config, "length_m", 80.0) or 80.0),
         float(getattr(config, "road_width_m", 12.0) or 12.0)
@@ -1121,7 +1208,11 @@ def _default_sky_dome_placement(
         + 40.0,
         80.0,
     )
-    target_diameter_m = max(native_diameter_m, scene_span_m * 2.25)
+    target_diameter_m = max(
+        native_diameter_m,
+        DEFAULT_SKY_DOME_MIN_DIAMETER_M,
+        scene_span_m * DEFAULT_SKY_DOME_SCENE_SPAN_MULTIPLIER,
+    )
     scale = max(1.0, target_diameter_m / native_diameter_m)
     half_extent = 0.5 * native_diameter_m * scale
     return StreetPlacement(
@@ -1132,7 +1223,7 @@ def _default_sky_dome_placement(
         position_xyz=[0.0, 0.0, 0.0],
         yaw_deg=0.0,
         scale=float(scale),
-        bbox_xz=[-half_extent, -half_extent, half_extent, half_extent],
+        bbox_xz=[-half_extent, half_extent, -half_extent, half_extent],
         selection_source="default_sky_dome",
         placement_group="environment",
         constraint_penalty=0.0,
@@ -1314,6 +1405,9 @@ def _load_single_mesh(metadata: _MeshMetadata) -> _MeshCacheEntry:
     if abs(source_scale - 1.0) > 1e-9:
         display_geom.apply_scale(source_scale)
         bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+
+    if metadata.asset_id == DEFAULT_SKY_DOME_ASSET_ID:
+        display_geom = _apply_default_sky_dome_material(display_geom)
 
     span = bounds[1] - bounds[0]
     return _MeshCacheEntry(
@@ -5750,20 +5844,24 @@ def _slot_spatial_kwargs(slot, spatial_ctx) -> dict:
     }
 
 
-def _slot_placement_sort_key(slot: object) -> Tuple[int, int, str, float, float, str]:
+def _slot_category_rank(slot: object) -> int:
+    category = str(getattr(slot, "category", "") or "")
+    return int(CATEGORY_PLACEMENT_RANK.get(category, len(CATEGORY_PLACEMENT_RANK)))
+
+
+def _slot_placement_sort_key(slot: object) -> Tuple[int, int, int, int, str, float, float, str]:
     anchor_type = str(getattr(slot, "anchor_poi_type", "") or "").strip()
     if anchor_type:
         bucket = 0
         anchor_rank = placement_priority_rank(anchor_type)
-    elif bool(getattr(slot, "required", False)):
-        bucket = 1
-        anchor_rank = 999
     else:
-        bucket = 2
+        bucket = 1
         anchor_rank = 999
     return (
         int(bucket),
         int(anchor_rank),
+        _slot_category_rank(slot),
+        0 if bool(getattr(slot, "required", False)) else 1,
         str(getattr(slot, "theme_id", "") or ""),
         -float(getattr(slot, "priority", 0.0) or 0.0),
         float(getattr(slot, "x_center_m", 0.0) or 0.0),
@@ -8004,6 +8102,7 @@ def compose_street_scene(
     default_sky_dome_placement = _default_sky_dome_placement(
         config,
         asset_by_id.get(DEFAULT_SKY_DOME_ASSET_ID),
+        mesh_cache.get(DEFAULT_SKY_DOME_ASSET_ID) if DEFAULT_SKY_DOME_ASSET_ID in mesh_cache else None,
     )
     configured_locked_asset_ids = _curated_locked_asset_ids_for_profile(curated_asset_profile)
     locked_asset_ids = _validate_curated_locked_assets(

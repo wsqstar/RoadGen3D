@@ -12,7 +12,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 from .eval_metrics import compute_balance_score, compute_spacing_uniformity, compute_style_consistency
 from .placement_field import pair_interaction_scores, poi_attraction_score
 from .poi_taxonomy import asset_category_for_poi, canonicalize_poi_type, nonempty_poi_points, poi_plot_config
-from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M
+from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, INFRASTRUCTURE_CATEGORY_PRIORITY
 from .types import LayoutSlotPlan, StreetComposeConfig, StreetPlacement, StreetProgram
 
 
@@ -55,7 +55,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         category_min_counts={"lamp": 2, "tree": 2, "bench": 1},
         category_max_counts={"bench": 3, "trash": 2, "tree": 4, "bollard": 10},
         hero_categories=("bus_stop", "bench", "tree"),
-        category_priority=("bus_stop", "tree", "lamp", "bench", "bollard", "trash", "mailbox", "hydrant"),
+        category_priority=("bus_stop", "lamp", "tree", "bench", "mailbox", "bollard", "trash", "hydrant"),
         global_tags=("civic", "clean", "minimal", "formal"),
         category_tags={
             "bench": ("clean", "formal", "civic"),
@@ -114,7 +114,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         category_min_counts={"lamp": 2, "tree": 2, "bench": 1},
         category_max_counts={"bench": 3, "trash": 2, "tree": 4, "bollard": 10},
         hero_categories=("bus_stop", "tree", "bench"),
-        category_priority=("bus_stop", "tree", "lamp", "bench", "bollard", "trash", "mailbox", "hydrant"),
+        category_priority=("bus_stop", "lamp", "tree", "bench", "mailbox", "bollard", "trash", "hydrant"),
         global_tags=("analytical", "diorama", "presentation", "low_saturation"),
         category_tags={
             "bench": ("analytical", "wood_metal", "simple"),
@@ -185,7 +185,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         category_min_counts={"lamp": 2, "bus_stop": 1, "bollard": 4},
         category_max_counts={"bench": 2, "tree": 3, "trash": 2, "bollard": 12},
         hero_categories=("bus_stop", "lamp", "bollard"),
-        category_priority=("bus_stop", "lamp", "bollard", "bench", "trash", "tree", "mailbox", "hydrant"),
+        category_priority=("bus_stop", "lamp", "tree", "bench", "mailbox", "bollard", "trash", "hydrant"),
         global_tags=("transit", "modern", "sleek", "metal"),
         category_tags={
             "bus_stop": ("transit", "modern", "metal"),
@@ -242,7 +242,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         category_min_counts={"bench": 2, "tree": 3, "lamp": 1},
         category_max_counts={"bench": 4, "trash": 2, "tree": 6, "bollard": 8},
         hero_categories=("tree", "bench", "bus_stop"),
-        category_priority=("tree", "bench", "lamp", "bus_stop", "trash", "mailbox", "bollard", "hydrant"),
+        category_priority=("lamp", "tree", "bench", "mailbox", "bus_stop", "trash", "bollard", "hydrant"),
         global_tags=("lush", "walkable", "green", "warm"),
         category_tags={
             "tree": ("lush", "green", "canopy"),
@@ -636,9 +636,16 @@ def shape_program_for_style(program: StreetProgram, config: StreetComposeConfig)
         if category:
             enforced_min[category] = enforced_min.get(category, 0) + int(count)
 
+    def _scaled_min_count(category: str) -> int:
+        base = int(preset.category_min_counts.get(category, 0))
+        if base <= 0:
+            return 0
+        length_scale = max(float(getattr(config, "length_m", 80.0) or 80.0), 1.0) / 80.0
+        return max(1, int(math.ceil(float(base) * length_scale)))
+
     for category, base_count in list(requirements.items()):
         scaled = int(round(float(base_count) * float(preset.category_multipliers.get(category, 1.0))))
-        scaled = max(int(preset.category_min_counts.get(category, 0)), scaled)
+        scaled = max(_scaled_min_count(category), scaled)
         max_cap = preset.category_max_counts.get(category)
         if max_cap is not None:
             length_scale = max(float(config.length_m) / 80.0, 0.75)
@@ -706,9 +713,10 @@ def _attraction_field(category: str, position_xz: Tuple[float, float], poi_conte
 
 
 def _slot_priority(category: str, preset: StylePresetSpec) -> float:
-    if category not in preset.category_priority:
+    priority = tuple(dict.fromkeys((*INFRASTRUCTURE_CATEGORY_PRIORITY, *preset.category_priority)))
+    if category not in priority:
         return 0.0
-    return float(len(preset.category_priority) - preset.category_priority.index(category)) / float(len(preset.category_priority))
+    return float(len(priority) - priority.index(category)) / float(len(priority))
 
 
 def _slot_composition_score(slot: LayoutSlotPlan, preset: StylePresetSpec, poi_context: object | None) -> float:

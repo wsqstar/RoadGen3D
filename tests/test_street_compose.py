@@ -1188,6 +1188,65 @@ def test_street_placement_to_dict_serializes_required_flag():
     assert payload["required"] is True
 
 
+def test_slot_placement_sort_prioritizes_core_infrastructure_order():
+    slots = [
+        LayoutSlotPlan("tree_required", "tree", "left_furnishing", 0.0, 2.0, 12.0, "left", 1.0, True),
+        LayoutSlotPlan("bench_optional", "bench", "left_clear", 0.0, 3.5, 12.0, "left", 0.5, False),
+        LayoutSlotPlan("mailbox_optional", "mailbox", "right_clear", 0.0, -3.5, 12.0, "right", 0.5, False),
+        LayoutSlotPlan("lamp_optional", "lamp", "left_furnishing", 0.0, 2.0, 12.0, "left", 0.5, False),
+    ]
+
+    ordered = sorted(slots, key=street_layout._slot_placement_sort_key)
+
+    assert [slot.category for slot in ordered] == ["lamp", "tree", "bench", "mailbox"]
+
+
+def test_default_sky_dome_placement_uses_mesh_bounds_for_backdrop_scale():
+    metadata = SimpleNamespace(
+        half_x=48.071982,
+        half_z=48.018283,
+        native_height_y=96.137937,
+    )
+
+    placement = street_layout._default_sky_dome_placement(
+        _build_config(seed=11),
+        {
+            "asset_id": street_layout.DEFAULT_SKY_DOME_ASSET_ID,
+            "dimensions_m": {"width": 160.0, "height": 160.0, "depth": 160.0},
+        },
+        metadata,
+    )
+
+    assert placement is not None
+    assert placement.scale > 10.0
+    assert placement.bbox_xz[0] < placement.bbox_xz[1]
+    assert placement.bbox_xz[2] < placement.bbox_xz[3]
+    assert placement.bbox_xz[1] - placement.bbox_xz[0] >= street_layout.DEFAULT_SKY_DOME_MIN_DIAMETER_M
+    assert placement.bbox_xz[3] - placement.bbox_xz[2] >= street_layout.DEFAULT_SKY_DOME_MIN_DIAMETER_M
+
+
+def test_default_sky_dome_material_replaces_extracted_black_texture():
+    pytest.importorskip("trimesh")
+    row = street_layout._default_sky_dome_row()
+    if row is None:
+        pytest.skip("default sky dome fixture is not available")
+
+    metadata = street_layout._load_mesh_metadata([row])[street_layout.DEFAULT_SKY_DOME_ASSET_ID]
+    entry = street_layout._load_single_mesh(metadata)
+    geometries = entry.mesh.geometry.values() if getattr(entry.mesh, "geometry", None) else [entry.mesh]
+    materials = [
+        getattr(getattr(geom, "visual", None), "material", None)
+        for geom in geometries
+    ]
+
+    assert any(getattr(material, "name", "") == street_layout.DEFAULT_SKY_DOME_MATERIAL_NAME for material in materials)
+    sky_material = next(material for material in materials if getattr(material, "baseColorTexture", None) is not None)
+    texture = sky_material.baseColorTexture
+    top_pixel = texture.getpixel((texture.width // 2, 8))
+    assert sum(top_pixel[:3]) > 240
+    assert getattr(sky_material, "emissiveTexture", None) is not None
+
+
 def test_template_scene_layout_contains_simplified_production_steps(tmp_path: Path, monkeypatch):
     trimesh = pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
