@@ -43,7 +43,10 @@
           { "$ref": "#/$defs/remove_functional_zone" },
           { "$ref": "#/$defs/add_surface_annotation" },
           { "$ref": "#/$defs/upsert_surface_annotation" },
-          { "$ref": "#/$defs/remove_surface_annotation" }
+          { "$ref": "#/$defs/remove_surface_annotation" },
+          { "$ref": "#/$defs/add_station_strip_patch" },
+          { "$ref": "#/$defs/upsert_station_strip_patch" },
+          { "$ref": "#/$defs/remove_station_strip_patch" }
         ]
       }
     }
@@ -346,6 +349,56 @@
       "properties": {
         "op": { "const": "remove_surface_annotation" },
         "surface_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "station_strip_patch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["centerline_id", "strip_id", "station_start_m", "station_end_m", "updates"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string" },
+        "centerline_id": { "type": "string", "minLength": 1 },
+        "strip_id": { "type": "string", "minLength": 1 },
+        "station_start_m": { "type": "number", "minimum": 0 },
+        "station_end_m": { "type": "number" },
+        "updates": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "$ref": "#/$defs/strip_kind" },
+            "width_m": { "type": "number", "exclusiveMinimum": 0 },
+            "direction": { "$ref": "#/$defs/strip_direction" }
+          }
+        }
+      }
+    },
+    "add_station_strip_patch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "patch"],
+      "properties": {
+        "op": { "const": "add_station_strip_patch" },
+        "patch": { "$ref": "#/$defs/station_strip_patch" }
+      }
+    },
+    "upsert_station_strip_patch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "patch"],
+      "properties": {
+        "op": { "const": "upsert_station_strip_patch" },
+        "patch": { "$ref": "#/$defs/station_strip_patch" }
+      }
+    },
+    "remove_station_strip_patch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "patch_id"],
+      "properties": {
+        "op": { "const": "remove_station_strip_patch" },
+        "patch_id": { "type": "string", "minLength": 1 }
       }
     }
   }

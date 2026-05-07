@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +14,11 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.graph_templates import load_graph_template_annotation_payload  # noqa: E402
+from roadgen3d.reference_annotation import (  # noqa: E402
+    build_reference_annotation_compose_config,
+    build_segment_graph_from_annotation,
+)
+from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge  # noqa: E402
 from roadgen3d.services.design_types import (  # noqa: E402
     SceneGenerationResult,
     SceneJobCreateResponse,
@@ -80,20 +86,30 @@ def test_scenario_design_service_loads_catalog_and_builds_valid_template_patch(t
 
     payload = service.list_scenarios()
     assert len(payload["items"]) == 7
+    assert sum(1 for item in payload["items"] if item["enabled"]) == 5
+    disabled_ids = {item["scenario_id"] for item in payload["items"] if not item["enabled"]}
+    assert disabled_ids == {
+        "scenario_05_furniture_enriched_activity_street",
+        "scenario_07_asymmetric_shared_street_pocket_park",
+    }
     assert payload["items"][0]["preview_layout_exists"] is True
 
     scenario = service._load_catalog()["scenarios"][1]
     patch = service.scenario_to_template_patch(scenario, validate=True)
     operation_kinds = [item["op"] for item in patch["operations"]]
 
-    assert "upsert_functional_zone" in operation_kinds
-    assert "upsert_surface_annotation" in operation_kinds
+    assert "resize_strip" in operation_kinds
+    assert "upsert_region" in operation_kinds
+    assert "upsert_functional_zone" not in operation_kinds
+    assert "upsert_surface_annotation" not in operation_kinds
     application = apply_template_patch(load_graph_template_annotation_payload("hkust_gz_gate"), patch)
-    assert application.summary["functional_zone_count"] == 2
-    assert application.summary["surface_annotation_count"] == 3
+    assert application.summary["region_count"] == 3
+    assert application.summary["functional_zone_count"] == 0
+    assert application.summary["surface_annotation_count"] == 0
+    assert application.summary["station_strip_patch_count"] == 0
 
 
-def test_scenario_design_service_builds_reference_annotation_for_each_scenario(tmp_path: Path):
+def test_scenario_design_service_builds_reference_annotation_for_each_enabled_scenario(tmp_path: Path):
     service = ScenarioDesignService(
         design_service=_FakeScenarioJobService(),
         run_root=tmp_path / "runs",
@@ -101,6 +117,10 @@ def test_scenario_design_service_builds_reference_annotation_for_each_scenario(t
 
     catalog = service.list_scenarios()
     for item in catalog["items"]:
+        if not item["enabled"]:
+            with pytest.raises(RuntimeError, match="disabled"):
+                service.reference_annotation_for_scenario(item["scenario_id"])
+            continue
         payload = service.reference_annotation_for_scenario(item["scenario_id"])
         annotation = payload["annotation"]
 
@@ -110,6 +130,59 @@ def test_scenario_design_service_builds_reference_annotation_for_each_scenario(t
         assert annotation["centerlines"]
         assert len(annotation["functional_zones"]) == item["functional_zone_count"]
         assert len(annotation["surface_annotations"]) == item["surface_annotation_count"]
+        assert len(annotation.get("station_strip_patches", [])) == item.get("station_strip_patch_count", 0)
+        assert all(
+            region["source_region_id"].startswith("derived_building_region_")
+            for region in annotation["regions"]
+            if region.get("region_role") == "building_region"
+        )
+
+
+def test_scenario_design_surface_and_strip_semantics_reach_scene_bridge(tmp_path: Path):
+    service = ScenarioDesignService(
+        design_service=_FakeScenarioJobService(),
+        run_root=tmp_path / "runs",
+    )
+    catalog = service._load_catalog()["scenarios"]
+    scenario_02 = next(item for item in catalog if item["scenario_id"] == "scenario_02_four_lane_multimodal_safety_island")
+    scenario_06 = next(item for item in catalog if item["scenario_id"] == "scenario_06_green_median_complete_street")
+
+    application_02 = apply_template_patch(
+        load_graph_template_annotation_payload("hkust_gz_gate"),
+        service.scenario_to_template_patch(scenario_02, validate=True),
+    )
+    bridge = build_reference_annotation_scene_bridge(
+        application_02.annotation,
+        compose_config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 13.2}),
+    )
+    assert bridge.placement_context.surface_annotations == []
+    assert application_02.annotation.get("station_strip_patches", []) == []
+    for patched_centerline in application_02.annotation["centerlines"]:
+        patched_center_03 = next(strip for strip in patched_centerline["cross_section_strips"] if strip["strip_id"] == "center_03")
+        assert patched_center_03["kind"] == "grass_belt"
+        assert patched_center_03["width_m"] == 1.0
+    graph = build_segment_graph_from_annotation(
+        application_02.annotation,
+        config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 13.2}),
+    )
+    assert graph.nodes
+    assert all(
+        any(
+            strip.strip_id == "center_03" and strip.kind == "grass_belt" and strip.width_m == pytest.approx(1.0)
+            for strip in node.cross_section_strips
+        )
+        for node in graph.nodes
+        if node.highway_type == "annotated_centerline"
+    )
+
+    application_06 = apply_template_patch(
+        load_graph_template_annotation_payload("hkust_gz_gate"),
+        service.scenario_to_template_patch(scenario_06, validate=True),
+    )
+    centerline_04 = next(item for item in application_06.annotation["centerlines"] if item["id"] == "centerline_04")
+    center_03 = next(strip for strip in centerline_04["cross_section_strips"] if strip["strip_id"] == "center_03")
+    assert center_03["kind"] == "grass_belt"
+    assert center_03["width_m"] == 3.2
 
 
 def test_scenario_design_run_creates_scene_jobs_and_report(tmp_path: Path):
@@ -134,7 +207,7 @@ def test_scenario_design_run_creates_scene_jobs_and_report(tmp_path: Path):
     assert "Scenario Generation Report" in report["content"]
 
 
-def test_scenario_design_api_creates_default_twenty_one_job_run(tmp_path: Path):
+def test_scenario_design_api_creates_default_enabled_job_run(tmp_path: Path):
     fake = _FakeScenarioJobService()
     app = create_app(design_service=fake)
     app.state.scenario_design_service = ScenarioDesignService(
@@ -145,7 +218,9 @@ def test_scenario_design_api_creates_default_twenty_one_job_run(tmp_path: Path):
 
     list_response = client.get("/api/scenario-designs")
     assert list_response.status_code == 200
-    assert len(list_response.json()["items"]) == 7
+    list_payload = list_response.json()
+    assert len(list_payload["items"]) == 7
+    assert sum(1 for item in list_payload["items"] if item["enabled"]) == 5
 
     annotation_response = client.get(
         "/api/scenario-designs/scenario_02_four_lane_multimodal_safety_island/reference-annotation"
@@ -154,26 +229,41 @@ def test_scenario_design_api_creates_default_twenty_one_job_run(tmp_path: Path):
     annotation_payload = annotation_response.json()
     assert annotation_payload["scenario_id"] == "scenario_02_four_lane_multimodal_safety_island"
     assert annotation_payload["annotation"]["plan_id"] == "hkust_gz_gate"
-    assert len(annotation_payload["annotation"]["functional_zones"]) == 2
-    assert len(annotation_payload["annotation"]["surface_annotations"]) == 3
+    assert len(annotation_payload["annotation"]["functional_zones"]) == 0
+    assert len(annotation_payload["annotation"]["surface_annotations"]) == 0
+    assert len(annotation_payload["annotation"].get("station_strip_patches", [])) == 0
+
+    disabled_annotation_response = client.get(
+        "/api/scenario-designs/scenario_05_furniture_enriched_activity_street/reference-annotation"
+    )
+    assert disabled_annotation_response.status_code == 400
+    assert "disabled" in disabled_annotation_response.json()["detail"]
 
     missing_response = client.get("/api/scenario-designs/not-a-real-scenario/reference-annotation")
     assert missing_response.status_code == 404
 
+    disabled_run_response = client.post(
+        "/api/scenario-designs/runs",
+        json={"scenario_ids": ["scenario_07_asymmetric_shared_street_pocket_park"]},
+    )
+    assert disabled_run_response.status_code == 400
+    assert "disabled" in disabled_run_response.json()["detail"]
+
     create_response = client.post("/api/scenario-designs/runs", json={})
     assert create_response.status_code == 200
     run_payload = create_response.json()
-    assert run_payload["total_jobs"] == 21
-    assert len(fake.created) == 21
+    assert run_payload["total_jobs"] == 15
+    assert len(fake.created) == 15
     assert fake.created[0]["scene_context"]["graph_template_id"] == "hkust_gz_gate"
     assert fake.created[0]["draft"].template_patch["operations"]
 
     status_response = client.get(f"/api/scenario-designs/runs/{run_payload['run_id']}")
     assert status_response.status_code == 200
     assert status_response.json()["status"] == "succeeded"
-    assert status_response.json()["completed_jobs"] == 21
+    assert status_response.json()["completed_jobs"] == 15
 
     report_response = client.get(f"/api/scenario-designs/runs/{run_payload['run_id']}/report")
     assert report_response.status_code == 200
     assert report_response.json()["report_path"].endswith("SCENARIO_GENERATION_REPORT.md")
-    assert "方案 7" in report_response.json()["content"]
+    assert "方案 6" in report_response.json()["content"]
+    assert "方案 7" not in report_response.json()["content"]

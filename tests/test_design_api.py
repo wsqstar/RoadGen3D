@@ -30,6 +30,18 @@ from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, Br
 from web.api.main import create_app  # noqa: E402
 
 
+def test_api_root_returns_viewer_and_health_hints():
+    client = TestClient(create_app(design_service=_FakeService()))
+
+    response = client.get("/")
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["ok"] is True
+    assert payload["health_url"] == "/api/health"
+    assert payload["viewer_url"].startswith("http://127.0.0.1:4173")
+
+
 class _FakeService:
     default_pdf_path = Path("/tmp/guide.pdf")
     default_artifact_dir = Path("/tmp/knowledge")

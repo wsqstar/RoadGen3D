@@ -1,157 +1,515 @@
 {
   "schema_version": "roadgen3d_scenario_design_catalog_v1",
-  "source_doc": "docs/SCENARIO_DESIGN_OPTIONS.md",
   "graph_template_id": "hkust_gz_gate",
+  "primary_centerline_id": "centerline_04",
+  "notes_zh": "基于新默认 hkust_gz_gate 模板。方案以自动分割 derived building regions 为用地锚点，连续断面用 strip patch 表达，局部道路断面变化用 station_strip_patches 表达，铺装覆盖类干预用 centerline-bound surface_annotations 表达。",
   "scenarios": [
     {
       "scenario_id": "scenario_01_basic_complete_street",
-      "title_zh": "方案 1 · 基础完整街道",
-      "scenario_type": "basic_complete_street",
-      "query": "基础完整街道，双向四车道，独立骑行道，宽人行道，学校与商业界面",
-      "intent_zh": "以当前道路为基准，增加完整街道的基本断面语义：慢行、家具、公交和两侧界面。",
+      "enabled": true,
+      "title_zh": "方案 1 · 道路瘦身完整街道",
+      "scenario_type": "road_diet_complete_street",
+      "query": "道路瘦身完整街道，四车道压缩为双向两车道，外侧车道转为独立骑行道，扩大慢行空间",
+      "intent_zh": "以自动分割出的两侧用地为界面锚点，把当前四车道断面瘦身为双向两车道，并把外侧车道改为非机动车道。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_01_basic_complete_street/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "dedicated", "sidewalk": "widened", "median": "none"},
-      "edge_context": {"north": "school", "south": "commercial_frontage"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 13.2, "sidewalk_width_m": 3.5, "density": 0.95, "objective_profile": "balanced", "bike_demand_level": "high", "ped_demand_level": "high"},
-      "asset_program": ["tree_pit", "bench", "trash_bin", "bus_stop", "bike_parking", "school_gate", "commercial_outdoor_seating"],
-      "functional_zones": [
-        {"id": "scenario_01_school_entry_plaza", "label": "学校入口广场", "kind": "plaza", "points": [{"x": 95, "y": 18}, {"x": 255, "y": 18}, {"x": 255, "y": 60}, {"x": 95, "y": 60}], "furniture_instances": [{"instance_id": "scenario_01_school_bench", "kind": "bench", "x_px": 175, "y_px": 42, "yaw_deg": 0}, {"instance_id": "scenario_01_school_sign", "kind": "sign", "x_px": 112, "y_px": 30, "yaw_deg": 0}]},
-        {"id": "scenario_01_commercial_outdoor_seating", "label": "商业外摆区", "kind": "outdoor_seating", "points": [{"x": 670, "y": 118}, {"x": 880, "y": 118}, {"x": 880, "y": 162}, {"x": 670, "y": 162}], "furniture_instances": [{"instance_id": "scenario_01_commercial_bench", "kind": "bench", "x_px": 742, "y_px": 142, "yaw_deg": 180}, {"instance_id": "scenario_01_commercial_trash", "kind": "trash", "x_px": 824, "y_px": 138, "yaw_deg": 180}]},
-        {"id": "scenario_01_bike_parking", "label": "非机动车停车区", "kind": "parking", "points": [{"x": 420, "y": 120}, {"x": 565, "y": 120}, {"x": 565, "y": 158}, {"x": 420, "y": 158}], "furniture_instances": [{"instance_id": "scenario_01_bike_bollard_a", "kind": "bollard", "x_px": 455, "y_px": 140, "yaw_deg": 0}, {"instance_id": "scenario_01_bike_bollard_b", "kind": "bollard", "x_px": 525, "y_px": 140, "yaw_deg": 0}]}
+      "road_section": {
+        "motor_lanes": 2,
+        "converted_lanes": "outer_to_bike_lane",
+        "bike_lane": "dedicated_center_strip",
+        "sidewalk": "widened",
+        "median": "narrow_separator"
+      },
+      "edge_context": {
+        "left_regions": ["derived_building_region_02", "derived_building_region_03"],
+        "right_regions": ["derived_building_region_01", "derived_building_region_04"]
+      },
+      "region_overrides": [
+        {
+          "id": "scenario_01_left_school_frontage",
+          "label": "左侧校园步行界面",
+          "source_region_id": "derived_building_region_02",
+          "region_role": "building_region",
+          "land_use_type": "school_frontage",
+          "material": {"preset": "campus_frontage"}
+        },
+        {
+          "id": "scenario_01_right_commercial_frontage",
+          "label": "右侧商业生活界面",
+          "source_region_id": "derived_building_region_01",
+          "region_role": "building_region",
+          "land_use_type": "commercial_frontage",
+          "material": {"preset": "mixed_use_frontage"}
+        }
       ],
+      "template_patch_operations": [
+        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_01", "updates": {"kind": "bike_lane", "width_m": 1.8, "direction": "reverse"}},
+        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_05", "updates": {"kind": "bike_lane", "width_m": 1.8, "direction": "forward"}},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_01", "width_m": 1.8},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_01", "width_m": 1.8},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.8},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.8}
+      ],
+      "functional_zones": [],
       "surface_annotations": [
-        {"id": "scenario_01_bike_lane_north", "label": "北侧独立骑行道", "kind": "colored_pavement", "surface_role": "bike_lane", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": 6.8, "lateral_end_m": 8.6, "material": {"preset": "bike_lane_green"}},
-        {"id": "scenario_01_bike_lane_south", "label": "南侧独立骑行道", "kind": "colored_pavement", "surface_role": "bike_lane", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": -8.6, "lateral_end_m": -6.8, "material": {"preset": "bike_lane_green"}}
-      ]
+        {
+          "id": "scenario_01_bike_lane_reverse",
+          "label": "反向独立非机动车道",
+          "kind": "colored_pavement",
+          "surface_role": "bike_lane",
+          "station_start_m": 0,
+          "station_end_m": 170,
+          "lateral_start_m": 4.8,
+          "lateral_end_m": 6.6,
+          "material": {"preset": "bike_lane_green"}
+        },
+        {
+          "id": "scenario_01_bike_lane_forward",
+          "label": "正向独立非机动车道",
+          "kind": "colored_pavement",
+          "surface_role": "bike_lane",
+          "station_start_m": 0,
+          "station_end_m": 170,
+          "lateral_start_m": -6.6,
+          "lateral_end_m": -4.8,
+          "material": {"preset": "bike_lane_green"}
+        }
+      ],
+      "compose_config_patch": {
+        "lane_count": 2,
+        "road_width_m": 9.9,
+        "sidewalk_width_m": 3.8,
+        "density": 0.85,
+        "objective_profile": "balanced",
+        "bike_demand_level": "high",
+        "ped_demand_level": "high",
+        "vehicle_demand_level": "medium"
+      }
     },
     {
       "scenario_id": "scenario_02_four_lane_multimodal_safety_island",
+      "enabled": true,
       "title_zh": "方案 2 · 四车道慢行强化与中央安全岛",
-      "scenario_type": "four_lane_multimodal_safety_island",
-      "query": "标准四车道慢行强化，3.3 米车道，中央安全岛，专用非机动车道，现代公交站",
-      "intent_zh": "把当前道路组织成标准四车道慢行强化街道，并用局部安全岛表达过街保护。",
+      "scenario_type": "four_lane_safety_island",
+      "query": "四车道慢行强化，中心线拓宽为一米可种树中央安全岛，双侧步行空间增强",
+      "intent_zh": "保持四车道基本通行能力，把默认模板中所有道路的中心分隔 strip 直接拓宽成约 1m 宽的可种树中央安全岛，不再额外绘制横跨道路的铺装面。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_02_four_lane_multimodal_safety_island/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "dedicated", "sidewalk": "widened", "median": "safety_island"},
-      "edge_context": {"north": "tree_shaded_walk", "south": "tree_shaded_walk"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 14.0, "sidewalk_width_m": 3.8, "density": 0.9, "objective_profile": "balanced", "bike_demand_level": "high", "ped_demand_level": "high"},
-      "asset_program": ["central_safety_island", "dedicated_bike_lane", "modern_bus_stop", "shade_tree_row", "crossing_refuge"],
-      "functional_zones": [
-        {"id": "scenario_02_north_shaded_walk", "label": "北侧林荫步道", "kind": "garden", "points": [{"x": 110, "y": 12}, {"x": 900, "y": 12}, {"x": 900, "y": 45}, {"x": 110, "y": 45}], "furniture_instances": [{"instance_id": "scenario_02_tree_a", "kind": "tree", "x_px": 220, "y_px": 28, "yaw_deg": 0}, {"instance_id": "scenario_02_tree_b", "kind": "tree", "x_px": 515, "y_px": 28, "yaw_deg": 0}, {"instance_id": "scenario_02_tree_c", "kind": "tree", "x_px": 810, "y_px": 28, "yaw_deg": 0}]},
-        {"id": "scenario_02_transit_pad", "label": "现代公交候车区", "kind": "plaza", "points": [{"x": 680, "y": 104}, {"x": 785, "y": 104}, {"x": 785, "y": 142}, {"x": 680, "y": 142}], "furniture_instances": [{"instance_id": "scenario_02_bus_stop", "kind": "bus_stop", "x_px": 720, "y_px": 123, "yaw_deg": 180}, {"instance_id": "scenario_02_transit_bench", "kind": "bench", "x_px": 760, "y_px": 126, "yaw_deg": 180}]}
+      "road_section": {
+        "motor_lanes": 4,
+        "lane_width_m": 3.1,
+        "bike_lane": "none",
+        "sidewalk": "widened",
+        "median": "tree_safety_island_1m"
+      },
+      "edge_context": {
+        "left_regions": ["derived_building_region_02"],
+        "right_regions": ["derived_building_region_01"]
+      },
+      "region_overrides": [
+        {
+          "id": "scenario_02_left_shaded_walk_frontage",
+          "label": "左侧林荫慢行界面",
+          "source_region_id": "derived_building_region_02",
+          "region_role": "building_region",
+          "land_use_type": "tree_shaded_walk",
+          "material": {"preset": "green_buffered_frontage"}
+        },
+        {
+          "id": "scenario_02_right_transit_frontage",
+          "label": "右侧公交与商业界面",
+          "source_region_id": "derived_building_region_01",
+          "region_role": "building_region",
+          "land_use_type": "transit_commercial_frontage",
+          "material": {"preset": "transit_frontage"}
+        }
       ],
-      "surface_annotations": [
-        {"id": "scenario_02_safety_island_west", "label": "中央安全岛西段", "kind": "safety_island", "surface_role": "safety_island", "station_start_m": 18, "station_end_m": 34, "lateral_start_m": -0.8, "lateral_end_m": 0.8, "material": {"preset": "safety_island_concrete"}},
-        {"id": "scenario_02_safety_island_east", "label": "中央安全岛东段", "kind": "safety_island", "surface_role": "safety_island", "station_start_m": 48, "station_end_m": 66, "lateral_start_m": -0.8, "lateral_end_m": 0.8, "material": {"preset": "safety_island_concrete"}},
-        {"id": "scenario_02_colored_crossing", "label": "彩色慢行过街铺装", "kind": "colored_pavement", "surface_role": "colored_pavement", "station_start_m": 35, "station_end_m": 45, "lateral_start_m": -8.5, "lateral_end_m": 8.5, "material": {"preset": "raised_crossing_warm"}}
-      ]
+      "template_patch_operations": [
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.1},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.1},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.1},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.1},
+        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_03", "updates": {"kind": "grass_belt", "width_m": 1.0, "direction": "none"}},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.5},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.5}
+      ],
+      "functional_zones": [],
+      "surface_annotations": [],
+      "compose_config_patch": {
+        "lane_count": 4,
+        "road_width_m": 13.4,
+        "sidewalk_width_m": 3.5,
+        "density": 0.9,
+        "objective_profile": "balanced",
+        "bike_demand_level": "medium",
+        "ped_demand_level": "high",
+        "vehicle_demand_level": "medium"
+      }
     },
     {
       "scenario_id": "scenario_03_school_commercial_mixed_frontage",
-      "title_zh": "方案 3 · 校园与商住混合街道",
-      "scenario_type": "school_commercial_mixed_frontage",
-      "query": "校园与商住混合街道，机非分离，学校入口广场，商业外摆，智能公交站",
-      "intent_zh": "把同一条路两侧分成学校界面和商住界面，强调机非分离和停留空间。",
+      "enabled": true,
+      "title_zh": "方案 3 · 公交停靠与混合界面",
+      "scenario_type": "transit_pad_mixed_frontage",
+      "query": "校园与商住混合街道，公交停靠段，局部公交车道变形，站台铺装，机非清晰分离",
+      "intent_zh": "使用自动分割的左右用地表达校园和商业界面，公交站通过中心线绑定的局部设计面表达。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_03_school_commercial_mixed_frontage/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "dedicated", "sidewalk": "widened", "median": "painted_buffer"},
-      "edge_context": {"north": "school_frontage", "south": "commercial_residential"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 13.5, "sidewalk_width_m": 3.8, "density": 1.05, "objective_profile": "commerce", "bike_demand_level": "high", "ped_demand_level": "high"},
-      "asset_program": ["smart_bus_stop", "bike_parking", "school_entry_plaza", "commercial_spillout", "rest_benches"],
-      "functional_zones": [
-        {"id": "scenario_03_school_plaza", "label": "校园入口广场", "kind": "plaza", "points": [{"x": 180, "y": 15}, {"x": 360, "y": 15}, {"x": 360, "y": 62}, {"x": 180, "y": 62}], "furniture_instances": [{"instance_id": "scenario_03_school_bench_a", "kind": "bench", "x_px": 220, "y_px": 42, "yaw_deg": 0}, {"instance_id": "scenario_03_school_bench_b", "kind": "bench", "x_px": 315, "y_px": 42, "yaw_deg": 0}]},
-        {"id": "scenario_03_commercial_spillout", "label": "商住外摆界面", "kind": "outdoor_seating", "points": [{"x": 610, "y": 116}, {"x": 895, "y": 116}, {"x": 895, "y": 164}, {"x": 610, "y": 164}], "furniture_instances": [{"instance_id": "scenario_03_cafe_bench", "kind": "bench", "x_px": 690, "y_px": 141, "yaw_deg": 180}, {"instance_id": "scenario_03_kiosk", "kind": "kiosk", "x_px": 830, "y_px": 140, "yaw_deg": 180}]},
-        {"id": "scenario_03_bike_parking", "label": "非机动车停车节点", "kind": "parking", "points": [{"x": 440, "y": 120}, {"x": 540, "y": 120}, {"x": 540, "y": 158}, {"x": 440, "y": 158}], "furniture_instances": [{"instance_id": "scenario_03_bollard_a", "kind": "bollard", "x_px": 470, "y_px": 140, "yaw_deg": 0}, {"instance_id": "scenario_03_bollard_b", "kind": "bollard", "x_px": 515, "y_px": 140, "yaw_deg": 0}]}
+      "road_section": {
+        "motor_lanes": 4,
+        "lane_width_m": 3.2,
+        "bike_lane": "painted_surface",
+        "sidewalk": "transit_pad_side",
+        "median": "painted_buffer"
+      },
+      "edge_context": {
+        "left_regions": ["derived_building_region_02"],
+        "right_regions": ["derived_building_region_01", "derived_building_region_04"]
+      },
+      "region_overrides": [
+        {
+          "id": "scenario_03_left_school_frontage",
+          "label": "左侧校园入口界面",
+          "source_region_id": "derived_building_region_02",
+          "region_role": "building_region",
+          "land_use_type": "school_frontage",
+          "material": {"preset": "campus_frontage"}
+        },
+        {
+          "id": "scenario_03_right_mixed_frontage",
+          "label": "右侧商住混合界面",
+          "source_region_id": "derived_building_region_01",
+          "region_role": "building_region",
+          "land_use_type": "commercial_residential",
+          "material": {"preset": "mixed_use_frontage"}
+        },
+        {
+          "id": "scenario_03_right_transit_node",
+          "label": "右侧公交停靠节点界面",
+          "source_region_id": "derived_building_region_04",
+          "region_role": "building_region",
+          "land_use_type": "transit_node_frontage",
+          "material": {"preset": "transit_frontage"}
+        }
       ],
+      "template_patch_operations": [
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.2},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.2},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.2},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.2},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_01", "width_m": 2.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.6}
+      ],
+      "functional_zones": [],
       "surface_annotations": [
-        {"id": "scenario_03_green_facility_strip", "label": "绿林设施带", "kind": "paving_zone", "surface_role": "shared_street_surface", "station_start_m": 5, "station_end_m": 76, "lateral_start_m": 8.4, "lateral_end_m": 10.2, "material": {"preset": "furnishing_plaza_green"}},
-        {"id": "scenario_03_transit_pad", "label": "智能公交站台铺装", "kind": "transit_pad", "surface_role": "transit_pad", "station_start_m": 54, "station_end_m": 68, "lateral_start_m": -9.8, "lateral_end_m": -7.2, "material": {"preset": "transit_pad_plaza"}}
-      ]
+        {
+          "id": "scenario_03_bus_lane_widening",
+          "label": "中心线标注 · 公交停靠车道变形段",
+          "kind": "bus_lane_widening",
+          "surface_role": "bus_lane",
+          "station_start_m": 72,
+          "station_end_m": 112,
+          "lateral_start_m": -6.6,
+          "lateral_end_m": -3.2,
+          "material": {"preset": "bus_lane_green"}
+        },
+        {
+          "id": "scenario_03_transit_pad",
+          "label": "中心线标注 · 公交站台候车铺装",
+          "kind": "transit_pad",
+          "surface_role": "transit_pad",
+          "station_start_m": 80,
+          "station_end_m": 104,
+          "lateral_start_m": -10.2,
+          "lateral_end_m": -7.0,
+          "material": {"preset": "transit_pad_plaza"}
+        },
+        {
+          "id": "scenario_03_bike_guidance_surface",
+          "label": "中心线标注 · 非机动车提示铺装",
+          "kind": "colored_pavement",
+          "surface_role": "bike_lane",
+          "station_start_m": 20,
+          "station_end_m": 150,
+          "lateral_start_m": 6.6,
+          "lateral_end_m": 8.2,
+          "material": {"preset": "bike_lane_green"}
+        }
+      ],
+      "compose_config_patch": {
+        "lane_count": 4,
+        "road_width_m": 13.2,
+        "sidewalk_width_m": 3.6,
+        "density": 1.0,
+        "objective_profile": "transit",
+        "bike_demand_level": "high",
+        "ped_demand_level": "high",
+        "transit_demand_level": "high"
+      }
     },
     {
       "scenario_id": "scenario_04_child_friendly_school_corridor",
-      "title_zh": "方案 4 · 儿童友好型街道",
+      "enabled": true,
+      "title_zh": "方案 4 · 儿童友好型学校走廊",
       "scenario_type": "child_friendly_school_corridor",
-      "query": "儿童友好型街道，家长等候区，儿童步道，彩色铺装，学校侧安全界面",
-      "intent_zh": "在学校侧增加家长等候和儿童专属步道，用彩色铺装强化低速与安全感。",
+      "query": "儿童友好型街道，缩窄车道，拓宽学校侧步行空间，彩色步道，彩色过街，中央安全岛",
+      "intent_zh": "在不改变道路拓扑的前提下，缩窄车道并把学校侧空间让给儿童友好步行和过街安全设施。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_04_child_friendly_school_corridor/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "dedicated", "sidewalk": "child_friendly_widened", "median": "safety_island"},
-      "edge_context": {"north": "school_child_friendly", "south": "commercial_frontage"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 13.2, "sidewalk_width_m": 4.2, "density": 1.0, "objective_profile": "balanced", "ped_demand_level": "high", "vehicle_demand_level": "medium"},
-      "asset_program": ["parent_waiting", "child_walk", "colored_pavement", "school_crossing", "tree_pits", "benches"],
-      "functional_zones": [
-        {"id": "scenario_04_parent_waiting", "label": "家长等候区", "kind": "plaza", "points": [{"x": 95, "y": 14}, {"x": 290, "y": 14}, {"x": 290, "y": 62}, {"x": 95, "y": 62}], "furniture_instances": [{"instance_id": "scenario_04_parent_bench_a", "kind": "bench", "x_px": 150, "y_px": 42, "yaw_deg": 0}, {"instance_id": "scenario_04_parent_bench_b", "kind": "bench", "x_px": 230, "y_px": 42, "yaw_deg": 0}]},
-        {"id": "scenario_04_child_play_walk", "label": "儿童活动步道节点", "kind": "playground", "points": [{"x": 330, "y": 14}, {"x": 530, "y": 14}, {"x": 530, "y": 60}, {"x": 330, "y": 60}], "furniture_instances": [{"instance_id": "scenario_04_child_sculpture", "kind": "sculpture", "x_px": 430, "y_px": 38, "yaw_deg": 0}, {"instance_id": "scenario_04_child_bench", "kind": "bench", "x_px": 500, "y_px": 40, "yaw_deg": 0}]},
-        {"id": "scenario_04_commercial_support", "label": "商业外摆与停车", "kind": "outdoor_seating", "points": [{"x": 680, "y": 118}, {"x": 895, "y": 118}, {"x": 895, "y": 164}, {"x": 680, "y": 164}], "furniture_instances": [{"instance_id": "scenario_04_commercial_bench", "kind": "bench", "x_px": 760, "y_px": 142, "yaw_deg": 180}, {"instance_id": "scenario_04_commercial_trash", "kind": "trash", "x_px": 845, "y_px": 140, "yaw_deg": 180}]}
+      "road_section": {
+        "motor_lanes": 4,
+        "lane_width_m": 3.0,
+        "bike_lane": "none",
+        "sidewalk": "school_side_widened",
+        "median": "local_refuge"
+      },
+      "edge_context": {
+        "left_regions": ["derived_building_region_02", "derived_building_region_03"],
+        "right_regions": ["derived_building_region_01"]
+      },
+      "region_overrides": [
+        {
+          "id": "scenario_04_left_school_safe_frontage",
+          "label": "左侧学校安全界面",
+          "source_region_id": "derived_building_region_02",
+          "region_role": "building_region",
+          "land_use_type": "school_child_friendly",
+          "material": {"preset": "campus_frontage"}
+        },
+        {
+          "id": "scenario_04_left_child_activity_edge",
+          "label": "左侧儿童活动界面",
+          "source_region_id": "derived_building_region_03",
+          "region_role": "building_region",
+          "land_use_type": "child_activity_edge",
+          "material": {"preset": "playful_frontage"}
+        },
+        {
+          "id": "scenario_04_right_support_frontage",
+          "label": "右侧商业支持界面",
+          "source_region_id": "derived_building_region_01",
+          "region_role": "building_region",
+          "land_use_type": "support_commercial_frontage",
+          "material": {"preset": "mixed_use_frontage"}
+        }
       ],
+      "template_patch_operations": [
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_03", "width_m": 0.5},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_01", "width_m": 2.2},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 4.6},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.2}
+      ],
+      "functional_zones": [],
       "surface_annotations": [
-        {"id": "scenario_04_child_colored_walk", "label": "儿童彩色步道", "kind": "colored_pavement", "surface_role": "colored_pavement", "station_start_m": 10, "station_end_m": 72, "lateral_start_m": 8.8, "lateral_end_m": 12.2, "material": {"preset": "child_walk_colored_pavers"}},
-        {"id": "scenario_04_school_crossing", "label": "学校门前彩色过街", "kind": "colored_pavement", "surface_role": "colored_pavement", "station_start_m": 31, "station_end_m": 43, "lateral_start_m": -9.0, "lateral_end_m": 9.0, "material": {"preset": "raised_crossing_warm"}},
-        {"id": "scenario_04_refuge_island", "label": "学校过街安全岛", "kind": "safety_island", "surface_role": "safety_island", "station_start_m": 34, "station_end_m": 42, "lateral_start_m": -0.8, "lateral_end_m": 0.8, "material": {"preset": "safety_island_concrete"}}
-      ]
+        {
+          "id": "scenario_04_child_colored_walk",
+          "label": "中心线标注 · 学校侧儿童彩色步道",
+          "kind": "colored_pavement",
+          "surface_role": "colored_pavement",
+          "station_start_m": 18,
+          "station_end_m": 132,
+          "lateral_start_m": 8.2,
+          "lateral_end_m": 11.6,
+          "material": {"preset": "child_walk_colored_pavers"}
+        },
+        {
+          "id": "scenario_04_school_crossing",
+          "label": "中心线标注 · 学校门前彩色过街",
+          "kind": "colored_pavement",
+          "surface_role": "colored_pavement",
+          "station_start_m": 56,
+          "station_end_m": 68,
+          "lateral_start_m": -9.0,
+          "lateral_end_m": 9.0,
+          "material": {"preset": "raised_crossing_warm"}
+        },
+        {
+          "id": "scenario_04_refuge_island",
+          "label": "中心线标注 · 学校过街安全岛",
+          "kind": "safety_island",
+          "surface_role": "safety_island",
+          "station_start_m": 57,
+          "station_end_m": 67,
+          "lateral_start_m": -0.8,
+          "lateral_end_m": 0.8,
+          "material": {"preset": "safety_island_concrete"}
+        }
+      ],
+      "compose_config_patch": {
+        "lane_count": 4,
+        "road_width_m": 12.5,
+        "sidewalk_width_m": 4.6,
+        "density": 0.95,
+        "objective_profile": "balanced",
+        "ped_demand_level": "high",
+        "vehicle_demand_level": "medium"
+      }
     },
     {
       "scenario_id": "scenario_05_furniture_enriched_activity_street",
-      "title_zh": "方案 5 · 街道家具与社区活动增强",
-      "scenario_type": "furniture_enriched_activity_street",
+      "enabled": false,
+      "excluded_reason_zh": "本轮忽略：该方案主要是公园/活动空间设计，需要自由形状和公园细化，不属于本轮以自动分割用地和道路断面微调为主的范围。",
+      "title_zh": "方案 5 · 街道家具与社区活动增强（暂不生成）",
+      "scenario_type": "disabled_park_activity_design",
       "query": "街道家具与社区活动增强，信息站，自行车修理站，露天剧场，儿童游乐，健身与社区聚会",
-      "intent_zh": "不大改道路骨架，在当前布局上叠加更细颗粒度的家具、服务设施和活动节点。",
+      "intent_zh": "保留为后续高阶公园/活动节点方案，本轮不参与生成。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_05_furniture_enriched_activity_street/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "dedicated", "sidewalk": "activity_enriched", "median": "none"},
-      "edge_context": {"north": "park_activity_edge", "south": "community_commercial"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 13.2, "sidewalk_width_m": 4.0, "density": 1.25, "objective_profile": "commerce", "ped_demand_level": "high", "bike_demand_level": "medium"},
-      "asset_program": ["bike_repair_station", "information_kiosk", "recycling_bin", "amphitheater", "playground", "outdoor_fitness", "community_pavilion", "street_performance_corner"],
-      "functional_zones": [
-        {"id": "scenario_05_amphitheater", "label": "小型露天剧场", "kind": "amphitheater", "points": [{"x": 90, "y": 10}, {"x": 260, "y": 10}, {"x": 260, "y": 62}, {"x": 90, "y": 62}], "furniture_instances": [{"instance_id": "scenario_05_amphi_bench_a", "kind": "bench", "x_px": 150, "y_px": 42, "yaw_deg": 0}, {"instance_id": "scenario_05_amphi_bench_b", "kind": "bench", "x_px": 210, "y_px": 45, "yaw_deg": 0}]},
-        {"id": "scenario_05_playground", "label": "儿童游乐区", "kind": "playground", "points": [{"x": 300, "y": 12}, {"x": 470, "y": 12}, {"x": 470, "y": 62}, {"x": 300, "y": 62}], "furniture_instances": [{"instance_id": "scenario_05_play_sculpture", "kind": "sculpture", "x_px": 385, "y_px": 38, "yaw_deg": 0}, {"instance_id": "scenario_05_play_bench", "kind": "bench", "x_px": 445, "y_px": 42, "yaw_deg": 0}]},
-        {"id": "scenario_05_fitness_garden", "label": "户外健身与共享花园", "kind": "garden", "points": [{"x": 520, "y": 12}, {"x": 720, "y": 12}, {"x": 720, "y": 60}, {"x": 520, "y": 60}], "furniture_instances": [{"instance_id": "scenario_05_fitness_tree", "kind": "tree", "x_px": 570, "y_px": 35, "yaw_deg": 0}, {"instance_id": "scenario_05_fitness_bench", "kind": "bench", "x_px": 670, "y_px": 40, "yaw_deg": 0}]},
-        {"id": "scenario_05_info_kiosk", "label": "社区信息站与维修节点", "kind": "kiosk", "points": [{"x": 760, "y": 118}, {"x": 900, "y": 118}, {"x": 900, "y": 162}, {"x": 760, "y": 162}], "furniture_instances": [{"instance_id": "scenario_05_info_kiosk_furniture", "kind": "kiosk", "x_px": 830, "y_px": 140, "yaw_deg": 180}, {"instance_id": "scenario_05_recycling_bin", "kind": "trash", "x_px": 785, "y_px": 138, "yaw_deg": 180}]}
-      ],
-      "surface_annotations": [
-        {"id": "scenario_05_activity_paving", "label": "活动节点连续铺装", "kind": "paving_zone", "surface_role": "shared_street_surface", "station_start_m": 4, "station_end_m": 76, "lateral_start_m": 9.0, "lateral_end_m": 14.0, "material": {"preset": "activity_pavers"}}
-      ]
+      "road_section": {
+        "motor_lanes": 4,
+        "sidewalk": "activity_enriched",
+        "scope": "excluded"
+      },
+      "edge_context": {
+        "reason": "park_activity_design"
+      },
+      "region_overrides": [],
+      "template_patch_operations": [],
+      "functional_zones": [],
+      "surface_annotations": [],
+      "compose_config_patch": {
+        "lane_count": 4,
+        "road_width_m": 13.2,
+        "sidewalk_width_m": 4.0,
+        "density": 1.25,
+        "objective_profile": "commerce",
+        "ped_demand_level": "high",
+        "bike_demand_level": "medium"
+      }
     },
     {
       "scenario_id": "scenario_06_green_median_complete_street",
+      "enabled": true,
       "title_zh": "方案 6 · 中央绿化带完整街道",
       "scenario_type": "green_median_complete_street",
-      "query": "中央绿化带完整街道，六车道压缩为四车道，中央绿化，独立非机动车道，更宽人行道",
-      "intent_zh": "把道路压缩为四车道并释放中线绿化缓冲，同时保留两侧慢行和停留空间。",
+      "query": "中央绿化带完整街道，四车道，拓宽中央绿化带，慢行空间增强，商业界面保留",
+      "intent_zh": "把现有中心线窄分隔带拓宽为连续绿化带，同时保持四车道和两侧慢行空间。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_06_green_median_complete_street/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "dedicated", "sidewalk": "widened", "median": "green_belt"},
-      "edge_context": {"north": "green_buffered_walk", "south": "commercial_frontage"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 14.8, "sidewalk_width_m": 3.8, "density": 0.95, "objective_profile": "greening", "ped_demand_level": "high", "vehicle_demand_level": "medium"},
-      "asset_program": ["green_median", "dedicated_bike_lane", "widened_sidewalk", "bus_stop", "bike_parking", "commercial_outdoor_seating"],
-      "functional_zones": [
-        {"id": "scenario_06_central_green_node", "label": "中央绿化带强化段", "kind": "garden", "points": [{"x": 100, "y": 90}, {"x": 910, "y": 90}, {"x": 910, "y": 110}, {"x": 100, "y": 110}], "furniture_instances": [{"instance_id": "scenario_06_median_tree_a", "kind": "tree", "x_px": 260, "y_px": 100, "yaw_deg": 0}, {"instance_id": "scenario_06_median_tree_b", "kind": "tree", "x_px": 515, "y_px": 100, "yaw_deg": 0}, {"instance_id": "scenario_06_median_tree_c", "kind": "tree", "x_px": 780, "y_px": 100, "yaw_deg": 0}]},
-        {"id": "scenario_06_south_commercial_frontage", "label": "南侧商业停留界面", "kind": "outdoor_seating", "points": [{"x": 610, "y": 118}, {"x": 900, "y": 118}, {"x": 900, "y": 164}, {"x": 610, "y": 164}], "furniture_instances": [{"instance_id": "scenario_06_commercial_bench_a", "kind": "bench", "x_px": 690, "y_px": 142, "yaw_deg": 180}, {"instance_id": "scenario_06_commercial_bench_b", "kind": "bench", "x_px": 790, "y_px": 142, "yaw_deg": 180}]}
+      "road_section": {
+        "motor_lanes": 4,
+        "lane_width_m": 3.0,
+        "bike_lane": "colored_surface",
+        "sidewalk": "widened",
+        "median": "green_belt"
+      },
+      "edge_context": {
+        "left_regions": ["derived_building_region_02", "derived_building_region_03"],
+        "right_regions": ["derived_building_region_01"]
+      },
+      "region_overrides": [
+        {
+          "id": "scenario_06_left_green_buffer_frontage",
+          "label": "左侧绿化缓冲界面",
+          "source_region_id": "derived_building_region_02",
+          "region_role": "building_region",
+          "land_use_type": "green_buffered_walk",
+          "material": {"preset": "green_buffered_frontage"}
+        },
+        {
+          "id": "scenario_06_left_secondary_green_edge",
+          "label": "左侧次级绿化界面",
+          "source_region_id": "derived_building_region_03",
+          "region_role": "building_region",
+          "land_use_type": "secondary_green_edge",
+          "material": {"preset": "green_buffered_frontage"}
+        },
+        {
+          "id": "scenario_06_right_commercial_frontage",
+          "label": "右侧商业停留界面",
+          "source_region_id": "derived_building_region_01",
+          "region_role": "building_region",
+          "land_use_type": "commercial_frontage",
+          "material": {"preset": "mixed_use_frontage"}
+        }
       ],
+      "template_patch_operations": [
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.0},
+        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_03", "updates": {"kind": "grass_belt", "width_m": 3.2, "direction": "none"}},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.0},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.6},
+        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.6}
+      ],
+      "functional_zones": [],
       "surface_annotations": [
-        {"id": "scenario_06_green_median", "label": "连续中央绿化带", "kind": "paving_zone", "surface_role": "median", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": -1.8, "lateral_end_m": 1.8, "material": {"preset": "median_green"}},
-        {"id": "scenario_06_north_bike_lane", "label": "北侧非机动车道", "kind": "colored_pavement", "surface_role": "bike_lane", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": 7.2, "lateral_end_m": 9.0, "material": {"preset": "bike_lane_green"}},
-        {"id": "scenario_06_south_bike_lane", "label": "南侧非机动车道", "kind": "colored_pavement", "surface_role": "bike_lane", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": -9.0, "lateral_end_m": -7.2, "material": {"preset": "bike_lane_green"}}
-      ]
+        {
+          "id": "scenario_06_green_median",
+          "label": "中心线标注 · 连续中央绿化带",
+          "kind": "paving_zone",
+          "surface_role": "median_green",
+          "station_start_m": 0,
+          "station_end_m": 170,
+          "lateral_start_m": -1.6,
+          "lateral_end_m": 1.6,
+          "material": {"preset": "median_green"}
+        },
+        {
+          "id": "scenario_06_north_bike_lane_surface",
+          "label": "中心线标注 · 左侧非机动车提示铺装",
+          "kind": "colored_pavement",
+          "surface_role": "bike_lane",
+          "station_start_m": 0,
+          "station_end_m": 150,
+          "lateral_start_m": 6.8,
+          "lateral_end_m": 8.4,
+          "material": {"preset": "bike_lane_green"}
+        },
+        {
+          "id": "scenario_06_south_bike_lane_surface",
+          "label": "中心线标注 · 右侧非机动车提示铺装",
+          "kind": "colored_pavement",
+          "surface_role": "bike_lane",
+          "station_start_m": 0,
+          "station_end_m": 150,
+          "lateral_start_m": -8.4,
+          "lateral_end_m": -6.8,
+          "material": {"preset": "bike_lane_green"}
+        }
+      ],
+      "compose_config_patch": {
+        "lane_count": 4,
+        "road_width_m": 15.2,
+        "sidewalk_width_m": 3.6,
+        "density": 0.9,
+        "objective_profile": "greening",
+        "ped_demand_level": "high",
+        "bike_demand_level": "medium",
+        "vehicle_demand_level": "medium"
+      }
     },
     {
       "scenario_id": "scenario_07_asymmetric_shared_street_pocket_park",
-      "title_zh": "方案 7 · 非对称共享街道与口袋公园",
-      "scenario_type": "asymmetric_shared_street_pocket_park",
+      "enabled": false,
+      "excluded_reason_zh": "本轮忽略：该方案要求以共享街道和口袋公园完全取代部分车道，超出当前 v1 的局部断面和中心线标注表达范围。",
+      "title_zh": "方案 7 · 非对称共享街道与口袋公园（暂不生成）",
+      "scenario_type": "disabled_full_lane_replacement",
       "query": "非对称共享街道与口袋公园，机动车集中北侧，南侧共享街道，社区集市，雨水花园，不规则树阵",
-      "intent_zh": "高阶方案：不再保持对称断面，把南侧释放成共享街道、口袋公园和社区生活中心。",
+      "intent_zh": "保留为后续高阶共享街道/口袋公园方案，本轮不参与生成。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_07_asymmetric_shared_street_pocket_park/scene_layout.json",
-      "road_section": {"motor_lanes": 4, "lane_width_m": 3.3, "bike_lane": "shared_slow", "sidewalk": "asymmetric_widened", "median": "none", "motor_traffic_bias": "north"},
-      "edge_context": {"north": "commuter_motor_corridor_school", "south": "shared_street_pocket_park_life_center"},
-      "compose_config_patch": {"lane_count": 4, "road_width_m": 13.2, "sidewalk_width_m": 5.0, "density": 1.35, "objective_profile": "commerce", "ped_demand_level": "high", "bike_demand_level": "high", "vehicle_demand_level": "low"},
-      "asset_program": ["shared_street", "pocket_park", "weekend_market", "ping_pong", "climbing", "outdoor_movie", "community_notice_board", "rain_garden", "irregular_tree_cluster"],
-      "functional_zones": [
-        {"id": "scenario_07_shared_street_market", "label": "共享街道与周日集市", "kind": "plaza", "points": [{"x": 110, "y": 116}, {"x": 350, "y": 116}, {"x": 350, "y": 166}, {"x": 110, "y": 166}], "furniture_instances": [{"instance_id": "scenario_07_market_kiosk", "kind": "kiosk", "x_px": 190, "y_px": 140, "yaw_deg": 180}, {"instance_id": "scenario_07_market_bench", "kind": "bench", "x_px": 285, "y_px": 142, "yaw_deg": 180}]},
-        {"id": "scenario_07_pocket_park", "label": "口袋公园生活中心", "kind": "garden", "points": [{"x": 380, "y": 112}, {"x": 605, "y": 112}, {"x": 605, "y": 168}, {"x": 380, "y": 168}], "furniture_instances": [{"instance_id": "scenario_07_park_tree_a", "kind": "tree", "x_px": 430, "y_px": 138, "yaw_deg": 0}, {"instance_id": "scenario_07_park_tree_b", "kind": "tree", "x_px": 505, "y_px": 150, "yaw_deg": 0}, {"instance_id": "scenario_07_park_bench", "kind": "bench", "x_px": 565, "y_px": 138, "yaw_deg": 180}]},
-        {"id": "scenario_07_play_and_pingpong", "label": "儿童攀爬与乒乓节点", "kind": "playground", "points": [{"x": 650, "y": 116}, {"x": 895, "y": 116}, {"x": 895, "y": 166}, {"x": 650, "y": 166}], "furniture_instances": [{"instance_id": "scenario_07_play_sculpture", "kind": "sculpture", "x_px": 755, "y_px": 142, "yaw_deg": 0}, {"instance_id": "scenario_07_play_bench", "kind": "bench", "x_px": 850, "y_px": 140, "yaw_deg": 180}]},
-        {"id": "scenario_07_rain_garden", "label": "雨水收集花园", "kind": "garden", "points": [{"x": 680, "y": 12}, {"x": 900, "y": 12}, {"x": 900, "y": 58}, {"x": 680, "y": 58}], "furniture_instances": [{"instance_id": "scenario_07_rain_tree_a", "kind": "tree", "x_px": 735, "y_px": 35, "yaw_deg": 0}, {"instance_id": "scenario_07_rain_tree_b", "kind": "tree", "x_px": 835, "y_px": 38, "yaw_deg": 0}]}
-      ],
-      "surface_annotations": [
-        {"id": "scenario_07_shared_surface", "label": "南侧共享街道铺装", "kind": "shared_surface", "surface_role": "shared_street_surface", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": -16.0, "lateral_end_m": -7.8, "material": {"preset": "shared_street_mixed_pavers"}},
-        {"id": "scenario_07_colored_slow_zone", "label": "低速彩色提示铺装", "kind": "colored_pavement", "surface_role": "colored_pavement", "station_start_m": 12, "station_end_m": 60, "lateral_start_m": -15.0, "lateral_end_m": -10.8, "material": {"preset": "slow_zone_colored_pavers"}},
-        {"id": "scenario_07_north_commuter_lane", "label": "北侧机动车通勤廊道", "kind": "paving_zone", "surface_role": "bus_lane", "station_start_m": 0, "station_end_m": 95, "lateral_start_m": 1.5, "lateral_end_m": 6.6, "material": {"preset": "carriageway_asphalt"}}
-      ]
+      "road_section": {
+        "motor_lanes": 4,
+        "motor_traffic_bias": "north",
+        "scope": "excluded"
+      },
+      "edge_context": {
+        "reason": "full_lane_replacement"
+      },
+      "region_overrides": [],
+      "template_patch_operations": [],
+      "functional_zones": [],
+      "surface_annotations": [],
+      "compose_config_patch": {
+        "lane_count": 4,
+        "road_width_m": 13.2,
+        "sidewalk_width_m": 5.0,
+        "density": 1.35,
+        "objective_profile": "commerce",
+        "ped_demand_level": "high",
+        "bike_demand_level": "high",
+        "vehicle_demand_level": "low"
+      }
     }
   ]
 }

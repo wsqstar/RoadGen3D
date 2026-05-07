@@ -45,9 +45,10 @@ _GRAPH_TEMPLATE_DEFINITIONS: Dict[str, Dict[str, object]] = {
         "label": "HKUST-GZ Gate Graph",
         "description": (
             "Checked-in street graph template for the HKUST(GZ) gate frontage. "
-            "Used directly by Street Workbench for graph-driven 3D street scene generation."
+            "Used directly by Street Workbench for graph-driven 3D street scene generation. "
+            "The default payload comes from the latest user-authored Reference Annotation export."
         ),
-        "annotation_path": (ROOT / "assets" / "graph_templates" / "hkust_gz_gate" / "annotation.json").resolve(),
+        "annotation_path": (ROOT / "assets" / "graph_templates" / "hkust_gz_gate_user_default" / "annotation.json").resolve(),
         "image_path": (ROOT / "assets" / "hkust-gz" / "image.png").resolve(),
     },
     "hkust_gz_detailed": {

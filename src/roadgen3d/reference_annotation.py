@@ -932,6 +932,37 @@ class AnnotatedSurfaceAnnotation:
 
 
 @dataclass(frozen=True)
+class AnnotatedStationStripPatch:
+    feature_id: str
+    label: str
+    centerline_id: str
+    strip_id: str
+    station_start_m: float
+    station_end_m: float
+    kind: str = ""
+    width_m: float | None = None
+    direction: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        updates: Dict[str, Any] = {}
+        if self.kind:
+            updates["kind"] = self.kind
+        if self.width_m is not None:
+            updates["width_m"] = float(self.width_m)
+        if self.direction:
+            updates["direction"] = self.direction
+        return {
+            "id": self.feature_id,
+            "label": self.label,
+            "centerline_id": self.centerline_id,
+            "strip_id": self.strip_id,
+            "station_start_m": float(self.station_start_m),
+            "station_end_m": float(self.station_end_m),
+            "updates": updates,
+        }
+
+
+@dataclass(frozen=True)
 class BezierCurve3:
     start: AnnotationPoint
     end: AnnotationPoint
@@ -1111,6 +1142,7 @@ class ReferenceAnnotation:
     building_regions: Tuple[AnnotatedBuildingRegion, ...] = ()
     functional_zones: Tuple[AnnotatedFunctionalZone, ...] = ()
     surface_annotations: Tuple[AnnotatedSurfaceAnnotation, ...] = ()
+    station_strip_patches: Tuple[AnnotatedStationStripPatch, ...] = ()
     junction_compositions: Tuple[JunctionComposition, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
@@ -1129,6 +1161,7 @@ class ReferenceAnnotation:
             "building_regions": [item.to_dict() for item in self.building_regions],
             "functional_zones": [item.to_dict() for item in self.functional_zones],
             "surface_annotations": [item.to_dict() for item in self.surface_annotations],
+            "station_strip_patches": [item.to_dict() for item in self.station_strip_patches],
             "junction_compositions": [item.to_dict() for item in self.junction_compositions],
         }
 
@@ -1734,6 +1767,63 @@ def _parse_surface_annotation(value: Any, index: int) -> AnnotatedSurfaceAnnotat
     )
 
 
+def _parse_station_strip_patch(value: Any, index: int) -> AnnotatedStationStripPatch:
+    if not _is_record(value):
+        raise ValueError(f"station_strip_patches[{index}] must be an object.")
+    fallback_id = f"station_strip_patch_{index + 1:02d}"
+    feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
+    updates_raw = value.get("updates") if _is_record(value.get("updates")) else {}
+    kind = _safe_slug(
+        _as_string(
+            updates_raw.get("kind") if isinstance(updates_raw, Mapping) else value.get("kind"),
+            "",
+        ),
+        "",
+    )
+    if kind and kind not in VALID_STRIP_KINDS:
+        raise ValueError(
+            f"station_strip_patches[{index}].updates.kind must be one of {sorted(VALID_STRIP_KINDS)}."
+        )
+    direction = _safe_slug(
+        _as_string(
+            updates_raw.get("direction") if isinstance(updates_raw, Mapping) else value.get("direction"),
+            "",
+        ),
+        "",
+    )
+    if direction and direction not in VALID_STRIP_DIRECTIONS:
+        raise ValueError(
+            f"station_strip_patches[{index}].updates.direction must be one of {sorted(VALID_STRIP_DIRECTIONS)}."
+        )
+    width_value = (
+        updates_raw.get("width_m")
+        if isinstance(updates_raw, Mapping) and updates_raw.get("width_m") is not None
+        else value.get("width_m")
+    )
+    width_m = (
+        _as_float(width_value, f"station_strip_patches[{index}].updates.width_m")
+        if width_value is not None
+        else None
+    )
+    return AnnotatedStationStripPatch(
+        feature_id=feature_id,
+        label=_as_string(value.get("label"), feature_id),
+        centerline_id=_as_string(value.get("centerline_id"), ""),
+        strip_id=_as_string(value.get("strip_id"), ""),
+        station_start_m=_as_float(
+            value.get("station_start_m"),
+            f"station_strip_patches[{index}].station_start_m",
+        ),
+        station_end_m=_as_float(
+            value.get("station_end_m"),
+            f"station_strip_patches[{index}].station_end_m",
+        ),
+        kind=kind,
+        width_m=width_m,
+        direction=direction,
+    )
+
+
 def functional_zone_to_local_coords(
     zone: AnnotatedFunctionalZone,
     annotation: ReferenceAnnotation,
@@ -2038,6 +2128,47 @@ def _validate_surface_annotations(annotation: ReferenceAnnotation) -> None:
             raise ValueError(f"surface_annotations[{index}] lateral width must be at least 0.05m.")
 
 
+def _validate_station_strip_patches(annotation: ReferenceAnnotation) -> None:
+    if not annotation.station_strip_patches:
+        return
+    centerlines_by_id = {str(centerline.feature_id): centerline for centerline in annotation.centerlines}
+    for index, patch in enumerate(annotation.station_strip_patches):
+        centerline = centerlines_by_id.get(str(patch.centerline_id))
+        if centerline is None:
+            raise ValueError(
+                f"station_strip_patches[{index}].centerline_id references missing centerline '{patch.centerline_id}'."
+            )
+        if not str(patch.strip_id):
+            raise ValueError(f"station_strip_patches[{index}].strip_id is required.")
+        target_strip = next((strip for strip in centerline.cross_section_strips if strip.strip_id == patch.strip_id), None)
+        if target_strip is None:
+            raise ValueError(
+                f"station_strip_patches[{index}].strip_id references missing strip '{patch.strip_id}' "
+                f"on centerline '{patch.centerline_id}'."
+            )
+        if not patch.kind and patch.width_m is None and not patch.direction:
+            raise ValueError(f"station_strip_patches[{index}].updates must include kind, width_m, or direction.")
+        if patch.kind:
+            compatible_kinds = CENTER_STRIP_KINDS if target_strip.zone == "center" else SIDE_STRIP_KINDS
+            if patch.kind not in compatible_kinds:
+                raise ValueError(
+                    f"station_strip_patches[{index}].updates.kind '{patch.kind}' is not valid for "
+                    f"{target_strip.zone} strip '{patch.strip_id}'."
+                )
+        if patch.width_m is not None and float(patch.width_m) <= 0.0:
+            raise ValueError(f"station_strip_patches[{index}].updates.width_m must be greater than 0.")
+        if float(patch.station_start_m) < 0.0:
+            raise ValueError(f"station_strip_patches[{index}].station_start_m must be non-negative.")
+        if float(patch.station_end_m) <= float(patch.station_start_m):
+            raise ValueError(f"station_strip_patches[{index}].station_end_m must be greater than station_start_m.")
+        centerline_length_m = _centerline_length_m(centerline, annotation)
+        if float(patch.station_end_m) > centerline_length_m + 1e-6:
+            raise ValueError(
+                f"station_strip_patches[{index}].station_end_m exceeds centerline '{patch.centerline_id}' length "
+                f"({centerline_length_m:.3f}m)."
+            )
+
+
 def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotation:
     if not _is_record(payload):
         raise ValueError("Annotation JSON must be an object.")
@@ -2050,6 +2181,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     building_regions_raw = payload.get("building_regions") or []
     functional_zones_raw = payload.get("functional_zones") or []
     surface_annotations_raw = payload.get("surface_annotations") or []
+    station_strip_patches_raw = payload.get("station_strip_patches") or []
     junction_compositions_raw = payload.get("junction_compositions") or payload.get("compositions") or []
     if not isinstance(junction_compositions_raw, Sequence) or isinstance(junction_compositions_raw, (str, bytes)):
         raise ValueError("junction_compositions must be an array.")
@@ -2070,6 +2202,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         raise ValueError("functional_zones must be an array.")
     if not isinstance(surface_annotations_raw, Sequence) or isinstance(surface_annotations_raw, (str, bytes)):
         raise ValueError("surface_annotations must be an array.")
+    if not isinstance(station_strip_patches_raw, Sequence) or isinstance(station_strip_patches_raw, (str, bytes)):
+        raise ValueError("station_strip_patches must be an array.")
 
     centerlines = tuple(_parse_centerline(item, index) for index, item in enumerate(centerlines_raw))
     if not centerlines:
@@ -2115,12 +2249,17 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
             _parse_surface_annotation(item, index)
             for index, item in enumerate(surface_annotations_raw)
         ),
+        station_strip_patches=tuple(
+            _parse_station_strip_patch(item, index)
+            for index, item in enumerate(station_strip_patches_raw)
+        ),
         junction_compositions=tuple(
             _parse_junction_composition(item, index)
             for index, item in enumerate(junction_compositions_raw)
         ),
     )
     _validate_surface_annotations(annotation)
+    _validate_station_strip_patches(annotation)
     _validate_explicit_junction_model(annotation)
     return annotation
 
@@ -2220,6 +2359,10 @@ def _build_street_furniture_instances(annotation: ReferenceAnnotation) -> List[D
 
 def _build_surface_annotation_records(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
     return [surface.to_dict() for surface in annotation.surface_annotations]
+
+
+def _build_station_strip_patch_records(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
+    return [patch.to_dict() for patch in annotation.station_strip_patches]
 
 
 def _collect_local_centerlines(
@@ -2477,6 +2620,23 @@ def _segment_bands_for_centerline(
     if centerline.resolved_cross_section_mode() != CROSS_SECTION_MODE_DETAILED or not centerline.cross_section_strips:
         return _default_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types)
 
+    return _segment_bands_for_strips(
+        strips=centerline.cross_section_strips,
+        segment_id=segment_id,
+        config=config,
+        poi_types=poi_types,
+    )
+
+
+def _segment_bands_for_strips(
+    *,
+    strips: Sequence[AnnotatedCrossSectionStrip],
+    segment_id: str,
+    config: StreetComposeConfig,
+    poi_types: Sequence[str],
+) -> Tuple[RoadSegmentBand, ...]:
+    if not strips:
+        return _default_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types)
     bands = [
         RoadSegmentBand(
             band_id=f"{segment_id}_{strip.strip_id}",
@@ -2491,13 +2651,19 @@ def _segment_bands_for_centerline(
             ),
             nearest_poi_types=tuple(poi_types),
         )
-        for strip in centerline.cross_section_strips
+        for strip in strips
         if strip.zone in {"left", "right"}
     ]
     return tuple(bands) if bands else _default_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types)
 
 
 def _segment_cross_section_strips(centerline: AnnotatedCenterline) -> Tuple[RoadSegmentCrossSectionStrip, ...]:
+    return _segment_cross_section_strips_from_strips(centerline.cross_section_strips)
+
+
+def _segment_cross_section_strips_from_strips(
+    strips: Sequence[AnnotatedCrossSectionStrip],
+) -> Tuple[RoadSegmentCrossSectionStrip, ...]:
     return tuple(
         RoadSegmentCrossSectionStrip(
             strip_id=strip.strip_id,
@@ -2507,8 +2673,59 @@ def _segment_cross_section_strips(centerline: AnnotatedCenterline) -> Tuple[Road
             direction=strip.direction,
             order_index=int(strip.order_index),
         )
-        for strip in centerline.cross_section_strips
+        for strip in strips
     )
+
+
+def _cross_section_strips_for_station(
+    centerline: AnnotatedCenterline,
+    *,
+    station_center_m: float,
+    station_strip_patches: Sequence[AnnotatedStationStripPatch],
+) -> Tuple[AnnotatedCrossSectionStrip, ...]:
+    if not centerline.cross_section_strips:
+        return ()
+    strips = list(centerline.cross_section_strips)
+    for patch in station_strip_patches:
+        if str(patch.centerline_id) != str(centerline.feature_id):
+            continue
+        if not (float(patch.station_start_m) <= float(station_center_m) < float(patch.station_end_m)):
+            continue
+        for strip_index, strip in enumerate(strips):
+            if strip.strip_id != patch.strip_id:
+                continue
+            strips[strip_index] = AnnotatedCrossSectionStrip(
+                strip_id=strip.strip_id,
+                zone=strip.zone,
+                kind=patch.kind or strip.kind,
+                width_m=float(patch.width_m) if patch.width_m is not None else float(strip.width_m),
+                direction=patch.direction or strip.direction,
+                order_index=int(strip.order_index),
+            )
+            break
+    return tuple(strips)
+
+
+def _segment_breakpoints_for_station_patches(
+    *,
+    segment_start_station_m: float,
+    segment_length_m: float,
+    segment_length_target_m: float,
+    station_strip_patches: Sequence[AnnotatedStationStripPatch],
+) -> Tuple[float, ...]:
+    length = max(float(segment_length_m), 0.0)
+    if length <= 1e-6:
+        return (0.0, length)
+    breakpoints = {0.0, length}
+    subdivisions = max(1, int(math.ceil(length / max(float(segment_length_target_m), 1e-6))))
+    for step in range(1, subdivisions):
+        breakpoints.add(length * float(step) / float(subdivisions))
+    segment_end_station_m = float(segment_start_station_m) + length
+    for patch in station_strip_patches:
+        for station in (float(patch.station_start_m), float(patch.station_end_m)):
+            if float(segment_start_station_m) + 1e-6 < station < segment_end_station_m - 1e-6:
+                breakpoints.add(station - float(segment_start_station_m))
+    return tuple(sorted(breakpoints))
 
 
 def _segment_furniture_instances(
@@ -2585,6 +2802,7 @@ def _build_centerline_nodes(
     junction_anchors: Sequence[Tuple[float, float]],
     roundabout_anchors: Sequence[Tuple[float, float]],
     control_points: Sequence[Tuple[AnnotatedMarker, Tuple[float, float]]],
+    station_strip_patches: Sequence[AnnotatedStationStripPatch] = (),
 ) -> Tuple[List[RoadSegmentNode], List[RoadSegmentEdge], int, int]:
     nodes: List[RoadSegmentNode] = []
     edges: List[RoadSegmentEdge] = []
@@ -2597,10 +2815,6 @@ def _build_centerline_nodes(
     junction_tolerance_m = max(anchor_width_m * 0.85, segment_length_target * 0.6, 3.0)
     roundabout_tolerance_m = max(anchor_width_m, segment_length_target, 5.0)
     control_tolerance_m = max(anchor_width_m, 6.0)
-    lane_profile = centerline.lane_profile()
-    cross_section_width_m = float(centerline.cross_section_width_m())
-    carriageway_width_m = float(centerline.carriageway_width_m())
-    cross_section_strips = _segment_cross_section_strips(centerline)
     metaurban_asset_hints = _segment_metaurban_asset_hints(centerline)
 
     for coord_idx in range(len(polyline_m) - 1):
@@ -2609,16 +2823,54 @@ def _build_centerline_nodes(
         length = _distance(start, end)
         if length <= 1e-6:
             continue
-        subdivisions = max(1, int(math.ceil(length / segment_length_target)))
-        for part_idx in range(subdivisions):
-            a = _interpolate(start, end, float(part_idx) / float(subdivisions))
-            b = _interpolate(start, end, float(part_idx + 1) / float(subdivisions))
+        coord_station_start_m = float(station_m)
+        breakpoints = _segment_breakpoints_for_station_patches(
+            segment_start_station_m=coord_station_start_m,
+            segment_length_m=length,
+            segment_length_target_m=segment_length_target,
+            station_strip_patches=station_strip_patches,
+        )
+        for part_idx, (local_start_m, local_end_m) in enumerate(zip(breakpoints[:-1], breakpoints[1:])):
+            if float(local_end_m) <= float(local_start_m) + 1e-6:
+                continue
+            a = _interpolate(start, end, float(local_start_m) / float(length))
+            b = _interpolate(start, end, float(local_end_m) / float(length))
             center = ((a[0] + b[0]) * 0.5, (a[1] + b[1]) * 0.5)
             segment_id = f"annot_seg_{segment_counter:04d}"
             segment_counter += 1
             length_m = _distance(a, b)
-            station_start_m = station_m
-            station_end_m = station_m + length_m
+            station_start_m = coord_station_start_m + float(local_start_m)
+            station_end_m = coord_station_start_m + float(local_end_m)
+            station_center_m = float((station_start_m + station_end_m) * 0.5)
+            segment_strips = _cross_section_strips_for_station(
+                centerline,
+                station_center_m=station_center_m,
+                station_strip_patches=station_strip_patches,
+            )
+            if segment_strips:
+                lane_profile = _lane_profile_from_strips(segment_strips)
+                cross_section_width_m = float(sum(max(float(strip.width_m), 0.0) for strip in segment_strips))
+                carriageway_width_m = float(
+                    sum(max(float(strip.width_m), 0.0) for strip in segment_strips if strip.zone == "center")
+                )
+                cross_section_strips = _segment_cross_section_strips_from_strips(segment_strips)
+                bands = _segment_bands_for_strips(
+                    strips=segment_strips,
+                    segment_id=segment_id,
+                    config=config,
+                    poi_types=(),
+                )
+            else:
+                lane_profile = centerline.lane_profile()
+                cross_section_width_m = float(centerline.cross_section_width_m())
+                carriageway_width_m = float(centerline.carriageway_width_m())
+                cross_section_strips = _segment_cross_section_strips(centerline)
+                bands = _segment_bands_for_centerline(
+                    centerline=centerline,
+                    segment_id=segment_id,
+                    config=config,
+                    poi_types=(),
+                )
             poi_types = _build_poi_types(
                 center,
                 junction_anchors=junction_anchors,
@@ -2633,14 +2885,27 @@ def _build_centerline_nodes(
                 or (
                     bool(centerline.end_junction_id)
                     and coord_idx == len(polyline_m) - 2
-                    and part_idx == subdivisions - 1
+                    and part_idx == len(breakpoints) - 2
                 )
                 or part_idx == 0
-                or part_idx == subdivisions - 1
+                or part_idx == len(breakpoints) - 2
                 or any(_distance(center, anchor) <= junction_tolerance_m for anchor in junction_anchors)
                 or any(_distance(center, anchor) <= roundabout_tolerance_m for anchor in roundabout_anchors)
             )
-            include_end = coord_idx == len(polyline_m) - 2 and part_idx == subdivisions - 1
+            include_end = coord_idx == len(polyline_m) - 2 and part_idx == len(breakpoints) - 2
+            if poi_types:
+                bands = tuple(
+                    RoadSegmentBand(
+                        band_id=band.band_id,
+                        segment_id=band.segment_id,
+                        side=band.side,
+                        kind=band.kind,
+                        width_m=band.width_m,
+                        allowed_categories=band.allowed_categories,
+                        nearest_poi_types=tuple(poi_types),
+                    )
+                    for band in bands
+                )
             nodes.append(
                 RoadSegmentNode(
                     segment_id=segment_id,
@@ -2653,15 +2918,10 @@ def _build_centerline_nodes(
                     is_accessible=True,
                     highway_type=centerline.highway_type,
                     poi_types=tuple(poi_types),
-                    bands=_segment_bands_for_centerline(
-                        centerline=centerline,
-                        segment_id=segment_id,
-                        config=config,
-                        poi_types=poi_types,
-                    ),
+                    bands=bands,
                     station_start_m=float(station_start_m),
                     station_end_m=float(station_end_m),
-                    station_center_m=float((station_start_m + station_end_m) * 0.5),
+                    station_center_m=station_center_m,
                     road_width_m=carriageway_width_m,
                     lane_profile=lane_profile,
                     cross_section_strips=cross_section_strips,
@@ -2680,12 +2940,11 @@ def _build_centerline_nodes(
                     ),
                     end_junction_id=(
                         str(centerline.end_junction_id)
-                        if coord_idx == len(polyline_m) - 2 and part_idx == subdivisions - 1 and centerline.end_junction_id
+                        if coord_idx == len(polyline_m) - 2 and part_idx == len(breakpoints) - 2 and centerline.end_junction_id
                         else ""
                     ),
                 )
             )
-            station_m = station_end_m
             if last_segment_id is not None:
                 edges.append(
                     RoadSegmentEdge(
@@ -2697,6 +2956,7 @@ def _build_centerline_nodes(
                 )
                 edge_counter += 1
             last_segment_id = segment_id
+        station_m = coord_station_start_m + length
 
     return nodes, edges, segment_counter, edge_counter
 
@@ -2823,6 +3083,11 @@ def build_segment_graph_from_annotation(
     )
 
     for road_id, centerline, points in local_centerlines:
+        centerline_station_strip_patches = tuple(
+            patch
+            for patch in annotation.station_strip_patches
+            if str(patch.centerline_id) == str(centerline.feature_id)
+        )
         centerline_nodes, centerline_edges, segment_counter, edge_counter = _build_centerline_nodes(
             centerline,
             road_id=road_id,
@@ -2833,6 +3098,7 @@ def build_segment_graph_from_annotation(
             junction_anchors=junction_anchors,
             roundabout_anchors=roundabout_centers,
             control_points=control_points,
+            station_strip_patches=centerline_station_strip_patches,
         )
         nodes.extend(centerline_nodes)
         edges.extend(centerline_edges)
@@ -3075,6 +3341,7 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         "region_building_region_count": region_role_counts.get("building_region", 0),
         "surface_annotation_count": len(annotation.surface_annotations),
         "surface_annotation_role_counts": surface_roles,
+        "station_strip_patch_count": len(annotation.station_strip_patches),
         "cross_section_strip_count": strip_count,
         "street_furniture_instance_count": len(furniture_instances),
         "total_drive_lane_count": sum(int(item["lane_profile"]["total_drive_lane_count"]) for item in road_profiles),
@@ -3118,6 +3385,7 @@ def build_reference_annotation_graph_payload(
     cross_section_profiles = _build_cross_section_profiles(annotation)
     street_furniture_instances = _build_street_furniture_instances(annotation)
     surface_annotations = _build_surface_annotation_records(annotation)
+    station_strip_patches = _build_station_strip_patch_records(annotation)
     metaurban_asset_hints = _build_metaurban_asset_hint_records(annotation)
     metaurban_asset_guide = _build_metaurban_asset_guide()
     derived_junctions = _derive_topology_junctions(
@@ -3130,6 +3398,7 @@ def build_reference_annotation_graph_payload(
     summary["cross_section_profile_count"] = len(cross_section_profiles)
     summary["street_furniture_instance_count"] = len(street_furniture_instances)
     summary["surface_annotation_count"] = len(surface_annotations)
+    summary["station_strip_patch_count"] = len(station_strip_patches)
     summary["metaurban_asset_hint_count"] = len(metaurban_asset_hints)
     summary["metaurban_assets_dir_present"] = bool(metaurban_asset_guide["assets_dir_present"])
     summary["metaurban_pedestrian_assets_dir_present"] = bool(metaurban_asset_guide["assets_pedestrian_dir_present"])
@@ -3144,6 +3413,7 @@ def build_reference_annotation_graph_payload(
         "cross_section_profiles": cross_section_profiles,
         "street_furniture_instances": street_furniture_instances,
         "surface_annotations": surface_annotations,
+        "station_strip_patches": station_strip_patches,
         "metaurban_asset_hints": metaurban_asset_hints,
         "metaurban_asset_guide": metaurban_asset_guide,
         "derived_junctions": derived_junctions,
@@ -3160,6 +3430,7 @@ __all__ = [
     "AnnotatedMarker",
     "AnnotatedRegion",
     "AnnotatedRoundabout",
+    "AnnotatedStationStripPatch",
     "AnnotatedSurfaceAnnotation",
     "AnnotatedSurfaceMaterial",
     "AnnotatedStreetFurnitureInstance",

@@ -249,6 +249,17 @@ def create_app(
         benchmark_store=app.state.benchmark_store,
     )
 
+    @app.get("/")
+    def root() -> Dict[str, Any]:
+        return make_json_safe({
+            "ok": True,
+            "service": "roadgen3d-design-assistant-api",
+            "message": "RoadGen3D API is running. Open the Viewer at http://127.0.0.1:4173/.",
+            "health_url": "/api/health",
+            "docs_url": "/docs",
+            "viewer_url": "http://127.0.0.1:4173/",
+        })
+
     @app.get("/api/health")
     def health() -> Dict[str, Any]:
         service = app.state.design_service

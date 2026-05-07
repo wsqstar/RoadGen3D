@@ -63,6 +63,9 @@ class ScenarioDesignService:
         )
         if scenario is None:
             raise KeyError(f"Unknown scenario design id: {wanted_id}")
+        if not self._scenario_enabled(scenario):
+            reason = self._disabled_reason(scenario)
+            raise RuntimeError(f"Scenario {wanted_id} is disabled: {reason}")
 
         template_id = str(graph_template_id or catalog.get("graph_template_id") or DEFAULT_GRAPH_TEMPLATE_ID).strip()
         try:
@@ -179,7 +182,10 @@ class ScenarioDesignService:
     ) -> Dict[str, Any]:
         scenario_id = _required_text(scenario.get("scenario_id"), "scenario_id")
         centerline_id = self._primary_centerline_id(graph_template_id)
-        operations: list[Dict[str, Any]] = []
+        operations: list[Dict[str, Any]] = [
+            copy.deepcopy(operation)
+            for operation in _records(scenario.get("template_patch_operations"))
+        ]
         for region in self._scenario_regions(scenario, graph_template_id=graph_template_id):
             operations.append({
                 "op": "upsert_region",
@@ -192,7 +198,8 @@ class ScenarioDesignService:
             })
         for surface in _records(scenario.get("surface_annotations")):
             normalized_surface = copy.deepcopy(surface)
-            normalized_surface["centerline_id"] = centerline_id
+            if not str(normalized_surface.get("centerline_id") or "").strip():
+                normalized_surface["centerline_id"] = centerline_id
             operations.append({
                 "op": "upsert_surface_annotation",
                 "surface": normalized_surface,
@@ -348,18 +355,31 @@ class ScenarioDesignService:
         scenario_ids: Sequence[str] | None,
     ) -> list[Mapping[str, Any]]:
         if not scenario_ids:
-            return list(scenarios)
+            return [item for item in scenarios if self._scenario_enabled(item)]
         wanted = [str(item).strip() for item in scenario_ids if str(item).strip()]
         by_id = {str(item.get("scenario_id")): item for item in scenarios}
         missing = [item for item in wanted if item not in by_id]
         if missing:
             raise RuntimeError(f"Unknown scenario design id(s): {', '.join(missing)}")
+        disabled = [
+            f"{item} ({self._disabled_reason(by_id[item])})"
+            for item in wanted
+            if not self._scenario_enabled(by_id[item])
+        ]
+        if disabled:
+            raise RuntimeError(f"Scenario design(s) disabled and cannot be generated: {', '.join(disabled)}")
         return [by_id[item] for item in wanted]
 
     def _scenario_summary(self, scenario: Mapping[str, Any]) -> Dict[str, Any]:
         preview_path = self._resolve_catalog_path(str(scenario.get("preview_layout_path") or ""))
         surfaces = _records(scenario.get("surface_annotations"))
         regions = self._scenario_regions(scenario, graph_template_id=DEFAULT_GRAPH_TEMPLATE_ID, allow_default=True)
+        template_patch_operations = _records(scenario.get("template_patch_operations"))
+        station_strip_patch_count = sum(
+            1
+            for operation in template_patch_operations
+            if str(operation.get("op") or "").strip().lower() in {"add_station_strip_patch", "upsert_station_strip_patch"}
+        )
         surface_roles: Dict[str, int] = {}
         for surface in surfaces:
             role = str(surface.get("surface_role") or "").strip() or "unknown"
@@ -368,15 +388,20 @@ class ScenarioDesignService:
             "scenario_id": str(scenario.get("scenario_id") or ""),
             "title_zh": str(scenario.get("title_zh") or ""),
             "scenario_type": str(scenario.get("scenario_type") or ""),
+            "enabled": self._scenario_enabled(scenario),
+            "excluded_reason_zh": self._disabled_reason(scenario),
             "query": str(scenario.get("query") or ""),
             "intent_zh": str(scenario.get("intent_zh") or ""),
             "road_section": dict(scenario.get("road_section") or {}) if isinstance(scenario.get("road_section"), Mapping) else {},
             "edge_context": dict(scenario.get("edge_context") or {}) if isinstance(scenario.get("edge_context"), Mapping) else {},
             "region_count": len(regions),
             "scene_region_count": sum(1 for region in regions if str(region.get("region_role") or "") == "scene_region"),
+            "region_override_count": len(_records(scenario.get("region_overrides"))),
             "functional_zone_count": len(_records(scenario.get("functional_zones"))),
             "surface_annotation_count": len(surfaces),
+            "station_strip_patch_count": station_strip_patch_count,
             "surface_role_counts": surface_roles,
+            "template_patch_operation_count": len(template_patch_operations),
             "preview_layout_path": str(preview_path) if preview_path is not None else "",
             "preview_layout_exists": bool(preview_path and preview_path.exists()),
         }
@@ -389,12 +414,15 @@ class ScenarioDesignService:
         allow_default: bool = True,
     ) -> list[Dict[str, Any]]:
         regions = [copy.deepcopy(region) for region in _records(scenario.get("regions"))]
+        regions.extend(self._materialized_region_overrides(scenario, graph_template_id=graph_template_id))
         if regions or not allow_default:
             return regions
         scenario_id = str(scenario.get("scenario_id") or "scenario").strip() or "scenario"
         try:
             base_annotation = load_graph_template_annotation_payload(graph_template_id)
         except KeyError:
+            return regions
+        if _records(base_annotation.get("regions")):
             return regions
         width_px = float(base_annotation.get("image_width_px") or 0.0)
         height_px = float(base_annotation.get("image_height_px") or 0.0)
@@ -415,6 +443,54 @@ class ScenarioDesignService:
                 "material": {"preset": "scene_region_boundary"},
             }
         ]
+
+    def _materialized_region_overrides(
+        self,
+        scenario: Mapping[str, Any],
+        *,
+        graph_template_id: str,
+    ) -> list[Dict[str, Any]]:
+        overrides = _records(scenario.get("region_overrides"))
+        if not overrides:
+            return []
+        scenario_id = str(scenario.get("scenario_id") or "scenario").strip() or "scenario"
+        base_annotation = load_graph_template_annotation_payload(graph_template_id)
+        derived_by_id = {
+            str(item.get("id") or item.get("feature_id") or "").strip(): item
+            for item in _records(base_annotation.get("derived_regions"))
+        }
+        materialized: list[Dict[str, Any]] = []
+        for index, override in enumerate(overrides):
+            source_region_id = str(override.get("source_region_id") or "").strip()
+            if not source_region_id:
+                raise RuntimeError(f"Scenario {scenario_id} region_overrides[{index}].source_region_id is required.")
+            source = derived_by_id.get(source_region_id)
+            if source is None:
+                raise RuntimeError(
+                    f"Scenario {scenario_id} references unknown derived region {source_region_id} "
+                    f"for template {graph_template_id}."
+                )
+            region = copy.deepcopy(source)
+            region["id"] = str(override.get("id") or f"{scenario_id}_{source_region_id}").strip()
+            region["label"] = str(override.get("label") or region.get("label") or region["id"]).strip()
+            region["region_role"] = str(override.get("region_role") or region.get("region_role") or "building_region").strip()
+            region["source_region_id"] = source_region_id
+            region["derived"] = False
+            for key in ("kind", "land_use_type"):
+                if str(override.get(key) or "").strip():
+                    region[key] = str(override[key]).strip()
+            if isinstance(override.get("material"), Mapping):
+                region["material"] = dict(override["material"])
+            materialized.append(region)
+        return materialized
+
+    @staticmethod
+    def _scenario_enabled(scenario: Mapping[str, Any]) -> bool:
+        return scenario.get("enabled") is not False
+
+    @staticmethod
+    def _disabled_reason(scenario: Mapping[str, Any]) -> str:
+        return str(scenario.get("excluded_reason_zh") or scenario.get("disabled_reason") or "").strip()
 
     def _resolve_catalog_path(self, raw_path: str) -> Path | None:
         if not raw_path.strip():
@@ -507,8 +583,8 @@ def _render_report(run: Mapping[str, Any]) -> list[str]:
         "",
         "## Scenario Coverage",
         "",
-        "| Scenario | Zones | Surfaces | Surface roles |",
-        "| --- | ---: | ---: | --- |",
+        "| Scenario | Regions | Zones | Surfaces | Surface roles |",
+        "| --- | ---: | ---: | ---: | --- |",
     ]
     for scenario in run.get("scenarios", []):
         if not isinstance(scenario, Mapping):
@@ -519,6 +595,7 @@ def _render_report(run: Mapping[str, Any]) -> list[str]:
             "| "
             + " | ".join([
                 _md_text(str(scenario.get("title_zh") or scenario.get("scenario_id") or "")),
+                str(scenario.get("region_count") or 0),
                 str(scenario.get("functional_zone_count") or 0),
                 str(scenario.get("surface_annotation_count") or 0),
                 _md_text(role_text),

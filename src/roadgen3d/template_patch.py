@@ -157,6 +157,12 @@ def _apply_operation(
     if op_type == "remove_surface_annotation":
         surface_id = _remove_surface_annotation(annotation, operation, index=index)
         return ({"op": op_type, "surface_id": surface_id},)
+    if op_type in {"add_station_strip_patch", "upsert_station_strip_patch"}:
+        patch_id = _upsert_station_strip_patch(annotation, operation, index=index, replace_existing=op_type == "upsert_station_strip_patch")
+        return ({"op": op_type, "station_strip_patch_id": patch_id},)
+    if op_type == "remove_station_strip_patch":
+        patch_id = _remove_station_strip_patch(annotation, operation, index=index)
+        return ({"op": op_type, "station_strip_patch_id": patch_id},)
     raise TemplatePatchError(f"Unsupported template_patch operation: {op_type}.")
 
 
@@ -694,6 +700,50 @@ def _remove_surface_annotation(annotation: Dict[str, Any], operation: Mapping[st
     return surface_id
 
 
+def _upsert_station_strip_patch(
+    annotation: Dict[str, Any],
+    operation: Mapping[str, Any],
+    *,
+    index: int,
+    replace_existing: bool,
+) -> str:
+    raw_patch = operation.get("patch") or operation.get("station_strip_patch")
+    if not isinstance(raw_patch, Mapping):
+        raise TemplatePatchError(f"template_patch.operations[{index}].patch must be an object.")
+    patch = _normalize_station_strip_patch(annotation, dict(raw_patch), index=index)
+    patches = _station_strip_patch_records(annotation)
+    existing_index = next(
+        (
+            patch_index
+            for patch_index, item in enumerate(patches)
+            if str(item.get("id") or item.get("feature_id") or "").strip() == patch["id"]
+        ),
+        None,
+    )
+    if existing_index is not None:
+        if not replace_existing:
+            raise TemplatePatchError(f"template_patch.operations[{index}] station strip patch already exists: {patch['id']}.")
+        patches[existing_index] = patch
+    else:
+        patches.append(patch)
+    annotation["station_strip_patches"] = patches
+    return str(patch["id"])
+
+
+def _remove_station_strip_patch(annotation: Dict[str, Any], operation: Mapping[str, Any], *, index: int) -> str:
+    patch_id = _required_text(operation, "patch_id", f"template_patch.operations[{index}]")
+    patches = _station_strip_patch_records(annotation)
+    next_patches = [
+        item
+        for item in patches
+        if str(item.get("id") or item.get("feature_id") or "").strip() != patch_id
+    ]
+    if len(next_patches) == len(patches):
+        raise TemplatePatchError(f"template_patch.operations[{index}] references unknown patch_id: {patch_id}.")
+    annotation["station_strip_patches"] = next_patches
+    return patch_id
+
+
 def _functional_zone_records(annotation: Mapping[str, Any]) -> list[Dict[str, Any]]:
     raw_zones = annotation.get("functional_zones") or []
     if not isinstance(raw_zones, Sequence) or isinstance(raw_zones, (str, bytes)):
@@ -706,6 +756,13 @@ def _surface_annotation_records(annotation: Mapping[str, Any]) -> list[Dict[str,
     if not isinstance(raw_surfaces, Sequence) or isinstance(raw_surfaces, (str, bytes)):
         raise TemplatePatchError("annotation.surface_annotations must be an array.")
     return [item for item in raw_surfaces if isinstance(item, dict)]
+
+
+def _station_strip_patch_records(annotation: Mapping[str, Any]) -> list[Dict[str, Any]]:
+    raw_patches = annotation.get("station_strip_patches") or []
+    if not isinstance(raw_patches, Sequence) or isinstance(raw_patches, (str, bytes)):
+        raise TemplatePatchError("annotation.station_strip_patches must be an array.")
+    return [item for item in raw_patches if isinstance(item, dict)]
 
 
 def _region_records(annotation: Mapping[str, Any]) -> list[Dict[str, Any]]:
@@ -805,6 +862,66 @@ def _normalize_surface_annotation(raw_surface: Dict[str, Any], *, index: int) ->
     }
 
 
+def _normalize_station_strip_patch(
+    annotation: Mapping[str, Any],
+    raw_patch: Dict[str, Any],
+    *,
+    index: int,
+) -> Dict[str, Any]:
+    patch_id = str(raw_patch.get("id") or raw_patch.get("feature_id") or f"station_strip_patch_{index + 1:02d}").strip()
+    if not patch_id:
+        raise TemplatePatchError(f"template_patch.operations[{index}].patch.id is required.")
+    centerline_id = str(raw_patch.get("centerline_id") or "").strip()
+    if not centerline_id:
+        raise TemplatePatchError(f"template_patch.operations[{index}].patch.centerline_id is required.")
+    strip_id = str(raw_patch.get("strip_id") or "").strip()
+    if not strip_id:
+        raise TemplatePatchError(f"template_patch.operations[{index}].patch.strip_id is required.")
+    centerline = _get_centerline(annotation, centerline_id, index=index)
+    target_strip = _get_strip(centerline, strip_id, index=index)
+    updates_raw = raw_patch.get("updates")
+    update_record = dict(updates_raw) if isinstance(updates_raw, Mapping) else {
+        key: value
+        for key, value in raw_patch.items()
+        if key in {"kind", "width_m", "direction"}
+    }
+    if not update_record:
+        raise TemplatePatchError(f"template_patch.operations[{index}].patch.updates cannot be empty.")
+    updates: Dict[str, Any] = {}
+    if "kind" in update_record:
+        kind = str(update_record["kind"]).strip().lower()
+        if kind not in VALID_STRIP_KINDS:
+            raise TemplatePatchError(f"template_patch.operations[{index}].patch.updates.kind must be one of {sorted(VALID_STRIP_KINDS)}.")
+        compatible_kinds = CENTER_STRIP_KINDS if str(target_strip.get("zone") or "") == "center" else SIDE_STRIP_KINDS
+        if kind not in compatible_kinds:
+            raise TemplatePatchError(
+                f"template_patch.operations[{index}].patch.updates.kind '{kind}' is not valid for "
+                f"{target_strip.get('zone')} strip '{strip_id}'."
+            )
+        updates["kind"] = kind
+    if "width_m" in update_record:
+        width_m = _finite_float(update_record["width_m"], f"template_patch.operations[{index}].patch.updates.width_m")
+        if width_m <= 0.0:
+            raise TemplatePatchError(f"template_patch.operations[{index}].patch.updates.width_m must be greater than 0.")
+        updates["width_m"] = width_m
+    if "direction" in update_record:
+        direction = str(update_record["direction"]).strip().lower()
+        if direction not in VALID_STRIP_DIRECTIONS:
+            raise TemplatePatchError(
+                f"template_patch.operations[{index}].patch.updates.direction must be one of {sorted(VALID_STRIP_DIRECTIONS)}."
+            )
+        updates["direction"] = direction
+    return {
+        "id": patch_id,
+        "label": str(raw_patch.get("label") or patch_id).strip(),
+        "centerline_id": centerline_id,
+        "strip_id": strip_id,
+        "station_start_m": _finite_float(raw_patch.get("station_start_m"), f"template_patch.operations[{index}].patch.station_start_m"),
+        "station_end_m": _finite_float(raw_patch.get("station_end_m"), f"template_patch.operations[{index}].patch.station_end_m"),
+        "updates": updates,
+    }
+
+
 def _normalize_point(value: Any, label: str) -> Dict[str, float]:
     if not isinstance(value, Mapping):
         raise TemplatePatchError(f"{label} must be an object with x/y.")
@@ -863,6 +980,7 @@ def _build_patch_summary(
         ),
         "functional_zone_count": len(_functional_zone_records(annotation)),
         "surface_annotation_count": len(_surface_annotation_records(annotation)),
+        "station_strip_patch_count": len(_station_strip_patch_records(annotation)),
     }
     return summary
 

@@ -156,6 +156,40 @@ def test_template_patch_can_upsert_surface_annotation():
     assert surface.material.preset == "bus_lane_green"
 
 
+def test_template_patch_can_upsert_station_strip_patch():
+    base_payload = load_graph_template_annotation_payload("hkust_gz_gate")
+    patch = {
+        "schema_version": TEMPLATE_PATCH_SCHEMA_VERSION,
+        "variant_id": "station_strip_patch_demo",
+        "operations": [
+            {
+                "op": "upsert_station_strip_patch",
+                "patch": {
+                    "id": "local_tree_island_001",
+                    "label": "Local tree safety island",
+                    "centerline_id": "centerline_04",
+                    "strip_id": "center_03",
+                    "station_start_m": 40.0,
+                    "station_end_m": 41.0,
+                    "updates": {"kind": "grass_belt", "width_m": 1.0, "direction": "none"},
+                },
+            },
+        ],
+    }
+
+    application = apply_template_patch(base_payload, patch)
+    annotation = parse_reference_annotation(application.annotation)
+
+    assert application.summary["station_strip_patch_count"] == 1
+    assert len(annotation.station_strip_patches) == 1
+    local_patch = annotation.station_strip_patches[0]
+    assert local_patch.feature_id == "local_tree_island_001"
+    assert local_patch.centerline_id == "centerline_04"
+    assert local_patch.strip_id == "center_03"
+    assert local_patch.kind == "grass_belt"
+    assert local_patch.width_m == pytest.approx(1.0)
+
+
 def test_template_patch_enforces_bidirectional_drive_lane_constraints():
     base_payload = load_graph_template_annotation_payload("hkust_gz_gate")
     patch = {
