@@ -93,6 +93,25 @@ def test_scenario_design_service_loads_catalog_and_builds_valid_template_patch(t
     assert application.summary["surface_annotation_count"] == 3
 
 
+def test_scenario_design_service_builds_reference_annotation_for_each_scenario(tmp_path: Path):
+    service = ScenarioDesignService(
+        design_service=_FakeScenarioJobService(),
+        run_root=tmp_path / "runs",
+    )
+
+    catalog = service.list_scenarios()
+    for item in catalog["items"]:
+        payload = service.reference_annotation_for_scenario(item["scenario_id"])
+        annotation = payload["annotation"]
+
+        assert payload["graph_template_id"] == "hkust_gz_gate"
+        assert payload["preview_layout_path"].endswith("scene_layout.json")
+        assert annotation["plan_id"] == "hkust_gz_gate"
+        assert annotation["centerlines"]
+        assert len(annotation["functional_zones"]) == item["functional_zone_count"]
+        assert len(annotation["surface_annotations"]) == item["surface_annotation_count"]
+
+
 def test_scenario_design_run_creates_scene_jobs_and_report(tmp_path: Path):
     fake = _FakeScenarioJobService()
     service = ScenarioDesignService(design_service=fake, run_root=tmp_path / "runs")
@@ -127,6 +146,19 @@ def test_scenario_design_api_creates_default_twenty_one_job_run(tmp_path: Path):
     list_response = client.get("/api/scenario-designs")
     assert list_response.status_code == 200
     assert len(list_response.json()["items"]) == 7
+
+    annotation_response = client.get(
+        "/api/scenario-designs/scenario_02_four_lane_multimodal_safety_island/reference-annotation"
+    )
+    assert annotation_response.status_code == 200
+    annotation_payload = annotation_response.json()
+    assert annotation_payload["scenario_id"] == "scenario_02_four_lane_multimodal_safety_island"
+    assert annotation_payload["annotation"]["plan_id"] == "hkust_gz_gate"
+    assert len(annotation_payload["annotation"]["functional_zones"]) == 2
+    assert len(annotation_payload["annotation"]["surface_annotations"]) == 3
+
+    missing_response = client.get("/api/scenario-designs/not-a-real-scenario/reference-annotation")
+    assert missing_response.status_code == 404
 
     create_response = client.post("/api/scenario-designs/runs", json={})
     assert create_response.status_code == 200

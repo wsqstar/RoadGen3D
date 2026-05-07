@@ -82,6 +82,7 @@ VALID_FUNCTIONAL_ZONE_KINDS = frozenset(
         "sculpture",
     }
 )
+VALID_REGION_ROLES = frozenset({"scene_region", "building_region", "functional_zone"})
 VALID_SURFACE_ANNOTATION_KINDS = frozenset(
     {
         "bus_lane_widening",
@@ -857,6 +858,37 @@ class AnnotatedFunctionalZone:
 
 
 @dataclass(frozen=True)
+class AnnotatedRegion:
+    feature_id: str
+    label: str
+    region_role: str
+    points: Tuple[AnnotationPoint, ...]
+    kind: str = ""
+    land_use_type: str = ""
+    source_region_id: str = ""
+    derived: bool = False
+    material: Mapping[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload: Dict[str, Any] = {
+            "id": self.feature_id,
+            "label": self.label,
+            "region_role": self.region_role,
+            "points": [point.to_dict() for point in self.points],
+            "derived": bool(self.derived),
+        }
+        if self.kind:
+            payload["kind"] = self.kind
+        if self.land_use_type:
+            payload["land_use_type"] = self.land_use_type
+        if self.source_region_id:
+            payload["source_region_id"] = self.source_region_id
+        if self.material:
+            payload["material"] = dict(self.material)
+        return payload
+
+
+@dataclass(frozen=True)
 class AnnotatedSurfaceMaterial:
     preset: str = ""
     color_hex: str = ""
@@ -1075,6 +1107,7 @@ class ReferenceAnnotation:
     junctions: Tuple[AnnotatedJunction, ...]
     roundabouts: Tuple[AnnotatedRoundabout, ...]
     control_points: Tuple[AnnotatedMarker, ...]
+    regions: Tuple[AnnotatedRegion, ...] = ()
     building_regions: Tuple[AnnotatedBuildingRegion, ...] = ()
     functional_zones: Tuple[AnnotatedFunctionalZone, ...] = ()
     surface_annotations: Tuple[AnnotatedSurfaceAnnotation, ...] = ()
@@ -1092,6 +1125,7 @@ class ReferenceAnnotation:
             "junctions": [item.to_dict() for item in self.junctions],
             "roundabouts": [item.to_dict() for item in self.roundabouts],
             "control_points": [item.to_dict() for item in self.control_points],
+            "regions": [item.to_dict() for item in self.regions],
             "building_regions": [item.to_dict() for item in self.building_regions],
             "functional_zones": [item.to_dict() for item in self.functional_zones],
             "surface_annotations": [item.to_dict() for item in self.surface_annotations],
@@ -1602,6 +1636,40 @@ def _parse_functional_zone(value: Any, index: int) -> AnnotatedFunctionalZone:
     )
 
 
+def _parse_region(value: Any, index: int) -> AnnotatedRegion:
+    if not _is_record(value):
+        raise ValueError(f"regions[{index}] must be an object.")
+    fallback_id = f"region_{index + 1:02d}"
+    feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
+    label = _as_string(value.get("label"), feature_id)
+    region_role = _safe_slug(_as_string(value.get("region_role") or value.get("role"), "scene_region"), "scene_region")
+    if region_role not in VALID_REGION_ROLES:
+        raise ValueError(f"regions[{index}].region_role must be one of {sorted(VALID_REGION_ROLES)}.")
+    raw_points = value.get("points")
+    if not isinstance(raw_points, Sequence) or isinstance(raw_points, (str, bytes)):
+        raise ValueError(f"regions[{index}].points must be an array.")
+    points = tuple(
+        _parse_point(item, f"regions[{index}].points[{point_idx}]")
+        for point_idx, item in enumerate(raw_points)
+    )
+    if len(points) < 3:
+        raise ValueError(f"regions[{index}] must contain at least three points.")
+    material_raw = value.get("material") or {}
+    if material_raw and not _is_record(material_raw):
+        raise ValueError(f"regions[{index}].material must be an object when provided.")
+    return AnnotatedRegion(
+        feature_id=feature_id,
+        label=label,
+        region_role=region_role,
+        points=points,
+        kind=_safe_slug(_as_string(value.get("kind"), ""), ""),
+        land_use_type=_safe_slug(_as_string(value.get("land_use_type"), ""), ""),
+        source_region_id=_as_string(value.get("source_region_id"), ""),
+        derived=bool(value.get("derived", False)),
+        material=dict(material_raw),
+    )
+
+
 def _parse_surface_material(value: Any, *, label: str, default_preset: str) -> AnnotatedSurfaceMaterial:
     if value is None:
         return AnnotatedSurfaceMaterial(preset=default_preset)
@@ -1978,6 +2046,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     junctions_raw = payload.get("junctions") or []
     roundabouts_raw = payload.get("roundabouts") or []
     control_points_raw = payload.get("control_points") or []
+    regions_raw = payload.get("regions") or []
     building_regions_raw = payload.get("building_regions") or []
     functional_zones_raw = payload.get("functional_zones") or []
     surface_annotations_raw = payload.get("surface_annotations") or []
@@ -1993,6 +2062,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         raise ValueError("roundabouts must be an array.")
     if not isinstance(control_points_raw, Sequence) or isinstance(control_points_raw, (str, bytes)):
         raise ValueError("control_points must be an array.")
+    if not isinstance(regions_raw, Sequence) or isinstance(regions_raw, (str, bytes)):
+        raise ValueError("regions must be an array.")
     if not isinstance(building_regions_raw, Sequence) or isinstance(building_regions_raw, (str, bytes)):
         raise ValueError("building_regions must be an array.")
     if not isinstance(functional_zones_raw, Sequence) or isinstance(functional_zones_raw, (str, bytes)):
@@ -2027,6 +2098,10 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         control_points=tuple(
             _parse_marker(item, index, collection="control_points", default_kind="control_point")
             for index, item in enumerate(control_points_raw)
+        ),
+        regions=tuple(
+            _parse_region(item, index)
+            for index, item in enumerate(regions_raw)
         ),
         building_regions=tuple(
             _parse_building_region(item, index)
@@ -2931,6 +3006,8 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
                 (center_xy[0] + half_width_m, center_xy[1] + half_height_m),
             ]
         )
+    for region in annotation.regions:
+        points.extend(_pixel_to_local(annotation, x=point.x, y=point.y) for point in region.points)
     if points:
         xs = [point[0] for point in points]
         ys = [point[1] for point in points]
@@ -2962,6 +3039,9 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
     surface_roles: Dict[str, int] = {}
     for surface in annotation.surface_annotations:
         surface_roles[surface.surface_role] = surface_roles.get(surface.surface_role, 0) + 1
+    region_role_counts: Dict[str, int] = {}
+    for region in annotation.regions:
+        region_role_counts[region.region_role] = region_role_counts.get(region.region_role, 0) + 1
     return {
         "plan_id": annotation.plan_id,
         "image_path": annotation.image_path,
@@ -2987,7 +3067,12 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         "roundabout_count": len(annotation.roundabouts),
         "control_point_count": len(annotation.control_points),
         "control_point_kinds": sorted({item.kind for item in annotation.control_points}),
+        "region_count": len(annotation.regions),
+        "scene_region_count": region_role_counts.get("scene_region", 0),
+        "region_role_counts": region_role_counts,
+        "derived_region_count": sum(1 for item in annotation.regions if item.derived),
         "building_region_count": len(annotation.building_regions),
+        "region_building_region_count": region_role_counts.get("building_region", 0),
         "surface_annotation_count": len(annotation.surface_annotations),
         "surface_annotation_role_counts": surface_roles,
         "cross_section_strip_count": strip_count,
@@ -3073,6 +3158,7 @@ __all__ = [
     "AnnotatedCrossSectionStrip",
     "AnnotatedJunction",
     "AnnotatedMarker",
+    "AnnotatedRegion",
     "AnnotatedRoundabout",
     "AnnotatedSurfaceAnnotation",
     "AnnotatedSurfaceMaterial",
@@ -3089,6 +3175,7 @@ __all__ = [
     "JunctionSurfaceEdge",
     "JunctionSurfaceNode",
     "ReferenceAnnotation",
+    "VALID_REGION_ROLES",
     "build_reference_annotation_compose_config",
     "build_reference_annotation_graph_payload",
     "build_segment_graph_from_annotation",

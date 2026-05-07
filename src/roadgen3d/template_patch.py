@@ -2,7 +2,7 @@
 
 Template patches sit between a fixed base annotation and scene generation:
 they may reshape cross-section strips and add/remove functional zones, but
-they intentionally do not move centerlines, junctions, or building regions.
+they intentionally do not move centerlines or junctions.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ from .reference_annotation import (
     VALID_CROSS_SECTION_ZONES,
     VALID_FUNCTIONAL_ZONE_KINDS,
     VALID_FURNITURE_KINDS,
+    VALID_REGION_ROLES,
     VALID_SURFACE_ANNOTATION_KINDS,
     VALID_SURFACE_ROLES,
     VALID_STRIP_DIRECTIONS,
@@ -144,6 +145,12 @@ def _apply_operation(
     if op_type == "remove_functional_zone":
         zone_id = _remove_functional_zone(annotation, operation, index=index)
         return ({"op": op_type, "zone_id": zone_id},)
+    if op_type in {"add_region", "upsert_region"}:
+        region_id = _upsert_region(annotation, operation, index=index, replace_existing=op_type == "upsert_region")
+        return ({"op": op_type, "region_id": region_id},)
+    if op_type == "remove_region":
+        region_id = _remove_region(annotation, operation, index=index)
+        return ({"op": op_type, "region_id": region_id},)
     if op_type in {"add_surface_annotation", "upsert_surface_annotation"}:
         surface_id = _upsert_surface_annotation(annotation, operation, index=index, replace_existing=op_type == "upsert_surface_annotation")
         return ({"op": op_type, "surface_id": surface_id},)
@@ -599,6 +606,50 @@ def _remove_functional_zone(annotation: Dict[str, Any], operation: Mapping[str, 
     return zone_id
 
 
+def _upsert_region(
+    annotation: Dict[str, Any],
+    operation: Mapping[str, Any],
+    *,
+    index: int,
+    replace_existing: bool,
+) -> str:
+    raw_region = operation.get("region")
+    if not isinstance(raw_region, Mapping):
+        raise TemplatePatchError(f"template_patch.operations[{index}].region must be an object.")
+    region = _normalize_region(dict(raw_region), index=index)
+    regions = _region_records(annotation)
+    existing_index = next(
+        (
+            region_index
+            for region_index, item in enumerate(regions)
+            if str(item.get("id") or item.get("feature_id") or "").strip() == region["id"]
+        ),
+        None,
+    )
+    if existing_index is not None:
+        if not replace_existing:
+            raise TemplatePatchError(f"template_patch.operations[{index}] region already exists: {region['id']}.")
+        regions[existing_index] = region
+    else:
+        regions.append(region)
+    annotation["regions"] = regions
+    return str(region["id"])
+
+
+def _remove_region(annotation: Dict[str, Any], operation: Mapping[str, Any], *, index: int) -> str:
+    region_id = _required_text(operation, "region_id", f"template_patch.operations[{index}]")
+    regions = _region_records(annotation)
+    next_regions = [
+        item
+        for item in regions
+        if str(item.get("id") or item.get("feature_id") or "").strip() != region_id
+    ]
+    if len(next_regions) == len(regions):
+        raise TemplatePatchError(f"template_patch.operations[{index}] references unknown region_id: {region_id}.")
+    annotation["regions"] = next_regions
+    return region_id
+
+
 def _upsert_surface_annotation(
     annotation: Dict[str, Any],
     operation: Mapping[str, Any],
@@ -657,6 +708,13 @@ def _surface_annotation_records(annotation: Mapping[str, Any]) -> list[Dict[str,
     return [item for item in raw_surfaces if isinstance(item, dict)]
 
 
+def _region_records(annotation: Mapping[str, Any]) -> list[Dict[str, Any]]:
+    raw_regions = annotation.get("regions") or []
+    if not isinstance(raw_regions, Sequence) or isinstance(raw_regions, (str, bytes)):
+        raise TemplatePatchError("annotation.regions must be an array.")
+    return [item for item in raw_regions if isinstance(item, dict)]
+
+
 def _normalize_functional_zone(raw_zone: Dict[str, Any], *, index: int) -> Dict[str, Any]:
     zone_id = str(raw_zone.get("id") or raw_zone.get("feature_id") or f"functional_zone_{index + 1:02d}").strip()
     if not zone_id:
@@ -681,6 +739,40 @@ def _normalize_functional_zone(raw_zone: Dict[str, Any], *, index: int) -> Dict[
             for furniture_index, item in enumerate(furniture_instances)
         ],
     }
+
+
+def _normalize_region(raw_region: Dict[str, Any], *, index: int) -> Dict[str, Any]:
+    region_id = str(raw_region.get("id") or raw_region.get("feature_id") or f"region_{index + 1:02d}").strip()
+    if not region_id:
+        raise TemplatePatchError(f"template_patch.operations[{index}].region.id is required.")
+    region_role = str(raw_region.get("region_role") or raw_region.get("role") or "scene_region").strip().lower()
+    if region_role not in VALID_REGION_ROLES:
+        raise TemplatePatchError(f"template_patch.operations[{index}].region.region_role must be one of {sorted(VALID_REGION_ROLES)}.")
+    points = raw_region.get("points") or []
+    if not isinstance(points, Sequence) or isinstance(points, (str, bytes)) or len(points) < 3:
+        raise TemplatePatchError(f"template_patch.operations[{index}].region.points must contain at least three points.")
+    material = raw_region.get("material") or {}
+    if not isinstance(material, Mapping):
+        raise TemplatePatchError(f"template_patch.operations[{index}].region.material must be an object when provided.")
+    result = {
+        "id": region_id,
+        "label": str(raw_region.get("label") or region_id).strip(),
+        "region_role": region_role,
+        "points": [_normalize_point(point, f"template_patch.operations[{index}].region.points[{point_index}]") for point_index, point in enumerate(points)],
+        "derived": bool(raw_region.get("derived", False)),
+    }
+    optional_text_fields = {
+        "kind": raw_region.get("kind"),
+        "land_use_type": raw_region.get("land_use_type"),
+        "source_region_id": raw_region.get("source_region_id"),
+    }
+    for key, value in optional_text_fields.items():
+        text = str(value or "").strip()
+        if text:
+            result[key] = text
+    if material:
+        result["material"] = dict(material)
+    return result
 
 
 def _normalize_surface_annotation(raw_surface: Dict[str, Any], *, index: int) -> Dict[str, Any]:
@@ -763,6 +855,12 @@ def _build_patch_summary(
         "applied_operation_count": len(tuple(applied_operations)),
         "applied_operations": [dict(item) for item in applied_operations],
         "centerline_count": len(_centerlines(annotation)),
+        "region_count": len(_region_records(annotation)),
+        "scene_region_count": sum(
+            1
+            for region in _region_records(annotation)
+            if str(region.get("region_role") or region.get("role") or "") == "scene_region"
+        ),
         "functional_zone_count": len(_functional_zone_records(annotation)),
         "surface_annotation_count": len(_surface_annotation_records(annotation)),
     }

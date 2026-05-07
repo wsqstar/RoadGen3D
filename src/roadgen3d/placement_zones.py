@@ -73,6 +73,9 @@ class PlacementContext:
     junction_geometries: List[Dict[str, Any]] = field(default_factory=list)
     road_arm_geometries: List[Any] = field(default_factory=list)
     building_regions: List[Dict[str, Any]] = field(default_factory=list)
+    regions: List[Dict[str, Any]] = field(default_factory=list)
+    derived_regions: List[Dict[str, Any]] = field(default_factory=list)
+    region_derivation_summary: Dict[str, Any] = field(default_factory=dict)
     detailed_strip_profiles: List[Dict[str, Any]] = field(default_factory=list)
     strip_zones: Dict[str, Any] = field(default_factory=dict)
     segment_strip_zones: Dict[str, Dict[str, Any]] = field(default_factory=dict)
@@ -2976,6 +2979,7 @@ def build_placement_context(
     config: Any,
     *,
     road_segment_graph: Any | None = None,
+    aoi_polygon: Any | None = None,
 ) -> PlacementContext:
     """Build the full placement context from projected OSM features and config."""
     from shapely.geometry import box
@@ -2984,7 +2988,10 @@ def build_placement_context(
     from .street_program import profile_defaults
 
     bbox_m = projected_features.bbox_m
-    aoi_polygon = box(bbox_m[0], bbox_m[1], bbox_m[2], bbox_m[3])
+    if aoi_polygon is None:
+        aoi_polygon = box(bbox_m[0], bbox_m[1], bbox_m[2], bbox_m[3])
+    elif not getattr(aoi_polygon, "is_valid", True):
+        aoi_polygon = aoi_polygon.buffer(0)
     detailed_strip_profiles, strip_zones, segment_strip_zones, strip_summary = _build_graph_strip_context(
         road_segment_graph,
         aoi_polygon=aoi_polygon,

@@ -21,6 +21,12 @@ from .reference_annotation import (
     functional_zone_to_local_coords,
     parse_reference_annotation,
 )
+from .reference_regions import (
+    derive_regions_from_annotation,
+    explicit_building_region_records_from_regions,
+    functional_region_records_from_regions,
+    scene_region_polygon_from_annotation,
+)
 from .types import RoadSegmentGraph, StreetComposeConfig
 
 ANNOTATION_SCENE_BBOX_PADDING_M = 36.0
@@ -292,6 +298,7 @@ def build_reference_annotation_scene_bridge(
     )
     road_segment_graph = build_segment_graph_from_annotation(annotation, config=resolved_config)
     local_centerlines = _collect_local_centerlines(annotation)
+    scene_region_polygon = scene_region_polygon_from_annotation(annotation)
     synthetic_roads: List[OsmRoad] = []
     for road_id, centerline, points in local_centerlines:
         synthetic_roads.append(
@@ -302,6 +309,11 @@ def build_reference_annotation_scene_bridge(
                 width_m=float(centerline.carriageway_width_m()),
             )
         )
+    if scene_region_polygon is not None and not getattr(scene_region_polygon, "is_empty", True):
+        min_x, min_y, max_x, max_y = scene_region_polygon.bounds
+        bbox_m = (float(min_x), float(min_y), float(max_x), float(max_y))
+    else:
+        bbox_m = _graph_bbox(local_centerlines, padding_m=float(ANNOTATION_SCENE_BBOX_PADDING_M))
     projected_features = ProjectedFeatures(
         roads=synthetic_roads,
         buildings=[],
@@ -309,7 +321,7 @@ def build_reference_annotation_scene_bridge(
         bus_stops=[],
         fire_points=[],
         poi_points_by_type={},
-        bbox_m=_graph_bbox(local_centerlines, padding_m=float(ANNOTATION_SCENE_BBOX_PADDING_M)),
+        bbox_m=bbox_m,
         origin_utm=(0.0, 0.0),
         utm_epsg=0,
     )
@@ -317,6 +329,7 @@ def build_reference_annotation_scene_bridge(
         projected_features,
         resolved_config,
         road_segment_graph=road_segment_graph,
+        aoi_polygon=scene_region_polygon,
     )
     placement_context.junction_geometries = _apply_manual_junction_compositions(
         annotation,
@@ -332,7 +345,17 @@ def build_reference_annotation_scene_bridge(
     placement_context.junction_geometries = normalize_junction_surface_geometries(
         list(getattr(placement_context, "junction_geometries", []) or [])
     )
-    placement_context.building_regions = _annotation_building_region_records(annotation)
+    derived_region_payload = derive_regions_from_annotation(annotation)
+    explicit_region_building_records = explicit_building_region_records_from_regions(annotation)
+    if explicit_region_building_records:
+        placement_context.building_regions = explicit_region_building_records
+    elif annotation.building_regions:
+        placement_context.building_regions = _annotation_building_region_records(annotation)
+    else:
+        placement_context.building_regions = list(derived_region_payload.get("building_regions", []) or [])
+    placement_context.regions = [region.to_dict() for region in annotation.regions]
+    placement_context.derived_regions = list(derived_region_payload.get("derived_regions", []) or [])
+    placement_context.region_derivation_summary = dict(derived_region_payload.get("summary", {}) or {})
     placement_context.surface_annotations = _annotation_surface_records(annotation, local_centerlines)
     center_x = float(annotation.image_width_px) * 0.5
     center_y = float(annotation.image_height_px) * 0.5
@@ -355,7 +378,7 @@ def build_reference_annotation_scene_bridge(
             ],
         }
         for zone in annotation.functional_zones
-    ]
+    ] + functional_region_records_from_regions(annotation)
     payload = build_reference_annotation_graph_payload(annotation, config=resolved_config)
     summary_metadata = {
         **dict(payload.get("summary", {}) or {}),
@@ -364,6 +387,10 @@ def build_reference_annotation_scene_bridge(
         "synthetic_road_count": int(len(projected_features.roads)),
         "junction_geometry_count": int(len(getattr(placement_context, "junction_geometries", []) or [])),
         "surface_annotation_count": int(len(getattr(placement_context, "surface_annotations", []) or [])),
+        "region_count": int(len(getattr(placement_context, "regions", []) or [])),
+        "derived_region_count": int(len(getattr(placement_context, "derived_regions", []) or [])),
+        "derived_building_region_count": int(len(derived_region_payload.get("building_regions", []) or [])),
+        "region_derivation_summary": dict(derived_region_payload.get("summary", {}) or {}),
     }
     return ReferenceAnnotationSceneBridgeResult(
         annotation=annotation,

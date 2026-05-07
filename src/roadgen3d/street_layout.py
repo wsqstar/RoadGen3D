@@ -10886,6 +10886,17 @@ def compose_street_scene(
         "building_placements": [plan.to_dict() for plan in building_plans],
         "building_retrieval_predictions": building_retrieval_predictions,
         "zoning_grid": list(zoning_grid),
+        "regions": list(getattr(placement_ctx, "regions", []) or []),
+        "derived_regions": list(getattr(placement_ctx, "derived_regions", []) or []),
+        "building_regions": [
+            {
+                key: value
+                for key, value in dict(record).items()
+                if key != "geometry"
+            }
+            for record in getattr(placement_ctx, "building_regions", []) or []
+        ],
+        "region_derivation_summary": dict(getattr(placement_ctx, "region_derivation_summary", {}) or {}),
         "functional_zones": list(getattr(placement_ctx, "functional_zones", []) or []),
         "surface_annotations": [
             {

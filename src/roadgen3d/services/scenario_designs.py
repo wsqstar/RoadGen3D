@@ -49,6 +49,44 @@ class ScenarioDesignService:
             "runs": self._list_run_summaries(),
         })
 
+    def reference_annotation_for_scenario(
+        self,
+        scenario_id: str,
+        *,
+        graph_template_id: str = DEFAULT_GRAPH_TEMPLATE_ID,
+    ) -> Dict[str, Any]:
+        catalog = self._load_catalog()
+        wanted_id = str(scenario_id or "").strip()
+        scenario = next(
+            (item for item in catalog["scenarios"] if str(item.get("scenario_id") or "").strip() == wanted_id),
+            None,
+        )
+        if scenario is None:
+            raise KeyError(f"Unknown scenario design id: {wanted_id}")
+
+        template_id = str(graph_template_id or catalog.get("graph_template_id") or DEFAULT_GRAPH_TEMPLATE_ID).strip()
+        try:
+            base_annotation = load_graph_template_annotation_payload(template_id)
+            template_patch = self.scenario_to_template_patch(
+                scenario,
+                graph_template_id=template_id,
+                validate=False,
+            )
+            application = apply_template_patch(base_annotation, template_patch)
+        except (TemplatePatchError, ValueError) as exc:
+            raise RuntimeError(f"Scenario {wanted_id} is not valid for template {template_id}: {exc}") from exc
+
+        scenario_summary = self._scenario_summary(scenario)
+        return make_json_safe({
+            "schema_version": "roadgen3d_scenario_reference_annotation_v1",
+            "scenario_id": wanted_id,
+            "graph_template_id": template_id,
+            "preview_layout_path": scenario_summary.get("preview_layout_path", ""),
+            "scenario": scenario_summary,
+            "annotation": application.annotation,
+            "summary": application.summary,
+        })
+
     def submit_run(
         self,
         *,
@@ -142,6 +180,11 @@ class ScenarioDesignService:
         scenario_id = _required_text(scenario.get("scenario_id"), "scenario_id")
         centerline_id = self._primary_centerline_id(graph_template_id)
         operations: list[Dict[str, Any]] = []
+        for region in self._scenario_regions(scenario, graph_template_id=graph_template_id):
+            operations.append({
+                "op": "upsert_region",
+                "region": copy.deepcopy(region),
+            })
         for zone in _records(scenario.get("functional_zones")):
             operations.append({
                 "op": "upsert_functional_zone",
@@ -316,6 +359,7 @@ class ScenarioDesignService:
     def _scenario_summary(self, scenario: Mapping[str, Any]) -> Dict[str, Any]:
         preview_path = self._resolve_catalog_path(str(scenario.get("preview_layout_path") or ""))
         surfaces = _records(scenario.get("surface_annotations"))
+        regions = self._scenario_regions(scenario, graph_template_id=DEFAULT_GRAPH_TEMPLATE_ID, allow_default=True)
         surface_roles: Dict[str, int] = {}
         for surface in surfaces:
             role = str(surface.get("surface_role") or "").strip() or "unknown"
@@ -328,12 +372,49 @@ class ScenarioDesignService:
             "intent_zh": str(scenario.get("intent_zh") or ""),
             "road_section": dict(scenario.get("road_section") or {}) if isinstance(scenario.get("road_section"), Mapping) else {},
             "edge_context": dict(scenario.get("edge_context") or {}) if isinstance(scenario.get("edge_context"), Mapping) else {},
+            "region_count": len(regions),
+            "scene_region_count": sum(1 for region in regions if str(region.get("region_role") or "") == "scene_region"),
             "functional_zone_count": len(_records(scenario.get("functional_zones"))),
             "surface_annotation_count": len(surfaces),
             "surface_role_counts": surface_roles,
             "preview_layout_path": str(preview_path) if preview_path is not None else "",
             "preview_layout_exists": bool(preview_path and preview_path.exists()),
         }
+
+    def _scenario_regions(
+        self,
+        scenario: Mapping[str, Any],
+        *,
+        graph_template_id: str,
+        allow_default: bool = True,
+    ) -> list[Dict[str, Any]]:
+        regions = [copy.deepcopy(region) for region in _records(scenario.get("regions"))]
+        if regions or not allow_default:
+            return regions
+        scenario_id = str(scenario.get("scenario_id") or "scenario").strip() or "scenario"
+        try:
+            base_annotation = load_graph_template_annotation_payload(graph_template_id)
+        except KeyError:
+            return regions
+        width_px = float(base_annotation.get("image_width_px") or 0.0)
+        height_px = float(base_annotation.get("image_height_px") or 0.0)
+        if width_px <= 0.0 or height_px <= 0.0:
+            return regions
+        margin_px = max(24.0, min(width_px, height_px) * 0.08)
+        return [
+            {
+                "id": f"{scenario_id}_scene_region",
+                "label": "场景边界",
+                "region_role": "scene_region",
+                "points": [
+                    {"x": margin_px, "y": margin_px},
+                    {"x": width_px - margin_px, "y": margin_px},
+                    {"x": width_px - margin_px, "y": height_px - margin_px},
+                    {"x": margin_px, "y": height_px - margin_px},
+                ],
+                "material": {"preset": "scene_region_boundary"},
+            }
+        ]
 
     def _resolve_catalog_path(self, raw_path: str) -> Path | None:
         if not raw_path.strip():

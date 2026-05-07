@@ -35,6 +35,7 @@ from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
 )
+from roadgen3d.reference_regions import derive_regions_from_annotation  # noqa: E402
 from roadgen3d.template_patch import TemplatePatchError, apply_template_patch  # noqa: E402
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
@@ -103,6 +104,11 @@ class KnowledgeSearchRequestModel(BaseModel):
 class ReferenceAnnotationConvertRequestModel(BaseModel):
     annotation: Dict[str, Any]
     compose_config: Dict[str, Any] = Field(default_factory=dict)
+
+
+class ReferenceAnnotationDeriveRegionsRequestModel(BaseModel):
+    annotation: Dict[str, Any]
+    options: Dict[str, Any] = Field(default_factory=dict)
 
 
 class TemplatePatchPreviewRequestModel(BaseModel):
@@ -333,6 +339,17 @@ def create_app(
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(payload)
 
+    @app.post("/api/reference-annotations/derive-regions")
+    def derive_reference_annotation_regions(request: ReferenceAnnotationDeriveRegionsRequestModel) -> Dict[str, Any]:
+        try:
+            payload = derive_regions_from_annotation(
+                request.annotation,
+                options=request.options,
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(payload)
+
     @app.post("/api/design/draft")
     def design_draft(request: DraftRequestModel) -> Dict[str, Any]:
         service = app.state.design_service
@@ -401,6 +418,22 @@ def create_app(
             return make_json_safe(app.state.scenario_design_service.list_scenarios())
         except RuntimeError as exc:
             raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @app.get("/api/scenario-designs/{scenario_id}/reference-annotation")
+    def get_scenario_design_reference_annotation(
+        scenario_id: str,
+        graph_template_id: str = Query(default="hkust_gz_gate"),
+    ) -> Dict[str, Any]:
+        try:
+            payload = app.state.scenario_design_service.reference_annotation_for_scenario(
+                scenario_id,
+                graph_template_id=graph_template_id,
+            )
+            return make_json_safe(payload)
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @app.post("/api/scenario-designs/runs")
     def create_scenario_design_run(request: ScenarioDesignRunCreateRequestModel) -> Dict[str, Any]:
