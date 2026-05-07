@@ -1,0 +1,147 @@
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+from fastapi.testclient import TestClient
+
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+from roadgen3d.graph_templates import load_graph_template_annotation_payload  # noqa: E402
+from roadgen3d.services.design_types import (  # noqa: E402
+    SceneGenerationResult,
+    SceneJobCreateResponse,
+    SceneJobStatusResponse,
+)
+from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
+from roadgen3d.template_patch import apply_template_patch  # noqa: E402
+from web.api.main import create_app  # noqa: E402
+
+
+class _FakeScenarioJobService:
+    default_pdf_path = Path("/tmp/guide.pdf")
+    default_artifact_dir = Path("/tmp/knowledge")
+
+    def __init__(self) -> None:
+        self.created: list[dict] = []
+
+    def create_scene_job(self, draft, **kwargs):
+        job_id = f"scenario-job-{len(self.created) + 1:02d}"
+        self.created.append({"job_id": job_id, "draft": draft, **kwargs})
+        return SceneJobCreateResponse(
+            job_id=job_id,
+            status="queued",
+            created_at="2026-05-06T00:00:00+00:00",
+        )
+
+    def get_scene_job(self, job_id: str):
+        match = next((item for item in self.created if item["job_id"] == job_id), None)
+        if match is None:
+            return None
+        out_dir = Path(str(match["generation_options"]["out_dir"]))
+        scenario_id = out_dir.parent.name
+        sample_id = out_dir.name
+        layout_path = out_dir / "graph_template" / "hkust_gz_gate" / "20260506T000000Z" / "scene_layout.json"
+        glb_path = layout_path.parent / "scene.glb"
+        return SceneJobStatusResponse(
+            job_id=job_id,
+            status="succeeded",
+            created_at="2026-05-06T00:00:00+00:00",
+            started_at="2026-05-06T00:00:01+00:00",
+            finished_at="2026-05-06T00:00:02+00:00",
+            stage="succeeded",
+            progress=100,
+            result=SceneGenerationResult(
+                compose_config={"seed": match["generation_options"]["random_seed"]},
+                summary={"scenario_id": scenario_id, "sample_id": sample_id},
+                scene_layout_path=str(layout_path),
+                scene_glb_path=str(glb_path),
+                viewer_url=f"http://127.0.0.1:4188/?layout={layout_path}",
+            ),
+        )
+
+    def list_scene_jobs(self, *, limit=20):
+        return [self.get_scene_job(item["job_id"]) for item in self.created[:limit]]
+
+    def list_recent_scenes(self, *, limit=20):
+        return []
+
+
+def test_scenario_design_service_loads_catalog_and_builds_valid_template_patch(tmp_path: Path):
+    service = ScenarioDesignService(
+        design_service=_FakeScenarioJobService(),
+        run_root=tmp_path / "runs",
+    )
+
+    payload = service.list_scenarios()
+    assert len(payload["items"]) == 7
+    assert payload["items"][0]["preview_layout_exists"] is True
+
+    scenario = service._load_catalog()["scenarios"][1]
+    patch = service.scenario_to_template_patch(scenario, validate=True)
+    operation_kinds = [item["op"] for item in patch["operations"]]
+
+    assert "upsert_functional_zone" in operation_kinds
+    assert "upsert_surface_annotation" in operation_kinds
+    application = apply_template_patch(load_graph_template_annotation_payload("hkust_gz_gate"), patch)
+    assert application.summary["functional_zone_count"] == 2
+    assert application.summary["surface_annotation_count"] == 3
+
+
+def test_scenario_design_run_creates_scene_jobs_and_report(tmp_path: Path):
+    fake = _FakeScenarioJobService()
+    service = ScenarioDesignService(design_service=fake, run_root=tmp_path / "runs")
+
+    run = service.submit_run(
+        scenario_ids=["scenario_01_basic_complete_street"],
+        samples_per_scenario=3,
+        base_seed=20260506,
+    )
+    refreshed = service.get_run(run["run_id"])
+    report = service.get_report(run["run_id"])
+
+    assert len(fake.created) == 3
+    assert refreshed is not None
+    assert refreshed["status"] == "succeeded"
+    assert refreshed["completed_jobs"] == 3
+    assert refreshed["items"][0]["scene_layout_path"].endswith("scene_layout.json")
+    assert Path(refreshed["manifest_path"]).exists()
+    assert report is not None
+    assert "Scenario Generation Report" in report["content"]
+
+
+def test_scenario_design_api_creates_default_twenty_one_job_run(tmp_path: Path):
+    fake = _FakeScenarioJobService()
+    app = create_app(design_service=fake)
+    app.state.scenario_design_service = ScenarioDesignService(
+        design_service=fake,
+        run_root=tmp_path / "runs",
+    )
+    client = TestClient(app)
+
+    list_response = client.get("/api/scenario-designs")
+    assert list_response.status_code == 200
+    assert len(list_response.json()["items"]) == 7
+
+    create_response = client.post("/api/scenario-designs/runs", json={})
+    assert create_response.status_code == 200
+    run_payload = create_response.json()
+    assert run_payload["total_jobs"] == 21
+    assert len(fake.created) == 21
+    assert fake.created[0]["scene_context"]["graph_template_id"] == "hkust_gz_gate"
+    assert fake.created[0]["draft"].template_patch["operations"]
+
+    status_response = client.get(f"/api/scenario-designs/runs/{run_payload['run_id']}")
+    assert status_response.status_code == 200
+    assert status_response.json()["status"] == "succeeded"
+    assert status_response.json()["completed_jobs"] == 21
+
+    report_response = client.get(f"/api/scenario-designs/runs/{run_payload['run_id']}/report")
+    assert report_response.status_code == 200
+    assert report_response.json()["report_path"].endswith("SCENARIO_GENERATION_REPORT.md")
+    assert "方案 7" in report_response.json()["content"]

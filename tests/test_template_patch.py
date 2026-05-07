@@ -120,6 +120,42 @@ def test_template_patch_can_add_bus_lane_and_plaza():
     assert annotation.functional_zones[0].furniture_instances[0].kind == "tree"
 
 
+def test_template_patch_can_upsert_surface_annotation():
+    base_payload = load_graph_template_annotation_payload("hkust_gz_gate")
+    patch = {
+        "schema_version": TEMPLATE_PATCH_SCHEMA_VERSION,
+        "variant_id": "surface_annotation_demo",
+        "operations": [
+            {
+                "op": "upsert_surface_annotation",
+                "surface": {
+                    "id": "surface_bus_lane_001",
+                    "label": "临时公交车道拓宽",
+                    "kind": "bus_lane_widening",
+                    "surface_role": "bus_lane",
+                    "centerline_id": "centerline_04",
+                    "station_start_m": 24.0,
+                    "station_end_m": 86.0,
+                    "lateral_start_m": 3.5,
+                    "lateral_end_m": 7.0,
+                    "material": {"preset": "bus_lane_green"},
+                },
+            },
+        ],
+    }
+
+    application = apply_template_patch(base_payload, patch)
+    annotation = parse_reference_annotation(application.annotation)
+
+    assert application.summary["surface_annotation_count"] == 1
+    assert len(annotation.surface_annotations) == 1
+    surface = annotation.surface_annotations[0]
+    assert surface.feature_id == "surface_bus_lane_001"
+    assert surface.surface_role == "bus_lane"
+    assert surface.centerline_id == "centerline_04"
+    assert surface.material.preset == "bus_lane_green"
+
+
 def test_template_patch_enforces_bidirectional_drive_lane_constraints():
     base_payload = load_graph_template_annotation_payload("hkust_gz_gate")
     patch = {

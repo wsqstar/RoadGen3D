@@ -30,6 +30,7 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "road_width_m",
     "sidewalk_width_m",
     "lane_count",
+    "seed",
     "density",
     "building_density",
     "building_max_per_100m",
@@ -41,7 +42,7 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
 _FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m"})
-_INT_FIELDS = frozenset({"lane_count"})
+_INT_FIELDS = frozenset({"lane_count", "seed"})
 _BOOL_FIELDS = frozenset({"allow_solver_fallback"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
@@ -83,6 +84,7 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "road_width_m": 7.0,
     "sidewalk_width_m": 2.4,
     "lane_count": 2,
+    "seed": 42,
     "density": 1.0,
     "building_density": 0.55,
     "building_max_per_100m": 10.0,

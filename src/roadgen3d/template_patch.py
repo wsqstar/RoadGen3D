@@ -21,6 +21,8 @@ from .reference_annotation import (
     VALID_CROSS_SECTION_ZONES,
     VALID_FUNCTIONAL_ZONE_KINDS,
     VALID_FURNITURE_KINDS,
+    VALID_SURFACE_ANNOTATION_KINDS,
+    VALID_SURFACE_ROLES,
     VALID_STRIP_DIRECTIONS,
     VALID_STRIP_KINDS,
     parse_reference_annotation,
@@ -142,6 +144,12 @@ def _apply_operation(
     if op_type == "remove_functional_zone":
         zone_id = _remove_functional_zone(annotation, operation, index=index)
         return ({"op": op_type, "zone_id": zone_id},)
+    if op_type in {"add_surface_annotation", "upsert_surface_annotation"}:
+        surface_id = _upsert_surface_annotation(annotation, operation, index=index, replace_existing=op_type == "upsert_surface_annotation")
+        return ({"op": op_type, "surface_id": surface_id},)
+    if op_type == "remove_surface_annotation":
+        surface_id = _remove_surface_annotation(annotation, operation, index=index)
+        return ({"op": op_type, "surface_id": surface_id},)
     raise TemplatePatchError(f"Unsupported template_patch operation: {op_type}.")
 
 
@@ -591,11 +599,62 @@ def _remove_functional_zone(annotation: Dict[str, Any], operation: Mapping[str, 
     return zone_id
 
 
+def _upsert_surface_annotation(
+    annotation: Dict[str, Any],
+    operation: Mapping[str, Any],
+    *,
+    index: int,
+    replace_existing: bool,
+) -> str:
+    raw_surface = operation.get("surface") or operation.get("surface_annotation")
+    if not isinstance(raw_surface, Mapping):
+        raise TemplatePatchError(f"template_patch.operations[{index}].surface must be an object.")
+    surface = _normalize_surface_annotation(dict(raw_surface), index=index)
+    surfaces = _surface_annotation_records(annotation)
+    existing_index = next(
+        (
+            surface_index
+            for surface_index, item in enumerate(surfaces)
+            if str(item.get("id") or item.get("feature_id") or "").strip() == surface["id"]
+        ),
+        None,
+    )
+    if existing_index is not None:
+        if not replace_existing:
+            raise TemplatePatchError(f"template_patch.operations[{index}] surface annotation already exists: {surface['id']}.")
+        surfaces[existing_index] = surface
+    else:
+        surfaces.append(surface)
+    annotation["surface_annotations"] = surfaces
+    return str(surface["id"])
+
+
+def _remove_surface_annotation(annotation: Dict[str, Any], operation: Mapping[str, Any], *, index: int) -> str:
+    surface_id = _required_text(operation, "surface_id", f"template_patch.operations[{index}]")
+    surfaces = _surface_annotation_records(annotation)
+    next_surfaces = [
+        item
+        for item in surfaces
+        if str(item.get("id") or item.get("feature_id") or "").strip() != surface_id
+    ]
+    if len(next_surfaces) == len(surfaces):
+        raise TemplatePatchError(f"template_patch.operations[{index}] references unknown surface_id: {surface_id}.")
+    annotation["surface_annotations"] = next_surfaces
+    return surface_id
+
+
 def _functional_zone_records(annotation: Mapping[str, Any]) -> list[Dict[str, Any]]:
     raw_zones = annotation.get("functional_zones") or []
     if not isinstance(raw_zones, Sequence) or isinstance(raw_zones, (str, bytes)):
         raise TemplatePatchError("annotation.functional_zones must be an array.")
     return [item for item in raw_zones if isinstance(item, dict)]
+
+
+def _surface_annotation_records(annotation: Mapping[str, Any]) -> list[Dict[str, Any]]:
+    raw_surfaces = annotation.get("surface_annotations") or []
+    if not isinstance(raw_surfaces, Sequence) or isinstance(raw_surfaces, (str, bytes)):
+        raise TemplatePatchError("annotation.surface_annotations must be an array.")
+    return [item for item in raw_surfaces if isinstance(item, dict)]
 
 
 def _normalize_functional_zone(raw_zone: Dict[str, Any], *, index: int) -> Dict[str, Any]:
@@ -621,6 +680,36 @@ def _normalize_functional_zone(raw_zone: Dict[str, Any], *, index: int) -> Dict[
             _normalize_zone_furniture(item, f"template_patch.operations[{index}].zone.furniture_instances[{furniture_index}]")
             for furniture_index, item in enumerate(furniture_instances)
         ],
+    }
+
+
+def _normalize_surface_annotation(raw_surface: Dict[str, Any], *, index: int) -> Dict[str, Any]:
+    surface_id = str(raw_surface.get("id") or raw_surface.get("feature_id") or f"surface_annotation_{index + 1:02d}").strip()
+    if not surface_id:
+        raise TemplatePatchError(f"template_patch.operations[{index}].surface.id is required.")
+    kind = str(raw_surface.get("kind") or "paving_zone").strip().lower()
+    if kind not in VALID_SURFACE_ANNOTATION_KINDS:
+        raise TemplatePatchError(f"template_patch.operations[{index}].surface.kind must be one of {sorted(VALID_SURFACE_ANNOTATION_KINDS)}.")
+    surface_role = str(raw_surface.get("surface_role") or "colored_pavement").strip().lower()
+    if surface_role not in VALID_SURFACE_ROLES:
+        raise TemplatePatchError(f"template_patch.operations[{index}].surface.surface_role must be one of {sorted(VALID_SURFACE_ROLES)}.")
+    centerline_id = str(raw_surface.get("centerline_id") or "").strip()
+    if not centerline_id:
+        raise TemplatePatchError(f"template_patch.operations[{index}].surface.centerline_id is required.")
+    material = raw_surface.get("material") or {}
+    if not isinstance(material, Mapping):
+        raise TemplatePatchError(f"template_patch.operations[{index}].surface.material must be an object when provided.")
+    return {
+        "id": surface_id,
+        "label": str(raw_surface.get("label") or surface_id).strip(),
+        "kind": kind,
+        "surface_role": surface_role,
+        "centerline_id": centerline_id,
+        "station_start_m": _finite_float(raw_surface.get("station_start_m"), f"template_patch.operations[{index}].surface.station_start_m"),
+        "station_end_m": _finite_float(raw_surface.get("station_end_m"), f"template_patch.operations[{index}].surface.station_end_m"),
+        "lateral_start_m": _finite_float(raw_surface.get("lateral_start_m"), f"template_patch.operations[{index}].surface.lateral_start_m"),
+        "lateral_end_m": _finite_float(raw_surface.get("lateral_end_m"), f"template_patch.operations[{index}].surface.lateral_end_m"),
+        "material": dict(material),
     }
 
 
@@ -675,6 +764,7 @@ def _build_patch_summary(
         "applied_operations": [dict(item) for item in applied_operations],
         "centerline_count": len(_centerlines(annotation)),
         "functional_zone_count": len(_functional_zone_records(annotation)),
+        "surface_annotation_count": len(_surface_annotation_records(annotation)),
     }
     return summary
 

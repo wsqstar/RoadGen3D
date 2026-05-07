@@ -40,6 +40,7 @@ from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_d
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
 from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
+from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
 from roadgen3d.knowledge.source_registry import (  # noqa: E402
     add_source,
     allocate_upload_paths,
@@ -77,6 +78,14 @@ class SceneJobCreateRequestModel(BaseModel):
     draft: Dict[str, Any]
     scene_context: Dict[str, Any] = Field(default_factory=dict)
     patch_overrides: Dict[str, Any] = Field(default_factory=dict)
+    generation_options: Dict[str, Any] = Field(default_factory=dict)
+
+
+class ScenarioDesignRunCreateRequestModel(BaseModel):
+    scenario_ids: List[str] = Field(default_factory=list)
+    samples_per_scenario: int = Field(default=3, ge=1, le=10)
+    base_seed: int = 20260506
+    graph_template_id: str = "hkust_gz_gate"
     generation_options: Dict[str, Any] = Field(default_factory=dict)
 
 
@@ -225,6 +234,9 @@ def create_app(
     app.state.branch_run_service = BranchRunService(
         design_service=app.state.design_service,
         benchmark_store=app.state.benchmark_store,
+    )
+    app.state.scenario_design_service = ScenarioDesignService(
+        design_service=app.state.design_service,
     )
     app.state.benchmark_batch_service = BranchBenchmarkBatchService(
         branch_run_service=app.state.branch_run_service,
@@ -382,6 +394,40 @@ def create_app(
         if result is None:
             raise HTTPException(status_code=404, detail=f"Scene job not found: {job_id}")
         return make_json_safe(result.to_dict())
+
+    @app.get("/api/scenario-designs")
+    def list_scenario_designs() -> Dict[str, Any]:
+        try:
+            return make_json_safe(app.state.scenario_design_service.list_scenarios())
+        except RuntimeError as exc:
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @app.post("/api/scenario-designs/runs")
+    def create_scenario_design_run(request: ScenarioDesignRunCreateRequestModel) -> Dict[str, Any]:
+        try:
+            return make_json_safe(app.state.scenario_design_service.submit_run(
+                scenario_ids=request.scenario_ids,
+                samples_per_scenario=request.samples_per_scenario,
+                base_seed=request.base_seed,
+                graph_template_id=request.graph_template_id,
+                generation_options=request.generation_options,
+            ))
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.get("/api/scenario-designs/runs/{run_id}")
+    def get_scenario_design_run(run_id: str) -> Dict[str, Any]:
+        result = app.state.scenario_design_service.get_run(run_id)
+        if result is None:
+            raise HTTPException(status_code=404, detail=f"Scenario design run not found: {run_id}")
+        return make_json_safe(result)
+
+    @app.get("/api/scenario-designs/runs/{run_id}/report")
+    def get_scenario_design_run_report(run_id: str) -> Dict[str, Any]:
+        result = app.state.scenario_design_service.get_report(run_id)
+        if result is None:
+            raise HTTPException(status_code=404, detail=f"Scenario design run not found: {run_id}")
+        return make_json_safe(result)
 
     @app.get("/api/scenes/recent")
     def list_recent_scenes(limit: int = Query(default=12, ge=1, le=100)) -> Dict[str, Any]:

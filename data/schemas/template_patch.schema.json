@@ -40,7 +40,10 @@
           { "$ref": "#/$defs/replace_strips" },
           { "$ref": "#/$defs/add_functional_zone" },
           { "$ref": "#/$defs/upsert_functional_zone" },
-          { "$ref": "#/$defs/remove_functional_zone" }
+          { "$ref": "#/$defs/remove_functional_zone" },
+          { "$ref": "#/$defs/add_surface_annotation" },
+          { "$ref": "#/$defs/upsert_surface_annotation" },
+          { "$ref": "#/$defs/remove_surface_annotation" }
         ]
       }
     }
@@ -260,6 +263,89 @@
       "properties": {
         "op": { "const": "remove_functional_zone" },
         "zone_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "surface_annotation_kind": {
+      "enum": ["bus_lane_widening", "safety_island", "colored_pavement", "shared_surface", "transit_pad", "paving_zone"]
+    },
+    "surface_role": {
+      "enum": [
+        "carriageway",
+        "bus_lane",
+        "bike_lane",
+        "parking_lane",
+        "median",
+        "median_green",
+        "grass_belt",
+        "safety_island",
+        "shared_street_surface",
+        "colored_pavement",
+        "sidewalk",
+        "furnishing",
+        "context_ground",
+        "transit_pad",
+        "crossing"
+      ]
+    },
+    "surface_material": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "preset": { "type": "string" },
+        "color_hex": { "type": "string" },
+        "texture_key": { "type": "string" }
+      }
+    },
+    "surface_annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "surface_role",
+        "centerline_id",
+        "station_start_m",
+        "station_end_m",
+        "lateral_start_m",
+        "lateral_end_m"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string" },
+        "kind": { "$ref": "#/$defs/surface_annotation_kind" },
+        "surface_role": { "$ref": "#/$defs/surface_role" },
+        "centerline_id": { "type": "string", "minLength": 1 },
+        "station_start_m": { "type": "number" },
+        "station_end_m": { "type": "number" },
+        "lateral_start_m": { "type": "number" },
+        "lateral_end_m": { "type": "number" },
+        "material": { "$ref": "#/$defs/surface_material" }
+      }
+    },
+    "add_surface_annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "surface"],
+      "properties": {
+        "op": { "const": "add_surface_annotation" },
+        "surface": { "$ref": "#/$defs/surface_annotation" }
+      }
+    },
+    "upsert_surface_annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "surface"],
+      "properties": {
+        "op": { "const": "upsert_surface_annotation" },
+        "surface": { "$ref": "#/$defs/surface_annotation" }
+      }
+    },
+    "remove_surface_annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op", "surface_id"],
+      "properties": {
+        "op": { "const": "remove_surface_annotation" },
+        "surface_id": { "type": "string", "minLength": 1 }
       }
     }
   }
