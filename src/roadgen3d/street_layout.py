@@ -2015,6 +2015,88 @@ def _annotation_furniture_to_slot_plans(
     return slots, segment_lookup
 
 
+def _center_planting_tree_slot_plans(
+    *,
+    road_segment_graph: object | None,
+    theme_segments: Sequence[object],
+    placement_ctx: object | None,
+    spacing_m: float = 28.0,
+    max_slots: int = 48,
+) -> Tuple[List[LayoutSlotPlan], Dict[str, object]]:
+    """Inject tree slots along center planting strips such as grass medians."""
+
+    slots: List[LayoutSlotPlan] = []
+    segment_lookup: Dict[str, object] = {}
+    if road_segment_graph is None or placement_ctx is None:
+        return slots, segment_lookup
+
+    center_band_names = ("center_grass_belt", "center_median_green")
+    strip_zones = getattr(placement_ctx, "strip_zones", {}) or {}
+    if not any(name in strip_zones for name in center_band_names):
+        return slots, segment_lookup
+
+    seg_to_theme: Dict[str, str] = {}
+    for ts in theme_segments:
+        for sid in getattr(ts, "segment_ids", ()):
+            seg_to_theme[str(sid)] = str(ts.theme_id)
+    default_theme = str(theme_segments[0].theme_id) if theme_segments else ""
+
+    last_point: Tuple[float, float] | None = None
+    nodes = sorted(
+        tuple(getattr(road_segment_graph, "nodes", ()) or ()),
+        key=lambda node: (
+            int(getattr(node, "road_id", 0) or 0),
+            float(getattr(node, "station_center_m", 0.0) or 0.0),
+            str(getattr(node, "segment_id", "") or ""),
+        ),
+    )
+    for node in nodes:
+        segment_id = str(getattr(node, "segment_id", "") or "")
+        segment_zones = (getattr(placement_ctx, "segment_strip_zones", {}) or {}).get(segment_id, {})
+        band_name = next(
+            (
+                candidate
+                for candidate in center_band_names
+                if segment_zones.get(candidate) is not None and not getattr(segment_zones.get(candidate), "is_empty", False)
+            ),
+            "",
+        )
+        if not band_name:
+            continue
+        zone = segment_zones[band_name]
+        center_xy = tuple(float(value) for value in getattr(node, "center_xy", (0.0, 0.0)))
+        point_xz = center_xy
+        if not _point_in_zone(zone, point_xz, tolerance_m=0.01):
+            try:
+                representative = zone.representative_point()
+                point_xz = (float(representative.x), float(representative.y))
+            except Exception:
+                continue
+        if last_point is not None and math.hypot(point_xz[0] - last_point[0], point_xz[1] - last_point[1]) < float(spacing_m):
+            continue
+        slot_id = f"center_planting_tree_{len(slots):03d}"
+        slot = LayoutSlotPlan(
+            slot_id=slot_id,
+            category="tree",
+            band_name=band_name,
+            x_center_m=float(point_xz[0]),
+            z_center_m=float(point_xz[1]),
+            spacing_m=float(spacing_m),
+            side="center",
+            priority=1.15,
+            required=False,
+            anchor_position_xz=(float(point_xz[0]), float(point_xz[1])),
+            theme_id=seg_to_theme.get(segment_id, default_theme),
+        )
+        slots.append(slot)
+        segment_lookup[slot_id] = node
+        last_point = point_xz
+        if len(slots) >= int(max_slots):
+            break
+
+    return slots, segment_lookup
+
+
 def _sample_pose_osm_for_segment(
     category: str,
     placement_ctx: object,
@@ -2710,6 +2792,53 @@ def _build_base_scene(
     # Sidewalk top at Y = SIDEWALK_ELEVATION_M; slab is 0.08 m thick
     sw_y_translation = SIDEWALK_ELEVATION_M - 0.04  # centre of 0.08-thick slab
 
+    def _add_center_flowerbed_strip(*, band_name: str, width_m: float, z_center_m: float) -> None:
+        soil_color = list(colors.get("planting_soil", colors.get("tree_pit", (98, 93, 76, 255))))
+        curb_color = list(colors.get("curb", (145, 145, 145, 255)))
+        curb_width_m = min(CENTER_FLOWERBED_CURB_WIDTH_M, max(float(width_m) * 0.2, 0.0))
+        soil_width_m = float(width_m)
+        render_curbs = bool(float(width_m) > 2.0 * curb_width_m + 0.10 and curb_width_m > 0.0)
+        if render_curbs:
+            soil_width_m = max(float(width_m) - 2.0 * curb_width_m, 0.05)
+            for side_name, z_sign in (("left", 1.0), ("right", -1.0)):
+                curb = trimesh.creation.box(
+                    extents=(float(length_m), CENTER_FLOWERBED_CURB_HEIGHT_M, curb_width_m)
+                )
+                curb.apply_translation(
+                    [
+                        0.0,
+                        CENTER_FLOWERBED_CURB_TOP_Y_M - CENTER_FLOWERBED_CURB_HEIGHT_M / 2.0,
+                        float(z_center_m) + z_sign * (float(width_m) / 2.0 - curb_width_m / 2.0),
+                    ]
+                )
+                curb = _apply_surface_finish(
+                    curb,
+                    surface_role="curb",
+                    rgba=curb_color,
+                    roughness=(roughness or {}).get("curb", 0.40),
+                    texture_mode=texture_mode,
+                    texture_tracker=texture_tracker,
+                    texture_overrides=texture_overrides,
+                )
+                scene.add_geometry(curb, node_name=f"{band_name}_curb_{side_name}")
+
+        soil = trimesh.creation.box(
+            extents=(float(length_m), CENTER_PLANTING_SOIL_HEIGHT_M, soil_width_m)
+        )
+        soil.apply_translation(
+            [0.0, CENTER_PLANTING_SOIL_TOP_Y_M - CENTER_PLANTING_SOIL_HEIGHT_M / 2.0, float(z_center_m)]
+        )
+        soil = _apply_surface_finish(
+            soil,
+            surface_role="planting_soil",
+            rgba=soil_color,
+            roughness=(roughness or {}).get("planting_soil", (roughness or {}).get("tree_pit", 0.90)),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        scene.add_geometry(soil, node_name=f"{band_name}_soil")
+
     center_bands: List[Any] = []
     side_bands: List[Any] = []
     has_center_non_carriageway = False
@@ -2742,11 +2871,18 @@ def _build_base_scene(
         for band in center_bands:
             kind = str(getattr(band, "kind", "") or "").strip().lower()
             width_m = float(getattr(band, "width_m", 0.0) or 0.0)
-            if kind in ("median", "grass_belt") and width_m < 0.5:
+            if kind in ("median", "grass_belt", "median_green") and width_m < 0.5:
                 width_m = 0.5
             if width_m <= 0.0:
                 continue
             z_center_m = float(getattr(band, "z_center_m", 0.0) or 0.0)
+            if kind in {"grass_belt", "median_green"}:
+                _add_center_flowerbed_strip(
+                    band_name=str(getattr(band, "name", kind) or kind),
+                    width_m=float(width_m),
+                    z_center_m=float(z_center_m),
+                )
+                continue
             band_color = list(
                 colors.get(
                     kind,
@@ -2889,6 +3025,39 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
 SIDEWALK_ELEVATION_M = 0.20
 CENTER_ISLAND_TOP_Y_M = 0.12
 CENTER_ISLAND_HEIGHT_M = 0.12
+CENTER_FLOWERBED_CURB_WIDTH_M = 0.12
+CENTER_FLOWERBED_CURB_TOP_Y_M = CENTER_ISLAND_TOP_Y_M
+CENTER_FLOWERBED_CURB_HEIGHT_M = CENTER_ISLAND_HEIGHT_M
+CENTER_PLANTING_SOIL_TOP_Y_M = CENTER_ISLAND_TOP_Y_M - 0.015
+CENTER_PLANTING_SOIL_HEIGHT_M = CENTER_PLANTING_SOIL_TOP_Y_M
+_CENTER_PLANTING_BAND_TOKENS = frozenset(
+    {"center_grass_belt", "center_median_green", "grass_belt", "median_green"}
+)
+
+
+def _is_center_planting_band_name(value: object) -> bool:
+    normalized = str(value or "").strip().lower()
+    if not normalized:
+        return False
+    return normalized in _CENTER_PLANTING_BAND_TOKENS or any(
+        token in normalized for token in ("center_grass_belt", "center_median_green")
+    )
+
+
+def _band_surface_y_m(band: object | None) -> float:
+    if band is not None:
+        side = str(getattr(band, "side", "") or "").strip().lower()
+        name = str(getattr(band, "name", "") or "").strip().lower()
+        kind = str(getattr(band, "kind", "") or "").strip().lower()
+        if side == "center" and (_is_center_planting_band_name(name) or _is_center_planting_band_name(kind)):
+            return CENTER_PLANTING_SOIL_TOP_Y_M
+    return SIDEWALK_ELEVATION_M
+
+
+def _placement_surface_y_m(placement: StreetPlacement) -> float:
+    if _is_center_planting_band_name(getattr(placement, "anchor_geom_id", "")):
+        return CENTER_PLANTING_SOIL_TOP_Y_M
+    return SIDEWALK_ELEVATION_M
 
 
 def _build_curb_boundary_zone(carriageway: Any, elevated_side_zone: Any, curb_width_m: float) -> Any:
@@ -3615,7 +3784,7 @@ def _add_beauty_scene_proxies(
                 road_center_x_m=x_m,
                 road_center_z_m=z_m,
                 road_yaw_deg=0.0,
-                y_min_m=SIDEWALK_ELEVATION_M + 0.001,
+                y_min_m=_placement_surface_y_m(placement) + 0.001,
                 color=colors.get("tree_pit", (98, 93, 76, 255)),
                 surface_role="tree_pit",
                 node_name=f"tree_pit_{idx}",
@@ -3674,7 +3843,7 @@ def _add_instance_meshes(
             placement.placement_group == "environment"
             or str(placement.category).strip().lower() == "sky_dome"
         )
-        y_offset = 0.0 if placement.placement_group == "building" or is_environment_shell else SIDEWALK_ELEVATION_M
+        y_offset = 0.0 if placement.placement_group == "building" or is_environment_shell else _placement_surface_y_m(placement)
         translation = trimesh.transformations.translation_matrix(
             [
                 float(placement.position_xyz[0]),
@@ -3749,6 +3918,7 @@ def _placement_glb_metadata(placement: StreetPlacement) -> Dict[str, object]:
         "asset_id": str(placement.asset_id),
         "placement_group": str(placement.placement_group),
         "selection_source": str(placement.selection_source),
+        "anchor_geom_id": str(placement.anchor_geom_id),
         "position_xyz": [float(value) for value in placement.position_xyz],
         "yaw_deg": float(placement.yaw_deg),
         "scale": float(placement.scale),
@@ -3903,6 +4073,11 @@ def rebuild_glb_from_layout(
             bbox_xz=[float(v) for v in (p.get("bbox_xz") or [])],
             selection_source=str(p.get("selection_source", "llm_layout_edit")),
             placement_group=str(p.get("placement_group", "street_furniture")),
+            slot_id=str(p.get("slot_id", "") or ""),
+            required=bool(p.get("required", False)),
+            theme_id=str(p.get("theme_id", "") or ""),
+            anchor_poi_type=str(p.get("anchor_poi_type", "") or ""),
+            anchor_geom_id=str(p.get("anchor_geom_id", "") or ""),
             constraint_penalty=float(p.get("constraint_penalty", 0.0)),
             feasibility_score=float(p.get("feasibility_score", 1.0)),
             violated_rules=tuple(p.get("violated_rules") or ()),
@@ -4742,6 +4917,50 @@ def _build_osm_base_scene(
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
+    def _center_flowerbed_parts(geom: object) -> tuple[object, object]:
+        from shapely.geometry import MultiPolygon
+
+        source = _clean_scene_polygonal_geometry(geom)
+        if getattr(source, "is_empty", True):
+            return source, MultiPolygon()
+        try:
+            soil = source.buffer(-CENTER_FLOWERBED_CURB_WIDTH_M)
+            if getattr(soil, "is_empty", True):
+                return source, MultiPolygon()
+            soil = _clean_scene_polygonal_geometry(soil)
+            curb = _clean_scene_polygonal_geometry(source.difference(soil))
+            return soil, curb
+        except Exception:
+            logger.debug("Failed to split center flowerbed geometry", exc_info=True)
+            return source, MultiPolygon()
+
+    def _render_center_flowerbed_polygon(
+        geom: object,
+        *,
+        name_prefix: str,
+    ) -> None:
+        soil_geom, curb_geom = _center_flowerbed_parts(geom)
+        if not getattr(curb_geom, "is_empty", True):
+            _extrude_polygon(
+                curb_geom,
+                CENTER_FLOWERBED_CURB_HEIGHT_M,
+                list(colors.get("curb", (145, 145, 145, 255))),
+                f"{name_prefix}_curb",
+                y_offset=CENTER_FLOWERBED_CURB_TOP_Y_M,
+                roughness_key="curb",
+                surface_role="curb",
+            )
+        if not getattr(soil_geom, "is_empty", True):
+            _extrude_polygon(
+                soil_geom,
+                CENTER_PLANTING_SOIL_HEIGHT_M,
+                list(colors.get("planting_soil", colors.get("tree_pit", (98, 93, 76, 255)))),
+                f"{name_prefix}_soil",
+                y_offset=CENTER_PLANTING_SOIL_TOP_Y_M,
+                roughness_key="planting_soil",
+                surface_role="planting_soil",
+            )
+
 
     def _coerce_horizontal_axes(
         value: object,
@@ -4921,14 +5140,15 @@ def _build_osm_base_scene(
         )
     center_grass_belt = strip_zones.get("center_grass_belt")
     if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
-        _extrude_polygon(
+        _render_center_flowerbed_polygon(
             center_grass_belt,
-            CENTER_ISLAND_HEIGHT_M,
-            list(colors.get("grass_belt", (100, 150, 80, 255))),
-            "center_grass_belt",
-            y_offset=CENTER_ISLAND_TOP_Y_M,
-            roughness_key="grass_belt",
-            surface_role="grass_belt",
+            name_prefix="center_grass_belt",
+        )
+    center_median_green = strip_zones.get("center_median_green")
+    if center_median_green is not None and not getattr(center_median_green, "is_empty", True):
+        _render_center_flowerbed_polygon(
+            center_median_green,
+            name_prefix="center_median_green",
         )
     center_shared_street_surface = strip_zones.get("center_shared_street_surface")
     if center_shared_street_surface is not None and not getattr(center_shared_street_surface, "is_empty", True):
@@ -6202,12 +6422,25 @@ def _point_side_matches_slot(
     *,
     slot_side: str,
     placement_ctx: object | None,
+    segment_node: object | None = None,
+    band_name: str = "",
 ) -> Tuple[bool, bool]:
     if placement_ctx is None:
         return True, True
+    side_name = str(slot_side or "").strip().lower()
+    if side_name == "center":
+        center_zone = _target_strip_zone(
+            placement_ctx=placement_ctx,
+            segment_node=segment_node,
+            slot_side=side_name,
+            band_name=band_name,
+        )
+        if center_zone is None or getattr(center_zone, "is_empty", False):
+            return True, True
+        in_center = _point_in_zone(center_zone, point_xz)
+        return in_center, in_center
     overall_zone = getattr(placement_ctx, "sidewalk_zone", None)
     in_overall = _point_in_zone(overall_zone, point_xz)
-    side_name = str(slot_side or "").strip().lower()
     if side_name == "left":
         side_zone = getattr(placement_ctx, "left_sidewalk_zone", None)
     elif side_name == "right":
@@ -6223,10 +6456,10 @@ def _strip_zone_candidate_keys(slot_side: str, band_name: str) -> Tuple[str, ...
     normalized_side = str(slot_side or "").strip().lower()
     keys: List[str] = []
     for alias in band_name_aliases(band_name=band_name, side=normalized_side):
-        if alias.startswith("left_") or alias.startswith("right_"):
+        if alias.startswith("left_") or alias.startswith("right_") or alias.startswith("center_"):
             if alias not in keys:
                 keys.append(alias)
-        elif normalized_side in {"left", "right"}:
+        elif normalized_side in {"left", "right", "center"}:
             detailed_key = detailed_strip_band_name(normalized_side, alias)
             if detailed_key not in keys:
                 keys.append(detailed_key)
@@ -6707,6 +6940,8 @@ def _evaluate_slot_candidate(
         point_xz,
         slot_side=str(getattr(slot, "side", "") or ""),
         placement_ctx=placement_ctx,
+        segment_node=segment_node,
+        band_name=str(getattr(slot, "band_name", "") or ""),
     )
     if not in_overall:
         return None, "out_of_sidewalk"
@@ -8734,6 +8969,29 @@ def compose_street_scene(
                 )
             logger.info("Injected %d annotation furniture slots.", len(annot_slots))
 
+        if "tree" in set(str(category) for category in available_categories):
+            center_tree_slots, center_tree_seg_map = _center_planting_tree_slot_plans(
+                road_segment_graph=road_segment_graph,
+                theme_segments=theme_segments,
+                placement_ctx=placement_ctx,
+            )
+            if center_tree_slots:
+                slot_plans.extend(center_tree_slots)
+                slot_segment_lookup.update(center_tree_seg_map)
+                for cslot in center_tree_slots:
+                    slot_band_lookup[str(cslot.slot_id)] = resolve_band_by_alias(
+                        base_program.bands if base_program is not None else (),
+                        band_name=str(cslot.band_name),
+                        side=str(cslot.side),
+                        profile_name=str(config.design_rule_profile),
+                    ) or resolve_band_by_alias(
+                        resolved_program.bands,
+                        band_name=str(cslot.band_name),
+                        side=str(cslot.side),
+                        profile_name=str(config.design_rule_profile),
+                    )
+                logger.info("Injected %d center planting tree slots.", len(center_tree_slots))
+
     if not slot_plans:
         raise RuntimeError(
             "Layout solver produced zero slots. "
@@ -9343,6 +9601,7 @@ def compose_street_scene(
             required=bool(getattr(slot, "required", False)),
             theme_id=theme_id,
             anchor_poi_type=anchor_poi_type,
+            anchor_geom_id=str(band_name),
             anchor_target_xz=(
                 tuple(float(v) for v in getattr(slot, "anchor_position_xz"))
                 if getattr(slot, "anchor_position_xz", None) is not None
@@ -10482,6 +10741,7 @@ def compose_street_scene(
         "context_ground",
         "building_buffer",
         "tree_pit",
+        "planting_soil",
         "transit_pad",
         "curb",
         "parking_lane",

@@ -171,6 +171,7 @@ def test_default_course_material_manifest_covers_viewer_surface_roles():
         "lane_mark",
         "lane_edge_mark",
         "grass",
+        "planting_soil",
         "bus_lane",
         "parking_lane",
         "shared_street_surface",

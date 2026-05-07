@@ -2270,7 +2270,7 @@ def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
     assert max(float(mesh.bounds[1][0]) for mesh in curb_meshes) > 1.8
 
 
-def test_osm_center_grass_belt_renders_as_raised_island():
+def test_osm_center_grass_belt_renders_as_flowerbed():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
 
@@ -2285,17 +2285,96 @@ def test_osm_center_grass_belt_renders_as_raised_island():
     )
 
     scene = street_layout._build_osm_base_scene(placement_ctx)
-    grass_meshes = [
+    soil_meshes = [
         scene.geometry[scene.graph[node_name][1]]
         for node_name in scene.graph.nodes_geometry
-        if str(node_name).startswith("center_grass_belt_")
+        if str(node_name).startswith("center_grass_belt_soil_")
+    ]
+    curb_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_grass_belt_curb_")
     ]
 
-    assert grass_meshes
-    assert max(float(mesh.bounds[1][1]) for mesh in grass_meshes) == pytest.approx(
-        street_layout.CENTER_ISLAND_TOP_Y_M
+    assert soil_meshes
+    assert curb_meshes
+    assert max(float(mesh.bounds[1][1]) for mesh in soil_meshes) == pytest.approx(
+        street_layout.CENTER_PLANTING_SOIL_TOP_Y_M
     )
-    assert min(float(mesh.bounds[0][1]) for mesh in grass_meshes) >= -1e-6
+    assert max(float(mesh.bounds[1][1]) for mesh in curb_meshes) == pytest.approx(
+        street_layout.CENTER_FLOWERBED_CURB_TOP_Y_M
+    )
+    assert min(float(mesh.bounds[0][1]) for mesh in soil_meshes) >= -1e-6
+    assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) < 1.0
+
+
+def test_osm_center_grass_belt_flowerbed_narrow_fallback():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-8.0, -3.0, 8.0, 3.0)
+    grass_belt = shapely_geometry.box(-8.0, -0.08, 8.0, 0.08)
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        sidewalk_zone=shapely_geometry.Polygon(),
+        road_arm_geometries=[carriageway],
+        junction_geometries=[],
+        strip_zones={"center_grass_belt": grass_belt},
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+    soil_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_grass_belt_soil_")
+    ]
+
+    assert soil_meshes
+    assert max(float(mesh.bounds[1][1]) for mesh in soil_meshes) == pytest.approx(
+        street_layout.CENTER_PLANTING_SOIL_TOP_Y_M
+    )
+
+
+def test_base_scene_center_grass_belt_uses_flowerbed_parts():
+    pytest.importorskip("trimesh")
+
+    scene = street_layout._build_base_scene(
+        length_m=40.0,
+        road_width_m=8.0,
+        left_side_width_m=2.5,
+        right_side_width_m=2.5,
+        street_program=SimpleNamespace(
+            bands=(
+                SimpleNamespace(
+                    name="center_grass_belt",
+                    kind="grass_belt",
+                    side="center",
+                    width_m=1.0,
+                    z_center_m=0.0,
+                ),
+            )
+        ),
+    )
+
+    soil_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_grass_belt_soil")
+    ]
+    curb_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_grass_belt_curb")
+    ]
+
+    assert soil_meshes
+    assert len(curb_meshes) == 2
+    assert max(float(mesh.bounds[1][1]) for mesh in soil_meshes) == pytest.approx(
+        street_layout.CENTER_PLANTING_SOIL_TOP_Y_M
+    )
+    assert max(float(mesh.bounds[1][1]) for mesh in curb_meshes) == pytest.approx(
+        street_layout.CENTER_FLOWERBED_CURB_TOP_Y_M
+    )
 
 
 def test_base_scene_adds_centerline_markings():

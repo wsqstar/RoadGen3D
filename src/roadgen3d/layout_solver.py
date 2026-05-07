@@ -687,7 +687,7 @@ def _apply_objective_profile_preferences(
         )
 
 
-_PLACEABLE_BAND_RULE_KINDS = frozenset({"furnishing", "transit_edge", "clear_path"})
+_PLACEABLE_BAND_RULE_KINDS = frozenset({"furnishing", "transit_edge", "clear_path", "grass_belt", "median_green"})
 
 
 def _default_band_order(category: str, bands: Sequence[StreetBand]) -> List[StreetBand]:
@@ -706,6 +706,7 @@ def _default_band_order(category: str, bands: Sequence[StreetBand]) -> List[Stre
         return priority + fallback
 
     if SIDE_PREF.get(category, "both") == "both":
+        center = [band for band in placeable if band.side == "center" and category in band.allowed_categories]
         left = [band for band in placeable if band.side == "left" and category in band.allowed_categories]
         right = [band for band in placeable if band.side == "right" and category in band.allowed_categories]
         merged: List[StreetBand] = []
@@ -715,6 +716,8 @@ def _default_band_order(category: str, bands: Sequence[StreetBand]) -> List[Stre
                 merged.append(left[idx])
             if idx < len(right):
                 merged.append(right[idx])
+        if category == "tree" and center:
+            return center + merged
         return merged
 
     return [band for band in placeable if category in band.allowed_categories]
@@ -949,6 +952,28 @@ def _balanced_band_sequence(
     remaining_count: int,
     bilateral_side_counts: Mapping[str, int],
 ) -> List[StreetBand]:
+    center_bands = [band for band in allowed_bands if str(band.side) == "center"]
+    if str(category) == "tree" and center_bands:
+        side_bands = [band for band in allowed_bands if str(band.side) in {"left", "right"}]
+        if not side_bands:
+            return [center_bands[idx % len(center_bands)] for idx in range(max(remaining_count, 0))]
+        side_sequence = _balanced_band_sequence(
+            category=category,
+            allowed_bands=side_bands,
+            remaining_count=remaining_count,
+            bilateral_side_counts=bilateral_side_counts,
+        )
+        ordered: List[StreetBand] = []
+        side_idx = 0
+        center_idx = 0
+        for idx in range(max(remaining_count, 0)):
+            if idx % 3 == 0:
+                ordered.append(center_bands[center_idx % len(center_bands)])
+                center_idx += 1
+            else:
+                ordered.append(side_sequence[side_idx % len(side_sequence)])
+                side_idx += 1
+        return ordered
     if (
         str(SIDE_PREF.get(category, "both")) != "both"
         or remaining_count <= 0

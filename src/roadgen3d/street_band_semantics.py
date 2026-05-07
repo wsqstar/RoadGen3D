@@ -10,6 +10,7 @@ DETAILED_SIDE_STRIP_KINDS = (
     "frontage_reserve",
 )
 DETAILED_SIDE_STRIP_KIND_SET = frozenset(DETAILED_SIDE_STRIP_KINDS)
+CENTER_PLANTING_STRIP_KINDS = frozenset({"grass_belt", "median_green"})
 
 _DETAILED_ALLOWED_CATEGORIES: Dict[str, Tuple[str, ...]] = {
     "nearroad_furnishing": ("lamp", "trash", "hydrant", "bollard", "bus_stop", "tree"),
@@ -54,6 +55,15 @@ def detailed_strip_kind_from_band_name(name: str) -> str:
     normalized = str(name or "").strip().lower()
     if normalized in DETAILED_SIDE_STRIP_KIND_SET:
         return normalized
+    if normalized.startswith("center_"):
+        suffix = normalized.split("_", 1)[1]
+        if suffix in CENTER_PLANTING_STRIP_KINDS or suffix in {
+            "median",
+            "bike_lane",
+            "colored_pavement",
+            "shared_street_surface",
+        }:
+            return suffix
     if normalized.startswith("left_") or normalized.startswith("right_"):
         suffix = normalized.split("_", 1)[1]
         if suffix in DETAILED_SIDE_STRIP_KIND_SET:
@@ -201,6 +211,14 @@ def coerce_band_rule_kinds(band_name: str, band_kind: str) -> Tuple[str, ...]:
     elif strip_kind == "frontage_reserve":
         if "frontage_reserve" not in rule_kinds:
             rule_kinds.append("frontage_reserve")
+    elif strip_kind in CENTER_PLANTING_STRIP_KINDS:
+        if strip_kind not in rule_kinds:
+            rule_kinds.append(strip_kind)
+        # Planting strips are not pedestrian furniture zones, but the existing
+        # category_allowed_band rules use "furnishing" as the generic placeable
+        # surface. The band's allowed_categories still limits this to trees.
+        if "furnishing" not in rule_kinds:
+            rule_kinds.append("furnishing")
     return tuple(rule_kinds)
 
 
@@ -243,4 +261,3 @@ def resolve_band_by_alias(
             best_rank = rank
             best_band = band
     return best_band
-

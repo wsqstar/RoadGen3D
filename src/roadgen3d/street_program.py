@@ -337,6 +337,12 @@ def _build_detailed_cross_section_bands(
                 )
             )
 
+    def _center_strip_allowed_categories(strip_kind: str) -> Tuple[str, ...]:
+        normalized_kind = str(strip_kind or "").strip().lower()
+        if normalized_kind in {"grass_belt", "median_green"}:
+            return ("tree",)
+        return ()
+
     # Add center bands from detailed profiles so that median / bike lane / grass belt are visible
     for profile in iter_detailed_strip_profiles(placement_context):
         side = str(profile.get("side", "") or "").strip().lower()
@@ -354,7 +360,7 @@ def _build_detailed_cross_section_bands(
                 side="center",
                 width_m=float(width_m),
                 z_center_m=float(z_center_m),
-                allowed_categories=(),
+                allowed_categories=_center_strip_allowed_categories(strip_kind),
             )
         )
 
