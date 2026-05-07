@@ -93,14 +93,14 @@
       "title_zh": "方案 2 · 四车道慢行强化与中央安全岛",
       "scenario_type": "four_lane_safety_island",
       "query": "四车道慢行强化，中心线拓宽为一米可种树中央安全岛，双侧步行空间增强",
-      "intent_zh": "保持四车道基本通行能力，把默认模板中所有道路的中心分隔 strip 直接拓宽成约 1m 宽的可种树中央安全岛，不再额外绘制横跨道路的铺装面。",
+      "intent_zh": "保持四车道基本通行能力，把默认模板中所有道路的中心分隔 strip 拓宽成约 1.24m 总宽的可种树中央安全岛，其中两侧各 0.12m 路缘石，中间保留约 1m 可种植土壤净宽，不再额外绘制横跨道路的铺装面。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_02_four_lane_multimodal_safety_island/scene_layout.json",
       "road_section": {
         "motor_lanes": 4,
         "lane_width_m": 3.1,
         "bike_lane": "none",
         "sidewalk": "widened",
-        "median": "tree_safety_island_1m"
+        "median": "tree_safety_island_1m_soil_clear"
       },
       "edge_context": {
         "left_regions": ["derived_building_region_02"],
@@ -129,7 +129,7 @@
         {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.1},
         {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.1},
         {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.1},
-        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_03", "updates": {"kind": "grass_belt", "width_m": 1.0, "direction": "none"}},
+        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_03", "updates": {"kind": "grass_belt", "width_m": 1.24, "direction": "none"}},
         {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.5},
         {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.5}
       ],
@@ -137,7 +137,7 @@
       "surface_annotations": [],
       "compose_config_patch": {
         "lane_count": 4,
-        "road_width_m": 13.4,
+        "road_width_m": 13.64,
         "sidewalk_width_m": 3.5,
         "density": 0.9,
         "objective_profile": "balanced",

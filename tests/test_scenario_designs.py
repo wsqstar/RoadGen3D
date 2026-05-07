@@ -160,7 +160,7 @@ def test_scenario_design_surface_and_strip_semantics_reach_scene_bridge(tmp_path
     for patched_centerline in application_02.annotation["centerlines"]:
         patched_center_03 = next(strip for strip in patched_centerline["cross_section_strips"] if strip["strip_id"] == "center_03")
         assert patched_center_03["kind"] == "grass_belt"
-        assert patched_center_03["width_m"] == 1.0
+        assert patched_center_03["width_m"] == 1.24
     graph = build_segment_graph_from_annotation(
         application_02.annotation,
         config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 13.2}),
@@ -168,7 +168,7 @@ def test_scenario_design_surface_and_strip_semantics_reach_scene_bridge(tmp_path
     assert graph.nodes
     assert all(
         any(
-            strip.strip_id == "center_03" and strip.kind == "grass_belt" and strip.width_m == pytest.approx(1.0)
+            strip.strip_id == "center_03" and strip.kind == "grass_belt" and strip.width_m == pytest.approx(1.24)
             for strip in node.cross_section_strips
         )
         for node in graph.nodes

@@ -2275,7 +2275,7 @@ def test_osm_center_grass_belt_renders_as_flowerbed():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 
     carriageway = shapely_geometry.box(-8.0, -3.0, 8.0, 3.0)
-    grass_belt = shapely_geometry.box(-8.0, -0.5, 8.0, 0.5)
+    grass_belt = shapely_geometry.box(-8.0, -0.62, 8.0, 0.62)
     placement_ctx = SimpleNamespace(
         carriageway=carriageway,
         sidewalk_zone=shapely_geometry.Polygon(),
@@ -2305,7 +2305,7 @@ def test_osm_center_grass_belt_renders_as_flowerbed():
         street_layout.CENTER_FLOWERBED_CURB_TOP_Y_M
     )
     assert min(float(mesh.bounds[0][1]) for mesh in soil_meshes) >= -1e-6
-    assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) < 1.0
+    assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) == pytest.approx(1.0)
 
 
 def test_osm_center_grass_belt_flowerbed_narrow_fallback():
@@ -2349,7 +2349,7 @@ def test_base_scene_center_grass_belt_uses_flowerbed_parts():
                     name="center_grass_belt",
                     kind="grass_belt",
                     side="center",
-                    width_m=1.0,
+                    width_m=1.24,
                     z_center_m=0.0,
                 ),
             )
@@ -2375,6 +2375,7 @@ def test_base_scene_center_grass_belt_uses_flowerbed_parts():
     assert max(float(mesh.bounds[1][1]) for mesh in curb_meshes) == pytest.approx(
         street_layout.CENTER_FLOWERBED_CURB_TOP_Y_M
     )
+    assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) == pytest.approx(1.0)
 
 
 def test_base_scene_adds_centerline_markings():

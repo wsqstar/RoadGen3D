@@ -16,6 +16,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.graph_template_scene_bridge import build_graph_template_scene_bridge
 from roadgen3d.metaurban_procedural import MetaUrbanProceduralConfig, build_metaurban_segment_graph
+from roadgen3d.placement_zones import _build_graph_strip_context, trim_center_planting_strips_for_junctions
 from roadgen3d.reference_annotation import build_reference_annotation_compose_config
 from roadgen3d.street_band_semantics import resolve_band_by_alias
 from roadgen3d.street_layout import (
@@ -28,7 +29,7 @@ from roadgen3d.street_layout import (
     _validate_curated_locked_assets,
 )
 from roadgen3d.street_program import infer_street_program
-from roadgen3d.types import StreetBand, StreetComposeConfig, StreetPlacement
+from roadgen3d.types import RoadSegmentCrossSectionStrip, StreetBand, StreetComposeConfig, StreetPlacement
 
 
 def _build_config(*, layout_mode: str = "graph_template") -> StreetComposeConfig:
@@ -196,6 +197,36 @@ def test_center_grass_belt_is_tree_placeable_target_strip():
     assert center_grass_belt.buffer(1e-6).contains(point)
 
 
+def test_center_grass_belt_cross_zero_strip_uses_full_width():
+    pytest.importorskip("shapely")
+    from shapely.geometry import box
+
+    node = SimpleNamespace(
+        segment_id="seg_0001",
+        road_id=1,
+        start_xy=(-10.0, 0.0),
+        end_xy=(10.0, 0.0),
+        road_width_m=13.64,
+        cross_section_strips=(
+            RoadSegmentCrossSectionStrip("center_01", "center", "drive_lane", 3.1, "reverse", 0),
+            RoadSegmentCrossSectionStrip("center_02", "center", "drive_lane", 3.1, "reverse", 1),
+            RoadSegmentCrossSectionStrip("center_03", "center", "grass_belt", 1.24, "none", 2),
+            RoadSegmentCrossSectionStrip("center_04", "center", "drive_lane", 3.1, "forward", 3),
+            RoadSegmentCrossSectionStrip("center_05", "center", "drive_lane", 3.1, "forward", 4),
+        ),
+    )
+    _, strip_zones, segment_strip_zones, _ = _build_graph_strip_context(
+        SimpleNamespace(nodes=(node,)),
+        aoi_polygon=box(-12.0, -8.0, 12.0, 8.0),
+    )
+
+    zone = strip_zones["center_grass_belt"]
+    segment_zone = segment_strip_zones["seg_0001"]["center_grass_belt"]
+    for geometry in (zone, segment_zone):
+        component = geometry.geoms[0] if getattr(geometry, "geom_type", "") == "MultiPolygon" else geometry
+        assert float(component.bounds[3]) - float(component.bounds[1]) == pytest.approx(1.24)
+
+
 def test_center_grass_belt_injects_tree_slots_from_strip_zones():
     pytest.importorskip("shapely")
     from shapely.geometry import box
@@ -232,6 +263,60 @@ def test_center_grass_belt_injects_tree_slots_from_strip_zones():
     assert all(slot.band_name == "center_grass_belt" for slot in slots)
     assert all(slot.slot_id in segment_lookup for slot in slots)
     assert len(slots) == 3
+
+
+def test_center_grass_belt_trimmed_from_junction_and_tree_slots():
+    pytest.importorskip("shapely")
+    from shapely.geometry import Point, box
+
+    center_grass_belt = box(-10.0, -0.62, 10.0, 0.62)
+    junction_core = box(-1.5, -2.0, 1.5, 2.0)
+    crosswalk_patch = box(1.5, -2.0, 4.5, 2.0)
+    trim_target = junction_core.union(crosswalk_patch).buffer(0.25)
+    placement_ctx = SimpleNamespace(
+        aoi_polygon=box(-12.0, -5.0, 12.0, 5.0),
+        junction_geometries=[
+            {
+                "junction_id": "junction_test",
+                "carriageway_core": junction_core,
+                "crosswalk_patches": [{"patch_id": "crosswalk_test", "geometry": crosswalk_patch}],
+            }
+        ],
+        strip_zones={"center_grass_belt": center_grass_belt},
+        segment_strip_zones={"seg_junction": {"center_grass_belt": center_grass_belt}},
+    )
+
+    trim_center_planting_strips_for_junctions(placement_ctx)
+
+    trimmed_global = placement_ctx.strip_zones["center_grass_belt"]
+    trimmed_segment = placement_ctx.segment_strip_zones["seg_junction"]["center_grass_belt"]
+    assert float(trimmed_global.area) < float(center_grass_belt.area)
+    assert float(trimmed_global.intersection(trim_target).area) == pytest.approx(0.0)
+    assert float(trimmed_segment.intersection(trim_target).area) == pytest.approx(0.0)
+
+    graph = SimpleNamespace(
+        nodes=(
+            SimpleNamespace(
+                road_id=1,
+                segment_id="seg_junction",
+                station_center_m=0.0,
+                center_xy=(0.0, 0.0),
+            ),
+        )
+    )
+    theme = SimpleNamespace(theme_id="theme_green", segment_ids=("seg_junction",))
+    slots, _ = _center_planting_tree_slot_plans(
+        road_segment_graph=graph,
+        theme_segments=(theme,),
+        placement_ctx=placement_ctx,
+        spacing_m=1.0,
+    )
+
+    assert slots
+    for slot in slots:
+        point = Point(float(slot.x_center_m), float(slot.z_center_m))
+        assert trimmed_segment.buffer(1e-6).contains(point)
+        assert not trim_target.buffer(1e-6).contains(point)
 
 
 def test_center_grass_belt_tree_uses_planting_soil_height():

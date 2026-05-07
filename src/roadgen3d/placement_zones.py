@@ -25,6 +25,8 @@ from .street_band_semantics import detailed_strip_band_name
 
 logger = logging.getLogger(__name__)
 EFFECTIVE_POI_EVALUATOR_VERSION = "v2"
+CENTER_PLANTING_STRIP_ZONE_KEYS = frozenset({"center_grass_belt", "center_median_green"})
+CENTER_PLANTING_JUNCTION_SETBACK_M = 0.25
 
 
 def _require_shapely():
@@ -531,9 +533,9 @@ def _build_graph_strip_context(
                 inner_zone = line.buffer(inner_m, cap_style="flat", single_sided=True)
                 strip_zone = _clip_to_aoi(outer_zone.difference(inner_zone), aoi_polygon)
             else:
-                left_zone = line.buffer(abs(inner_m), cap_style="flat", single_sided=True)
-                right_zone = line.buffer(outer_m, cap_style="flat", single_sided=True)
-                strip_zone = _clip_to_aoi(left_zone.union(right_zone), aoi_polygon)
+                negative_zone = line.buffer(inner_m, cap_style="flat", single_sided=True)
+                positive_zone = line.buffer(outer_m, cap_style="flat", single_sided=True)
+                strip_zone = _clip_to_aoi(negative_zone.union(positive_zone), aoi_polygon)
             if getattr(strip_zone, "is_empty", True):
                 continue
             band_name = str(layout["band_name"])
@@ -591,6 +593,147 @@ def _merge_polygon_geometries(polygons: Sequence[Any], *, aoi_polygon: Any | Non
     if merged.is_empty:
         return MultiPolygon()
     return merged
+
+
+def _clean_polygonal_geometry(geometry: Any, *, aoi_polygon: Any | None = None) -> Any:
+    from shapely.geometry import GeometryCollection, MultiPolygon, Polygon as ShapelyPolygon
+
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return MultiPolygon()
+    cleaned = geometry
+    if not getattr(cleaned, "is_valid", True):
+        try:
+            cleaned = cleaned.buffer(0)
+        except Exception:
+            return MultiPolygon()
+    if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+        cleaned = cleaned.intersection(aoi_polygon)
+    if getattr(cleaned, "is_empty", True):
+        return MultiPolygon()
+    if getattr(cleaned, "geom_type", "") == "Polygon":
+        return MultiPolygon([cleaned])
+    if getattr(cleaned, "geom_type", "") == "MultiPolygon":
+        return cleaned
+    if getattr(cleaned, "geom_type", "") == "GeometryCollection":
+        polygons = [
+            item
+            for item in getattr(cleaned, "geoms", ())
+            if isinstance(item, ShapelyPolygon) and not getattr(item, "is_empty", True)
+        ]
+        return MultiPolygon(polygons) if polygons else MultiPolygon()
+    if isinstance(cleaned, GeometryCollection):
+        return MultiPolygon()
+    return MultiPolygon()
+
+
+def _patch_polygonal_geometry(patch: Mapping[str, Any], *, aoi_polygon: Any | None = None) -> Any:
+    geometry = patch.get("geometry")
+    if geometry is None:
+        rings = patch.get("rings")
+        if isinstance(rings, (list, tuple)) and rings:
+            try:
+                from shapely.geometry import Polygon as ShapelyPolygon
+
+                exterior = rings[0]
+                holes = list(rings[1:])
+                geometry = ShapelyPolygon(exterior, holes)
+            except Exception:
+                geometry = None
+    return _clean_polygonal_geometry(geometry, aoi_polygon=aoi_polygon)
+
+
+def _center_planting_junction_trim_geometry(
+    junction_geometries: Sequence[Mapping[str, Any]],
+    *,
+    aoi_polygon: Any | None = None,
+    setback_m: float = CENTER_PLANTING_JUNCTION_SETBACK_M,
+) -> Any:
+    from shapely.geometry import MultiPolygon
+    from shapely.ops import unary_union
+
+    trim_sources: List[Any] = []
+    for junction in junction_geometries or ():
+        for key in ("carriageway_core", "junction_core_rect"):
+            geometry = _clean_polygonal_geometry(junction.get(key), aoi_polygon=aoi_polygon)
+            if not getattr(geometry, "is_empty", True):
+                trim_sources.append(geometry)
+        for patch in junction.get("crosswalk_patches", []) or ():
+            if isinstance(patch, Mapping):
+                geometry = _patch_polygonal_geometry(patch, aoi_polygon=aoi_polygon)
+                if not getattr(geometry, "is_empty", True):
+                    trim_sources.append(geometry)
+        for patch in junction.get("normalized_surface_patches", []) or ():
+            if not isinstance(patch, Mapping):
+                continue
+            role = str(patch.get("surface_role", "") or "").strip().lower()
+            if role not in {"carriageway", "crossing"}:
+                continue
+            geometry = _patch_polygonal_geometry(patch, aoi_polygon=aoi_polygon)
+            if not getattr(geometry, "is_empty", True):
+                trim_sources.append(geometry)
+
+    if not trim_sources:
+        return MultiPolygon()
+    trim_geometry = _clean_polygonal_geometry(unary_union(trim_sources), aoi_polygon=aoi_polygon)
+    if getattr(trim_geometry, "is_empty", True):
+        return MultiPolygon()
+    if float(setback_m) > 0.0:
+        trim_geometry = _clean_polygonal_geometry(trim_geometry.buffer(float(setback_m)), aoi_polygon=aoi_polygon)
+    return trim_geometry
+
+
+def trim_center_planting_strips_for_junctions(
+    placement_context: PlacementContext,
+    junction_geometries: Sequence[Mapping[str, Any]] | None = None,
+    *,
+    setback_m: float = CENTER_PLANTING_JUNCTION_SETBACK_M,
+) -> None:
+    """Clip center planting strip zones away from junction core and crossing surfaces."""
+
+    if placement_context is None:
+        return
+    resolved_junctions = list(junction_geometries if junction_geometries is not None else placement_context.junction_geometries)
+    if not resolved_junctions:
+        return
+    aoi_polygon = getattr(placement_context, "aoi_polygon", None)
+    trim_geometry = _center_planting_junction_trim_geometry(
+        resolved_junctions,
+        aoi_polygon=aoi_polygon,
+        setback_m=float(setback_m),
+    )
+    if getattr(trim_geometry, "is_empty", True):
+        return
+
+    def trim_geometry_value(geometry: Any) -> Any:
+        source = _clean_polygonal_geometry(geometry, aoi_polygon=aoi_polygon)
+        if getattr(source, "is_empty", True):
+            return source
+        return _clean_polygonal_geometry(source.difference(trim_geometry), aoi_polygon=aoi_polygon)
+
+    strip_zones = dict(getattr(placement_context, "strip_zones", {}) or {})
+    for key in tuple(CENTER_PLANTING_STRIP_ZONE_KEYS):
+        if key not in strip_zones:
+            continue
+        trimmed = trim_geometry_value(strip_zones.get(key))
+        if getattr(trimmed, "is_empty", True):
+            strip_zones.pop(key, None)
+        else:
+            strip_zones[key] = trimmed
+    placement_context.strip_zones = strip_zones
+
+    segment_strip_zones: Dict[str, Dict[str, Any]] = {}
+    for segment_id, entries in (getattr(placement_context, "segment_strip_zones", {}) or {}).items():
+        next_entries = dict(entries or {})
+        for key in tuple(CENTER_PLANTING_STRIP_ZONE_KEYS):
+            if key not in next_entries:
+                continue
+            trimmed = trim_geometry_value(next_entries.get(key))
+            if getattr(trimmed, "is_empty", True):
+                next_entries.pop(key, None)
+            else:
+                next_entries[key] = trimmed
+        segment_strip_zones[str(segment_id)] = next_entries
+    placement_context.segment_strip_zones = segment_strip_zones
 
 
 def _sector_patch(
@@ -3139,7 +3282,7 @@ def build_placement_context(
         if not poly.is_empty:
             road_arm_geometries.append(poly)
 
-    return PlacementContext(
+    placement_context = PlacementContext(
         sidewalk_zone=sidewalk_zone,
         carriageway=carriageway,
         left_sidewalk_zone=left_sidewalk_zone,
@@ -3171,6 +3314,11 @@ def build_placement_context(
         strip_zones=dict(strip_zones),
         segment_strip_zones={key: dict(value) for key, value in segment_strip_zones.items()},
     )
+    trim_center_planting_strips_for_junctions(
+        placement_context,
+        list(junction_geometries),
+    )
+    return placement_context
 
 
 # ---------------------------------------------------------------------------

@@ -7,7 +7,12 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
 from .osm_ingest import OsmRoad, ProjectedFeatures
-from .placement_zones import PlacementContext, build_placement_context, build_sidewalk_zones_from_roads
+from .placement_zones import (
+    PlacementContext,
+    build_placement_context,
+    build_sidewalk_zones_from_roads,
+    trim_center_planting_strips_for_junctions,
+)
 from .junction_surface_normalization import normalize_junction_surface_geometries
 from .reference_annotation import (
     BezierCurve3,
@@ -344,6 +349,10 @@ def build_reference_annotation_scene_bridge(
     )
     placement_context.junction_geometries = normalize_junction_surface_geometries(
         list(getattr(placement_context, "junction_geometries", []) or [])
+    )
+    trim_center_planting_strips_for_junctions(
+        placement_context,
+        list(getattr(placement_context, "junction_geometries", []) or []),
     )
     derived_region_payload = derive_regions_from_annotation(annotation)
     explicit_region_building_records = explicit_building_region_records_from_regions(annotation)
