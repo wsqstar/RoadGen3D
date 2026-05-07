@@ -2270,6 +2270,34 @@ def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
     assert max(float(mesh.bounds[1][0]) for mesh in curb_meshes) > 1.8
 
 
+def test_osm_center_grass_belt_renders_as_raised_island():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-8.0, -3.0, 8.0, 3.0)
+    grass_belt = shapely_geometry.box(-8.0, -0.5, 8.0, 0.5)
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        sidewalk_zone=shapely_geometry.Polygon(),
+        road_arm_geometries=[carriageway],
+        junction_geometries=[],
+        strip_zones={"center_grass_belt": grass_belt},
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+    grass_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_grass_belt_")
+    ]
+
+    assert grass_meshes
+    assert max(float(mesh.bounds[1][1]) for mesh in grass_meshes) == pytest.approx(
+        street_layout.CENTER_ISLAND_TOP_Y_M
+    )
+    assert min(float(mesh.bounds[0][1]) for mesh in grass_meshes) >= -1e-6
+
+
 def test_base_scene_adds_centerline_markings():
     pytest.importorskip("trimesh")
 

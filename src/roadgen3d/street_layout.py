@@ -2887,6 +2887,8 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
 
 
 SIDEWALK_ELEVATION_M = 0.20
+CENTER_ISLAND_TOP_Y_M = 0.12
+CENTER_ISLAND_HEIGHT_M = 0.12
 
 
 def _build_curb_boundary_zone(carriageway: Any, elevated_side_zone: Any, curb_width_m: float) -> Any:
@@ -4910,10 +4912,10 @@ def _build_osm_base_scene(
     if center_median is not None and not getattr(center_median, "is_empty", True):
         _extrude_polygon(
             center_median,
-            0.065,
+            CENTER_ISLAND_HEIGHT_M,
             list(colors.get("median_green", (95, 125, 75, 255))),
             "center_median",
-            y_offset=0.002,
+            y_offset=CENTER_ISLAND_TOP_Y_M,
             roughness_key="median_green",
             surface_role="median_green",
         )
@@ -4921,10 +4923,10 @@ def _build_osm_base_scene(
     if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
         _extrude_polygon(
             center_grass_belt,
-            0.065,
+            CENTER_ISLAND_HEIGHT_M,
             list(colors.get("grass_belt", (100, 150, 80, 255))),
             "center_grass_belt",
-            y_offset=0.002,
+            y_offset=CENTER_ISLAND_TOP_Y_M,
             roughness_key="grass_belt",
             surface_role="grass_belt",
         )
@@ -5067,9 +5069,9 @@ def _build_osm_base_scene(
             return 0.014, _material_color(material, colors.get("parking_lane", (156, 126, 84, 255))), 0.016, texture_key or "parking_lane", "parking_lane"
         if role in {"median", "median_green", "safety_island"}:
             fallback = colors.get("sidewalk", (180, 178, 168, 255)) if role == "safety_island" else colors.get("median_green", (95, 125, 75, 255))
-            return 0.065, _material_color(material, fallback), 0.028, texture_key or ("sidewalk" if role == "safety_island" else "median_green"), role
+            return CENTER_ISLAND_HEIGHT_M, _material_color(material, fallback), CENTER_ISLAND_TOP_Y_M, texture_key or ("sidewalk" if role == "safety_island" else "median_green"), role
         if role == "grass_belt":
-            return 0.065, _material_color(material, colors.get("grass_belt", (100, 150, 80, 255))), 0.024, texture_key or "grass_belt", "grass_belt"
+            return CENTER_ISLAND_HEIGHT_M, _material_color(material, colors.get("grass_belt", (100, 150, 80, 255))), CENTER_ISLAND_TOP_Y_M, texture_key or "grass_belt", "grass_belt"
         if role == "shared_street_surface":
             return 0.014, _material_color(material, colors.get("shared_street_surface", (180, 160, 140, 255))), 0.016, texture_key or "shared_street_surface", "shared_street_surface"
         if role == "transit_pad":
