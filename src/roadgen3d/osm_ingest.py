@@ -66,6 +66,7 @@ class OsmRoad:
     highway_type: str
     coords: List[Tuple[float, float]]  # [(lon, lat), ...]
     width_m: float  # estimated or from tag
+    tags: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -403,7 +404,15 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
                             width_m = _DEFAULT_WIDTH_M[hw_type]
                     else:
                         width_m = _DEFAULT_WIDTH_M[hw_type]
-                    roads.append(OsmRoad(osm_id=int(el["id"]), highway_type=hw_type, coords=coords, width_m=width_m))
+                    roads.append(
+                        OsmRoad(
+                            osm_id=int(el["id"]),
+                            highway_type=hw_type,
+                            coords=coords,
+                            width_m=width_m,
+                            tags=dict(tags),
+                        )
+                    )
 
         if etype == "way" and "building" in tags:
             coords = _coords_for_way(el, node_coords)
@@ -521,6 +530,7 @@ def project_to_local(
             highway_type=road.highway_type,
             coords=proj_coords,
             width_m=road.width_m,
+            tags=dict(getattr(road, "tags", {}) or {}),
         ))
     proj_buildings: List[OsmBuilding] = []
     for building in features.buildings:

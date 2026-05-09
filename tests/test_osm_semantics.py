@@ -17,7 +17,9 @@ if str(SRC) not in sys.path:
 from roadgen3d.osm_ingest import OsmRoad, OsmSemanticBlock, ProjectedFeatures
 from roadgen3d.osm_segment_graph import build_segment_graph
 from roadgen3d.osm_semantics import (
+    apply_osm_bus_stop_constraints,
     classify_semantic_block,
+    evaluate_osm_context_fit,
     prepare_multiblock_projected_features,
     semantic_profile_for_segment,
 )
@@ -150,6 +152,136 @@ def test_segment_graph_and_theme_segments_carry_semantic_profiles():
     assert segments[0].design_rule_profile == "pedestrian_priority_v1"
 
 
+def test_osm_multiblock_resamples_whole_polyline_instead_of_each_osm_edge():
+    coords = [(float(idx) * 10.0, 0.0) for idx in range(23)]
+    projected = ProjectedFeatures(
+        roads=[OsmRoad(osm_id=701, highway_type="service", coords=coords, width_m=4.0)],
+        semantic_blocks=[
+            classify_semantic_block(_block("school", {"amenity": "school"}, x0=-5.0, y0=-10.0, x1=225.0, y1=10.0))
+        ],
+        bbox_m=(-5.0, -10.0, 225.0, 10.0),
+    )
+
+    graph = build_segment_graph(projected, _config(segment_length_m=35.0))
+
+    assert len(graph.nodes) == 7
+    assert 30.0 <= graph.summary()["avg_segment_length_m"] <= 32.0
+    assert {node.semantic_profile_id for node in graph.nodes} == {"child_friendly_school"}
+
+
+def test_osm_multiblock_short_roads_keep_default_style_without_poi_triggers():
+    projected = ProjectedFeatures(
+        roads=[
+            OsmRoad(
+                osm_id=702,
+                highway_type="service",
+                coords=[(0.0, 0.0), (11.0, 0.0)],
+                width_m=4.0,
+                tags={"name": "short access"},
+            )
+        ],
+        semantic_blocks=[
+            classify_semantic_block(_block("school", {"amenity": "school"}, x0=-5.0, y0=-10.0, x1=20.0, y1=10.0))
+        ],
+        poi_points_by_type={"bus_stop": [(5.5, 0.0)]},
+        bbox_m=(-5.0, -10.0, 20.0, 10.0),
+    )
+
+    graph = build_segment_graph(
+        projected,
+        _config(
+            segment_length_m=35.0,
+            osm_short_road_policy="default_style",
+            osm_short_road_min_length_m=20.0,
+        ),
+    )
+
+    assert len(graph.nodes) == 1
+    assert graph.nodes[0].semantic_profile_id == ""
+    assert graph.nodes[0].semantic_reasons == ("short road rendered with default style",)
+    assert graph.nodes[0].poi_types == ()
+
+
+def test_osm_context_fit_detects_school_under_provision_and_recommends_child_safety():
+    projected = ProjectedFeatures(
+        roads=[OsmRoad(osm_id=711, highway_type="service", coords=[(0.0, 0.0), (90.0, 0.0)], width_m=4.0)],
+        semantic_blocks=[
+            classify_semantic_block(_block("school", {"amenity": "school"}, x0=-5.0, y0=-10.0, x1=95.0, y1=10.0))
+        ],
+        bbox_m=(-5.0, -10.0, 95.0, 10.0),
+    )
+    graph = build_segment_graph(projected, _config(segment_length_m=35.0, sidewalk_width_m=2.2))
+
+    fit = evaluate_osm_context_fit(graph, _config(segment_length_m=35.0, sidewalk_width_m=2.2))
+
+    assert fit["ruleset"] == "socioeconomic_fit_v1"
+    assert fit["under_provisioned_segment_count"] == len(graph.nodes)
+    assert fit["dominant_design_direction"] == "child_safety_upgrade"
+    assert fit["scene_recommended_compose_patch"]["design_rule_profile"] == "pedestrian_priority_v1"
+    assert fit["scene_recommended_compose_patch"]["sidewalk_width_m"] >= 3.2
+    assert "crossing_or_traffic_signals" in fit["segments"][0]["missing_facilities"]
+
+
+def test_osm_context_fit_keeps_sparse_commercial_vehicle_context_vehicle_oriented():
+    projected = ProjectedFeatures(
+        roads=[OsmRoad(osm_id=712, highway_type="tertiary", coords=[(0.0, 0.0), (70.0, 0.0)], width_m=7.0)],
+        semantic_blocks=[
+            classify_semantic_block(_block("retail", {"landuse": "retail"}, x0=-5.0, y0=-10.0, x1=75.0, y1=10.0))
+        ],
+        bbox_m=(-5.0, -10.0, 75.0, 10.0),
+    )
+    graph = build_segment_graph(projected, _config(segment_length_m=35.0, sidewalk_width_m=2.4))
+
+    fit = evaluate_osm_context_fit(graph, _config(segment_length_m=35.0, sidewalk_width_m=2.4))
+
+    assert {item["semantic_profile_id"] for item in fit["segments"]} == {"vehicle_access_commercial"}
+    assert fit["dominant_design_direction"] == "vehicle_access_upgrade"
+    assert fit["scene_recommended_compose_patch"]["vehicle_demand_level"] == "high"
+    assert fit["scene_recommended_compose_patch"]["design_rule_profile"] == "balanced_complete_street_v1"
+
+
+def test_demo_bus_stop_is_limited_to_eligible_du_xue_road():
+    projected = ProjectedFeatures(
+        roads=[
+            OsmRoad(
+                osm_id=801,
+                highway_type="tertiary",
+                coords=[(0.0, 0.0), (100.0, 0.0)],
+                width_m=7.0,
+                tags={"name": "笃学路"},
+            ),
+            OsmRoad(
+                osm_id=802,
+                highway_type="service",
+                coords=[(0.0, 30.0), (100.0, 30.0)],
+                width_m=4.0,
+                tags={"name": "内三路"},
+            ),
+        ],
+        semantic_blocks=[
+            classify_semantic_block(_block("school", {"amenity": "school"}, x0=-5.0, y0=20.0, x1=105.0, y1=40.0))
+        ],
+        bbox_m=(-5.0, -5.0, 105.0, 45.0),
+    )
+    projected, summary = apply_osm_bus_stop_constraints(
+        projected,
+        _config(
+            segment_length_m=35.0,
+            bus_stop_eligible_road_names=("笃学路",),
+            max_bus_stops_per_scene=1,
+            allow_demo_bus_stop_when_osm_absent=True,
+        ),
+    )
+    graph = build_segment_graph(projected, _config(segment_length_m=35.0))
+
+    assert summary["counts"] == {"osm": 0, "demo_inferred": 1, "total": 1, "raw_osm": 0}
+    assert summary["eligible_road_ids"] == [801]
+    assert summary["provenance"][0]["source"] == "demo_inferred"
+    assert len(projected.bus_stops) == 1
+    assert any("bus_stop" in node.poi_types and node.road_id == 801 for node in graph.nodes)
+    assert all("bus_stop" not in node.poi_types for node in graph.nodes if node.road_id == 802)
+
+
 def test_resolve_scene_context_osm_multiblock_preserves_aoi_without_auto_discovery(monkeypatch, tmp_path: Path):
     import roadgen3d.services.scene_context_service as scene_context_service
 
@@ -203,3 +335,6 @@ def test_semantic_preview_returns_blocks_and_segment_profiles(monkeypatch, tmp_p
     assert payload["osm_semantic_blocks"][0]["semantic_profile_id"] == "child_friendly_school"
     assert payload["segment_semantic_profiles"]
     assert "child_friendly_school" in {item["semantic_profile_id"] for item in payload["segment_semantic_profiles"]}
+    assert payload["osm_context_fit"]["under_provisioned_segment_count"] >= 1
+    assert payload["osm_context_fit"]["dominant_design_direction"] == "child_safety_upgrade"
+    assert payload["summary"]["osm_context_fit"]["scene_recommended_compose_patch"]["design_rule_profile"] == "pedestrian_priority_v1"

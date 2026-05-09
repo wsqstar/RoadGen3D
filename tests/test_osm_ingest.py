@@ -102,6 +102,7 @@ def test_parse_osm_features_road_count():
     assert len(features.roads) == 1
     assert features.roads[0].highway_type == "residential"
     assert len(features.roads[0].coords) == 3
+    assert features.roads[0].tags["highway"] == "residential"
 
 
 def test_parse_osm_features_poi_counts():

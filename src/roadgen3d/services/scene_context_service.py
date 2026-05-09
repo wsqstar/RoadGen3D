@@ -5,16 +5,21 @@ from __future__ import annotations
 import hashlib
 import json
 import random
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Tuple
+from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
 from ..china_cities import CHINA_CITY_REGISTRY
 from ..osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
 from ..osm_segment_graph import build_segment_graph
 from ..osm_semantics import (
     OSM_SEMANTIC_RULESET_VERSION,
+    apply_osm_bus_stop_constraints,
+    evaluate_osm_context_fit,
     prepare_multiblock_projected_features,
+    road_display_name,
+    road_length_m,
     segment_semantic_profile_payload,
 )
 from ..placement_zones import (
@@ -88,6 +93,33 @@ def list_china_cities_payload() -> List[Dict[str, Any]]:
 def bbox_hash(bbox: Tuple[float, float, float, float]) -> str:
     key = f"{bbox[0]:.6f},{bbox[1]:.6f},{bbox[2]:.6f},{bbox[3]:.6f}"
     return hashlib.md5(key.encode("utf-8")).hexdigest()[:12]
+
+
+def _coerce_text_tuple(value: Any) -> Tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, str):
+        items = value.replace(";", ",").split(",")
+    else:
+        items = list(value) if isinstance(value, Sequence) else [value]
+    return tuple(dict.fromkeys(str(item).strip() for item in items if str(item).strip()))
+
+
+def _coerce_bool(value: Any, default: bool = False) -> bool:
+    if value is None:
+        return bool(default)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        normalized = value.strip().lower()
+        if normalized in {"1", "true", "yes", "on"}:
+            return True
+        if normalized in {"0", "false", "no", "off"}:
+            return False
+        return bool(default)
+    if isinstance(value, (int, float)):
+        return bool(value)
+    return bool(default)
 
 
 def discovered_metadata_path(discovered_path: Path) -> Path:
@@ -376,10 +408,61 @@ def _preview_compose_config(
         aoi_bbox=tuple(float(value) for value in aoi_bbox),
         osm_cache_dir=str(osm_cache_dir or patch.get("osm_cache_dir", DEFAULT_OSM_CACHE_DIR)),
         road_selection="all",
+        segment_length_m=float(patch.get("segment_length_m", 35.0) or 35.0),
         osm_semantic_mode=str(patch.get("osm_semantic_mode", OSM_SEMANTIC_RULESET_VERSION) or OSM_SEMANTIC_RULESET_VERSION),
         osm_multiblock_max_roads=int(patch.get("osm_multiblock_max_roads", 12) or 12),
         osm_multiblock_max_extent_m=float(patch.get("osm_multiblock_max_extent_m", 350.0) or 350.0),
+        osm_short_road_policy=str(patch.get("osm_short_road_policy", "default_style") or "default_style"),
+        osm_short_road_min_length_m=float(patch.get("osm_short_road_min_length_m", 20.0) or 20.0),
+        osm_context_fit_mode=str(patch.get("osm_context_fit_mode", "auto_design") or "auto_design"),
+        bus_stop_eligible_road_names=_coerce_text_tuple(patch.get("bus_stop_eligible_road_names", ())),
+        max_bus_stops_per_scene=int(patch.get("max_bus_stops_per_scene", 0) or 0),
+        allow_demo_bus_stop_when_osm_absent=_coerce_bool(patch.get("allow_demo_bus_stop_when_osm_absent"), False),
     )
+
+
+def _semantic_profile_counts_by_road(segment_profiles: Sequence[Mapping[str, Any]]) -> Dict[int, Counter[str]]:
+    counts: Dict[int, Counter[str]] = defaultdict(Counter)
+    for item in segment_profiles:
+        profile_id = str(item.get("semantic_profile_id", "") or "").strip()
+        if not profile_id:
+            continue
+        counts[int(item.get("road_id", 0) or 0)][profile_id] += 1
+    return counts
+
+
+def _selected_road_payload(
+    roads: Sequence[Any],
+    segment_profiles: Sequence[Mapping[str, Any]],
+    *,
+    config: StreetComposeConfig,
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    segment_counts = Counter(int(item.get("road_id", 0) or 0) for item in segment_profiles)
+    profile_counts = _semantic_profile_counts_by_road(segment_profiles)
+    short_policy = str(getattr(config, "osm_short_road_policy", "semantic") or "semantic").strip().lower()
+    short_min = float(getattr(config, "osm_short_road_min_length_m", 0.0) or 0.0)
+    selected: List[Dict[str, Any]] = []
+    short_roads: List[Dict[str, Any]] = []
+    for road in roads:
+        road_id = int(getattr(road, "osm_id", 0) or 0)
+        length_m = float(road_length_m(road))
+        segment_count = int(segment_counts.get(road_id, 0))
+        is_short_default = short_policy == "default_style" and short_min > 0.0 and length_m < short_min
+        payload = {
+            "osm_id": road_id,
+            "name": road_display_name(road),
+            "highway_type": str(getattr(road, "highway_type", "") or ""),
+            "point_count": int(len(getattr(road, "coords", []) or [])),
+            "length_m": length_m,
+            "segment_count": segment_count,
+            "avg_segment_length_m": (length_m / float(segment_count)) if segment_count > 0 else 0.0,
+            "semantic_profile_counts": dict(profile_counts.get(road_id, Counter())),
+            "short_road_policy": "default_style" if is_short_default else "semantic",
+        }
+        selected.append(payload)
+        if is_short_default:
+            short_roads.append(payload)
+    return selected, short_roads
 
 
 def build_osm_semantic_preview(
@@ -396,8 +479,29 @@ def build_osm_semantic_preview(
     features = parse_osm_features(raw)
     projected = project_to_local(features, tuple(float(value) for value in aoi_bbox))
     projected, semantic_summary = prepare_multiblock_projected_features(projected, config)
+    projected, bus_stop_summary = apply_osm_bus_stop_constraints(projected, config)
     graph = build_segment_graph(projected, config)
+    osm_context_fit = evaluate_osm_context_fit(graph, config)
+    osm_context_fit_summary = {key: value for key, value in dict(osm_context_fit).items() if key != "segments"}
     segment_profiles = segment_semantic_profile_payload(graph.nodes)
+    selected_roads, short_roads = _selected_road_payload(projected.roads, segment_profiles, config=config)
+    segment_profile_counts = dict(
+        Counter(
+            str(item.get("semantic_profile_id", "") or "").strip()
+            for item in segment_profiles
+            if str(item.get("semantic_profile_id", "") or "").strip()
+        )
+    )
+    semantic_summary = {
+        **dict(semantic_summary),
+        "segment_length_m": float(getattr(config, "segment_length_m", 35.0) or 35.0),
+        "segment_semantic_profile_counts": segment_profile_counts,
+        "short_roads_default_style": list(short_roads),
+        "bus_stop_counts": dict(bus_stop_summary.get("counts", {}) or {}),
+        "bus_stop_eligible_road_ids": list(bus_stop_summary.get("eligible_road_ids", []) or []),
+        "bus_stop_provenance": list(bus_stop_summary.get("provenance", []) or []),
+        "osm_context_fit": dict(osm_context_fit_summary),
+    }
     return {
         "semantic_mode": OSM_SEMANTIC_RULESET_VERSION,
         "aoi_bbox": [float(value) for value in aoi_bbox],
@@ -413,14 +517,12 @@ def build_osm_semantic_preview(
             },
         },
         "summary": dict(semantic_summary),
-        "selected_roads": [
-            {
-                "osm_id": int(getattr(road, "osm_id", 0) or 0),
-                "highway_type": str(getattr(road, "highway_type", "") or ""),
-                "point_count": int(len(getattr(road, "coords", []) or [])),
-            }
-            for road in projected.roads
-        ],
+        "selected_roads": selected_roads,
+        "short_roads_default_style": short_roads,
+        "bus_stop_counts": dict(bus_stop_summary.get("counts", {}) or {}),
+        "bus_stop_eligible_road_ids": list(bus_stop_summary.get("eligible_road_ids", []) or []),
+        "bus_stop_provenance": list(bus_stop_summary.get("provenance", []) or []),
+        "osm_context_fit": dict(osm_context_fit),
         "osm_semantic_blocks": [block.to_dict() for block in getattr(projected, "semantic_blocks", []) or []],
         "segment_semantic_profiles": list(segment_profiles),
         "road_segment_graph_summary": graph.summary(),
