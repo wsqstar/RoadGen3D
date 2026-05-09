@@ -3065,7 +3065,8 @@ def apply_road_selection(projected_features: Any, config: Any) -> Any:
 
     strategy = str(getattr(config, "road_selection", "walkable_neighborhood"))
     selected_osm_id = getattr(config, "selected_road_osm_id", None)
-    if strategy == "all" and selected_osm_id is None:
+    layout_mode = str(getattr(config, "layout_mode", "") or "").strip().lower()
+    if (strategy == "all" or layout_mode == "osm_multiblock") and selected_osm_id is None:
         return projected_features
 
     filtered = select_primary_road(
@@ -3077,10 +3078,13 @@ def apply_road_selection(projected_features: Any, config: Any) -> Any:
     return ProjectedFeatures(
         roads=filtered,
         buildings=projected_features.buildings,
+        land_use_polygons=list(getattr(projected_features, "land_use_polygons", []) or []),
+        semantic_blocks=list(getattr(projected_features, "semantic_blocks", []) or []),
         entrances=projected_features.entrances,
         bus_stops=projected_features.bus_stops,
         fire_points=projected_features.fire_points,
         poi_points_by_type=extract_poi_points_by_type(projected_features),
+        semantic_points_by_type=dict(getattr(projected_features, "semantic_points_by_type", {}) or {}),
         bbox_m=projected_features.bbox_m,
         origin_utm=projected_features.origin_utm,
         utm_epsg=projected_features.utm_epsg,

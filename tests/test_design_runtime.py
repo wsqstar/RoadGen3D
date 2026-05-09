@@ -67,6 +67,20 @@ def test_sanitize_compose_config_patch_accepts_course_delivery_fields():
     assert "unsupported" not in patch
 
 
+def test_sanitize_compose_config_patch_accepts_osm_multiblock_fields():
+    patch = sanitize_compose_config_patch(
+        {
+            "osm_semantic_mode": "landuse_rules_v1",
+            "osm_multiblock_max_roads": "8",
+            "osm_multiblock_max_extent_m": "275.5",
+        }
+    )
+
+    assert patch["osm_semantic_mode"] == "landuse_rules_v1"
+    assert patch["osm_multiblock_max_roads"] == 8
+    assert patch["osm_multiblock_max_extent_m"] == 275.5
+
+
 def test_shared_presets_include_course_delivery_defaults():
     for preset in SCENE_PRESETS:
         config_patch = preset["configPatch"]
@@ -656,6 +670,76 @@ def test_generate_scene_from_draft_applies_osm_scene_context(tmp_path: Path, mon
     assert config.selected_road_osm_id == 202
     assert result.summary["requested_aoi_bbox"] == [113.266, 23.128, 113.271, 23.1325]
     assert result.summary["city_name_en"] == "guangzhou"
+
+
+def test_generate_scene_from_draft_applies_osm_multiblock_context(tmp_path: Path, monkeypatch):
+    captured: dict[str, object] = {}
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(
+        json.dumps(
+            {
+                "summary": {
+                    "instance_count": 4,
+                    "layout_mode": "osm_multiblock",
+                    "semantic_block_count": 3,
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    def _fake_compose(**kwargs):
+        captured["config"] = kwargs["config"]
+        return SimpleNamespace(
+            instance_count=4,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        )
+
+    monkeypatch.setattr(runtime, "compose_street_scene", _fake_compose)
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+    monkeypatch.setattr(
+        runtime,
+        "resolve_scene_context",
+        lambda scene_context, *, config, artifacts_dir: ResolvedSceneContext(
+            scene_context=scene_context,
+            requested_aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            effective_aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            city_name_en="guangzhou",
+            road_selection="all",
+            selected_road_source="multiblock_aoi",
+            probe_metrics={"semantic_mode": "landuse_rules_v1"},
+        ),
+    )
+
+    draft = DesignDraft(
+        normalized_scene_query="multi block semantic street",
+        compose_config_patch={"osm_multiblock_max_roads": 8, "osm_multiblock_max_extent_m": 275.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context=SceneContext(
+            layout_mode="osm_multiblock",
+            aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            city_name_en="guangzhou",
+        ),
+        generation_options={"capture_3d_views": False, "preset_id": "skip_llm"},
+    )
+
+    config = captured["config"]
+    assert config.layout_mode == "osm_multiblock"
+    assert config.aoi_bbox == (113.2660, 23.1280, 113.2710, 23.1325)
+    assert config.road_selection == "all"
+    assert config.selected_road_osm_id is None
+    assert config.osm_multiblock_max_roads == 8
+    assert result.summary["semantic_block_count"] == 3
 
 
 def test_generate_scene_from_draft_requires_bbox_for_osm_scene_context():

@@ -28,6 +28,7 @@ from roadgen3d.capture_3d import Capture3DResult  # noqa: E402
 from roadgen3d.template_patch import TEMPLATE_PATCH_SCHEMA_VERSION  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from web.api.main import create_app  # noqa: E402
+import web.api.main as api_main  # noqa: E402
 
 
 def test_api_root_returns_viewer_and_health_hints():
@@ -40,6 +41,35 @@ def test_api_root_returns_viewer_and_health_hints():
     assert payload["ok"] is True
     assert payload["health_url"] == "/api/health"
     assert payload["viewer_url"].startswith("http://127.0.0.1:4173")
+
+
+def test_osm_semantic_preview_endpoint_returns_preview(monkeypatch):
+    captured: dict[str, object] = {}
+
+    def _fake_preview(**kwargs):
+        captured.update(kwargs)
+        return {
+            "semantic_mode": "landuse_rules_v1",
+            "summary": {"semantic_block_count": 1},
+            "osm_semantic_blocks": [{"block_id": "school", "semantic_profile_id": "child_friendly_school"}],
+            "segment_semantic_profiles": [],
+        }
+
+    monkeypatch.setattr(api_main, "build_osm_semantic_preview", _fake_preview)
+    client = TestClient(create_app(design_service=_FakeService()))
+
+    response = client.post(
+        "/api/osm/semantic-preview",
+        json={
+            "aoi_bbox": [116.39, 39.90, 116.395, 39.905],
+            "compose_config": {"osm_multiblock_max_roads": "6", "unsupported": "drop"},
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["summary"]["semantic_block_count"] == 1
+    assert captured["aoi_bbox"] == (116.39, 39.9, 116.395, 39.905)
+    assert captured["compose_config_patch"] == {"osm_multiblock_max_roads": 6}
 
 
 class _FakeService:

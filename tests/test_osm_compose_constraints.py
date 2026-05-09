@@ -145,6 +145,52 @@ def _setup_fake_osm_with_extended_pois(monkeypatch) -> None:
     monkeypatch.setattr(osm_ingest, "project_to_local", lambda features, bbox: projected)
 
 
+def _setup_fake_osm_multiblock(monkeypatch) -> None:
+    import roadgen3d.osm_ingest as osm_ingest
+
+    projected = osm_ingest.ProjectedFeatures(
+        roads=[
+            osm_ingest.OsmRoad(osm_id=401, highway_type="residential", coords=[(-30.0, 0.0), (0.0, 0.0)], width_m=6.0),
+            osm_ingest.OsmRoad(osm_id=402, highway_type="service", coords=[(0.0, 0.0), (30.0, 0.0)], width_m=4.0),
+            osm_ingest.OsmRoad(osm_id=403, highway_type="tertiary", coords=[(0.0, 0.0), (0.0, 28.0)], width_m=7.0),
+        ],
+        semantic_blocks=[
+            osm_ingest.OsmSemanticBlock(
+                block_id="school_block",
+                osm_id=901,
+                source_type="way",
+                coords=[(-35.0, -12.0), (-5.0, -12.0), (-5.0, 12.0), (-35.0, 12.0), (-35.0, -12.0)],
+                centroid=(-20.0, 0.0),
+                tags={"amenity": "kindergarten"},
+            ),
+            osm_ingest.OsmSemanticBlock(
+                block_id="retail_block",
+                osm_id=902,
+                source_type="way",
+                coords=[(5.0, -12.0), (35.0, -12.0), (35.0, 12.0), (5.0, 12.0), (5.0, -12.0)],
+                centroid=(20.0, 0.0),
+                tags={"landuse": "commercial"},
+            ),
+            osm_ingest.OsmSemanticBlock(
+                block_id="park_block",
+                osm_id=903,
+                source_type="way",
+                coords=[(-12.0, 8.0), (12.0, 8.0), (12.0, 36.0), (-12.0, 36.0), (-12.0, 8.0)],
+                centroid=(0.0, 22.0),
+                tags={"leisure": "park"},
+            ),
+        ],
+        semantic_points_by_type={"commercial": [(18.0, 0.0), (22.0, 1.0)]},
+        bbox_m=(-42.0, -18.0, 42.0, 42.0),
+        origin_utm=(0.0, 0.0),
+        utm_epsg=32649,
+    )
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: {"elements": []})
+    monkeypatch.setattr(osm_ingest, "parse_osm_features", lambda raw: osm_ingest.OsmFeatures())
+    monkeypatch.setattr(osm_ingest, "project_to_local", lambda features, bbox: projected)
+
+
 # ---------------------------------------------------------------------------
 # Template mode backward compatibility
 # ---------------------------------------------------------------------------
@@ -438,6 +484,64 @@ def test_extended_asset_backed_pois_bind_to_program_and_slots(tmp_path: Path, mo
     assert any(slot["category"] == "mailbox" and slot.get("anchor_poi_type") == "post_box" for slot in slot_plans)
     assert any(slot["category"] == "trash" and slot.get("anchor_poi_type") == "waste_basket" for slot in slot_plans)
     assert any(slot["category"] == "bollard" and slot.get("anchor_poi_type") == "bollard" for slot in slot_plans)
+
+
+def test_osm_multiblock_compose_outputs_semantic_blocks_and_profiles(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    _setup_fake_osm_multiblock(monkeypatch)
+
+    result = compose_street_scene(
+        config=StreetComposeConfig(
+            query="semantic multiblock school retail park",
+            length_m=80.0,
+            road_width_m=7.0,
+            sidewalk_width_m=2.4,
+            lane_count=2,
+            density=0.8,
+            seed=11,
+            topk_per_category=12,
+            max_trials_per_slot=20,
+            layout_mode="osm_multiblock",
+            constraint_mode="off",
+            aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            road_selection="walkable_neighborhood",
+            osm_multiblock_max_roads=3,
+            osm_cache_dir=str(tmp_path / "osm_cache"),
+        ),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    layout_data = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = layout_data["summary"]
+
+    assert summary["layout_mode"] == "osm_multiblock"
+    assert summary["semantic_block_count"] == 3
+    assert summary["osm_multiblock_summary"]["selected_road_count"] == 3
+    assert len(layout_data["osm_semantic_blocks"]) == 3
+    assert {block["semantic_profile_id"] for block in layout_data["osm_semantic_blocks"]} >= {
+        "child_friendly_school",
+        "walkable_commercial",
+        "green_walkable",
+    }
+    assert len({profile["road_id"] for profile in layout_data["segment_semantic_profiles"]}) >= 2
+    assert "child_friendly_school" in summary["segment_semantic_profile_counts"]
+    assert any(
+        "child_friendly_school" in segment.get("semantic_profile_ids", [])
+        for segment in summary["theme_segments"]
+    )
 
 
 # ---------------------------------------------------------------------------

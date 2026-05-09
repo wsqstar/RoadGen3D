@@ -11,6 +11,12 @@ from typing import Any, Dict, List, Mapping, Tuple
 
 from ..china_cities import CHINA_CITY_REGISTRY
 from ..osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
+from ..osm_segment_graph import build_segment_graph
+from ..osm_semantics import (
+    OSM_SEMANTIC_RULESET_VERSION,
+    prepare_multiblock_projected_features,
+    segment_semantic_profile_payload,
+)
 from ..placement_zones import (
     EFFECTIVE_POI_EVALUATOR_VERSION,
     evaluate_projected_road_context,
@@ -294,7 +300,7 @@ def resolve_scene_context(
     normalized = sanitize_scene_context(scene_context)
     requested_bbox = normalized.aoi_bbox
     cache_dir = Path(osm_cache_dir or getattr(config, "osm_cache_dir", DEFAULT_OSM_CACHE_DIR)).expanduser().resolve()
-    if normalized.layout_mode != "osm":
+    if normalized.layout_mode not in {"osm", "osm_multiblock"}:
         return ResolvedSceneContext(
             scene_context=normalized,
             requested_aoi_bbox=requested_bbox,
@@ -305,6 +311,18 @@ def resolve_scene_context(
 
     if requested_bbox is None:
         raise RuntimeError("OSM scene context requires an AOI bbox.")
+
+    if normalized.layout_mode == "osm_multiblock":
+        return ResolvedSceneContext(
+            scene_context=normalized,
+            requested_aoi_bbox=requested_bbox,
+            effective_aoi_bbox=requested_bbox,
+            city_name_en=normalized.city_name_en,
+            osm_cache_dir=cache_dir,
+            road_selection="all",
+            selected_road_source="multiblock_aoi",
+            probe_metrics={"semantic_mode": OSM_SEMANTIC_RULESET_VERSION},
+        )
 
     selected_road, auto_discovered, probe_metrics = select_auto_discovered_road(
         artifacts_dir=Path(artifacts_dir).expanduser().resolve(),
@@ -335,3 +353,75 @@ def resolve_scene_context(
         selected_road_source="auto_discovered" if auto_discovered else "cached_discovery",
         probe_metrics=probe_metrics,
     )
+
+
+def _preview_compose_config(
+    aoi_bbox: Tuple[float, float, float, float],
+    compose_config_patch: Mapping[str, Any] | None = None,
+    *,
+    osm_cache_dir: Path | None = None,
+) -> StreetComposeConfig:
+    patch = dict(compose_config_patch or {})
+    return StreetComposeConfig(
+        query=str(patch.get("query", "OSM semantic multiblock preview") or "OSM semantic multiblock preview"),
+        length_m=float(patch.get("length_m", 80.0) or 80.0),
+        road_width_m=float(patch.get("road_width_m", 7.0) or 7.0),
+        sidewalk_width_m=float(patch.get("sidewalk_width_m", 2.4) or 2.4),
+        lane_count=int(patch.get("lane_count", 2) or 2),
+        density=float(patch.get("density", 1.0) or 1.0),
+        seed=int(patch.get("seed", 42) or 42),
+        topk_per_category=int(patch.get("topk_per_category", 5) or 5),
+        max_trials_per_slot=int(patch.get("max_trials_per_slot", 10) or 10),
+        layout_mode="osm_multiblock",
+        aoi_bbox=tuple(float(value) for value in aoi_bbox),
+        osm_cache_dir=str(osm_cache_dir or patch.get("osm_cache_dir", DEFAULT_OSM_CACHE_DIR)),
+        road_selection="all",
+        osm_semantic_mode=str(patch.get("osm_semantic_mode", OSM_SEMANTIC_RULESET_VERSION) or OSM_SEMANTIC_RULESET_VERSION),
+        osm_multiblock_max_roads=int(patch.get("osm_multiblock_max_roads", 12) or 12),
+        osm_multiblock_max_extent_m=float(patch.get("osm_multiblock_max_extent_m", 350.0) or 350.0),
+    )
+
+
+def build_osm_semantic_preview(
+    *,
+    aoi_bbox: Tuple[float, float, float, float],
+    osm_cache_dir: Path | None = None,
+    compose_config_patch: Mapping[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """Return semantic multiblock OSM context without running 3D generation."""
+
+    cache_dir = Path(osm_cache_dir or DEFAULT_OSM_CACHE_DIR).expanduser().resolve()
+    config = _preview_compose_config(aoi_bbox, compose_config_patch, osm_cache_dir=cache_dir)
+    raw = fetch_osm_data(bbox=tuple(float(value) for value in aoi_bbox), cache_dir=cache_dir)
+    features = parse_osm_features(raw)
+    projected = project_to_local(features, tuple(float(value) for value in aoi_bbox))
+    projected, semantic_summary = prepare_multiblock_projected_features(projected, config)
+    graph = build_segment_graph(projected, config)
+    segment_profiles = segment_semantic_profile_payload(graph.nodes)
+    return {
+        "semantic_mode": OSM_SEMANTIC_RULESET_VERSION,
+        "aoi_bbox": [float(value) for value in aoi_bbox],
+        "osm_cache_dir": str(cache_dir),
+        "input": {
+            "road_count": int(len(features.roads)),
+            "building_count": int(len(features.buildings)),
+            "land_use_polygon_count": int(len(features.land_use_polygons)),
+            "semantic_point_counts": {
+                point_type: int(len(points))
+                for point_type, points in getattr(features, "semantic_points_by_type", {}).items()
+                if points
+            },
+        },
+        "summary": dict(semantic_summary),
+        "selected_roads": [
+            {
+                "osm_id": int(getattr(road, "osm_id", 0) or 0),
+                "highway_type": str(getattr(road, "highway_type", "") or ""),
+                "point_count": int(len(getattr(road, "coords", []) or [])),
+            }
+            for road in projected.roads
+        ],
+        "osm_semantic_blocks": [block.to_dict() for block in getattr(projected, "semantic_blocks", []) or []],
+        "segment_semantic_profiles": list(segment_profiles),
+        "road_segment_graph_summary": graph.summary(),
+    }

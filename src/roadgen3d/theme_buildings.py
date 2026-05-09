@@ -8,6 +8,7 @@ from collections import Counter
 from dataclasses import replace
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
+from .osm_semantics import semantic_profile_style, semantic_profile_to_theme
 from .types import (
     DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
@@ -180,6 +181,7 @@ def infer_theme_segments(
     current_start = 0.0
     current_end = 0.0
     current_pois: set[str] = set()
+    current_semantic_profiles: set[str] = set()
     for node, theme_name, start_m, end_m, _center_m in node_info:
         if not current_nodes or theme_name != current_theme:
             if current_nodes:
@@ -191,6 +193,7 @@ def infer_theme_segments(
                         end_m=current_end,
                         nodes=current_nodes,
                         dominant_poi_types=tuple(sorted(current_pois)),
+                        semantic_profile_ids=tuple(sorted(current_semantic_profiles)),
                     )
                 )
             current_theme = theme_name
@@ -198,10 +201,16 @@ def infer_theme_segments(
             current_start = start_m
             current_end = end_m
             current_pois = set(getattr(node, "poi_types", ()) or ())
+            current_semantic_profiles = {
+                str(getattr(node, "semantic_profile_id", "") or "").strip()
+            } - {""}
         else:
             current_nodes.append(node)
             current_end = end_m
             current_pois.update(getattr(node, "poi_types", ()) or ())
+            profile_id = str(getattr(node, "semantic_profile_id", "") or "").strip()
+            if profile_id:
+                current_semantic_profiles.add(profile_id)
 
     if current_nodes:
         merged.append(
@@ -212,6 +221,7 @@ def infer_theme_segments(
                 end_m=current_end,
                 nodes=current_nodes,
                 dominant_poi_types=tuple(sorted(current_pois)),
+                semantic_profile_ids=tuple(sorted(current_semantic_profiles)),
             )
         )
     return tuple(merged)
@@ -225,9 +235,13 @@ def _build_theme_segment(
     end_m: float,
     nodes: Sequence[object],
     dominant_poi_types: Sequence[str],
+    semantic_profile_ids: Sequence[str] = (),
 ) -> ThemeSegment:
-    spec = theme_profile_style(theme_name)
+    primary_semantic_profile = str(semantic_profile_ids[0]).strip() if semantic_profile_ids else ""
+    spec = semantic_profile_style(primary_semantic_profile) if primary_semantic_profile else theme_profile_style(theme_name)
     notes = []
+    if primary_semantic_profile:
+        notes.append(f"semantic_profile={primary_semantic_profile}")
     if dominant_poi_types:
         notes.append("poi_driven")
     highway_types = tuple(sorted({str(getattr(node, "highway_type", "")).strip().lower() for node in nodes if str(getattr(node, "highway_type", "")).strip()}))
@@ -242,6 +256,7 @@ def _build_theme_segment(
         length_m=float(max(end_m - start_m, 1.0)),
         segment_ids=tuple(str(getattr(node, "segment_id", "")) for node in nodes),
         dominant_poi_types=tuple(str(item) for item in dominant_poi_types),
+        semantic_profile_ids=tuple(str(item) for item in semantic_profile_ids),
         design_rule_profile=spec["design_rule_profile"],
         style_preset=spec["style_preset"],
         notes=tuple(notes),
@@ -255,6 +270,9 @@ def _infer_segment_theme(
     target_street_type: str,
 ) -> str:
     query_lc = f"{query} {target_street_type}".strip().lower()
+    semantic_profile_id = str(getattr(node, "semantic_profile_id", "") or "").strip()
+    if semantic_profile_id:
+        return semantic_profile_to_theme(semantic_profile_id)
     highway_type = str(getattr(node, "highway_type", "")).strip().lower()
     poi_types = tuple(str(item).strip().lower() for item in getattr(node, "poi_types", ()) or ())
     scores = {theme_name: 0.2 for theme_name in THEME_VOCAB}

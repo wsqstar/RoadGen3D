@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import math
-from typing import Iterable, List, Mapping, Sequence, Tuple
+from typing import List, Mapping, Sequence, Tuple
 
+from .osm_semantics import nearest_semantic_block, semantic_profile_for_segment
 from .poi_taxonomy import extract_poi_points_by_type
 from .street_priors import DEFAULT_CATEGORIES
 from .types import RoadSegmentBand, RoadSegmentEdge, RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig
@@ -76,6 +77,8 @@ def build_segment_graph(
         poi_type: tuple(points)
         for poi_type, points in extract_poi_points_by_type(projected_features).items()
     }
+    semantic_blocks = tuple(getattr(projected_features, "semantic_blocks", ()) or ())
+    semantic_enabled = str(getattr(config, "layout_mode", "") or "").strip().lower() == "osm_multiblock"
     segment_length = max(float(getattr(config, "segment_length_m", 12.0)), 4.0)
 
     node_specs: List[dict] = []
@@ -105,6 +108,15 @@ def build_segment_graph(
                     center,
                     poi_points_by_type=poi_points_by_type,
                 )
+                semantic_block = nearest_semantic_block(center, semantic_blocks) if semantic_enabled else None
+                if semantic_enabled:
+                    semantic_profile_id, semantic_reasons, semantic_confidence, semantic_block_id = semantic_profile_for_segment(
+                        highway_type=str(getattr(road, "highway_type", "")),
+                        poi_types=poi_types,
+                        semantic_block=semantic_block,
+                    )
+                else:
+                    semantic_profile_id, semantic_reasons, semantic_confidence, semantic_block_id = "", (), 0.0, ""
                 segment_id = f"seg_{segment_counter:04d}"
                 segment_counter += 1
                 segment_length_m = float(_distance(a, b))
@@ -122,6 +134,10 @@ def build_segment_graph(
                         "is_accessible": True,
                         "highway_type": str(getattr(road, "highway_type", "")),
                         "poi_types": poi_types,
+                        "semantic_profile_id": semantic_profile_id,
+                        "semantic_reasons": semantic_reasons,
+                        "semantic_confidence": semantic_confidence,
+                        "semantic_block_id": semantic_block_id,
                         "bands": _segment_bands(segment_id=segment_id, config=config, poi_types=poi_types),
                         "station_start_m": station_start_m,
                         "station_end_m": station_end_m,
@@ -155,6 +171,10 @@ def build_segment_graph(
             is_accessible=bool(spec["is_accessible"]),
             highway_type=str(spec["highway_type"]),
             poi_types=tuple(spec["poi_types"]),
+            semantic_profile_id=str(spec["semantic_profile_id"]),
+            semantic_reasons=tuple(spec["semantic_reasons"]),
+            semantic_confidence=float(spec["semantic_confidence"]),
+            semantic_block_id=str(spec["semantic_block_id"]),
             bands=tuple(spec["bands"]),
             station_start_m=float(spec["station_start_m"]) - half_length,
             station_end_m=float(spec["station_end_m"]) - half_length,
@@ -162,4 +182,4 @@ def build_segment_graph(
         )
         for spec in node_specs
     ]
-    return RoadSegmentGraph(nodes=tuple(nodes), edges=tuple(edges), mode="osm")
+    return RoadSegmentGraph(nodes=tuple(nodes), edges=tuple(edges), mode=str(getattr(config, "layout_mode", "osm") or "osm"))

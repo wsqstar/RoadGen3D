@@ -39,14 +39,17 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "transit_demand_level",
     "vehicle_demand_level",
     "allow_solver_fallback",
+    "osm_semantic_mode",
+    "osm_multiblock_max_roads",
+    "osm_multiblock_max_extent_m",
     "max_styles_per_category",
     "amenity_coverage_mode",
     "minimum_category_presence",
     "optional_category_presence",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
-_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m"})
-_INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category"})
+_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "osm_multiblock_max_extent_m"})
+_INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads"})
 _BOOL_FIELDS = frozenset({"allow_solver_fallback"})
 _LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS
@@ -69,6 +72,7 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "amenity_coverage_mode": frozenset({"off", "try"}),
     "program_generator": frozenset({"heuristic_v1", "learned_v1"}),
     "layout_solver": frozenset({"banded", "milp_template_v1", "hybrid_milp_v1"}),
+    "osm_semantic_mode": frozenset({"landuse_rules_v1"}),
 }
 
 DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
@@ -99,6 +103,9 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "transit_demand_level": "medium",
     "vehicle_demand_level": "medium",
     "allow_solver_fallback": True,
+    "osm_semantic_mode": "landuse_rules_v1",
+    "osm_multiblock_max_roads": 12,
+    "osm_multiblock_max_extent_m": 350.0,
     "max_styles_per_category": 3,
     "amenity_coverage_mode": "try",
     "minimum_category_presence": ("trash", "bench", "lamp"),
@@ -320,7 +327,7 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         return payload
     raw = dict(payload or {})
     layout_mode = str(raw.get("layout_mode", "template") or "template").strip().lower()
-    if layout_mode not in {"template", "osm", "metaurban", "graph_template"}:
+    if layout_mode not in {"template", "osm", "osm_multiblock", "metaurban", "graph_template"}:
         layout_mode = "template"
     city_name_en = _clean_text(raw.get("city_name_en")) or None
     reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None

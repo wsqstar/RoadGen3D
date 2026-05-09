@@ -130,6 +130,9 @@ def build_compose_config_from_draft(
         transit_demand_level=str(patch.get("transit_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["transit_demand_level"])),
         vehicle_demand_level=str(patch.get("vehicle_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["vehicle_demand_level"])),
         allow_solver_fallback=bool(patch.get("allow_solver_fallback", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["allow_solver_fallback"])),
+        osm_semantic_mode=str(patch.get("osm_semantic_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_semantic_mode"])),
+        osm_multiblock_max_roads=int(patch.get("osm_multiblock_max_roads", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_multiblock_max_roads"])),
+        osm_multiblock_max_extent_m=float(patch.get("osm_multiblock_max_extent_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_multiblock_max_extent_m"])),
         max_styles_per_category=int(patch.get("max_styles_per_category", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["max_styles_per_category"])),
         amenity_coverage_mode=str(patch.get("amenity_coverage_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["amenity_coverage_mode"])),
         minimum_category_presence=tuple(patch.get("minimum_category_presence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["minimum_category_presence"])),
@@ -272,12 +275,17 @@ def _build_runtime_compose_config(
     resolved_scene_context: ResolvedSceneContext,
 ) -> StreetComposeConfig:
     payload = dict(base_config.to_dict())
-    if resolved_scene_context.scene_context.layout_mode == "osm":
+    if resolved_scene_context.scene_context.layout_mode in {"osm", "osm_multiblock"}:
+        layout_mode = resolved_scene_context.scene_context.layout_mode
         payload.update({
-            "layout_mode": "osm",
+            "layout_mode": layout_mode,
             "aoi_bbox": resolved_scene_context.effective_aoi_bbox,
             "osm_cache_dir": str(resolved_scene_context.osm_cache_dir),
-            "road_selection": str(resolved_scene_context.road_selection),
+            "road_selection": (
+                "all"
+                if layout_mode == "osm_multiblock"
+                else str(resolved_scene_context.road_selection)
+            ),
             "selected_road_osm_id": resolved_scene_context.selected_road_osm_id,
             "selected_road_discovered_poi_count": resolved_scene_context.selected_road_discovered_poi_count,
             "selected_road_discovered_poi_score": resolved_scene_context.selected_road_discovered_poi_score,

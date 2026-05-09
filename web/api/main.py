@@ -43,7 +43,9 @@ from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_d
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
 from roadgen3d.services.design_types import sanitize_compose_config_patch, sanitize_scene_context  # noqa: E402
+from roadgen3d.services.scene_context_service import build_osm_semantic_preview  # noqa: E402
 from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
+from roadgen3d.semantic_scenario_edits import draft_semantic_scenario_variant  # noqa: E402
 from roadgen3d.knowledge.source_registry import (  # noqa: E402
     add_source,
     allocate_upload_paths,
@@ -92,6 +94,14 @@ class ScenarioDesignRunCreateRequestModel(BaseModel):
     generation_options: Dict[str, Any] = Field(default_factory=dict)
 
 
+class ScenarioDesignDraftVariantRequestModel(BaseModel):
+    prompt: str = ""
+    graph_template_id: str = "hkust_gz_gate"
+    base_scenario_id: Optional[str] = None
+    semantic_payload: Optional[Dict[str, Any]] = None
+    use_llm: bool = True
+
+
 class KnowledgeRebuildRequestModel(BaseModel):
     pdf_path: Optional[str] = None
     artifact_dir: Optional[str] = None
@@ -117,6 +127,12 @@ class TemplatePatchPreviewRequestModel(BaseModel):
     patch: Dict[str, Any]
     compose_config: Dict[str, Any] = Field(default_factory=dict)
     include_graph_payload: bool = True
+
+
+class OsmSemanticPreviewRequestModel(BaseModel):
+    aoi_bbox: List[float] = Field(..., min_length=4, max_length=4)
+    osm_cache_dir: Optional[str] = None
+    compose_config: Dict[str, Any] = Field(default_factory=dict)
 
 
 class RenderedViewModel(BaseModel):
@@ -219,6 +235,83 @@ class AssetManifestSplitRequestModel(BaseModel):
     asset_id: str = Field(..., min_length=1)
     method: str = "auto"
     projection_margin: float = Field(default=0.03, ge=0.0)
+
+
+def _build_semantic_scenario_edit_messages(
+    *,
+    prompt: str,
+    graph_template_id: str,
+    base_scenario_id: Optional[str],
+    citations: List[Dict[str, Any]],
+) -> List[Dict[str, Any]]:
+    evidence = []
+    for index, item in enumerate(citations[:6], start=1):
+        evidence.append({
+            "rank": index,
+            "title": str(item.get("title") or item.get("source_id") or item.get("chunk_id") or ""),
+            "text": str(item.get("text") or item.get("excerpt") or item.get("content") or "")[:900],
+            "score": item.get("score"),
+            "knowledge_source": str(item.get("knowledge_source") or ""),
+        })
+    schema = {
+        "schema_version": "roadgen3d_semantic_scenario_edit_v1",
+        "edits": [{
+            "action": "add",
+            "feature": "bus_stop | colored_pavement | bike_lane | bus_lane | safety_island | median_green | transit_pad",
+            "road_selector": {"kind": "primary"},
+            "longitudinal": {
+                "anchor": "start | middle | end",
+                "center_fraction": 0.5,
+                "span_fraction": 0.12,
+                "near": "entrance | school | junction | crossing",
+            },
+            "lateral": {
+                "anchor": "center | median | left_curbside | right_curbside | left_sidewalk | right_sidewalk | lane_index_from_center:0",
+                "width_m": 3.2,
+            },
+            "style": {"pavement_color": "green"},
+        }],
+    }
+    return [
+        {
+            "role": "system",
+            "content": (
+                "You convert natural-language street design requests into strict "
+                "roadgen3d_semantic_scenario_edit_v1 JSON. Return JSON only. "
+                "Do not produce low-level template_patch operations, station meter values, "
+                "or lateral meter spans. Use normalized positions and semantic anchors. "
+                "If the user omits dimensions, omit the field so the deterministic compiler "
+                "can apply defaults. Prefer center_fraction over exact meter positions."
+            ),
+        },
+        {
+            "role": "user",
+            "content": json.dumps({
+                "prompt": prompt,
+                "graph_template_id": graph_template_id,
+                "base_scenario_id": base_scenario_id or "",
+                "allowed_features": [
+                    "bus_stop",
+                    "colored_pavement",
+                    "bike_lane",
+                    "bus_lane",
+                    "safety_island",
+                    "median_green",
+                    "transit_pad",
+                ],
+                "position_policy": {
+                    "middle": {"center_fraction": 0.5},
+                    "start_or_front": {"center_fraction": 0.15},
+                    "end_or_back": {"center_fraction": 0.85},
+                    "right_side": {"lateral_anchor": "right_curbside"},
+                    "left_side": {"lateral_anchor": "left_curbside"},
+                    "road_middle": {"lateral_anchor": "median"},
+                },
+                "rag_evidence": evidence,
+                "required_output_shape": schema,
+            }, ensure_ascii=False),
+        },
+    ]
 
 
 def _split_is_relative_to(path: Path, root: Path) -> bool:
@@ -445,6 +538,26 @@ def create_app(
             or generation_options.get("graph_template_id")
             or "hkust_gz_gate"
         ).strip() or "hkust_gz_gate"
+        inline_template_patch = scene_context_payload.get("template_patch")
+        if isinstance(inline_template_patch, dict) and inline_template_patch.get("operations") is not None:
+            scenario_summary = dict(scene_context_payload.get("scenario_design_variant") or {})
+            scenario_title = str(
+                scene_context_payload.get("scenario_title")
+                or scenario_summary.get("title_zh")
+                or scenario_id
+            )
+            draft = replace(draft, template_patch=dict(inline_template_patch))
+            scene_context_payload.update({
+                "layout_mode": "graph_template",
+                "graph_template_id": graph_template_id,
+                "template_patch": dict(inline_template_patch),
+                "scenario_id": scenario_id,
+                "scenario_title": scenario_title,
+                "scenario_design_variant": scenario_summary,
+            })
+            generation_options["scenario_id"] = scenario_id
+            generation_options["scenario_title"] = scenario_title
+            return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
         scenario_inputs = app.state.scenario_design_service.generation_inputs_for_scenario(
             scenario_id,
             graph_template_id=graph_template_id,
@@ -589,6 +702,18 @@ def create_app(
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(payload)
 
+    @app.post("/api/osm/semantic-preview")
+    def osm_semantic_preview(request: OsmSemanticPreviewRequestModel) -> Dict[str, Any]:
+        try:
+            payload = build_osm_semantic_preview(
+                aoi_bbox=tuple(float(item) for item in request.aoi_bbox),
+                osm_cache_dir=Path(request.osm_cache_dir) if request.osm_cache_dir else None,
+                compose_config_patch=sanitize_compose_config_patch(request.compose_config),
+            )
+        except (RuntimeError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(payload)
+
     @app.post("/api/design/draft")
     def design_draft(request: DraftRequestModel) -> Dict[str, Any]:
         service = app.state.design_service
@@ -618,7 +743,7 @@ def create_app(
                 patch_overrides=patch_overrides,
                 generation_options=generation_options,
             )
-        except RuntimeError as exc:
+        except (RuntimeError, ValueError, TemplatePatchError, KeyError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(result)
 
@@ -633,7 +758,7 @@ def create_app(
                 patch_overrides=patch_overrides,
                 generation_options=generation_options,
             )
-        except RuntimeError as exc:
+        except (RuntimeError, ValueError, TemplatePatchError, KeyError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(result.to_dict())
 
@@ -657,6 +782,68 @@ def create_app(
             return make_json_safe(app.state.scenario_design_service.list_scenarios())
         except RuntimeError as exc:
             raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @app.post("/api/scenario-designs/draft-variant")
+    def draft_scenario_design_variant(request: ScenarioDesignDraftVariantRequestModel) -> Dict[str, Any]:
+        citations: List[Dict[str, Any]] = []
+        prompt = str(request.prompt or "").strip()
+        if prompt:
+            try:
+                citations = [
+                    item.to_dict() if hasattr(item, "to_dict") else dict(item)
+                    for item in app.state.design_service.search_knowledge(
+                        query=prompt,
+                        topk=4,
+                        knowledge_source="scenario_parameters",
+                    )
+                ]
+            except Exception:
+                citations = []
+        semantic_payload = request.semantic_payload
+        provided_semantic_payload = semantic_payload is not None
+        llm_used = False
+        fallback_reason = ""
+        if request.use_llm and semantic_payload is None:
+            try:
+                llm = app.state.design_service._get_llm_client()
+                semantic_payload = llm.chat_json(
+                    _build_semantic_scenario_edit_messages(
+                        prompt=prompt,
+                        graph_template_id=request.graph_template_id,
+                        base_scenario_id=request.base_scenario_id,
+                        citations=citations,
+                    ),
+                    temperature=0.1,
+                )
+                draft_semantic_scenario_variant(
+                    prompt=prompt,
+                    graph_template_id=request.graph_template_id,
+                    semantic_payload=semantic_payload,
+                    citations=citations,
+                )
+                llm_used = True
+            except Exception as exc:
+                semantic_payload = None
+                fallback_reason = f"{type(exc).__name__}: {exc}"
+        try:
+            payload = draft_semantic_scenario_variant(
+                prompt=prompt,
+                graph_template_id=request.graph_template_id,
+                semantic_payload=semantic_payload,
+                citations=citations,
+            )
+            payload["llm_requested"] = bool(request.use_llm)
+            payload["llm_used"] = bool(llm_used)
+            payload["fallback_reason"] = "" if llm_used else (
+                fallback_reason
+                or ("semantic_payload provided" if provided_semantic_payload else ("use_llm=false" if not request.use_llm else "deterministic parser fallback"))
+            )
+            payload["semantic_parse_method"] = "llm" if llm_used else ("provided_semantic_payload" if provided_semantic_payload else "deterministic")
+            return make_json_safe(payload)
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        except (TemplatePatchError, ValueError, RuntimeError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @app.get("/api/scenario-designs/{scenario_id}/reference-annotation")
     def get_scenario_design_reference_annotation(

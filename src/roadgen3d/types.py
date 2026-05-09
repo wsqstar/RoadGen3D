@@ -58,7 +58,7 @@ class StreetComposeConfig:
     max_trials_per_slot: int
 
     # -- M5 fields (all have defaults for backward compat) --
-    layout_mode: str = "template"  # "template" | "osm" | "metaurban" | "graph_template"
+    layout_mode: str = "template"  # "template" | "osm" | "osm_multiblock" | "metaurban" | "graph_template"
     constraint_mode: str = "soft"  # "off" | "soft"
     aoi_bbox: Optional[Tuple[float, ...]] = None  # (min_lon, min_lat, max_lon, max_lat)
     osm_cache_dir: str = "artifacts/m5/osm_cache"
@@ -70,6 +70,9 @@ class StreetComposeConfig:
     selected_road_discovered_poi_count: Optional[int] = None
     selected_road_discovered_poi_score: Optional[float] = None
     selected_road_discovered_core_poi_count: Optional[int] = None
+    osm_semantic_mode: str = "landuse_rules_v1"
+    osm_multiblock_max_roads: int = 12
+    osm_multiblock_max_extent_m: float = 350.0
     width_budget_mode: str = "expand_total_width"
     sidewalk_distribution: str = "per_side"
     poi_fit_mode: str = "hard_containment"
@@ -658,6 +661,10 @@ class RoadSegmentNode:
     metaurban_asset_hints: Tuple[RoadSegmentMetaUrbanAssetHint, ...] = ()
     start_junction_id: str = ""
     end_junction_id: str = ""
+    semantic_profile_id: str = ""
+    semantic_reasons: Tuple[str, ...] = ()
+    semantic_confidence: float = 0.0
+    semantic_block_id: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -689,6 +696,10 @@ class RoadSegmentNode:
             ],
             "start_junction_id": self.start_junction_id,
             "end_junction_id": self.end_junction_id,
+            "semantic_profile_id": self.semantic_profile_id,
+            "semantic_reasons": list(self.semantic_reasons),
+            "semantic_confidence": float(self.semantic_confidence),
+            "semantic_block_id": self.semantic_block_id,
         }
 
 
@@ -794,6 +805,7 @@ class ThemeSegment:
     length_m: float
     segment_ids: Tuple[str, ...] = ()
     dominant_poi_types: Tuple[str, ...] = ()
+    semantic_profile_ids: Tuple[str, ...] = ()
     design_rule_profile: str = ""
     style_preset: str = ""
     notes: Tuple[str, ...] = ()
@@ -802,6 +814,7 @@ class ThemeSegment:
         payload = asdict(self)
         payload["segment_ids"] = list(self.segment_ids)
         payload["dominant_poi_types"] = list(self.dominant_poi_types)
+        payload["semantic_profile_ids"] = list(self.semantic_profile_ids)
         payload["notes"] = list(self.notes)
         return payload
 

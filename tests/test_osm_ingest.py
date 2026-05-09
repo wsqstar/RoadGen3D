@@ -204,6 +204,73 @@ def test_parse_osm_features_extracts_building_footprints():
     assert features.buildings[0].coords[0] == features.buildings[0].coords[-1]
 
 
+def test_parse_osm_features_extracts_semantic_polygons_and_points():
+    data = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
+            {"type": "node", "id": 2, "lon": 116.3910, "lat": 39.9000},
+            {"type": "node", "id": 3, "lon": 116.3910, "lat": 39.9010},
+            {"type": "node", "id": 4, "lon": 116.3900, "lat": 39.9010},
+            {"type": "node", "id": 5, "lon": 116.3920, "lat": 39.9000},
+            {"type": "node", "id": 6, "lon": 116.3930, "lat": 39.9000},
+            {"type": "node", "id": 7, "lon": 116.3930, "lat": 39.9010},
+            {"type": "node", "id": 8, "lon": 116.3920, "lat": 39.9010},
+            {"type": "node", "id": 9, "lon": 116.3940, "lat": 39.9000},
+            {"type": "node", "id": 10, "lon": 116.3950, "lat": 39.9000},
+            {"type": "node", "id": 11, "lon": 116.3950, "lat": 39.9010},
+            {"type": "node", "id": 12, "lon": 116.3940, "lat": 39.9010},
+            {"type": "way", "id": 100, "nodes": [1, 2], "tags": {"highway": "residential"}},
+            {"type": "way", "id": 200, "nodes": [1, 2, 3, 4], "tags": {"amenity": "kindergarten"}},
+            {"type": "way", "id": 201, "nodes": [5, 6, 7, 8], "tags": {"landuse": "commercial"}},
+            {"type": "way", "id": 202, "nodes": [9, 10, 11, 12], "tags": {}},
+            {
+                "type": "relation",
+                "id": 300,
+                "members": [{"type": "way", "ref": 202, "role": "outer"}],
+                "tags": {"type": "multipolygon", "leisure": "park"},
+            },
+            {"type": "node", "id": 30, "lon": 116.3905, "lat": 39.9005, "tags": {"amenity": "school"}},
+            {"type": "node", "id": 31, "lon": 116.3925, "lat": 39.9005, "tags": {"shop": "bakery"}},
+            {"type": "node", "id": 32, "lon": 116.3935, "lat": 39.9005, "tags": {"amenity": "parking"}},
+            {"type": "node", "id": 33, "lon": 116.3945, "lat": 39.9005, "tags": {"leisure": "park"}},
+        ]
+    }
+
+    features = parse_osm_features(data)
+
+    assert len(features.land_use_polygons) == 3
+    assert len(features.semantic_blocks) == 3
+    assert {polygon.tags.get("amenity") for polygon in features.land_use_polygons} >= {"kindergarten"}
+    assert {polygon.tags.get("landuse") for polygon in features.land_use_polygons} >= {"commercial"}
+    assert {polygon.source_type for polygon in features.land_use_polygons} >= {"relation"}
+    assert len(features.semantic_points_by_type["education"]) == 1
+    assert len(features.semantic_points_by_type["commercial"]) == 1
+    assert len(features.semantic_points_by_type["vehicle_access"]) == 1
+    assert len(features.semantic_points_by_type["green"]) == 1
+
+
+def test_project_to_local_projects_semantic_blocks():
+    pytest.importorskip("pyproj")
+    data = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
+            {"type": "node", "id": 2, "lon": 116.3910, "lat": 39.9000},
+            {"type": "node", "id": 3, "lon": 116.3910, "lat": 39.9010},
+            {"type": "node", "id": 4, "lon": 116.3900, "lat": 39.9010},
+            {"type": "way", "id": 100, "nodes": [1, 2], "tags": {"highway": "residential"}},
+            {"type": "way", "id": 200, "nodes": [1, 2, 3, 4], "tags": {"landuse": "retail"}},
+            {"type": "node", "id": 30, "lon": 116.3905, "lat": 39.9005, "tags": {"shop": "bakery"}},
+        ]
+    }
+    features = parse_osm_features(data)
+    projected = project_to_local(features, (116.389, 39.899, 116.392, 39.902))
+
+    assert len(projected.land_use_polygons) == 1
+    assert len(projected.semantic_blocks) == 1
+    assert len(projected.semantic_points_by_type["commercial"]) == 1
+    assert projected.semantic_blocks[0].centroid != features.semantic_blocks[0].centroid
+
+
 # ---------------------------------------------------------------------------
 # Projection
 # ---------------------------------------------------------------------------

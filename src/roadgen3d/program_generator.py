@@ -85,7 +85,7 @@ def vectorize_program_input(data: ProgramGenerationInput) -> np.ndarray:
             float(cfg.sidewalk_width_m) / 10.0,
             float(cfg.lane_count) / 6.0,
             float(cfg.density) / 3.0,
-            1.0 if str(cfg.layout_mode) == "osm" else 0.0,
+            1.0 if str(cfg.layout_mode) in {"osm", "osm_multiblock"} else 0.0,
             1.0 if str(cfg.constraint_mode) == "soft" else 0.0,
         ]
     )

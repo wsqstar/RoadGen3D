@@ -70,6 +70,7 @@ from .placement_field import (
 )
 from .spatial_features import build_spatial_context, compute_slot_distances
 from .osm_segment_graph import build_segment_graph
+from .osm_semantics import OSM_SEMANTIC_RULESET_VERSION, segment_semantic_profile_payload
 from .poi_taxonomy import (
     CANONICAL_FIRE_POI,
     canonicalize_poi_type,
@@ -963,7 +964,7 @@ def _street_furniture_scale_info(
 
 
 def _is_corridor_layout_mode(layout_mode: object) -> bool:
-    return str(layout_mode or "").strip().lower() in {"osm", "metaurban", "graph_template"}
+    return str(layout_mode or "").strip().lower() in {"osm", "osm_multiblock", "metaurban", "graph_template"}
 
 
 def _validate_config(config: StreetComposeConfig) -> None:
@@ -986,13 +987,13 @@ def _validate_config(config: StreetComposeConfig) -> None:
     if config.max_trials_per_slot <= 0:
         raise ValueError("max_trials_per_slot must be >= 1")
     # -- M5 validation --
-    if config.layout_mode not in ("template", "osm", "metaurban", "graph_template"):
-        raise ValueError("layout_mode must be 'template', 'osm', 'metaurban', or 'graph_template'")
+    if config.layout_mode not in ("template", "osm", "osm_multiblock", "metaurban", "graph_template"):
+        raise ValueError("layout_mode must be 'template', 'osm', 'osm_multiblock', 'metaurban', or 'graph_template'")
     if config.constraint_mode not in ("off", "soft"):
         raise ValueError("constraint_mode must be 'off' or 'soft'")
-    if config.layout_mode == "osm":
+    if config.layout_mode in {"osm", "osm_multiblock"}:
         if config.aoi_bbox is None or len(config.aoi_bbox) != 4:
-            raise ValueError("aoi_bbox must be a 4-element tuple (min_lon, min_lat, max_lon, max_lat) when layout_mode='osm'")
+            raise ValueError("aoi_bbox must be a 4-element tuple (min_lon, min_lat, max_lon, max_lat) for OSM layout modes")
     if not 0.0 <= config.constraint_weight <= 1.0:
         raise ValueError("constraint_weight must be in [0.0, 1.0]")
     if not 0.0 <= config.constraint_veto_threshold <= 1.0:
@@ -1050,6 +1051,12 @@ def _validate_config(config: StreetComposeConfig) -> None:
         "walkable_neighborhood",
     }:
         raise ValueError("road_selection must be 'all', 'primary_road', 'longest' or 'walkable_neighborhood'")
+    if str(getattr(config, "osm_semantic_mode", "landuse_rules_v1")).strip().lower() not in {"landuse_rules_v1"}:
+        raise ValueError("osm_semantic_mode must be 'landuse_rules_v1'")
+    if int(getattr(config, "osm_multiblock_max_roads", 12)) <= 0:
+        raise ValueError("osm_multiblock_max_roads must be >= 1")
+    if float(getattr(config, "osm_multiblock_max_extent_m", 350.0)) <= 0.0:
+        raise ValueError("osm_multiblock_max_extent_m must be > 0")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
     if str(getattr(config, "surrounding_building_mode", "grid_growth")).strip().lower() not in {"footprint_based", "grid_growth"}:
@@ -8721,13 +8728,18 @@ def compose_street_scene(
         "Resolving road graph, POI, and placement context.",
         layout_mode=str(config.layout_mode),
     )
-    if config.layout_mode == "osm":
+    multiblock_semantic_summary: Dict[str, Any] = {}
+    if config.layout_mode in {"osm", "osm_multiblock"}:
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
         from .placement_zones import evaluate_projected_road_context
 
         raw = fetch_osm_data(bbox=config.aoi_bbox, cache_dir=Path(config.osm_cache_dir))
         features = parse_osm_features(raw)
         projected = project_to_local(features, config.aoi_bbox)
+        if config.layout_mode == "osm_multiblock":
+            from .osm_semantics import prepare_multiblock_projected_features
+
+            projected, multiblock_semantic_summary = prepare_multiblock_projected_features(projected, config)
         projected, placement_ctx, effective_poi_counts = evaluate_projected_road_context(
             projected,
             config,
@@ -8738,7 +8750,7 @@ def compose_street_scene(
                 "Selected road failed POI fit synthesis: "
                 f"{json.dumps(getattr(placement_ctx, 'poi_fit_report', {}), ensure_ascii=True)}"
             )
-        if not qualifies_poi_counts(effective_poi_counts):
+        if config.layout_mode == "osm" and not qualifies_poi_counts(effective_poi_counts):
             raise RuntimeError(
                 "Selected road does not retain enough effective POIs after compose filtering "
                 "(requires weighted POI score >= 2.0 and at least 1 core POI)."
@@ -8790,7 +8802,7 @@ def compose_street_scene(
             if pool
         },
     )
-    if config.layout_mode == "osm":
+    if config.layout_mode in {"osm", "osm_multiblock"}:
         for poi_type, required_count in asset_backed_poi_anchor_counts(
             extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
         ).items():
@@ -10864,6 +10876,22 @@ def compose_street_scene(
         getattr(config, "optional_category_presence", ("mailbox", "hydrant")),
         ("mailbox", "hydrant"),
     )
+    osm_semantic_blocks = [
+        block.to_dict() if hasattr(block, "to_dict") else dict(block)
+        for block in (getattr(projected, "semantic_blocks", ()) or ())
+    ]
+    segment_semantic_profiles = list(
+        segment_semantic_profile_payload(
+            tuple(getattr(road_segment_graph, "nodes", ()) or ())
+        )
+    )
+    segment_semantic_profile_counts = dict(
+        Counter(
+            str(item.get("semantic_profile_id", "") or "")
+            for item in segment_semantic_profiles
+            if str(item.get("semantic_profile_id", "") or "").strip()
+        )
+    )
     tracked_presence_categories = list(dict.fromkeys(minimum_presence_categories + optional_presence_categories))
     placed_assets_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
     placed_counts_by_category: Counter[str] = Counter()
@@ -11048,6 +11076,13 @@ def compose_street_scene(
         "visual_lighting_preset": visual_lighting_preset,
         "visual_surface_role_count": dict(sorted(scene_texture_tracker.surface_role_counts.items())),
         "layout_mode": config.layout_mode,
+        "osm_semantic_mode": str(
+            getattr(config, "osm_semantic_mode", OSM_SEMANTIC_RULESET_VERSION)
+            or OSM_SEMANTIC_RULESET_VERSION
+        ),
+        "semantic_block_count": int(len(osm_semantic_blocks)),
+        "segment_semantic_profile_counts": segment_semantic_profile_counts,
+        "osm_multiblock_summary": dict(multiblock_semantic_summary),
         "constraint_mode": config.constraint_mode,
         "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
         "compliance_rate_total": float(compliance_rate_total),
@@ -11289,6 +11324,8 @@ def compose_street_scene(
         "constraint_set": base_constraint_set.to_dict(),
         "solver": solver_result.to_dict(),
         "summary": summary_payload,
+        "osm_semantic_blocks": osm_semantic_blocks,
+        "segment_semantic_profiles": segment_semantic_profiles,
         "visual_style": visual_style_payload,
         "placements": [placement.to_dict() for placement in placements],
         "environment_placements": (
