@@ -1,0 +1,597 @@
+{
+  "generated_at": "2026-05-09T15:04:15.766662+00:00",
+  "manifest": "assets/building/buildings_manifest.jsonl",
+  "source_scale_for_kenney_assets": 8.0,
+  "notes": [
+    "Kenney source scale maps the authoring units to RoadGen3D meter-scale street scenes.",
+    "Only GLB files that are actual buildings were registered; paths, fences, trees, awnings, and parasols remain unpacked but not scene-eligible building assets."
+  ],
+  "sources": {
+    "kenney_city_kit_commercial": {
+      "source": "Kenney City Kit (Commercial)",
+      "source_url": "https://kenney.nl/assets/city-kit-commercial",
+      "download_url": "https://kenney.nl/media/pages/assets/city-kit-commercial/16eb35d771-1753115042/kenney_city-kit-commercial_2.1.zip",
+      "archive": "assets/building/external/downloads/kenney_city-kit-commercial_2.1.zip",
+      "archive_sha256": "f8b09b081c2bb88bcc126e2dec1cb40fd0dad7e7e591b6c26aaefe96fb35276b",
+      "license": "Creative Commons CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "glb_count_in_package": 41,
+      "registered_building_count": 35,
+      "registered_assets": [
+        {
+          "asset_id": "kenney_city_commercial_building_a",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-a.glb",
+          "dimensions_m": {
+            "width": 7.069,
+            "height": 10.344,
+            "depth": 7.52
+          },
+          "mesh_face_count": 1252
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_b",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-b.glb",
+          "dimensions_m": {
+            "width": 7.76,
+            "height": 10.344,
+            "depth": 7.52
+          },
+          "mesh_face_count": 1276
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_c",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-c.glb",
+          "dimensions_m": {
+            "width": 7.069,
+            "height": 7.144,
+            "depth": 8.72
+          },
+          "mesh_face_count": 1195
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_d",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-d.glb",
+          "dimensions_m": {
+            "width": 6.72,
+            "height": 10.344,
+            "depth": 7.2
+          },
+          "mesh_face_count": 1100
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_e",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-e.glb",
+          "dimensions_m": {
+            "width": 13.12,
+            "height": 7.144,
+            "depth": 8.063
+          },
+          "mesh_face_count": 1509
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_f",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-f.glb",
+          "dimensions_m": {
+            "width": 6.72,
+            "height": 13.544,
+            "depth": 8.24
+          },
+          "mesh_face_count": 1794
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_g",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-g.glb",
+          "dimensions_m": {
+            "width": 7.76,
+            "height": 13.544,
+            "depth": 7.376
+          },
+          "mesh_face_count": 2006
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_h",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-h.glb",
+          "dimensions_m": {
+            "width": 7.069,
+            "height": 10.344,
+            "depth": 8.063
+          },
+          "mesh_face_count": 1512
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_i",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-i.glb",
+          "dimensions_m": {
+            "width": 9.92,
+            "height": 13.44,
+            "depth": 10.416
+          },
+          "mesh_face_count": 2544
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_j",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-j.glb",
+          "dimensions_m": {
+            "width": 16.669,
+            "height": 13.544,
+            "depth": 10.72
+          },
+          "mesh_face_count": 5246
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_k",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-k.glb",
+          "dimensions_m": {
+            "width": 16.669,
+            "height": 11.76,
+            "depth": 7.536
+          },
+          "mesh_face_count": 2960
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_l",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-l.glb",
+          "dimensions_m": {
+            "width": 10.96,
+            "height": 18.16,
+            "depth": 11.216
+          },
+          "mesh_face_count": 3512
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_m",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-m.glb",
+          "dimensions_m": {
+            "width": 9.92,
+            "height": 25.2,
+            "depth": 9.936
+          },
+          "mesh_face_count": 3740
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_n",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-n.glb",
+          "dimensions_m": {
+            "width": 18.56,
+            "height": 19.84,
+            "depth": 14.56
+          },
+          "mesh_face_count": 4350
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_skyscraper_a",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-skyscraper-a.glb",
+          "dimensions_m": {
+            "width": 10.88,
+            "height": 23.04,
+            "depth": 10.88
+          },
+          "mesh_face_count": 1292
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_skyscraper_b",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-skyscraper-b.glb",
+          "dimensions_m": {
+            "width": 10.88,
+            "height": 35.84,
+            "depth": 10.88
+          },
+          "mesh_face_count": 1592
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_skyscraper_c",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-skyscraper-c.glb",
+          "dimensions_m": {
+            "width": 10.24,
+            "height": 32.64,
+            "depth": 11.103
+          },
+          "mesh_face_count": 1704
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_skyscraper_d",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-skyscraper-d.glb",
+          "dimensions_m": {
+            "width": 10.24,
+            "height": 43.76,
+            "depth": 11.103
+          },
+          "mesh_face_count": 1892
+        },
+        {
+          "asset_id": "kenney_city_commercial_building_skyscraper_e",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/building-skyscraper-e.glb",
+          "dimensions_m": {
+            "width": 10.36,
+            "height": 32.64,
+            "depth": 9.936
+          },
+          "mesh_face_count": 1156
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_a",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-a.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 16.0,
+            "depth": 4.0
+          },
+          "mesh_face_count": 188
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_b",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-b.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 17.8,
+            "depth": 4.0
+          },
+          "mesh_face_count": 200
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_c",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-c.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 18.0,
+            "depth": 4.0
+          },
+          "mesh_face_count": 142
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_d",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-d.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 14.0,
+            "depth": 4.0
+          },
+          "mesh_face_count": 106
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_e",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-e.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 14.4,
+            "depth": 4.0
+          },
+          "mesh_face_count": 96
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_f",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-f.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 16.0,
+            "depth": 4.0
+          },
+          "mesh_face_count": 88
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_g",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-g.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 16.0,
+            "depth": 4.0
+          },
+          "mesh_face_count": 200
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_h",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-h.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 16.8,
+            "depth": 4.0
+          },
+          "mesh_face_count": 378
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_i",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-i.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 14.2,
+            "depth": 4.0
+          },
+          "mesh_face_count": 152
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_j",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-j.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 14.0,
+            "depth": 4.0
+          },
+          "mesh_face_count": 188
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_k",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-k.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 12.4,
+            "depth": 4.0
+          },
+          "mesh_face_count": 86
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_l",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-l.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 14.8,
+            "depth": 4.0
+          },
+          "mesh_face_count": 150
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_m",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-m.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 15.8,
+            "depth": 4.0
+          },
+          "mesh_face_count": 188
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_n",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-n.glb",
+          "dimensions_m": {
+            "width": 4.0,
+            "height": 5.6,
+            "depth": 4.0
+          },
+          "mesh_face_count": 62
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_wide_a",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-wide-a.glb",
+          "dimensions_m": {
+            "width": 8.0,
+            "height": 8.8,
+            "depth": 4.0
+          },
+          "mesh_face_count": 156
+        },
+        {
+          "asset_id": "kenney_city_commercial_low_detail_building_wide_b",
+          "file": "external/kenney_city_kit_commercial/Models/GLB format/low-detail-building-wide-b.glb",
+          "dimensions_m": {
+            "width": 8.0,
+            "height": 9.2,
+            "depth": 4.0
+          },
+          "mesh_face_count": 246
+        }
+      ]
+    },
+    "kenney_city_kit_suburban": {
+      "source": "Kenney City Kit (Suburban)",
+      "source_url": "https://kenney.nl/assets/city-kit-suburban",
+      "download_url": "https://kenney.nl/media/pages/assets/city-kit-suburban/167f6dbc31-1745479373/kenney_city-kit-suburban_20.zip",
+      "archive": "assets/building/external/downloads/kenney_city-kit-suburban_2.0.zip",
+      "archive_sha256": "5869c35cf30b1c87bdb2d197b6d325eebadd2ef08ea27f04797e8e08d77a9a39",
+      "license": "Creative Commons CC0 1.0 Universal",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "glb_count_in_package": 40,
+      "registered_building_count": 21,
+      "registered_assets": [
+        {
+          "asset_id": "kenney_city_suburban_building_type_a",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-a.glb",
+          "dimensions_m": {
+            "width": 10.4,
+            "height": 6.668,
+            "depth": 8.225
+          },
+          "mesh_face_count": 1174
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_b",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-b.glb",
+          "dimensions_m": {
+            "width": 14.624,
+            "height": 9.1,
+            "depth": 9.12
+          },
+          "mesh_face_count": 1748
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_c",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-c.glb",
+          "dimensions_m": {
+            "width": 10.291,
+            "height": 8.268,
+            "depth": 8.225
+          },
+          "mesh_face_count": 1196
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_d",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-d.glb",
+          "dimensions_m": {
+            "width": 14.051,
+            "height": 9.9,
+            "depth": 8.224
+          },
+          "mesh_face_count": 1757
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_e",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-e.glb",
+          "dimensions_m": {
+            "width": 10.4,
+            "height": 9.1,
+            "depth": 8.224
+          },
+          "mesh_face_count": 1731
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_f",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-f.glb",
+          "dimensions_m": {
+            "width": 11.424,
+            "height": 9.1,
+            "depth": 11.247
+          },
+          "mesh_face_count": 1616
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_g",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-g.glb",
+          "dimensions_m": {
+            "width": 11.6,
+            "height": 6.146,
+            "depth": 9.424
+          },
+          "mesh_face_count": 1067
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_h",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-h.glb",
+          "dimensions_m": {
+            "width": 10.4,
+            "height": 5.9,
+            "depth": 7.328
+          },
+          "mesh_face_count": 770
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_i",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-i.glb",
+          "dimensions_m": {
+            "width": 10.291,
+            "height": 5.9,
+            "depth": 8.224
+          },
+          "mesh_face_count": 800
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_j",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-j.glb",
+          "dimensions_m": {
+            "width": 10.96,
+            "height": 8.3,
+            "depth": 7.328
+          },
+          "mesh_face_count": 1210
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_k",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-k.glb",
+          "dimensions_m": {
+            "width": 7.368,
+            "height": 9.197,
+            "depth": 8.16
+          },
+          "mesh_face_count": 1024
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_l",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-l.glb",
+          "dimensions_m": {
+            "width": 8.269,
+            "height": 8.394,
+            "depth": 8.16
+          },
+          "mesh_face_count": 1310
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_m",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-m.glb",
+          "dimensions_m": {
+            "width": 11.424,
+            "height": 5.9,
+            "depth": 11.424
+          },
+          "mesh_face_count": 1112
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_n",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-n.glb",
+          "dimensions_m": {
+            "width": 14.274,
+            "height": 9.1,
+            "depth": 11.023
+          },
+          "mesh_face_count": 1612
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_o",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-o.glb",
+          "dimensions_m": {
+            "width": 10.16,
+            "height": 9.1,
+            "depth": 8.224
+          },
+          "mesh_face_count": 1326
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_p",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-p.glb",
+          "dimensions_m": {
+            "width": 9.92,
+            "height": 7.344,
+            "depth": 7.92
+          },
+          "mesh_face_count": 1282
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_q",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-q.glb",
+          "dimensions_m": {
+            "width": 9.92,
+            "height": 7.344,
+            "depth": 7.085
+          },
+          "mesh_face_count": 1140
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_r",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-r.glb",
+          "dimensions_m": {
+            "width": 8.224,
+            "height": 9.129,
+            "depth": 8.16
+          },
+          "mesh_face_count": 1030
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_s",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-s.glb",
+          "dimensions_m": {
+            "width": 11.248,
+            "height": 9.1,
+            "depth": 8.691
+          },
+          "mesh_face_count": 1212
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_t",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-t.glb",
+          "dimensions_m": {
+            "width": 10.509,
+            "height": 9.251,
+            "depth": 11.251
+          },
+          "mesh_face_count": 2062
+        },
+        {
+          "asset_id": "kenney_city_suburban_building_type_u",
+          "file": "external/kenney_city_kit_suburban/Models/GLB format/building-type-u.glb",
+          "dimensions_m": {
+            "width": 11.424,
+            "height": 9.1,
+            "depth": 8.695
+          },
+          "mesh_face_count": 1332
+        }
+      ]
+    }
+  }
+}
