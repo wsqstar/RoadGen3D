@@ -45,8 +45,14 @@ class ResolvedSceneContext:
     probe_metrics: Dict[str, Any] = field(default_factory=dict)
 
     def to_summary_metadata(self) -> Dict[str, Any]:
+        scenario_variant = self.scene_context.scenario_design_variant
         return {
             "layout_mode": str(self.scene_context.layout_mode),
+            "graph_template_id": self.scene_context.graph_template_id,
+            "base_graph_template_id": self.scene_context.graph_template_id if self.scene_context.scenario_id else None,
+            "scenario_id": self.scene_context.scenario_id,
+            "scenario_title": self.scene_context.scenario_title,
+            "scenario_design_variant": dict(scenario_variant) if isinstance(scenario_variant, Mapping) else None,
             "requested_aoi_bbox": list(self.requested_aoi_bbox) if self.requested_aoi_bbox is not None else None,
             "effective_aoi_bbox": list(self.effective_aoi_bbox) if self.effective_aoi_bbox is not None else None,
             "city_name_en": self.city_name_en,

@@ -227,29 +227,63 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
         self,
         *,
         manifest_path: str | Path | None = None,
+        manifest_paths: Sequence[str | Path] | None = None,
         manifest_v2_path: str | Path | None = None,
     ) -> None:
         self.manifest_path = Path(manifest_path).expanduser().resolve() if manifest_path else None
+        self.manifest_paths = tuple(
+            Path(str(path)).expanduser().resolve()
+            for path in (manifest_paths or ())
+            if path not in (None, "") and str(path).strip()
+        )
         self.manifest_v2_path = Path(manifest_v2_path).expanduser().resolve() if manifest_v2_path else None
+        self.last_load_summary: Dict[str, object] = {}
 
     def load_rows(self, *, manifest_path: Path | None = None) -> Tuple[str, List[Dict[str, object]]]:
-        legacy_rows: List[Dict[str, object]] = []
-        resolved_legacy_path: Path | None = None
-        raw_legacy_path = manifest_path or self.manifest_path
-        if raw_legacy_path:
-            resolved_legacy_path = Path(raw_legacy_path).expanduser().resolve()
-            if resolved_legacy_path.exists():
-                legacy_rows = _load_legacy_object_rows(resolved_legacy_path)
+        manifest_sources: List[Path] = list(self.manifest_paths)
+        if not manifest_sources:
+            raw_legacy_path = manifest_path or self.manifest_path
+            if raw_legacy_path:
+                manifest_sources = [Path(raw_legacy_path).expanduser().resolve()]
+
+        source_rows: List[Dict[str, object]] = []
+        loaded_paths: List[str] = []
+        missing_paths: List[str] = []
+        for source_path in manifest_sources:
+            if not source_path.exists():
+                missing_paths.append(str(source_path))
+                continue
+            loaded_rows = _load_legacy_object_rows(source_path)
+            for row in loaded_rows:
+                enriched = dict(row)
+                enriched.setdefault("manifest_source_path", str(source_path))
+                source_rows.append(enriched)
+            loaded_paths.append(str(source_path))
 
         v2_path = self.manifest_v2_path if self.manifest_v2_path and self.manifest_v2_path.exists() else None
         if v2_path is None:
-            if not legacy_rows:
-                raise FileNotFoundError(f"real manifest not found: {resolved_legacy_path}")
-            return "manifest_legacy", legacy_rows
+            if not source_rows:
+                raise FileNotFoundError(f"object manifest not found: {', '.join(missing_paths or [str(path) for path in manifest_sources])}")
+            merged_rows = _merge_object_rows((), source_rows)
+            self.last_load_summary = {
+                "manifest_paths": loaded_paths,
+                "missing_manifest_paths": missing_paths,
+                "manifest_source_count": int(len(loaded_paths)),
+                "manifest_row_count": int(len(source_rows)),
+                "merged_asset_count": int(len(merged_rows)),
+            }
+            return "manifest_multi_merged", merged_rows
 
         overlay_rows = _load_object_manifest_v2_rows(v2_path)
-        merged_rows = _merge_object_rows(legacy_rows, overlay_rows)
-        return "manifest_v2_overlay", merged_rows
+        merged_rows = _merge_object_rows(source_rows, overlay_rows)
+        self.last_load_summary = {
+            "manifest_paths": loaded_paths + [str(v2_path)],
+            "missing_manifest_paths": missing_paths,
+            "manifest_source_count": int(len(loaded_paths) + 1),
+            "manifest_row_count": int(len(source_rows) + len(overlay_rows)),
+            "merged_asset_count": int(len(merged_rows)),
+        }
+        return "manifest_multi_merged", merged_rows
 
 
 class ManifestGroundMaterialBackend(GroundMaterialBackend):

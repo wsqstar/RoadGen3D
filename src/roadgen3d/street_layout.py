@@ -4085,12 +4085,21 @@ def rebuild_glb_from_layout(
         placements.append(pl)
 
     # --- 7. Rebuild building plans if present ---
-    building_plans_by_instance: Dict[str, Any] = {}
+    building_plans_by_instance: Dict[str, BuildingPlacementPlan] = {}
     bp_data = layout_payload.get("building_placements") or []
+    valid_plan_fields = {f.name for f in dataclasses.fields(BuildingPlacementPlan)}
     for bp in bp_data:
         iid = str(bp.get("instance_id", ""))
         if iid:
-            building_plans_by_instance[iid] = bp
+            try:
+                filtered_plan = {
+                    key: value
+                    for key, value in dict(bp).items()
+                    if key in valid_plan_fields
+                }
+                building_plans_by_instance[iid] = BuildingPlacementPlan(**filtered_plan)
+            except Exception:
+                logger.debug("Skipping invalid serialized building placement plan during GLB rebuild: %s", iid)
 
     # --- 8. Build base scene ---
     length_m = float(config.length_m)
@@ -8514,8 +8523,16 @@ def compose_street_scene(
     object_backend_name = "manifest_legacy"
     if object_asset_backend is not None:
         object_backend_name, rows = object_asset_backend.load_rows(manifest_path=manifest_path)
+        manifest_load_summary = dict(getattr(object_asset_backend, "last_load_summary", {}) or {})
     else:
         rows = _load_real_manifest(manifest_path)
+        manifest_load_summary = {
+            "manifest_paths": [str(manifest_path)],
+            "missing_manifest_paths": [],
+            "manifest_source_count": 1,
+            "manifest_row_count": int(len(rows)),
+            "merged_asset_count": int(len(rows)),
+        }
     rows = _ensure_default_sky_dome_row(rows)
     ground_selection = None
     if ground_material_backend is not None:
@@ -8687,6 +8704,7 @@ def compose_street_scene(
     placements: List[StreetPlacement] = []
     existing_bboxes: List[Tuple[float, float, float, float]] = []
     used_asset_ids_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
+    selected_style_asset_ids_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
     retrieval_predictions: List[Dict[str, object]] = []
     dropped_slots = 0
     instance_counter = 1
@@ -9283,6 +9301,16 @@ def compose_street_scene(
         )
         if not filtered_pool:
             filtered_pool = list(pool)
+        style_cap = int(getattr(config, "max_styles_per_category", 3) or 0)
+        selected_style_asset_ids = set(selected_style_asset_ids_by_category.setdefault(category, set()))
+        if style_cap > 0 and len(selected_style_asset_ids) >= style_cap:
+            capped_pool = [
+                row
+                for row in filtered_pool
+                if str(row.get("asset_id", "")) in selected_style_asset_ids
+            ]
+            if capped_pool:
+                filtered_pool = capped_pool
 
         used_asset_ids_for_pick = set(used_asset_ids_by_category.setdefault(category, set()))
         if excluded_asset_ids:
@@ -9656,6 +9684,7 @@ def compose_street_scene(
         )
         placements.append(placement)
         used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
+        selected_style_asset_ids_by_category.setdefault(category, set()).add(str(row["asset_id"]))
         placed_score_sums[category] = placed_score_sums.get(category, 0.0) + float(score)
         placed_counts[category] = placed_counts.get(category, 0) + 1
         instance_counter += 1
@@ -10818,6 +10847,97 @@ def compose_street_scene(
         "default_sky_dome_enabled": bool(default_sky_dome_placement is not None),
     }
 
+    def _coerce_presence_categories(value: object, fallback: Sequence[str]) -> List[str]:
+        if isinstance(value, str):
+            raw_items = value.replace(";", ",").split(",")
+        elif isinstance(value, Sequence):
+            raw_items = list(value)
+        else:
+            raw_items = list(fallback)
+        return list(dict.fromkeys(str(item).strip().lower() for item in raw_items if str(item).strip()))
+
+    minimum_presence_categories = _coerce_presence_categories(
+        getattr(config, "minimum_category_presence", ("trash", "bench", "lamp")),
+        ("trash", "bench", "lamp"),
+    )
+    optional_presence_categories = _coerce_presence_categories(
+        getattr(config, "optional_category_presence", ("mailbox", "hydrant")),
+        ("mailbox", "hydrant"),
+    )
+    tracked_presence_categories = list(dict.fromkeys(minimum_presence_categories + optional_presence_categories))
+    placed_assets_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
+    placed_counts_by_category: Counter[str] = Counter()
+    for placement in placements:
+        placement_category = str(getattr(placement, "category", "") or "")
+        if not placement_category:
+            continue
+        placed_counts_by_category[placement_category] += 1
+        placement_asset_id = str(getattr(placement, "asset_id", "") or "")
+        if placement_asset_id:
+            placed_assets_by_category.setdefault(placement_category, set()).add(placement_asset_id)
+
+    def _category_skipped_reason(category: str, generated_slot_count: int, eligible_asset_count: int, presence_role: str) -> str:
+        if eligible_asset_count <= 0:
+            return f"{category} skipped: no eligible assets"
+        if generated_slot_count <= 0:
+            if presence_role == "optional":
+                return f"{category} skipped: generated_count=0 due density threshold"
+            return f"{category} skipped: generated_count=0 after amenity coverage planning"
+        category_records = [
+            record
+            for record in slot_attempt_records.values()
+            if str(record.get("category", "") or "") == category
+        ]
+        reason_counts: Counter[str] = Counter()
+        for record in category_records:
+            failure_reason = str(record.get("failure_reason", "") or "")
+            if failure_reason:
+                reason_counts[failure_reason] += 1
+            for reason, count in dict(record.get("blocked_reason_counts", {}) or {}).items():
+                reason_counts[str(reason)] += int(count)
+        if reason_counts:
+            reason = reason_counts.most_common(1)[0][0]
+            return f"{category} skipped: generated slots but all candidates blocked by {reason}"
+        return f"{category} skipped: generated slots but no placement succeeded"
+
+    amenity_coverage_summary: List[Dict[str, Any]] = []
+    for category in tracked_presence_categories:
+        presence_role = "minimum" if category in minimum_presence_categories else "optional"
+        eligible_asset_count = int(len(category_to_rows.get(category, ())))
+        generated_slot_count = int(category_slot_counts.get(category, 0))
+        placed_count = int(placed_counts_by_category.get(category, 0))
+        unique_asset_count_for_category = int(len(placed_assets_by_category.get(category, set())))
+        if placed_count > 0:
+            status = "placed"
+            skipped_reason = ""
+        elif presence_role == "optional" and generated_slot_count <= 0:
+            status = "not_required_optional"
+            skipped_reason = _category_skipped_reason(category, generated_slot_count, eligible_asset_count, presence_role)
+        else:
+            status = "skipped"
+            skipped_reason = _category_skipped_reason(category, generated_slot_count, eligible_asset_count, presence_role)
+        amenity_coverage_summary.append({
+            "category": category,
+            "presence_role": presence_role,
+            "eligible_asset_count": eligible_asset_count,
+            "generated_slot_count": generated_slot_count,
+            "placed_count": placed_count,
+            "unique_asset_count": unique_asset_count_for_category,
+            "status": status,
+            "skipped_reason": skipped_reason,
+        })
+
+    style_cap_value = int(getattr(config, "max_styles_per_category", 3) or 0)
+    style_cap_summary = {
+        category: {
+            "max_styles_per_category": int(style_cap_value),
+            "unique_asset_count": int(len(placed_assets_by_category.get(category, set()))),
+            "asset_ids": sorted(placed_assets_by_category.get(category, set())),
+            "cap_reached": bool(style_cap_value > 0 and len(placed_assets_by_category.get(category, set())) >= style_cap_value),
+        }
+        for category in sorted(set(DEFAULT_CATEGORIES) | set(placed_assets_by_category))
+    }
+
     summary_payload = {
         "instance_count": len(placements),
         "environment_instance_count": 1 if default_sky_dome_placement is not None else 0,
@@ -10864,6 +10984,11 @@ def compose_street_scene(
         "asset_lock_fallback_violations": dict(asset_lock_fallback_violations),
         "asset_scale_summary": asset_scale_summary,
         "selected_object_backend": str(object_backend_name),
+        "manifest_paths": list(manifest_load_summary.get("manifest_paths", [str(manifest_path)])),
+        "missing_manifest_paths": list(manifest_load_summary.get("missing_manifest_paths", [])),
+        "manifest_source_count": int(manifest_load_summary.get("manifest_source_count", 1) or 0),
+        "manifest_row_count": int(manifest_load_summary.get("manifest_row_count", len(rows)) or 0),
+        "merged_asset_count": int(manifest_load_summary.get("merged_asset_count", len(rows)) or 0),
         "selected_ground_materials": (
             dict(ground_selection.material_ids_by_role)
             if ground_selection is not None
@@ -10886,6 +11011,8 @@ def compose_street_scene(
         "placement_log_path": str(placement_log_path),
         "placement_log_summary": dict(placement_log_summary),
         "placement_log_reason_counts": dict(placement_log_summary.get("reason_counts", {})),
+        "amenity_coverage_summary": amenity_coverage_summary,
+        "style_cap_summary": style_cap_summary,
         "carriageway_intrusion_blocked_count": int(
             (placement_log_summary.get("reason_counts", {}) or {}).get("intrudes_carriageway", 0) or 0
         ),

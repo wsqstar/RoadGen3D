@@ -701,7 +701,7 @@ def _resolve_scene_glb_path(
     resolved_manifest = (
         Path(manifest_path).expanduser().resolve()
         if manifest_path
-        else (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+        else (ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl").resolve()
     )
     rebuild_outputs = rebuild_glb_from_layout(
         layout_path=layout_path,

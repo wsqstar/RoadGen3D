@@ -230,6 +230,30 @@ class ScenarioDesignService:
                 raise RuntimeError(f"Scenario {scenario_id} is not valid for template {graph_template_id}: {exc}") from exc
         return patch
 
+    def generation_inputs_for_scenario(
+        self,
+        scenario_id: str,
+        *,
+        graph_template_id: str = DEFAULT_GRAPH_TEMPLATE_ID,
+        validate: bool = True,
+    ) -> Dict[str, Any]:
+        """Return normal scene-generation inputs represented by one scenario design."""
+
+        catalog = self._load_catalog()
+        selected = self._select_scenarios(catalog["scenarios"], [scenario_id])
+        scenario = selected[0]
+        template_patch = self.scenario_to_template_patch(
+            scenario,
+            graph_template_id=graph_template_id,
+            validate=validate,
+        )
+        summary = self._scenario_summary(scenario)
+        return make_json_safe({
+            "scenario": summary,
+            "template_patch": template_patch,
+            "compose_config_patch": sanitize_compose_config_patch(scenario.get("compose_config_patch")),
+        })
+
     def _submit_scenario_sample(
         self,
         *,
@@ -449,6 +473,7 @@ class ScenarioDesignService:
             "station_strip_patch_count": station_strip_patch_count,
             "surface_role_counts": surface_roles,
             "template_patch_operation_count": len(template_patch_operations),
+            "compose_config_patch": sanitize_compose_config_patch(scenario.get("compose_config_patch")),
             "preview_layout_path": str(preview_path) if preview_path is not None else "",
             "preview_layout_exists": bool(preview_path and preview_path.exists()),
         }

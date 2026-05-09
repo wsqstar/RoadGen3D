@@ -27,7 +27,6 @@ from .design_types import (
 )
 from .scene_backends import (
     DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
-    DEFAULT_OBJECT_MANIFEST_V2_PATH,
     DEFAULT_SKY_MANIFEST_PATH,
     ManifestGroundMaterialBackend,
     ManifestObjectAssetBackend,
@@ -41,11 +40,13 @@ ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_METAURBAN_REFERENCE_PLAN_ID = "hkust_gz_gate"
 DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_CLIP_MODEL_DIR = (ROOT / "models" / "clip-vit-base-patch32").resolve()
+DEFAULT_OBJECT_MANIFEST_PATH = (ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl").resolve()
 DEFAULT_SCENE_GENERATION_OPTIONS = SceneGenerationOptions(
-    manifest_path=(ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve(),
+    manifest_path=DEFAULT_OBJECT_MANIFEST_PATH,
     artifacts_dir=(ROOT / "artifacts" / "real").resolve(),
     out_dir=(ROOT / "artifacts" / "real").resolve(),
-    object_manifest_v2_path=DEFAULT_OBJECT_MANIFEST_V2_PATH,
+    manifest_paths=(DEFAULT_OBJECT_MANIFEST_PATH,),
+    object_manifest_v2_path=None,
     ground_material_manifest_path=DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
     sky_manifest_path=DEFAULT_SKY_MANIFEST_PATH,
     model_name="openai/clip-vit-base-patch32",
@@ -129,6 +130,10 @@ def build_compose_config_from_draft(
         transit_demand_level=str(patch.get("transit_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["transit_demand_level"])),
         vehicle_demand_level=str(patch.get("vehicle_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["vehicle_demand_level"])),
         allow_solver_fallback=bool(patch.get("allow_solver_fallback", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["allow_solver_fallback"])),
+        max_styles_per_category=int(patch.get("max_styles_per_category", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["max_styles_per_category"])),
+        amenity_coverage_mode=str(patch.get("amenity_coverage_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["amenity_coverage_mode"])),
+        minimum_category_presence=tuple(patch.get("minimum_category_presence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["minimum_category_presence"])),
+        optional_category_presence=tuple(patch.get("optional_category_presence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["optional_category_presence"])),
     )
 
 
@@ -145,6 +150,23 @@ def normalize_scene_generation_options(
         if value in (None, ""):
             return fallback
         return Path(str(value)).expanduser().resolve()
+
+    def _resolve_manifest_paths(payload: Mapping[str, Any]) -> tuple[Path, ...]:
+        raw_paths = payload.get("manifest_paths")
+        if raw_paths in (None, ""):
+            raw_single = payload.get("manifest_path")
+            if raw_single not in (None, ""):
+                raw_paths = [raw_single]
+            else:
+                return tuple(DEFAULT_SCENE_GENERATION_OPTIONS.manifest_paths)
+        if isinstance(raw_paths, str):
+            items = [item.strip() for item in raw_paths.replace(";", ",").split(",")]
+        elif isinstance(raw_paths, Sequence):
+            items = [str(item).strip() for item in raw_paths]
+        else:
+            items = []
+        resolved = tuple(Path(item).expanduser().resolve() for item in items if item)
+        return resolved or tuple(DEFAULT_SCENE_GENERATION_OPTIONS.manifest_paths)
 
     def _resolve_optional_int(value: object) -> int | None:
         if value in (None, ""):
@@ -177,10 +199,12 @@ def normalize_scene_generation_options(
             return fallback
         return (width, height)
 
+    manifest_paths = _resolve_manifest_paths(payload)
     return SceneGenerationOptions(
-        manifest_path=Path(str(payload.get("manifest_path", DEFAULT_SCENE_GENERATION_OPTIONS.manifest_path))).expanduser().resolve(),
+        manifest_path=manifest_paths[0],
         artifacts_dir=Path(str(payload.get("artifacts_dir", DEFAULT_SCENE_GENERATION_OPTIONS.artifacts_dir))).expanduser().resolve(),
         out_dir=Path(str(payload.get("out_dir", DEFAULT_SCENE_GENERATION_OPTIONS.out_dir))).expanduser().resolve(),
+        manifest_paths=manifest_paths,
         preset_id=str(payload.get("preset_id", DEFAULT_SCENE_GENERATION_OPTIONS.preset_id) or "").strip(),
         random_seed=_resolve_optional_int(payload.get("random_seed", DEFAULT_SCENE_GENERATION_OPTIONS.random_seed)),
         object_manifest_v2_path=_resolve_optional_path(
@@ -369,6 +393,7 @@ def _capture_scene_views_if_requested(
 def _build_scene_backends(options: SceneGenerationOptions):
     object_backend = ManifestObjectAssetBackend(
         manifest_path=options.manifest_path,
+        manifest_paths=options.manifest_paths,
         manifest_v2_path=options.object_manifest_v2_path,
     )
     ground_backend = ManifestGroundMaterialBackend(
@@ -747,10 +772,18 @@ def _generate_graph_template_scene_from_draft(
         progress_callback=progress_callback,
     )
     _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
+    scenario_variant = scene_context.scenario_design_variant
+    context_summary = {
+        "graph_template_id": template_id,
+        "base_graph_template_id": template_id if scene_context.scenario_id else None,
+        "scenario_id": scene_context.scenario_id,
+        "scenario_title": scene_context.scenario_title,
+        "scenario_design_variant": dict(scenario_variant) if isinstance(scenario_variant, Mapping) else None,
+    }
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
-        extra_summary=bridge.summary_metadata,
+        extra_summary={**bridge.summary_metadata, **context_summary},
     )
 
 

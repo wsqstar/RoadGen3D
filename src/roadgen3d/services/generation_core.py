@@ -24,7 +24,6 @@ from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
 from .design_types import SceneGenerationOptions
 from .scene_backends import (
     DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
-    DEFAULT_OBJECT_MANIFEST_V2_PATH,
     DEFAULT_SKY_MANIFEST_PATH,
     ManifestGroundMaterialBackend,
     ManifestObjectAssetBackend,
@@ -35,6 +34,7 @@ ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_METAURBAN_REFERENCE_PLAN_ID = "hkust_gz_gate"
 DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_CLIP_MODEL_DIR = (ROOT / "models" / "clip-vit-base-patch32").resolve()
+DEFAULT_OBJECT_MANIFEST_PATH = (ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl").resolve()
 
 
 @dataclass(frozen=True)
@@ -88,7 +88,10 @@ class GenerationOptions:
     """Runtime options for scene generation."""
 
     manifest_path: Path = field(
-        default_factory=lambda: (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+        default_factory=lambda: DEFAULT_OBJECT_MANIFEST_PATH
+    )
+    manifest_paths: Tuple[Path, ...] = field(
+        default_factory=lambda: (DEFAULT_OBJECT_MANIFEST_PATH,)
     )
     artifacts_dir: Path = field(
         default_factory=lambda: (ROOT / "artifacts" / "real").resolve()
@@ -96,9 +99,7 @@ class GenerationOptions:
     out_dir: Path = field(
         default_factory=lambda: (ROOT / "artifacts" / "real").resolve()
     )
-    object_manifest_v2_path: Optional[Path] = field(
-        default_factory=lambda: DEFAULT_OBJECT_MANIFEST_V2_PATH
-    )
+    object_manifest_v2_path: Optional[Path] = None
     ground_material_manifest_path: Optional[Path] = field(
         default_factory=lambda: DEFAULT_GROUND_MATERIAL_MANIFEST_PATH
     )
@@ -127,6 +128,7 @@ class GenerationOptions:
             manifest_path=self.manifest_path,
             artifacts_dir=self.artifacts_dir,
             out_dir=self.out_dir,
+            manifest_paths=self.manifest_paths,
             object_manifest_v2_path=self.object_manifest_v2_path,
             ground_material_manifest_path=self.ground_material_manifest_path,
             sky_manifest_path=self.sky_manifest_path,
@@ -189,6 +191,10 @@ def _build_compose_config(
         seed=int(getattr(params, "seed", 42)),
         topk_per_category=20,
         max_trials_per_slot=30,
+        max_styles_per_category=3,
+        amenity_coverage_mode="try",
+        minimum_category_presence=("trash", "bench", "lamp"),
+        optional_category_presence=("mailbox", "hydrant"),
         design_rule_profile="balanced_complete_street_v1",
         target_street_type="mixed_use",
         objective_profile="balanced",
@@ -207,6 +213,7 @@ def _build_scene_backends(options: GenerationOptions):
     """Create asset backends from options."""
     object_backend = ManifestObjectAssetBackend(
         manifest_path=options.manifest_path,
+        manifest_paths=options.manifest_paths,
         manifest_v2_path=options.object_manifest_v2_path,
     )
     ground_backend = ManifestGroundMaterialBackend(

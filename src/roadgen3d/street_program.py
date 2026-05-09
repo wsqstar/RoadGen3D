@@ -107,6 +107,16 @@ _DEMAND_FACTORS: Dict[str, float] = {
 }
 
 
+def _coerce_category_tuple(value: object) -> Tuple[str, ...]:
+    if isinstance(value, str):
+        raw_items = value.replace(";", ",").split(",")
+    elif isinstance(value, Sequence):
+        raw_items = list(value)
+    else:
+        raw_items = []
+    return tuple(dict.fromkeys(str(item).strip().lower() for item in raw_items if str(item).strip()))
+
+
 def _profile_defaults(profile_name: str) -> Dict[str, object]:
     return dict(_PROFILE_DEFAULTS.get(profile_name, _PROFILE_DEFAULTS["balanced_complete_street_v1"]))
 
@@ -582,6 +592,11 @@ def infer_street_program(
         profile_scales=dict(defaults["density_scales"]),
         required_categories=tuple(defaults["required_categories"]),
     )
+    if str(getattr(config, "amenity_coverage_mode", "try") or "try").strip().lower() == "try":
+        available_set = {str(category).strip().lower() for category in available_categories}
+        for category in _coerce_category_tuple(getattr(config, "minimum_category_presence", ("trash", "bench", "lamp"))):
+            if category in available_set:
+                requirements[category] = max(1, int(requirements.get(category, 0) or 0))
     observed_poi_counts = _observed_poi_counts(poi_context)
     control_points: List[str] = ["entry", "midblock", "exit"]
     merged_goals = _merge_goals(str(config.query), tuple(defaults["design_goals"]))

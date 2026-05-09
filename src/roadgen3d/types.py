@@ -120,6 +120,10 @@ class StreetComposeConfig:
     tree_species_policy: str = "per_theme_single_species"  # "per_theme_single_species" | "free_mixed"
     furniture_balance_policy: str = "overall_balanced"  # "overall_balanced" | "side_biased_legacy"
     placement_logging_mode: str = "full_with_ui_summary"  # "off" | "summary_only" | "full_with_ui_summary"
+    max_styles_per_category: int = 3  # <= 0 disables the per-scene category style cap
+    amenity_coverage_mode: str = "try"  # "off" | "try"
+    minimum_category_presence: Tuple[str, ...] = ("trash", "bench", "lamp")
+    optional_category_presence: Tuple[str, ...] = ("mailbox", "hydrant")
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

@@ -39,12 +39,17 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "transit_demand_level",
     "vehicle_demand_level",
     "allow_solver_fallback",
+    "max_styles_per_category",
+    "amenity_coverage_mode",
+    "minimum_category_presence",
+    "optional_category_presence",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
 _FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m"})
-_INT_FIELDS = frozenset({"lane_count", "seed"})
+_INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category"})
 _BOOL_FIELDS = frozenset({"allow_solver_fallback"})
-_STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS
+_LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence"})
+_STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
 
 # Enum fields: value (lowercased) must be one of these sets, otherwise dropped.
@@ -61,6 +66,7 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "asset_curation_mode": frozenset({"scene_ready_first", "curated_first", "parametric_first", "legacy"}),
     "asset_scale_mode": frozenset({"canonical_v1", "native_raw"}),
     "curated_street_assets_profile": frozenset({"fixed_hq_v1", "disabled"}),
+    "amenity_coverage_mode": frozenset({"off", "try"}),
     "program_generator": frozenset({"heuristic_v1", "learned_v1"}),
     "layout_solver": frozenset({"banded", "milp_template_v1", "hybrid_milp_v1"}),
 }
@@ -93,6 +99,10 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "transit_demand_level": "medium",
     "vehicle_demand_level": "medium",
     "allow_solver_fallback": True,
+    "max_styles_per_category": 3,
+    "amenity_coverage_mode": "try",
+    "minimum_category_presence": ("trash", "bench", "lamp"),
+    "optional_category_presence": ("mailbox", "hydrant"),
 }
 
 
@@ -135,6 +145,14 @@ def sanitize_compose_config_patch(payload: Mapping[str, Any] | None) -> Dict[str
                 patch[key] = bool(value)
             else:
                 continue
+        elif key in _LIST_FIELDS:
+            if isinstance(value, str):
+                items = [item.strip().lower() for item in value.replace(";", ",").split(",")]
+            elif isinstance(value, Sequence):
+                items = [str(item).strip().lower() for item in value]
+            else:
+                items = []
+            patch[key] = tuple(dict.fromkeys(item for item in items if item))
         elif key in _STRING_FIELDS:
             text = _clean_text(value)
             if not text:
@@ -273,6 +291,9 @@ class SceneContext:
     reference_plan_id: str | None = None
     graph_template_id: str | None = None
     template_patch: Dict[str, Any] | None = None
+    scenario_id: str | None = None
+    scenario_title: str | None = None
+    scenario_design_variant: Dict[str, Any] | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -282,6 +303,13 @@ class SceneContext:
             "reference_plan_id": self.reference_plan_id,
             "graph_template_id": self.graph_template_id,
             "template_patch": dict(self.template_patch) if isinstance(self.template_patch, Mapping) else None,
+            "scenario_id": self.scenario_id,
+            "scenario_title": self.scenario_title,
+            "scenario_design_variant": (
+                dict(self.scenario_design_variant)
+                if isinstance(self.scenario_design_variant, Mapping)
+                else None
+            ),
         }
 
 
@@ -297,8 +325,16 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
     city_name_en = _clean_text(raw.get("city_name_en")) or None
     reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None
     graph_template_id = _clean_text(raw.get("graph_template_id")) or None
+    scenario_id = _clean_text(raw.get("scenario_id")) or None
+    scenario_title = _clean_text(raw.get("scenario_title")) or None
     raw_template_patch = raw.get("template_patch")
     template_patch = dict(raw_template_patch) if isinstance(raw_template_patch, Mapping) else None
+    raw_scenario_design_variant = raw.get("scenario_design_variant")
+    scenario_design_variant = (
+        dict(raw_scenario_design_variant)
+        if isinstance(raw_scenario_design_variant, Mapping)
+        else None
+    )
     return SceneContext(
         layout_mode=layout_mode,
         aoi_bbox=_coerce_bbox_tuple(raw.get("aoi_bbox")),
@@ -306,6 +342,9 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         reference_plan_id=reference_plan_id if layout_mode == "metaurban" else None,
         graph_template_id=graph_template_id if layout_mode == "graph_template" else None,
         template_patch=template_patch if layout_mode == "graph_template" else None,
+        scenario_id=scenario_id if layout_mode == "graph_template" else None,
+        scenario_title=scenario_title if layout_mode == "graph_template" else None,
+        scenario_design_variant=scenario_design_variant if layout_mode == "graph_template" else None,
     )
 
 
@@ -360,12 +399,14 @@ class SceneGenerationOptions:
     capture_failure_policy: str = "warn"
     retain_glb_policy: str = "top_k"
     capture_defer_glb_retention: bool = False
+    manifest_paths: Tuple[Path, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "preset_id": self.preset_id,
             "random_seed": self.random_seed,
             "manifest_path": str(self.manifest_path),
+            "manifest_paths": [str(path) for path in self.manifest_paths],
             "artifacts_dir": str(self.artifacts_dir),
             "out_dir": str(self.out_dir),
             "object_manifest_v2_path": str(self.object_manifest_v2_path) if self.object_manifest_v2_path is not None else None,
