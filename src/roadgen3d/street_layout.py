@@ -88,6 +88,7 @@ from .program_generator import ProgramGeneratorRuntime
 from .reference_annotation import VALID_FUNCTIONAL_ZONE_KINDS
 from .poi_rules import load_rule_set
 from .scene_graph_viz import build_scene_graph
+from .services.design_types import DEFAULT_COMPOSE_CONFIG_PATCH_VALUES
 from .scene_textures import (
     VALID_SCENE_TEXTURE_MODES,
     apply_default_scene_texture,
@@ -1782,6 +1783,8 @@ def _sample_pose_for_slot(
     slot_side: str,
     slot_spacing_m: float,
     band_width_m: float,
+    road_width_m: float,
+    sidewalk_width_m: float,
     length_m: float,
     rng: random.Random,
 ) -> Tuple[float, float, float]:
@@ -1791,7 +1794,19 @@ def _sample_pose_for_slot(
     x = float(np.clip(float(slot_x_center) + rng.uniform(-jitter_x, jitter_x), min_x, max_x))
 
     z_jitter = max(0.1, float(band_width_m) * 0.18)
-    z = float(slot_z_center) + rng.uniform(-z_jitter, z_jitter)
+    slot_z = float(slot_z_center)
+    if slot_side in {"left", "right"}:
+        side = 1.0 if slot_side == "left" else -1.0
+        safe_half_width = float(road_width_m) / 2.0 + float(sidewalk_width_m) * 0.5
+        # Imported or legacy slot definitions may place furnished slots near the centerline;
+        # clamp to a canonical sidewalk band center to avoid systematic carriageway intrusion.
+        if abs(slot_z) < abs(safe_half_width):
+            z_base = side * safe_half_width
+        else:
+            z_base = slot_z
+    else:
+        z_base = slot_z
+    z = z_base + rng.uniform(-z_jitter, z_jitter)
 
     if slot_side == "left":
         yaw_base = 180.0
@@ -3961,6 +3976,104 @@ def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
     return outputs
 
 
+def _coerce_compose_config_field(value: Any, template_value: Any) -> Any:
+    """Coerce a serialized compose-config value to a stable runtime type."""
+    if value is None:
+        return template_value
+    if isinstance(template_value, bool):
+        if isinstance(value, bool):
+            return bool(value)
+        if isinstance(value, str):
+            normalized = value.strip().lower()
+            if normalized in {"1", "true", "yes", "on"}:
+                return True
+            if normalized in {"0", "false", "no", "off"}:
+                return False
+            return bool(template_value)
+        if isinstance(value, (int, float)):
+            return bool(value)
+        return bool(template_value)
+    if isinstance(template_value, int) and not isinstance(template_value, bool):
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return template_value
+    if isinstance(template_value, float):
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return template_value
+    if isinstance(template_value, tuple):
+        if isinstance(value, tuple):
+            return value
+        if isinstance(value, list):
+            return tuple(value)
+        if isinstance(value, str):
+            items = [item.strip() for item in value.replace(";", ",").split(",") if item.strip()]
+            return tuple(items)
+        return tuple([value])
+    return str(value).strip() if value is not None else str(template_value)
+
+
+def _coerce_compose_config_for_rebuild(layout_payload: Mapping[str, Any]) -> StreetComposeConfig:
+    """Build a robust compose config for GLB-rebuild from possibly incomplete payloads."""
+    config_dict = dict(layout_payload.get("config") or {})
+    summary = dict(layout_payload.get("summary") or {})
+    spatial_context = dict(summary.get("spatial_context") or {})
+
+    layout_query = str(layout_payload.get("query", "") or "").strip()
+    if layout_query:
+        config_dict.setdefault("query", layout_query)
+    else:
+        config_dict.setdefault("query", str(summary.get("query", "") or "").strip())
+    if summary.get("layout_mode") and "layout_mode" not in config_dict:
+        config_dict["layout_mode"] = str(summary.get("layout_mode"))
+    if summary.get("constraint_mode") and "constraint_mode" not in config_dict:
+        config_dict["constraint_mode"] = str(summary.get("constraint_mode"))
+
+    if "length_m" not in config_dict:
+        if spatial_context.get("length_m") is not None:
+            config_dict["length_m"] = spatial_context["length_m"]
+        elif config_dict.get("layout_mode") not in {None, "", "osm", "osm_multiblock"}:
+            config_dict["length_m"] = DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["length_m"]
+    if "road_width_m" not in config_dict:
+        if spatial_context.get("road_width_m") is not None:
+            config_dict["road_width_m"] = spatial_context["road_width_m"]
+        elif spatial_context.get("road_half_width_m") is not None:
+            config_dict["road_width_m"] = float(spatial_context["road_half_width_m"]) * 2.0
+    if "sidewalk_width_m" not in config_dict and spatial_context.get("sidewalk_width_m") is not None:
+        config_dict["sidewalk_width_m"] = spatial_context["sidewalk_width_m"]
+
+    base_config = StreetComposeConfig(
+        query=str(config_dict.get("query") or "auto pipeline"),
+        length_m=float(config_dict.get("length_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["length_m"]) or DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["length_m"]),
+        road_width_m=float(config_dict.get("road_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["road_width_m"]) or DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["road_width_m"]),
+        sidewalk_width_m=float(config_dict.get("sidewalk_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["sidewalk_width_m"]) or DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["sidewalk_width_m"]),
+        lane_count=int(config_dict.get("lane_count", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["lane_count"]) or DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["lane_count"]),
+        density=float(config_dict.get("density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["density"]) or DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["density"]),
+        seed=int(config_dict.get("seed", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.get("seed", 42)) or DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.get("seed", 42)),
+        topk_per_category=int(config_dict.get("topk_per_category", 20) or 20),
+        max_trials_per_slot=int(config_dict.get("max_trials_per_slot", 30) or 30),
+        **{
+            field: DEFAULT_COMPOSE_CONFIG_PATCH_VALUES[field]
+            for field in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES
+            if field in {f.name for f in dataclasses.fields(StreetComposeConfig)}
+            and field not in {"length_m", "road_width_m", "sidewalk_width_m", "lane_count", "density", "seed", "topk_per_category", "max_trials_per_slot", "query"}
+        },
+    )
+
+    base_payload = dataclasses.asdict(base_config)
+    filtered_payload: Dict[str, Any] = {
+        key: value for key, value in config_dict.items() if key in base_payload
+    }
+    merged = {**base_payload, **filtered_payload}
+    coerced = {
+        key: _coerce_compose_config_field(merged[key], base_payload[key])
+        for key in base_payload
+    }
+    return StreetComposeConfig(**coerced)
+
+
 def rebuild_glb_from_layout(
     layout_path: Path,
     manifest_path: Path,
@@ -3999,10 +4112,7 @@ def rebuild_glb_from_layout(
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # --- 1. Reconstruct StreetComposeConfig from serialized config dict ---
-    config_dict: Dict[str, Any] = layout_payload.get("config") or {}
-    valid_fields = {f.name for f in dataclasses.fields(StreetComposeConfig)}
-    filtered_config = {k: v for k, v in config_dict.items() if k in valid_fields}
-    config = StreetComposeConfig(**filtered_config)
+    config = _coerce_compose_config_for_rebuild(layout_payload)
 
     # --- 2. Reconstruct a StreetProgram-like namespace from bands ---
     sp_dict: Dict[str, Any] = layout_payload.get("street_program") or {}
@@ -6932,6 +7042,8 @@ def _iter_slot_candidate_groups(
                 slot_side=str(getattr(slot, "side", "") or ""),
                 slot_spacing_m=float(getattr(slot, "spacing_m", 1.0) or 1.0),
                 band_width_m=float(band_width_m),
+                road_width_m=float(config.road_width_m),
+                sidewalk_width_m=float(config.sidewalk_width_m),
                 length_m=float(config.length_m),
                 rng=rng,
             )
