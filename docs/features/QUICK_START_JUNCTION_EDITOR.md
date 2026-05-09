@@ -107,4 +107,4 @@ A: 打开浏览器开发者工具查看是否有JavaScript错误
 - **前端代码**: `web/viewer/src/junction-editor.ts`
 - **后端API**: `src/roadgen3d/api/junction_templates.py`
 - **模板存储**: `data/junction_templates/`
-- **文档**: `docs/junction-editor.md`
+- **文档**: `docs/features/junction-editor.md`

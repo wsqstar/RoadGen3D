@@ -12,6 +12,13 @@ from uuid import uuid4
 
 from ..graph_templates import load_graph_template_annotation_payload
 from ..json_safe import make_json_safe
+from ..scenario_rubric import (
+    DEFAULT_SCENARIO_RUBRIC_PATH,
+    ScenarioRubricError,
+    ScenarioRubricEvaluator,
+    missing_layout_evaluation,
+    summarize_scenario_evaluations,
+)
 from ..template_patch import TEMPLATE_PATCH_SCHEMA_VERSION, TemplatePatchError, apply_template_patch
 from .design_types import DesignDraft, SceneJobStatusResponse, sanitize_compose_config_patch
 
@@ -31,10 +38,14 @@ class ScenarioDesignService:
         design_service: Any,
         catalog_path: str | Path | None = None,
         run_root: str | Path | None = None,
+        rubric_path: str | Path | None = None,
+        rubric_evaluator: ScenarioRubricEvaluator | None = None,
     ) -> None:
         self.design_service = design_service
         self.catalog_path = Path(catalog_path or DEFAULT_SCENARIO_CATALOG_PATH).expanduser().resolve()
         self.run_root = Path(run_root or DEFAULT_SCENARIO_RUN_ROOT).expanduser().resolve()
+        self.rubric_path = Path(rubric_path or DEFAULT_SCENARIO_RUBRIC_PATH).expanduser().resolve()
+        self._rubric_evaluator = rubric_evaluator
         self._runs: Dict[str, Dict[str, Any]] = {}
         self._primary_centerline_cache: Dict[str, str] = {}
 
@@ -144,6 +155,7 @@ class ScenarioDesignService:
             "run_dir": str(run_dir),
             "manifest_path": str(run_dir / "manifest.json"),
             "report_path": str(run_dir / "SCENARIO_GENERATION_REPORT.md"),
+            "evaluation_summary": {},
             "items": items,
             "scenarios": [self._scenario_summary(item) for item in selected],
         }
@@ -300,6 +312,9 @@ class ScenarioDesignService:
             if status is None:
                 continue
             self._apply_job_status(item, status)
+        for item in run.get("items", []):
+            if isinstance(item, dict):
+                self._apply_scenario_evaluation(item)
         total = len([item for item in run.get("items", []) if isinstance(item, dict)])
         completed = sum(1 for item in run.get("items", []) if isinstance(item, dict) and item.get("status") == "succeeded")
         failed = sum(1 for item in run.get("items", []) if isinstance(item, dict) and item.get("status") == "failed")
@@ -316,6 +331,7 @@ class ScenarioDesignService:
         else:
             run["status"] = "running" if terminal > 0 or any(item.get("status") == "running" for item in run.get("items", []) if isinstance(item, dict)) else "queued"
             run["finished_at"] = ""
+        run["evaluation_summary"] = summarize_scenario_evaluations(run.get("items", []))
         self._persist_run(run)
         self._write_report(run)
 
@@ -332,6 +348,37 @@ class ScenarioDesignService:
             item["viewer_url"] = str(result.get("viewer_url") or item.get("viewer_url") or "")
             summary = result.get("summary")
             item["summary"] = dict(summary) if isinstance(summary, Mapping) else item.get("summary", {})
+
+    def _apply_scenario_evaluation(self, item: Dict[str, Any]) -> None:
+        if str(item.get("status") or "") != "succeeded":
+            return
+        scenario_id = str(item.get("scenario_id") or "").strip()
+        layout_path = str(item.get("scene_layout_path") or "").strip()
+        if not scenario_id:
+            return
+        existing = item.get("scenario_evaluation")
+        if (
+            isinstance(existing, Mapping)
+            and str(existing.get("layout_path") or "") == layout_path
+            and "scene_layout.json" not in set(existing.get("missing_metrics") or [])
+        ):
+            return
+        if not layout_path:
+            item["scenario_evaluation"] = missing_layout_evaluation(
+                scenario_id,
+                "",
+                "Scene job succeeded but did not return a scene_layout_path.",
+            )
+            return
+        try:
+            item["scenario_evaluation"] = self._rubric().evaluate_layout_path(layout_path, scenario_id)
+        except ScenarioRubricError as exc:
+            item["scenario_evaluation"] = missing_layout_evaluation(scenario_id, layout_path, str(exc))
+
+    def _rubric(self) -> ScenarioRubricEvaluator:
+        if self._rubric_evaluator is None:
+            self._rubric_evaluator = ScenarioRubricEvaluator(rubric_path=self.rubric_path)
+        return self._rubric_evaluator
 
     def _load_catalog(self) -> Dict[str, Any]:
         if not self.catalog_path.exists():
@@ -627,6 +674,7 @@ def _render_report(run: Mapping[str, Any]) -> list[str]:
             ])
             + " |"
         )
+    lines.extend(_render_evaluation_report_section(run))
     failures = [
         item
         for item in run.get("items", [])
@@ -649,6 +697,50 @@ def _render_report(run: Mapping[str, Any]) -> list[str]:
     for scenario in run.get("scenarios", []):
         if isinstance(scenario, Mapping):
             lines.append(f"- {scenario.get('title_zh') or scenario.get('scenario_id')}")
+    return lines
+
+
+def _render_evaluation_report_section(run: Mapping[str, Any]) -> list[str]:
+    summary = dict(run.get("evaluation_summary") or {})
+    items = [item for item in run.get("items", []) if isinstance(item, Mapping)]
+    lines = ["", "## Scenario Evaluation Summary", ""]
+    if not summary or int(summary.get("evaluated_items") or 0) == 0:
+        lines.append("- No scenario rubric evaluations recorded yet.")
+        return lines
+
+    counts = dict(summary.get("status_counts") or {})
+    count_text = ", ".join(
+        f"{status}: {counts.get(status, 0)}"
+        for status in ("Pass", "Review", "Fail", "NotApplicable")
+    )
+    lines.extend([
+        f"- Evaluated items: {summary.get('evaluated_items', 0)}",
+        f"- Status counts: {count_text}",
+        f"- Mean total score: {_score_text(summary.get('mean_total_score'))}",
+        "",
+        "| Scenario | Sample | Rubric | Total | Walk | Safety | Place | Failed gates | Missing / gaps |",
+        "| --- | ---: | --- | ---: | ---: | ---: | ---: | --- | --- |",
+    ])
+    for item in items:
+        result = item.get("scenario_evaluation")
+        if not isinstance(result, Mapping):
+            continue
+        dims = dict(result.get("dimension_scores") or {})
+        lines.append(
+            "| "
+            + " | ".join([
+                _md_text(str(item.get("title_zh") or item.get("scenario_id") or "")),
+                str(item.get("sample_index") or ""),
+                f"`{_md_text(str(result.get('status') or ''))}`",
+                _score_text(result.get("total_score")),
+                _score_text(dims.get("Walkability")),
+                _score_text(dims.get("Safety")),
+                _score_text(dims.get("PlaceQuality")),
+                _md_text(_failed_gate_text(result)),
+                _md_text(_missing_or_gap_text(result)),
+            ])
+            + " |"
+        )
     return lines
 
 
@@ -707,6 +799,29 @@ def _md_path(value: str) -> str:
     if not text:
         return "-"
     return f"`{_md_text(text)}`"
+
+
+def _score_text(value: Any) -> str:
+    try:
+        return f"{float(value):.3f}"
+    except (TypeError, ValueError):
+        return "-"
+
+
+def _failed_gate_text(result: Mapping[str, Any]) -> str:
+    failed = [
+        str(gate.get("gate_id") or "")
+        for gate in result.get("semantic_gates") or []
+        if isinstance(gate, Mapping) and gate.get("status") == "Fail"
+    ]
+    return ", ".join(item for item in failed if item) or "-"
+
+
+def _missing_or_gap_text(result: Mapping[str, Any]) -> str:
+    missing = [str(item) for item in result.get("missing_metrics") or [] if str(item)]
+    gaps = [str(item) for item in result.get("capability_gaps") or [] if str(item)]
+    parts = missing + gaps[:2]
+    return ", ".join(parts) if parts else "-"
 
 
 __all__ = [

@@ -1,7 +1,7 @@
 # RoadGen3D 评价契约
 
 > Status: current draft  
-> Last verified: 2026-05-03  
+> Last verified: 2026-05-08  
 > Scope: 当前 RoadGen3D 主流程使用的 road-metrics 评价接口、输出字段和失败降级。历史评价计划文档仍可参考，但本文作为当前实现入口。
 
 ## 1. 当前评价主线
@@ -20,6 +20,18 @@ walkability / safety / beauty / overall
 ```
 
 输入是 `scene_layout.json`，可选输入是 Viewer 捕获的 `rendered_views` 或 legacy `image_path`。
+
+场景化七方案批量评价是独立的一层：
+
+```text
+data/scenario_designs/hkust_gz_gate_evaluation_rubric.json
+  ↓
+ScenarioRubricEvaluator
+  ↓
+ScenarioDesignService run manifest / SCENARIO_GENERATION_REPORT.md
+```
+
+这层不替代 `/api/design/evaluate/unified`，也不调用 LLM 做自动 Pass / Review / Fail。它只复用 road-metrics 的结构化 walkability、safety、beauty 分数，再叠加机器可读阈值和 semantic gates，用于场景方案批量报告与后续校准。
 
 ## 2. API 请求
 
@@ -85,11 +97,11 @@ overall = W * walkability + S * safety + B * beauty
 
 当前仓库中存在多份评价相关文档：
 
-- `docs/evaluation-system.md`
-- `docs/scoring_formula_specification.md`
-- `docs/EVALUATION_REPORT.md`
-- `docs/evaluation_module_plan.md`
-- `docs/evaluate_implementation_analysis.md`
+- `docs/archive/evaluation-system.md`
+- `docs/archive/scoring_formula_specification.md`
+- `docs/archive/EVALUATION_REPORT.md`
+- `docs/archive/evaluation_module_plan.md`
+- `docs/archive/evaluate_implementation_analysis.md`
 - `src/roadgen3d/eval_engine_ext/road_metrics/LAYERED_ARCHITECTURE.md`
 
 建议后续合并为：

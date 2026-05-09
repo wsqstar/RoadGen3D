@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from collections import defaultdict
 from typing import Any, Dict, Iterable, List, Mapping, Sequence
 
@@ -68,6 +69,9 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
             "geometry": cleaned,
             "area_m2": float(getattr(cleaned, "area", 0.0) or 0.0),
         }
+        horizontal_axes = _coerce_horizontal_axes(source.get("horizontal_axes"))
+        if horizontal_axes is not None:
+            record["horizontal_axes"] = horizontal_axes
         if role in OVERLAY_SURFACE_ROLES:
             overlays_by_role[role].append(record)
         else:
@@ -159,6 +163,22 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
 
     for role in sorted(overlays_by_role):
         sources = overlays_by_role[role]
+        if role == "crossing":
+            component_index = 0
+            for source in sources:
+                for component in _polygon_components(source["geometry"]):
+                    normalized_patches.append(
+                        _normalized_patch_record(
+                            junction_id=junction_id,
+                            role=role,
+                            component_index=component_index,
+                            geometry=component,
+                            sources=[source],
+                            overlay=True,
+                        )
+                    )
+                    component_index += 1
+            continue
         role_union = _clean_polygonal_geometry(unary_union([source["geometry"] for source in sources]))
         if role_union is None or getattr(role_union, "is_empty", True):
             continue
@@ -218,7 +238,7 @@ def _normalized_patch_record(
     source_ids = sorted({str(source.get("source_id", "") or "") for source in contributing_sources if source.get("source_id")})
     source_kinds = sorted({str(source.get("source_kind", "") or "") for source in contributing_sources if source.get("source_kind")})
     surface_id = f"{junction_id}_normalized_{role}_{component_index:02d}"
-    return {
+    record = {
         "surface_id": surface_id,
         "surface_kind": "normalized",
         "surface_role": role,
@@ -229,6 +249,47 @@ def _normalized_patch_record(
         "is_overlay": bool(overlay),
         "area_m2": float(getattr(geometry, "area", 0.0) or 0.0),
     }
+    horizontal_axes = _dominant_horizontal_axes(contributing_sources, geometry)
+    if horizontal_axes is not None:
+        record["horizontal_axes"] = horizontal_axes
+    return record
+
+
+def _coerce_horizontal_axes(value: Any) -> List[List[float]] | None:
+    if not isinstance(value, (list, tuple)) or len(value) != 2:
+        return None
+    axes: List[List[float]] = []
+    for axis in value:
+        if not isinstance(axis, (list, tuple)) or len(axis) != 2:
+            return None
+        try:
+            x = float(axis[0])
+            y = float(axis[1])
+        except (TypeError, ValueError):
+            return None
+        if not math.isfinite(x) or not math.isfinite(y):
+            return None
+        length = math.hypot(x, y)
+        if length <= 1e-9:
+            return None
+        axes.append([x / length, y / length])
+    return axes
+
+
+def _dominant_horizontal_axes(
+    sources: Sequence[Mapping[str, Any]],
+    component_geometry: Any,
+) -> List[List[float]] | None:
+    candidates: List[tuple[float, List[List[float]]]] = []
+    for source in sources:
+        horizontal_axes = _coerce_horizontal_axes(source.get("horizontal_axes"))
+        if horizontal_axes is None:
+            continue
+        candidates.append((_source_component_overlap_area(source.get("geometry"), component_geometry), horizontal_axes))
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    return candidates[0][1]
 
 
 def _canonical_surface_role(source: Mapping[str, Any], *, default_role: str) -> str:
@@ -348,3 +409,12 @@ def _source_intersects_component(source_geometry: Any, component: Any) -> bool:
         return bool(source_geometry.intersects(component)) and float(source_geometry.intersection(component).area) > 1e-8
     except Exception:
         return False
+
+
+def _source_component_overlap_area(source_geometry: Any, component: Any) -> float:
+    if source_geometry is None:
+        return 0.0
+    try:
+        return float(source_geometry.intersection(component).area)
+    except Exception:
+        return 0.0

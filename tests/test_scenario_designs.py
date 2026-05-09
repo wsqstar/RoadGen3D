@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -54,6 +55,12 @@ class _FakeScenarioJobService:
         sample_id = out_dir.name
         layout_path = out_dir / "graph_template" / "hkust_gz_gate" / "20260506T000000Z" / "scene_layout.json"
         glb_path = layout_path.parent / "scene.glb"
+        if not layout_path.exists():
+            layout_path.parent.mkdir(parents=True, exist_ok=True)
+            layout_path.write_text(
+                json.dumps(_fake_layout_payload(match["draft"], scenario_id), ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
         return SceneJobStatusResponse(
             job_id=job_id,
             status="succeeded",
@@ -76,6 +83,86 @@ class _FakeScenarioJobService:
 
     def list_recent_scenes(self, *, limit=20):
         return []
+
+
+def _fake_layout_payload(draft: DesignDraft, scenario_id: str) -> dict:
+    config = dict(draft.compose_config_patch or {})
+    config.setdefault("length_m", 80.0)
+    config.setdefault("road_width_m", 12.0)
+    config.setdefault("sidewalk_width_m", 3.2)
+    config.setdefault("lane_count", 4)
+    config.setdefault("density", 0.9)
+    surfaces = []
+    zones = []
+    visual_roles = {
+        "sidewalk": 8,
+        "crossing": 4,
+        "tree_pit": 8,
+    }
+    for operation in draft.template_patch.get("operations", []):
+        if operation.get("op") == "upsert_surface_annotation" and isinstance(operation.get("surface"), dict):
+            surface = dict(operation["surface"])
+            surfaces.append(surface)
+            role = str(surface.get("surface_role") or surface.get("kind") or "surface")
+            visual_roles[role] = visual_roles.get(role, 0) + 1
+        if operation.get("op") == "upsert_functional_zone" and isinstance(operation.get("zone"), dict):
+            zones.append(dict(operation["zone"]))
+        updates = operation.get("updates") if isinstance(operation.get("updates"), dict) else {}
+        if str(updates.get("kind") or "").strip() == "grass_belt":
+            visual_roles["median_green"] = visual_roles.get("median_green", 0) + 1
+            visual_roles["planting_soil"] = visual_roles.get("planting_soil", 0) + 1
+    return {
+        "config": config,
+        "summary": {
+            "length_m": config["length_m"],
+            "road_width_m": config["road_width_m"],
+            "sidewalk_width_m": config["sidewalk_width_m"],
+            "left_clear_path_width_m": max(float(config["sidewalk_width_m"]) - 0.4, 1.2),
+            "right_clear_path_width_m": max(float(config["sidewalk_width_m"]) - 0.4, 1.2),
+            "left_furnishing_width_m": 0.8,
+            "right_furnishing_width_m": 0.8,
+            "entrance_count": 6,
+            "mean_entrance_openness": 1.0,
+            "mean_noise_shielding": 0.2,
+            "dropped_slot_rate": 0.0,
+            "visual_surface_role_count": visual_roles,
+            "composition_report": {
+                "presentation_score": 0.78,
+                "style_coherence": 0.86,
+                "visual_clutter": 0.12,
+                "spacing_rhythm": 0.72,
+                "focal_readability": 0.82,
+            },
+            "spatial_context": {
+                "bus_stop_points_xz": [[0, 4]],
+                "poi_points_by_type_xz": {
+                    "school": [[-10, 8]],
+                    "retail": [[12, -8]],
+                    "park": [[20, 10]],
+                },
+            },
+            "land_use_summary": {
+                "school": 1,
+                "commercial": 1,
+                "park": 1,
+            },
+        },
+        "placements": [
+            {"category": "tree", "x": -20, "z": 4},
+            {"category": "tree", "x": 0, "z": -4},
+            {"category": "lamp", "x": 10, "z": 4},
+            {"category": "lamp", "x": 30, "z": -4},
+            {"category": "bench", "x": -30, "z": 5},
+            {"category": "bollard", "x": 20, "z": 2},
+        ],
+        "surface_annotations": surfaces,
+        "functional_zones": zones,
+        "scenario_design": {
+            "scenario_id": scenario_id,
+            "design_surface_ids": [surface.get("id", "") for surface in surfaces],
+            "functional_zone_ids": [zone.get("id", "") for zone in zones],
+        },
+    }
 
 
 def test_scenario_design_service_loads_catalog_and_builds_valid_template_patch(tmp_path: Path):
@@ -202,9 +289,12 @@ def test_scenario_design_run_creates_scene_jobs_and_report(tmp_path: Path):
     assert refreshed["status"] == "succeeded"
     assert refreshed["completed_jobs"] == 3
     assert refreshed["items"][0]["scene_layout_path"].endswith("scene_layout.json")
+    assert "scenario_evaluation" in refreshed["items"][0]
+    assert refreshed["evaluation_summary"]["evaluated_items"] == 3
     assert Path(refreshed["manifest_path"]).exists()
     assert report is not None
     assert "Scenario Generation Report" in report["content"]
+    assert "Scenario Evaluation Summary" in report["content"]
 
 
 def test_scenario_design_api_creates_default_enabled_job_run(tmp_path: Path):
@@ -261,9 +351,11 @@ def test_scenario_design_api_creates_default_enabled_job_run(tmp_path: Path):
     assert status_response.status_code == 200
     assert status_response.json()["status"] == "succeeded"
     assert status_response.json()["completed_jobs"] == 15
+    assert status_response.json()["evaluation_summary"]["evaluated_items"] == 15
 
     report_response = client.get(f"/api/scenario-designs/runs/{run_payload['run_id']}/report")
     assert report_response.status_code == 200
     assert report_response.json()["report_path"].endswith("SCENARIO_GENERATION_REPORT.md")
+    assert "Scenario Evaluation Summary" in report_response.json()["content"]
     assert "方案 6" in report_response.json()["content"]
     assert "方案 7" not in report_response.json()["content"]

@@ -2270,6 +2270,43 @@ def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
     assert max(float(mesh.bounds[1][0]) for mesh in curb_meshes) > 1.8
 
 
+def test_osm_normalized_crosswalk_uses_preserved_horizontal_axes():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.Polygon(),
+        sidewalk_zone=shapely_geometry.Polygon(),
+        road_arm_geometries=[],
+        junction_geometries=[
+            {
+                "normalized_surface_patches": [
+                    {
+                        "surface_role": "crossing",
+                        "geometry": shapely_geometry.box(0.0, 0.0, 4.0, 10.0),
+                        "horizontal_axes": [[1.0, 0.0], [0.0, 1.0]],
+                    }
+                ]
+            }
+        ],
+        strip_zones={},
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+    stripe_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("junction_normalized_crossing_")
+    ]
+
+    assert stripe_meshes
+    for mesh in stripe_meshes:
+        x_extent = float(mesh.bounds[1][0] - mesh.bounds[0][0])
+        z_extent = float(mesh.bounds[1][2] - mesh.bounds[0][2])
+        assert x_extent == pytest.approx(4.0, abs=0.05)
+        assert z_extent <= 0.7
+
+
 def test_osm_center_grass_belt_renders_as_flowerbed():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")

@@ -1,10 +1,13 @@
 # RoadGen3D
 
-> **Text-to-3D Urban Street Scene Generation** — 从文本描述到详细 3D 城市场景的神经符号系统
+> **3D Urban Street Scene Generation and Evaluation** — 规则/约束驱动、AI 辅助的 3D 街道场景生成与评价系统
 
-[![Architecture](https://img.shields.io/badge/docs-architecture-blue)](docs/ARCHITECTURE.md)
+[![Docs](https://img.shields.io/badge/docs-index-blue)](docs/README.md)
+[![Framework](https://img.shields.io/badge/docs-framework-blue)](docs/ROADGEN3D_FRAMEWORK.md)
 [![Evaluation Engine](https://img.shields.io/badge/eval-road--metrics-green)](src/roadgen3d/eval_engine_ext)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+
+> 文档入口见 [docs/README.md](docs/README.md)。下午组会可直接使用 [docs/PROJECT_SUMMARY_FOR_MEETING.md](docs/PROJECT_SUMMARY_FOR_MEETING.md)。
 
 ---
 
@@ -15,7 +18,7 @@ RoadGen3D 是一个**分层架构**的生成式设计系统，由 **4 层**和 *
 ```
 RoadGen3D/
 ├── 🌐 Web 交互层 (web/)
-│   ├── viewer/             # 当前主界面：设计生成、溯源、评价与 Three.js 3D 查看
+│   ├── viewer/             # 当前主界面：Scenario Designs、设计生成、溯源、评价与 Three.js 3D 查看
 │   ├── workbench/          # 已归档的旧 React 设计工作台 (默认不启动)
 │   └── api/                # FastAPI 后端 (意图理解、场景生成、评估接口)
 │
@@ -42,8 +45,11 @@ RoadGen3D/
 │   └── branch_benchmarks/  # 持久化 benchmark samples 与汇总索引
 │
 └── 📖 文档 (docs/)
-    ├── ARCHITECTURE.md     # 完整系统架构与工作流说明
-    └── EVALUATION_REPORT.md # 评估公式与指标详细展开
+    ├── ROADGEN3D_FRAMEWORK.md         # 当前框架总览和主流程
+    ├── DATA_CONTRACTS.md              # 数据契约
+    ├── EVALUATION.md                  # 当前评价契约
+    ├── DEPLOYMENT_AND_JOBS.md         # 部署与任务边界
+    └── PROJECT_SUMMARY_FOR_MEETING.md # 组会一页总结
 ```
 
 ### 🔑 核心设计理念
@@ -71,18 +77,17 @@ RoadGen3D/
 - **内存安全**: LRU 缓存管理，自动淘汰，防 OOM 设计
 - **效果**: L 形长椅、带顶棚公交站等可以"咬合"排列，空间利用率大幅提升
 
-### 🔄 核心工作流 (5 步闭环)
+### 🔄 核心工作流
 
 ```
-用户输入 → 意图理解 (LLM+RAG) → 场景生成 (布局+资产) → 质量评估 (road-metrics) → 诊断优化 → 重新生成
-   ↑_________________________________________________________________________________________|
+Scenario catalog / preset / optional prompt
+  → template_patch / compose_config_patch
+  → 场景生成 (graph template + layout + assets)
+  → 质量评估 (road-metrics)
+  → Viewer 展示、对比、报告和后续优化
 ```
 
-1. **Draft**: 自然语言 → 参数配置 (`compose_config_patch`)
-2. **Generate**: 参数 → 3D 场景 (`scene_layout.json` + `scene.glb`)
-3. **Evaluate**: 场景 → 多维度评分 (步行性/安全性/美观性)
-4. **Diagnose**: 识别短板 → 生成改进建议 (`config_patch`)
-5. **Loop**: 应用建议 → 回到第 2 步重新生成
+当前 Viewer 的 Scenario Designs 批量生成从场景目录出发，通过 `/api/scenario-designs/runs` 转成 `template_patch` 和 `compose_config_patch`，并以 `skip_llm` 模式复用 scene job 生成内核。自然语言 LLM/RAG draft、Branch/Pareto 和 benchmark 路径仍然存在，但不是 Scenario Designs 面板的主生成线路。
 
 ### 🧭 Pareto Trace 与 Benchmark Explorer
 
@@ -242,7 +247,7 @@ ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web
 └─────────────┘     └─────────────┘     └─────────────────────┘
 ```
 
-> 📖 **想了解完整的系统架构和工作流？** 请查看 [系统架构与工作流程文档](docs/ARCHITECTURE.md)，其中详细描述了 Viewer、Test Pipeline、归档 Workbench 之间的关系，以及"生成-评估-优化"闭环的完整实现。
+> 📖 **想了解完整的系统架构和工作流？** 请查看 [当前框架总览](docs/ROADGEN3D_FRAMEWORK.md) 和 [文档入口](docs/README.md)，其中说明了 Viewer、Test Pipeline、归档 Workbench 之间的关系，以及"生成-评估-优化"闭环的当前实现。
 
 启动服务：
 
@@ -411,18 +416,19 @@ RoadGen3D/
 
 ## System Architecture
 
-### Generation Pipeline
+### Current Viewer Generation Pipeline
 
 ```
-User Text Prompt
+Scenario Designs catalog
     │
     ▼
-┌──────────┐    ┌────────────────┐    ┌────────────────┐    ┌──────────────┐
-│  CLIP +  │───▶│ StreetProgram  │───▶│  LayoutSolver  │───▶│  Mesh Export  │
-│  FAISS   │    │ + Constraints  │    │  (collision,   │    │  (GLB / PLY)  │
-│ Retrieve │    │                │    │   rules, ...)  │    │               │
-└──────────┘    └────────────────┘    └────────────────┘    └──────────────┘
+┌────────────────┐    ┌────────────────┐    ┌────────────────┐    ┌──────────────┐
+│ template_patch │───▶│ graph-template │───▶│ compose_street │───▶│ scene_layout │
+│ config_patch   │    │ scene bridge   │    │ _scene()       │    │ + scene.glb  │
+└────────────────┘    └────────────────┘    └────────────────┘    └──────────────┘
 ```
+
+This is the current Viewer Scenario Designs path. It submits `/api/scenario-designs/runs`, constructs a `DesignDraft` from catalog data, sets `preset_id=skip_llm`, and then reuses the `/api/scene/jobs` generation core.
 
 ### Auto Scene Pipeline (LLM-driven closed loop)
 
@@ -484,13 +490,15 @@ preset / prompt / patch
 
 For v1 benchmark search, the generation parameter space is solved with deterministic / traditional search over preset patches. RAG evidence, scene parameter triples, LLM config patches, optimization directives, and rejected edits are preserved as trace rows so the Viewer can explain why a point appears where it does in the 3D score space. Visual scoring from rendered views may still call the LLM evaluator when enabled.
 
-### Neuro-Symbolic Street Generation
+### Structured Rule / Constraint Generation
 
-The default generation pipeline uses explicit intermediate representations:
+The core generator uses explicit intermediate representations:
 
 1. **StreetProgram** — Declarative street description: road type, cross-section, functional zones, street furniture requirements, control points, design goals
 2. **ConstraintSet** — Hard/soft design rules (not hardcoded penalties)
 3. **LayoutSolver** — Placement optimization with collision detection, outputs `slot_plans / edits / conflicts / rule_evaluations`
+
+These structures support explainability and rule/constraint-driven generation. The repository also contains optional LLM/RAG and learned-generator hooks, but the current Viewer Scenario Designs batch path is not a strict neuro-symbolic model.
 
 Built-in design rule profiles:
 - `balanced_complete_street_v1`
@@ -524,8 +532,8 @@ Normalized POI types: `entrance`, `bus_stop`, `fire_hydrant`, `crossing`, `traff
 
 ### Key Architecture Decisions
 
-- **OSM mode is the primary generation path.** `template` mode is retained for compatibility and debugging.
-- **StreetProgram → ConstraintSet → LayoutSolver** is the explicit intermediate backbone. No direct query-to-slot black box.
+- **Scenario Designs + graph template is the current Viewer demo path.** OSM, MetaUrban, prompt/preset and `template` modes remain available for other workflows and experiments.
+- **StreetProgram → ConstraintSet → LayoutSolver** is the explicit intermediate backbone inside the core generator. Current Viewer Scenario Designs generation starts from catalog/template patches, not from per-sample LLM parameter derivation.
 - **POI is a hard generation input**, not just visualization. Asset-backed POI bind to anchored slots; missing categories cause explicit failure, not silent degradation.
 - **Sidewalk widths are POI-driven** in OSM mode, not fixed. Cross-section synthesis adjusts widths based on POI pressure.
 - **Learned backends** (program generator, layout policy) are enhancement layers. The system always falls back to heuristic/rule defaults when checkpoints are unavailable.
@@ -727,6 +735,10 @@ The canonical API entry point is `web/api/main.py`. Scene generation runs as asy
 | POST | `/api/scene/jobs` | Submit a generation job |
 | GET | `/api/scene/jobs` | List all jobs |
 | GET | `/api/scene/jobs/{job_id}` | Get job status / result |
+| GET | `/api/scenario-designs` | List curated Viewer scenario designs |
+| POST | `/api/scenario-designs/runs` | Submit Scenario Designs batch generation; catalog entries are converted to template/config patches and generated with `skip_llm` |
+| GET | `/api/scenario-designs/runs/{run_id}` | Poll Scenario Designs batch status |
+| GET | `/api/scenario-designs/runs/{run_id}/report` | Read the generated Scenario Designs report |
 | GET | `/api/scenes/recent` | List recent scenes |
 | GET | `/api/knowledge/sources` | List available knowledge sources |
 | POST | `/api/knowledge/search` | Manual knowledge search |
@@ -909,6 +921,7 @@ make eval                 # Run engineering evaluation
 
 - No cross-modal training (OpenShape/ULIP) — retrieval is CLIP text-only
 - `shapee` direct latent decoding requires matching latent dimensions; production use recommends `mesh_ref`
+- Current Viewer Scenario Designs generation is catalog/template-patch driven and sets `skip_llm`; the natural-language LLM/RAG draft path is a separate route.
 - Course delivery path supports `graph_template` cross junctions; open-ended arbitrary street networks are still out of scope
 - `StreetProgram` uses heuristic generator (`heuristic_v1`) — not yet replaced by a learned program generator
 - Layout solver uses `banded` heuristic — not MILP or diffusion-based

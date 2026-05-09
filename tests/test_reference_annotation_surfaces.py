@@ -195,7 +195,11 @@ def test_junction_surface_normalization_partitions_and_keeps_raw_debug() -> None
                 {"patch_id": "empty_sidewalk_patch", "surface_role": "sidewalk", "geometry": LineString([(0.0, 0.0), (1.0, 1.0)])},
             ],
             "crosswalk_patches": [
-                {"patch_id": "crosswalk_patch", "geometry": box(1.0, 1.0, 5.0, 3.0)},
+                {
+                    "patch_id": "crosswalk_patch",
+                    "horizontal_axes": [[1.0, 0.0], [0.0, 1.0]],
+                    "geometry": box(1.0, 1.0, 5.0, 3.0),
+                },
             ],
         }
     )
@@ -210,3 +214,41 @@ def test_junction_surface_normalization_partitions_and_keeps_raw_debug() -> None
             assert patch_a["geometry"].intersection(patch_b["geometry"]).area < 1e-6
     crossing = next(patch for patch in surfaces if patch["surface_role"] == "crossing")
     assert crossing["is_overlay"] is True
+    assert crossing["horizontal_axes"] == [[1.0, 0.0], [0.0, 1.0]]
+
+
+def test_junction_surface_normalization_keeps_crosswalk_sources_separate() -> None:
+    pytest.importorskip("shapely")
+    from shapely.geometry import box
+
+    normalized = normalize_junction_surface_geometry(
+        {
+            "junction_id": "junction_crossing_axes",
+            "crosswalk_patches": [
+                {
+                    "patch_id": "east_west_crosswalk",
+                    "horizontal_axes": [[1.0, 0.0], [0.0, 1.0]],
+                    "geometry": box(-2.0, -1.0, 2.0, 1.0),
+                },
+                {
+                    "patch_id": "north_south_crosswalk",
+                    "horizontal_axes": [[0.0, 1.0], [1.0, 0.0]],
+                    "geometry": box(-1.0, -2.0, 1.0, 2.0),
+                },
+            ],
+        }
+    )
+
+    crossings = [
+        patch
+        for patch in normalized["normalized_surface_patches"]
+        if patch["surface_role"] == "crossing"
+    ]
+
+    assert len(crossings) == 2
+    assert {tuple(patch["source_ids"]) for patch in crossings} == {
+        ("east_west_crosswalk",),
+        ("north_south_crosswalk",),
+    }
+    assert [[1.0, 0.0], [0.0, 1.0]] in [patch["horizontal_axes"] for patch in crossings]
+    assert [[0.0, 1.0], [1.0, 0.0]] in [patch["horizontal_axes"] for patch in crossings]

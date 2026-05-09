@@ -5372,21 +5372,14 @@ def _build_osm_base_scene(
         v_values = [float(point[0]) * axis_v[0] + float(point[1]) * axis_v[1] for point in rect_coords[:4]]
         u_min, u_max = min(u_values), max(u_values)
         v_min, v_max = min(v_values), max(v_values)
-        crosswalk_depth_m = max(0.1, float(u_max - u_min))
-        if crosswalk_depth_m > max(0.1, float(v_max - v_min)):
-            axis_u, axis_v = axis_v, axis_u
-            u_values = [float(point[0]) * axis_u[0] + float(point[1]) * axis_u[1] for point in rect_coords[:4]]
-            v_values = [float(point[0]) * axis_v[0] + float(point[1]) * axis_v[1] for point in rect_coords[:4]]
-            u_min, u_max = min(u_values), max(u_values)
-            v_min, v_max = min(v_values), max(v_values)
-            crosswalk_depth_m = max(0.1, float(u_max - u_min))
+        crossing_width_m = max(0.1, float(v_max - v_min))
 
-        stripe_width_m = min(0.55, max(0.28, crosswalk_depth_m / 5.0))
+        stripe_width_m = min(0.55, max(0.28, crossing_width_m / 18.0))
         stripe_gap_m = min(0.50, max(0.24, stripe_width_m * 0.85))
         stripe_period_m = stripe_width_m + stripe_gap_m
-        stripe_count = max(1, int(math.floor((crosswalk_depth_m + stripe_gap_m) / stripe_period_m)))
+        stripe_count = max(1, int(math.floor((crossing_width_m + stripe_gap_m) / stripe_period_m)))
         used_width_m = stripe_count * stripe_width_m + max(0, stripe_count - 1) * stripe_gap_m
-        cursor_u = u_min + max(0.0, (crosswalk_depth_m - used_width_m) / 2.0)
+        cursor_v = v_min + max(0.0, (crossing_width_m - used_width_m) / 2.0)
 
         def _point(local_u: float, local_v: float) -> Tuple[float, float]:
             return (
@@ -5395,15 +5388,15 @@ def _build_osm_base_scene(
             )
 
         for stripe_idx in range(stripe_count):
-            stripe_u0 = cursor_u + float(stripe_idx) * stripe_period_m
-            stripe_u1 = min(stripe_u0 + stripe_width_m, u_max)
-            if stripe_u1 <= stripe_u0:
+            stripe_v0 = cursor_v + float(stripe_idx) * stripe_period_m
+            stripe_v1 = min(stripe_v0 + stripe_width_m, v_max)
+            if stripe_v1 <= stripe_v0:
                 continue
             stripe_rect = Polygon([
-                _point(stripe_u0, v_min),
-                _point(stripe_u1, v_min),
-                _point(stripe_u1, v_max),
-                _point(stripe_u0, v_max),
+                _point(u_min, stripe_v0),
+                _point(u_max, stripe_v0),
+                _point(u_max, stripe_v1),
+                _point(u_min, stripe_v1),
             ])
             stripe_geometry = stripe_rect.intersection(geometry)
             if stripe_geometry is None or getattr(stripe_geometry, "is_empty", True):
@@ -5830,6 +5823,29 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             return [0.0, 0.0]
         return [round(float(point[0]), 3), round(float(point[1]), 3)]
 
+    def _serialize_horizontal_axes(value) -> list | None:
+        if not isinstance(value, (list, tuple)) or len(value) != 2:
+            return None
+        axes = []
+        for axis in value:
+            if not isinstance(axis, (list, tuple)) or len(axis) != 2:
+                return None
+            try:
+                x = float(axis[0])
+                y = float(axis[1])
+            except (TypeError, ValueError):
+                return None
+            if not math.isfinite(x) or not math.isfinite(y):
+                return None
+            length = math.hypot(x, y)
+            if length <= 1e-9:
+                return None
+            axes.append((x / length, y / length))
+        return [
+            [round(float(axis[0]), 6), round(float(axis[1]), 6)]
+            for axis in axes
+        ]
+
     def _serialize_corner_patch(patch) -> dict:
         return {
             "patch_id": str(patch.get("patch_id", "") or ""),
@@ -5856,7 +5872,7 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
         }
 
     def _serialize_normalized_surface_patch(patch) -> dict:
-        return {
+        record = {
             "surface_id": str(patch.get("surface_id", "") or ""),
             "surface_kind": str(patch.get("surface_kind", "") or "normalized"),
             "surface_role": str(patch.get("surface_role", "") or ""),
@@ -5867,6 +5883,10 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             "area_m2": round(float(patch.get("area_m2", 0.0) or 0.0), 3),
             "rings": _extract_rings(patch.get("geometry")),
         }
+        horizontal_axes = _serialize_horizontal_axes(patch.get("horizontal_axes"))
+        if horizontal_axes is not None:
+            record["horizontal_axes"] = horizontal_axes
+        return record
 
     def _serialize_surface_annotation_patch(patch) -> dict:
         return {
@@ -5994,6 +6014,11 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     {
                         "patch_id": str(patch.get("patch_id", "") or ""),
                         "road_id": int(patch.get("road_id", 0) or 0),
+                        **(
+                            {"horizontal_axes": horizontal_axes}
+                            if (horizontal_axes := _serialize_horizontal_axes(patch.get("horizontal_axes"))) is not None
+                            else {}
+                        ),
                         "rings": _extract_rings(patch.get("geometry")),
                     }
                     for patch in item.get("crosswalk_patches", []) or ()
