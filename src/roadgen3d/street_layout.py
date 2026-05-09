@@ -126,8 +126,8 @@ from .theme_buildings import (
     theme_profile_style,
 )
 from .building_placement import (
+    building_forbidden_geometry,
     resolve_building_pose,
-    vehicle_lane_forbidden_geometry,
 )
 from .types import (
     DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
@@ -7531,7 +7531,7 @@ def _place_building_targets(
     lane_intrusion_rejected_count = 0
     mesh_origin_centered_count = 0
     total_lane_guard_push_m = 0.0
-    vehicle_forbidden_geometry = vehicle_lane_forbidden_geometry(placement_ctx)
+    building_forbidden_geom = building_forbidden_geometry(placement_ctx)
 
     for target_idx, target in enumerate(targets):
         theme_id = str(target.get("theme_id", "") or "")
@@ -7661,10 +7661,10 @@ def _place_building_targets(
             center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
             scale=scale_xyz,
             placement_ctx=placement_ctx,
-            forbidden_geometry=vehicle_forbidden_geometry,
+            forbidden_geometry=building_forbidden_geom,
             config=config,
             bbox_clearance_m=0.15,
-            vehicle_clearance_m=0.10,
+            vehicle_clearance_m=0.40,
         )
         if safe_pose.rejected:
             lane_intrusion_rejected_count += 1
@@ -7833,6 +7833,7 @@ def _place_building_targets(
         "building_lane_intrusion_rejected_count": int(lane_intrusion_rejected_count),
         "building_mesh_origin_centered_count": int(mesh_origin_centered_count),
         "building_lane_guard_total_push_m": float(round(total_lane_guard_push_m, 3)),
+        "building_forbidden_geometry_mode": "road_occupancy_v1",
         "procedural_building_fallback_count": int(fallback_count),
         "sources": source_counts,
         "placement_strategy_counts": placement_strategy_counts,

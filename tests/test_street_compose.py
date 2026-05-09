@@ -32,7 +32,11 @@ from roadgen3d.types import (
 from roadgen3d.asset_scale import compute_asset_scale
 from roadgen3d.reference_annotation import ANNOTATION_SCHEMA_VERSION, build_reference_annotation_compose_config
 from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
-from roadgen3d.building_placement import building_footprint_points
+from roadgen3d.building_placement import (
+    building_forbidden_geometry,
+    building_footprint_points,
+    resolve_building_pose,
+)
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
 from roadgen3d.poi_rules import PoiContext
@@ -1047,6 +1051,107 @@ def test_building_door_rotation_helpers_match_yaw_transform_convention():
     roundtrip_x, roundtrip_z = street_layout._rotate_world_xz_to_local(world_x, world_z, 90.0)
     assert roundtrip_x == pytest.approx(local_x, abs=1e-6)
     assert roundtrip_z == pytest.approx(local_z, abs=1e-6)
+
+
+def test_building_forbidden_geometry_includes_sidewalks_and_junction_surfaces():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-8.0, -1.0, 8.0, 1.0)
+    sidewalk = shapely_geometry.box(-8.0, 1.0, 8.0, 3.0)
+    perpendicular_sidewalk = shapely_geometry.box(3.0, -4.0, 5.0, 4.0)
+    building_buffer_probe = shapely_geometry.box(-6.0, 4.0, -2.0, 7.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        carriageway_polygon=carriageway,
+        sidewalk_zone=sidewalk,
+        left_sidewalk_zone=sidewalk,
+        right_sidewalk_zone=None,
+        road_arm_geometries=[],
+        strip_zones={
+            "left_clear_sidewalk": sidewalk,
+            "left_building_buffer": building_buffer_probe,
+        },
+        segment_strip_zones={
+            "cross_street": {
+                "right_clear_sidewalk": perpendicular_sidewalk,
+                "right_building_buffer": shapely_geometry.box(5.5, -3.0, 8.0, 3.0),
+            }
+        },
+        junction_geometries=[
+            {
+                "normalized_surface_patches": [
+                    {
+                        "surface_role": "crossing",
+                        "geometry": shapely_geometry.box(-1.0, -3.0, 1.0, 3.0),
+                    },
+                    {
+                        "surface_role": "sidewalk",
+                        "geometry": shapely_geometry.box(5.0, 1.0, 7.0, 4.0),
+                    },
+                ],
+                "sidewalk_corner_patches": [
+                    {"geometry": shapely_geometry.box(7.0, 1.0, 8.0, 3.0)}
+                ],
+            }
+        ],
+    )
+
+    forbidden = building_forbidden_geometry(placement_ctx)
+
+    assert forbidden.intersection(sidewalk).area == pytest.approx(sidewalk.area)
+    assert forbidden.intersection(perpendicular_sidewalk).area == pytest.approx(perpendicular_sidewalk.area)
+    assert forbidden.intersection(shapely_geometry.box(-1.0, -3.0, 1.0, 3.0)).area > 0.0
+    assert forbidden.intersection(building_buffer_probe).area == pytest.approx(0.0)
+
+
+def test_resolve_building_pose_pushes_building_out_of_sidewalk_forbidden_area():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    sidewalk = shapely_geometry.box(-5.0, 1.0, 5.0, 3.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(-5.0, -1.0, 5.0, 1.0),
+        carriageway_polygon=shapely_geometry.box(-5.0, -1.0, 5.0, 1.0),
+        sidewalk_zone=sidewalk,
+        left_sidewalk_zone=sidewalk,
+        right_sidewalk_zone=None,
+        road_arm_geometries=[],
+        strip_zones={},
+        segment_strip_zones={},
+        junction_geometries=[],
+    )
+
+    forbidden = building_forbidden_geometry(placement_ctx)
+    pose = resolve_building_pose(
+        target_center_xz=(0.0, 2.0),
+        street_edge_xz=(0.0, 1.0),
+        side="left",
+        yaw_deg=0.0,
+        half_x=1.0,
+        half_z=1.0,
+        center_x=0.0,
+        center_z=0.0,
+        scale=1.0,
+        placement_ctx=placement_ctx,
+        forbidden_geometry=forbidden,
+        vehicle_clearance_m=0.10,
+        max_push_m=6.0,
+    )
+
+    assert not pose.rejected
+    assert pose.adjusted
+    assert pose.visual_center_xz[1] > 4.0
+    footprint = shapely_geometry.Polygon(
+        building_footprint_points(
+            placement_xz=pose.placement_xz,
+            yaw_deg=0.0,
+            half_x=1.0,
+            half_z=1.0,
+            center_x=0.0,
+            center_z=0.0,
+            scale=1.0,
+        )
+    )
+    assert footprint.intersection(forbidden.buffer(0.10)).area == pytest.approx(0.0)
 
 
 def test_place_building_targets_centers_offset_mesh_and_keeps_lanes_clear(monkeypatch):

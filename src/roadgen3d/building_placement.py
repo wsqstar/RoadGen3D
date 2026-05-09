@@ -3,7 +3,7 @@
 The main composer owns retrieval, mesh caching, and scene export.  This module
 keeps the placement-safety geometry small and testable: building mesh origins
 are aligned to target centers, then final footprints are checked against
-vehicle lanes before they are admitted to the scene.
+road-occupied surfaces before they are admitted to the scene.
 """
 
 from __future__ import annotations
@@ -21,6 +21,61 @@ VEHICLE_SURFACE_ROLES = frozenset(
         "bus_lane",
         "parking_lane",
         "center_shared_street_surface",
+    }
+)
+
+BUILDING_FORBIDDEN_SURFACE_ROLES = VEHICLE_SURFACE_ROLES | frozenset(
+    {
+        "clear_path",
+        "clear_sidewalk",
+        "colored_pavement",
+        "context_ground",
+        "crossing",
+        "crosswalk",
+        "curb",
+        "furnishing",
+        "furnishing_zone",
+        "grass_belt",
+        "median",
+        "median_green",
+        "nearroad",
+        "nearroad_buffer",
+        "planting_soil",
+        "safety_island",
+        "shared_street_surface",
+        "sidewalk",
+        "transit_pad",
+    }
+)
+
+BUILDING_FORBIDDEN_STRIP_TOKENS = BUILDING_FORBIDDEN_SURFACE_ROLES | frozenset(
+    {
+        "center",
+        "frontage",
+        "parking",
+        "road",
+        "strip",
+    }
+)
+
+BUILDING_ALLOWED_STRIP_TOKENS = frozenset(
+    {
+        "building_buffer",
+        "building_region",
+    }
+)
+
+BUILDING_FORBIDDEN_JUNCTION_PATCH_KEYS = frozenset(
+    {
+        "canonical_surface_patches",
+        "crosswalk_patches",
+        "frontage_corner_patches",
+        "lane_surface_patches",
+        "merged_surface_patches",
+        "nearroad_corner_patches",
+        "normalized_surface_patches",
+        "sidewalk_corner_patches",
+        "turn_lane_patches",
     }
 )
 
@@ -157,6 +212,66 @@ def _candidate_geometries(values: Iterable[Any]) -> Iterable[Any]:
         yield value
 
 
+def _union_geometries(geometries: Sequence[Any]) -> Any:
+    if not geometries:
+        return None
+    try:
+        from shapely.ops import unary_union
+    except Exception:
+        return None
+    try:
+        return unary_union(tuple(geometries))
+    except Exception:
+        return None
+
+
+def _surface_role_from_patch(patch: Any) -> str:
+    if not isinstance(patch, dict):
+        return ""
+    for key in ("surface_role", "role", "strip_kind", "kind"):
+        value = str(patch.get(key, "") or "").strip().lower()
+        if value:
+            return value
+    return ""
+
+
+def _is_building_allowed_strip_key(key_lc: str) -> bool:
+    return any(token in key_lc for token in BUILDING_ALLOWED_STRIP_TOKENS)
+
+
+def _is_building_forbidden_strip_key(key_lc: str) -> bool:
+    if not key_lc or _is_building_allowed_strip_key(key_lc):
+        return False
+    return any(token in key_lc for token in BUILDING_FORBIDDEN_STRIP_TOKENS)
+
+
+def _patch_geometry(patch: Any) -> Any:
+    if not isinstance(patch, dict):
+        return None
+    return patch.get("geometry")
+
+
+def _road_occupied_junction_geometries(junction: Any) -> Iterable[Any]:
+    if not isinstance(junction, dict):
+        return ()
+
+    geometries = []
+    geometries.extend(
+        _candidate_geometries(
+            (
+                junction.get("carriageway_core"),
+                junction.get("junction_core_rect"),
+            )
+        )
+    )
+    for patch_key in BUILDING_FORBIDDEN_JUNCTION_PATCH_KEYS:
+        for patch in (junction.get(patch_key, ()) or ()):
+            role = _surface_role_from_patch(patch)
+            if patch_key != "normalized_surface_patches" or not role or role in BUILDING_FORBIDDEN_SURFACE_ROLES:
+                geometries.extend(_candidate_geometries((_patch_geometry(patch),)))
+    return tuple(geometries)
+
+
 def vehicle_lane_forbidden_geometry(placement_ctx: object | None) -> Any:
     """Union carriageway and explicit vehicle lane surfaces, when available."""
 
@@ -181,16 +296,48 @@ def vehicle_lane_forbidden_geometry(placement_ctx: object | None) -> Any:
             if role in VEHICLE_SURFACE_ROLES:
                 geometries.extend(_candidate_geometries((patch.get("geometry"),)))
 
-    if not geometries:
+    return _union_geometries(geometries)
+
+
+def building_forbidden_geometry(placement_ctx: object | None) -> Any:
+    """Union road-occupied surfaces that surrounding buildings must not enter."""
+
+    if placement_ctx is None:
         return None
-    try:
-        from shapely.ops import unary_union
-    except Exception:
-        return None
-    try:
-        return unary_union(geometries)
-    except Exception:
-        return None
+    geometries = []
+    geometries.extend(
+        _candidate_geometries(
+            (
+                getattr(placement_ctx, "carriageway_polygon", None),
+                getattr(placement_ctx, "carriageway", None),
+                getattr(placement_ctx, "sidewalk_zone", None),
+                getattr(placement_ctx, "left_sidewalk_zone", None),
+                getattr(placement_ctx, "right_sidewalk_zone", None),
+            )
+        )
+    )
+    for geometry in getattr(placement_ctx, "road_arm_geometries", ()) or ():
+        geometries.extend(_candidate_geometries((geometry,)))
+
+    strip_zones = getattr(placement_ctx, "strip_zones", {}) or {}
+    if isinstance(strip_zones, dict):
+        for key, geometry in strip_zones.items():
+            if _is_building_forbidden_strip_key(str(key).strip().lower()):
+                geometries.extend(_candidate_geometries((geometry,)))
+
+    segment_strip_zones = getattr(placement_ctx, "segment_strip_zones", {}) or {}
+    if isinstance(segment_strip_zones, dict):
+        for strip_map in segment_strip_zones.values():
+            if not isinstance(strip_map, dict):
+                continue
+            for key, geometry in strip_map.items():
+                if _is_building_forbidden_strip_key(str(key).strip().lower()):
+                    geometries.extend(_candidate_geometries((geometry,)))
+
+    for junction in getattr(placement_ctx, "junction_geometries", ()) or ():
+        geometries.extend(_road_occupied_junction_geometries(junction))
+
+    return _union_geometries(geometries)
 
 
 def _outward_vector(
@@ -278,9 +425,9 @@ def resolve_building_pose(
     vehicle_clearance_m: float = 0.10,
     max_push_m: float | None = None,
 ) -> BuildingPoseResolution:
-    """Align a building asset to its target center and keep it out of lanes."""
+    """Align a building asset to its target center and keep it out of roads."""
 
-    forbidden = forbidden_geometry if forbidden_geometry is not None else vehicle_lane_forbidden_geometry(placement_ctx)
+    forbidden = forbidden_geometry if forbidden_geometry is not None else building_forbidden_geometry(placement_ctx)
     fallback_bbox = _fallback_vehicle_bbox(config)
     checked = bool(forbidden is not None or fallback_bbox is not None)
     direction = _outward_vector(
