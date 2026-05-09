@@ -72,7 +72,7 @@ def test_object_backend_merges_v2_overlay_with_legacy_manifest(tmp_path: Path):
     backend = ManifestObjectAssetBackend(manifest_path=legacy, manifest_v2_path=overlay)
     backend_name, rows = backend.load_rows()
 
-    assert backend_name == "manifest_v2_overlay"
+    assert backend_name == "manifest_multi_merged"
     assert len(rows) == 2
     bench = next(row for row in rows if row["asset_id"] == "bench_legacy")
     lamp = next(row for row in rows if row["asset_id"] == "lamp_legacy")
@@ -116,6 +116,7 @@ def test_material_and_sky_backends_select_matching_records(tmp_path: Path):
                 "source_dataset": "demo_sky",
                 "license": "internal",
                 "time_of_day": "evening",
+                "weather_tags": ["clear", "warm"],
                 "illumination_tags": ["warm", "golden"],
             }
         )
@@ -148,6 +149,9 @@ def test_material_and_sky_backends_select_matching_records(tmp_path: Path):
     assert ground_selection.texture_overrides["sidewalk"].endswith("sidewalk.png")
     assert sky_selection is not None
     assert sky_selection.sky_id == "warm_evening"
+    assert sky_selection.weather_tags == ("clear", "warm")
+    assert sky_selection.illumination_tags == ("warm", "golden")
+    assert sky_selection.to_dict()["weather_tags"] == ["clear", "warm"]
 
 
 def test_default_course_material_manifest_covers_viewer_surface_roles():

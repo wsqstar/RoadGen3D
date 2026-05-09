@@ -3623,6 +3623,7 @@ def test_analytical_diorama_visual_style_metadata_uses_procedural_buildings(tmp_
     payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
     summary = payload["summary"]
     visual_style = payload["visual_style"]
+    environment_state = payload["environment_state"]
 
     assert visual_style["preset"] == "analytical_diorama_v1"
     assert visual_style["lighting_preset"] == "analytical_diorama"
@@ -3630,6 +3631,12 @@ def test_analytical_diorama_visual_style_metadata_uses_procedural_buildings(tmp_
     assert visual_style["building_profile"]["mode"] == "procedural_background"
     assert summary["visual_style_preset"] == "analytical_diorama_v1"
     assert summary["visual_lighting_preset"] == "analytical_diorama"
+    assert summary["environment_system"]["layer"] == "environment_runtime_v1"
+    assert summary["environment_system"]["sun_model"] == "artistic_day_cycle"
+    assert summary["environment_system"]["runtime_only"] is True
+    assert environment_state["weather_mode"] in {"clear", "overcast", "rain", "fog"}
+    assert environment_state["time_of_day_hours"] == 14.0
+    assert environment_state["sun_cycle_enabled"] is False
     assert summary["scene_texture_pack"] == "topdown_tiles_v1"
     assert summary["visual_surface_role_count"]["carriageway"] > 0
     assert summary["visual_surface_role_count"]["sidewalk"] > 0

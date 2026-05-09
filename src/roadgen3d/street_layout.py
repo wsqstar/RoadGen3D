@@ -1143,7 +1143,11 @@ def _resolve_semantic_design_layers_for_compose(
         })
     if not str(getattr(config, "street_furniture_profile", "") or "").strip():
         furniture_profile = str(semantic_layers.get("street_furniture_profile") or "balanced_complete")
-        patch.update(street_furniture_profile_config_patch(furniture_profile))
+        furniture_patch = street_furniture_profile_config_patch(furniture_profile)
+        current_style_preset = str(getattr(config, "style_preset", "") or "").strip().lower()
+        if current_style_preset and current_style_preset != "civic_clean_v1":
+            furniture_patch.pop("style_preset", None)
+        patch.update(furniture_patch)
         patch.update({
             "street_furniture_profile_source": semantic_layers.get("street_furniture_profile_source", "recommended"),
             "street_furniture_profile_confidence": semantic_layers.get("street_furniture_profile_confidence", 0.0),
@@ -8450,6 +8454,35 @@ def _derive_lighting_params(sky_selection: Any) -> Dict[str, Any]:
     return {"preset": preset, **params}
 
 
+def _derive_environment_state(sky_selection: Any) -> Dict[str, Any]:
+    """Build the runtime environment defaults consumed by the Viewer."""
+    weather_mode = "clear"
+    weather_intensity = 0.0
+    if sky_selection is not None:
+        weather_tags = {
+            str(tag).strip().lower()
+            for tag in (getattr(sky_selection, "weather_tags", ()) or ())
+            if str(tag).strip()
+        }
+        if weather_tags & {"rain", "rainy", "shower", "wet"}:
+            weather_mode = "rain"
+            weather_intensity = 0.55
+        elif weather_tags & {"fog", "foggy", "mist", "haze", "hazy"}:
+            weather_mode = "fog"
+            weather_intensity = 0.5
+        elif weather_tags & {"overcast", "cloudy", "soft_light"}:
+            weather_mode = "overcast"
+            weather_intensity = 0.65
+    return {
+        "weather_mode": weather_mode,
+        "weather_intensity": float(weather_intensity),
+        "time_of_day_hours": 14.0,
+        "sun_cycle_enabled": False,
+        "sun_cycle_speed": "medium",
+        "source": "default_runtime",
+    }
+
+
 def compose_street_scene(
     config: StreetComposeConfig,
     manifest_path: Path,
@@ -11063,6 +11096,7 @@ def compose_street_scene(
         ),
         "default_sky_dome_enabled": bool(default_sky_dome_placement is not None),
     }
+    environment_state = _derive_environment_state(sky_selection)
 
     def _coerce_presence_categories(value: object, fallback: Sequence[str]) -> List[str]:
         if isinstance(value, str):
@@ -11279,6 +11313,13 @@ def compose_street_scene(
         "scene_texture_missing_assets": sorted(scene_texture_tracker.missing_assets),
         "visual_style_preset": style_preset_used,
         "visual_lighting_preset": visual_lighting_preset,
+        "environment_system": {
+            "layer": "environment_runtime_v1",
+            "weather_modes": ["clear", "overcast", "rain", "fog"],
+            "sun_model": "artistic_day_cycle",
+            "runtime_only": True,
+            "environment_state": dict(environment_state),
+        },
         "visual_surface_role_count": dict(sorted(scene_texture_tracker.surface_role_counts.items())),
         "layout_mode": config.layout_mode,
         "osm_semantic_mode": str(
@@ -11536,6 +11577,7 @@ def compose_street_scene(
         "solver": solver_result.to_dict(),
         "summary": summary_payload,
         "semantic_design_layers": dict(semantic_design_layers),
+        "environment_state": dict(environment_state),
         "osm_semantic_blocks": osm_semantic_blocks,
         "segment_semantic_profiles": segment_semantic_profiles,
         "visual_style": visual_style_payload,

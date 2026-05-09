@@ -199,6 +199,8 @@ class SkySelection:
     source_dataset: str
     hdri_path: str = ""
     time_of_day: str = "day"
+    weather_tags: Tuple[str, ...] = ()
+    illumination_tags: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -207,6 +209,8 @@ class SkySelection:
             "source_dataset": self.source_dataset,
             "hdri_path": self.hdri_path,
             "time_of_day": self.time_of_day,
+            "weather_tags": list(self.weather_tags),
+            "illumination_tags": list(self.illumination_tags),
         }
 
 
@@ -365,6 +369,8 @@ class ManifestSkyBackend(SkyBackend):
             source_dataset=selected.source_dataset,
             hdri_path=selected.hdri_path,
             time_of_day=selected.time_of_day,
+            weather_tags=selected.weather_tags,
+            illumination_tags=selected.illumination_tags,
         )
 
 

@@ -260,6 +260,7 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
         "forward_vector": spawn_payload["forward_vector"],
         "lighting_preset": outputs.get("lighting_preset", "bright_day"),
         "lighting_params": outputs.get("lighting_params"),
+        "environment_state": payload.get("environment_state") or outputs.get("environment_state"),
     }
 
 
