@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import random
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -12,7 +13,12 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.entrance_analysis import PlacedAssetRegistry  # noqa: E402
-from roadgen3d.street_layout import _bbox_intrudes_carriageway, _evaluate_slot_candidate  # noqa: E402
+from roadgen3d.street_layout import (  # noqa: E402
+    _bbox_intrudes_carriageway,
+    _coerce_compose_config_for_rebuild,
+    _evaluate_slot_candidate,
+    _sample_pose_for_slot,
+)
 from roadgen3d.types import StreetComposeConfig  # noqa: E402
 
 
@@ -114,3 +120,95 @@ def test_evaluate_slot_candidate_rejects_template_carriageway_intrusion():
 
     assert resolved_reason is None
     assert resolved_candidate is not None
+
+
+def test_sample_pose_for_slot_left_right_zero_z_center_falls_to_sidewalk_band():
+    rng = random.Random(42)
+    _, z_left, _ = _sample_pose_for_slot(
+        slot_x_center=0.0,
+        slot_z_center=0.0,
+        slot_side="left",
+        slot_spacing_m=1.2,
+        band_width_m=1.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.4,
+        length_m=80.0,
+        rng=rng,
+    )
+    assert z_left > 4.9
+
+    rng = random.Random(42)
+    _, z_right, _ = _sample_pose_for_slot(
+        slot_x_center=0.0,
+        slot_z_center=0.0,
+        slot_side="right",
+        slot_spacing_m=1.2,
+        band_width_m=1.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.4,
+        length_m=80.0,
+        rng=rng,
+    )
+    assert z_right < -4.9
+
+
+def test_sample_pose_for_slot_side_constraints_pushes_near_center_slot_outside_carriageway():
+    rng = random.Random(42)
+    _, z_left, _ = _sample_pose_for_slot(
+        slot_x_center=0.0,
+        slot_z_center=3.5,
+        slot_side="left",
+        slot_spacing_m=1.2,
+        band_width_m=1.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        length_m=80.0,
+        rng=rng,
+    )
+    assert z_left > 4.9
+
+    rng = random.Random(42)
+    _, z_right, _ = _sample_pose_for_slot(
+        slot_x_center=0.0,
+        slot_z_center=-3.5,
+        slot_side="right",
+        slot_spacing_m=1.2,
+        band_width_m=1.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        length_m=80.0,
+        rng=rng,
+    )
+    assert z_right < -4.9
+
+
+def test_coerce_compose_config_for_rebuild_reconstructs_from_minimal_payload():
+    layout_payload = {
+        "summary": {
+            "query": "summary query",
+            "layout_mode": "graph_template",
+            "constraint_mode": "off",
+            "spatial_context": {"length_m": 140.0, "road_half_width_m": 4.0},
+        },
+        "config": {
+            "topk_per_category": "17",
+            "lane_count": "4",
+            "max_trials_per_slot": "5",
+            "allow_solver_fallback": "false",
+            "minimum_category_presence": "bench,mailbox",
+        },
+    }
+
+    config = _coerce_compose_config_for_rebuild(layout_payload)
+
+    assert config.query == "summary query"
+    assert config.length_m == 140.0
+    assert config.road_width_m == 8.0
+    assert config.sidewalk_width_m == 2.4
+    assert config.topk_per_category == 17
+    assert config.lane_count == 4
+    assert config.max_trials_per_slot == 5
+    assert config.allow_solver_fallback is False
+    assert config.minimum_category_presence == ("bench", "mailbox")
+    assert config.layout_mode == "graph_template"
+    assert config.constraint_mode == "off"
