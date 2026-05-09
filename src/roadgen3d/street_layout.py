@@ -88,6 +88,10 @@ from .program_generator import ProgramGeneratorRuntime
 from .reference_annotation import VALID_FUNCTIONAL_ZONE_KINDS
 from .poi_rules import load_rule_set
 from .scene_graph_viz import build_scene_graph
+from .semantic_design_layers import (
+    resolve_semantic_design_layers,
+    street_furniture_profile_config_patch,
+)
 from .services.design_types import DEFAULT_COMPOSE_CONFIG_PATCH_VALUES
 from .scene_textures import (
     VALID_SCENE_TEXTURE_MODES,
@@ -1113,6 +1117,48 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("theme_inference_mode must be 'deterministic_auto'")
     if str(getattr(config, "theme_vocab_name", "fixed_v1")).strip().lower() not in {"fixed_v1"}:
         raise ValueError("theme_vocab_name must be 'fixed_v1'")
+
+
+def _resolve_semantic_design_layers_for_compose(
+    config: StreetComposeConfig,
+    road_segment_graph: object | None,
+    placement_ctx: object | None = None,
+) -> tuple[StreetComposeConfig, Dict[str, Any], Dict[str, Any]]:
+    annotation_records = []
+    if placement_ctx is not None:
+        annotation_records.extend(list(getattr(placement_ctx, "surface_annotations", ()) or ()))
+        annotation_records.extend(list(getattr(placement_ctx, "functional_zones", ()) or ()))
+    semantic_layers = resolve_semantic_design_layers(
+        config=config,
+        road_segment_graph=road_segment_graph,
+        annotation_records=annotation_records,
+    )
+    patch: Dict[str, Any] = {}
+    if not str(getattr(config, "skeleton_design_profile", "") or "").strip():
+        patch.update({
+            "skeleton_design_profile": semantic_layers.get("skeleton_design_profile", ""),
+            "skeleton_design_profile_source": semantic_layers.get("skeleton_design_profile_source", ""),
+            "skeleton_design_profile_confidence": semantic_layers.get("skeleton_design_profile_confidence", 0.0),
+            "skeleton_design_profile_reasons": tuple(semantic_layers.get("skeleton_design_profile_reasons", ()) or ()),
+        })
+    if not str(getattr(config, "street_furniture_profile", "") or "").strip():
+        furniture_profile = str(semantic_layers.get("street_furniture_profile") or "balanced_complete")
+        patch.update(street_furniture_profile_config_patch(furniture_profile))
+        patch.update({
+            "street_furniture_profile_source": semantic_layers.get("street_furniture_profile_source", "recommended"),
+            "street_furniture_profile_confidence": semantic_layers.get("street_furniture_profile_confidence", 0.0),
+            "street_furniture_profile_reasons": tuple(semantic_layers.get("street_furniture_profile_reasons", ()) or ()),
+        })
+    valid_fields = {field.name for field in dataclasses.fields(StreetComposeConfig)}
+    applied_patch = {key: value for key, value in patch.items() if key in valid_fields}
+    if applied_patch:
+        config = replace(config, **applied_patch)
+        semantic_layers = resolve_semantic_design_layers(
+            config=config,
+            road_segment_graph=road_segment_graph,
+            annotation_records=annotation_records,
+        )
+    return config, semantic_layers, applied_patch
 
 
 def _validate_export_format(export_format: str) -> str:
@@ -8969,6 +9015,11 @@ def compose_street_scene(
                 )
     if road_segment_graph is None and projected is not None:
         road_segment_graph = build_segment_graph(projected, config)
+    config, semantic_design_layers, semantic_design_layers_applied_patch = _resolve_semantic_design_layers_for_compose(
+        config,
+        road_segment_graph,
+        placement_ctx,
+    )
     spatial_ctx = build_spatial_context(config, road_segment_graph, poi_ctx)
     theme_segments = infer_theme_segments(
         road_segment_graph,
@@ -11236,6 +11287,11 @@ def compose_street_scene(
         ),
         "semantic_block_count": int(len(osm_semantic_blocks)),
         "segment_semantic_profile_counts": segment_semantic_profile_counts,
+        "semantic_design_layers": dict(semantic_design_layers),
+        "semantic_design_layers_applied_patch": dict(semantic_design_layers_applied_patch),
+        "skeleton_design_profile": str(semantic_design_layers.get("skeleton_design_profile", "")),
+        "street_furniture_profile": str(semantic_design_layers.get("street_furniture_profile", "")),
+        "semantic_profile_pair": str(semantic_design_layers.get("profile_pair", "")),
         "osm_multiblock_summary": dict(multiblock_semantic_summary),
         "osm_context_fit": dict(osm_context_fit_summary),
         "constraint_mode": config.constraint_mode,
@@ -11479,6 +11535,7 @@ def compose_street_scene(
         "constraint_set": base_constraint_set.to_dict(),
         "solver": solver_result.to_dict(),
         "summary": summary_payload,
+        "semantic_design_layers": dict(semantic_design_layers),
         "osm_semantic_blocks": osm_semantic_blocks,
         "segment_semantic_profiles": segment_semantic_profiles,
         "visual_style": visual_style_payload,

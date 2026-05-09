@@ -842,9 +842,13 @@ def segment_semantic_profile_payload(nodes: Sequence[Any]) -> Tuple[Dict[str, An
             "segment_id": str(getattr(node, "segment_id", "")),
             "road_id": int(getattr(node, "road_id", 0) or 0),
             "semantic_profile_id": str(getattr(node, "semantic_profile_id", "") or ""),
+            "skeleton_design_profile": str(getattr(node, "skeleton_design_profile", "") or getattr(node, "semantic_profile_id", "") or ""),
+            "skeleton_design_profile_source": str(getattr(node, "skeleton_design_profile_source", "") or ("osm" if getattr(node, "semantic_profile_id", "") else "")),
             "semantic_block_id": str(getattr(node, "semantic_block_id", "") or ""),
             "semantic_confidence": float(getattr(node, "semantic_confidence", 0.0) or 0.0),
+            "skeleton_design_profile_confidence": float(getattr(node, "skeleton_design_profile_confidence", 0.0) or getattr(node, "semantic_confidence", 0.0) or 0.0),
             "semantic_reasons": list(getattr(node, "semantic_reasons", ()) or ()),
+            "skeleton_design_profile_reasons": list(getattr(node, "skeleton_design_profile_reasons", ()) or getattr(node, "semantic_reasons", ()) or ()),
         }
         for node in nodes
     )

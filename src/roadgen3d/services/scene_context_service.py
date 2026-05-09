@@ -29,6 +29,7 @@ from ..placement_zones import (
 )
 from ..poi_taxonomy import core_poi_count, poi_weighted_score, qualifies_poi_counts
 from ..road_discovery import discover_poi_roads, write_discovered_roads_jsonl
+from ..semantic_design_layers import resolve_semantic_design_layers
 from ..types import StreetComposeConfig
 from .design_types import SceneContext, sanitize_scene_context
 
@@ -483,6 +484,7 @@ def build_osm_semantic_preview(
     graph = build_segment_graph(projected, config)
     osm_context_fit = evaluate_osm_context_fit(graph, config)
     osm_context_fit_summary = {key: value for key, value in dict(osm_context_fit).items() if key != "segments"}
+    semantic_design_layers = resolve_semantic_design_layers(config=config, road_segment_graph=graph)
     segment_profiles = segment_semantic_profile_payload(graph.nodes)
     selected_roads, short_roads = _selected_road_payload(projected.roads, segment_profiles, config=config)
     segment_profile_counts = dict(
@@ -496,6 +498,8 @@ def build_osm_semantic_preview(
         **dict(semantic_summary),
         "segment_length_m": float(getattr(config, "segment_length_m", 35.0) or 35.0),
         "segment_semantic_profile_counts": segment_profile_counts,
+        "skeleton_design_profile_counts": segment_profile_counts,
+        "semantic_design_layers": dict(semantic_design_layers),
         "short_roads_default_style": list(short_roads),
         "bus_stop_counts": dict(bus_stop_summary.get("counts", {}) or {}),
         "bus_stop_eligible_road_ids": list(bus_stop_summary.get("eligible_road_ids", []) or []),
@@ -523,6 +527,7 @@ def build_osm_semantic_preview(
         "bus_stop_eligible_road_ids": list(bus_stop_summary.get("eligible_road_ids", []) or []),
         "bus_stop_provenance": list(bus_stop_summary.get("provenance", []) or []),
         "osm_context_fit": dict(osm_context_fit),
+        "semantic_design_layers": dict(semantic_design_layers),
         "osm_semantic_blocks": [block.to_dict() for block in getattr(projected, "semantic_blocks", []) or []],
         "segment_semantic_profiles": list(segment_profiles),
         "road_segment_graph_summary": graph.summary(),

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, Mapping, Sequence
 
 from ..json_safe import make_json_safe
+from ..semantic_design_layers import apply_street_furniture_profile_defaults
 from ..capture_3d import capture_views_for_layout
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
@@ -94,6 +95,7 @@ def build_compose_config_from_draft(
 
     patch = sanitize_compose_config_patch(draft.compose_config_patch)
     patch.update(sanitize_compose_config_patch(patch_overrides))
+    patch = apply_street_furniture_profile_defaults(patch)
     normalized_query = str(
         patch.get("query")
         or draft.normalized_scene_query
@@ -132,6 +134,14 @@ def build_compose_config_from_draft(
         allow_solver_fallback=bool(patch.get("allow_solver_fallback", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["allow_solver_fallback"])),
         segment_length_m=float(patch.get("segment_length_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["segment_length_m"])),
         osm_semantic_mode=str(patch.get("osm_semantic_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_semantic_mode"])),
+        skeleton_design_profile=str(patch.get("skeleton_design_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["skeleton_design_profile"])),
+        skeleton_design_profile_source=str(patch.get("skeleton_design_profile_source", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["skeleton_design_profile_source"])),
+        skeleton_design_profile_confidence=float(patch.get("skeleton_design_profile_confidence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["skeleton_design_profile_confidence"])),
+        skeleton_design_profile_reasons=tuple(patch.get("skeleton_design_profile_reasons", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["skeleton_design_profile_reasons"])),
+        street_furniture_profile=str(patch.get("street_furniture_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["street_furniture_profile"])),
+        street_furniture_profile_source=str(patch.get("street_furniture_profile_source", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["street_furniture_profile_source"])),
+        street_furniture_profile_confidence=float(patch.get("street_furniture_profile_confidence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["street_furniture_profile_confidence"])),
+        street_furniture_profile_reasons=tuple(patch.get("street_furniture_profile_reasons", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["street_furniture_profile_reasons"])),
         osm_multiblock_max_roads=int(patch.get("osm_multiblock_max_roads", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_multiblock_max_roads"])),
         osm_multiblock_max_extent_m=float(patch.get("osm_multiblock_max_extent_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_multiblock_max_extent_m"])),
         osm_short_road_policy=str(patch.get("osm_short_road_policy", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["osm_short_road_policy"])),

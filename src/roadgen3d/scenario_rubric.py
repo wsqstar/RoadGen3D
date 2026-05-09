@@ -119,7 +119,10 @@ class ScenarioRubricEvaluator:
         result = self.eval_engine.evaluate(payload)
         result_dict = result.to_dict()
         observations = _collect_metric_observations(payload, result_dict)
-        metric_thresholds = _merged_metric_thresholds(self.rubric, scenario)
+        semantic_design_layers = _semantic_design_layers(payload)
+        profile_pair = str(semantic_design_layers.get("profile_pair") or "").strip()
+        profile_pair_override = _profile_pair_override(self.rubric, scenario, profile_pair)
+        metric_thresholds = _merged_metric_thresholds(self.rubric, scenario, profile_pair_override)
         lower_is_better = set(self.rubric.get("lower_is_better_metrics") or [])
 
         metric_results = [
@@ -137,13 +140,22 @@ class ScenarioRubricEvaluator:
             "Safety": _round4(result.safety.structural_score),
             "PlaceQuality": _round4(result.beauty.structural_score),
         }
-        dimension_weights = _merged_dimension_weights(self.rubric, scenario)
+        dimension_weights = _merged_dimension_weights(self.rubric, scenario, profile_pair_override)
         total_score = _weighted_sum(dimension_scores, dimension_weights)
-        thresholds = _merged_total_thresholds(self.rubric, scenario)
-        semantic_gates = [
-            _evaluate_gate(payload, gate)
+        thresholds = _merged_total_thresholds(self.rubric, scenario, profile_pair_override)
+        semantic_gate_specs = [
+            gate
             for gate in scenario.get("semantic_gates") or []
             if isinstance(gate, Mapping)
+        ]
+        semantic_gate_specs.extend(
+            gate
+            for gate in profile_pair_override.get("semantic_gates", []) or []
+            if isinstance(gate, Mapping)
+        )
+        semantic_gates = [
+            _evaluate_gate(payload, gate)
+            for gate in semantic_gate_specs
         ]
 
         status, reasons = _classify_status(
@@ -163,6 +175,9 @@ class ScenarioRubricEvaluator:
             "dimension_scores": dimension_scores,
             "dimension_weights": dimension_weights,
             "thresholds": thresholds,
+            "semantic_design_layers": semantic_design_layers,
+            "profile_pair": profile_pair,
+            "profile_pair_threshold_applied": bool(profile_pair_override),
             "metric_results": metric_results,
             "semantic_gates": semantic_gates,
             "missing_metrics": missing_metrics,
@@ -421,26 +436,115 @@ def _scenario_by_id(rubric: Mapping[str, Any], scenario_id: str) -> Dict[str, An
     return None
 
 
-def _merged_total_thresholds(rubric: Mapping[str, Any], scenario: Mapping[str, Any]) -> Dict[str, float]:
+def _semantic_design_layers(payload: Mapping[str, Any]) -> Dict[str, Any]:
+    summary = payload.get("summary")
+    if isinstance(summary, Mapping) and isinstance(summary.get("semantic_design_layers"), Mapping):
+        return dict(summary.get("semantic_design_layers") or {})
+    top_level = payload.get("semantic_design_layers")
+    if isinstance(top_level, Mapping):
+        return dict(top_level)
+    config = payload.get("config")
+    if isinstance(config, Mapping):
+        skeleton = str(config.get("skeleton_design_profile") or "").strip()
+        furniture = str(config.get("street_furniture_profile") or "").strip()
+        if skeleton or furniture:
+            return {
+                "skeleton_design_profile": skeleton,
+                "street_furniture_profile": furniture,
+                "profile_pair": f"{skeleton}+{furniture}" if skeleton and furniture else "",
+            }
+    return {}
+
+
+def _merge_profile_pair_config(base: Dict[str, Any], override: Mapping[str, Any]) -> Dict[str, Any]:
+    result = dict(base)
+    for key, value in override.items():
+        if key in {"total_thresholds", "dimension_weights"} and isinstance(value, Mapping):
+            result[key] = {**dict(result.get(key) or {}), **dict(value)}
+        elif key == "metric_thresholds" and isinstance(value, Mapping):
+            merged_metrics = {
+                str(metric): dict(threshold)
+                for metric, threshold in dict(result.get(key) or {}).items()
+                if isinstance(threshold, Mapping)
+            }
+            for metric, threshold in value.items():
+                if isinstance(threshold, Mapping):
+                    metric_key = str(metric)
+                    merged_metrics[metric_key] = {
+                        **merged_metrics.get(metric_key, {}),
+                        **dict(threshold),
+                    }
+            result[key] = merged_metrics
+        elif key == "semantic_gates" and isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
+            result[key] = list(result.get(key) or []) + [item for item in value if isinstance(item, Mapping)]
+        else:
+            result[str(key)] = value
+    return result
+
+
+def _profile_pair_override(
+    rubric: Mapping[str, Any],
+    scenario: Mapping[str, Any],
+    profile_pair: str,
+) -> Dict[str, Any]:
+    if not profile_pair:
+        return {}
+    merged: Dict[str, Any] = {}
+    for source in (rubric.get("defaults") or {}, scenario):
+        if not isinstance(source, Mapping):
+            continue
+        overrides = source.get("profile_pair_thresholds")
+        if not isinstance(overrides, Mapping):
+            continue
+        item = overrides.get(profile_pair)
+        if isinstance(item, Mapping):
+            merged = _merge_profile_pair_config(merged, item)
+    return merged
+
+
+def _merged_total_thresholds(
+    rubric: Mapping[str, Any],
+    scenario: Mapping[str, Any],
+    profile_pair_override: Mapping[str, Any] | None = None,
+) -> Dict[str, float]:
     defaults = dict(rubric.get("defaults", {}).get("total_thresholds") or {})
-    thresholds = {**defaults, **dict(scenario.get("total_thresholds") or {})}
+    thresholds = {
+        **defaults,
+        **dict(scenario.get("total_thresholds") or {}),
+        **dict((profile_pair_override or {}).get("total_thresholds") or {}),
+    }
     return {key: float(value) for key, value in thresholds.items()}
 
 
-def _merged_dimension_weights(rubric: Mapping[str, Any], scenario: Mapping[str, Any]) -> Dict[str, float]:
+def _merged_dimension_weights(
+    rubric: Mapping[str, Any],
+    scenario: Mapping[str, Any],
+    profile_pair_override: Mapping[str, Any] | None = None,
+) -> Dict[str, float]:
     defaults = dict(rubric.get("defaults", {}).get("dimension_weights") or {})
-    weights = {**defaults, **dict(scenario.get("dimension_weights") or {})}
+    weights = {
+        **defaults,
+        **dict(scenario.get("dimension_weights") or {}),
+        **dict((profile_pair_override or {}).get("dimension_weights") or {}),
+    }
     total = sum(float(value) for value in weights.values()) or 1.0
     return {str(key): _round4(float(value) / total) for key, value in weights.items()}
 
 
-def _merged_metric_thresholds(rubric: Mapping[str, Any], scenario: Mapping[str, Any]) -> Dict[str, Dict[str, Any]]:
+def _merged_metric_thresholds(
+    rubric: Mapping[str, Any],
+    scenario: Mapping[str, Any],
+    profile_pair_override: Mapping[str, Any] | None = None,
+) -> Dict[str, Dict[str, Any]]:
     merged: Dict[str, Dict[str, Any]] = {
         str(key): dict(value)
         for key, value in dict(rubric.get("defaults", {}).get("metric_thresholds") or {}).items()
         if isinstance(value, Mapping)
     }
     for key, value in dict(scenario.get("metric_thresholds") or {}).items():
+        if isinstance(value, Mapping):
+            merged[str(key)] = {**merged.get(str(key), {}), **dict(value)}
+    for key, value in dict((profile_pair_override or {}).get("metric_thresholds") or {}).items():
         if isinstance(value, Mapping):
             merged[str(key)] = {**merged.get(str(key), {}), **dict(value)}
     return merged
@@ -535,6 +639,22 @@ def _evaluate_gate(payload: Mapping[str, Any], gate: Mapping[str, Any]) -> Dict[
         limit = _safe_float(gate.get("min"))
         passed = observed is not None and limit is not None and observed >= limit
         message = f"{observed} >= {limit}" if observed is not None else "value missing"
+    elif gate_type == "profile_equals":
+        semantic_layers = _semantic_design_layers(payload)
+        layer = str(gate.get("layer") or "").strip().lower()
+        if layer in {"a", "skeleton", "skeleton_design", "skeleton_design_profile"}:
+            observed = str(semantic_layers.get("skeleton_design_profile") or "")
+        elif layer in {"b", "furniture", "street_furniture", "street_furniture_profile"}:
+            observed = str(semantic_layers.get("street_furniture_profile") or "")
+        else:
+            observed = str(_value_at_path(payload, gate.get("path")) or "")
+        expected_values = [
+            str(item).strip()
+            for item in (gate.get("any") or gate.get("profiles") or [gate.get("profile") or gate.get("equals")])
+            if str(item).strip()
+        ]
+        passed = observed in set(expected_values)
+        message = f"{observed or 'missing'} in {expected_values}" if expected_values else "expected profile missing"
     else:
         tokens = [str(item).strip().lower() for item in gate.get("any") or gate.get("tokens") or [] if str(item).strip()]
         sources = [str(item).strip() for item in gate.get("sources") or ["surface_annotations", "functional_zones", "scenario_design"] if str(item).strip()]

@@ -278,6 +278,10 @@ def _annotation_surface_records(
                 "lateral_start_m": float(surface.lateral_start_m),
                 "lateral_end_m": float(surface.lateral_end_m),
                 "material": surface.material.to_dict(),
+                "skeleton_design_profile": str(surface.skeleton_design_profile),
+                "skeleton_design_profile_source": str(surface.skeleton_design_profile_source),
+                "skeleton_design_profile_confidence": float(surface.skeleton_design_profile_confidence),
+                "skeleton_design_profile_reasons": list(surface.skeleton_design_profile_reasons),
                 "geometry": geometry,
                 "area_m2": float(getattr(geometry, "area", 0.0) or 0.0),
                 "order_index": int(order_index),
@@ -385,6 +389,10 @@ def build_reference_annotation_scene_bridge(
                 }
                 for inst in zone.furniture_instances
             ],
+            "skeleton_design_profile": str(zone.skeleton_design_profile),
+            "skeleton_design_profile_source": str(zone.skeleton_design_profile_source),
+            "skeleton_design_profile_confidence": float(zone.skeleton_design_profile_confidence),
+            "skeleton_design_profile_reasons": list(zone.skeleton_design_profile_reasons),
         }
         for zone in annotation.functional_zones
     ] + functional_region_records_from_regions(annotation)

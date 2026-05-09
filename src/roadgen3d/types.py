@@ -71,6 +71,14 @@ class StreetComposeConfig:
     selected_road_discovered_poi_score: Optional[float] = None
     selected_road_discovered_core_poi_count: Optional[int] = None
     osm_semantic_mode: str = "landuse_rules_v1"
+    skeleton_design_profile: str = ""
+    skeleton_design_profile_source: str = ""
+    skeleton_design_profile_confidence: float = 0.0
+    skeleton_design_profile_reasons: Tuple[str, ...] = ()
+    street_furniture_profile: str = ""
+    street_furniture_profile_source: str = ""
+    street_furniture_profile_confidence: float = 0.0
+    street_furniture_profile_reasons: Tuple[str, ...] = ()
     osm_multiblock_max_roads: int = 12
     osm_multiblock_max_extent_m: float = 350.0
     width_budget_mode: str = "expand_total_width"
@@ -671,6 +679,10 @@ class RoadSegmentNode:
     semantic_reasons: Tuple[str, ...] = ()
     semantic_confidence: float = 0.0
     semantic_block_id: str = ""
+    skeleton_design_profile: str = ""
+    skeleton_design_profile_source: str = ""
+    skeleton_design_profile_confidence: float = 0.0
+    skeleton_design_profile_reasons: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -706,6 +718,10 @@ class RoadSegmentNode:
             "semantic_reasons": list(self.semantic_reasons),
             "semantic_confidence": float(self.semantic_confidence),
             "semantic_block_id": self.semantic_block_id,
+            "skeleton_design_profile": self.skeleton_design_profile or self.semantic_profile_id,
+            "skeleton_design_profile_source": self.skeleton_design_profile_source,
+            "skeleton_design_profile_confidence": float(self.skeleton_design_profile_confidence or self.semantic_confidence),
+            "skeleton_design_profile_reasons": list(self.skeleton_design_profile_reasons or self.semantic_reasons),
         }
 
 

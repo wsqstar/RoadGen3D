@@ -41,6 +41,14 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "vehicle_demand_level",
     "allow_solver_fallback",
     "osm_semantic_mode",
+    "skeleton_design_profile",
+    "skeleton_design_profile_source",
+    "skeleton_design_profile_confidence",
+    "skeleton_design_profile_reasons",
+    "street_furniture_profile",
+    "street_furniture_profile_source",
+    "street_furniture_profile_confidence",
+    "street_furniture_profile_reasons",
     "osm_multiblock_max_roads",
     "osm_multiblock_max_extent_m",
     "osm_short_road_policy",
@@ -55,10 +63,10 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "optional_category_presence",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
-_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m"})
+_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m", "skeleton_design_profile_confidence", "street_furniture_profile_confidence"})
 _INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads", "max_bus_stops_per_scene"})
 _BOOL_FIELDS = frozenset({"allow_solver_fallback", "allow_demo_bus_stop_when_osm_absent"})
-_LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence", "bus_stop_eligible_road_names"})
+_LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence", "bus_stop_eligible_road_names", "skeleton_design_profile_reasons", "street_furniture_profile_reasons"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
 
@@ -80,6 +88,10 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "program_generator": frozenset({"heuristic_v1", "learned_v1"}),
     "layout_solver": frozenset({"banded", "milp_template_v1", "hybrid_milp_v1"}),
     "osm_semantic_mode": frozenset({"landuse_rules_v1"}),
+    "skeleton_design_profile": frozenset({"child_friendly_school", "walkable_commercial", "vehicle_access_commercial", "transit_priority", "green_walkable", "quiet_residential"}),
+    "street_furniture_profile": frozenset({"balanced_complete", "pedestrian_friendly", "commercial_vitality", "transit_priority", "park_landscape", "quiet_residential"}),
+    "skeleton_design_profile_source": frozenset({"manual", "llm", "osm", "recommended", "fallback"}),
+    "street_furniture_profile_source": frozenset({"manual", "llm", "osm", "recommended", "fallback"}),
     "osm_short_road_policy": frozenset({"semantic", "default_style"}),
     "osm_context_fit_mode": frozenset({"off", "report", "auto_design"}),
 }
@@ -114,6 +126,14 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "allow_solver_fallback": True,
     "segment_length_m": 12.0,
     "osm_semantic_mode": "landuse_rules_v1",
+    "skeleton_design_profile": "",
+    "skeleton_design_profile_source": "",
+    "skeleton_design_profile_confidence": 0.0,
+    "skeleton_design_profile_reasons": (),
+    "street_furniture_profile": "",
+    "street_furniture_profile_source": "",
+    "street_furniture_profile_confidence": 0.0,
+    "street_furniture_profile_reasons": (),
     "osm_multiblock_max_roads": 12,
     "osm_multiblock_max_extent_m": 350.0,
     "osm_short_road_policy": "semantic",

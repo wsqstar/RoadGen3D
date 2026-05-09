@@ -80,14 +80,24 @@ RoadGen3D/
 ### 🔄 核心工作流
 
 ```
-Scenario catalog / preset / optional prompt
-  → template_patch / compose_config_patch
-  → 场景生成 (graph template + layout + assets)
+OSM / Reference Annotation / Scenario catalog / optional LLM prompt
+  → A: Skeleton Design / 骨架功能设计
+  → B: Street Furniture Profile / 街道家具主题
+  → 场景生成 (road skeleton + layout + buildings + furniture + assets)
   → 质量评估 (road-metrics)
   → Viewer 展示、对比、报告和后续优化
 ```
 
 当前 Viewer 的 Scenario Designs 批量生成从场景目录出发，通过 `/api/scenario-designs/runs` 转成 `template_patch` 和 `compose_config_patch`，并以 `skip_llm` 模式复用 scene job 生成内核。自然语言 LLM/RAG draft、Branch/Pareto 和 benchmark 路径仍然存在，但不是 Scenario Designs 面板的主生成线路。
+
+#### A/B Semantic Design Layers
+
+RoadGen3D now separates street semantics into two explicit layers:
+
+- **A: Skeleton Design / 骨架功能设计** decides road skeleton, cross-section, surface annotation, functional zones, bus / walking / vehicle priority, and similar spatial-function choices. It can come from OSM/POI inference, Viewer Reference Plan Annotation, or LLM annotation.
+- **B: Street Furniture Profile / 街道家具主题** decides furniture density, asset mix, building/furniture generation preferences, material and rendering style. It can come from the Viewer street furniture design goal, LLM inference, or a fallback recommendation from A.
+- Resolution priority is fixed as **manual annotation > LLM > OSM/POI automatic inference**. `scene_layout.json.summary.semantic_design_layers` records the final A/B profiles, source, confidence, reasons, resolution order, and the `profile_pair`.
+- Evaluation still uses the same road-metrics dimensions (`Walkability`, `Safety`, `PlaceQuality`), while the scenario rubric can override Pass / Review / Fail thresholds by `skeleton_design_profile + street_furniture_profile`.
 
 ### 🧭 Pareto Trace 与 Benchmark Explorer
 
@@ -524,10 +534,11 @@ OSM has two generation modes with different design intent:
 - `layout_mode=osm` keeps the original single-road auto-discovery flow. It selects one POI-rich road from the AOI and generates a focused street scene.
 - `layout_mode=osm_multiblock` keeps the AOI as a connected multi-road context. It uses OSM road geometry, POIs, buildings, and landuse/amenity polygons to assign street-level semantic profiles before generation.
 
-`osm_multiblock` adds a semantic layer on top of the physical segment graph:
+`osm_multiblock` adds the A-layer semantic skeleton profile on top of the physical segment graph:
 
 - **Semantic blocks** come first from real OSM landuse/amenity/building polygons, with fallback to road-buffer/grid blocks when OSM polygons are sparse.
-- **Street segments** carry `semantic_profile_id`, `semantic_reasons`, and `confidence`, but the profile is separate from the visual style theme. For example, `child_friendly_school` can still use the normal education/campus building theme while changing road-section and facility choices.
+- **Street segments** carry `semantic_profile_id`, `skeleton_design_profile`, reasons, and confidence. `semantic_profile_id` remains for compatibility; `skeleton_design_profile` is the explicit A-layer field.
+- **Street furniture theme stays separate.** For example, `child_friendly_school` can change road-section and safety choices, while B-layer `street_furniture_profile=pedestrian_friendly` controls furniture density, asset mix, and style.
 - **Main roads and solver segments are different units.** Main roads remain the user-facing OSM ways; solver segments are internal resampled slices used for placement and annotation.
 - **Short roads can be rendered with default style.** In the HKUST(GZ) demo, roads shorter than 20 m are kept in the graph but do not contribute to semantic profile counts or trigger extra facilities.
 

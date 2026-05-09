@@ -9,6 +9,7 @@ from typing import Any, Dict, List, Mapping, MutableMapping, Sequence, Tuple
 
 from .street_priors import DEFAULT_CATEGORIES
 from .street_band_semantics import detailed_strip_allowed_categories
+from .semantic_design_layers import SKELETON_DESIGN_PROFILES, normalize_skeleton_design_profile
 from .types import (
     RoadSegmentBand,
     RoadSegmentCrossSectionStrip,
@@ -253,6 +254,27 @@ def _as_optional_float(value: Any, label: str) -> float | None:
     if not math.isfinite(parsed):
         raise ValueError(f"{label} must be a finite number.")
     return parsed
+
+
+def _as_string_tuple(value: Any) -> Tuple[str, ...]:
+    if isinstance(value, str):
+        raw_items = value.replace(";", ",").split(",")
+    elif isinstance(value, Sequence) and not isinstance(value, (str, bytes)):
+        raw_items = list(value)
+    else:
+        raw_items = []
+    return tuple(dict.fromkeys(str(item).strip() for item in raw_items if str(item).strip()))
+
+
+def _parse_skeleton_design_profile_fields(value: Mapping[str, Any], label: str) -> Tuple[str, str, float, Tuple[str, ...]]:
+    raw_profile = value.get("skeleton_design_profile", value.get("semantic_profile_id", ""))
+    profile = normalize_skeleton_design_profile(raw_profile)
+    if raw_profile and not profile:
+        raise ValueError(f"{label}.skeleton_design_profile must be one of {sorted(SKELETON_DESIGN_PROFILES)}.")
+    source = _as_string(value.get("skeleton_design_profile_source"), "manual" if profile else "")
+    confidence = _as_optional_float(value.get("skeleton_design_profile_confidence"), f"{label}.skeleton_design_profile_confidence")
+    reasons = _as_string_tuple(value.get("skeleton_design_profile_reasons") or value.get("semantic_reasons") or ())
+    return profile, source, 1.0 if profile and confidence is None else float(confidence or 0.0), reasons
 
 
 def _as_int(value: Any, label: str, default: int | None = None) -> int:
@@ -690,6 +712,10 @@ class AnnotatedCenterline:
     street_furniture_instances: Tuple[AnnotatedStreetFurnitureInstance, ...] = ()
     start_junction_id: str = ""
     end_junction_id: str = ""
+    skeleton_design_profile: str = ""
+    skeleton_design_profile_source: str = ""
+    skeleton_design_profile_confidence: float = 0.0
+    skeleton_design_profile_reasons: Tuple[str, ...] = ()
 
     def resolved_cross_section_mode(self) -> str:
         if self.cross_section_strips:
@@ -750,6 +776,10 @@ class AnnotatedCenterline:
             "street_furniture_instances": [item.to_dict() for item in self.street_furniture_instances],
             "start_junction_id": self.start_junction_id,
             "end_junction_id": self.end_junction_id,
+            "skeleton_design_profile": self.skeleton_design_profile,
+            "skeleton_design_profile_source": self.skeleton_design_profile_source,
+            "skeleton_design_profile_confidence": float(self.skeleton_design_profile_confidence),
+            "skeleton_design_profile_reasons": list(self.skeleton_design_profile_reasons),
             "points": [point.to_dict() for point in self.points],
         }
 
@@ -846,6 +876,10 @@ class AnnotatedFunctionalZone:
     kind: str
     points: Tuple[AnnotationPoint, ...]
     furniture_instances: Tuple[AnnotatedZoneFurnitureInstance, ...] = ()
+    skeleton_design_profile: str = ""
+    skeleton_design_profile_source: str = ""
+    skeleton_design_profile_confidence: float = 0.0
+    skeleton_design_profile_reasons: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -854,6 +888,10 @@ class AnnotatedFunctionalZone:
             "kind": self.kind,
             "points": [point.to_dict() for point in self.points],
             "furniture_instances": [item.to_dict() for item in self.furniture_instances],
+            "skeleton_design_profile": self.skeleton_design_profile,
+            "skeleton_design_profile_source": self.skeleton_design_profile_source,
+            "skeleton_design_profile_confidence": float(self.skeleton_design_profile_confidence),
+            "skeleton_design_profile_reasons": list(self.skeleton_design_profile_reasons),
         }
 
 
@@ -915,6 +953,10 @@ class AnnotatedSurfaceAnnotation:
     lateral_start_m: float
     lateral_end_m: float
     material: AnnotatedSurfaceMaterial = field(default_factory=AnnotatedSurfaceMaterial)
+    skeleton_design_profile: str = ""
+    skeleton_design_profile_source: str = ""
+    skeleton_design_profile_confidence: float = 0.0
+    skeleton_design_profile_reasons: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -928,6 +970,10 @@ class AnnotatedSurfaceAnnotation:
             "lateral_start_m": float(self.lateral_start_m),
             "lateral_end_m": float(self.lateral_end_m),
             "material": self.material.to_dict(),
+            "skeleton_design_profile": self.skeleton_design_profile,
+            "skeleton_design_profile_source": self.skeleton_design_profile_source,
+            "skeleton_design_profile_confidence": float(self.skeleton_design_profile_confidence),
+            "skeleton_design_profile_reasons": list(self.skeleton_design_profile_reasons),
         }
 
 
@@ -1400,6 +1446,10 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
     fallback_id = f"centerline_{index + 1:02d}"
     feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
     label = _as_string(value.get("label"), feature_id)
+    skeleton_profile, skeleton_source, skeleton_confidence, skeleton_reasons = _parse_skeleton_design_profile_fields(
+        value,
+        f"centerlines[{index}]",
+    )
     forward_drive_lane_count, reverse_drive_lane_count = _resolve_drive_lane_defaults(value, index)
     bike_lane_count = max(
         0,
@@ -1513,6 +1563,10 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
         street_furniture_instances=street_furniture_instances,
         start_junction_id=_as_string(value.get("start_junction_id"), ""),
         end_junction_id=_as_string(value.get("end_junction_id"), ""),
+        skeleton_design_profile=skeleton_profile,
+        skeleton_design_profile_source=skeleton_source,
+        skeleton_design_profile_confidence=skeleton_confidence,
+        skeleton_design_profile_reasons=skeleton_reasons,
     )
     if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and centerline.carriageway_width_m() <= 0.0:
         raise ValueError(f"centerlines[{index}] detailed cross section must include at least one center strip.")
@@ -1639,6 +1693,10 @@ def _parse_functional_zone(value: Any, index: int) -> AnnotatedFunctionalZone:
         raise ValueError(
             f"functional_zones[{index}].kind must be one of {sorted(VALID_FUNCTIONAL_ZONE_KINDS)}."
         )
+    skeleton_profile, skeleton_source, skeleton_confidence, skeleton_reasons = _parse_skeleton_design_profile_fields(
+        value,
+        f"functional_zones[{index}]",
+    )
     raw_points = value.get("points")
     if not isinstance(raw_points, Sequence) or isinstance(raw_points, (str, bytes)):
         points: Tuple[AnnotationPoint, ...] = ()
@@ -1666,6 +1724,10 @@ def _parse_functional_zone(value: Any, index: int) -> AnnotatedFunctionalZone:
         kind=kind,
         points=points,
         furniture_instances=furniture_instances,
+        skeleton_design_profile=skeleton_profile,
+        skeleton_design_profile_source=skeleton_source,
+        skeleton_design_profile_confidence=skeleton_confidence,
+        skeleton_design_profile_reasons=skeleton_reasons,
     )
 
 
@@ -1741,6 +1803,10 @@ def _parse_surface_annotation(value: Any, index: int) -> AnnotatedSurfaceAnnotat
         label=f"surface_annotations[{index}].material",
         default_preset=SURFACE_MATERIAL_PRESET_BY_KIND.get(kind, surface_role),
     )
+    skeleton_profile, skeleton_source, skeleton_confidence, skeleton_reasons = _parse_skeleton_design_profile_fields(
+        value,
+        f"surface_annotations[{index}]",
+    )
     return AnnotatedSurfaceAnnotation(
         feature_id=feature_id,
         label=_as_string(value.get("label"), feature_id),
@@ -1764,6 +1830,10 @@ def _parse_surface_annotation(value: Any, index: int) -> AnnotatedSurfaceAnnotat
             f"surface_annotations[{index}].lateral_end_m",
         ),
         material=material,
+        skeleton_design_profile=skeleton_profile,
+        skeleton_design_profile_source=skeleton_source,
+        skeleton_design_profile_confidence=skeleton_confidence,
+        skeleton_design_profile_reasons=skeleton_reasons,
     )
 
 
@@ -2943,6 +3013,10 @@ def _build_centerline_nodes(
                         if coord_idx == len(polyline_m) - 2 and part_idx == len(breakpoints) - 2 and centerline.end_junction_id
                         else ""
                     ),
+                    skeleton_design_profile=str(centerline.skeleton_design_profile),
+                    skeleton_design_profile_source=str(centerline.skeleton_design_profile_source or ("manual" if centerline.skeleton_design_profile else "")),
+                    skeleton_design_profile_confidence=float(centerline.skeleton_design_profile_confidence),
+                    skeleton_design_profile_reasons=tuple(centerline.skeleton_design_profile_reasons),
                 )
             )
             if last_segment_id is not None:

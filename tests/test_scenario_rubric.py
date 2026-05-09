@@ -77,6 +77,62 @@ def test_scenario_rubric_required_semantic_gate_can_fail_status():
     assert any("lane_count_le_2" in reason for reason in result["status_reasons"])
 
 
+def test_scenario_rubric_profile_pair_threshold_overrides_default_status():
+    rubric = _custom_rubric({})
+    rubric["scenarios"][0]["profile_pair_thresholds"] = {
+        "walkable_commercial+commercial_vitality": {
+            "total_thresholds": {"minimum": 1.1, "target": 1.1},
+        }
+    }
+    evaluator = ScenarioRubricEvaluator(rubric_config=rubric)
+
+    matched = evaluator.evaluate_layout(
+        _minimal_layout(
+            skeleton_design_profile="walkable_commercial",
+            street_furniture_profile="commercial_vitality",
+        ),
+        "scenario_test",
+    )
+    fallback = evaluator.evaluate_layout(
+        _minimal_layout(
+            skeleton_design_profile="green_walkable",
+            street_furniture_profile="park_landscape",
+        ),
+        "scenario_test",
+    )
+
+    assert matched["profile_pair"] == "walkable_commercial+commercial_vitality"
+    assert matched["profile_pair_threshold_applied"] is True
+    assert matched["status"] == "Fail"
+    assert fallback["profile_pair_threshold_applied"] is False
+    assert fallback["status"] == "Pass"
+
+
+def test_scenario_rubric_profile_equals_gate_reads_a_or_b_layer():
+    rubric = _custom_rubric({})
+    rubric["scenarios"][0]["semantic_gates"] = [
+        {
+            "gate_id": "requires_transit_furniture",
+            "type": "profile_equals",
+            "layer": "street_furniture",
+            "profile": "transit_priority",
+            "severity": "fail",
+        }
+    ]
+    evaluator = ScenarioRubricEvaluator(rubric_config=rubric)
+
+    result = evaluator.evaluate_layout(
+        _minimal_layout(
+            skeleton_design_profile="transit_priority",
+            street_furniture_profile="commercial_vitality",
+        ),
+        "scenario_test",
+    )
+
+    assert result["semantic_gates"][0]["status"] == "Fail"
+    assert result["status"] == "Fail"
+
+
 def _custom_rubric(metric_thresholds):
     return {
         "schema_version": "roadgen3d_scenario_rubric_v1",
@@ -85,6 +141,7 @@ def _custom_rubric(metric_thresholds):
             "total_thresholds": {"minimum": 0.0, "target": 0.0, "excellent": 1.0},
             "dimension_weights": {"Walkability": 0.4, "Safety": 0.35, "PlaceQuality": 0.25},
             "metric_thresholds": metric_thresholds,
+            "profile_pair_thresholds": {},
         },
         "scenarios": [
             {
@@ -96,7 +153,13 @@ def _custom_rubric(metric_thresholds):
     }
 
 
-def _minimal_layout(*, lane_count: int = 2, visual_clutter: float = 0.1):
+def _minimal_layout(
+    *,
+    lane_count: int = 2,
+    visual_clutter: float = 0.1,
+    skeleton_design_profile: str = "quiet_residential",
+    street_furniture_profile: str = "balanced_complete",
+):
     return {
         "config": {
             "lane_count": lane_count,
@@ -106,6 +169,11 @@ def _minimal_layout(*, lane_count: int = 2, visual_clutter: float = 0.1):
             "density": 0.8,
         },
         "summary": {
+            "semantic_design_layers": {
+                "skeleton_design_profile": skeleton_design_profile,
+                "street_furniture_profile": street_furniture_profile,
+                "profile_pair": f"{skeleton_design_profile}+{street_furniture_profile}",
+            },
             "length_m": 80.0,
             "road_width_m": 10.0,
             "sidewalk_width_m": 3.0,
