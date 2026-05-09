@@ -22,8 +22,17 @@
     "query": "HKUST(GZ) 350m OSM semantic multiblock preview",
     "layout_mode": "osm_multiblock",
     "osm_semantic_mode": "landuse_rules_v1",
+    "segment_length_m": 35,
     "osm_multiblock_max_roads": 12,
     "osm_multiblock_max_extent_m": 350,
+    "osm_short_road_policy": "default_style",
+    "osm_short_road_min_length_m": 20,
+    "osm_context_fit_mode": "auto_design",
+    "bus_stop_eligible_road_names": [
+      "笃学路"
+    ],
+    "max_bus_stops_per_scene": 1,
+    "allow_demo_bus_stop_when_osm_absent": true,
     "length_m": 80,
     "road_width_m": 7,
     "sidewalk_width_m": 2.4,

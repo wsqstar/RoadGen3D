@@ -530,6 +530,9 @@ def test_osm_multiblock_compose_outputs_semantic_blocks_and_profiles(tmp_path: P
     assert summary["layout_mode"] == "osm_multiblock"
     assert summary["semantic_block_count"] == 3
     assert summary["osm_multiblock_summary"]["selected_road_count"] == 3
+    assert summary["osm_context_fit"]["ruleset"] == "socioeconomic_fit_v1"
+    assert summary["osm_context_fit"]["auto_design_applied"] is True
+    assert summary["osm_context_fit"]["applied_compose_patch"]["design_rule_profile"] == "pedestrian_priority_v1"
     assert len(layout_data["osm_semantic_blocks"]) == 3
     assert {block["semantic_profile_id"] for block in layout_data["osm_semantic_blocks"]} >= {
         "child_friendly_school",

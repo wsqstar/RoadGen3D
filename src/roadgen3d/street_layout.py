@@ -70,7 +70,7 @@ from .placement_field import (
 )
 from .spatial_features import build_spatial_context, compute_slot_distances
 from .osm_segment_graph import build_segment_graph
-from .osm_semantics import OSM_SEMANTIC_RULESET_VERSION, segment_semantic_profile_payload
+from .osm_semantics import OSM_SEMANTIC_RULESET_VERSION, evaluate_osm_context_fit, segment_semantic_profile_payload
 from .poi_taxonomy import (
     CANONICAL_FIRE_POI,
     canonicalize_poi_type,
@@ -1053,6 +1053,14 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("road_selection must be 'all', 'primary_road', 'longest' or 'walkable_neighborhood'")
     if str(getattr(config, "osm_semantic_mode", "landuse_rules_v1")).strip().lower() not in {"landuse_rules_v1"}:
         raise ValueError("osm_semantic_mode must be 'landuse_rules_v1'")
+    if str(getattr(config, "osm_short_road_policy", "semantic")).strip().lower() not in {"semantic", "default_style"}:
+        raise ValueError("osm_short_road_policy must be 'semantic' or 'default_style'")
+    if float(getattr(config, "osm_short_road_min_length_m", 0.0)) < 0.0:
+        raise ValueError("osm_short_road_min_length_m must be >= 0")
+    if str(getattr(config, "osm_context_fit_mode", "auto_design")).strip().lower() not in {"off", "report", "auto_design"}:
+        raise ValueError("osm_context_fit_mode must be 'off', 'report' or 'auto_design'")
+    if int(getattr(config, "max_bus_stops_per_scene", 0)) < 0:
+        raise ValueError("max_bus_stops_per_scene must be >= 0")
     if int(getattr(config, "osm_multiblock_max_roads", 12)) <= 0:
         raise ValueError("osm_multiblock_max_roads must be >= 1")
     if float(getattr(config, "osm_multiblock_max_extent_m", 350.0)) <= 0.0:
@@ -8729,6 +8737,7 @@ def compose_street_scene(
         layout_mode=str(config.layout_mode),
     )
     multiblock_semantic_summary: Dict[str, Any] = {}
+    osm_context_fit_summary: Dict[str, Any] = {}
     if config.layout_mode in {"osm", "osm_multiblock"}:
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
         from .placement_zones import evaluate_projected_road_context
@@ -8737,9 +8746,42 @@ def compose_street_scene(
         features = parse_osm_features(raw)
         projected = project_to_local(features, config.aoi_bbox)
         if config.layout_mode == "osm_multiblock":
-            from .osm_semantics import prepare_multiblock_projected_features
+            from .osm_semantics import apply_osm_bus_stop_constraints, prepare_multiblock_projected_features
 
             projected, multiblock_semantic_summary = prepare_multiblock_projected_features(projected, config)
+            projected, bus_stop_summary = apply_osm_bus_stop_constraints(projected, config)
+            multiblock_semantic_summary = {
+                **dict(multiblock_semantic_summary),
+                "bus_stop_counts": dict(bus_stop_summary.get("counts", {}) or {}),
+                "bus_stop_eligible_road_ids": list(bus_stop_summary.get("eligible_road_ids", []) or []),
+                "bus_stop_provenance": list(bus_stop_summary.get("provenance", []) or []),
+            }
+            if road_segment_graph is None:
+                road_segment_graph = build_segment_graph(projected, config)
+            initial_context_fit = evaluate_osm_context_fit(road_segment_graph, config)
+            fit_mode = str(getattr(config, "osm_context_fit_mode", "auto_design") or "auto_design").strip().lower()
+            applied_context_patch: Dict[str, Any] = {}
+            if fit_mode == "auto_design" and initial_context_fit.get("scene_recommended_compose_patch"):
+                applied_context_patch = dict(initial_context_fit.get("scene_recommended_compose_patch") or {})
+                config = replace(config, **applied_context_patch)
+                road_segment_graph = build_segment_graph(projected, config)
+                post_context_fit = evaluate_osm_context_fit(road_segment_graph, config, include_segments=False)
+                osm_context_fit_summary = {
+                    **dict(initial_context_fit),
+                    "auto_design_applied": True,
+                    "applied_compose_patch": applied_context_patch,
+                    "post_apply": dict(post_context_fit),
+                }
+            else:
+                osm_context_fit_summary = {
+                    **dict(initial_context_fit),
+                    "auto_design_applied": False,
+                    "applied_compose_patch": {},
+                }
+            multiblock_semantic_summary = {
+                **dict(multiblock_semantic_summary),
+                "osm_context_fit": dict(osm_context_fit_summary),
+            }
         projected, placement_ctx, effective_poi_counts = evaluate_projected_road_context(
             projected,
             config,
@@ -11083,6 +11125,7 @@ def compose_street_scene(
         "semantic_block_count": int(len(osm_semantic_blocks)),
         "segment_semantic_profile_counts": segment_semantic_profile_counts,
         "osm_multiblock_summary": dict(multiblock_semantic_summary),
+        "osm_context_fit": dict(osm_context_fit_summary),
         "constraint_mode": config.constraint_mode,
         "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
         "compliance_rate_total": float(compliance_rate_total),

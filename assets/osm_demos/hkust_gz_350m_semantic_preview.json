@@ -8,6 +8,27 @@
     22.890421
   ],
   "building_count": 2,
+  "bus_stop_counts": {
+    "demo_inferred": 1,
+    "osm": 0,
+    "raw_osm": 0,
+    "total": 1
+  },
+  "bus_stop_eligible_road_ids": [
+    1092948997,
+    1092948996
+  ],
+  "bus_stop_provenance": [
+    {
+      "road_id": 1092948996,
+      "road_name": "笃学路",
+      "source": "demo_inferred",
+      "xy": [
+        -167.34473805253933,
+        109.89210886040249
+      ]
+    }
+  ],
   "center": {
     "lat": 22.888841,
     "lon": 113.475886,
@@ -15,11 +36,20 @@
     "source_url": "https://commons.wikimedia.org/wiki/File:Main_Entrance,_HKUST(GZ)_20220827.jpg"
   },
   "compose_config": {
+    "allow_demo_bus_stop_when_osm_absent": true,
+    "bus_stop_eligible_road_names": [
+      "笃学路"
+    ],
     "lane_count": 2,
+    "max_bus_stops_per_scene": 1,
+    "osm_context_fit_mode": "auto_design",
     "osm_multiblock_max_extent_m": 350.0,
     "osm_multiblock_max_roads": 12,
+    "osm_short_road_min_length_m": 20.0,
+    "osm_short_road_policy": "default_style",
     "road_width_m": 7.0,
     "seed": 42,
+    "segment_length_m": 35.0,
     "sidewalk_width_m": 2.4
   },
   "demo_id": "hkust_gz_350m",
@@ -36,6 +66,900 @@
   "layout_mode": "osm_multiblock",
   "name": "HKUST(GZ) 350m OSM semantic demo",
   "osm_cache_dir": "artifacts/m5/osm_cache",
+  "osm_context_fit": {
+    "assessed_segment_count": 17,
+    "auto_design_would_apply": true,
+    "avg_fit_score": 0.6604,
+    "direction_counts": {
+      "child_safety_upgrade": 12
+    },
+    "direction_length_m": {
+      "child_safety_upgrade": 359.027
+    },
+    "dominant_design_direction": "child_safety_upgrade",
+    "mode": "auto_design",
+    "roads": [
+      {
+        "avg_fit_score": 0.9073,
+        "dominant_design_direction": "",
+        "missing_facility_counts": {},
+        "road_id": 1092948996,
+        "segment_count": 3,
+        "under_provisioned_segment_count": 0
+      },
+      {
+        "avg_fit_score": 1.0,
+        "dominant_design_direction": "",
+        "missing_facility_counts": {},
+        "road_id": 1092948997,
+        "segment_count": 2,
+        "under_provisioned_segment_count": 0
+      },
+      {
+        "avg_fit_score": 0.542,
+        "dominant_design_direction": "child_safety_upgrade",
+        "missing_facility_counts": {
+          "bollard": 7,
+          "crossing_or_traffic_signals": 7
+        },
+        "road_id": 1098450446,
+        "segment_count": 7,
+        "under_provisioned_segment_count": 7
+      },
+      {
+        "avg_fit_score": 0.542,
+        "dominant_design_direction": "child_safety_upgrade",
+        "missing_facility_counts": {
+          "bollard": 5,
+          "crossing_or_traffic_signals": 5
+        },
+        "road_id": 1154868983,
+        "segment_count": 5,
+        "under_provisioned_segment_count": 5
+      }
+    ],
+    "ruleset": "socioeconomic_fit_v1",
+    "scene_recommended_compose_patch": {
+      "bike_demand_level": "medium",
+      "density": 1.15,
+      "design_rule_profile": "pedestrian_priority_v1",
+      "minimum_category_presence": [
+        "lamp",
+        "bench",
+        "trash",
+        "bollard"
+      ],
+      "objective_profile": "greening",
+      "optional_category_presence": [
+        "tree",
+        "hydrant"
+      ],
+      "ped_demand_level": "high",
+      "sidewalk_width_m": 3.2,
+      "style_preset": "lush_walkable_v1",
+      "transit_demand_level": "medium",
+      "vehicle_demand_level": "low"
+    },
+    "segments": [
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 7.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "",
+        "expected_supply": {
+          "facility_groups": [],
+          "min_sidewalk_width_m": 2.4
+        },
+        "fit_score": 1.0,
+        "fit_threshold": 0.62,
+        "is_under_provisioned": false,
+        "missing_facilities": [],
+        "reasons": [],
+        "recommended_compose_patch": {},
+        "road_id": 1092948997,
+        "segment_id": "seg_0000",
+        "semantic_profile_id": "quiet_residential",
+        "socioeconomic_context": "residential_neighborhood"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 7.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "",
+        "expected_supply": {
+          "facility_groups": [],
+          "min_sidewalk_width_m": 2.4
+        },
+        "fit_score": 1.0,
+        "fit_threshold": 0.62,
+        "is_under_provisioned": false,
+        "missing_facilities": [],
+        "reasons": [],
+        "recommended_compose_patch": {},
+        "road_id": 1092948997,
+        "segment_id": "seg_0001",
+        "semantic_profile_id": "quiet_residential",
+        "socioeconomic_context": "residential_neighborhood"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 7.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "",
+        "expected_supply": {
+          "facility_groups": [],
+          "min_sidewalk_width_m": 2.4
+        },
+        "fit_score": 1.0,
+        "fit_threshold": 0.62,
+        "is_under_provisioned": false,
+        "missing_facilities": [],
+        "reasons": [],
+        "recommended_compose_patch": {},
+        "road_id": 1092948996,
+        "segment_id": "seg_0002",
+        "semantic_profile_id": "quiet_residential",
+        "socioeconomic_context": "residential_neighborhood"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [
+            "bus_stop"
+          ],
+          "road_width_m": 7.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "bus_stop",
+              "subway_entrance"
+            ],
+            [
+              "crossing",
+              "traffic_signals"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.722,
+        "fit_threshold": 0.72,
+        "is_under_provisioned": false,
+        "missing_facilities": [
+          "crossing_or_traffic_signals"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {},
+        "road_id": 1092948996,
+        "segment_id": "seg_0003",
+        "semantic_profile_id": "transit_priority",
+        "socioeconomic_context": "transit_corridor"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 7.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "",
+        "expected_supply": {
+          "facility_groups": [],
+          "min_sidewalk_width_m": 2.4
+        },
+        "fit_score": 1.0,
+        "fit_threshold": 0.62,
+        "is_under_provisioned": false,
+        "missing_facilities": [],
+        "reasons": [],
+        "recommended_compose_patch": {},
+        "road_id": 1092948996,
+        "segment_id": "seg_0004",
+        "semantic_profile_id": "quiet_residential",
+        "socioeconomic_context": "residential_neighborhood"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0005",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0006",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0007",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0008",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0009",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0010",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1098450446,
+        "segment_id": "seg_0011",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1154868983,
+        "segment_id": "seg_0012",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1154868983,
+        "segment_id": "seg_0013",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1154868983,
+        "segment_id": "seg_0014",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1154868983,
+        "segment_id": "seg_0015",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      },
+      {
+        "current_supply": {
+          "lane_count": 2,
+          "poi_types": [],
+          "road_width_m": 4.0,
+          "sidewalk_width_m": 2.4
+        },
+        "design_direction": "child_safety_upgrade",
+        "expected_supply": {
+          "facility_groups": [
+            [
+              "crossing",
+              "traffic_signals"
+            ],
+            [
+              "bollard"
+            ]
+          ],
+          "min_sidewalk_width_m": 3.0
+        },
+        "fit_score": 0.542,
+        "fit_threshold": 0.76,
+        "is_under_provisioned": true,
+        "missing_facilities": [
+          "crossing_or_traffic_signals",
+          "bollard"
+        ],
+        "reasons": [
+          "sidewalk_width_m<3.0",
+          "missing_context_facilities"
+        ],
+        "recommended_compose_patch": {
+          "bike_demand_level": "medium",
+          "density": 1.15,
+          "design_rule_profile": "pedestrian_priority_v1",
+          "minimum_category_presence": [
+            "lamp",
+            "bench",
+            "trash",
+            "bollard"
+          ],
+          "objective_profile": "greening",
+          "optional_category_presence": [
+            "tree",
+            "hydrant"
+          ],
+          "ped_demand_level": "high",
+          "sidewalk_width_m": 3.2,
+          "style_preset": "lush_walkable_v1",
+          "transit_demand_level": "medium",
+          "vehicle_demand_level": "low"
+        },
+        "road_id": 1154868983,
+        "segment_id": "seg_0016",
+        "semantic_profile_id": "child_friendly_school",
+        "socioeconomic_context": "education_child_serving"
+      }
+    ],
+    "under_provisioned_ratio": 0.7059,
+    "under_provisioned_segment_count": 12
+  },
   "osm_semantic_blocks": [
     {
       "block_id": "osm_block_000",
@@ -487,26 +1411,27 @@
   "road_count": 12,
   "road_segment_graph_summary": {
     "avg_cross_section_width_m": 0.0,
-    "avg_road_width_m": 0.0,
-    "avg_segment_length_m": 9.559179500280704,
-    "edge_count": 52,
+    "avg_road_width_m": 5.2,
+    "avg_segment_length_m": 29.71507538689823,
+    "edge_count": 13,
     "graph_cross_junction_count": 0,
     "graph_junction_count": 0,
     "graph_t_junction_count": 0,
-    "junction_segment_count": 56,
+    "junction_segment_count": 9,
     "max_cross_section_width_m": 0.0,
-    "max_road_width_m": 0.0,
+    "max_road_width_m": 7.0,
     "metaurban_asset_hint_count": 0,
     "min_cross_section_width_m": 0.0,
-    "min_road_width_m": 0.0,
+    "min_road_width_m": 4.0,
     "mode": "osm_multiblock",
     "road_count": 5,
-    "segment_count": 57
+    "segment_count": 18
   },
   "schema_version": "roadgen3d_osm_semantic_preview_v1",
   "segment_semantic_profile_counts": {
-    "child_friendly_school": 39,
-    "quiet_residential": 18
+    "child_friendly_school": 12,
+    "quiet_residential": 4,
+    "transit_priority": 1
   },
   "segment_semantic_profiles": [
     {
@@ -530,7 +1455,7 @@
       ]
     },
     {
-      "road_id": 1092948997,
+      "road_id": 1092948996,
       "segment_id": "seg_0002",
       "semantic_block_id": "",
       "semantic_confidence": 0.55,
@@ -540,17 +1465,17 @@
       ]
     },
     {
-      "road_id": 1092948997,
+      "road_id": 1092948996,
       "segment_id": "seg_0003",
       "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_confidence": 0.88,
+      "semantic_profile_id": "transit_priority",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "transit POI present"
       ]
     },
     {
-      "road_id": 1092948997,
+      "road_id": 1092948996,
       "segment_id": "seg_0004",
       "semantic_block_id": "",
       "semantic_confidence": 0.55,
@@ -560,508 +1485,118 @@
       ]
     },
     {
-      "road_id": 1092948997,
+      "road_id": 1098450446,
       "segment_id": "seg_0005",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1098450446,
       "segment_id": "seg_0006",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1098450446,
       "segment_id": "seg_0007",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1098450446,
       "segment_id": "seg_0008",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1098450446,
       "segment_id": "seg_0009",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1098450446,
       "segment_id": "seg_0010",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1098450446,
       "segment_id": "seg_0011",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1154868983,
       "segment_id": "seg_0012",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1154868983,
       "segment_id": "seg_0013",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1154868983,
       "segment_id": "seg_0014",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1154868983,
       "segment_id": "seg_0015",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "education amenity or school/kindergarten POI"
       ]
     },
     {
-      "road_id": 1092948996,
+      "road_id": 1154868983,
       "segment_id": "seg_0016",
-      "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
-      "semantic_reasons": [
-        "default residential-like neighborhood profile"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0017",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0018",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0019",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0020",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0021",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0022",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0023",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0024",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0025",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0026",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0027",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0028",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0029",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0030",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0031",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0032",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0033",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0034",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0035",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0036",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0037",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0038",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0039",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0040",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1098450446,
-      "segment_id": "seg_0041",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0042",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0043",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0044",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0045",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0046",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0047",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0048",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0049",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0050",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0051",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0052",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0053",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0054",
-      "semantic_block_id": "osm_block_000",
-      "semantic_confidence": 0.94,
-      "semantic_profile_id": "child_friendly_school",
-      "semantic_reasons": [
-        "education amenity or school/kindergarten POI"
-      ]
-    },
-    {
-      "road_id": 1154868983,
-      "segment_id": "seg_0055",
       "semantic_block_id": "osm_block_000",
       "semantic_confidence": 0.94,
       "semantic_profile_id": "child_friendly_school",
@@ -1071,51 +1606,203 @@
     },
     {
       "road_id": 1383063344,
-      "segment_id": "seg_0056",
+      "segment_id": "seg_0017",
       "semantic_block_id": "",
-      "semantic_confidence": 0.55,
-      "semantic_profile_id": "quiet_residential",
+      "semantic_confidence": 0.0,
+      "semantic_profile_id": "",
       "semantic_reasons": [
-        "default residential-like neighborhood profile"
+        "short road rendered with default style"
       ]
     }
   ],
   "selected_roads": [
     {
+      "avg_segment_length_m": 31.869627599677663,
       "highway_type": "tertiary",
+      "length_m": 63.73925519935533,
+      "name": "笃学路",
       "osm_id": 1092948997,
-      "point_count": 2
+      "point_count": 2,
+      "segment_count": 2,
+      "semantic_profile_counts": {
+        "quiet_residential": 2
+      },
+      "short_road_policy": "semantic"
     },
     {
+      "avg_segment_length_m": 33.87540915345056,
       "highway_type": "tertiary",
+      "length_m": 101.62622746035169,
+      "name": "笃学路",
       "osm_id": 1092948996,
-      "point_count": 6
+      "point_count": 6,
+      "segment_count": 3,
+      "semantic_profile_counts": {
+        "quiet_residential": 2,
+        "transit_priority": 1
+      },
+      "short_road_policy": "semantic"
     },
     {
+      "avg_segment_length_m": 30.736499113432952,
       "highway_type": "service",
+      "length_m": 215.15549379403066,
+      "name": "",
       "osm_id": 1098450446,
-      "point_count": 23
+      "point_count": 23,
+      "segment_count": 7,
+      "semantic_profile_counts": {
+        "child_friendly_school": 7
+      },
+      "short_road_policy": "semantic"
     },
     {
+      "avg_segment_length_m": 30.672360787625884,
       "highway_type": "service",
+      "length_m": 153.3618039381294,
+      "name": "内三路",
       "osm_id": 1154868983,
-      "point_count": 3
+      "point_count": 3,
+      "segment_count": 5,
+      "semantic_profile_counts": {
+        "child_friendly_school": 5
+      },
+      "short_road_policy": "semantic"
     },
     {
+      "avg_segment_length_m": 10.99045112413302,
       "highway_type": "service",
+      "length_m": 10.99045112413302,
+      "name": "",
       "osm_id": 1383063344,
-      "point_count": 2
+      "point_count": 2,
+      "segment_count": 1,
+      "semantic_profile_counts": {},
+      "short_road_policy": "default_style"
     }
   ],
   "semantic_block_count": 2,
   "semantic_mode": "landuse_rules_v1",
+  "short_roads_default_style": [
+    {
+      "avg_segment_length_m": 10.99045112413302,
+      "highway_type": "service",
+      "length_m": 10.99045112413302,
+      "name": "",
+      "osm_id": 1383063344,
+      "point_count": 2,
+      "segment_count": 1,
+      "semantic_profile_counts": {},
+      "short_road_policy": "default_style"
+    }
+  ],
   "summary": {
+    "bus_stop_counts": {
+      "demo_inferred": 1,
+      "osm": 0,
+      "raw_osm": 0,
+      "total": 1
+    },
+    "bus_stop_eligible_road_ids": [
+      1092948997,
+      1092948996
+    ],
+    "bus_stop_provenance": [
+      {
+        "road_id": 1092948996,
+        "road_name": "笃学路",
+        "source": "demo_inferred",
+        "xy": [
+          -167.34473805253933,
+          109.89210886040249
+        ]
+      }
+    ],
     "input_road_count": 12,
     "max_extent_m": 350.0,
     "max_roads": 12,
+    "osm_context_fit": {
+      "assessed_segment_count": 17,
+      "auto_design_would_apply": true,
+      "avg_fit_score": 0.6604,
+      "direction_counts": {
+        "child_safety_upgrade": 12
+      },
+      "direction_length_m": {
+        "child_safety_upgrade": 359.027
+      },
+      "dominant_design_direction": "child_safety_upgrade",
+      "mode": "auto_design",
+      "roads": [
+        {
+          "avg_fit_score": 0.9073,
+          "dominant_design_direction": "",
+          "missing_facility_counts": {},
+          "road_id": 1092948996,
+          "segment_count": 3,
+          "under_provisioned_segment_count": 0
+        },
+        {
+          "avg_fit_score": 1.0,
+          "dominant_design_direction": "",
+          "missing_facility_counts": {},
+          "road_id": 1092948997,
+          "segment_count": 2,
+          "under_provisioned_segment_count": 0
+        },
+        {
+          "avg_fit_score": 0.542,
+          "dominant_design_direction": "child_safety_upgrade",
+          "missing_facility_counts": {
+            "bollard": 7,
+            "crossing_or_traffic_signals": 7
+          },
+          "road_id": 1098450446,
+          "segment_count": 7,
+          "under_provisioned_segment_count": 7
+        },
+        {
+          "avg_fit_score": 0.542,
+          "dominant_design_direction": "child_safety_upgrade",
+          "missing_facility_counts": {
+            "bollard": 5,
+            "crossing_or_traffic_signals": 5
+          },
+          "road_id": 1154868983,
+          "segment_count": 5,
+          "under_provisioned_segment_count": 5
+        }
+      ],
+      "ruleset": "socioeconomic_fit_v1",
+      "scene_recommended_compose_patch": {
+        "bike_demand_level": "medium",
+        "density": 1.15,
+        "design_rule_profile": "pedestrian_priority_v1",
+        "minimum_category_presence": [
+          "lamp",
+          "bench",
+          "trash",
+          "bollard"
+        ],
+        "objective_profile": "greening",
+        "optional_category_presence": [
+          "tree",
+          "hydrant"
+        ],
+        "ped_demand_level": "high",
+        "sidewalk_width_m": 3.2,
+        "style_preset": "lush_walkable_v1",
+        "transit_demand_level": "medium",
+        "vehicle_demand_level": "low"
+      },
+      "under_provisioned_ratio": 0.7059,
+      "under_provisioned_segment_count": 12
+    },
+    "segment_length_m": 35.0,
     "segment_semantic_profile_counts": {
-      "child_friendly_school": 39,
-      "quiet_residential": 18
+      "child_friendly_school": 12,
+      "quiet_residential": 4,
+      "transit_priority": 1
     },
     "selected_road_count": 5,
     "selected_road_osm_ids": [
@@ -1130,6 +1817,19 @@
     "semantic_profile_counts": {
       "child_friendly_school": 1,
       "quiet_residential": 1
-    }
+    },
+    "short_roads_default_style": [
+      {
+        "avg_segment_length_m": 10.99045112413302,
+        "highway_type": "service",
+        "length_m": 10.99045112413302,
+        "name": "",
+        "osm_id": 1383063344,
+        "point_count": 2,
+        "segment_count": 1,
+        "semantic_profile_counts": {},
+        "short_road_policy": "default_style"
+      }
+    ]
   }
 }

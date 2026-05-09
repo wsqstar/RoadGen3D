@@ -48,9 +48,9 @@ def load_demo_config(config_path: str | Path) -> dict[str, Any]:
 
 def _segment_profile_counts(segment_profiles: list[Mapping[str, Any]]) -> dict[str, int]:
     counts = Counter(
-        str(item.get("semantic_profile_id") or "unknown")
+        str(item.get("semantic_profile_id") or "").strip()
         for item in segment_profiles
-        if isinstance(item, Mapping)
+        if isinstance(item, Mapping) and str(item.get("semantic_profile_id") or "").strip()
     )
     return dict(sorted(counts.items()))
 
@@ -66,6 +66,16 @@ def _semantic_block_count(preview: Mapping[str, Any]) -> int:
 def _input_count(preview: Mapping[str, Any], key: str) -> int:
     input_summary = preview.get("input") if isinstance(preview.get("input"), Mapping) else {}
     return int(input_summary.get(key) or 0)
+
+
+def _config_list(value: Any) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, str):
+        raw_items = value.replace(";", ",").split(",")
+    else:
+        raw_items = list(value)
+    return [str(item).strip() for item in raw_items if str(item).strip()]
 
 
 def build_commit_ready_payload(config: Mapping[str, Any], preview: Mapping[str, Any]) -> dict[str, Any]:
@@ -85,8 +95,15 @@ def build_commit_ready_payload(config: Mapping[str, Any], preview: Mapping[str, 
         "osm_cache_dir": configured_cache_dir,
         "semantic_mode": str(preview.get("semantic_mode") or compose_config.get("osm_semantic_mode") or ""),
         "compose_config": {
+            "segment_length_m": float(compose_config.get("segment_length_m") or 35.0),
             "osm_multiblock_max_roads": int(compose_config.get("osm_multiblock_max_roads") or 12),
             "osm_multiblock_max_extent_m": float(compose_config.get("osm_multiblock_max_extent_m") or 350.0),
+            "osm_short_road_policy": str(compose_config.get("osm_short_road_policy") or "default_style"),
+            "osm_short_road_min_length_m": float(compose_config.get("osm_short_road_min_length_m") or 20.0),
+            "osm_context_fit_mode": str(compose_config.get("osm_context_fit_mode") or "auto_design"),
+            "bus_stop_eligible_road_names": _config_list(compose_config.get("bus_stop_eligible_road_names")),
+            "max_bus_stops_per_scene": int(compose_config.get("max_bus_stops_per_scene") or 0),
+            "allow_demo_bus_stop_when_osm_absent": bool(compose_config.get("allow_demo_bus_stop_when_osm_absent", False)),
             "road_width_m": float(compose_config.get("road_width_m") or 7.0),
             "sidewalk_width_m": float(compose_config.get("sidewalk_width_m") or 2.4),
             "lane_count": int(compose_config.get("lane_count") or 2),
@@ -103,6 +120,11 @@ def build_commit_ready_payload(config: Mapping[str, Any], preview: Mapping[str, 
         },
         "input": dict(preview.get("input") or {}),
         "selected_roads": list(preview.get("selected_roads") or []),
+        "short_roads_default_style": list(preview.get("short_roads_default_style") or []),
+        "bus_stop_counts": dict(preview.get("bus_stop_counts") or {}),
+        "bus_stop_eligible_road_ids": list(preview.get("bus_stop_eligible_road_ids") or []),
+        "bus_stop_provenance": list(preview.get("bus_stop_provenance") or []),
+        "osm_context_fit": dict(preview.get("osm_context_fit") or {}),
         "road_segment_graph_summary": dict(preview.get("road_segment_graph_summary") or {}),
         "osm_semantic_blocks": list(preview.get("osm_semantic_blocks") or []),
         "segment_semantic_profiles": segment_profiles,
@@ -180,6 +202,10 @@ def main() -> None:
     print(f"land_use_polygons          : {payload['land_use_polygon_count']}")
     print(f"semantic_blocks            : {payload['semantic_block_count']}")
     print(f"segment_semantic_profiles  : {payload['segment_semantic_profile_counts']}")
+    print(f"bus_stop_counts            : {payload.get('bus_stop_counts', {})}")
+    context_fit = dict(payload.get("osm_context_fit") or {})
+    print(f"context_fit_direction      : {context_fit.get('dominant_design_direction', '')}")
+    print(f"context_fit_under_segments : {context_fit.get('under_provisioned_segment_count', 0)}/{context_fit.get('assessed_segment_count', 0)}")
     print(f"osm_cache_dir              : {payload['osm_cache_dir']}")
 
 
