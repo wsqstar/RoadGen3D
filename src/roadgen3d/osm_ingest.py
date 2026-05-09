@@ -233,7 +233,15 @@ def fetch_osm_data(
     last_exc: Optional[Exception] = None
     for attempt in range(3):
         try:
-            resp = requests.post(url, data={"data": query}, timeout=90)
+            resp = requests.post(
+                url,
+                data={"data": query},
+                headers={
+                    "Accept": "application/json",
+                    "User-Agent": "RoadGen3D OSM semantic preview",
+                },
+                timeout=90,
+            )
             resp.raise_for_status()
             data = resp.json()
             cache_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")

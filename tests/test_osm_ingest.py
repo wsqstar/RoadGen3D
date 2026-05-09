@@ -351,3 +351,32 @@ def test_cache_hit_no_network(tmp_path: Path):
 
     assert "elements" in data
     assert len(data["elements"]) > 0
+
+
+def test_fetch_osm_data_sets_overpass_headers(tmp_path: Path):
+    """Overpass can reject default Python requests without explicit negotiation headers."""
+    bbox = (116.39, 39.90, 116.40, 39.91)
+    captured: dict[str, object] = {}
+
+    class FakeResponse:
+        def raise_for_status(self) -> None:
+            return None
+
+        def json(self) -> dict[str, list[object]]:
+            return {"elements": []}
+
+    fake_requests = type(sys)("requests")
+
+    def _post(url: str, **kwargs: object) -> FakeResponse:
+        captured["url"] = url
+        captured["kwargs"] = kwargs
+        return FakeResponse()
+
+    fake_requests.post = _post  # type: ignore[attr-defined]
+    with patch.dict("sys.modules", {"requests": fake_requests}):
+        data = fetch_osm_data(bbox=bbox, cache_dir=tmp_path)
+
+    headers = dict(captured["kwargs"]["headers"])  # type: ignore[index]
+    assert data == {"elements": []}
+    assert headers["Accept"] == "application/json"
+    assert "RoadGen3D" in headers["User-Agent"]
