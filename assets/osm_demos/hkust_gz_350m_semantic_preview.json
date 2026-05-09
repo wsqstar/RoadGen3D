@@ -1,0 +1,1135 @@
+{
+  "address": "No.1 Du Xue Rd, Nansha District, Guangzhou",
+  "address_source_url": "https://www.hkust-gz.edu.cn/contact-us/",
+  "aoi_bbox": [
+    113.47418,
+    22.887261,
+    113.477592,
+    22.890421
+  ],
+  "building_count": 2,
+  "center": {
+    "lat": 22.888841,
+    "lon": 113.475886,
+    "source_note": "Wikimedia Commons camera location for HKUST(GZ) main entrance.",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Main_Entrance,_HKUST(GZ)_20220827.jpg"
+  },
+  "compose_config": {
+    "lane_count": 2,
+    "osm_multiblock_max_extent_m": 350.0,
+    "osm_multiblock_max_roads": 12,
+    "road_width_m": 7.0,
+    "seed": 42,
+    "sidewalk_width_m": 2.4
+  },
+  "demo_id": "hkust_gz_350m",
+  "input": {
+    "building_count": 2,
+    "land_use_polygon_count": 2,
+    "road_count": 12,
+    "semantic_point_counts": {
+      "commercial": 1,
+      "vehicle_access": 1
+    }
+  },
+  "land_use_polygon_count": 2,
+  "layout_mode": "osm_multiblock",
+  "name": "HKUST(GZ) 350m OSM semantic demo",
+  "osm_cache_dir": "artifacts/m5/osm_cache",
+  "osm_semantic_blocks": [
+    {
+      "block_id": "osm_block_000",
+      "centroid": [
+        270.4461366328178,
+        321.22517036134377
+      ],
+      "confidence": 0.94,
+      "coords": [
+        [
+          -323.6363216966856,
+          788.6888268012553
+        ],
+        [
+          -325.17910664505325,
+          740.5970231867395
+        ],
+        [
+          -325.55750868003815,
+          655.5834245798178
+        ],
+        [
+          -287.5461187630426,
+          658.1722215269692
+        ],
+        [
+          -283.0473129886668,
+          617.0959720681421
+        ],
+        [
+          -324.01870035752654,
+          612.2635663379915
+        ],
+        [
+          -324.15088277391624,
+          593.8571469709277
+        ],
+        [
+          -237.36803879588842,
+          604.4565797792748
+        ],
+        [
+          -229.10574058350176,
+          531.2556055551395
+        ],
+        [
+          -226.2501146469731,
+          505.497816643212
+        ],
+        [
+          -227.84626968216617,
+          496.01958169648424
+        ],
+        [
+          -305.5452182528097,
+          481.1850260766223
+        ],
+        [
+          -294.1407098498894,
+          472.6786884316243
+        ],
+        [
+          -266.0602365261875,
+          442.5359415146522
+        ],
+        [
+          -254.67416673793923,
+          415.58079380961135
+        ],
+        [
+          -253.4684729941655,
+          385.9836938451044
+        ],
+        [
+          -259.0980445530731,
+          358.11104996176437
+        ],
+        [
+          -265.4319410433527,
+          337.3289804784581
+        ],
+        [
+          -271.07020642072894,
+          316.6915665748529
+        ],
+        [
+          -271.26251552521717,
+          288.422765747644
+        ],
+        [
+          -268.55091820657253,
+          265.1223622071557
+        ],
+        [
+          -264.7660823633196,
+          252.48805574467406
+        ],
+        [
+          -256.5346465478651,
+          241.6015727086924
+        ],
+        [
+          -216.45989676530007,
+          156.90208573173732
+        ],
+        [
+          -116.90574135491624,
+          101.67855155235156
+        ],
+        [
+          -12.659897405421361,
+          42.224294115789235
+        ],
+        [
+          20.28895548521541,
+          21.183108049444854
+        ],
+        [
+          134.44895254122093,
+          -39.85417916579172
+        ],
+        [
+          215.13416791334748,
+          -84.56790112704039
+        ],
+        [
+          232.9625900494866,
+          -91.03783169202507
+        ],
+        [
+          266.9188789870823,
+          -109.67934112483636
+        ],
+        [
+          277.71805649925955,
+          -118.77168987737969
+        ],
+        [
+          331.5313856721623,
+          -148.50247899862006
+        ],
+        [
+          657.7345942104002,
+          -328.8553334255703
+        ],
+        [
+          718.758523948607,
+          -363.5713444952853
+        ],
+        [
+          756.8430327193346,
+          -384.6353315869346
+        ],
+        [
+          788.5065766990883,
+          -396.91008211579174
+        ],
+        [
+          836.2165727955289,
+          -414.04424124537036
+        ],
+        [
+          882.1554608447477,
+          -427.20816619414836
+        ],
+        [
+          907.9542458306532,
+          -433.8420582660474
+        ],
+        [
+          917.7704358757474,
+          -436.35783755918965
+        ],
+        [
+          926.8096660136944,
+          -435.41859525442123
+        ],
+        [
+          934.1833141513634,
+          -431.90359070524573
+        ],
+        [
+          940.0067071223166,
+          -425.9549233149737
+        ],
+        [
+          943.2162428634474,
+          -420.24981276271865
+        ],
+        [
+          945.3491263776086,
+          -411.58227653149515
+        ],
+        [
+          944.984104310046,
+          -405.16187388356775
+        ],
+        [
+          911.1957155936398,
+          -218.3202378586866
+        ],
+        [
+          897.126398005872,
+          -156.00948794651777
+        ],
+        [
+          880.8850462710252,
+          -67.79644990898669
+        ],
+        [
+          873.5278968312778,
+          -35.77671051211655
+        ],
+        [
+          870.2022389638005,
+          1.2971890652552247
+        ],
+        [
+          868.9911102835322,
+          66.37340392405167
+        ],
+        [
+          869.8532356701326,
+          121.74504332151264
+        ],
+        [
+          873.0049220160581,
+          160.0695305406116
+        ],
+        [
+          883.0448090758873,
+          217.26919999020174
+        ],
+        [
+          892.5548823130084,
+          278.4820900852792
+        ],
+        [
+          923.4137081833323,
+          397.7282940321602
+        ],
+        [
+          933.1297870926792,
+          429.0833444362506
+        ],
+        [
+          960.7266137733823,
+          497.6709326095879
+        ],
+        [
+          961.2975933697307,
+          502.7664292617701
+        ],
+        [
+          958.3321442145389,
+          512.411615899764
+        ],
+        [
+          955.1501068678917,
+          516.0365454494022
+        ],
+        [
+          770.707465336076,
+          605.2110462128185
+        ],
+        [
+          574.3318517862353,
+          697.2112669683993
+        ],
+        [
+          545.6048676482169,
+          714.4664321336895
+        ],
+        [
+          516.3995601197239,
+          728.4338239319623
+        ],
+        [
+          504.3985895139631,
+          731.500200795941
+        ],
+        [
+          470.33382227958646,
+          747.5242500104941
+        ],
+        [
+          457.5500569354044,
+          756.8378133722581
+        ],
+        [
+          -23.150694692274556,
+          980.2318418519571
+        ],
+        [
+          -43.4833645055769,
+          993.4630575096235
+        ],
+        [
+          -89.10139987163711,
+          1015.9420206588693
+        ],
+        [
+          -161.08770104288124,
+          1049.2019594307058
+        ],
+        [
+          -203.37937208008952,
+          1066.1859794803895
+        ],
+        [
+          -259.0292943306267,
+          1084.5743567226455
+        ],
+        [
+          -270.1087251571007,
+          1088.4213237510994
+        ],
+        [
+          -274.6158220858779,
+          1088.4563711527735
+        ],
+        [
+          -278.6295020116959,
+          1085.397256330587
+        ],
+        [
+          -281.5328087096568,
+          1081.6255116616376
+        ],
+        [
+          -283.21881191269495,
+          1077.4975001108833
+        ],
+        [
+          -306.27966768236365,
+          929.95381188998
+        ],
+        [
+          -319.43195518117864,
+          842.1106098238379
+        ],
+        [
+          -323.6363216966856,
+          788.6888268012553
+        ]
+      ],
+      "osm_id": 894157108,
+      "poi_counts": {
+        "commercial": 1,
+        "vehicle_access": 1
+      },
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ],
+      "source_type": "way",
+      "tags": {
+        "amenity": "university",
+        "education": "university",
+        "name": "香港科技大学(广州)",
+        "name:en": "Hong Kong University of Science and Technology (Guangzhou)",
+        "name:yue-Hant": "香港科技大學(廣州)",
+        "name:zh": "香港科技大学(广州)",
+        "name:zh-Hans": "香港科技大学(广州)",
+        "name:zh-Hant": "香港科技大學(廣州)",
+        "wikidata": "Q99229082"
+      }
+    },
+    {
+      "block_id": "osm_block_001",
+      "centroid": [
+        360.55766949639656,
+        -302.64392293803394
+      ],
+      "confidence": 0.55,
+      "coords": [
+        [
+          419.9821889216546,
+          -390.87783754989505
+        ],
+        [
+          562.3014598160516,
+          -642.8272296511568
+        ],
+        [
+          594.5830104078632,
+          -402.39580480894074
+        ],
+        [
+          542.0850237633567,
+          -391.7127445950173
+        ],
+        [
+          475.1515511836624,
+          -387.06767130829394
+        ],
+        [
+          419.9821889216546,
+          -390.87783754989505
+        ],
+        [
+          -29.793453254620545,
+          -6.0411356394179165
+        ],
+        [
+          -70.1226843050681,
+          -81.53278487827629
+        ],
+        [
+          374.9434402368497,
+          -316.5123484567739
+        ],
+        [
+          534.8675506982254,
+          -313.1091963960789
+        ],
+        [
+          532.5363840530626,
+          -302.7108838330023
+        ],
+        [
+          -29.793453254620545,
+          -6.0411356394179165
+        ],
+        [
+          419.9821889216546,
+          -390.87783754989505
+        ]
+      ],
+      "osm_id": 18980982,
+      "poi_counts": {
+        "commercial": 0,
+        "vehicle_access": 0
+      },
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ],
+      "source_type": "relation",
+      "tags": {
+        "construction": "residential",
+        "landuse": "construction",
+        "name": "越秀·天悦云啟",
+        "name:en": "Yuexiu Sky Link Mansion",
+        "type": "multipolygon"
+      }
+    }
+  ],
+  "road_count": 12,
+  "road_segment_graph_summary": {
+    "avg_cross_section_width_m": 0.0,
+    "avg_road_width_m": 0.0,
+    "avg_segment_length_m": 9.559179500280704,
+    "edge_count": 52,
+    "graph_cross_junction_count": 0,
+    "graph_junction_count": 0,
+    "graph_t_junction_count": 0,
+    "junction_segment_count": 56,
+    "max_cross_section_width_m": 0.0,
+    "max_road_width_m": 0.0,
+    "metaurban_asset_hint_count": 0,
+    "min_cross_section_width_m": 0.0,
+    "min_road_width_m": 0.0,
+    "mode": "osm_multiblock",
+    "road_count": 5,
+    "segment_count": 57
+  },
+  "schema_version": "roadgen3d_osm_semantic_preview_v1",
+  "segment_semantic_profile_counts": {
+    "child_friendly_school": 39,
+    "quiet_residential": 18
+  },
+  "segment_semantic_profiles": [
+    {
+      "road_id": 1092948997,
+      "segment_id": "seg_0000",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948997,
+      "segment_id": "seg_0001",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948997,
+      "segment_id": "seg_0002",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948997,
+      "segment_id": "seg_0003",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948997,
+      "segment_id": "seg_0004",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948997,
+      "segment_id": "seg_0005",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0006",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0007",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0008",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0009",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0010",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0011",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0012",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0013",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0014",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0015",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1092948996,
+      "segment_id": "seg_0016",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0017",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0018",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0019",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0020",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0021",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0022",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0023",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0024",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0025",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0026",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0027",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0028",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0029",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0030",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0031",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0032",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0033",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0034",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0035",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0036",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0037",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0038",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0039",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0040",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1098450446,
+      "segment_id": "seg_0041",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0042",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0043",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0044",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0045",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0046",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0047",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0048",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0049",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0050",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0051",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0052",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0053",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0054",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1154868983,
+      "segment_id": "seg_0055",
+      "semantic_block_id": "osm_block_000",
+      "semantic_confidence": 0.94,
+      "semantic_profile_id": "child_friendly_school",
+      "semantic_reasons": [
+        "education amenity or school/kindergarten POI"
+      ]
+    },
+    {
+      "road_id": 1383063344,
+      "segment_id": "seg_0056",
+      "semantic_block_id": "",
+      "semantic_confidence": 0.55,
+      "semantic_profile_id": "quiet_residential",
+      "semantic_reasons": [
+        "default residential-like neighborhood profile"
+      ]
+    }
+  ],
+  "selected_roads": [
+    {
+      "highway_type": "tertiary",
+      "osm_id": 1092948997,
+      "point_count": 2
+    },
+    {
+      "highway_type": "tertiary",
+      "osm_id": 1092948996,
+      "point_count": 6
+    },
+    {
+      "highway_type": "service",
+      "osm_id": 1098450446,
+      "point_count": 23
+    },
+    {
+      "highway_type": "service",
+      "osm_id": 1154868983,
+      "point_count": 3
+    },
+    {
+      "highway_type": "service",
+      "osm_id": 1383063344,
+      "point_count": 2
+    }
+  ],
+  "semantic_block_count": 2,
+  "semantic_mode": "landuse_rules_v1",
+  "summary": {
+    "input_road_count": 12,
+    "max_extent_m": 350.0,
+    "max_roads": 12,
+    "segment_semantic_profile_counts": {
+      "child_friendly_school": 39,
+      "quiet_residential": 18
+    },
+    "selected_road_count": 5,
+    "selected_road_osm_ids": [
+      1092948997,
+      1092948996,
+      1098450446,
+      1154868983,
+      1383063344
+    ],
+    "semantic_block_count": 2,
+    "semantic_mode": "landuse_rules_v1",
+    "semantic_profile_counts": {
+      "child_friendly_school": 1,
+      "quiet_residential": 1
+    }
+  }
+}

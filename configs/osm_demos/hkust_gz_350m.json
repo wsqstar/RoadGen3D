@@ -1,0 +1,38 @@
+{
+  "demo_id": "hkust_gz_350m",
+  "name": "HKUST(GZ) 350m OSM semantic demo",
+  "address": "No.1 Du Xue Rd, Nansha District, Guangzhou",
+  "address_source_url": "https://www.hkust-gz.edu.cn/contact-us/",
+  "center": {
+    "lat": 22.888841,
+    "lon": 113.475886,
+    "source_url": "https://commons.wikimedia.org/wiki/File:Main_Entrance,_HKUST(GZ)_20220827.jpg",
+    "source_note": "Wikimedia Commons camera location for HKUST(GZ) main entrance."
+  },
+  "bbox": [
+    113.47418,
+    22.887261,
+    113.477592,
+    22.890421
+  ],
+  "layout_mode": "osm_multiblock",
+  "osm_cache_dir": "artifacts/m5/osm_cache",
+  "output_path": "assets/osm_demos/hkust_gz_350m_semantic_preview.json",
+  "compose_config": {
+    "query": "HKUST(GZ) 350m OSM semantic multiblock preview",
+    "layout_mode": "osm_multiblock",
+    "osm_semantic_mode": "landuse_rules_v1",
+    "osm_multiblock_max_roads": 12,
+    "osm_multiblock_max_extent_m": 350,
+    "length_m": 80,
+    "road_width_m": 7,
+    "sidewalk_width_m": 2.4,
+    "lane_count": 2,
+    "density": 1,
+    "seed": 42
+  },
+  "quality_gate": {
+    "min_road_count": 2,
+    "require_segment_semantic_profiles": true
+  }
+}
