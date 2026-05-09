@@ -73,12 +73,14 @@ def test_sanitize_compose_config_patch_accepts_osm_multiblock_fields():
             "osm_semantic_mode": "landuse_rules_v1",
             "osm_multiblock_max_roads": "8",
             "osm_multiblock_max_extent_m": "275.5",
+            "osm_context_fit_mode": "auto_design",
         }
     )
 
     assert patch["osm_semantic_mode"] == "landuse_rules_v1"
     assert patch["osm_multiblock_max_roads"] == 8
     assert patch["osm_multiblock_max_extent_m"] == 275.5
+    assert patch["osm_context_fit_mode"] == "auto_design"
 
 
 def test_shared_presets_include_course_delivery_defaults():

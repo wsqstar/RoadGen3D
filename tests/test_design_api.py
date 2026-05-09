@@ -62,14 +62,14 @@ def test_osm_semantic_preview_endpoint_returns_preview(monkeypatch):
         "/api/osm/semantic-preview",
         json={
             "aoi_bbox": [116.39, 39.90, 116.395, 39.905],
-            "compose_config": {"osm_multiblock_max_roads": "6", "unsupported": "drop"},
+            "compose_config": {"osm_multiblock_max_roads": "6", "osm_context_fit_mode": "auto_design", "unsupported": "drop"},
         },
     )
 
     assert response.status_code == 200
     assert response.json()["summary"]["semantic_block_count"] == 1
     assert captured["aoi_bbox"] == (116.39, 39.9, 116.395, 39.905)
-    assert captured["compose_config_patch"] == {"osm_multiblock_max_roads": 6}
+    assert captured["compose_config_patch"] == {"osm_multiblock_max_roads": 6, "osm_context_fit_mode": "auto_design"}
 
 
 class _FakeService:

@@ -100,6 +100,12 @@ class StreetComposeConfig:
     vehicle_demand_level: str = "medium"  # "low" | "medium" | "high"
     allow_solver_fallback: bool = True
     segment_length_m: float = 12.0
+    osm_short_road_policy: str = "semantic"  # "semantic" | "default_style"
+    osm_short_road_min_length_m: float = 0.0
+    osm_context_fit_mode: str = "auto_design"  # "off" | "report" | "auto_design"
+    bus_stop_eligible_road_names: Tuple[str, ...] = ()
+    max_bus_stops_per_scene: int = 0  # <= 0 means no cap/demo injection
+    allow_demo_bus_stop_when_osm_absent: bool = False
     enable_surrounding_buildings: bool = True
     surrounding_building_mode: str = "grid_growth"
     building_search_topk: int = 5

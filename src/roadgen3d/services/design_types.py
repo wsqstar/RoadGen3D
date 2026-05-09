@@ -30,6 +30,7 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "road_width_m",
     "sidewalk_width_m",
     "lane_count",
+    "segment_length_m",
     "seed",
     "density",
     "building_density",
@@ -42,16 +43,22 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "osm_semantic_mode",
     "osm_multiblock_max_roads",
     "osm_multiblock_max_extent_m",
+    "osm_short_road_policy",
+    "osm_short_road_min_length_m",
+    "osm_context_fit_mode",
+    "bus_stop_eligible_road_names",
+    "max_bus_stops_per_scene",
+    "allow_demo_bus_stop_when_osm_absent",
     "max_styles_per_category",
     "amenity_coverage_mode",
     "minimum_category_presence",
     "optional_category_presence",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
-_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "osm_multiblock_max_extent_m"})
-_INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads"})
-_BOOL_FIELDS = frozenset({"allow_solver_fallback"})
-_LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence"})
+_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m"})
+_INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads", "max_bus_stops_per_scene"})
+_BOOL_FIELDS = frozenset({"allow_solver_fallback", "allow_demo_bus_stop_when_osm_absent"})
+_LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence", "bus_stop_eligible_road_names"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
 
@@ -73,6 +80,8 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "program_generator": frozenset({"heuristic_v1", "learned_v1"}),
     "layout_solver": frozenset({"banded", "milp_template_v1", "hybrid_milp_v1"}),
     "osm_semantic_mode": frozenset({"landuse_rules_v1"}),
+    "osm_short_road_policy": frozenset({"semantic", "default_style"}),
+    "osm_context_fit_mode": frozenset({"off", "report", "auto_design"}),
 }
 
 DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
@@ -103,9 +112,16 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "transit_demand_level": "medium",
     "vehicle_demand_level": "medium",
     "allow_solver_fallback": True,
+    "segment_length_m": 12.0,
     "osm_semantic_mode": "landuse_rules_v1",
     "osm_multiblock_max_roads": 12,
     "osm_multiblock_max_extent_m": 350.0,
+    "osm_short_road_policy": "semantic",
+    "osm_short_road_min_length_m": 0.0,
+    "osm_context_fit_mode": "auto_design",
+    "bus_stop_eligible_road_names": (),
+    "max_bus_stops_per_scene": 0,
+    "allow_demo_bus_stop_when_osm_absent": False,
     "max_styles_per_category": 3,
     "amenity_coverage_mode": "try",
     "minimum_category_presence": ("trash", "bench", "lamp"),
