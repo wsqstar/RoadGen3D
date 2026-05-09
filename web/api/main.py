@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
+from dataclasses import replace
 from datetime import datetime, timezone
 from hashlib import sha256
 from pathlib import Path
@@ -40,7 +42,7 @@ from roadgen3d.template_patch import TemplatePatchError, apply_template_patch  #
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
-from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
+from roadgen3d.services.design_types import sanitize_compose_config_patch, sanitize_scene_context  # noqa: E402
 from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
 from roadgen3d.knowledge.source_registry import (  # noqa: E402
     add_source,
@@ -212,6 +214,180 @@ class CaptureViewsRequestModel(BaseModel):
     viewer_url: str = ""
 
 
+class AssetManifestSplitRequestModel(BaseModel):
+    manifest_name: str = Field(..., min_length=1)
+    asset_id: str = Field(..., min_length=1)
+    method: str = "auto"
+    projection_margin: float = Field(default=0.03, ge=0.0)
+
+
+def _split_is_relative_to(path: Path, root: Path) -> bool:
+    try:
+        path.relative_to(root)
+        return True
+    except ValueError:
+        return False
+
+
+def _split_safe_slug(value: str, fallback: str = "asset") -> str:
+    safe = "".join(ch if ch.isalnum() or ch in ("-", "_", ".") else "_" for ch in value.strip())
+    return safe.strip("._") or fallback
+
+
+def _split_resolve_manifest_path(manifest_name: str) -> Path:
+    manifest_ref = Path(manifest_name)
+    if manifest_ref.is_absolute() or ".." in manifest_ref.parts:
+        raise HTTPException(status_code=400, detail="Invalid manifest name")
+
+    data_root = (ROOT / "data").resolve()
+    candidates: List[Path] = []
+    if len(manifest_ref.parts) > 1:
+        candidates.append((data_root / manifest_ref).resolve())
+    else:
+        candidates.append((data_root / "real" / manifest_ref).resolve())
+        candidates.append((data_root / manifest_ref).resolve())
+
+    for candidate in candidates:
+        if _split_is_relative_to(candidate, data_root) and candidate.exists():
+            return candidate
+
+    candidate = candidates[0]
+    if not _split_is_relative_to(candidate, data_root):
+        raise HTTPException(status_code=400, detail="Manifest path escapes data directory")
+    return candidate
+
+
+def _split_read_manifest_rows(manifest_path: Path) -> List[Dict[str, Any]]:
+    if not manifest_path.exists():
+        raise HTTPException(status_code=404, detail=f"Manifest not found: {manifest_path}")
+
+    rows: List[Dict[str, Any]] = []
+    for line_number, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), start=1):
+        stripped = line.strip()
+        if not stripped:
+            continue
+        try:
+            row = json.loads(stripped)
+        except json.JSONDecodeError as exc:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Invalid JSON in {manifest_path.name} at line {line_number}: {exc}",
+            ) from exc
+        if isinstance(row, dict):
+            rows.append(row)
+    return rows
+
+
+def _split_resolve_mesh_path(mesh_path: Any) -> Path:
+    if not isinstance(mesh_path, str) or not mesh_path.strip():
+        raise HTTPException(status_code=400, detail="Selected asset has no mesh_path")
+
+    path = Path(mesh_path).expanduser()
+    resolved = path.resolve() if path.is_absolute() else (ROOT / path).resolve()
+    if not resolved.exists():
+        raise HTTPException(status_code=404, detail=f"Mesh file not found: {resolved}")
+    return resolved
+
+
+def _split_unique_asset_id(base_id: str, existing_ids: set[str]) -> str:
+    candidate = base_id
+    suffix = 2
+    while candidate in existing_ids:
+        candidate = f"{base_id}-{suffix}"
+        suffix += 1
+    existing_ids.add(candidate)
+    return candidate
+
+
+def _split_list_field(row: Dict[str, Any], key: str) -> List[str]:
+    value = row.get(key)
+    if not isinstance(value, list):
+        return []
+    return [str(item) for item in value if item is not None]
+
+
+def _split_append_unique(values: List[str], *extra_values: str) -> List[str]:
+    seen = set(values)
+    result = list(values)
+    for value in extra_values:
+        if value and value not in seen:
+            result.append(value)
+            seen.add(value)
+    return result
+
+
+def _split_write_placeholder_latent(latent_path: Path, asset_id: str, parent_asset_id: str, method: str) -> None:
+    payload = {
+        "placeholder": True,
+        "asset_id": asset_id,
+        "parent_asset_id": parent_asset_id,
+        "created_by": f"asset_splitter_{method}",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    latent_path.write_text(json.dumps(payload, indent=2, ensure_ascii=True), encoding="utf-8")
+
+
+def _split_build_child_record(
+    parent: Dict[str, Any],
+    parent_mesh_path: Path,
+    output_dir: Path,
+    glb_path: Path,
+    cluster: Dict[str, Any],
+    index: int,
+    existing_ids: set[str],
+    method: str,
+) -> Dict[str, Any]:
+    parent_asset_id = str(parent.get("asset_id") or "asset")
+    asset_id = _split_unique_asset_id(f"{parent_asset_id}-split-{index:03d}", existing_ids)
+    latent_path = output_dir / f"{asset_id}.pt"
+    face_count = int(cluster.get("face_count") or 0)
+
+    tags = _split_append_unique(
+        _split_list_field(parent, "tags"),
+        "split_asset",
+        f"split_method:{method}",
+        f"split_parent:{parent_asset_id}",
+    )
+    notes = _split_append_unique(
+        _split_list_field(parent, "quality_notes"),
+        f"split_from={parent_asset_id}",
+        f"split_method={method}",
+        f"split_index={index:03d}",
+        f"mesh_face_count={face_count}",
+    )
+    text_desc = str(parent.get("text_desc") or parent.get("description") or parent_asset_id)
+
+    _split_write_placeholder_latent(latent_path, asset_id, parent_asset_id, method)
+
+    record: Dict[str, Any] = {
+        "asset_id": asset_id,
+        "category": parent.get("category") or "traffic_sign",
+        "mesh_path": str(glb_path.resolve()),
+        "source": f"asset_splitter_{method}",
+        "license": parent.get("license") or "derived_from_parent_asset",
+        "quality_tier": parent.get("quality_tier", 3),
+        "scene_eligible": parent.get("scene_eligible", True),
+        "tags": tags,
+        "text_desc": f"{text_desc} split component {index:03d}",
+        "latent_path": str(latent_path.resolve()),
+        "latent_source": "mesh_reference",
+        "split": parent.get("split") or "train",
+        "mesh_face_count": face_count,
+        "parent_asset_id": parent_asset_id,
+        "parent_mesh_path": str(parent_mesh_path),
+        "asset_composition_type": "split_component",
+        "split_method": method,
+        "split_index": index,
+        "split_output_dir": str(output_dir.resolve()),
+        "quality_notes": notes,
+    }
+
+    for key in ("subcategory", "size_class", "scale_hint", "source_dataset"):
+        if key in parent:
+            record[key] = parent[key]
+    return record
+
+
 def _resolve_layout_referenced_path(value: str, layout_path: Path) -> Path | None:
     raw = str(value or "").strip()
     if not raw:
@@ -248,6 +424,58 @@ def create_app(
         branch_run_service=app.state.branch_run_service,
         benchmark_store=app.state.benchmark_store,
     )
+
+    def _prepare_scene_generation_request(
+        request: GenerateRequestModel | SceneJobCreateRequestModel,
+    ) -> tuple[Any, Any, Dict[str, Any], Dict[str, Any]]:
+        draft = _parse_draft_payload(request.draft)
+        scene_context_payload = dict(request.scene_context or {})
+        patch_overrides = dict(request.patch_overrides or {})
+        generation_options = dict(request.generation_options or {})
+        scenario_id = str(
+            scene_context_payload.get("scenario_id")
+            or generation_options.get("scenario_id")
+            or ""
+        ).strip()
+        if not scenario_id:
+            return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
+
+        graph_template_id = str(
+            scene_context_payload.get("graph_template_id")
+            or generation_options.get("graph_template_id")
+            or "hkust_gz_gate"
+        ).strip() or "hkust_gz_gate"
+        scenario_inputs = app.state.scenario_design_service.generation_inputs_for_scenario(
+            scenario_id,
+            graph_template_id=graph_template_id,
+            validate=True,
+        )
+        scenario_summary = dict(scenario_inputs.get("scenario") or {})
+        template_patch = dict(scenario_inputs.get("template_patch") or {})
+        scenario_compose_patch = sanitize_compose_config_patch(
+            scenario_inputs.get("compose_config_patch") or {}
+        )
+        scenario_compose_already_applied = bool(generation_options.get("scenario_compose_patch_applied"))
+        if not scenario_compose_already_applied:
+            draft = replace(
+                draft,
+                compose_config_patch={
+                    **sanitize_compose_config_patch(draft.compose_config_patch),
+                    **scenario_compose_patch,
+                },
+            )
+        draft = replace(draft, template_patch=template_patch)
+        scene_context_payload.update({
+            "layout_mode": "graph_template",
+            "graph_template_id": graph_template_id,
+            "template_patch": template_patch,
+            "scenario_id": scenario_id,
+            "scenario_title": str(scenario_summary.get("title_zh") or scenario_id),
+            "scenario_design_variant": scenario_summary,
+        })
+        generation_options["scenario_id"] = scenario_id
+        generation_options["scenario_title"] = str(scenario_summary.get("title_zh") or scenario_id)
+        return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
 
     @app.get("/")
     def root() -> Dict[str, Any]:
@@ -382,13 +610,13 @@ def create_app(
     @app.post("/api/design/generate")
     def design_generate(request: GenerateRequestModel) -> Dict[str, Any]:
         service = app.state.design_service
-        draft = _parse_draft_payload(request.draft)
         try:
+            draft, scene_context, patch_overrides, generation_options = _prepare_scene_generation_request(request)
             result = service.generate_scene(
                 draft=draft,
-                scene_context=sanitize_scene_context(request.scene_context),
-                patch_overrides=request.patch_overrides,
-                generation_options=request.generation_options,
+                scene_context=scene_context,
+                patch_overrides=patch_overrides,
+                generation_options=generation_options,
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -397,13 +625,13 @@ def create_app(
     @app.post("/api/scene/jobs")
     def create_scene_job(request: SceneJobCreateRequestModel) -> Dict[str, Any]:
         service = app.state.design_service
-        draft = _parse_draft_payload(request.draft)
         try:
+            draft, scene_context, patch_overrides, generation_options = _prepare_scene_generation_request(request)
             result = service.create_scene_job(
                 draft=draft,
-                scene_context=sanitize_scene_context(request.scene_context),
-                patch_overrides=request.patch_overrides,
-                generation_options=request.generation_options,
+                scene_context=scene_context,
+                patch_overrides=patch_overrides,
+                generation_options=generation_options,
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -590,7 +818,7 @@ def create_app(
         manifest_path = (
             Path(request.manifest_path).expanduser().resolve()
             if request.manifest_path
-            else (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+            else (ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl").resolve()
         )
         if not manifest_path.exists() or not manifest_path.is_file():
             raise HTTPException(status_code=404, detail=f"Asset manifest not found: {manifest_path}")
@@ -657,7 +885,7 @@ def create_app(
         manifest_path = (
             Path(request.manifest_path).expanduser().resolve()
             if request.manifest_path
-            else (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+            else (ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl").resolve()
         )
         if not manifest_path.exists() or not manifest_path.is_file():
             raise HTTPException(status_code=404, detail=f"Asset manifest not found: {manifest_path}")
@@ -866,6 +1094,152 @@ def create_app(
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(result)
+
+    @app.post("/api/asset-manifest/split-selected")
+    def split_selected_asset(request: AssetManifestSplitRequestModel) -> Dict[str, Any]:
+        """Split a selected manifest asset with the Blender projection splitter and append child records."""
+        allowed_methods = {"auto", "primitive", "projection", "loose-3d"}
+        if request.method not in allowed_methods:
+            raise HTTPException(status_code=400, detail=f"Unsupported split method: {request.method}")
+
+        manifest_path = _split_resolve_manifest_path(request.manifest_name)
+        rows = _split_read_manifest_rows(manifest_path)
+        parent = next((row for row in rows if row.get("asset_id") == request.asset_id), None)
+        if parent is None:
+            raise HTTPException(status_code=404, detail=f"Asset not found in manifest: {request.asset_id}")
+
+        parent_mesh_path = _split_resolve_mesh_path(parent.get("mesh_path"))
+        splitter_script = ROOT / "scripts" / "split_glb_signs.py"
+        if not splitter_script.exists():
+            raise HTTPException(status_code=500, detail=f"Splitter script not found: {splitter_script}")
+
+        run_stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        parent_slug = _split_safe_slug(request.asset_id)
+        output_base = manifest_path.parent / "assets_split" / parent_slug
+        output_method = "auto_or_primitive" if request.method == "auto" else request.method
+        output_dir = output_base / f"{output_method}_{run_stamp}"
+        suffix = 2
+        while output_dir.exists():
+            output_dir = output_base / f"{output_method}_{run_stamp}_{suffix}"
+            suffix += 1
+
+        cmd = [
+            sys.executable,
+            str(splitter_script),
+            "--method",
+            request.method,
+            "--input",
+            str(parent_mesh_path),
+            "--output-dir",
+            str(output_dir),
+            "--projection-margin",
+            str(request.projection_margin),
+            "--write-preview",
+        ]
+        try:
+            completed = subprocess.run(
+                cmd,
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                timeout=30 * 60,
+                check=False,
+            )
+        except subprocess.TimeoutExpired as exc:
+            output = exc.stdout or ""
+            raise HTTPException(
+                status_code=504,
+                detail={
+                    "message": "Asset split timed out",
+                    "output": str(output)[-12000:],
+                },
+            ) from exc
+
+        script_output = completed.stdout or ""
+        if completed.returncode != 0:
+            raise HTTPException(
+                status_code=500,
+                detail={
+                    "message": f"Asset split failed with exit code {completed.returncode}",
+                    "output": script_output[-12000:],
+                },
+            )
+
+        report_path = output_dir / "clusters_split.json"
+        if not report_path.exists():
+            report_path = output_dir / "clusters_projection.json"
+        if not report_path.exists():
+            raise HTTPException(
+                status_code=500,
+                detail={
+                    "message": "Split finished without clusters_split.json or clusters_projection.json",
+                    "output": script_output[-12000:],
+                },
+            )
+
+        try:
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=500, detail=f"Invalid split report: {exc}") from exc
+
+        clusters = report.get("clusters")
+        if not isinstance(clusters, list):
+            raise HTTPException(status_code=500, detail="Split report does not contain a clusters list")
+        actual_method = str(report.get("actual_method") or report.get("method") or request.method)
+        fallback_reason = report.get("fallback_reason")
+
+        glb_files = sorted(output_dir.glob("sign_*.glb"))
+        if len(glb_files) != len(clusters):
+            raise HTTPException(
+                status_code=500,
+                detail={
+                    "message": f"Split output mismatch: {len(glb_files)} GLB files for {len(clusters)} clusters",
+                    "output": script_output[-12000:],
+                },
+            )
+
+        existing_ids = {str(row.get("asset_id")) for row in rows if row.get("asset_id")}
+        created_assets: List[Dict[str, Any]] = []
+        for index, (glb_path, cluster) in enumerate(zip(glb_files, clusters), start=1):
+            if not isinstance(cluster, dict):
+                cluster = {}
+            child = _split_build_child_record(
+                parent=parent,
+                parent_mesh_path=parent_mesh_path,
+                output_dir=output_dir,
+                glb_path=glb_path,
+                cluster=cluster,
+                index=index,
+                existing_ids=existing_ids,
+                method=actual_method,
+            )
+            created_assets.append(child)
+
+        with manifest_path.open("a", encoding="utf-8") as handle:
+            for child in created_assets:
+                handle.write(json.dumps(make_json_safe(child), ensure_ascii=True) + "\n")
+
+        return make_json_safe({
+            "ok": True,
+            "manifest_name": request.manifest_name,
+            "asset_id": request.asset_id,
+            "requested_method": request.method,
+            "method": actual_method,
+            "actual_method": actual_method,
+            "fallback_reason": fallback_reason,
+            "output_dir": str(output_dir.resolve()),
+            "cluster_count": len(clusters),
+            "created_count": len(created_assets),
+            "total_face_count": sum(int(cluster.get("face_count") or 0) for cluster in clusters if isinstance(cluster, dict)),
+            "assets": created_assets,
+            "report_path": str(report_path.resolve()),
+            "preview_paths": {
+                "top": str((output_dir / "projection_top.svg").resolve()),
+                "front": str((output_dir / "projection_front.svg").resolve()),
+            },
+            "script_output_tail": script_output[-12000:],
+        })
 
     app.include_router(junction_templates_router)
 
