@@ -108,6 +108,156 @@ def infer_spawn_payload(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def _as_number(value: Any, fallback: float | None = None) -> float | None:
+    if isinstance(value, bool):
+        return fallback
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return fallback
+    return number if number == number and abs(number) != float("inf") else fallback
+
+
+def _as_triplet(value: Any) -> List[float] | None:
+    if not isinstance(value, list) or len(value) < 3:
+        return None
+    triplet = [_as_number(item) for item in value[:3]]
+    if any(item is None for item in triplet):
+        return None
+    return [float(item) for item in triplet if item is not None]
+
+
+def _as_quad(value: Any) -> List[float] | None:
+    if not isinstance(value, list) or len(value) < 4:
+        return None
+    quad = [_as_number(item) for item in value[:4]]
+    if any(item is None for item in quad):
+        return None
+    return [float(item) for item in quad if item is not None]
+
+
+def _build_instance_payloads(layout_payload: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
+    instances: Dict[str, Dict[str, Any]] = {}
+    placements = layout_payload.get("placements", [])
+    if not isinstance(placements, list):
+        return instances
+    for placement in placements:
+        if not isinstance(placement, dict):
+            continue
+        instance_id = str(placement.get("instance_id", "") or "").strip()
+        if not instance_id:
+            continue
+        instances[instance_id] = make_json_safe(
+            {
+                "instance_id": instance_id,
+                "asset_id": str(placement.get("asset_id", "") or "").strip(),
+                "category": str(placement.get("category", "") or "").strip(),
+                "placement_group": str(placement.get("placement_group", "") or "").strip(),
+                "theme_id": str(placement.get("theme_id", "") or "").strip(),
+                "selection_source": str(placement.get("selection_source", "") or "").strip(),
+                "position_xyz": _as_triplet(placement.get("position_xyz")),
+                "bbox_xz": _as_quad(placement.get("bbox_xz")),
+                "anchor_poi_type": str(placement.get("anchor_poi_type", "") or "").strip(),
+                "anchor_distance_m": _as_number(placement.get("anchor_distance_m")),
+                "feasibility_score": _as_number(placement.get("feasibility_score")),
+                "constraint_penalty": _as_number(placement.get("constraint_penalty")),
+                "dist_to_road_edge_m": _as_number(placement.get("dist_to_road_edge_m")),
+                "dist_to_nearest_junction_m": _as_number(placement.get("dist_to_nearest_junction_m")),
+                "dist_to_nearest_entrance_m": _as_number(placement.get("dist_to_nearest_entrance_m")),
+            }
+        )
+    return instances
+
+
+def _build_scene_bounds(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
+    placements = layout_payload.get("placements", [])
+    summary = layout_payload.get("summary", {}) if isinstance(layout_payload.get("summary"), dict) else {}
+    spatial_context = summary.get("spatial_context", {}) if isinstance(summary.get("spatial_context"), dict) else {}
+    min_x = float("inf")
+    max_x = float("-inf")
+    min_z = float("inf")
+    max_z = float("-inf")
+    max_y = 0.0
+
+    def include_xz(x: float, z: float, padding: float = 0.0) -> None:
+        nonlocal min_x, max_x, min_z, max_z
+        min_x = min(min_x, x - padding)
+        max_x = max(max_x, x + padding)
+        min_z = min(min_z, z - padding)
+        max_z = max(max_z, z + padding)
+
+    if isinstance(placements, list):
+        for placement in placements:
+            if not isinstance(placement, dict):
+                continue
+            bbox = _as_quad(placement.get("bbox_xz"))
+            if bbox:
+                min_x = min(min_x, bbox[0])
+                min_z = min(min_z, bbox[1])
+                max_x = max(max_x, bbox[2])
+                max_z = max(max_z, bbox[3])
+            else:
+                position = _as_triplet(placement.get("position_xyz"))
+                if position:
+                    include_xz(position[0], position[2], 0.75)
+                    max_y = max(max_y, position[1])
+            scale = _as_triplet(placement.get("scale_xyz"))
+            if scale:
+                max_y = max(max_y, scale[1])
+
+    road_half_width = max(3.0, _as_number(spatial_context.get("road_half_width_m"), 6.0) or 6.0)
+    length_m = max(
+        24.0,
+        _as_number(spatial_context.get("length_m"), _as_number(summary.get("length_m"), 80.0)) or 80.0,
+    )
+    if not all(value not in {float("inf"), float("-inf")} for value in (min_x, max_x, min_z, max_z)):
+        min_x = -length_m * 0.5
+        max_x = length_m * 0.5
+        min_z = -road_half_width * 3.5
+        max_z = road_half_width * 3.5
+
+    size_x = max(1.0, max_x - min_x)
+    size_z = max(1.0, max_z - min_z)
+    size_y = max(12.0, max_y + 10.0)
+    road_axis = [1, 0, 0] if size_x >= size_z else [0, 0, 1]
+    return make_json_safe(
+        {
+            "center": [(min_x + max_x) * 0.5, size_y * 0.5, (min_z + max_z) * 0.5],
+            "size": [size_x, size_y, size_z],
+            "road_axis": road_axis,
+        }
+    )
+
+
+def _list_field(layout_payload: Dict[str, Any], key: str) -> List[Any]:
+    value = layout_payload.get(key, [])
+    return list(value) if isinstance(value, list) else []
+
+
+def _build_layout_overlay(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
+    street_program = layout_payload.get("street_program", {})
+    if not isinstance(street_program, dict):
+        street_program = {}
+    config = layout_payload.get("config", {})
+    if not isinstance(config, dict):
+        config = {}
+    bands = street_program.get("bands", [])
+    return make_json_safe(
+        {
+            "bands": list(bands) if isinstance(bands, list) else [],
+            "building_footprints": _list_field(layout_payload, "building_footprints"),
+            "building_regions": _list_field(layout_payload, "building_regions"),
+            "regions": _list_field(layout_payload, "regions"),
+            "derived_regions": _list_field(layout_payload, "derived_regions"),
+            "functional_zones": _list_field(layout_payload, "functional_zones"),
+            "surface_annotations": _list_field(layout_payload, "surface_annotations"),
+            "length_m": _as_number(config.get("length_m"), 0.0) or 0.0,
+            "lane_count": _as_number(street_program.get("lane_count"), 1.0) or 1.0,
+            "road_width_m": _as_number(street_program.get("road_width_m"), 0.0) or 0.0,
+        }
+    )
+
+
 def _iter_scene_layout_paths(search_roots: Iterable[Path]) -> Iterable[Path]:
     seen: set[Path] = set()
     for root in search_roots:
@@ -250,6 +400,8 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
     spawn_payload = infer_spawn_payload(payload)
     return {
         "layout_path": str(resolved_layout),
+        "summary": make_json_safe(payload.get("summary") or {}),
+        "visual_style": make_json_safe(payload.get("visual_style") or {}),
         "final_scene": {
             "label": "Final Scene",
             "glb_url": f"./api/file?path={quote(str(final_scene_path), safe='')}",
@@ -258,6 +410,9 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
         "default_selection": "final_scene",
         "spawn_point": spawn_payload["spawn_point"],
         "forward_vector": spawn_payload["forward_vector"],
+        "scene_bounds": _build_scene_bounds(payload),
+        "instances": _build_instance_payloads(payload),
+        "layout_overlay": _build_layout_overlay(payload),
         "lighting_preset": outputs.get("lighting_preset", "bright_day"),
         "lighting_params": outputs.get("lighting_params"),
         "environment_state": payload.get("environment_state") or outputs.get("environment_state"),

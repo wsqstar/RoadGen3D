@@ -226,3 +226,65 @@ def test_cache_scene_layout_for_viewer_sanitizes_repo_local_layouts_too(
     assert str(cached).startswith(str(viewer.VIEWER_LAYOUTS_DIR))
     assert "Infinity" not in cached_text
     assert json.loads(cached_text)["summary"]["clearance_m"] is None
+
+
+def test_build_layout_manifest_exposes_plan_overlay_fields(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    repo_root = (tmp_path / "repo").resolve()
+    scene_dir = repo_root / "artifacts" / "run_004"
+    scene_dir.mkdir(parents=True, exist_ok=True)
+    scene_glb = scene_dir / "scene.glb"
+    scene_glb.write_bytes(b"glb")
+    layout_path = scene_dir / "scene_layout.json"
+    layout_path.write_text(
+        json.dumps(
+            {
+                "summary": {"length_m": 60, "spatial_context": {"road_half_width_m": 5}},
+                "visual_style": {"style": "test"},
+                "config": {"length_m": 60},
+                "street_program": {
+                    "lane_count": 2,
+                    "road_width_m": 6.4,
+                    "bands": [{"kind": "drive_lane", "width_m": 3.2}],
+                },
+                "placements": [
+                    {
+                        "instance_id": "inst_tree",
+                        "asset_id": "tree_01",
+                        "category": "tree",
+                        "placement_group": "street_furniture",
+                        "position_xyz": [4, 0, 2],
+                        "bbox_xz": [3, 1, 5, 3],
+                    }
+                ],
+                "building_footprints": [{"polygon_xz": [[0, 0], [4, 0], [4, 4], [0, 4]]}],
+                "building_regions": [{"points": [[0, 0], [5, 0], [5, 5], [0, 5]]}],
+                "regions": [{"region_role": "scene_region", "points": [[-1, -1], [6, -1], [6, 6], [-1, 6]]}],
+                "derived_regions": [{"region_role": "building_region", "points": [[1, 1], [2, 1], [2, 2], [1, 2]]}],
+                "functional_zones": [{"zone_type": "plaza", "points": [[2, 2], [3, 2], [3, 3], [2, 3]]}],
+                "surface_annotations": [{"surface_role": "bike_lane", "points": [[0, 0], [1, 0], [1, 1], [0, 1]]}],
+                "outputs": {"scene_glb": str(scene_glb)},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(viewer, "ROOT", repo_root)
+
+    manifest = viewer.build_layout_manifest(layout_path)
+
+    assert manifest["summary"]["length_m"] == 60
+    assert manifest["visual_style"]["style"] == "test"
+    assert manifest["scene_bounds"]["center"]
+    assert manifest["instances"]["inst_tree"]["category"] == "tree"
+    overlay = manifest["layout_overlay"]
+    assert overlay["lane_count"] == 2
+    assert overlay["bands"][0]["kind"] == "drive_lane"
+    assert overlay["building_footprints"]
+    assert overlay["building_regions"]
+    assert overlay["regions"]
+    assert overlay["derived_regions"]
+    assert overlay["functional_zones"]
+    assert overlay["surface_annotations"]
