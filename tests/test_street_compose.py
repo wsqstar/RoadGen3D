@@ -1196,6 +1196,82 @@ def test_resolve_building_pose_pushes_building_out_of_sidewalk_forbidden_area():
     assert footprint.intersection(forbidden.buffer(0.10)).area == pytest.approx(0.0)
 
 
+def test_tree_candidate_uses_trunk_footprint_for_carriageway_clearance():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-6.0, -1.0, 6.0, 1.0)
+    sidewalk = shapely_geometry.box(-6.0, 1.0, 6.0, 3.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        carriageway_polygon=carriageway,
+        sidewalk_zone=sidewalk,
+        left_sidewalk_zone=sidewalk,
+        right_sidewalk_zone=None,
+        strip_zones={"left_nearroad_furnishing": sidewalk},
+        segment_strip_zones={},
+    )
+    slot = LayoutSlotPlan(
+        slot_id="tree_slot",
+        category="tree",
+        band_name="left_nearroad_furnishing",
+        x_center_m=0.0,
+        z_center_m=2.0,
+        spacing_m=6.0,
+        side="left",
+        priority=1.0,
+        required=True,
+    )
+    entry = street_layout._MeshMetadata(
+        asset_id="wide_canopy_tree",
+        half_x=2.0,
+        half_z=2.0,
+        min_y=0.0,
+        native_height_y=6.0,
+    )
+    config = replace(_build_config(), road_width_m=2.0, sidewalk_width_m=2.0)
+
+    def evaluate_at(z: float):
+        return street_layout._evaluate_slot_candidate(
+            candidate={
+                "tier": "unit_test",
+                "point_xz": (0.0, float(z)),
+                "yaw_deg": 0.0,
+                "anchor_distance_m": 0.0,
+            },
+            slot=slot,
+            category="tree",
+            band_width_m=2.0,
+            entry=entry,
+            scale_info={"applied_scale": 1.0},
+            placements=[],
+            spatial_hash=street_layout.UniformSpatialHash(cell_size_m=4.0),
+            existing_bboxes=[],
+            placement_ctx=placement_ctx,
+            theme_segment=None,
+            road_segment_graph=None,
+            theme_poi_points={},
+            poi_ctx=None,
+            rule_set=None,
+            config=config,
+            entrance_registry=street_layout.PlacedAssetRegistry(),
+            carriageway_boundary=None,
+            entrance_points_xz=[],
+        )
+
+    near_curb_candidate, near_curb_reason = evaluate_at(1.05)
+    assert near_curb_candidate is None
+    assert near_curb_reason == "intrudes_carriageway"
+
+    safe_candidate, safe_reason = evaluate_at(1.95)
+    assert safe_reason is None
+    assert safe_candidate is not None
+    assert street_layout._bbox_intrudes_carriageway(
+        tuple(float(value) for value in safe_candidate["bbox"]),
+        placement_ctx=placement_ctx,
+        config=config,
+    )
+
+
 def test_place_building_targets_centers_offset_mesh_and_keeps_lanes_clear(monkeypatch):
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

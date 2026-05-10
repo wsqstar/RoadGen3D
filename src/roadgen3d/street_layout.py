@@ -588,14 +588,13 @@ def _row_scene_eligible(row: Mapping[str, object]) -> bool:
 
 
 _PARALLEL_TO_CARRIAGEWAY_CATEGORIES = {"bench", "bus_stop", "bollard"}
-# Ground-level categories whose full bounding box must stay out of the carriageway
-# and must not overlap other placed objects.  Tall / overhanging categories
-# (tree, lamp) only need their center point to land in the correct slot.
-_GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop", "kiosk", "sculpture"})
-# Ground-level categories whose full bounding box must stay out of the carriageway
-# and must not overlap other placed objects.  Tall / overhanging categories
-# (tree, lamp) only need their center point to land in the correct slot.
+# Ground-level categories whose full bounding box must not overlap other placed
+# objects. Trees use a smaller trunk/base footprint for carriageway clearance so
+# the canopy can overhang without letting the trunk or plinth enter the lanes.
 _GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop"})
+_CARRIAGEWAY_CLEARANCE_CATEGORIES = frozenset(set(_GROUND_LEVEL_CATEGORIES) | {"tree"})
+_TREE_TRUNK_CLEARANCE_HALF_EXTENT_M = 0.28
+_TREE_TRUNK_CLEARANCE_BUFFER_M = 0.12
 _CURATED_STREET_ASSET_PROFILES = {"fixed_hq_v1", "disabled"}
 _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
     "lamp": "lamp_modern_production",
@@ -1800,6 +1799,45 @@ def _compute_bbox(
     aabb_half_x = cos_y * half_x * scale_x + sin_y * half_z * scale_z + clearance
     aabb_half_z = sin_y * half_x * scale_x + cos_y * half_z * scale_z + clearance
     return (x - aabb_half_x, x + aabb_half_x, z - aabb_half_z, z + aabb_half_z)
+
+
+def _carriageway_clearance_bbox(
+    *,
+    category: str,
+    x: float,
+    z: float,
+    yaw_deg: float,
+    entry: _MeshCacheEntry | _MeshMetadata,
+    scale: float | Sequence[float],
+    full_bbox: Tuple[float, float, float, float],
+) -> Tuple[float, float, float, float]:
+    if str(category) != "tree":
+        return tuple(float(value) for value in full_bbox)
+    if isinstance(scale, (list, tuple)):
+        scale_x = float(scale[0]) if len(scale) >= 1 else 1.0
+        scale_z = float(scale[2]) if len(scale) >= 3 else float(scale[-1]) if len(scale) >= 1 else 1.0
+    else:
+        scale_x = float(scale)
+        scale_z = float(scale)
+    footprint_half_x = min(
+        float(entry.half_x) * max(scale_x, 0.0),
+        _TREE_TRUNK_CLEARANCE_HALF_EXTENT_M,
+    )
+    footprint_half_z = min(
+        float(entry.half_z) * max(scale_z, 0.0),
+        _TREE_TRUNK_CLEARANCE_HALF_EXTENT_M,
+    )
+    footprint_half_x = max(0.10, float(footprint_half_x))
+    footprint_half_z = max(0.10, float(footprint_half_z))
+    return _compute_bbox(
+        x=float(x),
+        z=float(z),
+        yaw_deg=float(yaw_deg),
+        half_x=footprint_half_x,
+        half_z=footprint_half_z,
+        scale=1.0,
+        clearance=_TREE_TRUNK_CLEARANCE_BUFFER_M,
+    )
 
 
 def _sample_pose(
@@ -7189,19 +7227,29 @@ def _evaluate_slot_candidate(
         scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
         clearance=0.2,
     )
-    _needs_bbox_checks = category in _GROUND_LEVEL_CATEGORIES
-    if _needs_bbox_checks and _bbox_intrudes_carriageway(
-        bbox,
+    _needs_full_bbox_collision_checks = category in _GROUND_LEVEL_CATEGORIES
+    _needs_carriageway_clearance_check = category in _CARRIAGEWAY_CLEARANCE_CATEGORIES
+    clearance_bbox = _carriageway_clearance_bbox(
+        category=category,
+        x=float(point_xz[0]),
+        z=float(point_xz[1]),
+        yaw_deg=float(candidate["yaw_deg"]),
+        entry=entry,
+        scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
+        full_bbox=bbox,
+    )
+    if _needs_carriageway_clearance_check and _bbox_intrudes_carriageway(
+        clearance_bbox,
         placement_ctx=placement_ctx,
         config=config,
     ):
         return None, "intrudes_carriageway"
     neighbor_bbox_indices = spatial_hash.query_bbox(bbox)
-    if _needs_bbox_checks and any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
+    if _needs_full_bbox_collision_checks and any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
         return None, "overlap_blocked"
 
     # Multi-box collision detection (if decomposition cache is provided)
-    if decomposition_cache is not None and _needs_bbox_checks:
+    if decomposition_cache is not None and _needs_full_bbox_collision_checks:
         decomp = decomposition_cache.get(entry.asset_id) if hasattr(entry, 'asset_id') else None
         if decomp is not None and len(decomp.boxes) > 1:
             # Asset has multiple sub-boxes - use precise collision detection
@@ -11519,7 +11567,7 @@ def compose_street_scene(
         "Writing final scene layout.",
         layout_path=str(layout_path),
     )
-    layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
+    layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True, allow_nan=False), encoding="utf-8")
 
     outputs["scene_layout"] = str(layout_path)
     if placement_log_path:

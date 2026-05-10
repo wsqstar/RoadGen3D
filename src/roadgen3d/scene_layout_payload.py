@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Any, Dict, Mapping, MutableMapping, Sequence
 
 from .beauty import style_palette, surface_roughness
+from .json_safe import make_json_safe
 from .scene_textures import scene_texture_pack_name
 
 SCENE_LAYOUT_SCHEMA_VERSION = "roadgen3d.scene_layout.v1"
@@ -272,7 +273,7 @@ def build_scene_layout_payload(
     """Build the top-level ``scene_layout.json`` payload."""
     program_generation_payload = to_dict(program_result)
     program_generation_payload["theme_zone_programs"] = list(theme_zone_programs)
-    return {
+    payload = {
         "schema_version": SCENE_LAYOUT_SCHEMA_VERSION,
         "query": query,
         "config": to_dict(config),
@@ -327,3 +328,4 @@ def build_scene_layout_payload(
             },
         },
     }
+    return make_json_safe(payload)

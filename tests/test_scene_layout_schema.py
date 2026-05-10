@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 from typing import Any, Mapping
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -12,7 +13,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.scene_layout_payload import SCENE_LAYOUT_SCHEMA_VERSION  # noqa: E402
+from roadgen3d.scene_layout_payload import SCENE_LAYOUT_SCHEMA_VERSION, build_scene_layout_payload  # noqa: E402
 
 
 def _minimal_environment_state() -> dict[str, object]:
@@ -99,3 +100,52 @@ def test_minimal_scene_layout_payload_matches_v1_schema() -> None:
         _fallback_validate_required(schema, payload)
     else:
         jsonschema.Draft202012Validator(schema).validate(payload)
+
+
+def test_scene_layout_payload_replaces_non_finite_values() -> None:
+    payload = build_scene_layout_payload(
+        query="strict json",
+        config={},
+        selected_object_backend="test",
+        ground_selection={},
+        sky_selection={},
+        environment_source_dataset="",
+        environment_source_datasets=[],
+        program_result={},
+        theme_zone_programs=[],
+        resolved_program={},
+        constraint_set={},
+        solver_result=SimpleNamespace(road_segment_graph_summary={}),
+        summary={"max_distance_m": float("inf")},
+        semantic_design_layers={},
+        environment_state=_minimal_environment_state(),
+        osm_semantic_blocks=[],
+        segment_semantic_profiles=[],
+        visual_style={},
+        placements=[
+            {
+                "category": "tree",
+                "dist_to_nearest_entrance_m": float("inf"),
+                "bbox_xz": [0.0, 1.0, float("-inf"), float("nan")],
+            }
+        ],
+        environment_placements=[],
+        building_footprints=[],
+        generated_lots=[],
+        building_placements=[],
+        building_retrieval_predictions=[],
+        zoning_grid=[],
+        placement_context=SimpleNamespace(),
+        production_steps=[],
+        unplaced_slot_diagnostics=[],
+        placement_log_path="",
+        placement_log_summary={},
+        outputs={},
+        inventory_summary={},
+    )
+
+    json.dumps(payload, allow_nan=False)
+    assert payload["summary"]["max_distance_m"] is None
+    placement = payload["placements"][0]
+    assert placement["dist_to_nearest_entrance_m"] is None
+    assert placement["bbox_xz"] == [0.0, 1.0, None, None]
