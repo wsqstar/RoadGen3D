@@ -936,6 +936,11 @@ class BuildingPlacementPlan:
     placement_strategy: str = ""
     front_setback_m: float = 0.0
     asset_scale_mode: str = ""
+    orientation_policy: str = ""
+    desired_front_yaw_deg: float = 0.0
+    canonical_front: str = "+Z"
+    asset_yaw_offset_deg: float = 0.0
+    road_tangent_yaw_deg: float = 0.0
     native_size_m: Dict[str, float] = field(default_factory=dict)
     final_size_m: Dict[str, float] = field(default_factory=dict)
     raw_size_m: Dict[str, float] = field(default_factory=dict)
@@ -1032,6 +1037,11 @@ class StreetPlacement:
     placement_energy: float = 0.0
     placement_status: str = ""
     anchor_geom_id: str = ""
+    orientation_policy: str = ""
+    desired_front_yaw_deg: float = 0.0
+    canonical_front: str = "+Z"
+    asset_yaw_offset_deg: float = 0.0
+    road_tangent_yaw_deg: float = 0.0
     scale_xyz: List[float] = field(default_factory=list)
     native_size_m: Dict[str, float] = field(default_factory=dict)
     canonical_target: Dict[str, float] = field(default_factory=dict)

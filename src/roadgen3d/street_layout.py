@@ -469,6 +469,215 @@ def _positive_float(value: object, default: float = 0.0) -> float:
     return float(parsed)
 
 
+_CANONICAL_FRONT_ALIASES = {
+    "+x": "+X",
+    "x+": "+X",
+    "x": "+X",
+    "positive_x": "+X",
+    "pos_x": "+X",
+    "plus_x": "+X",
+    "right": "+X",
+    "-x": "-X",
+    "x-": "-X",
+    "negative_x": "-X",
+    "neg_x": "-X",
+    "minus_x": "-X",
+    "left": "-X",
+    "+z": "+Z",
+    "z+": "+Z",
+    "z": "+Z",
+    "positive_z": "+Z",
+    "pos_z": "+Z",
+    "plus_z": "+Z",
+    "front": "+Z",
+    "forward": "+Z",
+    "-z": "-Z",
+    "z-": "-Z",
+    "negative_z": "-Z",
+    "neg_z": "-Z",
+    "minus_z": "-Z",
+    "back": "-Z",
+    "backward": "-Z",
+}
+_CANONICAL_FRONT_AXIS_YAW_DEG = {
+    "+Z": 0.0,
+    "+X": 90.0,
+    "-Z": 180.0,
+    "-X": 270.0,
+}
+_FACE_TRAFFIC_CATEGORIES = frozenset({"traffic_sign", "sign", "road_sign", "street_sign", "bus_stop_sign"})
+_FREE_ORIENTATION_CATEGORIES = frozenset({"tree", "lamp", "bollard", "hydrant", "sky_dome"})
+
+
+def _normalize_yaw_deg(value: object, default: float = 0.0) -> float:
+    try:
+        yaw = float(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        yaw = float(default)
+    if not math.isfinite(yaw):
+        yaw = float(default)
+    yaw = math.fmod(yaw, 360.0)
+    if yaw < 0.0:
+        yaw += 360.0
+    return float(yaw)
+
+
+def _normalize_canonical_front(value: object, default: str = "+Z") -> str:
+    if value is None:
+        return default
+    key = str(value).strip()
+    if not key:
+        return default
+    compact = key.replace(" ", "_").lower()
+    compact = compact.replace("axis_", "").replace("_axis", "")
+    return _CANONICAL_FRONT_ALIASES.get(compact, default)
+
+
+def _canonical_front_axis_yaw_deg(value: object) -> float:
+    return float(_CANONICAL_FRONT_AXIS_YAW_DEG[_normalize_canonical_front(value)])
+
+
+def _engine_yaw_for_vector(dx: float, dz: float, *, fallback: float = 0.0) -> float:
+    length = math.hypot(float(dx), float(dz))
+    if length <= 1e-9:
+        return _normalize_yaw_deg(fallback)
+    # Engine yaw is the Y-axis rotation that maps local +Z to the world vector.
+    return _normalize_yaw_deg(math.degrees(math.atan2(float(dx), float(dz))))
+
+
+def _engine_yaw_from_math_heading_deg(value: object) -> float:
+    try:
+        heading = float(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        heading = 90.0
+    if not math.isfinite(heading):
+        heading = 90.0
+    return _normalize_yaw_deg(90.0 - heading)
+
+
+def _orientation_policy_for_category(category: object) -> str:
+    key = str(category or "").strip().lower()
+    if key in _FACE_TRAFFIC_CATEGORIES or "traffic_sign" in key or key.endswith("_sign"):
+        return "face_traffic"
+    if key in _FREE_ORIENTATION_CATEGORIES:
+        return "free"
+    return "face_road"
+
+
+def _asset_yaw_offset_deg(row: Mapping[str, object] | None) -> float:
+    return _normalize_yaw_deg(row.get("yaw_deg", 0.0) if row is not None else 0.0)
+
+
+def _final_asset_yaw_deg(
+    *,
+    desired_front_yaw_deg: float,
+    canonical_front: object,
+    asset_yaw_offset_deg: float = 0.0,
+) -> float:
+    return _normalize_yaw_deg(
+        float(desired_front_yaw_deg)
+        - _canonical_front_axis_yaw_deg(canonical_front)
+        + float(asset_yaw_offset_deg)
+    )
+
+
+def _face_road_yaw_for_point(
+    point_xz: Tuple[float, float],
+    placement_ctx: object | None,
+    *,
+    fallback: float = 0.0,
+) -> float:
+    carriageway = getattr(placement_ctx, "carriageway", None) if placement_ctx is not None else None
+    if carriageway is None or getattr(carriageway, "is_empty", True):
+        return _normalize_yaw_deg(fallback)
+    try:
+        from shapely.geometry import Point as ShapelyPoint
+
+        sp = ShapelyPoint((float(point_xz[0]), float(point_xz[1])))
+        nearest_pt = carriageway.boundary.interpolate(carriageway.boundary.project(sp))
+        return _engine_yaw_for_vector(
+            float(nearest_pt.x) - float(point_xz[0]),
+            float(nearest_pt.y) - float(point_xz[1]),
+            fallback=fallback,
+        )
+    except Exception:
+        return _normalize_yaw_deg(fallback)
+
+
+def _road_tangent_yaw_for_segment(segment_node: object | None) -> float:
+    tangent_payload = _segment_tangent_normal(segment_node)
+    if tangent_payload is None:
+        return 0.0
+    tangent, _left_normal, _segment_length_m = tangent_payload
+    return _engine_yaw_for_vector(float(tangent[0]), float(tangent[1]))
+
+
+def _traffic_front_yaw_for_point(
+    *,
+    point_xz: Tuple[float, float],
+    segment_node: object | None,
+    slot_side: str,
+    placement_ctx: object | None,
+    fallback: float,
+) -> Tuple[float, float]:
+    tangent_payload = _segment_tangent_normal(segment_node)
+    if tangent_payload is None:
+        return _face_road_yaw_for_point(point_xz, placement_ctx, fallback=fallback), 0.0
+    tangent, _left_normal, _segment_length_m = tangent_payload
+    tangent_yaw = _engine_yaw_for_vector(float(tangent[0]), float(tangent[1]))
+    side = str(slot_side or "").strip().lower()
+    if side == "left":
+        front = (float(tangent[0]), float(tangent[1]))
+    elif side == "right":
+        front = (-float(tangent[0]), -float(tangent[1]))
+    else:
+        front = (-float(tangent[0]), -float(tangent[1]))
+    return _engine_yaw_for_vector(front[0], front[1], fallback=fallback), tangent_yaw
+
+
+def _resolve_asset_orientation(
+    *,
+    category: str,
+    asset_row: Mapping[str, object] | None,
+    point_xz: Tuple[float, float],
+    placement_ctx: object | None,
+    segment_node: object | None = None,
+    slot_side: str = "",
+    fallback_desired_yaw_deg: float = 0.0,
+) -> Dict[str, object]:
+    policy = _orientation_policy_for_category(category)
+    canonical_front = _normalize_canonical_front(
+        asset_row.get("canonical_front") if asset_row is not None else None
+    )
+    asset_offset = _asset_yaw_offset_deg(asset_row)
+    road_tangent_yaw = _road_tangent_yaw_for_segment(segment_node)
+    if policy == "face_traffic":
+        desired_yaw, road_tangent_yaw = _traffic_front_yaw_for_point(
+            point_xz=point_xz,
+            segment_node=segment_node,
+            slot_side=slot_side,
+            placement_ctx=placement_ctx,
+            fallback=fallback_desired_yaw_deg,
+        )
+    elif policy == "free":
+        desired_yaw = _canonical_front_axis_yaw_deg(canonical_front)
+    else:
+        desired_yaw = _face_road_yaw_for_point(point_xz, placement_ctx, fallback=fallback_desired_yaw_deg)
+    final_yaw = _final_asset_yaw_deg(
+        desired_front_yaw_deg=desired_yaw,
+        canonical_front=canonical_front,
+        asset_yaw_offset_deg=asset_offset,
+    )
+    return {
+        "orientation_policy": policy,
+        "desired_front_yaw_deg": float(desired_yaw),
+        "canonical_front": canonical_front,
+        "asset_yaw_offset_deg": float(asset_offset),
+        "road_tangent_yaw_deg": float(road_tangent_yaw),
+        "yaw_deg": float(final_yaw),
+    }
+
+
 def _metric_dimensions_from_row(row: Mapping[str, object]) -> Tuple[float, float, float, str]:
     width = _positive_float(row.get("metric_width_m"))
     depth = _positive_float(row.get("metric_depth_m"))
@@ -873,13 +1082,10 @@ def _is_external_tree_asset(row: Mapping[str, object]) -> bool:
 
 
 def _yaw_for_asset_category(category: str, facing_yaw_deg: float) -> float:
-    yaw_deg = float(facing_yaw_deg)
-    if str(category).strip().lower() in _PARALLEL_TO_CARRIAGEWAY_CATEGORIES:
-        yaw_deg -= 90.0
-    yaw_deg = math.fmod(yaw_deg, 360.0)
-    if yaw_deg < 0.0:
-        yaw_deg += 360.0
-    return float(yaw_deg)
+    policy = _orientation_policy_for_category(category)
+    if policy == "free":
+        return 0.0
+    return _engine_yaw_from_math_heading_deg(facing_yaw_deg)
 
 
 def _placement_asset_source_key(
@@ -1222,6 +1428,7 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "mesh_face_count",
             "quality_notes",
             "scale",
+            "yaw_deg",
             "metric_width_m",
             "metric_depth_m",
             "metric_height_m",
@@ -1229,6 +1436,10 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
         ):
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
+        row["canonical_front"] = _normalize_canonical_front(
+            payload.get("canonical_front", payload.get("front_axis"))
+        )
+        row["yaw_deg"] = _normalize_yaw_deg(row.get("yaw_deg", 0.0))
         if "asset_role" not in row:
             row["asset_role"] = "building" if row["category"] == "building" else "street_furniture"
         rows.append(row)
@@ -1451,9 +1662,13 @@ def _load_building_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             row["depth_m"] = float(dims.get("depth", 0))
             row["height_m"] = float(dims.get("height", 0))
             row["dimensions_m"] = dict(dims)
-        for optional_key in ("scale", "metric_width_m", "metric_depth_m", "metric_height_m"):
+        for optional_key in ("scale", "yaw_deg", "metric_width_m", "metric_depth_m", "metric_height_m"):
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
+        row["canonical_front"] = _normalize_canonical_front(
+            payload.get("canonical_front", payload.get("front_axis"))
+        )
+        row["yaw_deg"] = _normalize_yaw_deg(row.get("yaw_deg", 0.0))
 
         rows.append(row)
 
@@ -4659,6 +4874,215 @@ def _add_final_land_use_zoning_proxies(
     )
 
 
+def _building_ground_axes(plan: BuildingPlacementPlan) -> Tuple[Tuple[float, float], Tuple[float, float]] | None:
+    if len(plan.placement_xz) < 2 or len(plan.street_edge_xz) < 2:
+        return None
+    px, pz = float(plan.placement_xz[0]), float(plan.placement_xz[1])
+    sx, sz = float(plan.street_edge_xz[0]), float(plan.street_edge_xz[1])
+    nx = px - sx
+    nz = pz - sz
+    length = math.hypot(nx, nz)
+    if length <= 1e-6:
+        bbox = list(plan.bbox_xz or [])
+        if len(bbox) >= 4:
+            cx = (float(bbox[0]) + float(bbox[1])) / 2.0
+            cz = (float(bbox[2]) + float(bbox[3])) / 2.0
+            nx = cx - sx
+            nz = cz - sz
+            length = math.hypot(nx, nz)
+    if length <= 1e-6:
+        side = str(plan.side or "").strip().lower()
+        nx, nz = (0.0, -1.0) if side == "right" else (0.0, 1.0)
+        length = 1.0
+    nx /= length
+    nz /= length
+    px, pz = float(plan.placement_xz[0]), float(plan.placement_xz[1])
+    center_d = px * nx + pz * nz
+    street_d = sx * nx + sz * nz
+    if center_d < street_d:
+        nx = -nx
+        nz = -nz
+    tx, tz = -nz, nx
+    return (nx, nz), (tx, tz)
+
+
+def _oriented_rect_polygon(
+    *,
+    normal: Tuple[float, float],
+    tangent: Tuple[float, float],
+    d_min: float,
+    d_max: float,
+    t_min: float,
+    t_max: float,
+):
+    from shapely.geometry import Polygon as ShapelyPolygon
+
+    nx, nz = normal
+    tx, tz = tangent
+
+    def point(d_value: float, t_value: float) -> Tuple[float, float]:
+        return (
+            float(nx * d_value + tx * t_value),
+            float(nz * d_value + tz * t_value),
+        )
+
+    return ShapelyPolygon([
+        point(d_min, t_min),
+        point(d_min, t_max),
+        point(d_max, t_max),
+        point(d_max, t_min),
+    ])
+
+
+def _derive_building_ground_surface_geometries(
+    building_plans: Sequence[BuildingPlacementPlan],
+) -> Dict[str, Tuple[object, ...]]:
+    try:
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+        from shapely.ops import unary_union
+    except Exception:
+        return {"grass": tuple(), "access": tuple()}
+
+    grass_patches: List[object] = []
+    access_patches: List[object] = []
+    for plan in building_plans:
+        bbox = [float(value) for value in (plan.bbox_xz or [])]
+        if len(bbox) < 4:
+            continue
+        axes = _building_ground_axes(plan)
+        if axes is None:
+            continue
+        normal, tangent = axes
+        corners = (
+            (bbox[0], bbox[2]),
+            (bbox[0], bbox[3]),
+            (bbox[1], bbox[2]),
+            (bbox[1], bbox[3]),
+        )
+        d_values = [corner[0] * normal[0] + corner[1] * normal[1] for corner in corners]
+        t_values = [corner[0] * tangent[0] + corner[1] * tangent[1] for corner in corners]
+        street_d = float(plan.street_edge_xz[0]) * normal[0] + float(plan.street_edge_xz[1]) * normal[1]
+        front_d = min(d_values)
+        rear_d = max(d_values)
+        t_min = min(t_values)
+        t_max = max(t_values)
+        frontage_width = max(float(plan.frontage_width_m or 0.0), t_max - t_min)
+        lateral_margin = min(max(frontage_width * 0.10, 0.55), 1.25)
+        ground_d_min = min(street_d, front_d) - 0.25
+        ground_d_max = max(street_d, rear_d) + 0.35
+        if ground_d_max - ground_d_min <= 0.5:
+            continue
+        grass_poly = _oriented_rect_polygon(
+            normal=normal,
+            tangent=tangent,
+            d_min=ground_d_min,
+            d_max=ground_d_max,
+            t_min=t_min - lateral_margin,
+            t_max=t_max + lateral_margin,
+        )
+        if grass_poly.is_empty or grass_poly.area <= 0.01:
+            continue
+
+        if plan.door_center_world_xyz and len(plan.door_center_world_xyz) >= 3:
+            path_center_t = (
+                float(plan.door_center_world_xyz[0]) * tangent[0]
+                + float(plan.door_center_world_xyz[2]) * tangent[1]
+            )
+        else:
+            path_center_t = (
+                float(plan.placement_xz[0]) * tangent[0]
+                + float(plan.placement_xz[1]) * tangent[1]
+            )
+        path_width = min(max(float(plan.door_width_m or 0.0) + 0.8, 1.25), 2.20)
+        path_d_min = min(street_d, front_d) - 0.12
+        path_d_max = max(street_d, front_d) + max(float(plan.front_setback_m or 0.0), 0.45)
+        if path_d_max - path_d_min < 1.20:
+            mid_d = (path_d_min + path_d_max) / 2.0
+            path_d_min = mid_d - 0.60
+            path_d_max = mid_d + 0.60
+        access_poly = _oriented_rect_polygon(
+            normal=normal,
+            tangent=tangent,
+            d_min=path_d_min,
+            d_max=path_d_max,
+            t_min=path_center_t - path_width / 2.0,
+            t_max=path_center_t + path_width / 2.0,
+        )
+        if not access_poly.is_empty and access_poly.area > 0.01:
+            access_patches.append(access_poly)
+            try:
+                grass_poly = grass_poly.difference(access_poly)
+            except Exception:
+                pass
+        if not grass_poly.is_empty and grass_poly.area > 0.01:
+            grass_patches.append(grass_poly)
+
+    def _flatten(geom: object) -> Tuple[object, ...]:
+        if geom is None or getattr(geom, "is_empty", True):
+            return tuple()
+        if isinstance(geom, ShapelyPolygon):
+            return (geom,)
+        if isinstance(geom, MultiPolygon):
+            return tuple(poly for poly in geom.geoms if not poly.is_empty and poly.area > 0.01)
+        return tuple()
+
+    grass_union = unary_union(grass_patches) if grass_patches else MultiPolygon()
+    access_union = unary_union(access_patches) if access_patches else MultiPolygon()
+    return {
+        "grass": _flatten(grass_union),
+        "access": _flatten(access_union),
+    }
+
+
+def _add_building_ground_surfaces(
+    scene,
+    building_plans: Sequence[BuildingPlacementPlan],
+    *,
+    palette: Mapping[str, Tuple[int, int, int, int]],
+    roughness: Optional[Dict[str, float]] = None,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
+) -> Dict[str, int]:
+    geometries = _derive_building_ground_surface_geometries(building_plans)
+    counts = {"grass_patch_count": 0, "access_path_count": 0}
+    grass_color = list(palette.get("building_buffer", palette.get("grass", (92, 150, 84, 255))))
+    access_color = list(palette.get("sidewalk", palette.get("context_ground", (174, 170, 158, 255))))
+    for index, geom in enumerate(geometries.get("grass", ())):
+        polygon_xz = [(float(x), float(z)) for x, z in getattr(geom, "exterior").coords]
+        _add_polygon_slab(
+            scene,
+            polygon_xz=polygon_xz,
+            height_m=0.08,
+            y_min_m=0.012,
+            color=grass_color,
+            surface_role="building_buffer",
+            roughness=(roughness or {}).get("building_buffer", 0.70),
+            texture_mode=texture_mode,
+            node_name=f"building_ground_grass_{index:04d}",
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        counts["grass_patch_count"] += 1
+    for index, geom in enumerate(geometries.get("access", ())):
+        polygon_xz = [(float(x), float(z)) for x, z in getattr(geom, "exterior").coords]
+        _add_polygon_slab(
+            scene,
+            polygon_xz=polygon_xz,
+            height_m=0.035,
+            y_min_m=0.098,
+            color=access_color,
+            surface_role="sidewalk",
+            roughness=(roughness or {}).get("sidewalk", 0.50),
+            texture_mode=texture_mode,
+            node_name=f"building_access_path_{index:04d}",
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        counts["access_path_count"] += 1
+    return counts
+
+
 def _save_stage_companion_figure(fig: object | None, out_path: Path) -> str:
     if fig is None:
         return ""
@@ -4834,6 +5258,25 @@ def _build_production_steps(
             _add_zoning_proxies(
                 scene,
                 zoning_grid,
+                roughness=rough,
+                texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+                texture_tracker=step_texture_tracker,
+                texture_overrides=texture_overrides,
+            )
+        visible_building_plan_ids = {
+            str(placement.instance_id)
+            for placement in visible_placements
+            if str(placement.placement_group).strip().lower() == "building"
+        }
+        if visible_building_plan_ids:
+            _add_building_ground_surfaces(
+                scene,
+                [
+                    plan
+                    for plan in building_plans
+                    if str(plan.instance_id) in visible_building_plan_ids
+                ],
+                palette=palette,
                 roughness=rough,
                 texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
                 texture_tracker=step_texture_tracker,
@@ -7189,6 +7632,7 @@ def _evaluate_slot_candidate(
     entrance_points_xz: Sequence[Tuple[float, float]],
     segment_node: object | None = None,
     decomposition_cache: object | None = None,  # Optional DecompositionCache
+    asset_row: Mapping[str, object] | None = None,
 ) -> Tuple[Optional[Dict[str, object]], Optional[str]]:
     point_xz = (
         float(candidate["point_xz"][0]),
@@ -7218,10 +7662,20 @@ def _evaluate_slot_candidate(
     if bool(scale_info.get("scale_gate_blocking", False)):
         return None, "scale_gate_failed"
 
+    orientation = _resolve_asset_orientation(
+        category=category,
+        asset_row=asset_row,
+        point_xz=point_xz,
+        placement_ctx=placement_ctx,
+        segment_node=segment_node,
+        slot_side=str(getattr(slot, "side", "") or ""),
+        fallback_desired_yaw_deg=float(candidate.get("yaw_deg", 0.0) or 0.0),
+    )
+    resolved_yaw_deg = float(orientation["yaw_deg"])
     bbox = _compute_bbox(
         x=float(point_xz[0]),
         z=float(point_xz[1]),
-        yaw_deg=float(candidate["yaw_deg"]),
+        yaw_deg=resolved_yaw_deg,
         half_x=entry.half_x,
         half_z=entry.half_z,
         scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
@@ -7233,7 +7687,7 @@ def _evaluate_slot_candidate(
         category=category,
         x=float(point_xz[0]),
         z=float(point_xz[1]),
-        yaw_deg=float(candidate["yaw_deg"]),
+        yaw_deg=resolved_yaw_deg,
         entry=entry,
         scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
         full_bbox=bbox,
@@ -7347,7 +7801,12 @@ def _evaluate_slot_candidate(
         {
             "x": float(point_xz[0]),
             "z": float(point_xz[1]),
-            "yaw_deg": float(candidate["yaw_deg"]),
+            "yaw_deg": resolved_yaw_deg,
+            "orientation_policy": str(orientation["orientation_policy"]),
+            "desired_front_yaw_deg": float(orientation["desired_front_yaw_deg"]),
+            "canonical_front": str(orientation["canonical_front"]),
+            "asset_yaw_offset_deg": float(orientation["asset_yaw_offset_deg"]),
+            "road_tangent_yaw_deg": float(orientation["road_tangent_yaw_deg"]),
             "bbox": bbox,
             "scale": float(scale_info.get("applied_scale", 1.0) or 1.0),
             "native_size_m": dict(scale_info.get("native_size_m", {}) or {}),
@@ -7390,6 +7849,8 @@ def _rank_building_candidates_for_target(
     asset_by_id: Dict[str, Dict[str, object]],
     search_topk: int,
 ) -> Tuple[List[Tuple[Dict[str, object], float]], Dict[str, object]]:
+    requested_limit = max(int(search_topk), 1)
+    evaluation_limit = max(requested_limit, 24)
     query_text = building_query(
         query,
         theme_name=theme_name,
@@ -7399,7 +7860,7 @@ def _rank_building_candidates_for_target(
         height_class=height_class,
     )
     query_embedding = embedder.encode_texts([query_text])
-    hits = index_store.search(query_embedding, topk=max(50, int(search_topk), 1))[0]
+    hits = index_store.search(query_embedding, topk=max(50, evaluation_limit, 1))[0]
     reranked = rerank_building_candidates(
         hits=hits,
         asset_by_id=asset_by_id,
@@ -7407,7 +7868,7 @@ def _rank_building_candidates_for_target(
         frontage_width_m=float(frontage_width_m),
         depth_m=float(depth_m),
         height_class=height_class,
-        limit=max(int(search_topk), 1),
+        limit=evaluation_limit,
     )
     reranked = [
         (row, score)
@@ -7415,6 +7876,32 @@ def _rank_building_candidates_for_target(
         if str(row.get("category", "") or "").strip().lower() == "building"
         and str(row.get("asset_role", "") or "").strip().lower() == "building"
     ]
+    size_fit_candidates = _size_fit_building_candidates(
+        asset_by_id=asset_by_id,
+        theme_name=theme_name,
+        frontage_width_m=float(frontage_width_m),
+        depth_m=float(depth_m),
+        height_class=height_class,
+        limit=evaluation_limit,
+    )
+    by_asset_id: Dict[str, Tuple[Dict[str, object], float]] = {}
+    for row, score in [*reranked, *size_fit_candidates]:
+        asset_id = str(row.get("asset_id", "") or "").strip()
+        if not asset_id:
+            continue
+        existing = by_asset_id.get(asset_id)
+        if existing is None or float(score) > float(existing[1]):
+            by_asset_id[asset_id] = (row, float(score))
+    merged = list(by_asset_id.values())
+    merged.sort(
+        key=lambda item: (
+            float(item[1]),
+            _building_row_footprint_area(item[0]),
+            bool(item[0].get("hero_asset", False)),
+        ),
+        reverse=True,
+    )
+    reranked = merged[:evaluation_limit]
     payload = {
         "query": query_text,
         "hit_count": len(hits),
@@ -7429,6 +7916,87 @@ def _rank_building_candidates_for_target(
         ],
     }
     return reranked, payload
+
+
+def _size_fit_building_candidates(
+    *,
+    asset_by_id: Mapping[str, Mapping[str, object]],
+    theme_name: str,
+    frontage_width_m: float,
+    depth_m: float,
+    height_class: str,
+    limit: int,
+) -> List[Tuple[Dict[str, object], float]]:
+    candidates: List[Tuple[Dict[str, object], float]] = []
+    target_frontage = max(float(frontage_width_m), 1.0)
+    target_depth = max(float(depth_m), 1.0)
+    footprint_allowance = 1.05
+    min_native_fit_ratio = 0.75
+    target_area = max(target_frontage * target_depth * footprint_allowance * footprint_allowance, 1.0)
+    for row in asset_by_id.values():
+        role = str(row.get("asset_role", "") or "").strip().lower()
+        category = str(row.get("category", "") or "").strip().lower()
+        if role != "building" and category != "building":
+            continue
+        width, depth, height = _building_row_dimensions(row)
+        if width <= 0.0 or depth <= 0.0 or height <= 0.0:
+            continue
+        native_fit_ratio = min(
+            target_frontage * footprint_allowance / width,
+            target_depth * footprint_allowance / depth,
+        )
+        if native_fit_ratio < min_native_fit_ratio:
+            continue
+        theme_tags = {str(item).strip().lower() for item in row.get("theme_tags", ()) or ()}
+        style_tags = {str(item).strip().lower() for item in row.get("style_tags", ()) or ()}
+        tags = {str(item).strip().lower() for item in row.get("tags", ()) or ()}
+        source = str(row.get("source", "") or "").strip().lower()
+        row_height_class = str(row.get("height_class", "") or "").strip().lower()
+        footprint_area = max(width * depth, 0.0)
+        utilization = min(footprint_area / target_area, 1.0)
+        score = 1.0 + 0.65 * utilization
+        if "kenney" in source or {"low-poly", "low_poly", "game_ready"} & (tags | style_tags):
+            score += 0.20
+        if str(theme_name).strip().lower() in theme_tags | style_tags | tags:
+            score += 0.18
+        if str(height_class).strip().lower() and row_height_class == str(height_class).strip().lower():
+            score += 0.12
+        quality_tier = _safe_int(row.get("quality_tier"), 0)
+        if quality_tier > 0:
+            score += min(quality_tier, 3) * 0.03
+        candidates.append((dict(row), float(score)))
+    candidates.sort(key=lambda item: (float(item[1]), bool(item[0].get("hero_asset", False))), reverse=True)
+    return candidates[: max(int(limit), 1)]
+
+
+def _building_row_dimensions(row: Mapping[str, object]) -> Tuple[float, float, float]:
+    width = _positive_float(row.get("frontage_width_m"))
+    depth = _positive_float(row.get("depth_m"))
+    height = _positive_float(row.get("height_m"))
+    if width <= 0.0 or depth <= 0.0 or height <= 0.0:
+        metric_width, metric_depth, metric_height, _ = _metric_dimensions_from_row(row)
+        width = width or metric_width
+        depth = depth or metric_depth
+        height = height or metric_height
+    return float(width), float(depth), float(height)
+
+
+def _building_row_footprint_area(row: Mapping[str, object]) -> float:
+    width, depth, _height = _building_row_dimensions(row)
+    return float(max(width, 0.0) * max(depth, 0.0))
+
+
+def _building_row_fit_scale(row: Mapping[str, object], *, frontage_width_m: float, depth_m: float) -> float:
+    target_frontage = max(float(frontage_width_m), 1.0)
+    target_depth = max(float(depth_m), 1.0)
+    width, depth, _height = _building_row_dimensions(row)
+    if width <= 0.0 or depth <= 0.0:
+        return 0.0
+    footprint_allowance = 1.05
+    return float(min(
+        target_frontage * footprint_allowance / width,
+        target_depth * footprint_allowance / depth,
+    ))
 
 
 def _pick_building_candidate(
@@ -7486,46 +8054,28 @@ def _resolve_real_building_scale(
             "scale": 1.0,
         }
 
-    min_scale = 0.75
-    max_scale = 1.35
-    footprint_allowance = 1.10
-    max_footprint_scale = min(
+    scale = 1.0
+    footprint_allowance = 1.05
+    min_native_fit_ratio = 0.75
+    native_fit_ratio = min(
         float(frontage_width_m) * footprint_allowance / native_width,
         float(depth_m) * footprint_allowance / native_depth,
     )
-    preferred_scale = 1.0
-    if float(target_height_m) > 0.0:
-        preferred_scale = float(target_height_m) / native_height
-        preferred_scale = max(min_scale, min(max_scale, preferred_scale))
-    scale = min(float(preferred_scale), float(max_footprint_scale))
-    if scale < min_scale:
-        return {
-            "accepted": False,
-            "reason": "building_asset_rejected_size_mismatch",
-            "native_size_m": native_size,
-            "final_size_m": {
-                "width_m": native_width * max(scale, 0.0),
-                "depth_m": native_depth * max(scale, 0.0),
-                "height_m": native_height * max(scale, 0.0),
-            },
-            "scale": float(scale),
-            "required_scale_to_fit": float(max_footprint_scale),
-        }
-    scale = min(max_scale, max(min_scale, scale))
     final_size = {
-        "width_m": native_width * scale,
-        "depth_m": native_depth * scale,
-        "height_m": native_height * scale,
-        "canopy_width_m": max(native_width, native_depth) * scale,
+        "width_m": native_width,
+        "depth_m": native_depth,
+        "height_m": native_height,
+        "canopy_width_m": max(native_width, native_depth),
     }
-    if final_size["width_m"] > float(frontage_width_m) * footprint_allowance or final_size["depth_m"] > float(depth_m) * footprint_allowance:
+    if native_fit_ratio < min_native_fit_ratio:
         return {
             "accepted": False,
             "reason": "building_asset_rejected_size_mismatch",
             "native_size_m": native_size,
             "final_size_m": final_size,
             "scale": float(scale),
-            "required_scale_to_fit": float(max_footprint_scale),
+            "required_scale_to_fit": float(native_fit_ratio),
+            "native_fits_without_scaling": False,
         }
     return {
         "accepted": True,
@@ -7533,7 +8083,11 @@ def _resolve_real_building_scale(
         "native_size_m": native_size,
         "final_size_m": final_size,
         "scale": float(scale),
-        "required_scale_to_fit": float(max_footprint_scale),
+        "required_scale_to_fit": float(native_fit_ratio),
+        "native_fits_without_scaling": True,
+        "native_fits_target_slot_without_scaling": bool(native_fit_ratio >= 1.0),
+        "native_spans_adjacent_lot": bool(native_fit_ratio < 1.0),
+        "target_height_m_ignored_for_native_scale": float(target_height_m),
     }
 
 
@@ -7614,6 +8168,12 @@ def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]
         }
         for lot in lots
     ]
+
+
+def _target_buildable_area(target: Mapping[str, object]) -> float:
+    frontage = _positive_float(target.get("frontage_width_m"))
+    depth = _positive_float(target.get("depth_m"))
+    return float(max(frontage, 0.0) * max(depth, 0.0))
 
 
 def _evenly_sample_lots(lots: Sequence[GeneratedLot], count: int) -> List[GeneratedLot]:
@@ -7776,7 +8336,17 @@ def _place_building_targets(
     total_lane_guard_push_m = 0.0
     building_forbidden_geom = building_forbidden_geometry(placement_ctx)
 
-    for target_idx, target in enumerate(targets):
+    ordered_targets = sorted(
+        enumerate(targets),
+        key=lambda item: (
+            _target_buildable_area(item[1]),
+            _positive_float(item[1].get("frontage_width_m")),
+            _positive_float(item[1].get("depth_m")),
+            -float(item[0]),
+        ),
+        reverse=True,
+    )
+    for target_idx, target in ordered_targets:
         theme_id = str(target.get("theme_id", "") or "")
         theme_segment = theme_by_id.get(theme_id, theme_segments[0] if theme_segments else None)
         force_analytical_procedural_building = (
@@ -7821,6 +8391,7 @@ def _place_building_targets(
         source = "procedural_fallback"
         scale_decision: Dict[str, object] = {}
         rejected_candidates: List[Dict[str, object]] = []
+        accepted_candidates: List[Tuple[int, Dict[str, object], float, Dict[str, object]]] = []
         for candidate_idx, (candidate_row, candidate_score) in enumerate(ranked_candidates):
             candidate_entry = mesh_cache.get_metadata(candidate_row["asset_id"])
             candidate_scale = _resolve_real_building_scale(
@@ -7830,13 +8401,8 @@ def _place_building_targets(
                 target_height_m=_target_height_m,
             )
             if bool(candidate_scale.get("accepted", False)):
-                row = candidate_row
-                score = float(candidate_score)
-                source = "building_asset"
-                scale_decision = candidate_scale
-                retrieval_payload["chosen_index"] = int(candidate_idx)
-                retrieval_payload["scale_decision"] = dict(candidate_scale)
-                break
+                accepted_candidates.append((int(candidate_idx), candidate_row, float(candidate_score), candidate_scale))
+                continue
             building_asset_rejected_size_mismatch_count += 1
             rejected_candidates.append(
                 {
@@ -7847,6 +8413,35 @@ def _place_building_targets(
                     "final_size_m": dict(candidate_scale.get("final_size_m", {}) or {}),
                 }
             )
+        if accepted_candidates:
+            accepted_candidates.sort(
+                key=lambda candidate: (
+                    _building_row_footprint_area(candidate[1]),
+                    float(candidate[2]),
+                ),
+                reverse=True,
+            )
+            candidate_pool = accepted_candidates[: min(8, len(accepted_candidates))]
+            best_area = _building_row_footprint_area(candidate_pool[0][1]) if candidate_pool else 0.0
+            largest_fit_band = [
+                candidate
+                for candidate in candidate_pool
+                if best_area <= 1e-6 or _building_row_footprint_area(candidate[1]) >= best_area * 0.85
+            ]
+            if len(largest_fit_band) == 1:
+                chosen_candidate_idx, row, score, scale_decision = largest_fit_band[0]
+            else:
+                weights = _softmax_weights([candidate[2] for candidate in largest_fit_band], SOFTMAX_TEMPERATURE)
+                band_pick_index = int(rng.choices(range(len(largest_fit_band)), weights=weights, k=1)[0])
+                chosen_candidate_idx, row, score, scale_decision = largest_fit_band[band_pick_index]
+            source = "building_asset"
+            retrieval_payload["chosen_index"] = int(chosen_candidate_idx)
+            retrieval_payload["scale_decision"] = dict(scale_decision)
+            retrieval_payload["accepted_candidate_count"] = int(len(accepted_candidates))
+            retrieval_payload["selection_pool_asset_ids"] = [
+                str(candidate_row.get("asset_id", "") or "")
+                for _idx, candidate_row, _score, _scale in candidate_pool
+            ]
         if rejected_candidates:
             retrieval_payload["rejected_candidates"] = rejected_candidates
         retrieval_predictions.append(retrieval_payload)
@@ -7877,6 +8472,8 @@ def _place_building_targets(
                 "asset_role": "building",
                 "theme_tags": [theme_name, str(target.get("size_class", ""))],
                 "height_class": str(target.get("height_class", "midrise") or "midrise"),
+                "canonical_front": "+Z",
+                "yaw_deg": 0.0,
             }
             entry = mesh_cache.get_metadata(asset_id)
             scale_xyz = [1.0, 1.0, 1.0]
@@ -7893,11 +8490,27 @@ def _place_building_targets(
             street_edge_xz = (float(street_edge_xz_raw[0]), float(street_edge_xz_raw[1]))
         else:
             street_edge_xz = (float(target_center_xz[0]), float(target_center_xz[1]))
+        target_base_yaw = float(target.get("yaw_deg", 0.0) or 0.0)
+        building_asset_row = row if row is not None else asset_by_id.get(asset_id, {})
+        building_canonical_front = _normalize_canonical_front(
+            building_asset_row.get("canonical_front") if building_asset_row is not None else None
+        )
+        building_asset_yaw_offset = _asset_yaw_offset_deg(building_asset_row)
+        desired_building_front_yaw = _engine_yaw_for_vector(
+            float(street_edge_xz[0]) - float(target_center_xz[0]),
+            float(street_edge_xz[1]) - float(target_center_xz[1]),
+            fallback=target_base_yaw,
+        )
+        building_yaw_deg = _final_asset_yaw_deg(
+            desired_front_yaw_deg=desired_building_front_yaw,
+            canonical_front=building_canonical_front,
+            asset_yaw_offset_deg=building_asset_yaw_offset,
+        )
         safe_pose = resolve_building_pose(
             target_center_xz=target_center_xz,
             street_edge_xz=street_edge_xz if len(street_edge_xz_raw) >= 2 else None,
             side=str(target.get("side", "") or ""),
-            yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+            yaw_deg=building_yaw_deg,
             half_x=float(entry.half_x),
             half_z=float(entry.half_z),
             center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
@@ -7937,6 +8550,7 @@ def _place_building_targets(
         adjusted_target["placement_xz"] = center_xz
         adjusted_target["center_xz"] = visual_center_xz
         adjusted_target["street_edge_xz"] = street_edge_xz
+        adjusted_target["yaw_deg"] = building_yaw_deg
         placement_xz_raw = center_xz
         center_xz = (
             float(placement_xz_raw[0]),
@@ -7991,7 +8605,7 @@ def _place_building_targets(
                 asset_id=asset_id,
                 selection_source=source,
                 position_xyz=[float(center_xz[0]), float(y), float(center_xz[1])],
-                yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+                yaw_deg=float(building_yaw_deg),
                 scale=float(scale_xyz[0]),
                 scale_xyz=[float(value) for value in scale_xyz],
                 bbox_xz=[float(value) for value in bbox],
@@ -8008,6 +8622,11 @@ def _place_building_targets(
                 placement_strategy=placement_strategy,
                 front_setback_m=front_setback_m,
                 asset_scale_mode=building_asset_scale_mode,
+                orientation_policy="face_road",
+                desired_front_yaw_deg=float(desired_building_front_yaw),
+                canonical_front=str(building_canonical_front),
+                asset_yaw_offset_deg=float(building_asset_yaw_offset),
+                road_tangent_yaw_deg=0.0,
                 native_size_m=building_native_size,
                 final_size_m=building_final_size,
                 raw_size_m=_raw_size_for_entry(entry),
@@ -8033,13 +8652,18 @@ def _place_building_targets(
                 category="building",
                 score=float(score),
                 position_xyz=[float(center_xz[0]), float(y), float(center_xz[1])],
-                yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+                yaw_deg=float(building_yaw_deg),
                 scale=float(scale_xyz[0]),
                 bbox_xz=[float(value) for value in bbox],
                 selection_source=source,
                 placement_group="building",
                 theme_id=theme_id,
                 anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
+                orientation_policy="face_road",
+                desired_front_yaw_deg=float(desired_building_front_yaw),
+                canonical_front=str(building_canonical_front),
+                asset_yaw_offset_deg=float(building_asset_yaw_offset),
+                road_tangent_yaw_deg=0.0,
                 scale_xyz=[float(value) for value in scale_xyz],
                 native_size_m=building_native_size,
                 raw_size_m=_raw_size_for_entry(entry),
@@ -8077,6 +8701,8 @@ def _place_building_targets(
         "building_mesh_origin_centered_count": int(mesh_origin_centered_count),
         "building_lane_guard_total_push_m": float(round(total_lane_guard_push_m, 3)),
         "building_forbidden_geometry_mode": "road_occupancy_v1",
+        "building_asset_scale_policy": "native_no_scale_v1",
+        "building_target_ordering": "largest_buildable_area_first",
         "procedural_building_fallback_count": int(fallback_count),
         "sources": source_counts,
         "placement_strategy_counts": placement_strategy_counts,
@@ -9736,6 +10362,7 @@ def compose_street_scene(
                     candidate=candidate,
                     slot=slot,
                     category=category,
+                    asset_row=row,
                     band_width_m=float(getattr(band, "width_m", 1.0)),
                     entry=entry,
                     scale_info=scale_info,
@@ -9880,6 +10507,11 @@ def compose_street_scene(
             anchor_distance_m=float(anchor_distance_m) if anchor_distance_m is not None else -1.0,
             placement_energy=float(chosen_candidate["placement_energy"]),
             placement_status=placement_status,
+            orientation_policy=str(chosen_candidate.get("orientation_policy", "")),
+            desired_front_yaw_deg=float(chosen_candidate.get("desired_front_yaw_deg", 0.0) or 0.0),
+            canonical_front=str(chosen_candidate.get("canonical_front", "+Z") or "+Z"),
+            asset_yaw_offset_deg=float(chosen_candidate.get("asset_yaw_offset_deg", 0.0) or 0.0),
+            road_tangent_yaw_deg=float(chosen_candidate.get("road_tangent_yaw_deg", 0.0) or 0.0),
             native_size_m=dict(chosen_candidate.get("native_size_m", {}) or {}),
             raw_size_m=dict(chosen_candidate.get("raw_size_m", {}) or {}),
             metric_size_m=dict(chosen_candidate.get("metric_size_m", {}) or {}),
@@ -10648,13 +11280,21 @@ def compose_street_scene(
         texture_tracker=scene_texture_tracker,
         texture_overrides=texture_overrides,
     )
-    _add_final_land_use_zoning_proxies(
+    building_ground_summary = _add_building_ground_surfaces(
         scene,
-        zoning_grid,
+        building_plans,
+        palette=palette,
         roughness=rough,
         texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
         texture_tracker=scene_texture_tracker,
         texture_overrides=texture_overrides,
+    )
+    building_summary.update(
+        {
+            "building_ground_policy": "per_building_grass_with_perpendicular_access_v1",
+            "building_ground_grass_patch_count": int(building_ground_summary.get("grass_patch_count", 0)),
+            "building_access_path_count": int(building_ground_summary.get("access_path_count", 0)),
+        }
     )
     final_render_placements = list(placements)
     if default_sky_dome_placement is not None:
@@ -11383,6 +12023,9 @@ def compose_street_scene(
         "building_balance_reason": str(building_summary.get("building_balance_reason", "") or ""),
         "frontage_balance_gap": float(building_summary.get("frontage_balance_gap", 0.0) or 0.0),
         "buildable_frontage_by_side": dict(building_summary.get("buildable_frontage_by_side", {}) or {}),
+        "building_ground_policy": str(building_summary.get("building_ground_policy", "") or ""),
+        "building_ground_grass_patch_count": int(building_summary.get("building_ground_grass_patch_count", 0) or 0),
+        "building_access_path_count": int(building_summary.get("building_access_path_count", 0) or 0),
         "door_enabled": bool(building_summary.get("door_enabled", True)),
         "door_count": int(building_summary.get("door_count", 0) or 0),
         "door_count_by_side": dict(building_summary.get("door_count_by_side", {}) or {}),

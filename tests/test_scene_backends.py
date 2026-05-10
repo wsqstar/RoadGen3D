@@ -81,6 +81,60 @@ def test_object_backend_merges_v2_overlay_with_legacy_manifest(tmp_path: Path):
     assert lamp["category"] == "lamp"
 
 
+def test_object_backend_normalizes_traffic_sign_orientation_metadata(tmp_path: Path):
+    legacy = tmp_path / "legacy_signs.jsonl"
+    legacy.write_text(
+        json.dumps(
+            {
+                "asset_id": "sign_split",
+                "category": "traffic_sign",
+                "text_desc": "split traffic sign",
+                "mesh_path": "sign.glb",
+                "latent_path": "sign.pt",
+                "canonical_front": "negative_z",
+                "yaw_deg": 15,
+            }
+        )
+        + "\n"
+        + json.dumps(
+            {
+                "asset_id": "sign_without_front",
+                "category": "traffic_sign",
+                "text_desc": "traffic sign default front",
+                "mesh_path": "sign_default.glb",
+                "latent_path": "sign_default.pt",
+                "yaw_deg": "bad-yaw",
+            }
+        )
+        + "\n"
+        + json.dumps(
+            {
+                "asset_id": "lamp_plain",
+                "category": "lamp",
+                "text_desc": "lamp for baseline",
+                "mesh_path": "lamp.glb",
+                "latent_path": "lamp.pt",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    backend = ManifestObjectAssetBackend(manifest_path=legacy)
+    _, rows = backend.load_rows()
+
+    explicit = next(row for row in rows if row["asset_id"] == "sign_split")
+    defaulted = next(row for row in rows if row["asset_id"] == "sign_without_front")
+    lamp = next(row for row in rows if row["asset_id"] == "lamp_plain")
+
+    assert explicit["canonical_front"] == "-Z"
+    assert explicit["yaw_deg"] == 15.0
+    assert defaulted["canonical_front"] == "-Z"
+    assert defaulted["yaw_deg"] == 0.0
+    assert lamp["canonical_front"] == "+Z"
+
+
+
 def test_material_and_sky_backends_select_matching_records(tmp_path: Path):
     materials = tmp_path / "ground_material_manifest.jsonl"
     materials.write_text(

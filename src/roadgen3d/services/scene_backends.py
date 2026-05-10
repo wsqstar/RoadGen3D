@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
@@ -33,6 +34,73 @@ _LEGACY_OPTIONAL_FIELDS: Tuple[str, ...] = (
     "mesh_face_count",
     "quality_notes",
 )
+
+_CANONICAL_FRONT_ALIASES = {
+    "+x": "+X",
+    "x+": "+X",
+    "x": "+X",
+    "positive_x": "+X",
+    "pos_x": "+X",
+    "plus_x": "+X",
+    "right": "+X",
+    "-x": "-X",
+    "x-": "-X",
+    "negative_x": "-X",
+    "neg_x": "-X",
+    "minus_x": "-X",
+    "left": "-X",
+    "+z": "+Z",
+    "z+": "+Z",
+    "z": "+Z",
+    "positive_z": "+Z",
+    "pos_z": "+Z",
+    "plus_z": "+Z",
+    "front": "+Z",
+    "forward": "+Z",
+    "-z": "-Z",
+    "z-": "-Z",
+    "negative_z": "-Z",
+    "neg_z": "-Z",
+    "minus_z": "-Z",
+    "back": "-Z",
+    "backward": "-Z",
+}
+
+
+def _normalize_yaw_deg(value: object, default: float = 0.0) -> float:
+    try:
+        parsed = float(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        parsed = float(default)
+    if not math.isfinite(parsed):
+        parsed = float(default)
+    parsed = math.fmod(parsed, 360.0)
+    if parsed < 0.0:
+        parsed += 360.0
+    return float(parsed)
+
+
+def _normalize_canonical_front(
+    value: object,
+    *,
+    category: str = "",
+    default: str = "+Z",
+) -> str:
+    if value is None:
+        key = str(category).strip().lower()
+        if key in {"traffic_sign", "sign", "road_sign", "street_sign", "bus_stop_sign"} or key.endswith("_sign"):
+            return "-Z"
+        return default
+    key = str(value).strip()
+    if not key:
+        if str(category).strip().lower() in {"traffic_sign", "sign", "road_sign", "street_sign", "bus_stop_sign"} or str(
+            category,
+        ).strip().lower().endswith("_sign"):
+            return "-Z"
+        return default
+    compact = key.replace(" ", "_").lower()
+    compact = compact.replace("axis_", "").replace("_axis", "")
+    return _CANONICAL_FRONT_ALIASES.get(compact, default)
 _SCENE_SURFACE_ROLES: Tuple[str, ...] = (
     "context_ground",
     "carriageway",
@@ -399,6 +467,11 @@ def _load_legacy_object_rows(manifest_path: Path) -> List[Dict[str, object]]:
         for optional_key in _LEGACY_OPTIONAL_FIELDS:
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
+        row["canonical_front"] = _normalize_canonical_front(
+            payload.get("canonical_front", payload.get("front_axis")),
+            category=row["category"],
+        )
+        row["yaw_deg"] = _normalize_yaw_deg(payload.get("yaw_deg", 0.0))
         if "asset_role" not in row:
             row["asset_role"] = "building" if row["category"] == "building" else "street_furniture"
         rows.append(row)
@@ -449,7 +522,10 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
             "source_category": _clean_text(payload.get("source_category")),
             "thumbnail_path": _resolve_path(payload.get("thumbnail_path"), base_dir),
             "appearance_embedding_path": _resolve_path(payload.get("appearance_embedding_path"), base_dir),
-            "canonical_front": _clean_text(payload.get("canonical_front")),
+            "canonical_front": _normalize_canonical_front(
+                payload.get("canonical_front", payload.get("front_axis")),
+                category=_clean_text(payload.get("category")),
+            ),
             "license": _clean_text(payload.get("license")),
             "split": _clean_text(payload.get("split")),
         }
@@ -487,6 +563,7 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
         ):
             if key in payload:
                 row[key] = payload[key]
+        row["yaw_deg"] = _normalize_yaw_deg(row.get("yaw_deg", 0.0))
         rows.append(row)
     if not rows:
         raise ValueError(f"object manifest v2 is empty: {manifest_path}")
