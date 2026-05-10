@@ -3443,7 +3443,13 @@ def _build_base_scene(
             if kind == "drive_lane":
                 roughness_key = "carriageway"
             elif kind == "median":
-                roughness_key = "median_green"
+                roughness_key = "safety_island"
+                band_color = list(
+                    colors.get(
+                        "safety_island",
+                        colors.get("curb", colors.get("context_ground", (168, 163, 150, 255))),
+                    )
+                )
             slab = trimesh.creation.box(extents=(length_m, 0.06, width_m))
             slab.apply_translation([0.0, -0.03, z_center_m])
             slab = _apply_surface_finish(
@@ -6208,11 +6214,11 @@ def _build_osm_base_scene(
         _extrude_polygon(
             center_median,
             CENTER_ISLAND_HEIGHT_M,
-            list(colors.get("median_green", (95, 125, 75, 255))),
+            list(colors.get("safety_island", colors.get("curb", colors.get("context_ground", (168, 163, 150, 255))))),
             "center_median",
             y_offset=CENTER_ISLAND_TOP_Y_M,
-            roughness_key="median_green",
-            surface_role="median_green",
+            roughness_key="safety_island",
+            surface_role="safety_island",
         )
     center_grass_belt = strip_zones.get("center_grass_belt")
     if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
@@ -6363,9 +6369,12 @@ def _build_osm_base_scene(
             return 0.014, _material_color(material, colors.get("bike_lane", (50, 110, 80, 255))), 0.016, texture_key or "bike_lane", "bike_lane"
         if role == "parking_lane":
             return 0.014, _material_color(material, colors.get("parking_lane", (156, 126, 84, 255))), 0.016, texture_key or "parking_lane", "parking_lane"
-        if role in {"median", "median_green", "safety_island"}:
-            fallback = colors.get("sidewalk", (180, 178, 168, 255)) if role == "safety_island" else colors.get("median_green", (95, 125, 75, 255))
-            return CENTER_ISLAND_HEIGHT_M, _material_color(material, fallback), CENTER_ISLAND_TOP_Y_M, texture_key or ("sidewalk" if role == "safety_island" else "median_green"), role
+        if role in {"median", "safety_island"}:
+            fallback = colors.get("safety_island", colors.get("curb", colors.get("context_ground", (168, 163, 150, 255))))
+            return CENTER_ISLAND_HEIGHT_M, _material_color(material, fallback), CENTER_ISLAND_TOP_Y_M, texture_key or "safety_island", "safety_island"
+        if role == "median_green":
+            fallback = colors.get("median_green", (95, 125, 75, 255))
+            return CENTER_ISLAND_HEIGHT_M, _material_color(material, fallback), CENTER_ISLAND_TOP_Y_M, texture_key or "median_green", "median_green"
         if role == "grass_belt":
             return CENTER_ISLAND_HEIGHT_M, _material_color(material, colors.get("grass_belt", (100, 150, 80, 255))), CENTER_ISLAND_TOP_Y_M, texture_key or "grass_belt", "grass_belt"
         if role == "shared_street_surface":

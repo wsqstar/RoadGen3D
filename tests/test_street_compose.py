@@ -2774,6 +2774,64 @@ def test_osm_center_grass_belt_renders_as_flowerbed():
     assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) == pytest.approx(1.0)
 
 
+def test_osm_plain_center_median_renders_as_neutral_island(monkeypatch: pytest.MonkeyPatch):
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    import trimesh
+
+    orig_extrude_polygon = trimesh.creation.extrude_polygon
+
+    def _fallback_extrude_polygon(polygon, height):
+        try:
+            return orig_extrude_polygon(polygon, height)
+        except ValueError as exc:
+            if "No available triangulation engine" not in str(exc):
+                raise
+            min_x, min_z, max_x, max_z = polygon.bounds
+            x_span = float(max(max_x - min_x, 1e-6))
+            z_span = float(max(max_z - min_z, 1e-6))
+            mesh = trimesh.creation.box(extents=(x_span, z_span, height))
+            mesh.apply_translation(
+                [
+                    (min_x + max_x) / 2.0,
+                    (min_z + max_z) / 2.0,
+                    height / 2.0,
+                ]
+            )
+            return mesh
+
+    monkeypatch.setattr(trimesh.creation, "extrude_polygon", _fallback_extrude_polygon)
+
+    carriageway = shapely_geometry.box(-8.0, -3.0, 8.0, 3.0)
+    median = shapely_geometry.box(-8.0, -0.15, 8.0, 0.15)
+    tracker = create_scene_texture_tracker("solid_color_legacy")
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        sidewalk_zone=shapely_geometry.Polygon(),
+        road_arm_geometries=[carriageway],
+        junction_geometries=[],
+        strip_zones={"center_median": median},
+    )
+
+    scene = street_layout._build_osm_base_scene(
+        placement_ctx,
+        texture_mode="solid_color_legacy",
+        texture_tracker=tracker,
+    )
+    median_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_median_")
+    ]
+
+    assert median_meshes
+    assert max(float(mesh.bounds[1][1]) for mesh in median_meshes) == pytest.approx(
+        street_layout.CENTER_ISLAND_TOP_Y_M
+    )
+    assert tracker.surface_role_counts.get("safety_island", 0) >= 1
+    assert tracker.surface_role_counts.get("median_green", 0) == 0
+
+
 def test_osm_center_grass_belt_flowerbed_narrow_fallback():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
@@ -2842,6 +2900,35 @@ def test_base_scene_center_grass_belt_uses_flowerbed_parts():
         street_layout.CENTER_FLOWERBED_CURB_TOP_Y_M
     )
     assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) == pytest.approx(1.0)
+
+
+def test_base_scene_plain_median_uses_neutral_surface_role():
+    pytest.importorskip("trimesh")
+
+    tracker = create_scene_texture_tracker("solid_color_legacy")
+    scene = street_layout._build_base_scene(
+        length_m=40.0,
+        road_width_m=8.0,
+        left_side_width_m=2.5,
+        right_side_width_m=2.5,
+        street_program=SimpleNamespace(
+            bands=(
+                SimpleNamespace(
+                    name="center_median",
+                    kind="median",
+                    side="center",
+                    width_m=0.3,
+                    z_center_m=0.0,
+                ),
+            )
+        ),
+        texture_mode="solid_color_legacy",
+        texture_tracker=tracker,
+    )
+
+    assert any(str(node_name).startswith("road_center_median") for node_name in scene.graph.nodes_geometry)
+    assert tracker.surface_role_counts.get("safety_island", 0) >= 1
+    assert tracker.surface_role_counts.get("median_green", 0) == 0
 
 
 def test_base_scene_adds_centerline_markings():
