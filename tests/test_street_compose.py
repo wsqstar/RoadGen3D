@@ -1156,6 +1156,92 @@ def test_building_forbidden_geometry_includes_sidewalks_and_junction_surfaces():
     assert forbidden.intersection(building_buffer_probe).area == pytest.approx(0.0)
 
 
+def test_building_forbidden_geometry_includes_annotation_surfaces_and_functional_zones():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-8.0, -1.0, 8.0, 1.0)
+    transit_pad = shapely_geometry.box(-6.0, 2.0, -3.0, 4.0)
+    plaza_points = [(2.0, 2.0), (6.0, 2.0), (6.0, 5.0), (2.0, 5.0)]
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        carriageway_polygon=carriageway,
+        sidewalk_zone=shapely_geometry.MultiPolygon(),
+        left_sidewalk_zone=None,
+        right_sidewalk_zone=None,
+        road_arm_geometries=[],
+        strip_zones={},
+        segment_strip_zones={},
+        junction_geometries=[],
+        surface_annotations=[
+            {
+                "surface_role": "transit_pad",
+                "geometry": transit_pad,
+            }
+        ],
+        functional_zones=[
+            {
+                "kind": "plaza",
+                "points": plaza_points,
+            }
+        ],
+    )
+
+    forbidden = building_forbidden_geometry(placement_ctx)
+
+    assert forbidden.intersection(transit_pad).area == pytest.approx(transit_pad.area)
+    assert forbidden.intersection(shapely_geometry.Polygon(plaza_points)).area == pytest.approx(12.0)
+
+
+def test_building_ground_underlay_excludes_functional_zones_and_stays_below_roads():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    shapely_ops = pytest.importorskip("shapely.ops")
+
+    carriageway = shapely_geometry.box(-1.0, -10.0, 1.0, 10.0)
+    plaza = shapely_geometry.box(2.0, -2.0, 6.0, 2.0)
+    placement_ctx = SimpleNamespace(
+        aoi_polygon=shapely_geometry.box(-10.0, -10.0, 10.0, 10.0),
+        carriageway=carriageway,
+        carriageway_polygon=carriageway,
+        sidewalk_zone=shapely_geometry.MultiPolygon(),
+        left_sidewalk_zone=None,
+        right_sidewalk_zone=None,
+        road_arm_geometries=[],
+        strip_zones={},
+        segment_strip_zones={},
+        junction_geometries=[],
+        surface_annotations=[],
+        functional_zones=[
+            {
+                "kind": "plaza",
+                "points": [(2.0, -2.0), (6.0, -2.0), (6.0, 2.0), (2.0, 2.0)],
+            }
+        ],
+    )
+    plan = SimpleNamespace(
+        bbox_xz=(7.0, 9.0, 5.0, 7.0),
+        placement_xz=(8.0, 6.0),
+        street_edge_xz=(1.0, 6.0),
+        side="left",
+        door_center_world_xyz=None,
+        door_width_m=1.0,
+        front_setback_m=1.0,
+    )
+
+    geometries = street_layout._derive_building_ground_surface_geometries(
+        [plan],
+        placement_ctx=placement_ctx,
+        config=SimpleNamespace(land_use_buffer_m=20.0, length_m=20.0, road_width_m=2.0),
+    )
+    grass = shapely_ops.unary_union(geometries["grass"])
+
+    assert grass.intersection(carriageway).area == pytest.approx(0.0)
+    assert grass.intersection(plaza).area == pytest.approx(0.0)
+    assert (
+        street_layout.BUILDING_GRASS_UNDERLAY_Y_MIN_M
+        + street_layout.BUILDING_GRASS_UNDERLAY_HEIGHT_M
+    ) < 0.0
+
+
 def test_resolve_building_pose_pushes_building_out_of_sidewalk_forbidden_area():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

@@ -251,6 +251,23 @@ def _patch_geometry(patch: Any) -> Any:
     return patch.get("geometry")
 
 
+def _polygonal_record_geometry(record: Any) -> Any:
+    if not isinstance(record, dict):
+        return None
+    geometry = record.get("geometry")
+    if geometry is not None:
+        return geometry
+    points = record.get("points") or record.get("polygon_xz") or record.get("polygon")
+    if not isinstance(points, (list, tuple)) or len(points) < 3:
+        return None
+    try:
+        from shapely.geometry import Polygon as ShapelyPolygon
+
+        return ShapelyPolygon([(float(point[0]), float(point[1])) for point in points])
+    except Exception:
+        return None
+
+
 def _road_occupied_junction_geometries(junction: Any) -> Iterable[Any]:
     if not isinstance(junction, dict):
         return ()
@@ -336,6 +353,12 @@ def building_forbidden_geometry(placement_ctx: object | None) -> Any:
 
     for junction in getattr(placement_ctx, "junction_geometries", ()) or ():
         geometries.extend(_road_occupied_junction_geometries(junction))
+
+    for surface in getattr(placement_ctx, "surface_annotations", ()) or ():
+        geometries.extend(_candidate_geometries((_polygonal_record_geometry(surface),)))
+
+    for zone in getattr(placement_ctx, "functional_zones", ()) or ():
+        geometries.extend(_candidate_geometries((_polygonal_record_geometry(zone),)))
 
     return _union_geometries(geometries)
 
