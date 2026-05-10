@@ -333,6 +333,7 @@ class SceneContext:
     city_name_en: str | None = None
     reference_plan_id: str | None = None
     graph_template_id: str | None = None
+    reference_annotation_path: str | None = None
     template_patch: Dict[str, Any] | None = None
     scenario_id: str | None = None
     scenario_title: str | None = None
@@ -345,6 +346,7 @@ class SceneContext:
             "city_name_en": self.city_name_en,
             "reference_plan_id": self.reference_plan_id,
             "graph_template_id": self.graph_template_id,
+            "reference_annotation_path": self.reference_annotation_path,
             "template_patch": dict(self.template_patch) if isinstance(self.template_patch, Mapping) else None,
             "scenario_id": self.scenario_id,
             "scenario_title": self.scenario_title,
@@ -363,11 +365,12 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         return payload
     raw = dict(payload or {})
     layout_mode = str(raw.get("layout_mode", "template") or "template").strip().lower()
-    if layout_mode not in {"template", "osm", "osm_multiblock", "metaurban", "graph_template"}:
+    if layout_mode not in {"template", "osm", "osm_multiblock", "metaurban", "graph_template", "reference_annotation"}:
         layout_mode = "template"
     city_name_en = _clean_text(raw.get("city_name_en")) or None
     reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None
     graph_template_id = _clean_text(raw.get("graph_template_id")) or None
+    reference_annotation_path = _clean_text(raw.get("reference_annotation_path")) or None
     scenario_id = _clean_text(raw.get("scenario_id")) or None
     scenario_title = _clean_text(raw.get("scenario_title")) or None
     raw_template_patch = raw.get("template_patch")
@@ -384,10 +387,15 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         city_name_en=city_name_en,
         reference_plan_id=reference_plan_id if layout_mode == "metaurban" else None,
         graph_template_id=graph_template_id if layout_mode == "graph_template" else None,
+        reference_annotation_path=reference_annotation_path if layout_mode == "reference_annotation" else None,
         template_patch=template_patch if layout_mode == "graph_template" else None,
-        scenario_id=scenario_id if layout_mode == "graph_template" else None,
-        scenario_title=scenario_title if layout_mode == "graph_template" else None,
-        scenario_design_variant=scenario_design_variant if layout_mode == "graph_template" else None,
+        scenario_id=scenario_id if layout_mode in {"graph_template", "reference_annotation"} else None,
+        scenario_title=scenario_title if layout_mode in {"graph_template", "reference_annotation"} else None,
+        scenario_design_variant=(
+            scenario_design_variant
+            if layout_mode in {"graph_template", "reference_annotation"}
+            else None
+        ),
     )
 
 

@@ -12,6 +12,7 @@ from uuid import uuid4
 
 from ..graph_templates import load_graph_template_annotation_payload
 from ..json_safe import make_json_safe
+from ..reference_annotation import parse_reference_annotation
 from ..scenario_rubric import (
     DEFAULT_SCENARIO_RUBRIC_PATH,
     ScenarioRubricError,
@@ -79,6 +80,25 @@ class ScenarioDesignService:
             raise RuntimeError(f"Scenario {wanted_id} is disabled: {reason}")
 
         template_id = str(graph_template_id or catalog.get("graph_template_id") or DEFAULT_GRAPH_TEMPLATE_ID).strip()
+        reference_annotation_path = self._reference_annotation_path(scenario)
+        if reference_annotation_path is not None:
+            try:
+                annotation = parse_reference_annotation(
+                    self._load_reference_annotation_payload(reference_annotation_path)
+                ).to_dict()
+            except ValueError as exc:
+                raise RuntimeError(f"Scenario {wanted_id} reference annotation is invalid: {exc}") from exc
+            scenario_summary = self._scenario_summary(scenario)
+            return make_json_safe({
+                "schema_version": "roadgen3d_scenario_reference_annotation_v1",
+                "scenario_id": wanted_id,
+                "graph_template_id": template_id,
+                "reference_annotation_path": str(reference_annotation_path),
+                "preview_layout_path": scenario_summary.get("preview_layout_path", ""),
+                "scenario": scenario_summary,
+                "annotation": annotation,
+                "summary": self._reference_annotation_counts(annotation),
+            })
         try:
             base_annotation = load_graph_template_annotation_payload(template_id)
             template_patch = self.scenario_to_template_patch(
@@ -120,11 +140,14 @@ class ScenarioDesignService:
 
         items: list[Dict[str, Any]] = []
         for scenario_index, scenario in enumerate(selected):
-            template_patch = self.scenario_to_template_patch(
-                scenario,
-                graph_template_id=graph_template_id,
-                validate=True,
-            )
+            if self._reference_annotation_path(scenario) is not None:
+                template_patch = None
+            else:
+                template_patch = self.scenario_to_template_patch(
+                    scenario,
+                    graph_template_id=graph_template_id,
+                    validate=True,
+                )
             for sample_index in range(1, samples_per_scenario + 1):
                 seed = int(base_seed) + scenario_index * 1000 + sample_index - 1
                 item = self._submit_scenario_sample(
@@ -242,12 +265,20 @@ class ScenarioDesignService:
         catalog = self._load_catalog()
         selected = self._select_scenarios(catalog["scenarios"], [scenario_id])
         scenario = selected[0]
+        summary = self._scenario_summary(scenario)
+        reference_annotation_path = self._reference_annotation_path(scenario)
+        if reference_annotation_path is not None:
+            return make_json_safe({
+                "scenario": summary,
+                "template_patch": None,
+                "reference_annotation_path": str(reference_annotation_path),
+                "compose_config_patch": sanitize_compose_config_patch(scenario.get("compose_config_patch")),
+            })
         template_patch = self.scenario_to_template_patch(
             scenario,
             graph_template_id=graph_template_id,
             validate=validate,
         )
-        summary = self._scenario_summary(scenario)
         return make_json_safe({
             "scenario": summary,
             "template_patch": template_patch,
@@ -258,7 +289,7 @@ class ScenarioDesignService:
         self,
         *,
         scenario: Mapping[str, Any],
-        template_patch: Mapping[str, Any],
+        template_patch: Mapping[str, Any] | None,
         sample_index: int,
         seed: int,
         run_dir: Path,
@@ -269,6 +300,7 @@ class ScenarioDesignService:
         compose_patch = sanitize_compose_config_patch(scenario.get("compose_config_patch"))
         compose_patch["query"] = str(scenario.get("query") or scenario_id)
         compose_patch["seed"] = int(seed)
+        reference_annotation_path = self._reference_annotation_path(scenario)
         scenario_out_dir = run_dir / scenario_id / f"sample_{sample_index:02d}"
         sample_generation_options = dict(generation_options)
         sample_generation_options["out_dir"] = str(scenario_out_dir)
@@ -286,10 +318,11 @@ class ScenarioDesignService:
             ),
             parameter_sources_by_field={
                 "scenario_id": "scenario_design_catalog",
-                "template_patch": "scenario_design_catalog",
+                "template_patch": "scenario_design_catalog" if template_patch else "",
+                "reference_annotation_path": "scenario_design_catalog" if reference_annotation_path else "",
                 "seed": "scenario_design_batch",
             },
-            template_patch=dict(template_patch),
+            template_patch=dict(template_patch) if isinstance(template_patch, Mapping) else None,
         )
         item = {
             "scenario_id": scenario_id,
@@ -311,9 +344,13 @@ class ScenarioDesignService:
             response = self.design_service.create_scene_job(
                 draft=draft,
                 scene_context={
-                    "layout_mode": "graph_template",
-                    "graph_template_id": graph_template_id,
-                    "template_patch": dict(template_patch),
+                    "layout_mode": "reference_annotation" if reference_annotation_path else "graph_template",
+                    "graph_template_id": graph_template_id if not reference_annotation_path else "",
+                    "template_patch": dict(template_patch) if isinstance(template_patch, Mapping) else None,
+                    "reference_annotation_path": str(reference_annotation_path) if reference_annotation_path else "",
+                    "scenario_id": scenario_id,
+                    "scenario_title": str(scenario.get("title_zh") or scenario_id),
+                    "scenario_design_variant": self._scenario_summary(scenario),
                 },
                 patch_overrides={},
                 generation_options=sample_generation_options,
@@ -444,7 +481,21 @@ class ScenarioDesignService:
     def _scenario_summary(self, scenario: Mapping[str, Any]) -> Dict[str, Any]:
         preview_path = self._resolve_catalog_path(str(scenario.get("preview_layout_path") or ""))
         surfaces = _records(scenario.get("surface_annotations"))
-        regions = self._scenario_regions(scenario, graph_template_id=DEFAULT_GRAPH_TEMPLATE_ID, allow_default=True)
+        reference_annotation_path = self._reference_annotation_path(scenario)
+        reference_counts: Dict[str, Any] = {}
+        if reference_annotation_path is not None:
+            try:
+                annotation = parse_reference_annotation(
+                    self._load_reference_annotation_payload(reference_annotation_path)
+                ).to_dict()
+                reference_counts = self._reference_annotation_counts(annotation)
+            except (RuntimeError, ValueError):
+                reference_counts = {}
+        regions = (
+            []
+            if reference_annotation_path is not None
+            else self._scenario_regions(scenario, graph_template_id=DEFAULT_GRAPH_TEMPLATE_ID, allow_default=True)
+        )
         template_patch_operations = _records(scenario.get("template_patch_operations"))
         station_strip_patch_count = sum(
             1
@@ -466,14 +517,28 @@ class ScenarioDesignService:
             "road_section": dict(scenario.get("road_section") or {}) if isinstance(scenario.get("road_section"), Mapping) else {},
             "edge_context": dict(scenario.get("edge_context") or {}) if isinstance(scenario.get("edge_context"), Mapping) else {},
             "region_count": len(regions),
+            "reference_centerline_count": int(reference_counts.get("centerline_count") or 0),
+            "reference_building_region_count": int(reference_counts.get("building_region_count") or 0),
+            "reference_functional_zone_count": int(reference_counts.get("functional_zone_count") or 0),
+            "reference_junction_count": int(reference_counts.get("junction_count") or 0),
             "scene_region_count": sum(1 for region in regions if str(region.get("region_role") or "") == "scene_region"),
             "region_override_count": len(_records(scenario.get("region_overrides"))),
-            "functional_zone_count": len(_records(scenario.get("functional_zones"))),
-            "surface_annotation_count": len(surfaces),
+            "functional_zone_count": (
+                int(reference_counts.get("functional_zone_count") or 0)
+                if reference_annotation_path is not None
+                else len(_records(scenario.get("functional_zones")))
+            ),
+            "surface_annotation_count": (
+                int(reference_counts.get("surface_annotation_count") or 0)
+                if reference_annotation_path is not None
+                else len(surfaces)
+            ),
             "station_strip_patch_count": station_strip_patch_count,
             "surface_role_counts": surface_roles,
             "template_patch_operation_count": len(template_patch_operations),
             "compose_config_patch": sanitize_compose_config_patch(scenario.get("compose_config_patch")),
+            "reference_annotation_path": str(reference_annotation_path) if reference_annotation_path is not None else "",
+            "reference_annotation_exists": bool(reference_annotation_path and reference_annotation_path.exists()),
             "preview_layout_path": str(preview_path) if preview_path is not None else "",
             "preview_layout_exists": bool(preview_path and preview_path.exists()),
         }
@@ -572,6 +637,31 @@ class ScenarioDesignService:
             candidate = ROOT / candidate
         return candidate.resolve()
 
+    def _reference_annotation_path(self, scenario: Mapping[str, Any]) -> Path | None:
+        raw_path = str(scenario.get("reference_annotation_path") or "").strip()
+        return self._resolve_catalog_path(raw_path) if raw_path else None
+
+    def _load_reference_annotation_payload(self, path: Path) -> Dict[str, Any]:
+        if not path.exists():
+            raise RuntimeError(f"Reference annotation JSON not found: {path}")
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(f"Invalid reference annotation JSON: {path}: {exc}") from exc
+        if not isinstance(payload, Mapping):
+            raise RuntimeError(f"Reference annotation JSON must be an object: {path}")
+        return dict(payload)
+
+    @staticmethod
+    def _reference_annotation_counts(annotation: Mapping[str, Any]) -> Dict[str, int]:
+        return {
+            "centerline_count": len(_records(annotation.get("centerlines"))),
+            "building_region_count": len(_records(annotation.get("building_regions"))),
+            "functional_zone_count": len(_records(annotation.get("functional_zones"))),
+            "surface_annotation_count": len(_records(annotation.get("surface_annotations"))),
+            "junction_count": len(_records(annotation.get("junctions"))),
+        }
+
     def _primary_centerline_id(self, graph_template_id: str) -> str:
         template_id = str(graph_template_id or DEFAULT_GRAPH_TEMPLATE_ID).strip().lower()
         cached = self._primary_centerline_cache.get(template_id)
@@ -655,8 +745,8 @@ def _render_report(run: Mapping[str, Any]) -> list[str]:
         "",
         "## Scenario Coverage",
         "",
-        "| Scenario | Regions | Zones | Surfaces | Surface roles |",
-        "| --- | ---: | ---: | ---: | --- |",
+        "| Scenario | Regions | Ref lines | Ref buildings | Zones | Surfaces | Surface roles |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     for scenario in run.get("scenarios", []):
         if not isinstance(scenario, Mapping):
@@ -668,6 +758,8 @@ def _render_report(run: Mapping[str, Any]) -> list[str]:
             + " | ".join([
                 _md_text(str(scenario.get("title_zh") or scenario.get("scenario_id") or "")),
                 str(scenario.get("region_count") or 0),
+                str(scenario.get("reference_centerline_count") or 0),
+                str(scenario.get("reference_building_region_count") or 0),
                 str(scenario.get("functional_zone_count") or 0),
                 str(scenario.get("surface_annotation_count") or 0),
                 _md_text(role_text),

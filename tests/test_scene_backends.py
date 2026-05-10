@@ -232,7 +232,11 @@ def test_default_course_material_manifest_covers_viewer_surface_roles():
         "planting_soil",
         "bus_lane",
         "parking_lane",
+        "safety_island",
         "shared_street_surface",
+        "garden",
+        "parking",
+        "plaza",
     ):
         assert selection.material_ids_by_role[role]
         assert selection.texture_overrides[role]

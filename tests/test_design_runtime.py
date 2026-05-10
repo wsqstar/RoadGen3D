@@ -917,3 +917,92 @@ def test_generate_scene_from_draft_supports_graph_template_layout(tmp_path: Path
     assert result.summary["layout_mode"] == "graph_template"
     assert result.summary["graph_template_id"] == "hkust_gz_gate"
     assert payload["summary"]["graph_template_source_format"] == "roadgen3d_reference_annotation_v2"
+
+
+def test_generate_scene_from_draft_supports_reference_annotation_layout(tmp_path: Path, monkeypatch):
+    captured: dict[str, object] = {}
+    annotation_path = tmp_path / "reference_annotation.json"
+    annotation_path.write_text(
+        json.dumps({
+            "version": "roadgen3d_reference_annotation_v2",
+            "plan_id": "scenario_demo",
+            "image_path": "/api/graph-templates/hkust_gz_gate/image",
+            "image_width_px": 1024,
+            "image_height_px": 170,
+            "pixels_per_meter": 1.5,
+            "centerlines": [],
+        }),
+        encoding="utf-8",
+    )
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 5}}), encoding="utf-8")
+
+    monkeypatch.setattr(
+        runtime,
+        "resolve_scene_context",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(AssertionError("resolve_scene_context should not run for reference_annotation")),
+    )
+
+    def _fake_bridge(annotation_payload, *, compose_config):
+        captured["annotation_payload"] = annotation_payload
+        captured["bridge_config"] = compose_config
+        return SimpleNamespace(
+            road_segment_graph=object(),
+            projected_features=object(),
+            placement_context=object(),
+            summary_metadata={
+                "layout_mode": "annotation",
+                "generator": "reference_annotation_bridge_v1",
+                "centerline_count": 2,
+            },
+        )
+
+    monkeypatch.setattr(runtime, "build_reference_annotation_scene_bridge", _fake_bridge)
+
+    def _fake_compose(**kwargs):
+        captured["config"] = kwargs["config"]
+        captured["road_segment_graph_override"] = kwargs["road_segment_graph_override"]
+        captured["projected_features_override"] = kwargs["projected_features_override"]
+        captured["placement_context_override"] = kwargs["placement_context_override"]
+        return SimpleNamespace(
+            instance_count=5,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        )
+
+    monkeypatch.setattr(runtime, "compose_street_scene", _fake_compose)
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="reference annotation scene",
+        compose_config_patch={"road_width_m": 12.0, "sidewalk_width_m": 3.0, "lane_count": 4},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        generation_options={"out_dir": str(tmp_path), "preset_id": "skip_llm"},
+        scene_context={
+            "layout_mode": "reference_annotation",
+            "reference_annotation_path": str(annotation_path),
+            "scenario_id": "scenario_demo",
+            "scenario_title": "Scenario Demo",
+        },
+    )
+
+    payload = json.loads(Path(result.scene_layout_path).read_text(encoding="utf-8"))
+
+    assert captured["annotation_payload"]["plan_id"] == "scenario_demo"
+    assert captured["config"].layout_mode == "reference_annotation"
+    assert captured["road_segment_graph_override"] is not None
+    assert captured["projected_features_override"] is not None
+    assert captured["placement_context_override"] is not None
+    assert result.summary["layout_mode"] == "annotation"
+    assert result.summary["scenario_id"] == "scenario_demo"
+    assert result.summary["reference_annotation_path"] == str(annotation_path)
+    assert payload["summary"]["generator"] == "reference_annotation_bridge_v1"

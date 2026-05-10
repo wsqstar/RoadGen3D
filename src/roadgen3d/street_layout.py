@@ -1194,7 +1194,7 @@ def _street_furniture_scale_info(
 
 
 def _is_corridor_layout_mode(layout_mode: object) -> bool:
-    return str(layout_mode or "").strip().lower() in {"osm", "osm_multiblock", "metaurban", "graph_template"}
+    return str(layout_mode or "").strip().lower() in {"osm", "osm_multiblock", "metaurban", "graph_template", "reference_annotation"}
 
 
 def _validate_config(config: StreetComposeConfig) -> None:
@@ -1217,8 +1217,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
     if config.max_trials_per_slot <= 0:
         raise ValueError("max_trials_per_slot must be >= 1")
     # -- M5 validation --
-    if config.layout_mode not in ("template", "osm", "osm_multiblock", "metaurban", "graph_template"):
-        raise ValueError("layout_mode must be 'template', 'osm', 'osm_multiblock', 'metaurban', or 'graph_template'")
+    if config.layout_mode not in ("template", "osm", "osm_multiblock", "metaurban", "graph_template", "reference_annotation"):
+        raise ValueError("layout_mode must be 'template', 'osm', 'osm_multiblock', 'metaurban', 'graph_template', or 'reference_annotation'")
     if config.constraint_mode not in ("off", "soft"):
         raise ValueError("constraint_mode must be 'off' or 'soft'")
     if config.layout_mode in {"osm", "osm_multiblock"}:
@@ -10212,7 +10212,7 @@ def compose_street_scene(
                 "Selected road does not retain enough effective POIs after compose filtering "
                 "(requires weighted POI score >= 2.0 and at least 1 core POI)."
             )
-    elif config.layout_mode in {"metaurban", "graph_template"}:
+    elif config.layout_mode in {"metaurban", "graph_template", "reference_annotation"}:
         if road_segment_graph_override is None or projected_features_override is None or placement_context_override is None:
             raise ValueError(
                 f"{config.layout_mode} layout_mode requires road_segment_graph_override, "

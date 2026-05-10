@@ -34,8 +34,12 @@ _TEXTURE_PATHS = {
     "bus_lane": _ASSET_ROOT / "tiles" / "asphalt_base.png",
     "parking_lane": _ASSET_ROOT / "tiles" / "asphalt_base.png",
     "median_green": _ASSET_ROOT / "tiles" / "grass_soft.png",
+    "safety_island": _ASSET_ROOT / "tiles" / "plaza_concrete.png",
     "shared_street_surface": _ASSET_ROOT / "tiles" / "plaza_concrete.png",
     "colored_pavement": _ASSET_ROOT / "tiles" / "sidewalk_pavers.png",
+    "garden": _ASSET_ROOT / "tiles" / "grass_soft.png",
+    "parking": _ASSET_ROOT / "tiles" / "asphalt_base.png",
+    "plaza": _ASSET_ROOT / "tiles" / "plaza_concrete.png",
 }
 
 _TEXTURE_TILE_SCALE_M = {
@@ -57,9 +61,13 @@ _TEXTURE_TILE_SCALE_M = {
     "bus_lane": 4.0,
     "parking_lane": 4.0,
     "median_green": 3.0,
+    "safety_island": 2.5,
     "grass_belt": 3.0,
     "shared_street_surface": 2.5,
     "colored_pavement": 1.8,
+    "garden": 3.0,
+    "parking": 4.0,
+    "plaza": 2.5,
 }
 
 

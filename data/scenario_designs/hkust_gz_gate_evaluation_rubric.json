@@ -165,19 +165,46 @@
         "excellent": 0.88
       },
       "metric_thresholds": {
-        "SID_CLR": {"minimum": 0.65, "target": 0.78, "excellent": 0.92},
-        "CLEAR_CONT": {"minimum": 0.75, "target": 0.85, "excellent": 0.95},
-        "POI_MIX": {"minimum": 0.45, "target": 0.62, "excellent": 0.8},
-        "CROSS_PROV": {"minimum": 0.6, "target": 0.72, "excellent": 0.88},
-        "BUFFER_RATIO": {"minimum": 0.3, "target": 0.45, "excellent": 0.65},
-        "spacing_rhythm": {"minimum": 0.5, "target": 0.66, "excellent": 0.82}
+        "SID_CLR": {
+          "minimum": 0.65,
+          "target": 0.78,
+          "excellent": 0.92
+        },
+        "CLEAR_CONT": {
+          "minimum": 0.75,
+          "target": 0.85,
+          "excellent": 0.95
+        },
+        "POI_MIX": {
+          "minimum": 0.45,
+          "target": 0.62,
+          "excellent": 0.8
+        },
+        "CROSS_PROV": {
+          "minimum": 0.6,
+          "target": 0.72,
+          "excellent": 0.88
+        },
+        "BUFFER_RATIO": {
+          "minimum": 0.3,
+          "target": 0.45,
+          "excellent": 0.65
+        },
+        "spacing_rhythm": {
+          "minimum": 0.5,
+          "target": 0.66,
+          "excellent": 0.82
+        }
       },
       "semantic_gates": [
         {
           "gate_id": "road_diet_lane_count",
           "description": "Road diet scenario should reduce the generated section to about two motor lanes.",
           "type": "numeric_max",
-          "path": ["config", "lane_count"],
+          "path": [
+            "config",
+            "lane_count"
+          ],
           "max": 2,
           "severity": "fail"
         },
@@ -185,8 +212,16 @@
           "gate_id": "bike_lane_expression",
           "description": "Dedicated bicycle space should be expressed in surface annotations or scenario metadata.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "scenario_design", "config"],
-          "any": ["bike_lane", "bicycle", "cycling"],
+          "sources": [
+            "surface_annotations",
+            "scenario_design",
+            "config"
+          ],
+          "any": [
+            "bike_lane",
+            "bicycle",
+            "cycling"
+          ],
           "minimum": 1,
           "severity": "review"
         }
@@ -207,20 +242,51 @@
         "excellent": 0.9
       },
       "metric_thresholds": {
-        "TREE_SHADE": {"minimum": 0.45, "target": 0.62, "excellent": 0.78},
-        "MICRO_ENV": {"minimum": 0.55, "target": 0.7, "excellent": 0.85},
-        "LIGHT_UNI": {"minimum": 0.68, "target": 0.8, "excellent": 0.9},
-        "CROSS_PROV": {"minimum": 0.7, "target": 0.82, "excellent": 0.95},
-        "BUFFER_RATIO": {"minimum": 0.32, "target": 0.48, "excellent": 0.65},
-        "BOLLARD_DENSITY": {"minimum": 0.3, "target": 0.52, "excellent": 0.75},
-        "VISIBILITY_PENALTY": {"minimum": 0.2, "target": 0.15, "excellent": 0.08}
+        "TREE_SHADE": {
+          "minimum": 0.45,
+          "target": 0.62,
+          "excellent": 0.78
+        },
+        "MICRO_ENV": {
+          "minimum": 0.55,
+          "target": 0.7,
+          "excellent": 0.85
+        },
+        "LIGHT_UNI": {
+          "minimum": 0.68,
+          "target": 0.8,
+          "excellent": 0.9
+        },
+        "CROSS_PROV": {
+          "minimum": 0.7,
+          "target": 0.82,
+          "excellent": 0.95
+        },
+        "BUFFER_RATIO": {
+          "minimum": 0.32,
+          "target": 0.48,
+          "excellent": 0.65
+        },
+        "BOLLARD_DENSITY": {
+          "minimum": 0.3,
+          "target": 0.52,
+          "excellent": 0.75
+        },
+        "VISIBILITY_PENALTY": {
+          "minimum": 0.2,
+          "target": 0.15,
+          "excellent": 0.08
+        }
       },
       "semantic_gates": [
         {
           "gate_id": "four_lane_capacity",
           "description": "Four-lane scenario should preserve approximately four motor lanes.",
           "type": "numeric_min",
-          "path": ["config", "lane_count"],
+          "path": [
+            "config",
+            "lane_count"
+          ],
           "min": 4,
           "severity": "fail"
         },
@@ -228,8 +294,19 @@
           "gate_id": "median_or_refuge_island_expression",
           "description": "Median, planting soil, or pedestrian refuge island should be present.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "scenario_design", "visual_surface_role_count", "summary"],
-          "any": ["median", "safety_island", "refuge", "planting_soil", "grass_belt"],
+          "sources": [
+            "surface_annotations",
+            "scenario_design",
+            "visual_surface_role_count",
+            "summary"
+          ],
+          "any": [
+            "median",
+            "safety_island",
+            "refuge",
+            "planting_soil",
+            "grass_belt"
+          ],
           "minimum": 1,
           "severity": "fail"
         }
@@ -250,21 +327,59 @@
         "excellent": 0.9
       },
       "metric_thresholds": {
-        "FURN_D": {"minimum": 0.4, "target": 0.62, "excellent": 0.82},
-        "TRANSIT_PROX": {"minimum": 0.6, "target": 0.78, "excellent": 0.92},
-        "POI_MIX": {"minimum": 0.5, "target": 0.68, "excellent": 0.85},
-        "LIGHT_UNI": {"minimum": 0.7, "target": 0.82, "excellent": 0.92},
-        "active_front_ratio": {"minimum": 0.4, "target": 0.58, "excellent": 0.78},
-        "anchor_poi_score": {"minimum": 0.45, "target": 0.65, "excellent": 0.85},
-        "focal_readability": {"minimum": 0.5, "target": 0.68, "excellent": 0.84}
+        "FURN_D": {
+          "minimum": 0.4,
+          "target": 0.62,
+          "excellent": 0.82
+        },
+        "TRANSIT_PROX": {
+          "minimum": 0.6,
+          "target": 0.78,
+          "excellent": 0.92
+        },
+        "POI_MIX": {
+          "minimum": 0.5,
+          "target": 0.68,
+          "excellent": 0.85
+        },
+        "LIGHT_UNI": {
+          "minimum": 0.7,
+          "target": 0.82,
+          "excellent": 0.92
+        },
+        "active_front_ratio": {
+          "minimum": 0.4,
+          "target": 0.58,
+          "excellent": 0.78
+        },
+        "anchor_poi_score": {
+          "minimum": 0.45,
+          "target": 0.65,
+          "excellent": 0.85
+        },
+        "focal_readability": {
+          "minimum": 0.5,
+          "target": 0.68,
+          "excellent": 0.84
+        }
       },
       "semantic_gates": [
         {
           "gate_id": "transit_stop_expression",
           "description": "Transit pad, bus lane, or bus stop expression should be present.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "functional_zones", "scenario_design", "config"],
-          "any": ["transit_pad", "bus_lane", "bus_stop", "transit"],
+          "sources": [
+            "surface_annotations",
+            "functional_zones",
+            "scenario_design",
+            "config"
+          ],
+          "any": [
+            "transit_pad",
+            "bus_lane",
+            "bus_stop",
+            "transit"
+          ],
           "minimum": 1,
           "severity": "fail"
         },
@@ -272,8 +387,17 @@
           "gate_id": "mixed_frontage_expression",
           "description": "Mixed school, commercial, or residential frontage should remain explicit.",
           "type": "contains_any",
-          "sources": ["scenario_design", "functional_zones", "summary"],
-          "any": ["school", "commercial", "mixed", "residential"],
+          "sources": [
+            "scenario_design",
+            "functional_zones",
+            "summary"
+          ],
+          "any": [
+            "school",
+            "commercial",
+            "mixed",
+            "residential"
+          ],
           "minimum": 1,
           "severity": "review"
         }
@@ -294,22 +418,63 @@
         "excellent": 0.93
       },
       "metric_thresholds": {
-        "SID_CLR": {"minimum": 0.7, "target": 0.85, "excellent": 0.95},
-        "CLEAR_CONT": {"minimum": 0.78, "target": 0.88, "excellent": 0.96},
-        "TREE_SHADE": {"minimum": 0.4, "target": 0.6, "excellent": 0.78},
-        "LIGHT_UNI": {"minimum": 0.75, "target": 0.88, "excellent": 0.95},
-        "CROSS_PROV": {"minimum": 0.75, "target": 0.88, "excellent": 0.96},
-        "BUFFER_RATIO": {"minimum": 0.35, "target": 0.55, "excellent": 0.72},
-        "VISIBILITY_PENALTY": {"minimum": 0.18, "target": 0.12, "excellent": 0.06},
-        "focal_readability": {"minimum": 0.55, "target": 0.72, "excellent": 0.88}
+        "SID_CLR": {
+          "minimum": 0.7,
+          "target": 0.85,
+          "excellent": 0.95
+        },
+        "CLEAR_CONT": {
+          "minimum": 0.78,
+          "target": 0.88,
+          "excellent": 0.96
+        },
+        "TREE_SHADE": {
+          "minimum": 0.4,
+          "target": 0.6,
+          "excellent": 0.78
+        },
+        "LIGHT_UNI": {
+          "minimum": 0.75,
+          "target": 0.88,
+          "excellent": 0.95
+        },
+        "CROSS_PROV": {
+          "minimum": 0.75,
+          "target": 0.88,
+          "excellent": 0.96
+        },
+        "BUFFER_RATIO": {
+          "minimum": 0.35,
+          "target": 0.55,
+          "excellent": 0.72
+        },
+        "VISIBILITY_PENALTY": {
+          "minimum": 0.18,
+          "target": 0.12,
+          "excellent": 0.06
+        },
+        "focal_readability": {
+          "minimum": 0.55,
+          "target": 0.72,
+          "excellent": 0.88
+        }
       },
       "semantic_gates": [
         {
           "gate_id": "child_walk_expression",
           "description": "Child-friendly walk or play-walk surface should be expressed.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "functional_zones", "scenario_design"],
-          "any": ["child_colored_walk", "child_walk", "child_sidewalk", "play_markings"],
+          "sources": [
+            "surface_annotations",
+            "functional_zones",
+            "scenario_design"
+          ],
+          "any": [
+            "child_colored_walk",
+            "child_walk",
+            "child_sidewalk",
+            "play_markings"
+          ],
           "minimum": 1,
           "severity": "fail"
         },
@@ -317,8 +482,16 @@
           "gate_id": "school_crossing_expression",
           "description": "School crossing or crossing surface should be present.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "visual_surface_role_count", "scenario_design"],
-          "any": ["school_crossing", "crossing", "raised_crossing"],
+          "sources": [
+            "surface_annotations",
+            "visual_surface_role_count",
+            "scenario_design"
+          ],
+          "any": [
+            "school_crossing",
+            "crossing",
+            "raised_crossing"
+          ],
           "minimum": 1,
           "severity": "fail"
         },
@@ -326,8 +499,14 @@
           "gate_id": "refuge_island_expression",
           "description": "Refuge island or safety island should be present.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "scenario_design"],
-          "any": ["refuge", "safety_island"],
+          "sources": [
+            "surface_annotations",
+            "scenario_design"
+          ],
+          "any": [
+            "refuge",
+            "safety_island"
+          ],
           "minimum": 1,
           "severity": "fail"
         }
@@ -335,14 +514,8 @@
     },
     {
       "scenario_id": "scenario_05_furniture_enriched_activity_street",
-      "enabled": false,
-      "future_ready": true,
-      "disabled_reason": "Requires freer park/activity-space representation than current scenario-design v1 supports.",
-      "capability_gaps": [
-        "Free-form park/activity-node geometry",
-        "Program-level community activity inventory",
-        "Furniture-use suitability metrics beyond current road-metrics"
-      ],
+      "enabled": true,
+      "future_ready": false,
       "dimension_weights": {
         "Walkability": 0.25,
         "Safety": 0.25,
@@ -353,12 +526,26 @@
           "gate_id": "activity_program_expression",
           "description": "Future implementation should express amphitheater, repair station, child play, or community gathering programs.",
           "type": "contains_any",
-          "sources": ["functional_zones", "scenario_design"],
-          "any": ["amphitheater", "repair", "playground", "community", "activity"],
+          "sources": [
+            "functional_zones",
+            "scenario_design"
+          ],
+          "any": [
+            "amphitheater",
+            "repair",
+            "playground",
+            "community",
+            "activity"
+          ],
           "minimum": 2,
           "severity": "review"
         }
-      ]
+      ],
+      "total_thresholds": {
+        "minimum": 0.58,
+        "target": 0.72,
+        "excellent": 0.84
+      }
     },
     {
       "scenario_id": "scenario_06_green_median_complete_street",
@@ -375,20 +562,54 @@
         "excellent": 0.9
       },
       "metric_thresholds": {
-        "TREE_SHADE": {"minimum": 0.55, "target": 0.72, "excellent": 0.88},
-        "MICRO_ENV": {"minimum": 0.55, "target": 0.72, "excellent": 0.88},
-        "BUFFER_RATIO": {"minimum": 0.35, "target": 0.5, "excellent": 0.68},
-        "presentation_score": {"minimum": 0.52, "target": 0.7, "excellent": 0.86},
-        "style_coherence": {"minimum": 0.55, "target": 0.72, "excellent": 0.88},
-        "spacing_rhythm": {"minimum": 0.55, "target": 0.72, "excellent": 0.88}
+        "TREE_SHADE": {
+          "minimum": 0.55,
+          "target": 0.72,
+          "excellent": 0.88
+        },
+        "MICRO_ENV": {
+          "minimum": 0.55,
+          "target": 0.72,
+          "excellent": 0.88
+        },
+        "BUFFER_RATIO": {
+          "minimum": 0.35,
+          "target": 0.5,
+          "excellent": 0.68
+        },
+        "presentation_score": {
+          "minimum": 0.52,
+          "target": 0.7,
+          "excellent": 0.86
+        },
+        "style_coherence": {
+          "minimum": 0.55,
+          "target": 0.72,
+          "excellent": 0.88
+        },
+        "spacing_rhythm": {
+          "minimum": 0.55,
+          "target": 0.72,
+          "excellent": 0.88
+        }
       },
       "semantic_gates": [
         {
           "gate_id": "green_median_expression",
           "description": "Continuous green median should be present as a surface role, summary role, or scenario metadata.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "visual_surface_role_count", "scenario_design", "summary"],
-          "any": ["median_green", "green_median", "median", "grass_belt"],
+          "sources": [
+            "surface_annotations",
+            "visual_surface_role_count",
+            "scenario_design",
+            "summary"
+          ],
+          "any": [
+            "median_green",
+            "green_median",
+            "median",
+            "grass_belt"
+          ],
           "minimum": 1,
           "severity": "fail"
         },
@@ -396,7 +617,10 @@
           "gate_id": "four_lane_complete_street",
           "description": "Green median complete street should preserve approximately four motor lanes.",
           "type": "numeric_min",
-          "path": ["config", "lane_count"],
+          "path": [
+            "config",
+            "lane_count"
+          ],
           "min": 4,
           "severity": "review"
         }
@@ -404,15 +628,8 @@
     },
     {
       "scenario_id": "scenario_07_asymmetric_shared_street_pocket_park",
-      "enabled": false,
-      "future_ready": true,
-      "disabled_reason": "Requires lane replacement, shared-street operation, and pocket-park geometry beyond current v1 scope.",
-      "capability_gaps": [
-        "Asymmetric lane-replacement cross-section model",
-        "Shared-street movement and priority rules",
-        "Pocket-park and rain-garden geometry metrics",
-        "Irregular tree-cluster evaluation"
-      ],
+      "enabled": true,
+      "future_ready": false,
       "dimension_weights": {
         "Walkability": 0.3,
         "Safety": 0.3,
@@ -423,12 +640,27 @@
           "gate_id": "shared_street_pocket_park_expression",
           "description": "Future implementation should express shared street, pocket park, rain garden, or market activity.",
           "type": "contains_any",
-          "sources": ["surface_annotations", "functional_zones", "scenario_design"],
-          "any": ["shared_street", "pocket", "rain_garden", "market", "garden"],
+          "sources": [
+            "surface_annotations",
+            "functional_zones",
+            "scenario_design"
+          ],
+          "any": [
+            "shared_street",
+            "pocket",
+            "rain_garden",
+            "market",
+            "garden"
+          ],
           "minimum": 2,
           "severity": "review"
         }
-      ]
+      ],
+      "total_thresholds": {
+        "minimum": 0.56,
+        "target": 0.7,
+        "excellent": 0.82
+      }
     }
   ]
 }

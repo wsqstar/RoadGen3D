@@ -58,7 +58,7 @@ class StreetComposeConfig:
     max_trials_per_slot: int
 
     # -- M5 fields (all have defaults for backward compat) --
-    layout_mode: str = "template"  # "template" | "osm" | "osm_multiblock" | "metaurban" | "graph_template"
+    layout_mode: str = "template"  # "template" | "osm" | "osm_multiblock" | "metaurban" | "graph_template" | "reference_annotation"
     constraint_mode: str = "soft"  # "off" | "soft"
     aoi_bbox: Optional[Tuple[float, ...]] = None  # (min_lon, min_lat, max_lon, max_lat)
     osm_cache_dir: str = "artifacts/m5/osm_cache"

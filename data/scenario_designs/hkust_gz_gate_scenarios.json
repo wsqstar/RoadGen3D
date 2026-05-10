@@ -20,8 +20,14 @@
         "median": "narrow_separator"
       },
       "edge_context": {
-        "left_regions": ["derived_building_region_02", "derived_building_region_03"],
-        "right_regions": ["derived_building_region_01", "derived_building_region_04"]
+        "left_regions": [
+          "derived_building_region_02",
+          "derived_building_region_03"
+        ],
+        "right_regions": [
+          "derived_building_region_01",
+          "derived_building_region_04"
+        ]
       },
       "region_overrides": [
         {
@@ -30,7 +36,9 @@
           "source_region_id": "derived_building_region_02",
           "region_role": "building_region",
           "land_use_type": "school_frontage",
-          "material": {"preset": "campus_frontage"}
+          "material": {
+            "preset": "campus_frontage"
+          }
         },
         {
           "id": "scenario_01_right_commercial_frontage",
@@ -38,18 +46,68 @@
           "source_region_id": "derived_building_region_01",
           "region_role": "building_region",
           "land_use_type": "commercial_frontage",
-          "material": {"preset": "mixed_use_frontage"}
+          "material": {
+            "preset": "mixed_use_frontage"
+          }
         }
       ],
       "template_patch_operations": [
-        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_01", "updates": {"kind": "bike_lane", "width_m": 1.8, "direction": "reverse"}},
-        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_05", "updates": {"kind": "bike_lane", "width_m": 1.8, "direction": "forward"}},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_01", "width_m": 1.8},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_01", "width_m": 1.8},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.8},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.8}
+        {
+          "op": "update_strip",
+          "all_centerlines": true,
+          "strip_id": "center_01",
+          "updates": {
+            "kind": "bike_lane",
+            "width_m": 1.8,
+            "direction": "reverse"
+          }
+        },
+        {
+          "op": "update_strip",
+          "all_centerlines": true,
+          "strip_id": "center_05",
+          "updates": {
+            "kind": "bike_lane",
+            "width_m": 1.8,
+            "direction": "forward"
+          }
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_02",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_04",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "left_01",
+          "width_m": 1.8
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_01",
+          "width_m": 1.8
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "left_02",
+          "width_m": 3.8
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_02",
+          "width_m": 3.8
+        }
       ],
       "functional_zones": [],
       "surface_annotations": [
@@ -62,7 +120,9 @@
           "station_end_m": 170,
           "lateral_start_m": 4.8,
           "lateral_end_m": 6.6,
-          "material": {"preset": "bike_lane_green"}
+          "material": {
+            "preset": "bike_lane_green"
+          }
         },
         {
           "id": "scenario_01_bike_lane_forward",
@@ -73,7 +133,9 @@
           "station_end_m": 170,
           "lateral_start_m": -6.6,
           "lateral_end_m": -4.8,
-          "material": {"preset": "bike_lane_green"}
+          "material": {
+            "preset": "bike_lane_green"
+          }
         }
       ],
       "compose_config_patch": {
@@ -103,8 +165,12 @@
         "median": "tree_safety_island_1m_soil_clear"
       },
       "edge_context": {
-        "left_regions": ["derived_building_region_02"],
-        "right_regions": ["derived_building_region_01"]
+        "left_regions": [
+          "derived_building_region_02"
+        ],
+        "right_regions": [
+          "derived_building_region_01"
+        ]
       },
       "region_overrides": [
         {
@@ -113,7 +179,9 @@
           "source_region_id": "derived_building_region_02",
           "region_role": "building_region",
           "land_use_type": "tree_shaded_walk",
-          "material": {"preset": "green_buffered_frontage"}
+          "material": {
+            "preset": "green_buffered_frontage"
+          }
         },
         {
           "id": "scenario_02_right_transit_frontage",
@@ -121,17 +189,58 @@
           "source_region_id": "derived_building_region_01",
           "region_role": "building_region",
           "land_use_type": "transit_commercial_frontage",
-          "material": {"preset": "transit_frontage"}
+          "material": {
+            "preset": "transit_frontage"
+          }
         }
       ],
       "template_patch_operations": [
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.1},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.1},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.1},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.1},
-        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_03", "updates": {"kind": "grass_belt", "width_m": 1.24, "direction": "none"}},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.5},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.5}
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_01",
+          "width_m": 3.1
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_02",
+          "width_m": 3.1
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_04",
+          "width_m": 3.1
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_05",
+          "width_m": 3.1
+        },
+        {
+          "op": "update_strip",
+          "all_centerlines": true,
+          "strip_id": "center_03",
+          "updates": {
+            "kind": "grass_belt",
+            "width_m": 1.24,
+            "direction": "none"
+          }
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "left_02",
+          "width_m": 3.5
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_02",
+          "width_m": 3.5
+        }
       ],
       "functional_zones": [],
       "surface_annotations": [],
@@ -162,8 +271,13 @@
         "median": "painted_buffer"
       },
       "edge_context": {
-        "left_regions": ["derived_building_region_02"],
-        "right_regions": ["derived_building_region_01", "derived_building_region_04"]
+        "left_regions": [
+          "derived_building_region_02"
+        ],
+        "right_regions": [
+          "derived_building_region_01",
+          "derived_building_region_04"
+        ]
       },
       "region_overrides": [
         {
@@ -172,7 +286,9 @@
           "source_region_id": "derived_building_region_02",
           "region_role": "building_region",
           "land_use_type": "school_frontage",
-          "material": {"preset": "campus_frontage"}
+          "material": {
+            "preset": "campus_frontage"
+          }
         },
         {
           "id": "scenario_03_right_mixed_frontage",
@@ -180,7 +296,9 @@
           "source_region_id": "derived_building_region_01",
           "region_role": "building_region",
           "land_use_type": "commercial_residential",
-          "material": {"preset": "mixed_use_frontage"}
+          "material": {
+            "preset": "mixed_use_frontage"
+          }
         },
         {
           "id": "scenario_03_right_transit_node",
@@ -188,16 +306,48 @@
           "source_region_id": "derived_building_region_04",
           "region_role": "building_region",
           "land_use_type": "transit_node_frontage",
-          "material": {"preset": "transit_frontage"}
+          "material": {
+            "preset": "transit_frontage"
+          }
         }
       ],
       "template_patch_operations": [
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.2},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.2},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.2},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.2},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_01", "width_m": 2.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.6}
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_01",
+          "width_m": 3.2
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_02",
+          "width_m": 3.2
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_04",
+          "width_m": 3.2
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_05",
+          "width_m": 3.2
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_01",
+          "width_m": 2.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_02",
+          "width_m": 3.6
+        }
       ],
       "functional_zones": [],
       "surface_annotations": [
@@ -210,7 +360,9 @@
           "station_end_m": 112,
           "lateral_start_m": -6.6,
           "lateral_end_m": -3.2,
-          "material": {"preset": "bus_lane_green"}
+          "material": {
+            "preset": "bus_lane_green"
+          }
         },
         {
           "id": "scenario_03_transit_pad",
@@ -221,7 +373,9 @@
           "station_end_m": 104,
           "lateral_start_m": -10.2,
           "lateral_end_m": -7.0,
-          "material": {"preset": "transit_pad_plaza"}
+          "material": {
+            "preset": "transit_pad_plaza"
+          }
         },
         {
           "id": "scenario_03_bike_guidance_surface",
@@ -232,7 +386,9 @@
           "station_end_m": 150,
           "lateral_start_m": 6.6,
           "lateral_end_m": 8.2,
-          "material": {"preset": "bike_lane_green"}
+          "material": {
+            "preset": "bike_lane_green"
+          }
         }
       ],
       "compose_config_patch": {
@@ -262,8 +418,13 @@
         "median": "local_refuge"
       },
       "edge_context": {
-        "left_regions": ["derived_building_region_02", "derived_building_region_03"],
-        "right_regions": ["derived_building_region_01"]
+        "left_regions": [
+          "derived_building_region_02",
+          "derived_building_region_03"
+        ],
+        "right_regions": [
+          "derived_building_region_01"
+        ]
       },
       "region_overrides": [
         {
@@ -272,7 +433,9 @@
           "source_region_id": "derived_building_region_02",
           "region_role": "building_region",
           "land_use_type": "school_child_friendly",
-          "material": {"preset": "campus_frontage"}
+          "material": {
+            "preset": "campus_frontage"
+          }
         },
         {
           "id": "scenario_04_left_child_activity_edge",
@@ -280,7 +443,9 @@
           "source_region_id": "derived_building_region_03",
           "region_role": "building_region",
           "land_use_type": "child_activity_edge",
-          "material": {"preset": "playful_frontage"}
+          "material": {
+            "preset": "playful_frontage"
+          }
         },
         {
           "id": "scenario_04_right_support_frontage",
@@ -288,18 +453,60 @@
           "source_region_id": "derived_building_region_01",
           "region_role": "building_region",
           "land_use_type": "support_commercial_frontage",
-          "material": {"preset": "mixed_use_frontage"}
+          "material": {
+            "preset": "mixed_use_frontage"
+          }
         }
       ],
       "template_patch_operations": [
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_03", "width_m": 0.5},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_01", "width_m": 2.2},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 4.6},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.2}
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_01",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_02",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_04",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_05",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_03",
+          "width_m": 0.5
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "left_01",
+          "width_m": 2.2
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "left_02",
+          "width_m": 4.6
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_02",
+          "width_m": 3.2
+        }
       ],
       "functional_zones": [],
       "surface_annotations": [
@@ -312,7 +519,9 @@
           "station_end_m": 132,
           "lateral_start_m": 8.2,
           "lateral_end_m": 11.6,
-          "material": {"preset": "child_walk_colored_pavers"}
+          "material": {
+            "preset": "child_walk_colored_pavers"
+          }
         },
         {
           "id": "scenario_04_school_crossing",
@@ -323,7 +532,9 @@
           "station_end_m": 68,
           "lateral_start_m": -9.0,
           "lateral_end_m": 9.0,
-          "material": {"preset": "raised_crossing_warm"}
+          "material": {
+            "preset": "raised_crossing_warm"
+          }
         },
         {
           "id": "scenario_04_refuge_island",
@@ -334,7 +545,9 @@
           "station_end_m": 67,
           "lateral_start_m": -0.8,
           "lateral_end_m": 0.8,
-          "material": {"preset": "safety_island_concrete"}
+          "material": {
+            "preset": "safety_island_concrete"
+          }
         }
       ],
       "compose_config_patch": {
@@ -349,20 +562,25 @@
     },
     {
       "scenario_id": "scenario_05_furniture_enriched_activity_street",
-      "enabled": false,
-      "excluded_reason_zh": "本轮忽略：该方案主要是公园/活动空间设计，需要自由形状和公园细化，不属于本轮以自动分割用地和道路断面微调为主的范围。",
-      "title_zh": "方案 5 · 街道家具与社区活动增强（暂不生成）",
-      "scenario_type": "disabled_park_activity_design",
+      "enabled": true,
+      "excluded_reason_zh": "",
+      "title_zh": "方案 5 · 街道家具与社区活动增强",
+      "scenario_type": "reference_activity_street",
       "query": "街道家具与社区活动增强，信息站，自行车修理站，露天剧场，儿童游乐，健身与社区聚会",
-      "intent_zh": "保留为后续高阶公园/活动节点方案，本轮不参与生成。",
+      "intent_zh": "使用导入的完整参考标注生成街道家具、社区活动、花园、停车与广场等复合活动空间。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_05_furniture_enriched_activity_street/scene_layout.json",
       "road_section": {
         "motor_lanes": 4,
         "sidewalk": "activity_enriched",
-        "scope": "excluded"
+        "scope": "reference_annotation"
       },
       "edge_context": {
-        "reason": "park_activity_design"
+        "source": "reference_annotation",
+        "activity_nodes": [
+          "garden",
+          "parking",
+          "plaza"
+        ]
       },
       "region_overrides": [],
       "template_patch_operations": [],
@@ -376,7 +594,8 @@
         "objective_profile": "commerce",
         "ped_demand_level": "high",
         "bike_demand_level": "medium"
-      }
+      },
+      "reference_annotation_path": "data/scenario_designs/reference_annotations/scenario_05_furniture_enriched_activity_street.json"
     },
     {
       "scenario_id": "scenario_06_green_median_complete_street",
@@ -394,8 +613,13 @@
         "median": "green_belt"
       },
       "edge_context": {
-        "left_regions": ["derived_building_region_02", "derived_building_region_03"],
-        "right_regions": ["derived_building_region_01"]
+        "left_regions": [
+          "derived_building_region_02",
+          "derived_building_region_03"
+        ],
+        "right_regions": [
+          "derived_building_region_01"
+        ]
       },
       "region_overrides": [
         {
@@ -404,7 +628,9 @@
           "source_region_id": "derived_building_region_02",
           "region_role": "building_region",
           "land_use_type": "green_buffered_walk",
-          "material": {"preset": "green_buffered_frontage"}
+          "material": {
+            "preset": "green_buffered_frontage"
+          }
         },
         {
           "id": "scenario_06_left_secondary_green_edge",
@@ -412,7 +638,9 @@
           "source_region_id": "derived_building_region_03",
           "region_role": "building_region",
           "land_use_type": "secondary_green_edge",
-          "material": {"preset": "green_buffered_frontage"}
+          "material": {
+            "preset": "green_buffered_frontage"
+          }
         },
         {
           "id": "scenario_06_right_commercial_frontage",
@@ -420,17 +648,58 @@
           "source_region_id": "derived_building_region_01",
           "region_role": "building_region",
           "land_use_type": "commercial_frontage",
-          "material": {"preset": "mixed_use_frontage"}
+          "material": {
+            "preset": "mixed_use_frontage"
+          }
         }
       ],
       "template_patch_operations": [
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_01", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_02", "width_m": 3.0},
-        {"op": "update_strip", "all_centerlines": true, "strip_id": "center_03", "updates": {"kind": "grass_belt", "width_m": 3.2, "direction": "none"}},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_04", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "center_05", "width_m": 3.0},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "left_02", "width_m": 3.6},
-        {"op": "resize_strip", "all_centerlines": true, "strip_id": "right_02", "width_m": 3.6}
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_01",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_02",
+          "width_m": 3.0
+        },
+        {
+          "op": "update_strip",
+          "all_centerlines": true,
+          "strip_id": "center_03",
+          "updates": {
+            "kind": "grass_belt",
+            "width_m": 3.2,
+            "direction": "none"
+          }
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_04",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "center_05",
+          "width_m": 3.0
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "left_02",
+          "width_m": 3.6
+        },
+        {
+          "op": "resize_strip",
+          "all_centerlines": true,
+          "strip_id": "right_02",
+          "width_m": 3.6
+        }
       ],
       "functional_zones": [],
       "surface_annotations": [
@@ -443,7 +712,9 @@
           "station_end_m": 170,
           "lateral_start_m": -1.6,
           "lateral_end_m": 1.6,
-          "material": {"preset": "median_green"}
+          "material": {
+            "preset": "median_green"
+          }
         },
         {
           "id": "scenario_06_north_bike_lane_surface",
@@ -454,7 +725,9 @@
           "station_end_m": 150,
           "lateral_start_m": 6.8,
           "lateral_end_m": 8.4,
-          "material": {"preset": "bike_lane_green"}
+          "material": {
+            "preset": "bike_lane_green"
+          }
         },
         {
           "id": "scenario_06_south_bike_lane_surface",
@@ -465,7 +738,9 @@
           "station_end_m": 150,
           "lateral_start_m": -8.4,
           "lateral_end_m": -6.8,
-          "material": {"preset": "bike_lane_green"}
+          "material": {
+            "preset": "bike_lane_green"
+          }
         }
       ],
       "compose_config_patch": {
@@ -481,20 +756,25 @@
     },
     {
       "scenario_id": "scenario_07_asymmetric_shared_street_pocket_park",
-      "enabled": false,
-      "excluded_reason_zh": "本轮忽略：该方案要求以共享街道和口袋公园完全取代部分车道，超出当前 v1 的局部断面和中心线标注表达范围。",
-      "title_zh": "方案 7 · 非对称共享街道与口袋公园（暂不生成）",
-      "scenario_type": "disabled_full_lane_replacement",
+      "enabled": true,
+      "excluded_reason_zh": "",
+      "title_zh": "方案 7 · 非对称共享街道与口袋公园",
+      "scenario_type": "reference_asymmetric_shared_street",
       "query": "非对称共享街道与口袋公园，机动车集中北侧，南侧共享街道，社区集市，雨水花园，不规则树阵",
-      "intent_zh": "保留为后续高阶共享街道/口袋公园方案，本轮不参与生成。",
+      "intent_zh": "使用导入的完整参考标注生成非对称共享街道与口袋公园/广场空间。",
       "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_07_asymmetric_shared_street_pocket_park/scene_layout.json",
       "road_section": {
         "motor_lanes": 4,
         "motor_traffic_bias": "north",
-        "scope": "excluded"
+        "scope": "reference_annotation"
       },
       "edge_context": {
-        "reason": "full_lane_replacement"
+        "source": "reference_annotation",
+        "activity_nodes": [
+          "plaza",
+          "shared_street",
+          "pocket_park"
+        ]
       },
       "region_overrides": [],
       "template_patch_operations": [],
@@ -509,7 +789,8 @@
         "ped_demand_level": "high",
         "bike_demand_level": "high",
         "vehicle_demand_level": "low"
-      }
+      },
+      "reference_annotation_path": "data/scenario_designs/reference_annotations/scenario_07_asymmetric_shared_street_pocket_park.json"
     }
   ]
 }

@@ -1,0 +1,2111 @@
+{
+  "version": "roadgen3d_reference_annotation_v2",
+  "plan_id": "scenario_05_furniture_enriched_activity_street",
+  "image_path": "/api/graph-templates/hkust_gz_gate/image",
+  "image_width_px": 1024,
+  "image_height_px": 170,
+  "pixels_per_meter": 1.5,
+  "centerlines": [
+    {
+      "id": "centerline_04",
+      "label": "centerline_04",
+      "points": [
+        {
+          "x": 175.5271676087717,
+          "y": 168.67541038154394
+        },
+        {
+          "x": 289.90959474139675,
+          "y": 99.02839396628217
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_04_furniture_01",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 0,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_02",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 0,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_03",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 26.33525944766232,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_04",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 44.65267564665345,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_05",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 66.73118213097105,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_06",
+          "centerline_id": "centerline_04",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 24.404234177252864,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_07",
+          "centerline_id": "centerline_04",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 40.538137803137666,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_08",
+          "centerline_id": "centerline_04",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 53.27389560078041,
+          "lateral_offset_m": -0.05850911187915564,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_09",
+          "centerline_id": "centerline_04",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 64.32756131263211,
+          "lateral_offset_m": -0.9500156416400145,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_10",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 35.570075331765075,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_11",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 58.01218615175383,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_04_furniture_12",
+          "centerline_id": "centerline_04",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 76.18946634075232,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "",
+      "end_junction_id": "junction_01"
+    },
+    {
+      "id": "centerline_07",
+      "label": "centerline_07",
+      "points": [
+        {
+          "x": 289.90959474139675,
+          "y": 99.02839396628217
+        },
+        {
+          "x": 518.312527020088,
+          "y": 99.65734816843887
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_07_furniture_01",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 19.94876782196364,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_02",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 40.85006267404645,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_03",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 56.97991995143419,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_04",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 77.24698110025845,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_05",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 96.39877549651493,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_06",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 117.69785451972433,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_07",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 76.10393517352554,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_08",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 85.84736906769398,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_09",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 70.88866958405495,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_10",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 70.9575736084101,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_11",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 70.95976730940866,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_12",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 98.45472955248651,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_13",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 110.42625274349689,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_14",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 121.17791973640199,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_15",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 133.37979696377323,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_16",
+          "centerline_id": "centerline_07",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 137.57220834320444,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_17",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 127.99079502102221,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_18",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 86.99724051042107,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_19",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 96.65468719930543,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_07_furniture_20",
+          "centerline_id": "centerline_07",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 106.77002142410784,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_01",
+      "end_junction_id": "junction_02"
+    },
+    {
+      "id": "centerline_10",
+      "label": "centerline_10",
+      "points": [
+        {
+          "x": 518.312527020088,
+          "y": 99.65734816843887
+        },
+        {
+          "x": 749.4880067081582,
+          "y": 100.29393714711271
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_10_furniture_01",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 17.070007551514884,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_02",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 36.02986778150561,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_03",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 55.925547264840155,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_04",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 75.62881874172051,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_05",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 108.86746325380874,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_06",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 124.78012281730895,
+          "lateral_offset_m": 0.6200064239591896,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_07",
+          "centerline_id": "centerline_10",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 138.35414504441252,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_10_furniture_08",
+          "centerline_id": "centerline_10",
+          "strip_id": "left_03",
+          "kind": "bus_stop",
+          "station_m": 64.97650188326826,
+          "lateral_offset_m": 0.3216025123283597,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_02",
+      "end_junction_id": "junction_03"
+    },
+    {
+      "id": "centerline_11",
+      "label": "centerline_11",
+      "points": [
+        {
+          "x": 749.4880067081582,
+          "y": 100.29393714711271
+        },
+        {
+          "x": 1020.8560328478577,
+          "y": 101.04120452528838
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_11_furniture_01",
+          "centerline_id": "centerline_11",
+          "strip_id": "left_03",
+          "kind": "bench",
+          "station_m": 28.125109233162235,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_02",
+          "centerline_id": "centerline_11",
+          "strip_id": "left_03",
+          "kind": "bench",
+          "station_m": 48.711209452603384,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_03",
+          "centerline_id": "centerline_11",
+          "strip_id": "left_03",
+          "kind": "bench",
+          "station_m": 67.22685935040131,
+          "lateral_offset_m": -0.8709455093245619,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_04",
+          "centerline_id": "centerline_11",
+          "strip_id": "left_03",
+          "kind": "bench",
+          "station_m": 82.6124778489979,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_05",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 14.895572986007195,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_06",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 32.849464155536474,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_07",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 49.062781217547865,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_08",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 65.92198634249392,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_09",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 86.49158605127128,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_10",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 107.66561984489812,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_11",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 126.98496874583286,
+          "lateral_offset_m": 0.5492317405038492,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_12",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 148.59070879191574,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_11_furniture_13",
+          "centerline_id": "centerline_11",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 159.98883963183792,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_03",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_02",
+      "label": "centerline_02",
+      "points": [
+        {
+          "x": 289.90959474139675,
+          "y": 99.02839396628217
+        },
+        {
+          "x": 291.6001830484212,
+          "y": 173.27885676782225
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_02_furniture_01",
+          "centerline_id": "centerline_02",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 34.00218431500884,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_02_furniture_02",
+          "centerline_id": "centerline_02",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 42.90275388837858,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_01",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_03",
+      "label": "centerline_03",
+      "points": [
+        {
+          "x": 289.90959474139675,
+          "y": 99.02839396628217
+        },
+        {
+          "x": 292.0090819886128,
+          "y": 24.78836791317849
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_03_furniture_01",
+          "centerline_id": "centerline_03",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 15.457823008698119,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_02",
+          "centerline_id": "centerline_03",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 30.61530121183117,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_03",
+          "centerline_id": "centerline_03",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 44.19475335986189,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_04",
+          "centerline_id": "centerline_03",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 49.51313771814838,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_05",
+          "centerline_id": "centerline_03",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 49.51313771814838,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_06",
+          "centerline_id": "centerline_03",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 40.28321154274279,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_07",
+          "centerline_id": "centerline_03",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 29.38894518114557,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_08",
+          "centerline_id": "centerline_03",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 25.063402991381114,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_03_furniture_09",
+          "centerline_id": "centerline_03",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 49.51313771814838,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_01",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_01",
+      "label": "centerline_01",
+      "points": [
+        {
+          "x": 518.312527020088,
+          "y": 99.65734816843887
+        },
+        {
+          "x": 518.0830088885509,
+          "y": 183.00620580297226
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_01_furniture_01",
+          "centerline_id": "centerline_01",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 24.29271669527652,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_01_furniture_02",
+          "centerline_id": "centerline_01",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 33.49285040069006,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_01_furniture_03",
+          "centerline_id": "centerline_01",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 41.18581147288468,
+          "lateral_offset_m": -1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_02",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_06",
+      "label": "centerline_06",
+      "points": [
+        {
+          "x": 518.312527020088,
+          "y": 99.65734816843887
+        },
+        {
+          "x": 518.5420451516252,
+          "y": 16.30849053390547
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_06_furniture_01",
+          "centerline_id": "centerline_06",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 17.102569392910876,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_06_furniture_02",
+          "centerline_id": "centerline_06",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 35.695850494424086,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_06_furniture_03",
+          "centerline_id": "centerline_06",
+          "strip_id": "right_03",
+          "kind": "tree",
+          "station_m": 49.682112983348134,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_02",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_05",
+      "label": "centerline_05",
+      "points": [
+        {
+          "x": 749.4880067081582,
+          "y": 100.29393714711271
+        },
+        {
+          "x": 749.3082456877136,
+          "y": 165.57364119897494
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_05_furniture_01",
+          "centerline_id": "centerline_05",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 18.784231490995378,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_05_furniture_02",
+          "centerline_id": "centerline_05",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 27.089982482913367,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        },
+        {
+          "instance_id": "centerline_05_furniture_03",
+          "centerline_id": "centerline_05",
+          "strip_id": "right_03",
+          "kind": "bench",
+          "station_m": 37.704693956011674,
+          "lateral_offset_m": 1,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_03",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_09",
+      "label": "centerline_09",
+      "points": [
+        {
+          "x": 749.4880067081582,
+          "y": 100.29393714711271
+        },
+        {
+          "x": 749.6677677286028,
+          "y": 35.014233095250475
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [
+        {
+          "instance_id": "centerline_09_furniture_01",
+          "centerline_id": "centerline_09",
+          "strip_id": "left_03",
+          "kind": "tree",
+          "station_m": 36.1427485290603,
+          "lateral_offset_m": 0.30317999048195077,
+          "yaw_deg": null
+        }
+      ],
+      "start_junction_id": "junction_03",
+      "end_junction_id": ""
+    }
+  ],
+  "junctions": [
+    {
+      "id": "junction_01",
+      "label": "junction_01",
+      "x": 289.90959474139675,
+      "y": 99.02839396628217,
+      "kind": "cross_junction",
+      "connected_centerline_ids": [
+        "centerline_04",
+        "centerline_07",
+        "centerline_02",
+        "centerline_03"
+      ],
+      "crosswalk_depth_m": 3,
+      "source_mode": "explicit"
+    },
+    {
+      "id": "junction_02",
+      "label": "junction_02",
+      "x": 518.312527020088,
+      "y": 99.65734816843887,
+      "kind": "cross_junction",
+      "connected_centerline_ids": [
+        "centerline_07",
+        "centerline_10",
+        "centerline_01",
+        "centerline_06"
+      ],
+      "crosswalk_depth_m": 3,
+      "source_mode": "explicit"
+    },
+    {
+      "id": "junction_03",
+      "label": "junction_03",
+      "x": 749.4880067081582,
+      "y": 100.29393714711271,
+      "kind": "cross_junction",
+      "connected_centerline_ids": [
+        "centerline_10",
+        "centerline_11",
+        "centerline_05",
+        "centerline_09"
+      ],
+      "crosswalk_depth_m": 3,
+      "source_mode": "explicit"
+    }
+  ],
+  "roundabouts": [],
+  "control_points": [],
+  "building_regions": [
+    {
+      "id": "building_region_01",
+      "label": "building_region_01",
+      "center_px": {
+        "x": 633.3255509933531,
+        "y": 42.82879048358474
+      },
+      "width_px": 189.5948886965807,
+      "height_px": 73.96725266193434,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_02",
+      "label": "building_region_02",
+      "center_px": {
+        "x": 634.0974019995949,
+        "y": 147.40891193433896
+      },
+      "width_px": 187.0471911767413,
+      "height_px": 40.72288154392193,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_03",
+      "label": "building_region_03",
+      "center_px": {
+        "x": 841.6876139271972,
+        "y": 152.2441354259095
+      },
+      "width_px": 104.84918340667639,
+      "height_px": 35.51172914818102,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_04",
+      "label": "building_region_04",
+      "center_px": {
+        "x": 937.2121301393825,
+        "y": 138.79318711180125
+      },
+      "width_px": 60.322218335143816,
+      "height_px": 44.25590616681457,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_05",
+      "label": "building_region_05",
+      "center_px": {
+        "x": 878.8908324280533,
+        "y": 42.30791093611358
+      },
+      "width_px": 223.86978696764925,
+      "height_px": 75.53696206743568,
+      "yaw_deg": 0
+    }
+  ],
+  "functional_zones": [
+    {
+      "id": "functional_zone_01",
+      "label": "functional_zone_01",
+      "kind": "garden",
+      "points": [
+        {
+          "x": 5.536116072250557,
+          "y": 164.14776508429458
+        },
+        {
+          "x": 142.9255951832962,
+          "y": 165.86596051464062
+        },
+        {
+          "x": 257.56962677910553,
+          "y": 92.742485581189
+        },
+        {
+          "x": 267.24899191692293,
+          "y": 75.66659272404614
+        },
+        {
+          "x": 269.466737861575,
+          "y": 3.368040150842946
+        },
+        {
+          "x": 4.173887426119939,
+          "y": 4.702057453416149
+        }
+      ],
+      "furniture_instances": []
+    },
+    {
+      "id": "functional_zone_02",
+      "label": "functional_zone_02",
+      "kind": "garden",
+      "points": [
+        {
+          "x": 268.31897773931615,
+          "y": 139.00884538598046
+        },
+        {
+          "x": 222.00320377087513,
+          "y": 168.87810559006212
+        },
+        {
+          "x": 266.7870597116606,
+          "y": 169.42019742679682
+        }
+      ],
+      "furniture_instances": []
+    },
+    {
+      "id": "functional_zone_03",
+      "label": "functional_zone_03",
+      "kind": "garden",
+      "points": [
+        {
+          "x": 315.07311594336323,
+          "y": 4.994315661047027
+        },
+        {
+          "x": 494.84487488722357,
+          "y": 4.202390195208518
+        },
+        {
+          "x": 495.0216346596454,
+          "y": 73.94368345164153
+        },
+        {
+          "x": 313.21124634052035,
+          "y": 70.74769853593611
+        }
+      ],
+      "furniture_instances": []
+    },
+    {
+      "id": "functional_zone_04",
+      "label": "functional_zone_04",
+      "kind": "parking",
+      "points": [
+        {
+          "x": 312.7823092927768,
+          "y": 118.8500998225377
+        },
+        {
+          "x": 387.4692051333984,
+          "y": 118.7251830079858
+        },
+        {
+          "x": 387.2476662186297,
+          "y": 166.30670474711624
+        },
+        {
+          "x": 312.17896926957707,
+          "y": 165.97673580301685
+        }
+      ],
+      "furniture_instances": []
+    },
+    {
+      "id": "functional_zone_05",
+      "label": "functional_zone_05",
+      "kind": "garden",
+      "points": [
+        {
+          "x": 397.1627110530095,
+          "y": 118.86895519077197
+        },
+        {
+          "x": 494.3475907274769,
+          "y": 120.74742125110913
+        },
+        {
+          "x": 493.8550201616615,
+          "y": 165.93195430346051
+        },
+        {
+          "x": 396.5593710298098,
+          "y": 165.68447759538597
+        }
+      ],
+      "furniture_instances": []
+    },
+    {
+      "id": "functional_zone_06",
+      "label": "functional_zone_06",
+      "kind": "plaza",
+      "points": [
+        {
+          "x": 770.0103478116772,
+          "y": 121.61241126885537
+        },
+        {
+          "x": 770.2413139143083,
+          "y": 167.61479591836735
+        },
+        {
+          "x": 786.3641619561415,
+          "y": 167.64072204968946
+        },
+        {
+          "x": 785.8928025630167,
+          "y": 133.1024012866016
+        },
+        {
+          "x": 896.5844856474747,
+          "y": 133.11889973380656
+        },
+        {
+          "x": 896.1649757875937,
+          "y": 120.44337843833185
+        }
+      ],
+      "furniture_instances": []
+    }
+  ],
+  "junction_compositions": []
+}

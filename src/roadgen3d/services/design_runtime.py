@@ -14,6 +14,7 @@ from ..semantic_design_layers import apply_street_furniture_profile_defaults
 from ..capture_3d import capture_views_for_layout
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
+from ..reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
 from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
@@ -478,6 +479,10 @@ def _graph_summary_for_llm_derivation(
         plan_id = str(scene_context.reference_plan_id or DEFAULT_METAURBAN_REFERENCE_PLAN_ID).strip().lower()
         bridge = build_metaurban_scene_bridge(base_config, plan_id=plan_id)
         return dict(bridge.summary_metadata)
+    if scene_context.layout_mode == "reference_annotation":
+        annotation_payload = _load_reference_annotation_payload(scene_context.reference_annotation_path)
+        bridge = build_reference_annotation_scene_bridge(annotation_payload, compose_config=base_config)
+        return dict(bridge.summary_metadata)
     resolved = resolve_scene_context(
         scene_context,
         config=base_config,
@@ -676,6 +681,29 @@ def _build_graph_template_out_dir(base_out_dir: Path, template_id: str) -> Path:
     return (Path(base_out_dir).expanduser().resolve() / "graph_template" / str(template_id) / timestamp).resolve()
 
 
+def _build_reference_annotation_out_dir(base_out_dir: Path, annotation_id: str) -> Path:
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    return (Path(base_out_dir).expanduser().resolve() / "reference_annotation" / str(annotation_id) / timestamp).resolve()
+
+
+def _load_reference_annotation_payload(path_value: str | Path | None) -> Dict[str, Any]:
+    raw_path = str(path_value or "").strip()
+    if not raw_path:
+        raise RuntimeError("reference_annotation layout mode requires reference_annotation_path.")
+    path = Path(raw_path).expanduser()
+    if not path.is_absolute():
+        path = (ROOT / path).resolve()
+    if not path.exists():
+        raise RuntimeError(f"Reference annotation JSON not found: {path}")
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"Invalid reference annotation JSON: {path}: {exc}") from exc
+    if not isinstance(payload, Mapping):
+        raise RuntimeError(f"Reference annotation JSON must be an object: {path}")
+    return dict(payload)
+
+
 def _generate_metaurban_scene_from_draft(
     base_config: StreetComposeConfig,
     *,
@@ -737,6 +765,80 @@ def _generate_metaurban_scene_from_draft(
         config=config,
         compose_result=result,
         extra_summary=bridge.summary_metadata,
+    )
+
+
+def _generate_reference_annotation_scene_from_draft(
+    base_config: StreetComposeConfig,
+    *,
+    options: SceneGenerationOptions,
+    scene_context: SceneContext,
+    progress_callback: ProgressCallback | None = None,
+) -> SceneGenerationResult:
+    annotation_payload = _load_reference_annotation_payload(scene_context.reference_annotation_path)
+    annotation_id = str(
+        scene_context.scenario_id
+        or annotation_payload.get("plan_id")
+        or Path(str(scene_context.reference_annotation_path or "reference_annotation")).stem
+    ).strip() or "reference_annotation"
+    _emit_progress(
+        progress_callback,
+        stage="context_resolving",
+        progress=15,
+        message="Building reference-annotation layout bridge.",
+        reference_annotation_path=str(scene_context.reference_annotation_path or ""),
+        reference_annotation_id=annotation_id,
+    )
+    bridge = build_reference_annotation_scene_bridge(annotation_payload, compose_config=base_config)
+    config = replace(base_config, layout_mode="reference_annotation")
+    out_dir = _build_reference_annotation_out_dir(options.out_dir, annotation_id)
+    _emit_progress(
+        progress_callback,
+        stage="asset_loading",
+        progress=20,
+        message="Preparing scene asset backends.",
+        layout_mode="reference_annotation",
+    )
+    object_backend, ground_backend, sky_backend = _build_scene_backends(options)
+    result = compose_street_scene(
+        config=config,
+        manifest_path=options.manifest_path,
+        artifacts_dir=options.artifacts_dir,
+        model_name=options.model_name,
+        model_dir=options.model_dir,
+        local_files_only=bool(options.local_files_only),
+        device=options.device,
+        export_format=options.export_format,
+        out_dir=out_dir,
+        placement_policy=options.placement_policy,
+        policy_ckpt=options.policy_ckpt,
+        program_ckpt=options.program_ckpt,
+        policy_temperature=float(options.policy_temperature),
+        object_asset_backend=object_backend,
+        ground_material_backend=ground_backend,
+        sky_backend=sky_backend,
+        road_segment_graph_override=bridge.road_segment_graph,
+        projected_features_override=bridge.projected_features,
+        placement_context_override=bridge.placement_context,
+        build_production_artifacts=options.build_production_artifacts,
+        render_presentation_artifacts=options.render_presentation_artifacts,
+        progress_callback=progress_callback,
+    )
+    _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
+    context_summary = {
+        "reference_annotation_path": str(scene_context.reference_annotation_path or ""),
+        "scenario_id": scene_context.scenario_id,
+        "scenario_title": scene_context.scenario_title,
+        "scenario_design_variant": (
+            dict(scene_context.scenario_design_variant)
+            if isinstance(scene_context.scenario_design_variant, Mapping)
+            else None
+        ),
+    }
+    return _build_scene_generation_result(
+        config=config,
+        compose_result=result,
+        extra_summary={**bridge.summary_metadata, **context_summary},
     )
 
 
@@ -884,6 +986,13 @@ def generate_scene_from_draft(
         )
     if normalized_scene_context.layout_mode == "metaurban":
         return _generate_metaurban_scene_from_draft(
+            base_config,
+            options=options,
+            scene_context=normalized_scene_context,
+            progress_callback=progress_callback,
+        )
+    if normalized_scene_context.layout_mode == "reference_annotation":
+        return _generate_reference_annotation_scene_from_draft(
             base_config,
             options=options,
             scene_context=normalized_scene_context,

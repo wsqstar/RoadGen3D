@@ -16,7 +16,7 @@ from roadgen3d.scenario_rubric import (  # noqa: E402
 )
 
 
-def test_scenario_rubric_loads_json_and_marks_disabled_not_applicable():
+def test_scenario_rubric_loads_json_and_evaluates_all_scenarios():
     rubric = load_scenario_rubric()
     assert len(rubric["scenarios"]) == 7
 
@@ -26,9 +26,8 @@ def test_scenario_rubric_loads_json_and_marks_disabled_not_applicable():
         "scenario_05_furniture_enriched_activity_street",
     )
 
-    assert result["status"] == "NotApplicable"
-    assert result["future_ready"] is True
-    assert result["capability_gaps"]
+    assert result["status"] != "NotApplicable"
+    assert result["metric_results"]
 
 
 def test_scenario_rubric_lower_is_better_and_missing_metric_review():
