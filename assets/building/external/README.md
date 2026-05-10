@@ -24,6 +24,7 @@ Organized folders:
 
 - `kenney_city_kit_commercial/`
 - `kenney_city_kit_suburban/`
+- `embedded_glb/`
 
 Manifest integration:
 
@@ -35,6 +36,10 @@ Manifest integration:
   building assets.
 - Kenney authoring units are mapped to RoadGen3D meter-scale scenes with
   `scale: 8.0`.
+- The registered Kenney records point to self-contained GLB files under
+  `embedded_glb/`. The original Kenney GLB files reference
+  `Textures/colormap.png` externally, which can render as white-only geometry
+  when loaded through the Viewer file API.
 
 Traceability metadata:
 

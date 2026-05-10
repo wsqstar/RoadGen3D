@@ -7,7 +7,8 @@
 | Registered building manifest | 63 records | `assets/building/buildings_manifest.jsonl` | 62 enabled for generation |
 | Existing UrbanVerse GLB pool | 107 GLB / 2.5 GB | `assets/building/assets_std_glb_flat/` | Only 7 are currently registered |
 | Existing UrbanVerse thumbnails | 108 PNG / 90 MB | `assets/building/assets_thumbnail_flat/` | Useful for coarse visual triage |
-| Downloaded Kenney assets | 81 GLB / 26 MB extracted | `assets/building/external/` | 56 building GLB registered |
+| Downloaded Kenney assets | 81 source GLB / 26 MB extracted | `assets/building/external/` | 56 building GLB registered |
+| Embedded Kenney render assets | 56 GLB / 6.4 MB | `assets/building/external/embedded_glb/` | Self-contained texture-ready GLB |
 
 ## Manifest Composition
 
@@ -35,6 +36,7 @@ Considered but not imported:
 - Extracted sources under `assets/building/external/kenney_city_kit_commercial/` and `assets/building/external/kenney_city_kit_suburban/`.
 - Added `assets/building/external/sources_2026-05-09.json` with source URLs, download URLs, license URLs, archive hashes, and registered asset lists.
 - Added 56 Kenney building records to `assets/building/buildings_manifest.jsonl`.
+- Repacked the 56 registered Kenney records into self-contained GLB files under `assets/building/external/embedded_glb/` because the source GLB files reference `Textures/colormap.png` externally and can appear as white-only geometry in Viewer/API loading.
 - Enriched the existing 7 UrbanVerse manifest records with `text_desc`, `dimensions_m`, `raw_dimensions`, `mesh_face_count`, `mesh_vertex_count`, `quality_tier`, `style_tags`, and `material_family`.
 - Preserved the existing disabled state for `urbanverse_building_715d6ef0f2e24fb19272b9872ad4d41e`.
 
