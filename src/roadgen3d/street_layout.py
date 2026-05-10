@@ -141,7 +141,9 @@ from .theme_buildings import (
     theme_profile_style,
 )
 from .building_placement import (
+    building_footprint_points,
     building_forbidden_geometry,
+    placement_xz_for_visual_center,
     resolve_building_pose,
 )
 from .types import (
@@ -183,6 +185,15 @@ DEFAULT_SKY_DOME_MIN_DIAMETER_M = 1200.0
 DEFAULT_SKY_DOME_SCENE_SPAN_MULTIPLIER = 6.0
 DEFAULT_SKY_DOME_TEXTURE_SIZE = (1024, 512)
 DEFAULT_SKY_DOME_MATERIAL_NAME = "roadgen3d_default_sky_gradient"
+_BUILDING_LAND_CLEARANCE_M = 0.45
+_BUILDING_STREET_EDGE_EXTRA_CLEARANCE_M = 0.20
+_ROAD_CLEARANCE_TARGET_FRONTAGE_MIN_M = 12.0
+_ROAD_CLEARANCE_TARGET_FRONTAGE_MAX_M = 24.0
+_ROAD_CLEARANCE_TARGET_DEPTH_MIN_M = 10.0
+_ROAD_CLEARANCE_TARGET_DEPTH_MAX_M = 22.0
+_ROAD_CLEARANCE_INTERIOR_GAP_M = 4.0
+_MAX_BUILDING_LANE_GUARD_PUSH_M = 2.0
+_BUILDING_COLLISION_MIN_OVERLAP_AREA_M2 = 0.05
 
 
 @dataclass(frozen=True)
@@ -4934,8 +4945,175 @@ def _oriented_rect_polygon(
     ])
 
 
+def _clean_polygonal_geometry(geometry: object) -> object | None:
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return None
+    try:
+        from shapely.geometry import GeometryCollection, MultiPolygon, Polygon as ShapelyPolygon
+        from shapely.ops import unary_union
+    except Exception:
+        return None
+    try:
+        if not getattr(geometry, "is_valid", True):
+            geometry = geometry.buffer(0)
+    except Exception:
+        return None
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return None
+    if isinstance(geometry, (ShapelyPolygon, MultiPolygon)):
+        return geometry
+    polygons = []
+    if isinstance(geometry, GeometryCollection) or hasattr(geometry, "geoms"):
+        for part in getattr(geometry, "geoms", ()) or ():
+            cleaned = _clean_polygonal_geometry(part)
+            if cleaned is not None and not getattr(cleaned, "is_empty", True):
+                polygons.append(cleaned)
+    if not polygons:
+        return None
+    try:
+        return unary_union(tuple(polygons))
+    except Exception:
+        return None
+
+
+def _road_reference_linestrings(placement_ctx: object | None) -> Tuple[object, ...]:
+    if placement_ctx is None:
+        return tuple()
+    try:
+        from shapely.geometry import LineString
+    except Exception:
+        return tuple()
+    road_references = list(getattr(placement_ctx, "road_references", []) or [])
+    if not road_references:
+        fallback_reference = getattr(placement_ctx, "road_reference", None)
+        if fallback_reference is not None:
+            road_references = [fallback_reference]
+    lines = []
+    for road_reference in road_references:
+        coords = _road_reference_coords(road_reference)
+        if len(coords) < 2:
+            continue
+        try:
+            line = LineString([(float(x), float(z)) for x, z in coords])
+        except Exception:
+            continue
+        if not line.is_empty and float(line.length) > 1e-6:
+            lines.append(line)
+    return tuple(lines)
+
+
+def _fallback_land_envelope(placement_ctx: object | None, config: StreetComposeConfig | None) -> object | None:
+    try:
+        from shapely.geometry import box as shapely_box
+        from shapely.ops import unary_union
+    except Exception:
+        return None
+    lines = _road_reference_linestrings(placement_ctx)
+    land_buffer_m = float(getattr(config, "land_use_buffer_m", 35.0) or 35.0) if config is not None else 35.0
+    if lines:
+        try:
+            return unary_union(tuple(line.buffer(max(land_buffer_m, 8.0), cap_style=2) for line in lines))
+        except Exception:
+            pass
+    length_m = float(getattr(config, "length_m", 0.0) or 0.0) if config is not None else 0.0
+    road_width_m = float(getattr(config, "road_width_m", 0.0) or 0.0) if config is not None else 0.0
+    if length_m <= 0.0:
+        return None
+    half_length = length_m / 2.0
+    half_width = road_width_m / 2.0 + max(land_buffer_m, 8.0)
+    return shapely_box(-half_length, -half_width, half_length, half_width)
+
+
+def _building_land_geometry(
+    *,
+    placement_ctx: object | None,
+    config: StreetComposeConfig | None,
+    forbidden_geometry: object | None = None,
+    clearance_m: float = _BUILDING_LAND_CLEARANCE_M,
+) -> object | None:
+    if placement_ctx is None and config is None:
+        return None
+    try:
+        aoi = getattr(placement_ctx, "aoi_polygon", None) if placement_ctx is not None else None
+        envelope = aoi if aoi is not None and not getattr(aoi, "is_empty", True) else _fallback_land_envelope(placement_ctx, config)
+        envelope = _clean_polygonal_geometry(envelope)
+        if envelope is None or getattr(envelope, "is_empty", True):
+            return None
+        forbidden = forbidden_geometry if forbidden_geometry is not None else building_forbidden_geometry(placement_ctx)
+        if forbidden is not None and not getattr(forbidden, "is_empty", True):
+            forbidden_clearance = forbidden.buffer(max(float(clearance_m), 0.0))
+            envelope = envelope.difference(forbidden_clearance)
+        return _clean_polygonal_geometry(envelope)
+    except Exception:
+        return None
+
+
+def _collect_geometry_coords(geometry: object) -> Tuple[Tuple[float, float], ...]:
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return tuple()
+    coords: List[Tuple[float, float]] = []
+    if hasattr(geometry, "coords"):
+        try:
+            coords.extend((float(x), float(z)) for x, z in geometry.coords)
+        except Exception:
+            pass
+    for part in getattr(geometry, "geoms", ()) or ():
+        coords.extend(_collect_geometry_coords(part))
+    return tuple(coords)
+
+
+def _outer_forbidden_edge_point(
+    *,
+    center_xz: Tuple[float, float],
+    direction: Tuple[float, float],
+    forbidden_geometry: object | None,
+    fallback_offset_m: float,
+    max_distance_m: float,
+) -> Tuple[float, float]:
+    cx, cz = float(center_xz[0]), float(center_xz[1])
+    dx, dz = float(direction[0]), float(direction[1])
+    direction_length = math.hypot(dx, dz)
+    if direction_length <= 1e-6:
+        return (cx, cz)
+    dx /= direction_length
+    dz /= direction_length
+    best_offset = max(float(fallback_offset_m), 0.0)
+    if forbidden_geometry is not None and not getattr(forbidden_geometry, "is_empty", True):
+        try:
+            from shapely.geometry import LineString
+
+            ray = LineString([(cx, cz), (cx + dx * float(max_distance_m), cz + dz * float(max_distance_m))])
+            intersection = ray.intersection(forbidden_geometry)
+            offsets = [
+                (float(x) - cx) * dx + (float(z) - cz) * dz
+                for x, z in _collect_geometry_coords(intersection)
+            ]
+            offsets = [offset for offset in offsets if offset >= -1e-4]
+            if offsets:
+                best_offset = max(best_offset, max(offsets) + _BUILDING_STREET_EDGE_EXTRA_CLEARANCE_M)
+        except Exception:
+            pass
+    return (cx + dx * best_offset, cz + dz * best_offset)
+
+
+def _bbox_overlap_area(
+    a: Sequence[float],
+    b: Sequence[float],
+) -> float:
+    if len(a) < 4 or len(b) < 4:
+        return 0.0
+    x_overlap = min(float(a[1]), float(b[1])) - max(float(a[0]), float(b[0]))
+    z_overlap = min(float(a[3]), float(b[3])) - max(float(a[2]), float(b[2]))
+    if x_overlap <= 0.0 or z_overlap <= 0.0:
+        return 0.0
+    return float(x_overlap * z_overlap)
+
+
 def _derive_building_ground_surface_geometries(
     building_plans: Sequence[BuildingPlacementPlan],
+    *,
+    placement_ctx: object | None = None,
+    config: StreetComposeConfig | None = None,
 ) -> Dict[str, Tuple[object, ...]]:
     try:
         from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
@@ -4943,7 +5121,6 @@ def _derive_building_ground_surface_geometries(
     except Exception:
         return {"grass": tuple(), "access": tuple()}
 
-    grass_patches: List[object] = []
     access_patches: List[object] = []
     for plan in building_plans:
         bbox = [float(value) for value in (plan.bbox_xz or [])]
@@ -4960,29 +5137,8 @@ def _derive_building_ground_surface_geometries(
             (bbox[1], bbox[3]),
         )
         d_values = [corner[0] * normal[0] + corner[1] * normal[1] for corner in corners]
-        t_values = [corner[0] * tangent[0] + corner[1] * tangent[1] for corner in corners]
         street_d = float(plan.street_edge_xz[0]) * normal[0] + float(plan.street_edge_xz[1]) * normal[1]
         front_d = min(d_values)
-        rear_d = max(d_values)
-        t_min = min(t_values)
-        t_max = max(t_values)
-        frontage_width = max(float(plan.frontage_width_m or 0.0), t_max - t_min)
-        lateral_margin = min(max(frontage_width * 0.10, 0.55), 1.25)
-        ground_d_min = min(street_d, front_d) - 0.25
-        ground_d_max = max(street_d, rear_d) + 0.35
-        if ground_d_max - ground_d_min <= 0.5:
-            continue
-        grass_poly = _oriented_rect_polygon(
-            normal=normal,
-            tangent=tangent,
-            d_min=ground_d_min,
-            d_max=ground_d_max,
-            t_min=t_min - lateral_margin,
-            t_max=t_max + lateral_margin,
-        )
-        if grass_poly.is_empty or grass_poly.area <= 0.01:
-            continue
-
         if plan.door_center_world_xyz and len(plan.door_center_world_xyz) >= 3:
             path_center_t = (
                 float(plan.door_center_world_xyz[0]) * tangent[0]
@@ -5010,12 +5166,6 @@ def _derive_building_ground_surface_geometries(
         )
         if not access_poly.is_empty and access_poly.area > 0.01:
             access_patches.append(access_poly)
-            try:
-                grass_poly = grass_poly.difference(access_poly)
-            except Exception:
-                pass
-        if not grass_poly.is_empty and grass_poly.area > 0.01:
-            grass_patches.append(grass_poly)
 
     def _flatten(geom: object) -> Tuple[object, ...]:
         if geom is None or getattr(geom, "is_empty", True):
@@ -5026,7 +5176,35 @@ def _derive_building_ground_surface_geometries(
             return tuple(poly for poly in geom.geoms if not poly.is_empty and poly.area > 0.01)
         return tuple()
 
-    grass_union = unary_union(grass_patches) if grass_patches else MultiPolygon()
+    building_land = _building_land_geometry(
+        placement_ctx=placement_ctx,
+        config=config,
+        clearance_m=_BUILDING_LAND_CLEARANCE_M,
+    )
+    if building_land is None or getattr(building_land, "is_empty", True):
+        plan_boxes = []
+        for plan in building_plans:
+            bbox = [float(value) for value in (plan.bbox_xz or [])]
+            if len(bbox) < 4:
+                continue
+            plan_boxes.append(
+                _oriented_rect_polygon(
+                    normal=(1.0, 0.0),
+                    tangent=(0.0, 1.0),
+                    d_min=bbox[0] - 2.0,
+                    d_max=bbox[1] + 2.0,
+                    t_min=bbox[2] - 2.0,
+                    t_max=bbox[3] + 2.0,
+                )
+            )
+        grass_union = unary_union(plan_boxes) if plan_boxes else MultiPolygon()
+    else:
+        grass_union = building_land
+    if access_patches and grass_union is not None and not getattr(grass_union, "is_empty", True):
+        try:
+            grass_union = grass_union.difference(unary_union(access_patches))
+        except Exception:
+            pass
     access_union = unary_union(access_patches) if access_patches else MultiPolygon()
     return {
         "grass": _flatten(grass_union),
@@ -5038,13 +5216,19 @@ def _add_building_ground_surfaces(
     scene,
     building_plans: Sequence[BuildingPlacementPlan],
     *,
+    placement_ctx: object | None = None,
+    config: StreetComposeConfig | None = None,
     palette: Mapping[str, Tuple[int, int, int, int]],
     roughness: Optional[Dict[str, float]] = None,
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
     texture_overrides: Mapping[str, str] | None = None,
 ) -> Dict[str, int]:
-    geometries = _derive_building_ground_surface_geometries(building_plans)
+    geometries = _derive_building_ground_surface_geometries(
+        building_plans,
+        placement_ctx=placement_ctx,
+        config=config,
+    )
     counts = {"grass_patch_count": 0, "access_path_count": 0}
     grass_color = list(palette.get("building_buffer", palette.get("grass", (92, 150, 84, 255))))
     access_color = list(palette.get("sidewalk", palette.get("context_ground", (174, 170, 158, 255))))
@@ -5053,13 +5237,13 @@ def _add_building_ground_surfaces(
         _add_polygon_slab(
             scene,
             polygon_xz=polygon_xz,
-            height_m=0.08,
-            y_min_m=0.012,
+            height_m=0.025,
+            y_min_m=0.004,
             color=grass_color,
             surface_role="building_buffer",
             roughness=(roughness or {}).get("building_buffer", 0.70),
             texture_mode=texture_mode,
-            node_name=f"building_ground_grass_{index:04d}",
+            node_name=f"building_land_grass_{index:04d}",
             texture_tracker=texture_tracker,
             texture_overrides=texture_overrides,
         )
@@ -5276,6 +5460,8 @@ def _build_production_steps(
                     for plan in building_plans
                     if str(plan.instance_id) in visible_building_plan_ids
                 ],
+                placement_ctx=placement_ctx,
+                config=config,
                 palette=palette,
                 roughness=rough,
                 texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
@@ -8176,6 +8362,56 @@ def _target_buildable_area(target: Mapping[str, object]) -> float:
     return float(max(frontage, 0.0) * max(depth, 0.0))
 
 
+def _target_placement_phase_rank(target: Mapping[str, object]) -> int:
+    strategy = str(target.get("placement_strategy", "") or "").strip().lower()
+    if "street_facade" in strategy:
+        return 3
+    if "interior" in strategy or "backyard" in strategy:
+        return 1
+    return 2
+
+
+def _front_aligned_building_visual_center(
+    *,
+    entry: _MeshCacheEntry | _MeshMetadata,
+    yaw_deg: float,
+    scale_xyz: Sequence[float],
+    street_edge_xz: Tuple[float, float],
+    target_center_xz: Tuple[float, float],
+    front_setback_m: float,
+) -> Tuple[float, float]:
+    outward_x = float(target_center_xz[0]) - float(street_edge_xz[0])
+    outward_z = float(target_center_xz[1]) - float(street_edge_xz[1])
+    outward_len = math.hypot(outward_x, outward_z)
+    if outward_len <= 1e-6:
+        return target_center_xz
+    outward_x /= outward_len
+    outward_z /= outward_len
+    zero_visual_placement = placement_xz_for_visual_center(
+        visual_center_xz=(0.0, 0.0),
+        yaw_deg=float(yaw_deg),
+        center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
+        center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
+        scale=scale_xyz,
+    )
+    points = building_footprint_points(
+        placement_xz=zero_visual_placement,
+        yaw_deg=float(yaw_deg),
+        half_x=float(getattr(entry, "half_x", 0.0) or 0.0),
+        half_z=float(getattr(entry, "half_z", 0.0) or 0.0),
+        center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
+        center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
+        scale=scale_xyz,
+        clearance_m=0.0,
+    )
+    front_extent = max(0.0, -min((float(x) * outward_x + float(z) * outward_z) for x, z in points))
+    center_offset_m = max(float(front_setback_m), 0.0) + float(front_extent)
+    return (
+        float(street_edge_xz[0]) + outward_x * center_offset_m,
+        float(street_edge_xz[1]) + outward_z * center_offset_m,
+    )
+
+
 def _evenly_sample_lots(lots: Sequence[GeneratedLot], count: int) -> List[GeneratedLot]:
     if count <= 0:
         return []
@@ -8267,6 +8503,302 @@ def _select_building_lots_for_density(
     }
 
 
+def _line_tangent_at(line: object, station_m: float) -> Tuple[float, float]:
+    length_m = float(getattr(line, "length", 0.0) or 0.0)
+    if length_m <= 1e-6:
+        return (1.0, 0.0)
+    delta = min(max(length_m * 0.01, 0.25), 2.0)
+    a = max(0.0, float(station_m) - delta)
+    b = min(length_m, float(station_m) + delta)
+    if b - a <= 1e-6:
+        a = max(0.0, float(station_m) - 0.5)
+        b = min(length_m, float(station_m) + 0.5)
+    try:
+        pa = line.interpolate(a)
+        pb = line.interpolate(b)
+        dx = float(pb.x) - float(pa.x)
+        dz = float(pb.y) - float(pa.y)
+    except Exception:
+        dx, dz = 1.0, 0.0
+    tangent_length = math.hypot(dx, dz)
+    if tangent_length <= 1e-6:
+        return (1.0, 0.0)
+    return (dx / tangent_length, dz / tangent_length)
+
+
+def _road_clearance_target_depth_m(config: StreetComposeConfig) -> float:
+    land_buffer = float(getattr(config, "land_use_buffer_m", 35.0) or 35.0)
+    return float(min(max(land_buffer * 0.45, _ROAD_CLEARANCE_TARGET_DEPTH_MIN_M), _ROAD_CLEARANCE_TARGET_DEPTH_MAX_M))
+
+
+def _theme_for_building_target(
+    *,
+    point_xz: Tuple[float, float],
+    theme_segments: Sequence[ThemeSegment],
+    road_segment_graph: object | None,
+) -> Tuple[str, str]:
+    theme_id = assign_theme_id_for_point(point_xz, theme_segments, road_segment_graph)
+    theme_by_id = {segment.theme_id: segment for segment in theme_segments}
+    theme_segment = theme_by_id.get(theme_id, theme_segments[0] if theme_segments else None)
+    theme_name = str(getattr(theme_segment, "theme_name", "") or "commercial")
+    if theme_name not in {"commercial", "residential", "transit", "mixed_use"}:
+        theme_name = "commercial"
+    land_use_type = "commercial" if theme_name == "mixed_use" else theme_name
+    return str(theme_id or "theme_000"), land_use_type
+
+
+def _road_clearance_lot_polygon(
+    *,
+    center_xz: Tuple[float, float],
+    tangent: Tuple[float, float],
+    outward: Tuple[float, float],
+    frontage_width_m: float,
+    depth_m: float,
+) -> Tuple[Tuple[float, float], ...]:
+    half_frontage = max(float(frontage_width_m), 0.5) / 2.0
+    half_depth = max(float(depth_m), 0.5) / 2.0
+    cx, cz = float(center_xz[0]), float(center_xz[1])
+    tx, tz = float(tangent[0]), float(tangent[1])
+    nx, nz = float(outward[0]), float(outward[1])
+    corners = (
+        (-half_frontage, -half_depth),
+        (half_frontage, -half_depth),
+        (half_frontage, half_depth),
+        (-half_frontage, half_depth),
+        (-half_frontage, -half_depth),
+    )
+    return tuple(
+        (
+            float(cx + tx * t + nx * d),
+            float(cz + tz * t + nz * d),
+        )
+        for t, d in corners
+    )
+
+
+def _road_clearance_lot_inside_land(
+    *,
+    land_geometry: object | None,
+    polygon_xz: Sequence[Tuple[float, float]],
+    center_xz: Tuple[float, float],
+) -> bool:
+    if land_geometry is None or getattr(land_geometry, "is_empty", True):
+        return True
+    try:
+        from shapely.geometry import Point as ShapelyPoint, Polygon as ShapelyPolygon
+
+        center = ShapelyPoint(float(center_xz[0]), float(center_xz[1]))
+        if not land_geometry.buffer(0.05).contains(center):
+            return False
+        polygon = ShapelyPolygon([(float(x), float(z)) for x, z in polygon_xz])
+        if polygon.is_empty or polygon.area <= 0.01:
+            return False
+        overlap_area = float(polygon.intersection(land_geometry).area)
+        return bool(overlap_area / max(float(polygon.area), 1e-6) >= 0.55)
+    except Exception:
+        return True
+
+
+def _generate_road_clearance_lots(
+    *,
+    config: StreetComposeConfig,
+    placement_ctx: object | None,
+    road_segment_graph: object | None,
+    theme_segments: Sequence[ThemeSegment],
+    road_type: str,
+    seed: int,
+    front_setback_min_m: float,
+    front_setback_max_m: float,
+    forbidden_geometry: object | None,
+) -> Tuple[Tuple[GeneratedLot, ...], Dict[str, object]]:
+    try:
+        from shapely.geometry import Point as ShapelyPoint
+    except Exception:
+        return tuple(), {"enabled": False, "reason": "shapely_unavailable"}
+
+    lines = _road_reference_linestrings(placement_ctx)
+    if not lines:
+        return tuple(), {"enabled": False, "reason": "road_reference_unavailable"}
+    land_geometry = _building_land_geometry(
+        placement_ctx=placement_ctx,
+        config=config,
+        forbidden_geometry=forbidden_geometry,
+        clearance_m=_BUILDING_LAND_CLEARANCE_M,
+    )
+    density_value = max(0.0, min(1.0, float(getattr(config, "building_density", 0.55) or 0.55)))
+    max_per_100m = max(0.1, float(getattr(config, "building_max_per_100m", 10.0) or 10.0))
+    target_depth_m = _road_clearance_target_depth_m(config)
+    setback_lo = max(0.0, float(front_setback_min_m))
+    setback_hi = max(setback_lo, float(front_setback_max_m))
+    rng = random.Random(int(seed) + 9173)
+    lots: List[GeneratedLot] = []
+    skipped_counts: Dict[str, int] = {}
+    by_side = {"left": 0, "right": 0}
+    interior_count = 0
+    facade_count = 0
+    total_frontage_by_side = {"left": 0.0, "right": 0.0}
+
+    road_half_width = max(float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0) / 2.0, float(getattr(config, "road_width_m", 0.0) or 0.0) / 2.0)
+    fallback_side_offsets = {
+        "left": road_half_width + max(float(getattr(placement_ctx, "left_furnishing_width_m", 0.0) or 0.0), 0.0) + max(float(getattr(placement_ctx, "left_clear_path_width_m", 0.0) or 0.0), float(getattr(config, "sidewalk_width_m", 0.0) or 0.0)),
+        "right": road_half_width + max(float(getattr(placement_ctx, "right_furnishing_width_m", 0.0) or 0.0), 0.0) + max(float(getattr(placement_ctx, "right_clear_path_width_m", 0.0) or 0.0), float(getattr(config, "sidewalk_width_m", 0.0) or 0.0)),
+    }
+
+    def add_skip(reason: str) -> None:
+        skipped_counts[reason] = skipped_counts.get(reason, 0) + 1
+
+    for road_index, line in enumerate(lines):
+        length_m = float(getattr(line, "length", 0.0) or 0.0)
+        if length_m <= 4.0:
+            continue
+        target_per_side = int(math.ceil(length_m / 100.0 * max_per_100m * max(density_value, 0.15)))
+        target_per_side = max(1, target_per_side)
+        spacing_m = length_m / float(target_per_side)
+        target_frontage_m = float(min(max(spacing_m * 0.82, _ROAD_CLEARANCE_TARGET_FRONTAGE_MIN_M), _ROAD_CLEARANCE_TARGET_FRONTAGE_MAX_M))
+        for side, side_sign in (("left", 1.0), ("right", -1.0)):
+            for target_index in range(target_per_side):
+                station_m = min(length_m, max(0.0, (target_index + 0.5) * spacing_m))
+                try:
+                    point = line.interpolate(station_m)
+                except Exception:
+                    add_skip("line_interpolation_failed")
+                    continue
+                tangent = _line_tangent_at(line, station_m)
+                left_normal = (-float(tangent[1]), float(tangent[0]))
+                outward = (left_normal[0] * side_sign, left_normal[1] * side_sign)
+                center_xz = (float(point.x), float(point.y))
+                street_edge_xz = _outer_forbidden_edge_point(
+                    center_xz=center_xz,
+                    direction=outward,
+                    forbidden_geometry=forbidden_geometry,
+                    fallback_offset_m=float(fallback_side_offsets.get(side, road_half_width + float(getattr(config, "sidewalk_width_m", 2.5) or 2.5))),
+                    max_distance_m=max(float(getattr(config, "land_use_buffer_m", 35.0) or 35.0) + 16.0, 40.0),
+                )
+                front_setback_m = round(setback_lo + (setback_hi - setback_lo) * rng.random(), 3)
+                placement_xz = (
+                    float(street_edge_xz[0]) + outward[0] * (front_setback_m + target_depth_m / 2.0),
+                    float(street_edge_xz[1]) + outward[1] * (front_setback_m + target_depth_m / 2.0),
+                )
+                polygon_xz = _road_clearance_lot_polygon(
+                    center_xz=placement_xz,
+                    tangent=tangent,
+                    outward=outward,
+                    frontage_width_m=target_frontage_m,
+                    depth_m=target_depth_m,
+                )
+                if not _road_clearance_lot_inside_land(land_geometry=land_geometry, polygon_xz=polygon_xz, center_xz=placement_xz):
+                    add_skip("outside_buildable_land")
+                    continue
+                theme_id, land_use_type = _theme_for_building_target(
+                    point_xz=placement_xz,
+                    theme_segments=theme_segments,
+                    road_segment_graph=road_segment_graph,
+                )
+                lot_id = f"road_clearance_facade_{road_index:02d}_{side}_{target_index:03d}"
+                yaw_deg = float(math.degrees(math.atan2(tangent[1], tangent[0])))
+                lots.append(
+                    GeneratedLot(
+                        lot_id=lot_id,
+                        polygon_xz=tuple(polygon_xz),
+                        center_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                        side=side,
+                        land_use_type=land_use_type,
+                        theme_id=theme_id,
+                        frontage_width_m=float(target_frontage_m),
+                        depth_m=float(target_depth_m),
+                        height_class="highrise" if land_use_type in {"commercial", "transit"} and (target_index + road_index) % 3 == 0 else "midrise",
+                        target_height_m=0.0,
+                        yaw_deg=yaw_deg,
+                        source="road_clearance_fill",
+                        cell_ids=tuple(),
+                        segment_ids=tuple(),
+                        street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+                        placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                        front_setback_m=float(front_setback_m),
+                        placement_strategy="road_clearance_street_facade",
+                        building_depth_m=float(target_depth_m),
+                    )
+                )
+                by_side[side] += 1
+                facade_count += 1
+                total_frontage_by_side[side] += float(target_frontage_m)
+
+                if density_value < 0.35 or target_index % 2 != 0:
+                    continue
+                interior_center = (
+                    float(placement_xz[0]) + outward[0] * (target_depth_m + _ROAD_CLEARANCE_INTERIOR_GAP_M),
+                    float(placement_xz[1]) + outward[1] * (target_depth_m + _ROAD_CLEARANCE_INTERIOR_GAP_M),
+                )
+                interior_polygon = _road_clearance_lot_polygon(
+                    center_xz=interior_center,
+                    tangent=tangent,
+                    outward=outward,
+                    frontage_width_m=target_frontage_m,
+                    depth_m=target_depth_m,
+                )
+                if not _road_clearance_lot_inside_land(land_geometry=land_geometry, polygon_xz=interior_polygon, center_xz=interior_center):
+                    add_skip("interior_outside_buildable_land")
+                    continue
+                if land_geometry is not None and not getattr(land_geometry, "is_empty", True):
+                    try:
+                        if not land_geometry.buffer(0.05).contains(ShapelyPoint(float(interior_center[0]), float(interior_center[1]))):
+                            add_skip("interior_center_outside_buildable_land")
+                            continue
+                    except Exception:
+                        pass
+                interior_id = f"road_clearance_interior_{road_index:02d}_{side}_{target_index:03d}"
+                lots.append(
+                    GeneratedLot(
+                        lot_id=interior_id,
+                        polygon_xz=tuple(interior_polygon),
+                        center_xz=(float(interior_center[0]), float(interior_center[1])),
+                        side=side,
+                        land_use_type=land_use_type,
+                        theme_id=theme_id,
+                        frontage_width_m=float(target_frontage_m),
+                        depth_m=float(target_depth_m),
+                        height_class="midrise",
+                        target_height_m=0.0,
+                        yaw_deg=yaw_deg,
+                        source="road_clearance_fill",
+                        cell_ids=tuple(),
+                        segment_ids=tuple(),
+                        street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+                        placement_xz=(float(interior_center[0]), float(interior_center[1])),
+                        front_setback_m=float(front_setback_m),
+                        placement_strategy="road_clearance_interior_fill",
+                        building_depth_m=float(target_depth_m),
+                    )
+                )
+                interior_count += 1
+                by_side[side] += 1
+
+    total_length = sum(float(getattr(line, "length", 0.0) or 0.0) for line in lines)
+    return tuple(lots), {
+        "enabled": True,
+        "mode": "road_clearance_fill_v1",
+        "lot_count": int(len(lots)),
+        "street_facade_count": int(facade_count),
+        "interior_fill_count": int(interior_count),
+        "skipped_counts": dict(skipped_counts),
+        "building_land_policy": "road_clearance_fill_v1",
+        "grass_policy": "continuous_non_road_underlay_v1",
+        "auto_building_scaling": False,
+        "buildable_frontage_by_side": {side: round(value, 3) for side, value in total_frontage_by_side.items()},
+        "placement_count_by_side": dict(by_side),
+        "target_depth_m": round(float(target_depth_m), 3),
+        "road_reference_length_m": round(float(total_length), 3),
+        "building_balance_policy": "road_clearance_balanced_sides",
+        "building_balance_ok": bool(by_side.get("left", 0) > 0 and by_side.get("right", 0) > 0),
+        "building_balance_reason": "road_clearance generated both sides" if by_side.get("left", 0) > 0 and by_side.get("right", 0) > 0 else "road_clearance missing one side",
+        "frontage_balance_gap": (
+            abs(float(total_frontage_by_side.get("left", 0.0)) - float(total_frontage_by_side.get("right", 0.0)))
+            / max(float(total_frontage_by_side.get("left", 0.0)), float(total_frontage_by_side.get("right", 0.0)), 1.0)
+        ),
+        "frontage_parcel_count": int(facade_count),
+    }
+
+
 def _summarize_building_region_direct_footprints(
     footprints: Sequence[BuildingFootprint],
 ) -> Dict[str, object]:
@@ -8332,13 +8864,22 @@ def _place_building_targets(
     building_asset_rejected_size_mismatch_count = 0
     lane_intrusion_adjusted_count = 0
     lane_intrusion_rejected_count = 0
+    lane_guard_push_rejected_count = 0
+    building_overlap_rejected_count = 0
     mesh_origin_centered_count = 0
     total_lane_guard_push_m = 0.0
     building_forbidden_geom = building_forbidden_geometry(placement_ctx)
+    accepted_building_bboxes: List[Tuple[float, float, float, float]] = []
+    skip_reason_counts: Dict[str, int] = {}
+
+    def add_skip_reason(reason: str) -> None:
+        key = str(reason or "unknown")
+        skip_reason_counts[key] = skip_reason_counts.get(key, 0) + 1
 
     ordered_targets = sorted(
         enumerate(targets),
         key=lambda item: (
+            _target_placement_phase_rank(item[1]),
             _target_buildable_area(item[1]),
             _positive_float(item[1].get("frontage_width_m")),
             _positive_float(item[1].get("depth_m")),
@@ -8506,6 +9047,17 @@ def _place_building_targets(
             canonical_front=building_canonical_front,
             asset_yaw_offset_deg=building_asset_yaw_offset,
         )
+        placement_strategy = str(target.get("placement_strategy", "") or "")
+        front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
+        if "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
+            target_center_xz = _front_aligned_building_visual_center(
+                entry=entry,
+                yaw_deg=float(building_yaw_deg),
+                scale_xyz=scale_xyz,
+                street_edge_xz=street_edge_xz,
+                target_center_xz=target_center_xz,
+                front_setback_m=front_setback_m,
+            )
         safe_pose = resolve_building_pose(
             target_center_xz=target_center_xz,
             street_edge_xz=street_edge_xz if len(street_edge_xz_raw) >= 2 else None,
@@ -8524,6 +9076,7 @@ def _place_building_targets(
         )
         if safe_pose.rejected:
             lane_intrusion_rejected_count += 1
+            add_skip_reason(safe_pose.reject_reason or "building_intrudes_vehicle_lane")
             if row is not None:
                 asset_count = max(asset_count - 1, 0)
             else:
@@ -8532,10 +9085,39 @@ def _place_building_targets(
             retrieval_payload["target_center_xz"] = [float(value) for value in target_center_xz]
             retrieval_payload["bbox_xz"] = [float(value) for value in safe_pose.bbox_xz]
             continue
+        if safe_pose.adjusted and float(safe_pose.push_distance_m) > _MAX_BUILDING_LANE_GUARD_PUSH_M:
+            lane_guard_push_rejected_count += 1
+            add_skip_reason("building_lane_guard_push_too_large")
+            if row is not None:
+                asset_count = max(asset_count - 1, 0)
+            else:
+                fallback_count = max(fallback_count - 1, 0)
+            retrieval_payload["placement_rejected_reason"] = "building_lane_guard_push_too_large"
+            retrieval_payload["lane_guard_push_m"] = float(round(safe_pose.push_distance_m, 3))
+            retrieval_payload["target_center_xz"] = [float(value) for value in target_center_xz]
+            retrieval_payload["bbox_xz"] = [float(value) for value in safe_pose.bbox_xz]
+            continue
         if safe_pose.adjusted:
             lane_intrusion_adjusted_count += 1
             total_lane_guard_push_m += float(safe_pose.push_distance_m)
             retrieval_payload["lane_guard_push_m"] = float(round(safe_pose.push_distance_m, 3))
+        bbox = tuple(float(value) for value in safe_pose.bbox_xz)
+        max_overlap_area = 0.0
+        for existing_bbox in accepted_building_bboxes:
+            max_overlap_area = max(max_overlap_area, _bbox_overlap_area(bbox, existing_bbox))
+            if max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
+                break
+        if max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
+            building_overlap_rejected_count += 1
+            add_skip_reason("building_bbox_overlap")
+            if row is not None:
+                asset_count = max(asset_count - 1, 0)
+            else:
+                fallback_count = max(fallback_count - 1, 0)
+            retrieval_payload["placement_rejected_reason"] = "building_bbox_overlap"
+            retrieval_payload["building_overlap_area_m2"] = float(round(max_overlap_area, 3))
+            retrieval_payload["bbox_xz"] = [float(value) for value in bbox]
+            continue
         if abs(float(getattr(entry, "center_x", 0.0) or 0.0)) > 1e-6 or abs(float(getattr(entry, "center_z", 0.0) or 0.0)) > 1e-6:
             mesh_origin_centered_count += 1
         center_xz = (
@@ -8556,9 +9138,6 @@ def _place_building_targets(
             float(placement_xz_raw[0]),
             float(placement_xz_raw[1]),
         )
-        placement_strategy = str(target.get("placement_strategy", "") or "")
-        front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
-        bbox = tuple(float(value) for value in safe_pose.bbox_xz)
         y = -entry.min_y * float(scale_xyz[1])
         building_native_size = _native_size_for_entry(entry)
         building_final_size = dict(scale_decision.get("final_size_m", {}) or {})
@@ -8687,6 +9266,7 @@ def _place_building_targets(
             placement_strategy_counts[placement_strategy] = placement_strategy_counts.get(placement_strategy, 0) + 1
         if front_setback_m > 0.0:
             front_setbacks.append(front_setback_m)
+        accepted_building_bboxes.append(bbox)
         instance_index += 1
 
     summary = {
@@ -8698,11 +9278,16 @@ def _place_building_targets(
         "building_asset_rejected_size_mismatch_count": int(building_asset_rejected_size_mismatch_count),
         "building_lane_intrusion_adjusted_count": int(lane_intrusion_adjusted_count),
         "building_lane_intrusion_rejected_count": int(lane_intrusion_rejected_count),
+        "building_lane_guard_push_rejected_count": int(lane_guard_push_rejected_count),
+        "building_overlap_rejected_count": int(building_overlap_rejected_count),
         "building_mesh_origin_centered_count": int(mesh_origin_centered_count),
         "building_lane_guard_total_push_m": float(round(total_lane_guard_push_m, 3)),
         "building_forbidden_geometry_mode": "road_occupancy_v1",
         "building_asset_scale_policy": "native_no_scale_v1",
-        "building_target_ordering": "largest_buildable_area_first",
+        "auto_building_scaling": False,
+        "building_target_ordering": "street_facade_then_largest_buildable_area",
+        "building_skip_reasons": dict(skip_reason_counts),
+        "building_collision_policy": "reject_overlapping_aabb_v1",
         "procedural_building_fallback_count": int(fallback_count),
         "sources": source_counts,
         "placement_strategy_counts": placement_strategy_counts,
@@ -8904,6 +9489,34 @@ def _place_surrounding_buildings(
             streetwall_continuity=streetwall_continuity,
             max_frontage_lot_length_m=float(getattr(config, "max_frontage_lot_length_m", 18.0) or 18.0),
         )
+        road_clearance_lots, road_clearance_summary = _generate_road_clearance_lots(
+            config=config,
+            placement_ctx=placement_ctx,
+            road_segment_graph=road_segment_graph,
+            theme_segments=theme_segments,
+            road_type=road_type,
+            seed=int(getattr(config, "seed", 0) or 0),
+            front_setback_min_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
+            front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
+            forbidden_geometry=building_forbidden_geometry(placement_ctx),
+        )
+        if road_clearance_lots:
+            legacy_lot_count = int(len(generated_lots))
+            generated_lots = tuple(road_clearance_lots)
+            lot_generation_summary = {
+                **dict(lot_generation_summary),
+                **dict(road_clearance_summary),
+                "legacy_grid_growth_lot_count": int(legacy_lot_count),
+                "lot_count": int(len(generated_lots)),
+                "frontage_parcel_count": int(road_clearance_summary.get("frontage_parcel_count", road_clearance_summary.get("street_facade_count", 0)) or 0),
+                "road_clearance_fallback_used": False,
+            }
+        else:
+            lot_generation_summary = {
+                **dict(lot_generation_summary),
+                "road_clearance_fallback_used": True,
+                "road_clearance_fallback_reason": str(road_clearance_summary.get("reason", "no_road_clearance_lots") or "no_road_clearance_lots"),
+            }
     if region_direct_mode:
         land_use_summary = _summarize_building_region_direct_footprints(building_footprints)
     else:
@@ -8921,12 +9534,26 @@ def _place_surrounding_buildings(
     }
     placement_lots = tuple(generated_lots)
     if mode == "grid_growth":
-        placement_lots, building_density_summary = _select_building_lots_for_density(
-            generated_lots,
-            density=float(getattr(config, "building_density", 0.55) or 0.55),
-            max_per_100m=float(getattr(config, "building_max_per_100m", 10.0) or 10.0),
-            buildable_frontage_by_side=dict(lot_generation_summary.get("buildable_frontage_by_side", {}) or {}),
-        )
+        if str(lot_generation_summary.get("mode", "") or "") == "road_clearance_fill_v1":
+            selected_by_side = Counter(str(lot.side or "") or "unknown" for lot in generated_lots)
+            building_density_summary = {
+                "enabled": True,
+                "density": float(getattr(config, "building_density", 0.55) or 0.55),
+                "max_per_100m": float(getattr(config, "building_max_per_100m", 10.0) or 10.0),
+                "input_lot_count": int(len(generated_lots)),
+                "selected_lot_count": int(len(generated_lots)),
+                "removed_lot_count": 0,
+                "selected_by_side": {key: int(value) for key, value in selected_by_side.items()},
+                "target_by_side": {key: int(value) for key, value in selected_by_side.items()},
+                "selection_policy": "road_clearance_targets_pre_sampled",
+            }
+        else:
+            placement_lots, building_density_summary = _select_building_lots_for_density(
+                generated_lots,
+                density=float(getattr(config, "building_density", 0.55) or 0.55),
+                max_per_100m=float(getattr(config, "building_max_per_100m", 10.0) or 10.0),
+                buildable_frontage_by_side=dict(lot_generation_summary.get("buildable_frontage_by_side", {}) or {}),
+            )
     if mode == "grid_growth":
         target_records = _lot_target_records(placement_lots)
     else:
@@ -9005,6 +9632,11 @@ def _place_surrounding_buildings(
         "building_target_lot_count": int(len(placement_lots) if mode == "grid_growth" else len(building_footprints)),
         "building_density_removed_lot_count": int(building_density_summary.get("removed_lot_count", 0) or 0),
         "infill_policy": str(infill_policy),
+        "building_land_policy": str(lot_generation_summary.get("building_land_policy", "road_clearance_fill_v1" if mode == "grid_growth" else "") or ""),
+        "grass_policy": str(lot_generation_summary.get("grass_policy", "continuous_non_road_underlay_v1" if mode == "grid_growth" else "") or ""),
+        "auto_building_scaling": False,
+        "street_facade_count": int(lot_generation_summary.get("street_facade_count", 0) or 0),
+        "interior_fill_count": int(lot_generation_summary.get("interior_fill_count", 0) or 0),
         "building_balance_policy": str(
             lot_generation_summary.get("building_balance_policy", "balanced_default")
             if mode == "grid_growth"
@@ -11283,6 +11915,8 @@ def compose_street_scene(
     building_ground_summary = _add_building_ground_surfaces(
         scene,
         building_plans,
+        placement_ctx=placement_ctx,
+        config=config,
         palette=palette,
         roughness=rough,
         texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
@@ -11291,7 +11925,7 @@ def compose_street_scene(
     )
     building_summary.update(
         {
-            "building_ground_policy": "per_building_grass_with_perpendicular_access_v1",
+            "building_ground_policy": "continuous_non_road_grass_with_perpendicular_access_v1",
             "building_ground_grass_patch_count": int(building_ground_summary.get("grass_patch_count", 0)),
             "building_access_path_count": int(building_ground_summary.get("access_path_count", 0)),
         }
@@ -12023,6 +12657,12 @@ def compose_street_scene(
         "building_balance_reason": str(building_summary.get("building_balance_reason", "") or ""),
         "frontage_balance_gap": float(building_summary.get("frontage_balance_gap", 0.0) or 0.0),
         "buildable_frontage_by_side": dict(building_summary.get("buildable_frontage_by_side", {}) or {}),
+        "building_land_policy": str(building_summary.get("building_land_policy", "") or ""),
+        "grass_policy": str(building_summary.get("grass_policy", "") or ""),
+        "auto_building_scaling": bool(building_summary.get("auto_building_scaling", False)),
+        "street_facade_count": int(building_summary.get("street_facade_count", 0) or 0),
+        "interior_fill_count": int(building_summary.get("interior_fill_count", 0) or 0),
+        "building_skip_reasons": dict(building_summary.get("building_skip_reasons", {}) or {}),
         "building_ground_policy": str(building_summary.get("building_ground_policy", "") or ""),
         "building_ground_grass_patch_count": int(building_summary.get("building_ground_grass_patch_count", 0) or 0),
         "building_access_path_count": int(building_summary.get("building_access_path_count", 0) or 0),

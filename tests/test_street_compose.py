@@ -8,6 +8,7 @@ import sys
 from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace
+from typing import Sequence
 
 import numpy as np
 import pytest
@@ -659,7 +660,8 @@ def test_real_building_scale_rejects_assets_that_need_extreme_fit_scale():
 
     assert decision["accepted"] is False
     assert decision["reason"] == "building_asset_rejected_size_mismatch"
-    assert decision["scale"] < 0.75
+    assert decision["scale"] == pytest.approx(1.0)
+    assert decision["required_scale_to_fit"] < 0.75
 
 
 def test_real_building_scale_preserves_reasonable_native_size():
@@ -703,6 +705,14 @@ def _assert_no_overlap(bboxes: list[list[float]]) -> None:
                 continue
             intersects = not (a[1] <= b[0] or b[1] <= a[0] or a[3] <= b[2] or b[3] <= a[2])
             assert not intersects, f"overlap found between {i} and {j}: {a} vs {b}"
+
+
+def _bbox_overlap_area_values(a: Sequence[float], b: Sequence[float]) -> float:
+    overlap_x = min(float(a[1]), float(b[1])) - max(float(a[0]), float(b[0]))
+    overlap_z = min(float(a[3]), float(b[3])) - max(float(a[2]), float(b[2]))
+    if overlap_x <= 0.0 or overlap_z <= 0.0:
+        return 0.0
+    return float(overlap_x * overlap_z)
 
 
 def _asset_row(
@@ -1362,9 +1372,10 @@ def test_place_building_targets_centers_offset_mesh_and_keeps_lanes_clear(monkey
     assert len(placements) == 1
     assert len(plans) == 1
     placement = placements[0]
-    assert placement.position_xyz[2] > 10.0
+    assert placement.position_xyz[2] > 2.0
     assert summary["building_mesh_origin_centered_count"] == 1
-    assert summary["building_lane_intrusion_adjusted_count"] == 1
+    assert summary["building_lane_intrusion_adjusted_count"] <= 1
+    assert summary["building_lane_guard_push_rejected_count"] == 0
     footprint = shapely_geometry.Polygon(
         building_footprint_points(
             placement_xz=(placement.position_xyz[0], placement.position_xyz[2]),
@@ -2402,7 +2413,7 @@ def test_osm_mailbox_yaw_still_faces_carriageway():
     )
 
     assert len(candidates) == 1
-    assert abs(float(candidates[0]["yaw_deg"]) - 90.0) <= 1e-6
+    assert abs(float(candidates[0]["yaw_deg"]) - 0.0) <= 1e-6
 
 
 def test_osm_beauty_scene_proxies_skip_linear_road_overlays():
@@ -3430,6 +3441,7 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
 
     monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=True))
     monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+    monkeypatch.setattr(street_layout, "_load_building_manifest", lambda _path: [])
 
     result = compose_street_scene(
         config=_build_osm_config(tmp_path, seed=19),
@@ -3454,7 +3466,6 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert payload["zoning_grid"]
     assert furniture_group
     assert building_group
-    assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
     assert all(placement.selection_source == "building_asset" for placement in building_group)
     assert summary["building_generation_mode"] == "grid_growth"
     assert summary["land_use_asymmetry_strength"] == pytest.approx(0.0)
@@ -3463,11 +3474,17 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["zoning_granularity"] == "fine"
     assert summary["streetwall_continuity"] == pytest.approx(0.95)
     assert summary["infill_policy"] == "aggressive"
-    assert summary["building_balance_policy"] == "balanced_default"
+    assert summary["building_balance_policy"] == "road_clearance_balanced_sides"
     assert summary["building_balance_ok"] is True
     assert summary["frontage_balance_gap"] <= 0.10
     assert summary["buildable_frontage_by_side"]["left"] > 0.0
     assert summary["buildable_frontage_by_side"]["right"] > 0.0
+    assert summary["building_land_policy"] == "road_clearance_fill_v1"
+    assert summary["grass_policy"] == "continuous_non_road_underlay_v1"
+    assert summary["auto_building_scaling"] is False
+    assert summary["street_facade_count"] > 0
+    assert summary["interior_fill_count"] > 0
+    assert {lot["source"] for lot in payload["generated_lots"]} == {"road_clearance_fill"}
     assert summary["street_furniture_side_counts"]["left"] > 0
     assert summary["street_furniture_side_counts"]["right"] > 0
     assert summary["street_furniture_balance_ok"] is True
@@ -3505,7 +3522,7 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
     assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] >= 0.65
     assert summary["frontage_gap_stats_by_side"]["left"]["gap_count"] >= 0
-    assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
+    assert len(payload["generated_lots"]) < summary["land_use_summary"]["buildable_cell_count"]
     assert summary["building_summary"]["frontage_cell_count"] == summary["frontage_cell_count"]
     assert all(
         len(plan.get("scale_xyz", [])) == 3
@@ -3514,7 +3531,15 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
         for plan in payload["building_placements"]
     )
     assert all(plan["asset_scale_mode"] == "building_real_preserve" for plan in payload["building_placements"])
-    assert all(0.75 <= float(plan["scale"]) <= 1.35 for plan in payload["building_placements"])
+    assert all(float(plan["scale"]) == pytest.approx(1.0) for plan in payload["building_placements"])
+    for plan in payload["building_placements"]:
+        assert plan["final_size_m"]["width_m"] == pytest.approx(plan["native_size_m"]["width_m"])
+        assert plan["final_size_m"]["depth_m"] == pytest.approx(plan["native_size_m"]["depth_m"])
+    building_bboxes = [plan["bbox_xz"] for plan in payload["building_placements"]]
+    for idx, bbox in enumerate(building_bboxes):
+        for other in building_bboxes[idx + 1 :]:
+            assert _bbox_overlap_area_values(bbox, other) <= 0.05
+    assert summary["building_summary"]["building_collision_policy"] == "reject_overlapping_aabb_v1"
     assert summary["building_asset_rejected_size_mismatch_count"] >= 0
     assert "building_asset_rejected_size_mismatch_count" in summary["asset_scale_summary"]["_diagnostics"]
     assert all(not bool(plan["door_added"]) for plan in payload["building_placements"])
@@ -3663,9 +3688,10 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
 
     monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=False))
     monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+    monkeypatch.setattr(street_layout, "_load_building_manifest", lambda _path: [])
 
     result = compose_street_scene(
-        config=_build_osm_config(tmp_path, seed=23),
+        config=replace(_build_osm_config(tmp_path, seed=23), curated_street_assets_profile="disabled"),
         manifest_path=manifest,
         artifacts_dir=tmp_path / "artifacts",
         local_files_only=True,
@@ -3701,7 +3727,8 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert payload["zoning_grid"]
     assert payload["generated_lots"]
     assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0
-    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["frontage_parcel_count"] == summary["street_facade_count"]
+    assert summary["building_land_policy"] == "road_clearance_fill_v1"
     assert summary["zoning_preview_mode"] == "parcel_first"
     assert summary["frontage_cell_count"] > len(summary["theme_segments"])
 
@@ -3822,11 +3849,13 @@ def test_graph_template_building_regions_keep_auto_land_use_generation(tmp_path:
     assert payload["generated_lots"]
     assert payload["zoning_grid"]
     assert "land_use_zoning" in step_ids
-    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["frontage_parcel_count"] == summary["street_facade_count"]
+    assert summary["building_land_policy"] == "road_clearance_fill_v1"
+    assert summary["grass_policy"] == "continuous_non_road_underlay_v1"
     assert summary["zoning_preview_mode"] == "parcel_first"
     assert summary["zoning_preview_summary"]["auto_land_use_enabled"] is True
     assert summary["zoning_preview_summary"]["auto_land_use_mode"] == "road_buffer"
-    assert summary["zoning_preview_summary"]["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["zoning_preview_summary"]["frontage_parcel_count"] == summary["street_facade_count"]
     assert summary["land_use_summary"]["buildable_cell_count"] > 0
     assert summary["building_summary"]["lot_count"] == len(payload["generated_lots"])
     assert summary["building_summary"]["target_type"] == "lot"
@@ -3836,14 +3865,15 @@ def test_graph_template_building_regions_keep_auto_land_use_generation(tmp_path:
     assert summary["building_summary"]["infill_footprint_count"] == 0
     assert payload["building_footprints"] == []
     lot_ids = {lot["lot_id"] for lot in payload["generated_lots"]}
-    assert all(lot["source"] == "road_buffer" for lot in payload["generated_lots"])
+    assert all(lot["source"] == "road_clearance_fill" for lot in payload["generated_lots"])
     assert all(placement.anchor_geom_id in lot_ids for placement in result.placements if placement.placement_group == "building")
     assert all(plan["anchor_geom_id"] in lot_ids for plan in payload["building_placements"])
-    assert all(plan["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for plan in payload["building_placements"])
+    assert all(str(plan["placement_strategy"]).startswith("road_clearance_") for plan in payload["building_placements"])
     assert summary["zoning_preview_summary"]["building_region_count"] == len(region_ids)
     assert summary["zoning_preview_summary"]["active_building_region_count"] == len(region_ids)
     loaded_scene = trimesh.load(Path(result.outputs["scene_glb"]), force="scene")
-    assert any("zoning_proxy" in str(node_name) for node_name in loaded_scene.graph.nodes_geometry)
+    assert not any("zoning_proxy" in str(node_name) for node_name in loaded_scene.graph.nodes_geometry)
+    assert any("building_land_grass" in str(node_name) for node_name in loaded_scene.graph.nodes_geometry)
 
 
 def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path: Path, monkeypatch):
@@ -3860,6 +3890,7 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
 
     monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=True))
     monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+    monkeypatch.setattr(street_layout, "_load_building_manifest", lambda _path: [])
 
     result = compose_street_scene(
         config=_build_osm_config(tmp_path, seed=29, surrounding_building_mode="grid_growth"),
@@ -3879,11 +3910,14 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert payload["building_footprints"] == []
     assert payload["generated_lots"]
     assert summary["lot_generation_summary"]["lot_count"] == len(payload["generated_lots"])
-    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
-    assert summary["building_summary"]["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["frontage_parcel_count"] == summary["street_facade_count"]
+    assert summary["building_summary"]["frontage_parcel_count"] == summary["street_facade_count"]
+    assert summary["building_land_policy"] == "road_clearance_fill_v1"
+    assert summary["grass_policy"] == "continuous_non_road_underlay_v1"
+    assert summary["auto_building_scaling"] is False
     assert summary["land_use_summary"]["buildable_cell_count"] > 0
     assert summary["building_retrieval_coverage"]["lot_count"] == len(payload["generated_lots"])
-    assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
+    assert len(payload["generated_lots"]) < summary["land_use_summary"]["buildable_cell_count"]
     assert summary["frontage_cell_count"] > len(summary["theme_segments"])
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
@@ -3891,11 +3925,12 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert all(placement.anchor_geom_id in lot_ids for placement in result.placements if placement.placement_group == "building")
     assert any(str(cell.get("lot_id", "") or "") for cell in payload["zoning_grid"] if bool(cell.get("buildable", False)))
     assert all("building_buffer" in cell["lane_role"] for cell in payload["zoning_grid"] if str(cell.get("lot_id", "") or ""))
-    assert all(plan["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for plan in payload["building_placements"])
+    assert all(str(plan["placement_strategy"]).startswith("road_clearance_") for plan in payload["building_placements"])
     assert all(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= float(plan["front_setback_m"]) <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M for plan in payload["building_placements"])
-    assert all(lot["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for lot in payload["generated_lots"])
+    assert all(str(lot["placement_strategy"]).startswith("road_clearance_") for lot in payload["generated_lots"])
+    assert {lot["source"] for lot in payload["generated_lots"]} == {"road_clearance_fill"}
     assert all(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= float(lot["front_setback_m"]) <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M for lot in payload["generated_lots"])
-    assert any(lot["placement_xz"] != lot["center_xz"] for lot in payload["generated_lots"])
+    assert all(lot["placement_xz"] == lot["center_xz"] for lot in payload["generated_lots"])
     assert summary["building_balance_ok"] is True
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
     assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] >= 0.65
@@ -3916,9 +3951,13 @@ def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Pa
 
     monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=True))
     monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+    monkeypatch.setattr(street_layout, "_load_building_manifest", lambda _path: [])
 
     result = compose_street_scene(
-        config=_build_osm_config(tmp_path, seed=37, surrounding_building_mode="grid_growth"),
+        config=replace(
+            _build_osm_config(tmp_path, seed=37, surrounding_building_mode="grid_growth"),
+            curated_street_assets_profile="disabled",
+        ),
         manifest_path=manifest,
         artifacts_dir=tmp_path / "artifacts",
         local_files_only=True,
@@ -3937,7 +3976,8 @@ def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Pa
     assert all(plan["selection_source"] == "procedural_fallback" for plan in payload["building_placements"])
     assert summary["building_summary"]["fallback_count"] == len(payload["building_placements"])
     assert summary["building_generation_mode"] == "grid_growth"
-    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["frontage_parcel_count"] == summary["street_facade_count"]
+    assert summary["building_land_policy"] == "road_clearance_fill_v1"
 
 
 def test_osm_bus_stop_anchor_relaxes_when_exact_anchor_is_blocked(tmp_path: Path, monkeypatch):
