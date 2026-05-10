@@ -101,6 +101,38 @@ def test_scene_bridge_uses_region_aoi_and_derived_building_regions() -> None:
     assert bridge.summary_metadata["derived_building_region_count"] == 2
 
 
+def test_bus_lane_widening_outside_road_edge_builds_tapered_bay() -> None:
+    pytest.importorskip("shapely")
+    from roadgen3d.reference_regions import _surface_annotation_polygon
+
+    centerline = [(0.0, 0.0), (40.0, 0.0)]
+
+    rectangular = _surface_annotation_polygon(
+        centerline,
+        station_start_m=0.0,
+        station_end_m=40.0,
+        lateral_start_m=-8.6,
+        lateral_end_m=-6.6,
+        surface_kind="colored_pavement",
+        road_half_width_m=6.6,
+    )
+    tapered = _surface_annotation_polygon(
+        centerline,
+        station_start_m=0.0,
+        station_end_m=40.0,
+        lateral_start_m=-8.6,
+        lateral_end_m=-6.6,
+        surface_kind="bus_lane_widening",
+        road_half_width_m=6.6,
+    )
+
+    assert rectangular is not None
+    assert tapered is not None
+    assert rectangular.area == pytest.approx(80.0)
+    assert tapered.area == pytest.approx(64.0)
+    assert tapered.area < rectangular.area
+
+
 def test_derive_regions_api_returns_derived_regions() -> None:
     pytest.importorskip("shapely")
 

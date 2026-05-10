@@ -274,6 +274,7 @@ def test_scenario_design_surface_and_strip_semantics_reach_scene_bridge(tmp_path
     )
     catalog = service._load_catalog()["scenarios"]
     scenario_02 = next(item for item in catalog if item["scenario_id"] == "scenario_02_four_lane_multimodal_safety_island")
+    scenario_03 = next(item for item in catalog if item["scenario_id"] == "scenario_03_school_commercial_mixed_frontage")
     scenario_06 = next(item for item in catalog if item["scenario_id"] == "scenario_06_green_median_complete_street")
 
     application_02 = apply_template_patch(
@@ -303,6 +304,30 @@ def test_scenario_design_surface_and_strip_semantics_reach_scene_bridge(tmp_path
         for node in graph.nodes
         if node.highway_type == "annotated_centerline"
     )
+
+    inputs_03 = service.generation_inputs_for_scenario("scenario_03_school_commercial_mixed_frontage")
+    assert "bus_stop" in inputs_03["compose_config_patch"]["minimum_category_presence"]
+    application_03 = apply_template_patch(
+        load_graph_template_annotation_payload("hkust_gz_gate"),
+        service.scenario_to_template_patch(scenario_03, validate=True),
+    )
+    bridge_03 = build_reference_annotation_scene_bridge(
+        application_03.annotation,
+        compose_config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 13.2}),
+    )
+    bus_bay = next(
+        patch for patch in bridge_03.placement_context.surface_annotations
+        if patch["surface_id"] == "scenario_03_bus_lane_widening"
+    )
+    transit_pad = next(
+        patch for patch in bridge_03.placement_context.surface_annotations
+        if patch["surface_id"] == "scenario_03_transit_pad"
+    )
+    assert bus_bay["derived_shape"] == "tapered_bus_bay_v1"
+    assert bus_bay["area_m2"] == pytest.approx(64.0, rel=0.20)
+    assert transit_pad["lateral_start_m"] == pytest.approx(-10.2)
+    assert transit_pad["lateral_end_m"] == pytest.approx(-8.6)
+    assert bus_bay["geometry"].intersection(transit_pad["geometry"]).area == pytest.approx(0.0)
 
     application_06 = apply_template_patch(
         load_graph_template_annotation_payload("hkust_gz_gate"),

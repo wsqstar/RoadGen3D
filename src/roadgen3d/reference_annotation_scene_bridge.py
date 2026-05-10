@@ -27,6 +27,8 @@ from .reference_annotation import (
     parse_reference_annotation,
 )
 from .reference_regions import (
+    _bus_bay_uses_taper as _reference_bus_bay_uses_taper,
+    _surface_annotation_polygon as _reference_surface_annotation_polygon,
     derive_regions_from_annotation,
     explicit_building_region_records_from_regions,
     functional_region_records_from_regions,
@@ -251,19 +253,38 @@ def _annotation_surface_records(
         str(centerline.feature_id): tuple((float(x), float(y)) for x, y in points)
         for _, centerline, points in local_centerlines
     }
+    centerline_by_id = {
+        str(centerline.feature_id): centerline
+        for _, centerline, _points in local_centerlines
+    }
     for order_index, surface in enumerate(annotation.surface_annotations):
         centerline_points = centerline_points_by_id.get(str(surface.centerline_id))
         if not centerline_points:
             continue
-        geometry = _surface_annotation_polygon(
+        centerline = centerline_by_id.get(str(surface.centerline_id))
+        road_half_width_m = (
+            float(centerline.carriageway_width_m()) * 0.5
+            if centerline is not None and hasattr(centerline, "carriageway_width_m")
+            else None
+        )
+        geometry = _reference_surface_annotation_polygon(
             centerline_points,
             station_start_m=float(surface.station_start_m),
             station_end_m=float(surface.station_end_m),
             lateral_start_m=float(surface.lateral_start_m),
             lateral_end_m=float(surface.lateral_end_m),
+            surface_kind=str(surface.kind),
+            road_half_width_m=road_half_width_m,
         )
         if geometry is None or getattr(geometry, "is_empty", True):
             continue
+        uses_taper = _reference_bus_bay_uses_taper(
+            surface_kind=str(surface.kind),
+            road_half_width_m=road_half_width_m,
+            lateral_start_m=float(surface.lateral_start_m),
+            lateral_end_m=float(surface.lateral_end_m),
+        )
+        length_m = max(float(surface.station_end_m) - float(surface.station_start_m), 0.0)
         records.append(
             {
                 "surface_id": str(surface.feature_id),
@@ -285,6 +306,19 @@ def _annotation_surface_records(
                 "geometry": geometry,
                 "area_m2": float(getattr(geometry, "area", 0.0) or 0.0),
                 "order_index": int(order_index),
+                **(
+                    {
+                        "derived_shape": "tapered_bus_bay_v1",
+                        "taper_length_m": float(min(8.0, length_m * 0.25)),
+                        "road_half_width_m": float(road_half_width_m or 0.0),
+                        "sidewalk_intrusion_m": float(
+                            max(abs(float(surface.lateral_start_m)), abs(float(surface.lateral_end_m)))
+                            - float(road_half_width_m or 0.0)
+                        ),
+                    }
+                    if uses_taper
+                    else {}
+                ),
             }
         )
     return records

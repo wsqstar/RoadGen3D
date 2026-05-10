@@ -228,11 +228,44 @@ def _serialized_list(values: Sequence[Any]) -> list[Any]:
     return [to_dict(value) if hasattr(value, "to_dict") else value for value in values]
 
 
+def _geometry_rings(geometry: Any) -> list[list[list[float]]]:
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return []
+    polygons = []
+    geom_type = str(getattr(geometry, "geom_type", "") or "")
+    if geom_type == "Polygon":
+        polygons = [geometry]
+    elif geom_type == "MultiPolygon":
+        polygons = list(getattr(geometry, "geoms", ()) or ())
+    elif geom_type == "GeometryCollection":
+        polygons = [
+            item
+            for item in getattr(geometry, "geoms", ()) or ()
+            if str(getattr(item, "geom_type", "") or "") == "Polygon" and not getattr(item, "is_empty", True)
+        ]
+    rings: list[list[list[float]]] = []
+    for polygon in polygons:
+        exterior = getattr(polygon, "exterior", None)
+        if exterior is None:
+            continue
+        coords = [
+            [round(float(x), 3), round(float(y), 3)]
+            for x, y in list(exterior.coords)
+        ]
+        if len(coords) >= 4:
+            rings.append(coords)
+    return rings
+
+
 def _strip_geometry_records(values: Sequence[Any]) -> list[Dict[str, Any]]:
-    return [
-        {key: value for key, value in dict(record).items() if key != "geometry"}
-        for record in values
-    ]
+    records: list[Dict[str, Any]] = []
+    for record in values:
+        item = dict(record)
+        geometry = item.pop("geometry", None)
+        if geometry is not None and "rings" not in item:
+            item["rings"] = _geometry_rings(geometry)
+        records.append(item)
+    return records
 
 
 def build_scene_layout_payload(

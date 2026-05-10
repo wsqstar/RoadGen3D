@@ -997,6 +997,79 @@ def _create_curated_railing_entry(*, asset_id: str = "curated_railing_module_v1"
     return row, entry
 
 
+def _create_curated_bus_stop_entry(*, asset_id: str = "curated_bus_stop_shelter_v1") -> Tuple[Dict[str, object], _MeshCacheEntry]:
+    trimesh = _require_trimesh()
+    scene = trimesh.Scene()
+
+    def _add_box(
+        extents: Tuple[float, float, float],
+        translation: Tuple[float, float, float],
+        color: Tuple[int, int, int, int],
+    ) -> None:
+        mesh = trimesh.creation.box(extents=extents)
+        mesh.visual.face_colors = list(color)
+        mesh.apply_translation(translation)
+        scene.add_geometry(mesh)
+
+    frame = (72, 82, 92, 255)
+    roof = (54, 64, 74, 255)
+    glass = (128, 166, 190, 150)
+    bench = (158, 118, 76, 255)
+    base = (88, 96, 104, 255)
+    length_m = 4.2
+    depth_m = 1.35
+    height_m = 2.55
+    half_length = length_m * 0.5
+    half_depth = depth_m * 0.5
+    for x_offset in (-half_length + 0.18, half_length - 0.18):
+        for z_offset in (-half_depth + 0.10, half_depth - 0.10):
+            _add_box((0.10, height_m, 0.10), (x_offset, height_m / 2.0, z_offset), frame)
+    _add_box((length_m + 0.25, 0.16, depth_m + 0.20), (0.0, height_m + 0.02, 0.0), roof)
+    _add_box((length_m, 0.08, depth_m), (0.0, 0.04, 0.0), base)
+    _add_box((length_m - 0.45, 1.45, 0.06), (0.0, 1.20, half_depth - 0.04), glass)
+    _add_box((0.06, 1.35, depth_m - 0.35), (-half_length + 0.12, 1.10, 0.0), glass)
+    _add_box((2.4, 0.16, 0.42), (0.35, 0.56, -0.28), bench)
+    _add_box((2.4, 0.52, 0.12), (0.35, 0.84, -0.46), bench)
+
+    bounds = np.asarray(scene.bounds, dtype=np.float64)
+    span = bounds[1] - bounds[0]
+    row: Dict[str, object] = {
+        "asset_id": str(asset_id),
+        "category": "bus_stop",
+        "text_desc": "scene-ready modern bus stop shelter with roof, glass panels, and waiting bench",
+        "asset_role": "street_furniture",
+        "source": "curated_virtual",
+        "generator_type": "virtual_curated_v1",
+        "style_tags": ["modern", "transit_priority", "complete_street"],
+        "affordance_tags": ["transit", "shelter", "wait"],
+        "scene_eligible": True,
+        "quality_tier": 3,
+        "mesh_face_count": int(
+            sum(len(np.asarray(getattr(geom, "faces", []), dtype=np.int64)) for geom in scene.geometry.values())
+        ),
+        "quality_notes": [
+            "curated_asset_fallback",
+            "scene_ready",
+            "generator=virtual_curated_v1",
+        ],
+        "metric_width_m": float(max(span[0], 1e-3)),
+        "metric_height_m": float(max(span[1], 1e-3)),
+        "metric_depth_m": float(max(span[2], 1e-3)),
+        "canonical_front": "+Z",
+    }
+    entry = _MeshCacheEntry(
+        mesh=scene,
+        half_x=float(max(span[0] / 2.0, 1e-3)),
+        half_z=float(max(span[2] / 2.0, 1e-3)),
+        min_y=float(bounds[0][1]),
+        center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+        center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
+        is_scene=True,
+        native_height_y=float(max(span[1], 1e-3)),
+    )
+    return row, entry
+
+
 def _inject_curated_virtual_assets(
     rows: List[Dict[str, object]],
     mesh_cache: _LazyMeshCache,
@@ -1014,6 +1087,10 @@ def _inject_curated_virtual_assets(
         railing_row, railing_entry = _create_curated_railing_entry(asset_id=railing_asset_id)
         injected_rows.append(railing_row)
         mesh_cache.set_full_entry(railing_asset_id, railing_entry)
+    if not any(str(row.get("category", "")) == "bus_stop" and _row_scene_eligible(row) for row in injected_rows):
+        bus_stop_row, bus_stop_entry = _create_curated_bus_stop_entry()
+        injected_rows.append(bus_stop_row)
+        mesh_cache.set_full_entry(str(bus_stop_row["asset_id"]), bus_stop_entry)
     return injected_rows
 
 
@@ -2366,6 +2443,123 @@ def _annotation_furniture_to_slot_plans(
             segment_lookup[slot_id] = node
 
     return slots, segment_lookup
+
+
+def _surface_annotation_bus_stop_slot_plans(
+    *,
+    placement_ctx: object | None,
+    theme_segments: Sequence[ThemeSegment],
+    road_segment_graph: object | None,
+) -> List[LayoutSlotPlan]:
+    """Create required bus stop slots from paired transit pad and bus bay surfaces."""
+
+    if placement_ctx is None:
+        return []
+    surfaces = [
+        patch
+        for patch in list(getattr(placement_ctx, "surface_annotations", []) or ())
+        if isinstance(patch, Mapping)
+    ]
+    if not surfaces:
+        return []
+
+    def _role(patch: Mapping[str, Any]) -> str:
+        return str(patch.get("surface_role", "") or "").strip().lower()
+
+    def _kind(patch: Mapping[str, Any]) -> str:
+        return str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
+
+    def _float(patch: Mapping[str, Any], key: str, default: float = 0.0) -> float:
+        try:
+            return float(patch.get(key, default) or default)
+        except (TypeError, ValueError):
+            return float(default)
+
+    def _station_overlap(a: Mapping[str, Any], b: Mapping[str, Any]) -> float:
+        start = max(_float(a, "station_start_m"), _float(b, "station_start_m"))
+        end = min(_float(a, "station_end_m"), _float(b, "station_end_m"))
+        return max(0.0, float(end) - float(start))
+
+    def _lateral_center(patch: Mapping[str, Any]) -> float:
+        return (_float(patch, "lateral_start_m") + _float(patch, "lateral_end_m")) * 0.5
+
+    def _side_for_point(point_xz: Tuple[float, float], fallback: str) -> str:
+        left_zone = getattr(placement_ctx, "left_sidewalk_zone", None)
+        right_zone = getattr(placement_ctx, "right_sidewalk_zone", None)
+        if _point_in_zone(left_zone, point_xz):
+            return "left"
+        if _point_in_zone(right_zone, point_xz):
+            return "right"
+        return str(fallback)
+
+    bus_bays = [
+        patch
+        for patch in surfaces
+        if _kind(patch) == "bus_lane_widening" and _role(patch) == "bus_lane"
+    ]
+    transit_pads = [
+        patch
+        for patch in surfaces
+        if _role(patch) == "transit_pad"
+    ]
+    if not bus_bays or not transit_pads:
+        return []
+
+    slots: List[LayoutSlotPlan] = []
+    seen_keys: set[Tuple[str, str]] = set()
+    for pad in transit_pads:
+        pad_centerline = str(pad.get("centerline_id", "") or "")
+        pad_side_sign = -1 if _lateral_center(pad) < 0.0 else 1
+        matching_bays = [
+            bay
+            for bay in bus_bays
+            if str(bay.get("centerline_id", "") or "") == pad_centerline
+            and _station_overlap(pad, bay) > 0.5
+            and (-1 if _lateral_center(bay) < 0.0 else 1) == pad_side_sign
+        ]
+        if not matching_bays:
+            continue
+        bay = max(matching_bays, key=lambda item: _station_overlap(pad, item))
+        slot_key = (str(pad.get("surface_id", "") or pad.get("annotation_id", "")), str(bay.get("surface_id", "") or bay.get("annotation_id", "")))
+        if slot_key in seen_keys:
+            continue
+        seen_keys.add(slot_key)
+        geometry = pad.get("geometry")
+        if geometry is None or getattr(geometry, "is_empty", True):
+            geometry = bay.get("geometry")
+        if geometry is None or getattr(geometry, "is_empty", True):
+            continue
+        try:
+            point = geometry.representative_point()
+        except Exception:
+            point = getattr(geometry, "centroid", None)
+        if point is None or getattr(point, "is_empty", True):
+            continue
+        point_xz = (float(point.x), float(point.y))
+        side = _side_for_point(point_xz, "right" if _lateral_center(pad) < 0.0 else "left")
+        theme_id = ""
+        if theme_segments:
+            theme_id = assign_theme_id_for_point(point_xz, theme_segments, road_segment_graph)
+        if not theme_id and theme_segments:
+            theme_id = str(theme_segments[0].theme_id)
+        surface_id = str(pad.get("surface_id", "") or pad.get("annotation_id", "") or f"{len(slots):03d}")
+        slots.append(
+            LayoutSlotPlan(
+                slot_id=f"surface_bus_stop_{surface_id}",
+                category="bus_stop",
+                band_name="",
+                x_center_m=float(point_xz[0]),
+                z_center_m=float(point_xz[1]),
+                spacing_m=float(DEFAULT_SPACING_M.get("bus_stop", 45.0)),
+                side=side,
+                priority=2.5,
+                required=True,
+                anchor_poi_type="bus_stop",
+                anchor_position_xz=point_xz,
+                theme_id=str(theme_id),
+            )
+        )
+    return slots
 
 
 def _center_planting_tree_slot_plans(
@@ -5678,6 +5872,23 @@ def _build_osm_base_scene(
             return MultiPolygon()
         return _clean_scene_polygonal_geometry(unary_union(valid))
 
+    surface_annotation_patches = list(getattr(placement_ctx, "surface_annotations", []) or [])
+
+    def _is_bus_bay_vehicle_patch(patch: Mapping[str, Any]) -> bool:
+        kind = str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
+        role = str(patch.get("surface_role", "") or "").strip().lower()
+        return bool(kind == "bus_lane_widening" and role == "bus_lane")
+
+    bus_bay_vehicle_surfaces = [
+        patch.get("geometry")
+        for patch in surface_annotation_patches
+        if isinstance(patch, Mapping)
+        and _is_bus_bay_vehicle_patch(patch)
+        and patch.get("geometry") is not None
+        and not getattr(patch.get("geometry"), "is_empty", True)
+    ]
+    bus_bay_vehicle_zone = _union_scene_polygonal_geometries(bus_bay_vehicle_surfaces)
+
     junction_sidewalk_surfaces: List[Any] = []
     junction_vehicle_surfaces: List[Any] = []
     for junction in junction_geometries:
@@ -5689,6 +5900,8 @@ def _build_osm_base_scene(
             elif role in junction_vehicle_surface_roles and geometry is not None and not getattr(geometry, "is_empty", True):
                 junction_vehicle_surfaces.append(geometry)
     sidewalk_render_zone = _union_scene_polygonal_geometries([sidewalk_zone, *junction_sidewalk_surfaces])
+    if not getattr(bus_bay_vehicle_zone, "is_empty", True):
+        sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(bus_bay_vehicle_zone))
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
     for geom in (carriageway, sidewalk_render_zone):
@@ -6044,7 +6257,7 @@ def _build_osm_base_scene(
     rendered_vehicle_surfaces = (
         list(road_arm_geometries) if road_arm_geometries else [carriageway]
     )
-    curb_source_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
+    curb_source_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces, *bus_bay_vehicle_surfaces])
     if not curb_source_surface.is_empty:
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, sidewalk_render_zone, curb_width)
@@ -6158,10 +6371,31 @@ def _build_osm_base_scene(
         if role == "shared_street_surface":
             return 0.014, _material_color(material, colors.get("shared_street_surface", (180, 160, 140, 255))), 0.016, texture_key or "shared_street_surface", "shared_street_surface"
         if role == "transit_pad":
-            return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), 0.018, texture_key or "transit_pad", "transit_pad"
+            return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), SIDEWALK_ELEVATION_M + 0.018, texture_key or "transit_pad", "transit_pad"
         return 0.014, _material_color(material, colors.get("colored_pavement", (200, 175, 150, 255))), 0.016, texture_key or "colored_pavement", "colored_pavement"
 
-    for patch_index, patch in enumerate(getattr(placement_ctx, "surface_annotations", []) or []):
+    def _render_bus_bay_edge_markings(geometry: object, *, node_name_prefix: str) -> None:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return
+        try:
+            line_zone = geometry.boundary.buffer(0.055, cap_style=2, join_style=2)
+            line_zone = _clean_scene_polygonal_geometry(line_zone)
+        except Exception:
+            logger.debug("Skipping bus bay edge markings", exc_info=True)
+            return
+        if getattr(line_zone, "is_empty", True):
+            return
+        _extrude_polygon(
+            line_zone,
+            0.010,
+            list(colors.get("lane_edge", colors.get("lane_mark", (245, 245, 245, 255)))),
+            node_name_prefix,
+            y_offset=0.030,
+            roughness_key="lane_edge",
+            surface_role="lane_mark",
+        )
+
+    for patch_index, patch in enumerate(surface_annotation_patches):
         geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
         if geometry is None or getattr(geometry, "is_empty", True):
             continue
@@ -6175,6 +6409,11 @@ def _build_osm_base_scene(
             roughness_key=roughness_key,
             surface_role=surface_role,
         )
+        if isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch):
+            _render_bus_bay_edge_markings(
+                geometry,
+                node_name_prefix=f"surface_annotation_bus_bay_marking_{patch.get('surface_id', patch_index)}",
+            )
 
     def _render_crosswalk_zebra_patch(
         geometry,
@@ -6413,9 +6652,12 @@ def _build_osm_base_scene(
         float(fallback_length_m),
     )
     road_references = list(getattr(placement_ctx, "road_references", []) or [])
-    marking_exclusion_geometries = _junction_marking_exclusion_geometries(
-        list(getattr(placement_ctx, "junction_geometries", []) or ())
-    )
+    marking_exclusion_geometries = [
+        *_junction_marking_exclusion_geometries(
+            list(getattr(placement_ctx, "junction_geometries", []) or ())
+        ),
+        *bus_bay_vehicle_surfaces,
+    ]
     if not road_references:
         fallback_reference = getattr(placement_ctx, "road_reference", None)
         if fallback_reference is not None:
@@ -6752,7 +6994,7 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
         return record
 
     def _serialize_surface_annotation_patch(patch) -> dict:
-        return {
+        record = {
             "surface_id": str(patch.get("surface_id", "") or ""),
             "annotation_id": str(patch.get("annotation_id", patch.get("surface_id", "")) or ""),
             "label": str(patch.get("label", "") or ""),
@@ -6768,6 +7010,14 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             "area_m2": round(float(patch.get("area_m2", 0.0) or 0.0), 3),
             "rings": _extract_rings(patch.get("geometry")),
         }
+        for key in ("derived_shape", "taper_length_m", "road_half_width_m", "sidewalk_intrusion_m"):
+            if key in patch:
+                value = patch.get(key)
+                if isinstance(value, (int, float)):
+                    record[key] = round(float(value), 3)
+                else:
+                    record[key] = value
+        return record
 
     result: dict = {}
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
@@ -10490,6 +10740,32 @@ def compose_street_scene(
                 )
             logger.info("Injected %d annotation furniture slots.", len(annot_slots))
 
+        surface_bus_stop_slots = _surface_annotation_bus_stop_slot_plans(
+            placement_ctx=placement_ctx,
+            theme_segments=theme_segments,
+            road_segment_graph=road_segment_graph,
+        )
+        if surface_bus_stop_slots:
+            slot_plans.extend(surface_bus_stop_slots)
+            for surface_slot in surface_bus_stop_slots:
+                slot_band_lookup[str(surface_slot.slot_id)] = (
+                    resolve_band_by_alias(
+                        base_program.bands if base_program is not None else (),
+                        band_name=str(surface_slot.band_name),
+                        side=str(surface_slot.side),
+                        profile_name=str(config.design_rule_profile),
+                    )
+                    or StreetBand(
+                        name="surface_bus_stop_anchor",
+                        kind="transit_edge",
+                        side=str(surface_slot.side),
+                        width_m=2.0,
+                        z_center_m=float(surface_slot.z_center_m),
+                        allowed_categories=("bus_stop",),
+                    )
+                )
+            logger.info("Injected %d surface annotation bus stop slots.", len(surface_bus_stop_slots))
+
         if "tree" in set(str(category) for category in available_categories):
             center_tree_slots, center_tree_seg_map = _center_planting_tree_slot_plans(
                 road_segment_graph=road_segment_graph,
@@ -12377,6 +12653,28 @@ def compose_street_scene(
             "skipped_reason": skipped_reason,
         })
 
+    surface_annotation_records = list(getattr(placement_ctx, "surface_annotations", []) or [])
+    surface_annotation_role_counts = dict(
+        Counter(
+            str(record.get("surface_role", "") or "").strip().lower()
+            for record in surface_annotation_records
+            if isinstance(record, Mapping) and str(record.get("surface_role", "") or "").strip()
+        )
+    )
+    bus_bay_count = sum(
+        1
+        for record in surface_annotation_records
+        if isinstance(record, Mapping)
+        and str(record.get("surface_role", "") or "").strip().lower() == "bus_lane"
+        and str(record.get("kind", record.get("surface_kind", "")) or "").strip().lower() == "bus_lane_widening"
+    )
+    bus_stop_anchor_slot_count = sum(
+        1
+        for slot in ordered_slot_plans
+        if str(getattr(slot, "category", "") or "") == "bus_stop"
+        and str(getattr(slot, "anchor_poi_type", "") or "") == "bus_stop"
+    )
+
     style_cap_value = int(getattr(config, "max_styles_per_category", 3) or 0)
     style_cap_summary = {
         category: {
@@ -12669,6 +12967,9 @@ def compose_street_scene(
         "building_ground_policy": str(building_summary.get("building_ground_policy", "") or ""),
         "building_ground_grass_patch_count": int(building_summary.get("building_ground_grass_patch_count", 0) or 0),
         "building_access_path_count": int(building_summary.get("building_access_path_count", 0) or 0),
+        "bus_bay_count": int(bus_bay_count),
+        "bus_stop_anchor_slot_count": int(bus_stop_anchor_slot_count),
+        "surface_annotation_role_counts": dict(surface_annotation_role_counts),
         "door_enabled": bool(building_summary.get("door_enabled", True)),
         "door_count": int(building_summary.get("door_count", 0) or 0),
         "door_count_by_side": dict(building_summary.get("door_count_by_side", {}) or {}),

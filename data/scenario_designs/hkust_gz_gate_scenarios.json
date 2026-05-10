@@ -358,8 +358,8 @@
           "surface_role": "bus_lane",
           "station_start_m": 72,
           "station_end_m": 112,
-          "lateral_start_m": -6.6,
-          "lateral_end_m": -3.2,
+          "lateral_start_m": -8.6,
+          "lateral_end_m": -6.6,
           "material": {
             "preset": "bus_lane_green"
           }
@@ -372,7 +372,7 @@
           "station_start_m": 80,
           "station_end_m": 104,
           "lateral_start_m": -10.2,
-          "lateral_end_m": -7.0,
+          "lateral_end_m": -8.6,
           "material": {
             "preset": "transit_pad_plaza"
           }
@@ -399,7 +399,13 @@
         "objective_profile": "transit",
         "bike_demand_level": "high",
         "ped_demand_level": "high",
-        "transit_demand_level": "high"
+        "transit_demand_level": "high",
+        "minimum_category_presence": [
+          "trash",
+          "bench",
+          "lamp",
+          "bus_stop"
+        ]
       }
     },
     {

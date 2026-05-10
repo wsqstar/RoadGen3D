@@ -155,6 +155,30 @@ def _polyline_points_between_stations(
     return deduped
 
 
+def _polyline_station_points_between(
+    points: Sequence[Tuple[float, float]],
+    station_start_m: float,
+    station_end_m: float,
+) -> List[Tuple[float, Tuple[float, float]]]:
+    if len(points) < 2:
+        return [(0.0, tuple(float(value) for value in points[0]))] if points else []
+    station_start_m = max(float(station_start_m), 0.0)
+    station_end_m = max(float(station_end_m), station_start_m)
+    stations: List[float] = [station_start_m]
+    cumulative = 0.0
+    for start, end in zip(points[:-1], points[1:]):
+        cumulative += _distance(start, end)
+        if station_start_m < cumulative < station_end_m:
+            stations.append(float(cumulative))
+    stations.append(station_end_m)
+    deduped: List[Tuple[float, Tuple[float, float]]] = []
+    for station in sorted(stations):
+        point = _point_at_station(points, station)
+        if not deduped or abs(float(station) - deduped[-1][0]) > 1e-6:
+            deduped.append((float(station), point))
+    return deduped
+
+
 def _offset_polyline_by_lateral(
     points: Sequence[Tuple[float, float]],
     lateral_offset_m: float,
@@ -190,6 +214,59 @@ def _offset_polyline_by_lateral(
     return result
 
 
+def _offset_polyline_by_lateral_values(
+    points: Sequence[Tuple[float, float]],
+    lateral_offsets_m: Sequence[float],
+) -> List[Tuple[float, float]]:
+    if len(points) < 2:
+        return list(points)
+    tangents: List[Tuple[float, float]] = []
+    for start, end in zip(points[:-1], points[1:]):
+        dx = float(end[0]) - float(start[0])
+        dy = float(end[1]) - float(start[1])
+        length = math.hypot(dx, dy)
+        tangents.append((dx / length, dy / length) if length > 1e-9 else (1.0, 0.0))
+    result: List[Tuple[float, float]] = []
+    for index, point in enumerate(points):
+        if index == 0:
+            tangent = tangents[0]
+        elif index == len(points) - 1:
+            tangent = tangents[-1]
+        else:
+            prev_tangent = tangents[index - 1]
+            next_tangent = tangents[index]
+            tx = prev_tangent[0] + next_tangent[0]
+            ty = prev_tangent[1] + next_tangent[1]
+            length = math.hypot(tx, ty)
+            tangent = (tx / length, ty / length) if length > 1e-9 else next_tangent
+        normal = (float(tangent[1]), -float(tangent[0]))
+        lateral = float(lateral_offsets_m[min(index, len(lateral_offsets_m) - 1)])
+        result.append(
+            (
+                float(point[0]) + normal[0] * lateral,
+                float(point[1]) + normal[1] * lateral,
+            )
+        )
+    return result
+
+
+def _bus_bay_uses_taper(
+    *,
+    surface_kind: str = "",
+    road_half_width_m: float | None = None,
+    lateral_start_m: float,
+    lateral_end_m: float,
+) -> bool:
+    if str(surface_kind or "").strip().lower() != "bus_lane_widening":
+        return False
+    if road_half_width_m is None or float(road_half_width_m) <= 0.0:
+        return False
+    inner_abs = min(abs(float(lateral_start_m)), abs(float(lateral_end_m)))
+    outer_abs = max(abs(float(lateral_start_m)), abs(float(lateral_end_m)))
+    road_half = float(road_half_width_m)
+    return bool(outer_abs > road_half + 0.05 and abs(inner_abs - road_half) <= 0.40)
+
+
 def _surface_annotation_polygon(
     centerline_points: Sequence[Tuple[float, float]],
     *,
@@ -197,8 +274,68 @@ def _surface_annotation_polygon(
     station_end_m: float,
     lateral_start_m: float,
     lateral_end_m: float,
+    surface_kind: str = "",
+    road_half_width_m: float | None = None,
 ) -> Any | None:
     from shapely.geometry import Polygon
+
+    if _bus_bay_uses_taper(
+        surface_kind=surface_kind,
+        road_half_width_m=road_half_width_m,
+        lateral_start_m=lateral_start_m,
+        lateral_end_m=lateral_end_m,
+    ):
+        station_start_m = max(float(station_start_m), 0.0)
+        station_end_m = max(float(station_end_m), station_start_m)
+        length_m = max(float(station_end_m) - float(station_start_m), 0.0)
+        if length_m <= 1e-6:
+            return None
+        taper_m = min(8.0, length_m * 0.25)
+        break_stations = [
+            station_start_m,
+            min(station_start_m + taper_m, station_end_m),
+            max(station_end_m - taper_m, station_start_m),
+            station_end_m,
+        ]
+        station_points = _polyline_station_points_between(centerline_points, station_start_m, station_end_m)
+        all_stations = sorted({round(station, 6) for station, _point in station_points} | {round(station, 6) for station in break_stations})
+        spine = [_point_at_station(centerline_points, station) for station in all_stations]
+        if len(spine) < 2:
+            return None
+        if abs(float(lateral_start_m)) <= abs(float(lateral_end_m)):
+            inner_lateral = float(lateral_start_m)
+            outer_lateral = float(lateral_end_m)
+        else:
+            inner_lateral = float(lateral_end_m)
+            outer_lateral = float(lateral_start_m)
+
+        def _outer_lateral_at(station: float) -> float:
+            if taper_m <= 1e-6:
+                return outer_lateral
+            if station <= station_start_m:
+                return inner_lateral
+            if station < station_start_m + taper_m:
+                ratio = (float(station) - station_start_m) / taper_m
+                return inner_lateral + (outer_lateral - inner_lateral) * ratio
+            if station <= station_end_m - taper_m:
+                return outer_lateral
+            if station < station_end_m:
+                ratio = (station_end_m - float(station)) / taper_m
+                return inner_lateral + (outer_lateral - inner_lateral) * ratio
+            return inner_lateral
+
+        inner_edge = _offset_polyline_by_lateral(spine, inner_lateral)
+        outer_edge = _offset_polyline_by_lateral_values(
+            spine,
+            [_outer_lateral_at(float(station)) for station in all_stations],
+        )
+        ring = [*inner_edge, *reversed(outer_edge)]
+        if len(ring) < 3:
+            return None
+        polygon = _clean_polygon(Polygon(ring))
+        if getattr(polygon, "is_empty", True):
+            return None
+        return polygon
 
     spine = _polyline_points_between_stations(centerline_points, station_start_m, station_end_m)
     if len(spine) < 2:
@@ -317,16 +454,27 @@ def _build_road_occupancy(annotation: ReferenceAnnotation, scene_polygon: Any) -
         centerline_id: tuple(points)
         for centerline_id, _, points in _collect_local_centerlines(annotation)
     }
+    centerline_by_id = {
+        centerline_id: centerline
+        for centerline_id, centerline, _points in _collect_local_centerlines(annotation)
+    }
     for surface in annotation.surface_annotations:
         centerline_points = centerline_points_by_id.get(str(surface.centerline_id))
         if not centerline_points:
             continue
+        centerline = centerline_by_id.get(str(surface.centerline_id))
         polygon = _surface_annotation_polygon(
             centerline_points,
             station_start_m=surface.station_start_m,
             station_end_m=surface.station_end_m,
             lateral_start_m=surface.lateral_start_m,
             lateral_end_m=surface.lateral_end_m,
+            surface_kind=surface.kind,
+            road_half_width_m=(
+                float(centerline.carriageway_width_m()) * 0.5
+                if centerline is not None and hasattr(centerline, "carriageway_width_m")
+                else None
+            ),
         )
         if polygon is not None and not getattr(polygon, "is_empty", True):
             polygons.append(polygon)

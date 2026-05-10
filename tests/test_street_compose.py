@@ -2590,6 +2590,115 @@ def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
     assert max(float(mesh.bounds[1][0]) for mesh in curb_meshes) > 1.8
 
 
+def test_osm_base_scene_renders_bus_bay_surface_and_markings():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    import trimesh
+
+    bus_bay = shapely_geometry.Polygon(
+        [
+            (0.0, -6.6),
+            (40.0, -6.6),
+            (32.0, -8.6),
+            (8.0, -8.6),
+            (0.0, -6.6),
+        ]
+    )
+    transit_pad = shapely_geometry.box(8.0, -10.2, 32.0, -8.6)
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(0.0, -6.6, 40.0, 6.6),
+        sidewalk_zone=shapely_geometry.box(0.0, -10.2, 40.0, -6.6),
+        road_arm_geometries=[],
+        junction_geometries=[],
+        strip_zones={},
+        surface_annotations=[
+            {
+                "surface_id": "bus_bay",
+                "kind": "bus_lane_widening",
+                "surface_role": "bus_lane",
+                "geometry": bus_bay,
+                "material": {"preset": "bus_lane_green"},
+            },
+            {
+                "surface_id": "transit_pad",
+                "kind": "transit_pad",
+                "surface_role": "transit_pad",
+                "geometry": transit_pad,
+                "material": {"preset": "transit_pad_plaza"},
+            },
+        ],
+    )
+
+    try:
+        trimesh.creation.extrude_polygon(shapely_geometry.Polygon([(0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0)]), 0.01)
+    except ValueError as exc:
+        if "No available triangulation engine" in str(exc):
+            pytest.skip("Trimesh triangulation engine is unavailable in this environment")
+        raise
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+
+    node_names = {str(name) for name in scene.graph.nodes_geometry}
+
+    assert any(name.startswith("surface_annotation_bus_bay") for name in node_names)
+    assert any(name.startswith("surface_annotation_bus_bay_marking") for name in node_names)
+    assert any(name.startswith("surface_annotation_transit_pad") for name in node_names)
+
+
+def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    placement_ctx = SimpleNamespace(
+        surface_annotations=[
+            {
+                "surface_id": "scenario_03_bus_lane_widening",
+                "kind": "bus_lane_widening",
+                "surface_role": "bus_lane",
+                "centerline_id": "main_axis",
+                "station_start_m": 72.0,
+                "station_end_m": 112.0,
+                "lateral_start_m": -8.6,
+                "lateral_end_m": -6.6,
+                "geometry": shapely_geometry.Polygon(
+                    [
+                        (0.0, -6.6),
+                        (40.0, -6.6),
+                        (32.0, -8.6),
+                        (8.0, -8.6),
+                        (0.0, -6.6),
+                    ]
+                ),
+            },
+            {
+                "surface_id": "scenario_03_transit_pad",
+                "kind": "transit_pad",
+                "surface_role": "transit_pad",
+                "centerline_id": "main_axis",
+                "station_start_m": 80.0,
+                "station_end_m": 104.0,
+                "lateral_start_m": -10.2,
+                "lateral_end_m": -8.6,
+                "geometry": shapely_geometry.box(8.0, -10.2, 32.0, -8.6),
+            },
+        ],
+    )
+
+    slots = street_layout._surface_annotation_bus_stop_slot_plans(
+        placement_ctx=placement_ctx,
+        theme_segments=[],
+        road_segment_graph=None,
+    )
+
+    assert len(slots) == 1
+    slot = slots[0]
+    assert slot.category == "bus_stop"
+    assert slot.required is True
+    assert slot.anchor_poi_type == "bus_stop"
+    assert slot.side == "right"
+    assert slot.anchor_position_xz is not None
+    assert shapely_geometry.Point(slot.anchor_position_xz).within(placement_ctx.surface_annotations[1]["geometry"])
+
+
 def test_osm_normalized_crosswalk_uses_preserved_horizontal_axes():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
