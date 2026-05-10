@@ -99,6 +99,15 @@ from .scene_textures import (
     create_scene_texture_tracker,
     scene_texture_pack_name,
 )
+from .scene_layout_payload import (
+    build_environment_system_summary,
+    build_scene_layout_payload,
+    build_visual_style_payload,
+    derive_environment_state as _derive_environment_state,
+    derive_lighting_params as _derive_lighting_params,
+    derive_lighting_preset as _derive_lighting_preset,
+    merge_summary_sections,
+)
 from .services.scene_backends import (
     GroundMaterialBackend,
     ObjectAssetBackend,
@@ -8392,97 +8401,6 @@ def _place_surrounding_buildings(
     )
 
 
-_LIGHTING_PARAMS: Dict[str, Dict[str, Any]] = {
-    "bright_day": {
-        "exposure": 1.3,
-        "keyLightIntensity": 1.2,
-        "fillLightIntensity": 0.8,
-        "warmth": -0.1,
-        "shadowStrength": 0.3,
-    },
-    "overcast": {
-        "exposure": 1.05,
-        "keyLightIntensity": 0.75,
-        "fillLightIntensity": 0.95,
-        "warmth": -0.15,
-        "shadowStrength": 0.15,
-    },
-    "golden_hour": {
-        "exposure": 1.18,
-        "keyLightIntensity": 1.05,
-        "fillLightIntensity": 0.48,
-        "warmth": 0.85,
-        "shadowStrength": 0.58,
-    },
-    "night_presentation": {
-        "exposure": 1.05,
-        "keyLightIntensity": 1.05,
-        "fillLightIntensity": 0.24,
-        "warmth": 0.2,
-        "shadowStrength": 0.72,
-    },
-}
-
-
-def _derive_lighting_preset(sky_selection: Any) -> str:
-    """Map sky selection to a viewer lighting preset."""
-    if sky_selection is None:
-        return "bright_day"
-    time_of_day = str(getattr(sky_selection, "time_of_day", "day") or "day").lower()
-    weather_tags = [
-        str(tag).lower()
-        for tag in (getattr(sky_selection, "weather_tags", ()) or ())
-    ]
-    illumination_tags = [
-        str(tag).lower()
-        for tag in (getattr(sky_selection, "illumination_tags", ()) or ())
-    ]
-    all_tags = set(weather_tags) | set(illumination_tags)
-    if time_of_day == "night":
-        return "night_presentation"
-    if time_of_day == "evening":
-        return "golden_hour"
-    if any(tag in all_tags for tag in ("overcast", "cloudy", "foggy", "rainy")):
-        return "overcast"
-    return "bright_day"
-
-
-def _derive_lighting_params(sky_selection: Any) -> Dict[str, Any]:
-    """Map sky selection to concrete lighting parameter values."""
-    preset = _derive_lighting_preset(sky_selection)
-    params = dict(_LIGHTING_PARAMS.get(preset, _LIGHTING_PARAMS["bright_day"]))
-    return {"preset": preset, **params}
-
-
-def _derive_environment_state(sky_selection: Any) -> Dict[str, Any]:
-    """Build the runtime environment defaults consumed by the Viewer."""
-    weather_mode = "clear"
-    weather_intensity = 0.0
-    if sky_selection is not None:
-        weather_tags = {
-            str(tag).strip().lower()
-            for tag in (getattr(sky_selection, "weather_tags", ()) or ())
-            if str(tag).strip()
-        }
-        if weather_tags & {"rain", "rainy", "shower", "wet"}:
-            weather_mode = "rain"
-            weather_intensity = 0.55
-        elif weather_tags & {"fog", "foggy", "mist", "haze", "hazy"}:
-            weather_mode = "fog"
-            weather_intensity = 0.5
-        elif weather_tags & {"overcast", "cloudy", "soft_light"}:
-            weather_mode = "overcast"
-            weather_intensity = 0.65
-    return {
-        "weather_mode": weather_mode,
-        "weather_intensity": float(weather_intensity),
-        "time_of_day_hours": 14.0,
-        "sun_cycle_enabled": False,
-        "sun_cycle_speed": "medium",
-        "source": "default_runtime",
-    }
-
-
 def compose_street_scene(
     config: StreetComposeConfig,
     manifest_path: Path,
@@ -11027,75 +10945,15 @@ def compose_street_scene(
     style_preset_used = str(
         resolved_program.context_conditions.get("style_preset", getattr(config, "style_preset", "civic_clean_v1"))
     )
-    visual_lighting_preset = (
-        "analytical_diorama"
-        if style_preset_used.strip().lower() == "analytical_diorama_v1"
-        else _derive_lighting_preset(sky_selection)
+    visual_style_payload = build_visual_style_payload(
+        style_preset_used=style_preset_used,
+        sky_selection=sky_selection,
+        building_summary=building_summary,
+        config=config,
+        default_sky_dome_asset_id=DEFAULT_SKY_DOME_ASSET_ID,
+        default_sky_dome_enabled=bool(default_sky_dome_placement is not None),
     )
-    visual_surface_roles = (
-        "carriageway",
-        "sidewalk",
-        "clear_path",
-        "furnishing",
-        "bike_lane",
-        "bus_lane",
-        "grass",
-        "grass_belt",
-        "crossing",
-        "lane_mark",
-        "context_ground",
-        "building_buffer",
-        "tree_pit",
-        "planting_soil",
-        "transit_pad",
-        "curb",
-        "parking_lane",
-        "median_green",
-        "safety_island",
-        "shared_street_surface",
-        "colored_pavement",
-    )
-    visual_palette = style_palette(style_preset_used)
-    visual_roughness = surface_roughness(style_preset_used)
-    visual_style_payload = {
-        "preset": style_preset_used,
-        "lighting_preset": visual_lighting_preset,
-        "surface_palette": {
-            role: list(visual_palette[role])
-            for role in visual_surface_roles
-            if role in visual_palette
-        },
-        "surface_roughness": {
-            role: float(visual_roughness[role])
-            for role in visual_surface_roles
-            if role in visual_roughness
-        },
-        "building_profile": {
-            "mode": (
-                "procedural_background"
-                if style_preset_used.strip().lower() == "analytical_diorama_v1"
-                else str(building_summary.get("generation_mode_used") or getattr(config, "surrounding_building_mode", "grid_growth"))
-            ),
-            "profile": (
-                "low_saturation_parametric_facade_v1"
-                if style_preset_used.strip().lower() == "analytical_diorama_v1"
-                else "default_building_profile"
-            ),
-            "preferred_theme": "analytical" if style_preset_used.strip().lower() == "analytical_diorama_v1" else "",
-            "background_layer": bool(style_preset_used.strip().lower() == "analytical_diorama_v1"),
-            "procedural_fallback_count": int(building_summary.get("procedural_building_fallback_count", building_summary.get("fallback_count", 0)) or 0),
-        },
-        "material_finish_version": (
-            "analytical_diorama_finish_v1"
-            if style_preset_used.strip().lower() == "analytical_diorama_v1"
-            else "presentation_material_finish_v1"
-        ),
-        "scene_texture_pack": scene_texture_pack_name(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1"))),
-        "default_sky_dome_asset_id": (
-            DEFAULT_SKY_DOME_ASSET_ID if default_sky_dome_placement is not None else ""
-        ),
-        "default_sky_dome_enabled": bool(default_sky_dome_placement is not None),
-    }
+    visual_lighting_preset = str(visual_style_payload.get("lighting_preset", ""))
     environment_state = _derive_environment_state(sky_selection)
 
     def _coerce_presence_categories(value: object, fallback: Sequence[str]) -> List[str]:
@@ -11313,13 +11171,7 @@ def compose_street_scene(
         "scene_texture_missing_assets": sorted(scene_texture_tracker.missing_assets),
         "visual_style_preset": style_preset_used,
         "visual_lighting_preset": visual_lighting_preset,
-        "environment_system": {
-            "layer": "environment_runtime_v1",
-            "weather_modes": ["clear", "overcast", "rain", "fog"],
-            "sun_model": "artistic_day_cycle",
-            "runtime_only": True,
-            "environment_state": dict(environment_state),
-        },
+        "environment_system": build_environment_system_summary(environment_state),
         "visual_surface_role_count": dict(sorted(scene_texture_tracker.surface_role_counts.items())),
         "layout_mode": config.layout_mode,
         "osm_semantic_mode": str(
@@ -11561,81 +11413,44 @@ def compose_street_scene(
         if p.violated_rules
     ]
 
-    program_generation_payload = program_result.to_dict()
-    program_generation_payload["theme_zone_programs"] = list(theme_zone_programs)
-    layout_payload = {
-        "query": config.query,
-        "config": config.to_dict(),
-        "selected_object_backend": str(object_backend_name),
-        "selected_ground_materials": ground_selection.to_dict() if ground_selection is not None else {},
-        "selected_sky": sky_selection.to_dict() if sky_selection is not None else {},
-        "environment_source_dataset": str(environment_source_dataset),
-        "environment_source_datasets": list(environment_source_datasets),
-        "program_generation": program_generation_payload,
-        "street_program": resolved_program.to_dict(),
-        "constraint_set": base_constraint_set.to_dict(),
-        "solver": solver_result.to_dict(),
-        "summary": summary_payload,
-        "semantic_design_layers": dict(semantic_design_layers),
-        "environment_state": dict(environment_state),
-        "osm_semantic_blocks": osm_semantic_blocks,
-        "segment_semantic_profiles": segment_semantic_profiles,
-        "visual_style": visual_style_payload,
-        "placements": [placement.to_dict() for placement in placements],
-        "environment_placements": (
-            [default_sky_dome_placement.to_dict()]
+    layout_payload = build_scene_layout_payload(
+        query=config.query,
+        config=config,
+        selected_object_backend=str(object_backend_name),
+        ground_selection=ground_selection,
+        sky_selection=sky_selection,
+        environment_source_dataset=str(environment_source_dataset),
+        environment_source_datasets=list(environment_source_datasets),
+        program_result=program_result,
+        theme_zone_programs=list(theme_zone_programs),
+        resolved_program=resolved_program,
+        constraint_set=base_constraint_set,
+        solver_result=solver_result,
+        summary=merge_summary_sections(summary_payload, presentation_report),
+        semantic_design_layers=semantic_design_layers,
+        environment_state=environment_state,
+        osm_semantic_blocks=osm_semantic_blocks,
+        segment_semantic_profiles=segment_semantic_profiles,
+        visual_style=visual_style_payload,
+        placements=placements,
+        environment_placements=(
+            [default_sky_dome_placement]
             if default_sky_dome_placement is not None
             else []
         ),
-        "building_footprints": [footprint.to_dict() for footprint in building_footprints],
-        "generated_lots": [lot.to_dict() for lot in generated_lots],
-        "building_placements": [plan.to_dict() for plan in building_plans],
-        "building_retrieval_predictions": building_retrieval_predictions,
-        "zoning_grid": list(zoning_grid),
-        "regions": list(getattr(placement_ctx, "regions", []) or []),
-        "derived_regions": list(getattr(placement_ctx, "derived_regions", []) or []),
-        "building_regions": [
-            {
-                key: value
-                for key, value in dict(record).items()
-                if key != "geometry"
-            }
-            for record in getattr(placement_ctx, "building_regions", []) or []
-        ],
-        "region_derivation_summary": dict(getattr(placement_ctx, "region_derivation_summary", {}) or {}),
-        "functional_zones": list(getattr(placement_ctx, "functional_zones", []) or []),
-        "surface_annotations": [
-            {
-                key: value
-                for key, value in dict(record).items()
-                if key != "geometry"
-            }
-            for record in getattr(placement_ctx, "surface_annotations", []) or []
-        ],
-        "production_steps": [record.to_dict() for record in production_steps],
-        "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
-        "placement_decision_log": {
-            "path": str(placement_log_path),
-            "summary": dict(placement_log_summary),
-        },
-        "outputs": outputs,
-        "supervision_sample": {
-            "inputs": {
-                "config": config.to_dict(),
-                "inventory_summary": inventory_summary.to_dict(),
-                "constraint_set": base_constraint_set.to_dict(),
-                "road_segment_graph_summary": solver_result.road_segment_graph_summary,
-                "observed_poi_counts": dict(resolved_program.observed_poi_counts),
-            },
-            "labels": {
-                "resolved_program": resolved_program.to_dict(),
-                "band_solutions": [band.to_dict() for band in solver_result.band_solutions],
-                "slot_plans": [slot.to_dict() for slot in solver_result.slot_plans],
-                "objective_profile": str(resolved_program.objective_profile),
-            },
-        },
-    }
-    layout_payload["summary"].update(presentation_report)
+        building_footprints=building_footprints,
+        generated_lots=generated_lots,
+        building_placements=building_plans,
+        building_retrieval_predictions=building_retrieval_predictions,
+        zoning_grid=zoning_grid,
+        placement_context=placement_ctx,
+        production_steps=production_steps,
+        unplaced_slot_diagnostics=unplaced_slot_diagnostics,
+        placement_log_path=str(placement_log_path),
+        placement_log_summary=placement_log_summary,
+        outputs=outputs,
+        inventory_summary=inventory_summary,
+    )
     scene_graph = build_scene_graph(layout_payload, road_segment_graph=road_segment_graph)
     layout_payload["scene_graph"] = scene_graph
     layout_payload["summary"]["scene_graph_node_count"] = int(len(scene_graph.get("nodes", []) or []))

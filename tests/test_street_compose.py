@@ -41,6 +41,7 @@ from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
 from roadgen3d.poi_rules import PoiContext
 from roadgen3d.scene_textures import apply_default_scene_texture, create_scene_texture_tracker
+from roadgen3d.scene_layout_payload import SCENE_LAYOUT_SCHEMA_VERSION
 
 
 def _has_embedded_texture(scene_or_mesh) -> bool:
@@ -3625,6 +3626,7 @@ def test_analytical_diorama_visual_style_metadata_uses_procedural_buildings(tmp_
     visual_style = payload["visual_style"]
     environment_state = payload["environment_state"]
 
+    assert payload["schema_version"] == SCENE_LAYOUT_SCHEMA_VERSION
     assert visual_style["preset"] == "analytical_diorama_v1"
     assert visual_style["lighting_preset"] == "analytical_diorama"
     assert visual_style["material_finish_version"] == "analytical_diorama_finish_v1"

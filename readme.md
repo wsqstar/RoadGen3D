@@ -56,7 +56,7 @@ RoadGen3D/
 
 | 层级 | 职责 | 关键技术 |
 |:---|:---|:---|
-| **Web 层** | 用户交互、3D 可视化 | React, Three.js, Vite, Ant Design |
+| **Web 层** | 用户交互、3D 可视化 | TypeScript DOM, Three.js, Vite, G6/Chart.js |
 | **API 层** | 业务逻辑编排、任务队列 | FastAPI, Pydantic |
 | **引擎层** | 场景生成、约束求解、布局优化 | Python, NumPy, CLIP, PuLP |
 | **评估层** | 多维度质量评估 (独立子模块) | road-metrics (Submodule) |

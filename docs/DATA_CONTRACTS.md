@@ -206,12 +206,17 @@ Schema：`data/schemas/template_patch.schema.json`
 
 ## 4. `scene_layout.json`
 
-代码写出位置：`src/roadgen3d/street_layout.py::compose_street_scene()`
+代码写出位置：
+
+- 生成计算：`src/roadgen3d/street_layout.py::compose_street_scene()`
+- 最终契约组装：`src/roadgen3d/scene_layout_payload.py`
+- JSON Schema：`data/schemas/scene_layout.schema.json`
 
 当前顶层字段：
 
 | 字段 | 说明 |
 | --- | --- |
+| `schema_version` | 当前为 `roadgen3d.scene_layout.v1` |
 | `query` | 生成 query |
 | `config` | `StreetComposeConfig.to_dict()` |
 | `selected_object_backend` | 对象资产 backend |
@@ -223,7 +228,13 @@ Schema：`data/schemas/template_patch.schema.json`
 | `constraint_set` | 规则集 |
 | `solver` | `LayoutSolverResult` |
 | `summary` | Viewer/评价/报告使用的摘要 |
+| `semantic_design_layers` | A/B 语义分层最终解析结果，兼容 summary 内同名字段 |
+| `environment_state` | C 环境表现层默认运行时状态 |
+| `osm_semantic_blocks` | OSM multiblock 语义街区摘要 |
+| `segment_semantic_profiles` | 道路 segment 的 OSM/语义 profile |
+| `visual_style` | 材质、灯光 preset、surface palette、building profile |
 | `placements` | 实际资产放置 |
+| `environment_placements` | 天空盒等环境展示资产 |
 | `building_footprints` | 建筑 footprint |
 | `generated_lots` | 生成地块 |
 | `building_placements` | 建筑放置 |
@@ -236,11 +247,42 @@ Schema：`data/schemas/template_patch.schema.json`
 | `supervision_sample` | 训练/监督样本 |
 | `scene_graph` | Viewer 场景图 |
 
-当前缺口：
+### 4.1 语义分层字段
 
-- 尚无 `schema_version`。
-- 尚无 JSON Schema。
-- `outputs` 写入顺序存在历史复杂性，后续加 schema 时应明确哪些字段必须出现在文件内，哪些只属于返回对象。
+`scene_layout.json` 现在把街道生成语义拆成三层记录：
+
+- **A: `skeleton_design_profile` / 骨架功能设计**：影响道路骨架、横断面、surface annotation、公交/慢行/车行优先级等空间功能。来源可为人工 Reference Annotation、LLM 标注或 OSM/POI 自动推断。
+- **B: `street_furniture_profile` / 街道家具主题**：影响建筑、街道家具、设施组合、密度、材质和渲染风格。来源可为 Viewer 街道家具设计目标、LLM 推断或 A 层回退推荐。
+- **C: `environment_state` / 环境表现层**：Viewer 运行时天气和日照默认状态；V1 只影响最终展示，不反向修改道路设计和评分。
+
+优先级固定为 **manual annotation > LLM > OSM/POI automatic inference**。`summary.semantic_design_layers` 和顶层 `semantic_design_layers` 同时保留，便于旧 Viewer、评价器和报告工具读取。
+
+### 4.2 OSM multiblock 字段
+
+OSM 多街区流程保留原有 `semantic_profile_id`，同时把它作为 A 层 `skeleton_design_profile` 的兼容别名使用：
+
+- `osm_semantic_blocks`：AOI 内 landuse / amenity / leisure / shop / tourism / office 等面状或关系要素形成的语义街区。
+- `segment_semantic_profiles`：道路 segment 绑定的语义 profile、来源、置信度和理由。
+- `summary.osm_semantic_mode`、`summary.semantic_block_count`、`summary.segment_semantic_profile_counts`：Viewer 和 demo 摘要使用的聚合记录。
+
+### 4.3 Environment 字段
+
+`environment_state` 默认由 sky manifest 派生，字段为：
+
+| 字段 | 说明 |
+| --- | --- |
+| `weather_mode` | `clear`、`overcast`、`rain`、`fog` |
+| `weather_intensity` | 0-1 展示强度 |
+| `time_of_day_hours` | 0-24 艺术化日照时间 |
+| `sun_cycle_enabled` | 是否默认自动循环 |
+| `sun_cycle_speed` | `slow`、`medium`、`fast` |
+| `source` | 默认 `default_runtime`，Viewer 调整后为运行时状态 |
+
+`summary.environment_system` 记录 C 层是 `environment_runtime_v1`、天气枚举、`artistic_day_cycle` 和 `runtime_only=true`。
+
+当前仍保留的历史复杂性：
+
+- `outputs` 同时服务返回对象和落盘摘要，部分字段只在 `StreetComposeResult.outputs` 中补齐；schema 先允许 `outputs` 扩展，后续再把“文件内输出”和“返回对象输出”拆清。
 
 ## 5. Job 状态契约
 
@@ -264,8 +306,7 @@ Viewer 应优先使用后端返回的 `progress` 和 `operations`，只在缺失
 
 建议按以下顺序推进：
 
-1. 为 `scene_layout.json` 增加 `schema_version: "roadgen3d.scene_layout.v1"`。
-2. 新增 `schemas/scene_layout.schema.json`。
-3. 新增 `schemas/api_scene_job.schema.json`。
-4. 在 `tests/` 中加入 schema validation。
-5. 给历史 layout 提供 migration 或 best-effort loader。
+1. 继续细化 `data/schemas/scene_layout.schema.json` 的 summary 子结构，优先覆盖 evaluation / Viewer 必读字段。
+2. 新增 `schemas/api_scene_job.schema.json`。
+3. 把 `outputs` 拆成落盘 `outputs` 与返回对象 `SceneComposeResult.outputs` 的明确边界。
+4. 给历史 layout 提供 migration 或 best-effort loader。

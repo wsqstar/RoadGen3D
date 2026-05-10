@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadgen3d.local/schemas/scene_layout.schema.json",
+  "title": "RoadGen3D scene_layout.json",
+  "description": "V1 scene layout contract produced by compose_street_scene. The schema fixes the stable top-level records while allowing summary and placement payloads to evolve.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "config",
+    "street_program",
+    "constraint_set",
+    "solver",
+    "summary",
+    "semantic_design_layers",
+    "environment_state",
+    "visual_style",
+    "placements",
+    "production_steps",
+    "outputs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "roadgen3d.scene_layout.v1"
+    },
+    "query": {
+      "type": "string"
+    },
+    "config": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "selected_object_backend": {
+      "type": "string"
+    },
+    "selected_ground_materials": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "selected_sky": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "environment_source_dataset": {
+      "type": "string"
+    },
+    "environment_source_datasets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "program_generation": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "street_program": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "constraint_set": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "solver": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "environment_system": {
+          "$ref": "#/$defs/environment_system"
+        },
+        "semantic_design_layers": {
+          "$ref": "#/$defs/semantic_design_layers"
+        },
+        "osm_semantic_mode": {
+          "type": "string"
+        },
+        "semantic_block_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_semantic_profile_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "semantic_design_layers": {
+      "$ref": "#/$defs/semantic_design_layers"
+    },
+    "environment_state": {
+      "$ref": "#/$defs/environment_state"
+    },
+    "osm_semantic_blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "segment_semantic_profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "semantic_profile_id": {
+            "type": "string"
+          },
+          "skeleton_design_profile": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "visual_style": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "preset",
+        "lighting_preset",
+        "surface_palette",
+        "surface_roughness"
+      ],
+      "properties": {
+        "preset": {
+          "type": "string"
+        },
+        "lighting_preset": {
+          "type": "string"
+        },
+        "surface_palette": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "surface_roughness": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "placements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "environment_placements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "building_footprints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "generated_lots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "building_placements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "production_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "scene_graph": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "semantic_design_layers": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "schema_version": {
+          "type": "string"
+        },
+        "skeleton_design_profile": {
+          "type": "string"
+        },
+        "street_furniture_profile": {
+          "type": "string"
+        },
+        "profile_pair": {
+          "type": "string"
+        },
+        "resolution_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "environment_state": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "weather_mode",
+        "weather_intensity",
+        "time_of_day_hours",
+        "sun_cycle_enabled",
+        "sun_cycle_speed",
+        "source"
+      ],
+      "properties": {
+        "weather_mode": {
+          "enum": ["clear", "overcast", "rain", "fog"]
+        },
+        "weather_intensity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "time_of_day_hours": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 24
+        },
+        "sun_cycle_enabled": {
+          "type": "boolean"
+        },
+        "sun_cycle_speed": {
+          "enum": ["slow", "medium", "fast"]
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "environment_system": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "layer",
+        "weather_modes",
+        "sun_model",
+        "runtime_only",
+        "environment_state"
+      ],
+      "properties": {
+        "layer": {
+          "const": "environment_runtime_v1"
+        },
+        "weather_modes": {
+          "type": "array",
+          "items": {
+            "enum": ["clear", "overcast", "rain", "fog"]
+          }
+        },
+        "sun_model": {
+          "const": "artistic_day_cycle"
+        },
+        "runtime_only": {
+          "type": "boolean"
+        },
+        "environment_state": {
+          "$ref": "#/$defs/environment_state"
+        }
+      }
+    }
+  }
+}
