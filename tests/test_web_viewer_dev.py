@@ -237,13 +237,16 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
     scene_dir.mkdir(parents=True, exist_ok=True)
     scene_glb = scene_dir / "scene.glb"
     scene_glb.write_bytes(b"glb")
+    step_glb = scene_dir / "road_base.glb"
+    step_glb.write_bytes(b"glb")
     layout_path = scene_dir / "scene_layout.json"
     layout_path.write_text(
         json.dumps(
             {
                 "summary": {"length_m": 60, "spatial_context": {"road_half_width_m": 5}},
                 "visual_style": {"style": "test"},
-                "config": {"length_m": 60},
+                "config": {"length_m": 60, "query": "test prompt", "density": 0.8, "road_width_m": 6.4, "lane_count": 2, "seed": 99, "style_preset": "test_style"},
+                "production_steps": [{"step_id": "road_base", "title": "Road Base", "glb_path": str(step_glb)}],
                 "street_program": {
                     "lane_count": 2,
                     "road_width_m": 6.4,
@@ -288,3 +291,11 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
     assert overlay["derived_regions"]
     assert overlay["functional_zones"]
     assert overlay["surface_annotations"]
+    metadata = manifest["comparison_metadata"]
+    assert metadata["prompt"] == "test prompt"
+    assert metadata["random_seed"] == 99
+    assert metadata["density"] == 0.8
+    assert metadata["road_width_m"] == 6.4
+    assert metadata["lane_count"] == 2
+    assert metadata["style_preset"] == "test_style"
+    assert metadata["production_step_ids"] == ["road_base"]

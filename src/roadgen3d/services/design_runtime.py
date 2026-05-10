@@ -228,6 +228,8 @@ def normalize_scene_generation_options(
         manifest_paths=manifest_paths,
         preset_id=str(payload.get("preset_id", DEFAULT_SCENE_GENERATION_OPTIONS.preset_id) or "").strip(),
         random_seed=_resolve_optional_int(payload.get("random_seed", DEFAULT_SCENE_GENERATION_OPTIONS.random_seed)),
+        design_variant_id=str(payload.get("design_variant_id", DEFAULT_SCENE_GENERATION_OPTIONS.design_variant_id) or "").strip(),
+        design_variant_name=str(payload.get("design_variant_name", DEFAULT_SCENE_GENERATION_OPTIONS.design_variant_name) or "").strip(),
         object_manifest_v2_path=_resolve_optional_path(
             payload.get("object_manifest_v2_path"),
             DEFAULT_SCENE_GENERATION_OPTIONS.object_manifest_v2_path,
@@ -368,6 +370,15 @@ def _build_scene_generation_result(
         scene_ply_path=str(compose_result.outputs.get("scene_ply", "") or ""),
         viewer_url=viewer_url,
     )
+
+
+def _generation_options_summary(options: SceneGenerationOptions) -> Dict[str, Any]:
+    return {
+        "preset_id": str(options.preset_id or ""),
+        "random_seed": options.random_seed,
+        "design_variant_id": str(options.design_variant_id or ""),
+        "design_variant_name": str(options.design_variant_name or ""),
+    }
 
 
 def _capture_scene_views_if_requested(
@@ -764,7 +775,7 @@ def _generate_metaurban_scene_from_draft(
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
-        extra_summary=bridge.summary_metadata,
+        extra_summary={**bridge.summary_metadata, **_generation_options_summary(options)},
     )
 
 
@@ -838,7 +849,7 @@ def _generate_reference_annotation_scene_from_draft(
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
-        extra_summary={**bridge.summary_metadata, **context_summary},
+        extra_summary={**bridge.summary_metadata, **context_summary, **_generation_options_summary(options)},
     )
 
 
@@ -910,7 +921,7 @@ def _generate_graph_template_scene_from_draft(
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
-        extra_summary={**bridge.summary_metadata, **context_summary},
+        extra_summary={**bridge.summary_metadata, **context_summary, **_generation_options_summary(options)},
     )
 
 
@@ -1047,7 +1058,7 @@ def generate_scene_from_draft(
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
-        extra_summary=resolved_scene_context.to_summary_metadata(),
+        extra_summary={**resolved_scene_context.to_summary_metadata(), **_generation_options_summary(options)},
     )
 
 
@@ -1121,5 +1132,5 @@ def generate_scene_from_graph_context(
     return _build_scene_generation_result(
         config=config,
         compose_result=result,
-        extra_summary=extra_summary,
+        extra_summary={**(extra_summary or {}), **_generation_options_summary(options)},
     )

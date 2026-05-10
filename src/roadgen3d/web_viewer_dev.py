@@ -258,6 +258,44 @@ def _build_layout_overlay(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
     )
 
 
+def _clean_string(value: Any) -> str:
+    return str(value or "").strip()
+
+
+def _build_comparison_metadata(layout_payload: Dict[str, Any], production_steps: List[Dict[str, Any]]) -> Dict[str, Any]:
+    summary = layout_payload.get("summary", {})
+    if not isinstance(summary, dict):
+        summary = {}
+    config = layout_payload.get("config", {})
+    if not isinstance(config, dict):
+        config = {}
+    scenario_variant = summary.get("scenario_design_variant", {})
+    if not isinstance(scenario_variant, dict):
+        scenario_variant = {}
+
+    return make_json_safe(
+        {
+            "preset_id": _clean_string(summary.get("preset_id") or summary.get("benchmark_preset_id")),
+            "preset_label": _clean_string(summary.get("preset_label") or summary.get("preset_name")),
+            "scenario_id": _clean_string(summary.get("scenario_id") or scenario_variant.get("scenario_id")),
+            "scenario_title": _clean_string(summary.get("scenario_title") or scenario_variant.get("title_zh")),
+            "graph_template_id": _clean_string(
+                summary.get("graph_template_id") or summary.get("base_graph_template_id") or summary.get("plan_id")
+            ),
+            "prompt": _clean_string(config.get("query") or layout_payload.get("query") or summary.get("query")),
+            "variant_id": _clean_string(summary.get("design_variant_id") or summary.get("variant_id")),
+            "variant_name": _clean_string(summary.get("design_variant_name") or summary.get("variant_name")),
+            "random_seed": _as_number(summary.get("random_seed"), _as_number(config.get("seed"))),
+            "density": _as_number(config.get("density"), _as_number(summary.get("density"))),
+            "road_width_m": _as_number(config.get("road_width_m"), _as_number(summary.get("road_width_m"))),
+            "lane_count": _as_number(config.get("lane_count"), _as_number(summary.get("lane_count"))),
+            "style_preset": _clean_string(config.get("style_preset") or summary.get("style_preset") or summary.get("visual_style_preset")),
+            "instance_count": _as_number(summary.get("instance_count")),
+            "production_step_ids": [str(step.get("step_id", "") or "") for step in production_steps if step.get("step_id")],
+        }
+    )
+
+
 def _iter_scene_layout_paths(search_roots: Iterable[Path]) -> Iterable[Path]:
     seen: set[Path] = set()
     for root in search_roots:
@@ -413,6 +451,7 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
         "scene_bounds": _build_scene_bounds(payload),
         "instances": _build_instance_payloads(payload),
         "layout_overlay": _build_layout_overlay(payload),
+        "comparison_metadata": _build_comparison_metadata(payload, production_steps),
         "lighting_preset": outputs.get("lighting_preset", "bright_day"),
         "lighting_params": outputs.get("lighting_params"),
         "environment_state": payload.get("environment_state") or outputs.get("environment_state"),

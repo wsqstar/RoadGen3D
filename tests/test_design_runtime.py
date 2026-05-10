@@ -19,6 +19,68 @@ from roadgen3d.services.scene_context_service import ResolvedSceneContext
 import roadgen3d.services.design_runtime as runtime
 
 
+def test_normalize_scene_generation_options_includes_design_variant_fields(tmp_path: Path):
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text("{}", encoding="utf-8")
+
+    options = runtime.normalize_scene_generation_options(
+        {
+            "manifest_path": str(layout_path),
+            "artifacts_dir": str(tmp_path),
+            "out_dir": str(tmp_path),
+            "design_variant_id": "variant-abc",
+            "design_variant_name": "Variant Alpha",
+            "random_seed": "42",
+            "preset_id": "custom",
+        }
+    )
+
+    assert options.design_variant_id == "variant-abc"
+    assert options.design_variant_name == "Variant Alpha"
+    assert options.random_seed == 42
+
+
+def test_generate_scene_from_draft_includes_design_variant_metadata_in_summary(tmp_path: Path, monkeypatch):
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 5}}), encoding="utf-8")
+
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=5,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="safe complete street",
+        compose_config_patch={"road_width_m": 6.5, "sidewalk_width_m": 4.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        generation_options={
+            "out_dir": str(tmp_path),
+            "preset_id": "skip_llm",
+            "design_variant_id": "variant-007",
+            "design_variant_name": "Urban Baseline",
+            "random_seed": 77,
+        },
+    )
+
+    assert result.summary["design_variant_id"] == "variant-007"
+    assert result.summary["design_variant_name"] == "Urban Baseline"
+    assert result.summary["random_seed"] == 77
+
 def test_build_compose_config_from_draft_applies_defaults():
     draft = DesignDraft(
         normalized_scene_query="safe complete street",

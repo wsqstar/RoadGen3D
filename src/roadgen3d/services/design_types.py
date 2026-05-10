@@ -430,6 +430,8 @@ class SceneGenerationOptions:
     out_dir: Path
     preset_id: str = ""
     random_seed: int | None = None
+    design_variant_id: str = ""
+    design_variant_name: str = ""
     object_manifest_v2_path: Path | None = None
     ground_material_manifest_path: Path | None = None
     sky_manifest_path: Path | None = None
@@ -456,6 +458,8 @@ class SceneGenerationOptions:
         return {
             "preset_id": self.preset_id,
             "random_seed": self.random_seed,
+            "design_variant_id": self.design_variant_id,
+            "design_variant_name": self.design_variant_name,
             "manifest_path": str(self.manifest_path),
             "manifest_paths": [str(path) for path in self.manifest_paths],
             "artifacts_dir": str(self.artifacts_dir),
