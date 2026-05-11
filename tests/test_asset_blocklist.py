@@ -17,12 +17,24 @@ from scripts import asset_clean_manifest as manifest_cleaner  # noqa: E402
 
 
 BAD_TREE_ASSET_ID = "objaverse_tree_7c97aea203b34df6bb615d0d3567d984"
+BAD_LAMP_ASSET_ID = "003e74743d454448abf11fd78164a75d"
 
 
 def test_known_bad_tree_asset_is_runtime_ineligible() -> None:
     row = {
         "asset_id": BAD_TREE_ASSET_ID,
         "category": "tree",
+        "scene_eligible": True,
+        "quality_tier": 3,
+    }
+    assert street_layout._row_scene_eligible(row) is False
+    assert beauty._scene_eligible(row) is False
+
+
+def test_known_bad_flask_lamp_asset_is_runtime_ineligible() -> None:
+    row = {
+        "asset_id": BAD_LAMP_ASSET_ID,
+        "category": "lamp",
         "scene_eligible": True,
         "quality_tier": 3,
     }

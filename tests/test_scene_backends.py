@@ -18,6 +18,7 @@ from roadgen3d.services.scene_backends import (  # noqa: E402
     ManifestObjectAssetBackend,
     ManifestSkyBackend,
 )
+from roadgen3d.services import scene_backends as scene_backends_module  # noqa: E402
 
 
 def test_object_backend_merges_v2_overlay_with_legacy_manifest(tmp_path: Path):
@@ -79,6 +80,98 @@ def test_object_backend_merges_v2_overlay_with_legacy_manifest(tmp_path: Path):
     assert bench["source_dataset"] == "overlay"
     assert bench["affordance_tags"] == ["sit"]
     assert lamp["category"] == "lamp"
+
+
+def test_object_backend_manifest_disable_is_global_deny_vote(tmp_path: Path):
+    disabled_library = tmp_path / "disabled.jsonl"
+    disabled_library.write_text(
+        json.dumps(
+            {
+                "asset_id": "lamp_shared",
+                "category": "lamp",
+                "text_desc": "disabled lamp",
+                "mesh_path": "lamp.glb",
+                "latent_path": "lamp.pt",
+                "scene_eligible": False,
+                "scene_exclusion_reason": "bad_scale",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    enabled_library = tmp_path / "enabled.jsonl"
+    enabled_library.write_text(
+        json.dumps(
+            {
+                "asset_id": "lamp_shared",
+                "category": "lamp",
+                "text_desc": "enabled lamp overlay",
+                "mesh_path": "lamp.glb",
+                "latent_path": "lamp.pt",
+                "scene_eligible": True,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    backend = ManifestObjectAssetBackend(manifest_paths=(disabled_library, enabled_library))
+    _, rows = backend.load_rows()
+
+    row = rows[0]
+    assert row["asset_id"] == "lamp_shared"
+    assert row["text_desc"] == "enabled lamp overlay"
+    assert row["scene_eligible"] is False
+    assert row["scene_exclusion_reason"] == "disabled_by_manifest_source"
+    assert str(disabled_library.resolve()) in row["scene_disabled_manifest_sources"]
+    assert row["scene_disabled_manifest_reasons"] == ["bad_scale"]
+
+
+def test_object_backend_default_disable_index_blocks_enabled_overlay(tmp_path: Path, monkeypatch):
+    disabled_library = tmp_path / "default_disabled.jsonl"
+    disabled_library.write_text(
+        json.dumps(
+            {
+                "asset_id": "lamp_global_disabled",
+                "category": "lamp",
+                "text_desc": "globally disabled lamp",
+                "mesh_path": "lamp.glb",
+                "latent_path": "lamp.pt",
+                "scene_eligible": False,
+                "scene_exclusion_reason": "manual_review_failed",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    enabled_library = tmp_path / "enabled.jsonl"
+    enabled_library.write_text(
+        json.dumps(
+            {
+                "asset_id": "lamp_global_disabled",
+                "category": "lamp",
+                "text_desc": "enabled duplicate lamp",
+                "mesh_path": "lamp.glb",
+                "latent_path": "lamp.pt",
+                "scene_eligible": True,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(scene_backends_module, "_GLOBAL_DISABLE_MANIFEST_PATHS", (disabled_library.resolve(),))
+    scene_backends_module._global_scene_disabled_asset_records.cache_clear()
+
+    try:
+        backend = ManifestObjectAssetBackend(manifest_path=enabled_library)
+        _, rows = backend.load_rows()
+    finally:
+        scene_backends_module._global_scene_disabled_asset_records.cache_clear()
+
+    row = rows[0]
+    assert row["text_desc"] == "enabled duplicate lamp"
+    assert row["scene_eligible"] is False
+    assert row["scene_disabled_manifest_reasons"] == ["manual_review_failed"]
 
 
 def test_object_backend_normalizes_traffic_sign_orientation_metadata(tmp_path: Path):

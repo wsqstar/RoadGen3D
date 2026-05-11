@@ -3631,6 +3631,15 @@ def test_fixed_hq_profile_builds_curated_asset_allowlists(tmp_path: Path):
             scene_eligible=True,
         )
     )
+    rows.append(
+        _asset_row(
+            "003e74743d454448abf11fd78164a75d",
+            "lamp",
+            source="urbanverse",
+            quality_tier=3,
+            scene_eligible=True,
+        )
+    )
     for row in rows:
         if row["category"] in {"lamp", "trash", "bollard", "tree"}:
             row["quality_tier"] = 3
@@ -3649,6 +3658,7 @@ def test_fixed_hq_profile_builds_curated_asset_allowlists(tmp_path: Path):
     )
 
     assert set(allowlists["lamp"]) == {"lamp_modern_production", "lamp_allowlist_alt"}
+    assert "003e74743d454448abf11fd78164a75d" not in allowlists["lamp"]
     assert allowlists["trash"] == ["objaverse_trash_f16b7d84113d4cba869412ee95769910"]
     assert "tree_01" in allowlists["tree"]
 

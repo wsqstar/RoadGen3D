@@ -5,14 +5,22 @@ from __future__ import annotations
 import json
 import math
 from dataclasses import dataclass
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_OBJECT_MANIFEST_V2_PATH = (ROOT / "data" / "real" / "real_assets_manifest_v2.jsonl").resolve()
+DEFAULT_OBJECT_MANIFEST_PATH = (ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve()
+DEFAULT_STREET_FURNITURE_MANIFEST_PATH = (ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl").resolve()
 DEFAULT_GROUND_MATERIAL_MANIFEST_PATH = (ROOT / "data" / "materials" / "ground_material_manifest.jsonl").resolve()
 DEFAULT_SKY_MANIFEST_PATH = (ROOT / "data" / "materials" / "sky_manifest.jsonl").resolve()
+_GLOBAL_DISABLE_MANIFEST_PATHS: Tuple[Path, ...] = (
+    DEFAULT_STREET_FURNITURE_MANIFEST_PATH,
+    DEFAULT_OBJECT_MANIFEST_PATH,
+    DEFAULT_OBJECT_MANIFEST_V2_PATH,
+)
 
 _LEGACY_OPTIONAL_FIELDS: Tuple[str, ...] = (
     "style_tags",
@@ -31,6 +39,7 @@ _LEGACY_OPTIONAL_FIELDS: Tuple[str, ...] = (
     "parameter_snapshot",
     "quality_metrics",
     "scene_eligible",
+    "scene_exclusion_reason",
     "mesh_face_count",
     "quality_notes",
 )
@@ -154,6 +163,45 @@ _SURFACE_FALLBACKS: Dict[str, Tuple[str, ...]] = {
 
 def _clean_text(value: object) -> str:
     return str(value or "").strip()
+
+
+def _coerce_bool(value: object, *, default: bool = False) -> bool:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return bool(default)
+    if isinstance(value, (int, float)):
+        return bool(value)
+    text = str(value).strip().lower()
+    if not text:
+        return bool(default)
+    if text in {"1", "true", "yes", "on"}:
+        return True
+    if text in {"0", "false", "no", "off"}:
+        return False
+    return bool(default)
+
+
+def _row_explicitly_scene_disabled(row: Mapping[str, object]) -> bool:
+    return "scene_eligible" in row and not _coerce_bool(row.get("scene_eligible"), default=True)
+
+
+@lru_cache(maxsize=1)
+def _global_scene_disabled_asset_records() -> Tuple[Dict[str, Tuple[str, ...]], Dict[str, Tuple[str, ...]]]:
+    sources_by_asset: Dict[str, List[str]] = {}
+    reasons_by_asset: Dict[str, List[str]] = {}
+    for source_path in _GLOBAL_DISABLE_MANIFEST_PATHS:
+        for row in _read_jsonl_rows(source_path):
+            asset_id = _clean_text(row.get("asset_id"))
+            if not asset_id or not _row_explicitly_scene_disabled(row):
+                continue
+            sources_by_asset.setdefault(asset_id, []).append(str(source_path))
+            reason = _clean_text(row.get("scene_exclusion_reason")) or "scene_eligible=false"
+            reasons_by_asset.setdefault(asset_id, []).append(reason)
+    return (
+        {asset_id: tuple(sorted(set(sources))) for asset_id, sources in sources_by_asset.items()},
+        {asset_id: tuple(sorted(set(reasons))) for asset_id, reasons in reasons_by_asset.items()},
+    )
 
 
 def _resolve_path(path_text: object, base_dir: Path) -> str:
@@ -355,6 +403,8 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
             return "manifest_multi_merged", merged_rows
 
         overlay_rows = _load_object_manifest_v2_rows(v2_path)
+        for row in overlay_rows:
+            row.setdefault("manifest_source_path", str(v2_path))
         merged_rows = _merge_object_rows(source_rows, overlay_rows)
         self.last_load_summary = {
             "manifest_paths": loaded_paths + [str(v2_path)],
@@ -492,6 +542,25 @@ def _merge_object_rows(
     legacy_rows: Sequence[Dict[str, object]],
     overlay_rows: Sequence[Dict[str, object]],
 ) -> List[Dict[str, object]]:
+    global_disabled_sources, global_disabled_reasons = _global_scene_disabled_asset_records()
+    disabled_sources_by_asset: Dict[str, List[str]] = {
+        asset_id: list(sources)
+        for asset_id, sources in global_disabled_sources.items()
+    }
+    disabled_reasons_by_asset: Dict[str, List[str]] = {
+        asset_id: list(reasons)
+        for asset_id, reasons in global_disabled_reasons.items()
+    }
+    for row in [*legacy_rows, *overlay_rows]:
+        asset_id = _clean_text(row.get("asset_id"))
+        if not asset_id or not _row_explicitly_scene_disabled(row):
+            continue
+        source_path = _clean_text(row.get("manifest_source_path"))
+        if source_path:
+            disabled_sources_by_asset.setdefault(asset_id, []).append(source_path)
+        reason = _clean_text(row.get("scene_exclusion_reason")) or "scene_eligible=false"
+        disabled_reasons_by_asset.setdefault(asset_id, []).append(reason)
+
     merged: Dict[str, Dict[str, object]] = {
         str(row.get("asset_id", "")): dict(row)
         for row in legacy_rows
@@ -502,6 +571,18 @@ def _merge_object_rows(
         if not asset_id:
             continue
         merged[asset_id] = {**merged.get(asset_id, {}), **dict(row)}
+    for asset_id, sources in disabled_sources_by_asset.items():
+        if asset_id not in merged:
+            continue
+        row = merged[asset_id]
+        row["scene_eligible"] = False
+        row["scene_exclusion_reason"] = "disabled_by_manifest_source"
+        unique_sources = sorted(set(sources))
+        if unique_sources:
+            row["scene_disabled_manifest_sources"] = unique_sources
+        unique_reasons = sorted(set(disabled_reasons_by_asset.get(asset_id, ())))
+        if unique_reasons:
+            row["scene_disabled_manifest_reasons"] = unique_reasons
     return list(merged.values())
 
 
@@ -565,6 +646,7 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
             "quality_metrics",
             "parameter_snapshot",
             "scene_eligible",
+            "scene_exclusion_reason",
             "hero_asset",
             "avoid_with_presets",
             "height_class",

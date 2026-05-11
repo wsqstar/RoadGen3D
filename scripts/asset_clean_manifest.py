@@ -8,6 +8,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Tuple
 
 
 _BLOCKED_ASSET_IDS = {
+    "003e74743d454448abf11fd78164a75d",
     "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
     "objaverse_tree_352c29c013434d6585e74332699310e2",
     "objaverse_tree_7a689370f9ec46cea2cbc94641c225e6",
