@@ -1121,6 +1121,66 @@ def _create_curated_bus_stop_entry(*, asset_id: str = "curated_bus_stop_shelter_
     return row, entry
 
 
+def _create_curated_tree_entry(*, asset_id: str = "curated_tree_module_v1") -> Tuple[Dict[str, object], _MeshCacheEntry]:
+    trimesh = _require_trimesh()
+    scene = trimesh.Scene()
+
+    trunk = trimesh.creation.box(extents=(0.34, 2.6, 0.34))
+    trunk.visual.face_colors = (104, 76, 44, 255)
+    trunk.apply_translation((0.0, 1.30, 0.0))
+    scene.add_geometry(trunk, node_name="curated_tree_trunk")
+
+    canopy = trimesh.creation.icosphere(subdivisions=3, radius=1.28)
+    canopy.visual.face_colors = (68, 130, 64, 255)
+    canopy.apply_scale((1.0, 0.78, 1.0))
+    canopy.apply_translation((0.0, 3.12, 0.0))
+    scene.add_geometry(canopy, node_name="curated_tree_canopy")
+
+    lower_canopy = trimesh.creation.icosphere(subdivisions=2, radius=0.88)
+    lower_canopy.visual.face_colors = (82, 150, 70, 255)
+    lower_canopy.apply_scale((1.15, 0.58, 0.95))
+    lower_canopy.apply_translation((0.28, 2.62, -0.18))
+    scene.add_geometry(lower_canopy, node_name="curated_tree_lower_canopy")
+
+    bounds = np.asarray(scene.bounds, dtype=np.float64)
+    span = bounds[1] - bounds[0]
+    row: Dict[str, object] = {
+        "asset_id": str(asset_id),
+        "category": "tree",
+        "text_desc": "scene-ready curated roadside tree with trunk and leafy canopy",
+        "asset_role": "street_furniture",
+        "source": "curated_virtual",
+        "generator_type": "virtual_curated_v1",
+        "theme_tags": ["landscape", "walkable", "campus", "shade"],
+        "affordance_tags": ["shade", "greenery", "streetscape"],
+        "scene_eligible": True,
+        "quality_tier": 3,
+        "mesh_face_count": int(
+            sum(len(np.asarray(getattr(geom, "faces", []), dtype=np.int64)) for geom in scene.geometry.values())
+        ),
+        "quality_notes": [
+            "curated_asset_fallback",
+            "tree_upright_validated",
+            "scene_ready",
+            "generator=virtual_curated_v1",
+        ],
+        "metric_width_m": float(max(span[0], 1e-3)),
+        "metric_height_m": float(max(span[1], 1e-3)),
+        "metric_depth_m": float(max(span[2], 1e-3)),
+    }
+    entry = _MeshCacheEntry(
+        mesh=scene,
+        half_x=float(max(span[0] / 2.0, 1e-3)),
+        half_z=float(max(span[2] / 2.0, 1e-3)),
+        min_y=float(bounds[0][1]),
+        center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+        center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
+        is_scene=True,
+        native_height_y=float(max(span[1], 1e-3)),
+    )
+    return row, entry
+
+
 def _inject_curated_virtual_assets(
     rows: List[Dict[str, object]],
     mesh_cache: _LazyMeshCache,
@@ -1142,6 +1202,13 @@ def _inject_curated_virtual_assets(
         bus_stop_row, bus_stop_entry = _create_curated_bus_stop_entry()
         injected_rows.append(bus_stop_row)
         mesh_cache.set_full_entry(str(bus_stop_row["asset_id"]), bus_stop_entry)
+    if not any(
+        str(row.get("category", "")) == "tree" and _row_scene_eligible(row) and _is_external_tree_asset(row)
+        for row in injected_rows
+    ):
+        tree_row, tree_entry = _create_curated_tree_entry()
+        injected_rows.append(tree_row)
+        mesh_cache.set_full_entry(str(tree_row["asset_id"]), tree_entry)
     return injected_rows
 
 

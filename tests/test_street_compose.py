@@ -1006,6 +1006,32 @@ def test_load_real_manifest_repairs_split_component_mesh_path(tmp_path: Path):
     assert "parent-split-052" in metadata
 
 
+def test_curated_virtual_assets_inject_scene_ready_tree_when_tree_pool_unusable():
+    cache = street_layout._LazyMeshCache({})
+    injected = street_layout._inject_curated_virtual_assets(
+        [
+            {
+                "asset_id": "legacy_tree",
+                "category": "tree",
+                "text_desc": "legacy procedural tree",
+                "source": "procedural_generated",
+                "scene_eligible": True,
+                "quality_tier": 3,
+            }
+        ],
+        cache,
+        profile="fixed_hq_v1",
+    )
+
+    tree_rows = [
+        row
+        for row in injected
+        if str(row.get("category", "")) == "tree" and street_layout._is_external_tree_asset(row)
+    ]
+    assert [row["asset_id"] for row in tree_rows] == ["curated_tree_module_v1"]
+    assert "curated_tree_module_v1" in cache
+
+
 def test_add_instance_meshes_adds_doors_only_for_procedural_buildings(tmp_path: Path):
     trimesh = pytest.importorskip("trimesh")
     mesh_path = tmp_path / "building_asset.glb"
