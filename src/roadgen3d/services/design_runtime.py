@@ -384,6 +384,11 @@ def normalize_scene_generation_options(
             payload.get("capture_defer_glb_retention"),
             DEFAULT_SCENE_GENERATION_OPTIONS.capture_defer_glb_retention,
         ),
+        design_matrix_cell=(
+            dict(payload.get("design_matrix_cell"))
+            if isinstance(payload.get("design_matrix_cell"), Mapping)
+            else {}
+        ),
     )
 
 
@@ -471,12 +476,15 @@ def _build_scene_generation_result(
 
 
 def _generation_options_summary(options: SceneGenerationOptions) -> Dict[str, Any]:
-    return {
+    summary = {
         "preset_id": str(options.preset_id or ""),
         "random_seed": options.random_seed,
         "design_variant_id": str(options.design_variant_id or ""),
         "design_variant_name": str(options.design_variant_name or ""),
     }
+    if options.design_matrix_cell:
+        summary["design_matrix_cell"] = dict(make_json_safe(options.design_matrix_cell))
+    return summary
 
 
 def _capture_scene_views_if_requested(

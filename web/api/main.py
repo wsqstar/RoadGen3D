@@ -42,6 +42,7 @@ from roadgen3d.template_patch import TemplatePatchError, apply_template_patch  #
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
+from roadgen3d.services.design_matrix import DesignMatrixService  # noqa: E402
 from roadgen3d.services.design_types import sanitize_compose_config_patch, sanitize_scene_context  # noqa: E402
 from roadgen3d.services.scene_context_service import build_osm_semantic_preview  # noqa: E402
 from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
@@ -84,6 +85,20 @@ class SceneJobCreateRequestModel(BaseModel):
     scene_context: Dict[str, Any] = Field(default_factory=dict)
     patch_overrides: Dict[str, Any] = Field(default_factory=dict)
     generation_options: Dict[str, Any] = Field(default_factory=dict)
+
+
+class DesignMatrixInventoryRequestModel(BaseModel):
+    graph_template_id: str = "hkust_gz_gate"
+    custom_structure: Optional[Dict[str, Any]] = None
+    custom_furniture: Optional[Dict[str, Any]] = None
+    source_layout_path: Optional[str] = None
+    recent_limit: int = Field(default=500, ge=1, le=2000)
+
+
+class DesignMatrixGenerateRequestModel(DesignMatrixInventoryRequestModel):
+    structure_key: str
+    furniture_key: str
+    force: bool = False
 
 
 class ScenarioDesignRunCreateRequestModel(BaseModel):
@@ -491,6 +506,12 @@ def _resolve_layout_referenced_path(value: str, layout_path: Path) -> Path | Non
     return candidate.resolve()
 
 
+def _model_payload(model: BaseModel) -> Dict[str, Any]:
+    if hasattr(model, "model_dump"):
+        return model.model_dump()
+    return model.dict()
+
+
 def create_app(
     *,
     design_service: DesignAssistantService | Any | None = None,
@@ -512,6 +533,10 @@ def create_app(
     )
     app.state.scenario_design_service = ScenarioDesignService(
         design_service=app.state.design_service,
+    )
+    app.state.design_matrix_service = DesignMatrixService(
+        design_service=app.state.design_service,
+        scenario_design_service=app.state.scenario_design_service,
     )
     app.state.benchmark_batch_service = BranchBenchmarkBatchService(
         branch_run_service=app.state.branch_run_service,
@@ -775,6 +800,34 @@ def create_app(
         if result is None:
             raise HTTPException(status_code=404, detail=f"Scene job not found: {job_id}")
         return make_json_safe(result.to_dict())
+
+    @app.post("/api/design/matrix/inventory")
+    def design_matrix_inventory(request: DesignMatrixInventoryRequestModel) -> Dict[str, Any]:
+        try:
+            return make_json_safe(app.state.design_matrix_service.inventory(_model_payload(request)))
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.post("/api/design/matrix/cells/generate")
+    def generate_design_matrix_cell(request: DesignMatrixGenerateRequestModel) -> Dict[str, Any]:
+        try:
+            prepared = app.state.design_matrix_service.prepare_generate(_model_payload(request))
+            if prepared.get("mode") == "materialized":
+                return make_json_safe(prepared)
+            scene_job_request = SceneJobCreateRequestModel(**dict(prepared.get("scene_job_request") or {}))
+            draft, scene_context, patch_overrides, generation_options = _prepare_scene_generation_request(scene_job_request)
+            result = app.state.design_service.create_scene_job(
+                draft=draft,
+                scene_context=scene_context,
+                patch_overrides=patch_overrides,
+                generation_options=generation_options,
+            )
+        except (RuntimeError, ValueError, TemplatePatchError, KeyError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        payload = dict(prepared)
+        payload.pop("scene_job_request", None)
+        payload.update(result.to_dict())
+        return make_json_safe(payload)
 
     @app.get("/api/scenario-designs")
     def list_scenario_designs() -> Dict[str, Any]:

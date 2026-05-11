@@ -466,6 +466,7 @@ class SceneGenerationOptions:
     capture_failure_policy: str = "warn"
     retain_glb_policy: str = "top_k"
     capture_defer_glb_retention: bool = False
+    design_matrix_cell: Dict[str, Any] = field(default_factory=dict)
     manifest_paths: Tuple[Path, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
@@ -500,6 +501,7 @@ class SceneGenerationOptions:
             "capture_failure_policy": self.capture_failure_policy,
             "retain_glb_policy": self.retain_glb_policy,
             "capture_defer_glb_retention": bool(self.capture_defer_glb_retention),
+            "design_matrix_cell": dict(self.design_matrix_cell),
         }
 
 
