@@ -243,7 +243,13 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
     layout_path.write_text(
         json.dumps(
             {
-                "summary": {"length_m": 60, "spatial_context": {"road_half_width_m": 5}},
+                "summary": {
+                    "length_m": 60,
+                    "spatial_context": {"road_half_width_m": 5},
+                    "semantic_profile_pair": "sparse+balanced",
+                    "curated_street_assets_profile": "curated_default",
+                    "furniture_balance_policy": "street_focus",
+                },
                 "visual_style": {"style": "test"},
                 "config": {"length_m": 60, "query": "test prompt", "density": 0.8, "road_width_m": 6.4, "lane_count": 2, "seed": 99, "style_preset": "test_style"},
                 "production_steps": [{"step_id": "road_base", "title": "Road Base", "glb_path": str(step_glb)}],
@@ -260,8 +266,10 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
                         "placement_group": "street_furniture",
                         "position_xyz": [4, 0, 2],
                         "bbox_xz": [3, 1, 5, 3],
+                        "violated_rules": ["distance_to_entry", "", None],
                     }
                 ],
+                "generated_lots": [{"lot_id": "lot_1"}],
                 "building_footprints": [{"polygon_xz": [[0, 0], [4, 0], [4, 4], [0, 4]]}],
                 "building_regions": [{"points": [[0, 0], [5, 0], [5, 5], [0, 5]]}],
                 "regions": [{"region_role": "scene_region", "points": [[-1, -1], [6, -1], [6, 6], [-1, 6]]}],
@@ -284,6 +292,7 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
     assert manifest["instances"]["inst_tree"]["category"] == "tree"
     overlay = manifest["layout_overlay"]
     assert overlay["lane_count"] == 2
+    assert overlay["generated_lots"] == [{"lot_id": "lot_1"}]
     assert overlay["bands"][0]["kind"] == "drive_lane"
     assert overlay["building_footprints"]
     assert overlay["building_regions"]
@@ -297,5 +306,80 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
     assert metadata["density"] == 0.8
     assert metadata["road_width_m"] == 6.4
     assert metadata["lane_count"] == 2
+    assert metadata["skeleton_design_profile"] == "sparse"
+    assert metadata["street_furniture_profile"] == "balanced"
+    assert metadata["curated_street_assets_profile"] == "curated_default"
+    assert metadata["furniture_balance_policy"] == "street_focus"
     assert metadata["style_preset"] == "test_style"
     assert metadata["production_step_ids"] == ["road_base"]
+
+
+def test_as_bbox_xz_supports_old_and_new_orders_with_position_hint():
+    assert viewer._as_bbox_xz([0, 10, 2, 6], [5.0, 0.0, 4.0]) == [0.0, 10.0, 2.0, 6.0]
+    assert viewer._as_bbox_xz((0, 10, 2, 6), (0.5, 0.0, 5.0)) == [0.0, 2.0, 6.0, 10.0]
+
+
+def test_as_bbox_xz_prefers_smaller_footprint_when_position_missing():
+    assert viewer._as_bbox_xz([0, 10, 2, 6]) == [0.0, 2.0, 6.0, 10.0]
+
+
+def test_as_pair_and_instance_payloads_normalize_tuple_inputs_and_filter_empty_rules():
+    payload = {
+        "placements": [
+            {
+                "instance_id": "inst_01",
+                "asset_id": "asset_tree",
+                "category": "tree",
+                "placement_group": "street_furniture",
+                "position_xyz": (4, 0, 2),
+                "bbox_xz": (3.5, 3.5, 1.0, 4.0),
+                "anchor_target_xz": (7.0, 6.0),
+                "violated_rules": ["distance_to_entry", "", None, 0, "spacing_ok"],
+            }
+        ]
+    }
+    instances = viewer._build_instance_payloads(payload)
+    assert "inst_01" in instances
+    assert instances["inst_01"]["bbox_xz"] == [3.5, 3.5, 1.0, 4.0]
+    assert instances["inst_01"]["anchor_target_xz"] == [7.0, 6.0]
+    assert instances["inst_01"]["violated_rules"] == ["distance_to_entry", "0", "spacing_ok"]
+
+
+def test_build_scene_bounds_prefers_nearest_bbox_order_by_position():
+    payload = {
+        "placements": [
+            {
+                "instance_id": "inst_01",
+                "position_xyz": [0.5, 0.0, 5.0],
+                "bbox_xz": [0.0, 10.0, 2.0, 6.0],
+            }
+        ]
+    }
+    bounds = viewer._build_scene_bounds(payload)
+    assert bounds["center"] == [1.0, 6.0, 8.0]
+    assert bounds["size"] == [2.0, 12.0, 4.0]
+
+
+def test_build_comparison_metadata_parses_semantic_profile_pair():
+    payload = {
+        "summary": {
+            "semantic_profile_pair": "sparse+balanced",
+            "curated_street_assets_profile": "curated_default",
+            "furniture_balance_policy": "street_focus",
+        },
+        "config": {
+            "query": "block scene test",
+            "seed": 42,
+            "density": 0.42,
+            "road_width_m": 7.2,
+            "lane_count": 2,
+        },
+        "production_steps": [],
+    }
+
+    metadata = viewer._build_comparison_metadata(payload, [])
+
+    assert metadata["skeleton_design_profile"] == "sparse"
+    assert metadata["street_furniture_profile"] == "balanced"
+    assert metadata["curated_street_assets_profile"] == "curated_default"
+    assert metadata["furniture_balance_policy"] == "street_focus"

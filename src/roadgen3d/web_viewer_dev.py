@@ -119,7 +119,7 @@ def _as_number(value: Any, fallback: float | None = None) -> float | None:
 
 
 def _as_triplet(value: Any) -> List[float] | None:
-    if not isinstance(value, list) or len(value) < 3:
+    if not isinstance(value, (list, tuple)) or len(value) < 3:
         return None
     triplet = [_as_number(item) for item in value[:3]]
     if any(item is None for item in triplet):
@@ -127,13 +127,49 @@ def _as_triplet(value: Any) -> List[float] | None:
     return [float(item) for item in triplet if item is not None]
 
 
+def _as_pair(value: Any) -> List[float] | None:
+    if not isinstance(value, (list, tuple)) or len(value) < 2:
+        return None
+    pair = [_as_number(item) for item in value[:2]]
+    if any(item is None for item in pair):
+        return None
+    return [float(item) for item in pair if item is not None]
+
+
 def _as_quad(value: Any) -> List[float] | None:
-    if not isinstance(value, list) or len(value) < 4:
+    if not isinstance(value, (list, tuple)) or len(value) < 4:
         return None
     quad = [_as_number(item) for item in value[:4]]
     if any(item is None for item in quad):
         return None
     return [float(item) for item in quad if item is not None]
+
+
+def _as_bbox_xz(value: Any, position_xyz: List[float] | None = None) -> List[float] | None:
+    """Normalize bbox_xz to [min_x, max_x, min_z, max_z].
+
+    Older payloads have appeared in both [min_x, max_x, min_z, max_z] and
+    [min_x, min_z, max_x, max_z] order. Prefer the ordering whose center is
+    closest to the instance position, falling back to the smaller footprint.
+    """
+    quad = _as_quad(value)
+    if not quad:
+        return None
+    a, b, c, d = quad
+    current_order = [min(a, b), max(a, b), min(c, d), max(c, d)]
+    legacy_order = [min(a, c), max(a, c), min(b, d), max(b, d)]
+    if position_xyz:
+        px, pz = position_xyz[0], position_xyz[2]
+        current_distance = abs((current_order[0] + current_order[1]) * 0.5 - px) + abs(
+            (current_order[2] + current_order[3]) * 0.5 - pz
+        )
+        legacy_distance = abs((legacy_order[0] + legacy_order[1]) * 0.5 - px) + abs(
+            (legacy_order[2] + legacy_order[3]) * 0.5 - pz
+        )
+        return legacy_order if legacy_distance + 0.01 < current_distance else current_order
+    current_area = max(0.0, current_order[1] - current_order[0]) * max(0.0, current_order[3] - current_order[2])
+    legacy_area = max(0.0, legacy_order[1] - legacy_order[0]) * max(0.0, legacy_order[3] - legacy_order[2])
+    return legacy_order if legacy_area + 1e-6 < current_area else current_order
 
 
 def _build_instance_payloads(layout_payload: Dict[str, Any]) -> Dict[str, Dict[str, Any]]:
@@ -158,12 +194,18 @@ def _build_instance_payloads(layout_payload: Dict[str, Any]) -> Dict[str, Dict[s
                 "position_xyz": _as_triplet(placement.get("position_xyz")),
                 "bbox_xz": _as_quad(placement.get("bbox_xz")),
                 "anchor_poi_type": str(placement.get("anchor_poi_type", "") or "").strip(),
+                "anchor_target_xz": _as_pair(placement.get("anchor_target_xz")),
                 "anchor_distance_m": _as_number(placement.get("anchor_distance_m")),
                 "feasibility_score": _as_number(placement.get("feasibility_score")),
                 "constraint_penalty": _as_number(placement.get("constraint_penalty")),
                 "dist_to_road_edge_m": _as_number(placement.get("dist_to_road_edge_m")),
                 "dist_to_nearest_junction_m": _as_number(placement.get("dist_to_nearest_junction_m")),
                 "dist_to_nearest_entrance_m": _as_number(placement.get("dist_to_nearest_entrance_m")),
+                "violated_rules": [
+                    str(item).strip()
+                    for item in (placement.get("violated_rules") or [])
+                    if item is not None and str(item).strip()
+                ],
             }
         )
     return instances
@@ -190,14 +232,14 @@ def _build_scene_bounds(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
         for placement in placements:
             if not isinstance(placement, dict):
                 continue
-            bbox = _as_quad(placement.get("bbox_xz"))
+            position = _as_triplet(placement.get("position_xyz"))
+            bbox = _as_bbox_xz(placement.get("bbox_xz"), position)
             if bbox:
                 min_x = min(min_x, bbox[0])
-                min_z = min(min_z, bbox[1])
-                max_x = max(max_x, bbox[2])
+                max_x = max(max_x, bbox[1])
+                min_z = min(min_z, bbox[2])
                 max_z = max(max_z, bbox[3])
             else:
-                position = _as_triplet(placement.get("position_xyz"))
                 if position:
                     include_xz(position[0], position[2], 0.75)
                     max_y = max(max_y, position[1])
@@ -246,6 +288,7 @@ def _build_layout_overlay(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
         {
             "bands": list(bands) if isinstance(bands, list) else [],
             "building_footprints": _list_field(layout_payload, "building_footprints"),
+            "generated_lots": _list_field(layout_payload, "generated_lots"),
             "building_regions": _list_field(layout_payload, "building_regions"),
             "regions": _list_field(layout_payload, "regions"),
             "derived_regions": _list_field(layout_payload, "derived_regions"),
@@ -272,6 +315,7 @@ def _build_comparison_metadata(layout_payload: Dict[str, Any], production_steps:
     scenario_variant = summary.get("scenario_design_variant", {})
     if not isinstance(scenario_variant, dict):
         scenario_variant = {}
+    semantic_profile_parts = _clean_string(summary.get("semantic_profile_pair")).split("+")
 
     return make_json_safe(
         {
@@ -282,6 +326,16 @@ def _build_comparison_metadata(layout_payload: Dict[str, Any], production_steps:
             "graph_template_id": _clean_string(
                 summary.get("graph_template_id") or summary.get("base_graph_template_id") or summary.get("plan_id")
             ),
+            "skeleton_design_profile": _clean_string(
+                summary.get("skeleton_design_profile")
+                or (semantic_profile_parts[0] if len(semantic_profile_parts) > 0 else "")
+            ),
+            "street_furniture_profile": _clean_string(
+                summary.get("street_furniture_profile")
+                or (semantic_profile_parts[1] if len(semantic_profile_parts) > 1 else "")
+            ),
+            "curated_street_assets_profile": _clean_string(summary.get("curated_street_assets_profile")),
+            "furniture_balance_policy": _clean_string(summary.get("furniture_balance_policy")),
             "prompt": _clean_string(config.get("query") or layout_payload.get("query") or summary.get("query")),
             "variant_id": _clean_string(summary.get("design_variant_id") or summary.get("variant_id")),
             "variant_name": _clean_string(summary.get("design_variant_name") or summary.get("variant_name")),
