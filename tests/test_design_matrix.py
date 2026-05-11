@@ -96,8 +96,18 @@ def test_design_matrix_recent_scan_keeps_latest_layout_per_cell(tmp_path: Path) 
         for cell in inventory["cells"]
         if cell["structure_key"] == "scenario:scenario_03" and cell["furniture_key"] == "preset:transit_priority"
     )
-    old_layout = _write_matrix_layout(tmp_path / "old" / "scene_layout.json", target["metadata"], b"old")
-    new_layout = _write_matrix_layout(tmp_path / "new" / "scene_layout.json", target["metadata"], b"new")
+    old_layout = _write_matrix_layout(
+        tmp_path / "old" / "scene_layout.json",
+        target["metadata"],
+        b"old",
+        placements=[{"category": "tree"}],
+    )
+    new_layout = _write_matrix_layout(
+        tmp_path / "new" / "scene_layout.json",
+        target["metadata"],
+        b"new",
+        placements=[{"category": "tree"}],
+    )
     os.utime(old_layout, (1000, 1000))
     os.utime(new_layout, (2000, 2000))
 
@@ -127,6 +137,7 @@ def test_design_matrix_no_furniture_materializes_buildings_step_only(tmp_path: P
     assert payload["placements"] == []
     assert payload["scene_graph"]["filters"]["categories"] == ["building"]
     assert all(node.get("category") != "bench" for node in payload["scene_graph"]["nodes"])
+    assert all(node.get("category") != "tree" for node in payload["scene_graph"]["nodes"])
     assert Path(payload["outputs"]["scene_glb"]).exists()
     assert len(list(layout_path.parent.glob("*.glb"))) == 1
 
@@ -184,8 +195,27 @@ def test_design_matrix_scene_job_request_disables_extra_glbs_and_carries_metadat
     assert options["export_format"] == "glb"
     assert options["design_matrix_cell"]["structure_key"] == "scenario:scenario_03"
     assert options["design_matrix_cell"]["furniture_key"] == "preset:transit_priority"
-    assert request["draft"]["compose_config_patch"]["street_furniture_profile"] == "transit_priority"
-    assert request["draft"]["compose_config_patch"]["furniture_balance_policy"] == "side_biased_legacy"
+    compose_patch = request["draft"]["compose_config_patch"]
+    assert compose_patch["street_furniture_profile"] == "transit_priority"
+    assert compose_patch["furniture_balance_policy"] == "side_biased_legacy"
+    assert "tree" in compose_patch["minimum_category_presence"]
+    assert "tree" not in compose_patch["optional_category_presence"]
+
+
+def test_design_matrix_non_none_furniture_requests_include_tree(tmp_path: Path) -> None:
+    service = _service(tmp_path)
+
+    for column in service.furniture_options():
+        if column.key == "none" or not column.enabled:
+            continue
+        prepared = service.prepare_generate({
+            "graph_template_id": "hkust_gz_gate",
+            "structure_key": "scenario:scenario_03",
+            "furniture_key": column.key,
+        })
+        compose_patch = prepared["scene_job_request"]["draft"]["compose_config_patch"]
+        assert "tree" in compose_patch["minimum_category_presence"]
+        assert "tree" not in compose_patch["optional_category_presence"]
 
 
 def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expires_dense_ready_cell(tmp_path: Path) -> None:
@@ -200,6 +230,7 @@ def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expire
 
     assert compose_patch["furniture_balance_policy"] == "side_biased_legacy"
     assert compose_patch["density"] == 0.22
+    assert "tree" in compose_patch["minimum_category_presence"]
 
     inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
     target = next(
@@ -212,7 +243,7 @@ def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expire
         target["metadata"],
         _minimal_glb(["scene"]),
         config={"density": 0.6, "furniture_balance_policy": "overall_balanced"},
-        placements=[{"category": "lamp"} for _ in range(48)],
+        placements=[{"category": "tree"}] + [{"category": "lamp"} for _ in range(48)],
     )
 
     refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
@@ -220,6 +251,43 @@ def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expire
 
     assert refreshed_cell["status"] != "ready"
     assert refreshed_cell["layout_path"] == ""
+
+
+def test_design_matrix_inventory_expires_furniture_ready_cell_without_tree(tmp_path: Path) -> None:
+    service = _service(tmp_path)
+    inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    target = next(
+        cell
+        for cell in inventory["cells"]
+        if cell["structure_key"] == "scenario:scenario_03" and cell["furniture_key"] == "preset:transit_priority"
+    )
+    stale_layout = _write_matrix_layout(
+        tmp_path / "stale" / "scene_layout.json",
+        target["metadata"],
+        _minimal_glb(["scene"]),
+        placements=[{"category": "lamp"}],
+    )
+    os.utime(stale_layout, (2000, 2000))
+
+    refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    refreshed_cell = next(cell for cell in refreshed["cells"] if cell["cell_key"] == target["cell_key"])
+
+    assert refreshed_cell["status"] != "ready"
+    assert refreshed_cell["layout_path"] == ""
+
+    ready_layout = _write_matrix_layout(
+        tmp_path / "ready" / "scene_layout.json",
+        target["metadata"],
+        _minimal_glb(["scene"]),
+        placements=[{"category": "tree"}],
+    )
+    os.utime(ready_layout, (3000, 3000))
+
+    refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    refreshed_cell = next(cell for cell in refreshed["cells"] if cell["cell_key"] == target["cell_key"])
+
+    assert refreshed_cell["status"] == "ready"
+    assert refreshed_cell["layout_path"] == str(ready_layout)
 
 
 def test_design_matrix_api_routes_delegate_to_service() -> None:
@@ -331,7 +399,7 @@ def _write_contaminated_no_furniture_source_layout(path: Path) -> Path:
     buildings_glb = path.parent / "buildings.glb"
     road_base_glb = path.parent / "road_base.glb"
     final_glb.write_bytes(_minimal_glb(["inst_001_Bench_Bench_Metal"]))
-    buildings_glb.write_bytes(_minimal_glb(["inst_002_street_lamp"]))
+    buildings_glb.write_bytes(_minimal_glb(["inst_002_tree_oak"]))
     road_base_glb.write_bytes(_minimal_glb(["clean_road_base"]))
     path.write_text(
         json.dumps({

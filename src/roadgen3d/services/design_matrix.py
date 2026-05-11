@@ -28,7 +28,7 @@ BALANCED_COMPLETE_MATRIX_DENSITY_CAP = 0.22
 BALANCED_COMPLETE_MATRIX_LAMP_LIMIT = 16
 STREET_FURNITURE_NAME_RE = re.compile(
     r"(^|[_\s\-.])("
-    r"street[_\s\-.]*lamp|lamp|bench|trash|bin|bollard|planter|hydrant|"
+    r"street[_\s\-.]*lamp|lamp|bench|trash|bin|bollard|planter|tree|hydrant|"
     r"bike[_\s\-.]*rack|shelter|bus[_\s\-.]*(stop|shelter)|furniture|seating|flask"
     r")([_\s\-.]|$)",
     re.IGNORECASE,
@@ -43,6 +43,7 @@ STREET_FURNITURE_CATEGORIES = {
     "seating",
     "shelter",
     "street_furniture",
+    "tree",
     "trash",
 }
 
@@ -358,6 +359,7 @@ class DesignMatrixService:
                 float(compose_patch.get("density", BALANCED_COMPLETE_MATRIX_DENSITY_CAP) or BALANCED_COMPLETE_MATRIX_DENSITY_CAP),
                 BALANCED_COMPLETE_MATRIX_DENSITY_CAP,
             )
+        _require_tree_as_matrix_furniture(compose_patch)
         compose_patch["query"] = prompt or f"{structure.label} x {furniture.label}"
         seed = _seed_from_hash(str(metadata.get("cell_hash") or ""))
         scenario_context: Dict[str, Any] = {}
@@ -593,6 +595,9 @@ def _glb_has_street_furniture(path: Path) -> bool:
 
 def _matrix_ready_cell_is_current(payload: Mapping[str, Any], metadata: Mapping[str, Any]) -> bool:
     furniture_key = str(metadata.get("furniture_key") or "")
+    counts = _placement_category_counts(payload)
+    if furniture_key != "none" and int(counts.get("tree", 0)) <= 0:
+        return False
     if furniture_key != "preset:balanced_complete":
         return True
     config = payload.get("config") if isinstance(payload.get("config"), Mapping) else {}
@@ -603,8 +608,33 @@ def _matrix_ready_cell_is_current(payload: Mapping[str, Any], metadata: Mapping[
             return False
     except (TypeError, ValueError):
         return False
-    counts = _placement_category_counts(payload)
     return int(counts.get("lamp", 0)) <= BALANCED_COMPLETE_MATRIX_LAMP_LIMIT
+
+
+def _require_tree_as_matrix_furniture(compose_patch: Dict[str, Any]) -> None:
+    minimum = list(_category_tuple(compose_patch.get("minimum_category_presence")))
+    if "tree" not in minimum:
+        minimum.append("tree")
+    compose_patch["minimum_category_presence"] = tuple(minimum)
+    compose_patch["optional_category_presence"] = tuple(
+        category for category in _category_tuple(compose_patch.get("optional_category_presence"))
+        if category != "tree"
+    )
+
+
+def _category_tuple(value: object) -> tuple[str, ...]:
+    if isinstance(value, str):
+        raw_values: Iterable[object] = (value,)
+    elif isinstance(value, Sequence):
+        raw_values = value
+    else:
+        raw_values = ()
+    categories: list[str] = []
+    for item in raw_values:
+        category = str(item or "").strip().lower()
+        if category and category not in categories:
+            categories.append(category)
+    return tuple(categories)
 
 
 def _placement_category_counts(payload: Mapping[str, Any]) -> Dict[str, int]:
