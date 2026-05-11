@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -20,8 +21,30 @@ from .design_types import sanitize_compose_config_patch
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_MATRIX_ARTIFACT_ROOT = ROOT / "artifacts" / "design_matrix"
-DEFAULT_RECENT_ROOTS = (ROOT / "artifacts",)
+DEFAULT_RECENT_ROOTS = (DEFAULT_MATRIX_ARTIFACT_ROOT,)
 MATRIX_SCHEMA_VERSION = "design_matrix_cell_v1"
+NO_FURNITURE_STEP_CANDIDATES = ("buildings", "poi_context", "land_use_zoning", "road_base")
+BALANCED_COMPLETE_MATRIX_DENSITY_CAP = 0.22
+BALANCED_COMPLETE_MATRIX_LAMP_LIMIT = 16
+STREET_FURNITURE_NAME_RE = re.compile(
+    r"(^|[_\s\-.])("
+    r"street[_\s\-.]*lamp|lamp|bench|trash|bin|bollard|planter|hydrant|"
+    r"bike[_\s\-.]*rack|shelter|bus[_\s\-.]*(stop|shelter)|furniture|seating|flask"
+    r")([_\s\-.]|$)",
+    re.IGNORECASE,
+)
+STREET_FURNITURE_CATEGORIES = {
+    "bench",
+    "bollard",
+    "bus_stop",
+    "furniture",
+    "lamp",
+    "planter",
+    "seating",
+    "shelter",
+    "street_furniture",
+    "trash",
+}
 
 FURNITURE_PRESETS: Sequence[Mapping[str, str]] = (
     {"id": "balanced_complete", "label": "平衡完整 / Balanced Complete"},
@@ -84,6 +107,7 @@ class DesignMatrixService:
         graph_template_id = _clean_id(payload.get("graph_template_id")) or DEFAULT_GRAPH_TEMPLATE_ID
         rows = self.structure_options(graph_template_id, payload.get("custom_structure"))
         columns = self.furniture_options(payload.get("custom_furniture"))
+        row_by_key = {row.key: row for row in rows}
         cell_records = [
             self._build_cell(row, column, graph_template_id=graph_template_id)
             for row in rows
@@ -95,6 +119,7 @@ class DesignMatrixService:
             limit=int(payload.get("recent_limit") or 500),
         )
         cells: list[Dict[str, Any]] = []
+        source_layout_path = str(payload.get("source_layout_path") or "")
         for cell in cell_records:
             ready = ready_by_cell.get(str(cell["cell_key"]))
             if ready and cell["status"] != "disabled":
@@ -104,6 +129,13 @@ class DesignMatrixService:
                     "scene_glb_path": ready["scene_glb_path"],
                     "updated_at": ready["updated_at"],
                 })
+            elif cell["furniture_key"] == "none" and cell["status"] != "disabled":
+                structure = row_by_key.get(str(cell["structure_key"]))
+                if structure and not self._has_no_furniture_source(structure, source_layout_path):
+                    cell.update({
+                        "status": "disabled",
+                        "reason": "No furniture-free structure/buildings GLB is available for this cell.",
+                    })
             cells.append(cell)
         return make_json_safe({
             "schema_version": "design_matrix_inventory_v1",
@@ -320,6 +352,12 @@ class DesignMatrixService:
             **structure_patch,
             **furniture_patch,
         }
+        compose_patch["furniture_balance_policy"] = "side_biased_legacy"
+        if furniture.key == "preset:balanced_complete":
+            compose_patch["density"] = min(
+                float(compose_patch.get("density", BALANCED_COMPLETE_MATRIX_DENSITY_CAP) or BALANCED_COMPLETE_MATRIX_DENSITY_CAP),
+                BALANCED_COMPLETE_MATRIX_DENSITY_CAP,
+            )
         compose_patch["query"] = prompt or f"{structure.label} x {furniture.label}"
         seed = _seed_from_hash(str(metadata.get("cell_hash") or ""))
         scenario_context: Dict[str, Any] = {}
@@ -390,11 +428,9 @@ class DesignMatrixService:
         if layout_path is None:
             raise RuntimeError(f"No structure preview layout is available for {structure.label}.")
         payload = json.loads(layout_path.read_text(encoding="utf-8"))
-        source_glb = _find_step_glb(payload, layout_path, ("buildings", "land_use_zoning", "road_base"))
-        if source_glb is None:
-            source_glb = _resolve_layout_path((payload.get("outputs") or {}).get("scene_glb"), layout_path)
+        source_step_id, source_glb = _find_no_furniture_glb(payload, layout_path)
         if source_glb is None or not source_glb.exists():
-            raise RuntimeError(f"No buildings-step GLB is available for {structure.label}.")
+            raise RuntimeError(f"No furniture-free structure/buildings GLB is available for {structure.label}.")
 
         cell_hash = str(metadata["cell_hash"])
         out_dir = (self.artifact_root / cell_hash / "no_furniture").resolve()
@@ -403,6 +439,7 @@ class DesignMatrixService:
         shutil.copyfile(source_glb, scene_glb)
 
         cell_payload = copy.deepcopy(payload)
+        _strip_no_furniture_metadata(cell_payload)
         outputs = dict(cell_payload.get("outputs") or {})
         outputs["scene_glb"] = str(scene_glb)
         outputs["scene_ply"] = ""
@@ -416,7 +453,7 @@ class DesignMatrixService:
                 **dict(metadata),
                 "generated_at": _utc_now(),
                 "materialized_from_layout": str(layout_path),
-                "materialized_from_step": "buildings",
+                "materialized_from_step": source_step_id,
             },
             "preset_id": "no_furniture",
             "design_variant_id": "design_matrix_cell",
@@ -476,6 +513,10 @@ class DesignMatrixService:
             scene_glb = _resolve_layout_path((payload.get("outputs") or {}).get("scene_glb"), layout_path)
             if scene_glb is None or not scene_glb.exists():
                 continue
+            if str(metadata.get("furniture_key") or "") == "none" and _glb_has_street_furniture(scene_glb):
+                continue
+            if not _matrix_ready_cell_is_current(payload, metadata):
+                continue
             stat = layout_path.stat()
             matches[cell_key] = {
                 "layout_path": str(layout_path),
@@ -485,6 +526,17 @@ class DesignMatrixService:
             if len(matches) >= len(cell_keys):
                 break
         return matches
+
+    def _has_no_furniture_source(self, structure: MatrixOption, source_layout_path: str) -> bool:
+        layout_path = _resolve_existing_layout(structure.preview_layout_path) or _resolve_existing_layout(source_layout_path)
+        if layout_path is None:
+            return False
+        try:
+            payload = json.loads(layout_path.read_text(encoding="utf-8"))
+        except Exception:
+            return False
+        _, glb = _find_no_furniture_glb(payload, layout_path)
+        return glb is not None and glb.exists()
 
 
 def _iter_recent_layouts(roots: Sequence[Path], *, limit: int) -> list[Path]:
@@ -501,20 +553,141 @@ def _iter_recent_layouts(roots: Sequence[Path], *, limit: int) -> list[Path]:
     return [path for _, path in candidates[:limit]]
 
 
-def _find_step_glb(payload: Mapping[str, Any], layout_path: Path, step_ids: Sequence[str]) -> Path | None:
+def _find_no_furniture_glb(payload: Mapping[str, Any], layout_path: Path) -> tuple[str, Path | None]:
     by_id = {
         str(step.get("step_id") or ""): step
         for step in payload.get("production_steps", []) or []
         if isinstance(step, Mapping)
     }
-    for step_id in step_ids:
+    for step_id in NO_FURNITURE_STEP_CANDIDATES:
         step = by_id.get(step_id)
         if not step:
             continue
         glb = _resolve_layout_path(step.get("glb_path"), layout_path)
-        if glb and glb.exists():
-            return glb
-    return None
+        if glb and glb.exists() and not _glb_has_street_furniture(glb):
+            return step_id, glb
+
+    final_glb = _resolve_layout_path((payload.get("outputs") or {}).get("scene_glb"), layout_path)
+    if final_glb and final_glb.exists() and not _glb_has_street_furniture(final_glb):
+        return "final_scene_verified_clean", final_glb
+    return "", None
+
+
+def _glb_has_street_furniture(path: Path) -> bool:
+    try:
+        payload = _read_glb_json(path)
+    except Exception:
+        return False
+    for collection_name in ("nodes", "meshes", "materials"):
+        collection = payload.get(collection_name)
+        if not isinstance(collection, Sequence):
+            continue
+        for item in collection:
+            if not isinstance(item, Mapping):
+                continue
+            name = str(item.get("name") or "")
+            if STREET_FURNITURE_NAME_RE.search(name):
+                return True
+    return False
+
+
+def _matrix_ready_cell_is_current(payload: Mapping[str, Any], metadata: Mapping[str, Any]) -> bool:
+    furniture_key = str(metadata.get("furniture_key") or "")
+    if furniture_key != "preset:balanced_complete":
+        return True
+    config = payload.get("config") if isinstance(payload.get("config"), Mapping) else {}
+    if str(config.get("furniture_balance_policy") or "").strip().lower() != "side_biased_legacy":
+        return False
+    try:
+        if float(config.get("density", 1.0) or 1.0) > BALANCED_COMPLETE_MATRIX_DENSITY_CAP + 1e-6:
+            return False
+    except (TypeError, ValueError):
+        return False
+    counts = _placement_category_counts(payload)
+    return int(counts.get("lamp", 0)) <= BALANCED_COMPLETE_MATRIX_LAMP_LIMIT
+
+
+def _placement_category_counts(payload: Mapping[str, Any]) -> Dict[str, int]:
+    counts: Dict[str, int] = {}
+    placements = payload.get("placements")
+    if not isinstance(placements, Sequence):
+        return counts
+    for placement in placements:
+        if not isinstance(placement, Mapping):
+            continue
+        category = str(placement.get("category") or "").strip().lower()
+        if not category:
+            continue
+        counts[category] = counts.get(category, 0) + 1
+    return counts
+
+
+def _read_glb_json(path: Path) -> Mapping[str, Any]:
+    data = path.read_bytes()
+    if len(data) < 20 or data[:4] != b"glTF":
+        raise ValueError(f"Not a GLB file: {path}")
+    chunk_length = int.from_bytes(data[12:16], "little")
+    chunk_type = data[16:20]
+    if chunk_type != b"JSON":
+        raise ValueError(f"First GLB chunk is not JSON: {path}")
+    return json.loads(data[20:20 + chunk_length].decode("utf-8"))
+
+
+def _strip_no_furniture_metadata(payload: Dict[str, Any]) -> None:
+    payload["placements"] = []
+    payload["unplaced_slot_diagnostics"] = []
+    payload["placement_decision_log"] = {}
+    payload["supervision_sample"] = {}
+    scene_graph = payload.get("scene_graph")
+    if isinstance(scene_graph, Mapping):
+        nodes = scene_graph.get("nodes")
+        removed_node_ids: set[str] = set()
+        if isinstance(nodes, Sequence):
+            kept_nodes = []
+            for node in nodes:
+                if isinstance(node, Mapping) and _is_street_furniture_record(node):
+                    removed_node_ids.add(str(node.get("node_id") or ""))
+                    continue
+                kept_nodes.append(node)
+            scene_graph["nodes"] = kept_nodes  # type: ignore[index]
+        edges = scene_graph.get("edges")
+        if isinstance(edges, Sequence):
+            scene_graph["edges"] = [  # type: ignore[index]
+                edge for edge in edges
+                if not (
+                    isinstance(edge, Mapping)
+                    and (
+                        str(edge.get("source_id") or "") in removed_node_ids
+                        or str(edge.get("target_id") or "") in removed_node_ids
+                        or str(edge.get("edge_type") or "") in {"slot_on_segment", "placement_realizes_slot"}
+                    )
+                )
+            ]
+        filters = scene_graph.get("filters")
+        if isinstance(filters, Mapping):
+            categories = filters.get("categories")
+            if isinstance(categories, Sequence):
+                filters["categories"] = [  # type: ignore[index]
+                    category for category in categories
+                    if str(category or "").strip().lower() not in STREET_FURNITURE_CATEGORIES
+                ]
+            edge_types = filters.get("edge_types")
+            if isinstance(edge_types, Sequence):
+                filters["edge_types"] = [  # type: ignore[index]
+                    edge_type for edge_type in edge_types
+                    if str(edge_type or "") not in {"slot_on_segment", "placement_realizes_slot"}
+                ]
+        heatmap_defaults = scene_graph.get("heatmap_defaults")
+        if isinstance(heatmap_defaults, Mapping):
+            heatmap_defaults["default_category"] = ""  # type: ignore[index]
+
+
+def _is_street_furniture_record(record: Mapping[str, Any]) -> bool:
+    for field in ("category", "asset_category", "placement_group", "node_type", "poi_type"):
+        value = str(record.get(field) or "").strip().lower()
+        if value in STREET_FURNITURE_CATEGORIES:
+            return True
+    return False
 
 
 def _resolve_existing_layout(value: object) -> Path | None:

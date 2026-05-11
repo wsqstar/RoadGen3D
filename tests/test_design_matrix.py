@@ -124,8 +124,46 @@ def test_design_matrix_no_furniture_materializes_buildings_step_only(tmp_path: P
     assert payload["production_steps"] == []
     assert payload["summary"]["design_matrix_cell"]["furniture_key"] == "none"
     assert payload["summary"]["street_furniture_profile"] == "none"
+    assert payload["placements"] == []
+    assert payload["scene_graph"]["filters"]["categories"] == ["building"]
+    assert all(node.get("category") != "bench" for node in payload["scene_graph"]["nodes"])
     assert Path(payload["outputs"]["scene_glb"]).exists()
     assert len(list(layout_path.parent.glob("*.glb"))) == 1
+
+
+def test_design_matrix_no_furniture_skips_contaminated_buildings_step(tmp_path: Path) -> None:
+    source_layout = _write_contaminated_no_furniture_source_layout(tmp_path / "source" / "scene_layout.json")
+    service = _service(tmp_path, preview_layout_path=str(source_layout))
+
+    result = service.prepare_generate({
+        "graph_template_id": "hkust_gz_gate",
+        "structure_key": "scenario:scenario_03",
+        "furniture_key": "none",
+    })
+
+    payload = json.loads(Path(result["layout_path"]).read_text(encoding="utf-8"))
+    source_road_base = source_layout.parent / "road_base.glb"
+    copied_glb = Path(payload["outputs"]["scene_glb"])
+    assert payload["summary"]["design_matrix_cell"]["materialized_from_step"] == "road_base"
+    assert copied_glb.read_bytes() == source_road_base.read_bytes()
+
+
+def test_design_matrix_inventory_ignores_contaminated_no_furniture_ready_cell(tmp_path: Path) -> None:
+    source_layout = _write_source_layout(tmp_path / "source" / "scene_layout.json")
+    service = _service(tmp_path, preview_layout_path=str(source_layout))
+    inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    target = next(
+        cell
+        for cell in inventory["cells"]
+        if cell["structure_key"] == "scenario:scenario_03" and cell["furniture_key"] == "none"
+    )
+    _write_matrix_layout(tmp_path / "ready" / "scene_layout.json", target["metadata"], _minimal_glb(["inst_001_Bench_Bench_Metal"]))
+
+    refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    refreshed_cell = next(cell for cell in refreshed["cells"] if cell["cell_key"] == target["cell_key"])
+
+    assert refreshed_cell["status"] != "ready"
+    assert refreshed_cell["layout_path"] == ""
 
 
 def test_design_matrix_scene_job_request_disables_extra_glbs_and_carries_metadata(tmp_path: Path) -> None:
@@ -147,6 +185,41 @@ def test_design_matrix_scene_job_request_disables_extra_glbs_and_carries_metadat
     assert options["design_matrix_cell"]["structure_key"] == "scenario:scenario_03"
     assert options["design_matrix_cell"]["furniture_key"] == "preset:transit_priority"
     assert request["draft"]["compose_config_patch"]["street_furniture_profile"] == "transit_priority"
+    assert request["draft"]["compose_config_patch"]["furniture_balance_policy"] == "side_biased_legacy"
+
+
+def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expires_dense_ready_cell(tmp_path: Path) -> None:
+    service = _service(tmp_path)
+
+    prepared = service.prepare_generate({
+        "graph_template_id": "hkust_gz_gate",
+        "structure_key": "scenario:scenario_06",
+        "furniture_key": "preset:balanced_complete",
+    })
+    compose_patch = prepared["scene_job_request"]["draft"]["compose_config_patch"]
+
+    assert compose_patch["furniture_balance_policy"] == "side_biased_legacy"
+    assert compose_patch["density"] == 0.22
+
+    inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    target = next(
+        cell
+        for cell in inventory["cells"]
+        if cell["structure_key"] == "scenario:scenario_06" and cell["furniture_key"] == "preset:balanced_complete"
+    )
+    _write_matrix_layout(
+        tmp_path / "dense" / "scene_layout.json",
+        target["metadata"],
+        _minimal_glb(["scene"]),
+        config={"density": 0.6, "furniture_balance_policy": "overall_balanced"},
+        placements=[{"category": "lamp"} for _ in range(48)],
+    )
+
+    refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    refreshed_cell = next(cell for cell in refreshed["cells"] if cell["cell_key"] == target["cell_key"])
+
+    assert refreshed_cell["status"] != "ready"
+    assert refreshed_cell["layout_path"] == ""
 
 
 def test_design_matrix_api_routes_delegate_to_service() -> None:
@@ -195,7 +268,14 @@ class _ApiMatrixService:
         }
 
 
-def _write_matrix_layout(path: Path, metadata: dict, glb_bytes: bytes) -> Path:
+def _write_matrix_layout(
+    path: Path,
+    metadata: dict,
+    glb_bytes: bytes,
+    *,
+    config: dict | None = None,
+    placements: list[dict] | None = None,
+) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     glb = path.parent / "scene.glb"
     glb.write_bytes(glb_bytes)
@@ -204,6 +284,8 @@ def _write_matrix_layout(path: Path, metadata: dict, glb_bytes: bytes) -> Path:
             "summary": {"design_matrix_cell": metadata},
             "outputs": {"scene_glb": str(glb)},
             "production_steps": [],
+            "config": config or {},
+            "placements": placements or [],
         }),
         encoding="utf-8",
     )
@@ -214,12 +296,26 @@ def _write_source_layout(path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     final_glb = path.parent / "final.glb"
     buildings_glb = path.parent / "buildings.glb"
-    final_glb.write_bytes(b"final")
-    buildings_glb.write_bytes(b"buildings")
+    final_glb.write_bytes(_minimal_glb(["final_scene"]))
+    buildings_glb.write_bytes(_minimal_glb(["building_mass"]))
     path.write_text(
         json.dumps({
             "summary": {"instance_count": 12, "production_step_count": 1},
             "outputs": {"scene_glb": str(final_glb)},
+            "placements": [{"instance_id": "inst_bench", "category": "bench"}],
+            "scene_graph": {
+                "nodes": [
+                    {"node_id": "road:1", "category": ""},
+                    {"node_id": "asset:bench", "category": "bench"},
+                    {"node_id": "building:1", "category": "building"},
+                ],
+                "edges": [
+                    {"edge_type": "road_connects", "source_id": "road:1", "target_id": "building:1"},
+                    {"edge_type": "placement_realizes_slot", "source_id": "asset:bench", "target_id": "road:1"},
+                ],
+                "filters": {"categories": ["bench", "building"], "edge_types": ["road_connects", "placement_realizes_slot"]},
+                "heatmap_defaults": {"default_category": "bench"},
+            },
             "production_steps": [
                 {"step_id": "buildings", "title": "Buildings", "glb_path": str(buildings_glb)}
             ],
@@ -227,3 +323,45 @@ def _write_source_layout(path: Path) -> Path:
         encoding="utf-8",
     )
     return path
+
+
+def _write_contaminated_no_furniture_source_layout(path: Path) -> Path:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    final_glb = path.parent / "final.glb"
+    buildings_glb = path.parent / "buildings.glb"
+    road_base_glb = path.parent / "road_base.glb"
+    final_glb.write_bytes(_minimal_glb(["inst_001_Bench_Bench_Metal"]))
+    buildings_glb.write_bytes(_minimal_glb(["inst_002_street_lamp"]))
+    road_base_glb.write_bytes(_minimal_glb(["clean_road_base"]))
+    path.write_text(
+        json.dumps({
+            "summary": {"instance_count": 12, "production_step_count": 2},
+            "outputs": {"scene_glb": str(final_glb)},
+            "production_steps": [
+                {"step_id": "buildings", "title": "Buildings", "glb_path": str(buildings_glb)},
+                {"step_id": "road_base", "title": "Road Base", "glb_path": str(road_base_glb)},
+            ],
+        }),
+        encoding="utf-8",
+    )
+    return path
+
+
+def _minimal_glb(names: list[str]) -> bytes:
+    payload = {
+        "asset": {"version": "2.0"},
+        "scene": 0,
+        "scenes": [{"nodes": list(range(len(names)))}],
+        "nodes": [{"name": name} for name in names],
+    }
+    raw = json.dumps(payload, separators=(",", ":"), ensure_ascii=True).encode("utf-8")
+    raw += b" " * ((4 - len(raw) % 4) % 4)
+    total_length = 12 + 8 + len(raw)
+    return (
+        b"glTF"
+        + (2).to_bytes(4, "little")
+        + total_length.to_bytes(4, "little")
+        + len(raw).to_bytes(4, "little")
+        + b"JSON"
+        + raw
+    )
