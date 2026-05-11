@@ -10,7 +10,11 @@ from pathlib import Path
 from typing import Any, Callable, Dict, Mapping, Sequence
 
 from ..json_safe import make_json_safe
-from ..semantic_design_layers import apply_street_furniture_profile_defaults
+from ..semantic_design_layers import (
+    apply_street_furniture_profile_defaults,
+    normalize_street_furniture_profile,
+    street_furniture_profile_config_patch,
+)
 from ..capture_3d import capture_views_for_layout
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
@@ -63,6 +67,100 @@ DEFAULT_SCENE_GENERATION_OPTIONS = SceneGenerationOptions(
 )
 
 ProgressCallback = Callable[[Mapping[str, Any]], None]
+
+_STYLE_BLEND_MARKERS = (
+    "融合",
+    "结合",
+    "兼顾",
+    "叠加",
+    "加入",
+    "增加",
+    "blend",
+    "mix",
+    "combine",
+    "integrate",
+    "merge",
+)
+_STYLE_TRANSFER_MARKERS = (
+    "转为",
+    "转成",
+    "改为",
+    "改成",
+    "变为",
+    "变成",
+    "切换为",
+    "切换成",
+    "转换为",
+    "转换成",
+    "switch to",
+    "convert to",
+    "change to",
+    "transform to",
+)
+_STYLE_TRANSFER_TARGET_KEYWORDS: Mapping[str, tuple[str, ...]] = {
+    "balanced_complete": (
+        "balanced_complete",
+        "balanced complete",
+        "balanced street",
+        "complete street",
+        "平衡街道",
+        "平衡完整",
+        "完整街道",
+    ),
+    "pedestrian_friendly": (
+        "pedestrian_friendly",
+        "pedestrian friendly",
+        "pedestrian priority",
+        "walkable",
+        "步行友好",
+        "慢行友好",
+        "行人优先",
+        "步行优先",
+    ),
+    "commercial_vitality": (
+        "commercial_vitality",
+        "commercial vitality",
+        "commerce",
+        "retail",
+        "商业活力",
+        "商业友好",
+        "商业街道",
+    ),
+    "transit_priority": (
+        "transit_priority",
+        "transit priority",
+        "bus priority",
+        "bus-oriented",
+        "transit-oriented",
+        "公交优先",
+        "公交导向",
+        "公交友好",
+        "公交设施",
+    ),
+    "park_landscape": (
+        "park_landscape",
+        "park landscape",
+        "park-like",
+        "green landscape",
+        "公园景观",
+        "公园风格",
+        "绿化景观",
+        "绿地景观",
+    ),
+    "quiet_residential": (
+        "quiet_residential",
+        "quiet residential",
+        "residential",
+        "安静居住",
+        "居住街道",
+        "住宅街道",
+        "住宅区",
+    ),
+}
+_STYLE_BLEND_TARGET_SOURCE = "style_blend_target"
+_STYLE_BLEND_REASON = "style_blend_target"
+_STYLE_TRANSFER_TARGET_SOURCE = "style_transfer_target"
+_STYLE_TRANSFER_REASON = "style_transfer_target"
 
 
 def _emit_progress(
@@ -502,6 +600,213 @@ def _graph_summary_for_llm_derivation(
     return dict(resolved.to_summary_metadata())
 
 
+def _style_marker_index(text: str, markers: Sequence[str]) -> int:
+    positions = [text.find(marker) for marker in markers if marker in text]
+    return min((pos for pos in positions if pos >= 0), default=-1)
+
+
+def _style_transfer_marker_index(text: str) -> int:
+    positions = [_style_marker_index(text, _STYLE_TRANSFER_MARKERS)]
+    from_to_match = text.find(" from ")
+    if from_to_match >= 0 and " to " in text[from_to_match + 6:]:
+        positions.append(text.find(" to ", from_to_match + 6))
+    return min((pos for pos in positions if pos >= 0), default=-1)
+
+
+def _detect_style_intent(query: object) -> tuple[str, str]:
+    text = str(query or "").strip().lower().replace("-", "_")
+    if not text:
+        return "", ""
+
+    blend_index = _style_marker_index(text, _STYLE_BLEND_MARKERS)
+    transfer_index = _style_transfer_marker_index(text)
+    if blend_index >= 0 and (transfer_index < 0 or blend_index <= transfer_index):
+        mode = "blend"
+        marker_index = blend_index
+    elif transfer_index >= 0:
+        mode = "transfer"
+        marker_index = transfer_index
+    else:
+        return "", ""
+
+    matches: list[tuple[int, int, str]] = []
+    for profile, keywords in _STYLE_TRANSFER_TARGET_KEYWORDS.items():
+        for keyword in keywords:
+            keyword_text = keyword.lower().replace("-", "_")
+            position = text.find(keyword_text)
+            if position >= 0:
+                after_marker = 0 if position >= marker_index else 1
+                matches.append((after_marker, abs(position - marker_index), profile))
+    if not matches:
+        return mode, ""
+    matches.sort()
+    return mode, normalize_street_furniture_profile(matches[0][2])
+
+
+def _merge_presence_categories(*values: object) -> tuple[str, ...]:
+    merged: list[str] = []
+    for value in values:
+        if isinstance(value, str):
+            items = [item.strip().lower() for item in value.replace(";", ",").split(",")]
+        elif isinstance(value, Sequence):
+            items = [str(item).strip().lower() for item in value]
+        else:
+            items = []
+        for item in items:
+            if item and item not in merged:
+                merged.append(item)
+    return tuple(merged)
+
+
+def _mid_density(*values: object, fallback: float = 0.65) -> float:
+    numeric_values: list[float] = []
+    for value in values:
+        try:
+            numeric_values.append(float(value))
+        except (TypeError, ValueError):
+            continue
+    if not numeric_values:
+        return fallback
+    return round(max(0.1, min(1.5, sum(numeric_values) / len(numeric_values))), 3)
+
+
+def _build_style_blend_patch(
+    *,
+    base_profile: str,
+    target_profile: str,
+    explicit_patch: Mapping[str, Any],
+) -> Dict[str, Any]:
+    if not target_profile:
+        return {}
+    if not base_profile:
+        return _style_transfer_patch_for_profile(target_profile)
+
+    base_defaults = street_furniture_profile_config_patch(base_profile)
+    target_defaults = street_furniture_profile_config_patch(target_profile)
+    if base_profile == "pedestrian_friendly" and target_profile == "transit_priority":
+        patch = {
+            "density": 0.7,
+            "ped_demand_level": "high",
+            "bike_demand_level": "medium",
+            "transit_demand_level": "high",
+            "vehicle_demand_level": "medium",
+            "minimum_category_presence": _merge_presence_categories(
+                explicit_patch.get("minimum_category_presence"),
+                base_defaults.get("minimum_category_presence"),
+                ("bus_stop",),
+            ),
+            "optional_category_presence": _merge_presence_categories(
+                explicit_patch.get("optional_category_presence"),
+                base_defaults.get("optional_category_presence"),
+                target_defaults.get("optional_category_presence"),
+            ),
+            "max_bus_stops_per_scene": 2,
+            "allow_demo_bus_stop_when_osm_absent": True,
+            "street_furniture_profile_reasons": (_STYLE_BLEND_REASON,),
+        }
+        minimum = set(patch["minimum_category_presence"])
+        patch["optional_category_presence"] = tuple(
+            item for item in patch["optional_category_presence"] if item not in minimum
+        )
+        return sanitize_compose_config_patch(patch)
+
+    patch = {
+        "density": _mid_density(
+            explicit_patch.get("density"),
+            base_defaults.get("density"),
+            target_defaults.get("density"),
+        ),
+        "ped_demand_level": explicit_patch.get("ped_demand_level", base_defaults.get("ped_demand_level", "medium")),
+        "bike_demand_level": explicit_patch.get("bike_demand_level", base_defaults.get("bike_demand_level", "medium")),
+        "transit_demand_level": target_defaults.get("transit_demand_level", "medium"),
+        "vehicle_demand_level": explicit_patch.get("vehicle_demand_level", base_defaults.get("vehicle_demand_level", "medium")),
+        "minimum_category_presence": _merge_presence_categories(
+            explicit_patch.get("minimum_category_presence"),
+            base_defaults.get("minimum_category_presence"),
+            target_defaults.get("minimum_category_presence"),
+        ),
+        "optional_category_presence": _merge_presence_categories(
+            explicit_patch.get("optional_category_presence"),
+            base_defaults.get("optional_category_presence"),
+            target_defaults.get("optional_category_presence"),
+        ),
+        "street_furniture_profile_reasons": (_STYLE_BLEND_REASON,),
+    }
+    if target_profile == "transit_priority":
+        patch["minimum_category_presence"] = _merge_presence_categories(
+            patch["minimum_category_presence"],
+            ("bus_stop",),
+        )
+        patch["max_bus_stops_per_scene"] = 2
+        patch["allow_demo_bus_stop_when_osm_absent"] = True
+    minimum = set(patch["minimum_category_presence"])
+    patch["optional_category_presence"] = tuple(
+        item for item in patch["optional_category_presence"] if item not in minimum
+    )
+    return sanitize_compose_config_patch(patch)
+
+
+def _style_transfer_patch_for_profile(target_profile: str) -> Dict[str, Any]:
+    if not target_profile:
+        return {}
+    patch = street_furniture_profile_config_patch(target_profile)
+    patch.update({
+        "street_furniture_profile_source": "manual",
+        "street_furniture_profile_confidence": 1.0,
+        "street_furniture_profile_reasons": (_STYLE_TRANSFER_REASON,),
+    })
+    return sanitize_compose_config_patch(patch)
+
+
+def _style_intent_for_draft(draft: DesignDraft) -> Dict[str, Any]:
+    explicit_patch = sanitize_compose_config_patch(draft.compose_config_patch)
+    mode, target_profile = _detect_style_intent(draft.normalized_scene_query)
+    base_profile = normalize_street_furniture_profile(explicit_patch.get("street_furniture_profile"))
+    if not target_profile:
+        return {
+            "mode": "",
+            "base_profile": base_profile,
+            "target_profile": "",
+            "patch": {},
+            "source": "",
+        }
+    patch = (
+        _build_style_blend_patch(
+            base_profile=base_profile,
+            target_profile=target_profile,
+            explicit_patch=explicit_patch,
+        )
+        if mode == "blend"
+        else _style_transfer_patch_for_profile(target_profile)
+    )
+    return {
+        "mode": mode,
+        "base_profile": base_profile,
+        "target_profile": target_profile,
+        "patch": patch,
+        "source": _STYLE_BLEND_TARGET_SOURCE if mode == "blend" else _STYLE_TRANSFER_TARGET_SOURCE,
+    }
+
+
+def _style_intent_overridden_explicit_fields(
+    explicit_patch: Mapping[str, Any],
+    target_patch: Mapping[str, Any],
+) -> list[str]:
+    return sorted(
+        field_name
+        for field_name, target_value in target_patch.items()
+        if field_name in explicit_patch and explicit_patch[field_name] != target_value
+    )
+
+
+def _style_intent_preserved_explicit_fields(
+    explicit_patch: Mapping[str, Any],
+    target_patch: Mapping[str, Any],
+) -> list[str]:
+    overridden = set(_style_intent_overridden_explicit_fields(explicit_patch, target_patch))
+    return sorted(field_name for field_name in explicit_patch if field_name not in overridden)
+
+
 def _merge_llm_patch_with_explicit_inputs(
     draft: DesignDraft,
     llm_patch: Mapping[str, Any],
@@ -514,12 +819,17 @@ def _merge_llm_patch_with_explicit_inputs(
 
     explicit_patch = sanitize_compose_config_patch(draft.compose_config_patch)
     normalized_llm_patch = sanitize_compose_config_patch(llm_patch)
+    style_intent = _style_intent_for_draft(draft)
+    style_intent_patch = dict(style_intent.get("patch") or {})
+    style_intent_source = str(style_intent.get("source") or "")
     merged_patch = dict(normalized_llm_patch)
+    controlled_patch = {**explicit_patch, **style_intent_patch}
     explicit_fields = set(explicit_patch)
+    style_intent_fields = set(style_intent_patch)
     llm_fields = set(normalized_llm_patch)
     overridden_llm_fields: list[str] = []
 
-    for field_name, explicit_value in explicit_patch.items():
+    for field_name, explicit_value in controlled_patch.items():
         if field_name in normalized_llm_patch and normalized_llm_patch[field_name] != explicit_value:
             overridden_llm_fields.append(field_name)
         merged_patch[field_name] = explicit_value
@@ -536,7 +846,9 @@ def _merge_llm_patch_with_explicit_inputs(
 
     parameter_sources: Dict[str, str] = {}
     for field_name in merged_patch:
-        if field_name in explicit_fields:
+        if field_name in style_intent_fields:
+            parameter_sources[field_name] = style_intent_source or _STYLE_TRANSFER_TARGET_SOURCE
+        elif field_name in explicit_fields:
             parameter_sources[field_name] = "explicit_input"
         elif field_name == "query" and draft.normalized_scene_query:
             parameter_sources[field_name] = "prompt_input"
@@ -627,6 +939,20 @@ def _derive_draft_with_llm(
         )
         llm_response = assistant._get_llm_client().chat_json(messages)
         raw_patch = sanitize_compose_config_patch(llm_response.get("compose_config_patch", {}))
+        explicit_patch = sanitize_compose_config_patch(draft.compose_config_patch)
+        style_intent = _style_intent_for_draft(draft)
+        style_intent_patch = dict(style_intent.get("patch") or {})
+        style_intent_mode = str(style_intent.get("mode") or "")
+        style_intent_base_profile = str(style_intent.get("base_profile") or "")
+        style_intent_target_profile = str(style_intent.get("target_profile") or "")
+        style_intent_overridden_explicit_fields = _style_intent_overridden_explicit_fields(
+            explicit_patch,
+            style_intent_patch,
+        )
+        style_intent_preserved_explicit_fields = _style_intent_preserved_explicit_fields(
+            explicit_patch,
+            style_intent_patch,
+        )
         llm_patch, parameter_sources, defaulted_fields, overridden_llm_fields = _merge_llm_patch_with_explicit_inputs(
             draft,
             raw_patch,
@@ -645,6 +971,16 @@ def _derive_draft_with_llm(
             llm_raw_fields=sorted(raw_patch),
             defaulted_fields=sorted(defaulted_fields),
             overridden_llm_fields=sorted(overridden_llm_fields),
+            style_blend_mode=style_intent_mode,
+            style_blend_base_profile=style_intent_base_profile,
+            style_blend_target_profile=style_intent_target_profile,
+            style_blend_patch=style_intent_patch if style_intent_mode == "blend" else {},
+            style_blend_preserved_explicit_fields=style_intent_preserved_explicit_fields,
+            style_blend_promoted_fields=sorted(style_intent_patch),
+            style_blend_overridden_explicit_fields=style_intent_overridden_explicit_fields,
+            style_transfer_target_profile=style_intent_target_profile if style_intent_mode == "transfer" else "",
+            style_transfer_target_patch=style_intent_patch if style_intent_mode == "transfer" else {},
+            style_transfer_overridden_explicit_fields=style_intent_overridden_explicit_fields if style_intent_mode == "transfer" else [],
             parameter_sources_by_field=parameter_sources,
             # RAG evidence fields for frontend display
             citations_by_field=citations_by_field,

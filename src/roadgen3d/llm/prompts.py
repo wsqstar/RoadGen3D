@@ -117,9 +117,15 @@ def build_design_draft_messages(
     current_patch: Mapping[str, Any] | None,
     missing_fields: Sequence[str] | None = None,
 ) -> list[Dict[str, str]]:
-    from ..services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
+    from ..services.design_types import (
+        ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
+        VALID_DESIGN_RULE_PROFILES,
+        VALID_STYLE_PRESETS,
+    )
 
     allowed_fields = ", ".join(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
+    allowed_design_rules = ", ".join(VALID_DESIGN_RULE_PROFILES)
+    allowed_style_presets = ", ".join(VALID_STYLE_PRESETS)
     serialized_evidence = [
         {
             "chunk_id": item.chunk_id,
@@ -143,6 +149,17 @@ def build_design_draft_messages(
         "`design_summary`(string)、"
         "`risk_notes`(string[])。"
         f"compose_config_patch 只能使用这些字段：{allowed_fields}。"
+        f"design_rule_profile 只能使用这些值：{allowed_design_rules}。"
+        f"style_preset 只能使用这些值：{allowed_style_presets}。"
+        "street_furniture_profile 只能使用 balanced_complete、pedestrian_friendly、"
+        "commercial_vitality、transit_priority、park_landscape、quiet_residential。"
+        "如果用户说融合、结合、兼顾、增加某种目标，请不要替换当前 preset，"
+        "而是在 current_patch 的基础上提出兼容增量。"
+        "例如步行友好融合公交优先时，应保留行人高优先级，提升 transit_demand_level，"
+        "增加 bus_stop 等公交设施，同时避免把全部字段强行改成 transit_priority。"
+        "只有用户明确说转为、切换为、convert to 时，才使用对应的合法目标 preset 值，"
+        "例如公交优先可使用 street_furniture_profile=transit_priority、"
+        "design_rule_profile=transit_priority_v1、style_preset=transit_modern_v1。"
         "compose_config_patch 必须尽量为这些允许字段都给出非空值，不要留空。"
         "如果 evidence 中 knowledge_source 为 scenario_parameters，text 是结构化情景-参数-值 JSON，"
         "应优先用于对应参数的数值、单位和引用。"
@@ -589,9 +606,15 @@ def build_graph_aware_design_messages(
     This is used by the auto-pipeline to bootstrap the initial *config_patch*
     without going through the full RAG-enhanced draft flow.
     """
-    from ..services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
+    from ..services.design_types import (
+        ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
+        VALID_DESIGN_RULE_PROFILES,
+        VALID_STYLE_PRESETS,
+    )
 
     allowed_fields = ", ".join(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
+    allowed_design_rules = ", ".join(VALID_DESIGN_RULE_PROFILES)
+    allowed_style_presets = ", ".join(VALID_STYLE_PRESETS)
 
     system_prompt = (
         "你是 RoadGen3D 的街道设计专家。"
@@ -600,6 +623,17 @@ def build_graph_aware_design_messages(
         "字段必须包含："
         "`compose_config_patch`(object) 和 `design_summary`(string)。"
         f"compose_config_patch 只能使用这些字段：{allowed_fields}。"
+        f"design_rule_profile 只能使用这些值：{allowed_design_rules}。"
+        f"style_preset 只能使用这些值：{allowed_style_presets}。"
+        "street_furniture_profile 只能使用 balanced_complete、pedestrian_friendly、"
+        "commercial_vitality、transit_priority、park_landscape、quiet_residential。"
+        "如果用户说融合、结合、兼顾、增加某种目标，请不要替换当前 preset，"
+        "而是在 current_patch 的基础上提出兼容增量。"
+        "例如步行友好融合公交优先时，应保留行人高优先级，提升 transit_demand_level，"
+        "增加 bus_stop 等公交设施，同时避免把全部字段强行改成 transit_priority。"
+        "只有用户明确说转为、切换为、convert to 时，才使用对应的合法目标 preset 值，"
+        "例如公交优先可使用 street_furniture_profile=transit_priority、"
+        "design_rule_profile=transit_priority_v1、style_preset=transit_modern_v1。"
         "请尽量为所有允许字段都给出非空值，不要输出 None/null。"
         "如果 RAG evidence 中 knowledge_source 为 scenario_parameters，text 是结构化情景-参数-值 JSON，"
         "请优先用于可匹配场景和参数的数值推导。"

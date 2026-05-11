@@ -62,6 +62,18 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "minimum_category_presence",
     "optional_category_presence",
 )
+VALID_DESIGN_RULE_PROFILES: Tuple[str, ...] = (
+    "balanced_complete_street_v1",
+    "noise_aware_v1",
+    "pedestrian_priority_v1",
+    "transit_priority_v1",
+)
+VALID_STYLE_PRESETS: Tuple[str, ...] = (
+    "analytical_diorama_v1",
+    "civic_clean_v1",
+    "lush_walkable_v1",
+    "transit_modern_v1",
+)
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
 _FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m", "skeleton_design_profile_confidence", "street_furniture_profile_confidence"})
 _INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads", "max_bus_stops_per_scene"})
@@ -72,7 +84,9 @@ _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified",
 
 # Enum fields: value (lowercased) must be one of these sets, otherwise dropped.
 _ENUM_VALID_VALUES: Dict[str, frozenset] = {
+    "design_rule_profile": frozenset(VALID_DESIGN_RULE_PROFILES),
     "objective_profile": frozenset({"balanced", "greening", "commerce", "transit"}),
+    "style_preset": frozenset(VALID_STYLE_PRESETS),
     "ped_demand_level": frozenset({"low", "medium", "high"}),
     "bike_demand_level": frozenset({"low", "medium", "high"}),
     "transit_demand_level": frozenset({"low", "medium", "high"}),

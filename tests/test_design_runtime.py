@@ -129,6 +129,20 @@ def test_sanitize_compose_config_patch_accepts_course_delivery_fields():
     assert "unsupported" not in patch
 
 
+def test_sanitize_compose_config_patch_drops_unregistered_profiles():
+    patch = sanitize_compose_config_patch(
+        {
+            "design_rule_profile": "transit_oriented_development_v1",
+            "style_preset": "modern_urban_v1",
+            "street_furniture_profile": "transit_priority",
+        }
+    )
+
+    assert patch["street_furniture_profile"] == "transit_priority"
+    assert "design_rule_profile" not in patch
+    assert "style_preset" not in patch
+
+
 def test_sanitize_compose_config_patch_accepts_osm_multiblock_fields():
     patch = sanitize_compose_config_patch(
         {
@@ -591,6 +605,226 @@ def test_generate_scene_from_draft_custom_preset_keeps_explicit_patch_over_llm(t
     assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
     assert "road_width_m" in detail["overridden_llm_fields"]
     assert "sidewalk_width_m" in detail["overridden_llm_fields"]
+
+
+def test_generate_scene_from_draft_style_blend_preserves_base_and_promotes_target(tmp_path: Path, monkeypatch):
+    from roadgen3d.llm import design_workflow
+
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 4}}), encoding="utf-8")
+    received_events: list[dict[str, object]] = []
+    captured: dict[str, object] = {}
+
+    monkeypatch.setattr(
+        runtime,
+        "build_graph_template_scene_bridge",
+        lambda *args, **kwargs: SimpleNamespace(
+            summary_metadata={
+                "layout_mode": "graph_template",
+                "graph_template_id": "demo_template",
+                "road_count": 2,
+                "junction_count": 1,
+                "total_length_m": 80.0,
+            },
+            road_segment_graph=SimpleNamespace(),
+            projected_features=SimpleNamespace(),
+            placement_context=SimpleNamespace(),
+        ),
+    )
+
+    class _FakeLlmClient:
+        def chat_json(self, messages):
+            payload = json.loads(messages[-1]["content"][0]["text"])
+            captured["current_patch"] = payload["current_patch"]
+            return {
+                "compose_config_patch": {
+                    "street_furniture_profile": "transit_priority",
+                    "design_rule_profile": "transit_oriented_development_v1",
+                    "style_preset": "modern_urban_v1",
+                    "density": 0.95,
+                    "transit_demand_level": "high",
+                    "vehicle_demand_level": "high",
+                },
+                "design_summary": "LLM suggested transit emphasis, including invalid profile names.",
+            }
+
+    class _FakeAssistant:
+        def _get_llm_client(self):
+            return _FakeLlmClient()
+
+    monkeypatch.setattr(design_workflow, "DesignAssistantService", _FakeAssistant)
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=4,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="把当前步行友好街道融合公交优先风格，增加公交设施优先级。",
+        compose_config_patch={
+            "street_furniture_profile": "pedestrian_friendly",
+            "street_furniture_profile_source": "manual",
+            "street_furniture_profile_confidence": 1.0,
+            "design_rule_profile": "pedestrian_priority_v1",
+            "objective_profile": "balanced",
+            "style_preset": "analytical_diorama_v1",
+            "density": 0.5,
+            "ped_demand_level": "high",
+            "bike_demand_level": "medium",
+            "transit_demand_level": "medium",
+            "vehicle_demand_level": "low",
+            "minimum_category_presence": ("lamp", "bench", "trash", "bollard"),
+        },
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
+        generation_options={"preset_id": "pedestrian_friendly"},
+        progress_callback=received_events.append,
+    )
+
+    assert captured["current_patch"]["street_furniture_profile"] == "pedestrian_friendly"
+    assert result.compose_config["street_furniture_profile"] == "pedestrian_friendly"
+    assert result.compose_config["design_rule_profile"] == "pedestrian_priority_v1"
+    assert result.compose_config["style_preset"] == "analytical_diorama_v1"
+    assert result.compose_config["density"] == 0.7
+    assert result.compose_config["ped_demand_level"] == "high"
+    assert result.compose_config["transit_demand_level"] == "high"
+    assert result.compose_config["vehicle_demand_level"] == "medium"
+    assert result.compose_config["max_bus_stops_per_scene"] == 2
+    assert result.compose_config["allow_demo_bus_stop_when_osm_absent"] is True
+    assert "bus_stop" in result.compose_config["minimum_category_presence"]
+    assert "bollard" in result.compose_config["minimum_category_presence"]
+    llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
+    detail = llm_event["detail"]
+    assert detail["style_blend_mode"] == "blend"
+    assert detail["style_blend_base_profile"] == "pedestrian_friendly"
+    assert detail["style_blend_target_profile"] == "transit_priority"
+    assert detail["parameter_sources_by_field"]["street_furniture_profile"] == "explicit_input"
+    assert detail["parameter_sources_by_field"]["design_rule_profile"] == "explicit_input"
+    assert detail["parameter_sources_by_field"]["style_preset"] == "explicit_input"
+    assert detail["parameter_sources_by_field"]["density"] == "style_blend_target"
+    assert "bus_stop" in detail["style_blend_patch"]["minimum_category_presence"]
+    assert "street_furniture_profile" in detail["style_blend_preserved_explicit_fields"]
+    assert "density" in detail["style_blend_overridden_explicit_fields"]
+    assert "street_furniture_profile" in detail["overridden_llm_fields"]
+    assert "style_preset" not in detail["llm_raw_fields"]
+    assert "design_rule_profile" not in detail["llm_raw_fields"]
+
+
+def test_generate_scene_from_draft_style_transfer_target_overrides_old_explicit_preset(tmp_path: Path, monkeypatch):
+    from roadgen3d.llm import design_workflow
+
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 4}}), encoding="utf-8")
+    received_events: list[dict[str, object]] = []
+    captured: dict[str, object] = {}
+
+    monkeypatch.setattr(
+        runtime,
+        "build_graph_template_scene_bridge",
+        lambda *args, **kwargs: SimpleNamespace(
+            summary_metadata={
+                "layout_mode": "graph_template",
+                "graph_template_id": "demo_template",
+                "road_count": 2,
+                "junction_count": 1,
+                "total_length_m": 80.0,
+            },
+            road_segment_graph=SimpleNamespace(),
+            projected_features=SimpleNamespace(),
+            placement_context=SimpleNamespace(),
+        ),
+    )
+
+    class _FakeLlmClient:
+        def chat_json(self, messages):
+            payload = json.loads(messages[-1]["content"][0]["text"])
+            captured["current_patch"] = payload["current_patch"]
+            return {
+                "compose_config_patch": {
+                    "street_furniture_profile": "transit_priority",
+                    "design_rule_profile": "transit_oriented_development_v1",
+                    "style_preset": "modern_urban_v1",
+                    "density": 0.75,
+                    "transit_demand_level": "high",
+                    "vehicle_demand_level": "medium",
+                },
+                "design_summary": "LLM requested a transit priority conversion.",
+            }
+
+    class _FakeAssistant:
+        def _get_llm_client(self):
+            return _FakeLlmClient()
+
+    monkeypatch.setattr(design_workflow, "DesignAssistantService", _FakeAssistant)
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=4,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="把当前步行友好街道转为公交优先风格，增加公交设施优先级。",
+        compose_config_patch={
+            "street_furniture_profile": "pedestrian_friendly",
+            "street_furniture_profile_source": "manual",
+            "street_furniture_profile_confidence": 1.0,
+            "design_rule_profile": "pedestrian_priority_v1",
+            "objective_profile": "balanced",
+            "style_preset": "analytical_diorama_v1",
+            "density": 0.5,
+            "ped_demand_level": "high",
+            "bike_demand_level": "medium",
+            "transit_demand_level": "medium",
+            "vehicle_demand_level": "low",
+        },
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
+        generation_options={"preset_id": "pedestrian_friendly"},
+        progress_callback=received_events.append,
+    )
+
+    assert captured["current_patch"]["street_furniture_profile"] == "pedestrian_friendly"
+    assert result.compose_config["street_furniture_profile"] == "transit_priority"
+    assert result.compose_config["design_rule_profile"] == "transit_priority_v1"
+    assert result.compose_config["style_preset"] == "transit_modern_v1"
+    assert result.compose_config["density"] == 0.85
+    assert result.compose_config["transit_demand_level"] == "high"
+    assert result.compose_config["vehicle_demand_level"] == "high"
+    llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
+    detail = llm_event["detail"]
+    assert detail["style_transfer_target_profile"] == "transit_priority"
+    assert detail["parameter_sources_by_field"]["style_preset"] == "style_transfer_target"
+    assert detail["parameter_sources_by_field"]["design_rule_profile"] == "style_transfer_target"
+    assert "style_preset" in detail["style_transfer_overridden_explicit_fields"]
+    assert "design_rule_profile" in detail["style_transfer_overridden_explicit_fields"]
 
 
 def test_generate_scene_from_draft_custom_preset_fails_when_llm_fails(monkeypatch):
