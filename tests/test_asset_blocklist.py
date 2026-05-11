@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -41,3 +42,37 @@ def test_known_bad_tree_asset_is_manifest_ineligible() -> None:
     notes = manifest_cleaner._quality_notes(row, face_count=298, quality_tier=1, scene_eligible=False)
     assert "known_bad_asset_blocked" in notes
     assert "scene_blocked" in notes
+
+
+def test_street_scene_block_categories_are_manually_disabled_in_street_furniture_manifest() -> None:
+    manifest_path = Path(__file__).resolve().parents[1] / "data" / "street_furniture" / "street_furniture_manifest.jsonl"
+    block_categories = {
+        "house",
+        "chair",
+        "table",
+        "couch",
+        "bungalow",
+        "arcade game cabinet",
+        "candle",
+        "grave yard",
+        "bed",
+    }
+
+    by_category: dict[str, int] = {category: 0 for category in block_categories}
+    any_enabled = {category: False for category in block_categories}
+
+    for line in manifest_path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        category = str(row.get("category", "")).strip()
+        if category not in block_categories:
+            continue
+        by_category[category] += 1
+        if row.get("scene_eligible") is True:
+            any_enabled[category] = True
+
+    for category in block_categories:
+        if by_category[category] == 0:
+            continue
+        assert not any_enabled[category], f"{category} has scene_eligible=true in manifest"
