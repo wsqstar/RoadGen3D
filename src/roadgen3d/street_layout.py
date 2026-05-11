@@ -454,6 +454,56 @@ def _resolve_path(path_text: object, base_dir: Path) -> str:
     return str(path)
 
 
+def _resolve_manifest_mesh_path(payload: Mapping[str, object], base_dir: Path) -> str:
+    mesh_path = _resolve_path(payload.get("mesh_path", ""), base_dir)
+    if Path(mesh_path).is_file():
+        return mesh_path
+
+    split_mesh_path = _resolve_split_component_mesh_path(payload, base_dir)
+    if split_mesh_path is not None:
+        logger.warning(
+            "Repaired missing split mesh path for asset '%s': %s -> %s",
+            str(payload.get("asset_id", "")).strip(),
+            mesh_path,
+            split_mesh_path,
+        )
+        return str(split_mesh_path)
+    return mesh_path
+
+
+def _resolve_split_component_mesh_path(payload: Mapping[str, object], base_dir: Path) -> Path | None:
+    asset_id = str(payload.get("asset_id", "") or "").strip()
+    split_output_dir_raw = str(payload.get("split_output_dir", "") or "").strip()
+    if not split_output_dir_raw or "-split-" not in asset_id:
+        return None
+
+    try:
+        split_index = int(payload.get("split_index", ""))
+    except (TypeError, ValueError):
+        suffix = asset_id.rsplit("-split-", 1)[-1]
+        try:
+            split_index = int(suffix)
+        except ValueError:
+            return None
+    split_token = f"{split_index:03d}"
+    split_output_dir = Path(_resolve_path(split_output_dir_raw, base_dir))
+    if not split_output_dir.is_dir():
+        return None
+
+    candidates = [
+        split_output_dir / f"sign_{split_token}.glb",
+        split_output_dir / f"split_{split_token}.glb",
+        split_output_dir / f"{asset_id}.glb",
+    ]
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate.resolve()
+    matches = sorted(split_output_dir.glob(f"*_{split_token}.glb"))
+    if matches:
+        return matches[0].resolve()
+    return None
+
+
 _BLOCKED_ASSET_IDS = {
     "003e74743d454448abf11fd78164a75d",
     "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
@@ -1494,9 +1544,16 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "asset_id": str(payload["asset_id"]).strip(),
             "category": str(payload["category"]).strip().lower(),
             "text_desc": str(payload["text_desc"]).strip(),
-            "mesh_path": _resolve_path(payload["mesh_path"], base_dir),
+            "mesh_path": _resolve_manifest_mesh_path(payload, base_dir),
             "latent_path": _resolve_path(payload["latent_path"], base_dir),
         }
+        if not Path(str(row["mesh_path"])).is_file():
+            logger.warning(
+                "Skipping asset '%s' with missing mesh path: %s",
+                row["asset_id"],
+                row["mesh_path"],
+            )
+            continue
         for optional_key in (
             "style_tags",
             "quality_tier",
@@ -6264,7 +6321,8 @@ def _build_osm_base_scene(
     rendered_vehicle_surfaces = (
         list(road_arm_geometries) if road_arm_geometries else [carriageway]
     )
-    curb_source_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces, *bus_bay_vehicle_surfaces])
+    base_vehicle_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
+    curb_source_surface = _union_scene_polygonal_geometries([base_vehicle_surface, *bus_bay_vehicle_surfaces])
     if not curb_source_surface.is_empty:
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, sidewalk_render_zone, curb_width)
@@ -6384,11 +6442,20 @@ def _build_osm_base_scene(
             return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), SIDEWALK_ELEVATION_M + 0.018, texture_key or "transit_pad", "transit_pad"
         return 0.014, _material_color(material, colors.get("colored_pavement", (200, 175, 150, 255))), 0.016, texture_key or "colored_pavement", "colored_pavement"
 
-    def _render_bus_bay_edge_markings(geometry: object, *, node_name_prefix: str) -> None:
+    def _render_bus_bay_edge_markings(
+        geometry: object,
+        *,
+        node_name_prefix: str,
+        adjacent_vehicle_surface: object | None = None,
+    ) -> None:
         if geometry is None or getattr(geometry, "is_empty", True):
             return
         try:
-            line_zone = geometry.boundary.buffer(0.055, cap_style=2, join_style=2)
+            line_width_m = 0.055
+            line_zone = geometry.boundary.buffer(line_width_m, cap_style=2, join_style=2)
+            if adjacent_vehicle_surface is not None and not getattr(adjacent_vehicle_surface, "is_empty", True):
+                vehicle_contact_zone = adjacent_vehicle_surface.buffer(line_width_m * 1.35)
+                line_zone = line_zone.difference(vehicle_contact_zone)
             line_zone = _clean_scene_polygonal_geometry(line_zone)
         except Exception:
             logger.debug("Skipping bus bay edge markings", exc_info=True)
@@ -6423,6 +6490,7 @@ def _build_osm_base_scene(
             _render_bus_bay_edge_markings(
                 geometry,
                 node_name_prefix=f"surface_annotation_bus_bay_marking_{patch.get('surface_id', patch_index)}",
+                adjacent_vehicle_surface=base_vehicle_surface,
             )
 
     def _render_crosswalk_zebra_patch(

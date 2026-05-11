@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import math
 from dataclasses import dataclass
 from functools import lru_cache
@@ -21,6 +22,8 @@ _GLOBAL_DISABLE_MANIFEST_PATHS: Tuple[Path, ...] = (
     DEFAULT_OBJECT_MANIFEST_PATH,
     DEFAULT_OBJECT_MANIFEST_V2_PATH,
 )
+
+logger = logging.getLogger(__name__)
 
 _LEGACY_OPTIONAL_FIELDS: Tuple[str, ...] = (
     "style_tags",
@@ -212,6 +215,56 @@ def _resolve_path(path_text: object, base_dir: Path) -> str:
     if not path.is_absolute():
         path = (base_dir / path).resolve()
     return str(path)
+
+
+def _resolve_manifest_mesh_path(payload: Mapping[str, object], base_dir: Path) -> str:
+    mesh_path = _resolve_path(payload.get("mesh_path"), base_dir)
+    if mesh_path and Path(mesh_path).is_file():
+        return mesh_path
+
+    split_mesh_path = _resolve_split_component_mesh_path(payload, base_dir)
+    if split_mesh_path is not None:
+        logger.warning(
+            "Repaired missing split mesh path for asset '%s': %s -> %s",
+            _clean_text(payload.get("asset_id")),
+            mesh_path,
+            split_mesh_path,
+        )
+        return str(split_mesh_path)
+    return mesh_path
+
+
+def _resolve_split_component_mesh_path(payload: Mapping[str, object], base_dir: Path) -> Path | None:
+    asset_id = _clean_text(payload.get("asset_id"))
+    split_output_dir_raw = _clean_text(payload.get("split_output_dir"))
+    if not split_output_dir_raw or "-split-" not in asset_id:
+        return None
+
+    try:
+        split_index = int(payload.get("split_index", ""))
+    except (TypeError, ValueError):
+        suffix = asset_id.rsplit("-split-", 1)[-1]
+        try:
+            split_index = int(suffix)
+        except ValueError:
+            return None
+    split_token = f"{split_index:03d}"
+    split_output_dir = Path(_resolve_path(split_output_dir_raw, base_dir))
+    if not split_output_dir.is_dir():
+        return None
+
+    candidates = [
+        split_output_dir / f"sign_{split_token}.glb",
+        split_output_dir / f"split_{split_token}.glb",
+        split_output_dir / f"{asset_id}.glb",
+    ]
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate.resolve()
+    matches = sorted(split_output_dir.glob(f"*_{split_token}.glb"))
+    if matches:
+        return matches[0].resolve()
+    return None
 
 
 def _coerce_text_list(value: object) -> List[str]:
@@ -519,9 +572,16 @@ def _load_legacy_object_rows(manifest_path: Path) -> List[Dict[str, object]]:
             "asset_id": _clean_text(payload["asset_id"]),
             "category": _clean_text(payload["category"]).lower(),
             "text_desc": _clean_text(payload["text_desc"]),
-            "mesh_path": _resolve_path(payload["mesh_path"], base_dir),
+            "mesh_path": _resolve_manifest_mesh_path(payload, base_dir),
             "latent_path": _resolve_path(payload["latent_path"], base_dir),
         }
+        if not Path(str(row["mesh_path"])).is_file():
+            logger.warning(
+                "Skipping object asset '%s' with missing mesh path: %s",
+                row["asset_id"],
+                row["mesh_path"],
+            )
+            continue
         for optional_key in _LEGACY_OPTIONAL_FIELDS:
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
@@ -600,7 +660,7 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
             "asset_id": _clean_text(payload["asset_id"]),
             "category": _clean_text(payload["category"]).lower(),
             "text_desc": _clean_text(payload["text_desc"]),
-            "mesh_path": _resolve_path(payload["mesh_path"], base_dir),
+            "mesh_path": _resolve_manifest_mesh_path(payload, base_dir),
             "latent_path": _resolve_path(payload["latent_path"], base_dir),
             "asset_role": _clean_text(payload.get("asset_role")) or (
                 "building" if _clean_text(payload["category"]).lower() == "building" else "street_furniture"
@@ -618,6 +678,13 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
             "license": _clean_text(payload.get("license")),
             "split": _clean_text(payload.get("split")),
         }
+        if not Path(str(row["mesh_path"])).is_file():
+            logger.warning(
+                "Skipping object asset '%s' with missing mesh path: %s",
+                row["asset_id"],
+                row["mesh_path"],
+            )
+            continue
         for key in (
             "metric_width_m",
             "metric_depth_m",

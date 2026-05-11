@@ -21,7 +21,15 @@ from roadgen3d.services.scene_backends import (  # noqa: E402
 from roadgen3d.services import scene_backends as scene_backends_module  # noqa: E402
 
 
+def _touch_meshes(base_dir: Path, *names: str) -> None:
+    for name in names:
+        path = base_dir / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(b"glb")
+
+
 def test_object_backend_merges_v2_overlay_with_legacy_manifest(tmp_path: Path):
+    _touch_meshes(tmp_path, "bench.glb", "lamp.glb")
     legacy = tmp_path / "legacy.jsonl"
     legacy.write_text(
         json.dumps(
@@ -82,7 +90,69 @@ def test_object_backend_merges_v2_overlay_with_legacy_manifest(tmp_path: Path):
     assert lamp["category"] == "lamp"
 
 
+def test_object_backend_repairs_split_component_mesh_path(tmp_path: Path):
+    legacy = tmp_path / "legacy.jsonl"
+    split_dir = tmp_path / "assets_split" / "parent" / "projection"
+    repaired_mesh = split_dir / "sign_052.glb"
+    repaired_mesh.parent.mkdir(parents=True, exist_ok=True)
+    repaired_mesh.write_bytes(b"glb")
+    legacy.write_text(
+        json.dumps(
+            {
+                "asset_id": "parent-split-052",
+                "category": "traffic_sign",
+                "text_desc": "traffic sign split component",
+                "mesh_path": "normalized_meshes/parent-split-052.glb",
+                "latent_path": "parent-split-052.pt",
+                "split_output_dir": str(split_dir),
+                "split_index": 52,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    backend = ManifestObjectAssetBackend(manifest_path=legacy)
+    _, rows = backend.load_rows()
+
+    assert rows[0]["mesh_path"] == str(repaired_mesh.resolve())
+
+
+def test_object_backend_skips_unrepairable_missing_mesh(tmp_path: Path):
+    _touch_meshes(tmp_path, "valid.glb")
+    legacy = tmp_path / "legacy.jsonl"
+    legacy.write_text(
+        json.dumps(
+            {
+                "asset_id": "missing_sign",
+                "category": "traffic_sign",
+                "text_desc": "missing traffic sign",
+                "mesh_path": "missing.glb",
+                "latent_path": "missing.pt",
+            }
+        )
+        + "\n"
+        + json.dumps(
+            {
+                "asset_id": "valid_sign",
+                "category": "traffic_sign",
+                "text_desc": "valid traffic sign",
+                "mesh_path": "valid.glb",
+                "latent_path": "valid.pt",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    backend = ManifestObjectAssetBackend(manifest_path=legacy)
+    _, rows = backend.load_rows()
+
+    assert [row["asset_id"] for row in rows] == ["valid_sign"]
+
+
 def test_object_backend_manifest_disable_is_global_deny_vote(tmp_path: Path):
+    _touch_meshes(tmp_path, "lamp.glb")
     disabled_library = tmp_path / "disabled.jsonl"
     disabled_library.write_text(
         json.dumps(
@@ -128,6 +198,7 @@ def test_object_backend_manifest_disable_is_global_deny_vote(tmp_path: Path):
 
 
 def test_object_backend_default_disable_index_blocks_enabled_overlay(tmp_path: Path, monkeypatch):
+    _touch_meshes(tmp_path, "lamp.glb")
     disabled_library = tmp_path / "default_disabled.jsonl"
     disabled_library.write_text(
         json.dumps(
@@ -175,6 +246,7 @@ def test_object_backend_default_disable_index_blocks_enabled_overlay(tmp_path: P
 
 
 def test_object_backend_normalizes_traffic_sign_orientation_metadata(tmp_path: Path):
+    _touch_meshes(tmp_path, "sign.glb", "sign_default.glb", "lamp.glb")
     legacy = tmp_path / "legacy_signs.jsonl"
     legacy.write_text(
         json.dumps(

@@ -922,6 +922,8 @@ def test_load_mesh_cache_preserves_multi_geometry_scene_assets(tmp_path: Path):
 
 def test_load_real_manifest_preserves_scene_ready_fields(tmp_path: Path):
     manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    mesh_path = tmp_path / "meshes" / "lamp_scene_ready.glb"
+    _make_mesh(mesh_path)
     _write_manifest(
         manifest,
         [
@@ -929,7 +931,7 @@ def test_load_real_manifest_preserves_scene_ready_fields(tmp_path: Path):
                 "asset_id": "lamp_scene_ready",
                 "category": "lamp",
                 "text_desc": "scene ready lamp",
-                "mesh_path": str(tmp_path / "meshes" / "lamp_scene_ready.glb"),
+                "mesh_path": str(mesh_path),
                 "latent_path": str(tmp_path / "latents" / "lamp_scene_ready.pt"),
                 "scene_eligible": True,
                 "mesh_face_count": 1234,
@@ -944,6 +946,64 @@ def test_load_real_manifest_preserves_scene_ready_fields(tmp_path: Path):
     assert rows[0]["scene_eligible"] is True
     assert rows[0]["mesh_face_count"] == 1234
     assert rows[0]["quality_notes"] == ["scene_ready", "high_face_count"]
+
+
+def test_load_real_manifest_skips_unrepairable_missing_mesh(tmp_path: Path):
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    valid_mesh = tmp_path / "meshes" / "valid.glb"
+    _make_mesh(valid_mesh)
+    _write_manifest(
+        manifest,
+        [
+            {
+                "asset_id": "missing_sign",
+                "category": "traffic_sign",
+                "text_desc": "missing traffic sign",
+                "mesh_path": str(tmp_path / "missing.glb"),
+                "latent_path": str(tmp_path / "missing.pt"),
+            },
+            {
+                "asset_id": "valid_sign",
+                "category": "traffic_sign",
+                "text_desc": "valid traffic sign",
+                "mesh_path": str(valid_mesh),
+                "latent_path": str(tmp_path / "valid.pt"),
+            },
+        ],
+    )
+
+    rows = street_layout._load_real_manifest(manifest)
+
+    assert [row["asset_id"] for row in rows] == ["valid_sign"]
+
+
+def test_load_real_manifest_repairs_split_component_mesh_path(tmp_path: Path):
+    manifest = tmp_path / "data" / "street_furniture_manifest.jsonl"
+    split_dir = tmp_path / "data" / "street_furniture" / "assets_split" / "parent" / "projection"
+    repaired_mesh = split_dir / "sign_052.glb"
+    _make_mesh(repaired_mesh)
+    missing_mesh = tmp_path / "data" / "real" / "normalized_meshes" / "parent-split-052.glb"
+    _write_manifest(
+        manifest,
+        [
+            {
+                "asset_id": "parent-split-052",
+                "category": "traffic_sign",
+                "text_desc": "traffic sign split component",
+                "mesh_path": str(missing_mesh),
+                "latent_path": str(split_dir / "parent-split-052.pt"),
+                "asset_composition_type": "split_component",
+                "split_index": 52,
+                "split_output_dir": str(split_dir),
+            }
+        ],
+    )
+
+    rows = street_layout._load_real_manifest(manifest)
+    metadata = street_layout._load_mesh_metadata(rows)
+
+    assert rows[0]["mesh_path"] == str(repaired_mesh.resolve())
+    assert "parent-split-052" in metadata
 
 
 def test_add_instance_meshes_adds_doors_only_for_procedural_buildings(tmp_path: Path):
@@ -2643,6 +2703,42 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     assert any(name.startswith("surface_annotation_bus_bay") for name in node_names)
     assert any(name.startswith("surface_annotation_bus_bay_marking") for name in node_names)
     assert any(name.startswith("surface_annotation_transit_pad") for name in node_names)
+
+    def _vertices_for(prefix: str) -> np.ndarray:
+        meshes = [
+            scene.geometry[scene.graph[node_name][1]]
+            for node_name in scene.graph.nodes_geometry
+            if str(node_name).startswith(prefix)
+        ]
+        if not meshes:
+            return np.empty((0, 3))
+        return np.vstack([np.asarray(mesh.vertices) for mesh in meshes if len(mesh.vertices)])
+
+    marking_vertices = _vertices_for("surface_annotation_bus_bay_marking")
+    assert marking_vertices.size
+    center_span = (marking_vertices[:, 0] > 10.0) & (marking_vertices[:, 0] < 30.0)
+    old_edge_marking = center_span & (marking_vertices[:, 2] > -6.75) & (marking_vertices[:, 2] < -6.45)
+    moved_edge_marking = (
+        (marking_vertices[:, 0] > 7.5)
+        & (marking_vertices[:, 0] < 32.5)
+        & (marking_vertices[:, 2] > -8.75)
+        & (marking_vertices[:, 2] < -8.45)
+    )
+    assert not np.any(old_edge_marking)
+    assert np.any(moved_edge_marking)
+
+    curb_vertices = _vertices_for("curb_")
+    assert curb_vertices.size
+    curb_center_span = (curb_vertices[:, 0] > 10.0) & (curb_vertices[:, 0] < 30.0)
+    old_edge_curb = curb_center_span & (curb_vertices[:, 2] > -6.75) & (curb_vertices[:, 2] < -6.45)
+    moved_edge_curb = (
+        (curb_vertices[:, 0] > 7.5)
+        & (curb_vertices[:, 0] < 32.5)
+        & (curb_vertices[:, 2] > -8.75)
+        & (curb_vertices[:, 2] < -8.45)
+    )
+    assert not np.any(old_edge_curb)
+    assert np.any(moved_edge_curb)
 
 
 def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():
