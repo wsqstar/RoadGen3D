@@ -16,6 +16,7 @@
 | 文档 | 说明 |
 | --- | --- |
 | [ROADGEN3D_FRAMEWORK.md](ROADGEN3D_FRAMEWORK.md) | 当前框架总览和主流程 source of truth |
+| [ACTIVE_ENTRYPOINTS.md](ACTIVE_ENTRYPOINTS.md) | 当前活跃入口、子模块边界和 legacy alias |
 | [DATA_CONTRACTS.md](DATA_CONTRACTS.md) | `DesignDraft`、`SceneContext`、`StreetComposeConfig`、`scene_layout.json` 等数据契约 |
 | [EVALUATION.md](EVALUATION.md) | 当前评价 API、字段、降级规则和 road-metrics 边界 |
 | [DEPLOYMENT_AND_JOBS.md](DEPLOYMENT_AND_JOBS.md) | FastAPI、Viewer dev middleware、job service 和 artifact 边界 |

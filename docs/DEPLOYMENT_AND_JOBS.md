@@ -162,8 +162,8 @@ make dev
 或者分别启动：
 
 ```bash
-make workbench-api
+make api
 make viewer-web
 ```
 
-名称中的 `workbench-api` 是历史遗留，实际入口是当前主 FastAPI。
+`make workbench-api` 是历史兼容 alias，实际入口是当前主 FastAPI。

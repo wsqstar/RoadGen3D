@@ -1038,3 +1038,26 @@ def test_capture_views_endpoint_invokes_backend_capture(tmp_path: Path, monkeypa
     assert captured["manifest_path"] == manifest_path
     assert captured["options"]["capture_profile"] == "quick_12"
     assert captured["options"]["capture_resolution"] == [640, 360]
+
+
+def test_scene_diff_endpoint_reports_missing_layouts():
+    client = TestClient(create_app(design_service=_FakeService()))
+
+    response = client.post(
+        "/api/scenes/diff",
+        json={"layout_a": "/tmp/roadgen3d-missing-a.json", "layout_b": "/tmp/roadgen3d-missing-b.json"},
+    )
+
+    assert response.status_code == 404
+
+
+def test_asset_split_endpoint_rejects_unsupported_method_before_manifest_lookup():
+    client = TestClient(create_app(design_service=_FakeService()))
+
+    response = client.post(
+        "/api/asset-manifest/split-selected",
+        json={"manifest_name": "missing.jsonl", "asset_id": "asset-demo", "method": "unsupported"},
+    )
+
+    assert response.status_code == 400
+    assert "Unsupported split method" in response.json()["detail"]

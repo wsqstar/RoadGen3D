@@ -14,12 +14,13 @@ VIEWER_IDENTITY_TEXT := RoadGen3D Viewer
 GRAPH_TEMPLATE := hkust_gz_gate
 ENABLE_ARCHIVED_WORKBENCH ?= 0
 
-.PHONY: dev stop ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-preset help
+.PHONY: dev stop api ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-preset help
 
 help:
 	@echo "make dev               - Launch API + Viewer web"
 	@echo "make stop              - Stop running API + Viewer dev services (ports $(VIEWER_PORT) and $(UI_API_PORT))"
-	@echo "make workbench-api     - Launch the FastAPI design assistant API"
+	@echo "make api               - Launch the canonical FastAPI design/generation API"
+	@echo "make workbench-api     - Deprecated alias for make api"
 	@echo "make workbench-web     - Archived legacy React workbench; set ENABLE_ARCHIVED_WORKBENCH=1 to launch"
 	@echo "make workbench-install - Archived legacy React workbench install; opt in with ENABLE_ARCHIVED_WORKBENCH=1"
 	@echo "make viewer-web        - Launch the standalone web viewer (auto-selects a free port if 4173 is busy)"
@@ -74,7 +75,7 @@ dev:
 		echo "RoadGen3D Viewer will start at http://$(VIEWER_HOST):$$viewer_port"; \
 	fi; \
 	trap 'kill 0' INT TERM EXIT; \
-	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) workbench-api & \
+	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) api & \
 		ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & \
 	wait
 
@@ -103,14 +104,18 @@ gradio-dev:
 	@echo "  - make dev: 启动 API + Viewer web"
 	@exit 1
 
-workbench-api:
+api:
 	@if lsof -nP -iTCP:$(UI_API_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
 		echo "Design API already available at http://$(UI_API_HOST):$(UI_API_PORT)"; \
 	else \
 		MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT); \
 	fi
 
-ui-api: workbench-api
+workbench-api:
+	@echo "make workbench-api is deprecated; use make api."
+	@$(MAKE) api
+
+ui-api: api
 
 workbench-web:
 	@if [ "$(ENABLE_ARCHIVED_WORKBENCH)" != "1" ]; then \
@@ -239,7 +244,7 @@ test-pipeline:
 	@mkdir -p $(TEST_REPORTS_DIR)
 	@echo "[1/4] 启动 API 与 Viewer 服务..."
 	@trap 'kill 0' INT TERM; \
-	$(MAKE) workbench-api & \
+	$(MAKE) api & \
 	$(MAKE) viewer-web & \
 	sleep 3 && \
 	echo "[2/4] 等待 API 就绪..." && \
@@ -320,7 +325,7 @@ test-batch:
 	@mkdir -p $(TEST_REPORTS_DIR)
 	@echo "[1/4] 启动 API 与 Viewer 服务..."
 	@trap 'kill 0' INT TERM; \
-	$(MAKE) workbench-api & \
+	$(MAKE) api & \
 	$(MAKE) viewer-web & \
 	sleep 3 && \
 	echo "[2/4] 等待 API 就绪..." && \

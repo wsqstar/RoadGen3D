@@ -165,7 +165,9 @@ make dev
 - **API** — `http://127.0.0.1:8010` (FastAPI 后端)
 - **Viewer** — 默认 `http://127.0.0.1:4173`；如果端口被其他服务占用，会自动选择后续空闲端口。
 
-或单独启动：`make workbench-api`, `make viewer-web`。
+或单独启动：`make api`, `make viewer-web`。
+
+`make workbench-api` 仅作为历史兼容 alias 保留，实际启动同一个 FastAPI 入口。
 
 旧版 `web/workbench` 已归档，默认不再启动。需要查看历史 UI 时显式执行：
 
@@ -234,7 +236,7 @@ This launches two services:
 - **API** — `http://127.0.0.1:8010`
 - **Viewer** — defaults to `http://127.0.0.1:4173`; if that port belongs to another service, Make picks the next free port.
 
-Or start individual services via `make workbench-api` and `make viewer-web`.
+Or start individual services via `make api` and `make viewer-web`.
 
 The legacy `web/workbench` app is archived and hidden from default startup. To inspect it explicitly:
 
@@ -955,7 +957,8 @@ LLM_MODEL=gpt-4o-mini
 ```bash
 make help                 # Show all available targets
 make dev                  # Start API + viewer
-make workbench-api        # Start FastAPI backend (port 8010)
+make api                  # Start FastAPI backend (port 8010)
+make workbench-api        # Deprecated alias for make api
 make workbench-web        # Archived legacy workbench; requires ENABLE_ARCHIVED_WORKBENCH=1
 make viewer-web           # Start 3D viewer (port 4173)
 make knowledge-build      # Build RAG knowledge base from design guide PDF
