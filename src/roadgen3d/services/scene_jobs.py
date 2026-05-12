@@ -21,6 +21,7 @@ from .design_types import (
     SceneJobStatusResponse,
     SceneRecord,
 )
+from .generation_method import infer_generation_method
 
 
 def _utc_now() -> str:
@@ -327,6 +328,13 @@ class SceneJobService:
         }
         if not provenance["evidence_count"]:
             provenance["evidence_count"] = len(provenance["rag_evidence"])
+        generation_method = infer_generation_method(
+            candidate_source=str(context_detail.get("llm_derivation_status") or ""),
+            knowledge_source=provenance["knowledge_source"],
+            rag_evidence=provenance["rag_evidence"],
+            parameter_sources_by_field=provenance["parameter_sources_by_field"],
+        )
+        provenance["generation_method"] = generation_method
         llm_config_patch = (
             context_detail.get("config_patch")
             or context_detail.get("configPatch")
@@ -343,10 +351,12 @@ class SceneJobService:
             "viewer_url": result.viewer_url if result is not None else "",
             "artifact_dir": _artifact_dir_for_result(result, state.generation_options),
             "generation_trace_path": state.trace_artifact_path,
+            "generation_method": generation_method,
         }
         return dict(make_json_safe({
             "schema_version": "generation_trace_v1",
             "job_id": state.job_id,
+            "generation_method": generation_method,
             "status": state.status,
             "created_at": state.created_at,
             "started_at": state.started_at,
@@ -362,6 +372,7 @@ class SceneJobService:
                 "overridden_fields": list(context_detail.get("overridden_llm_fields") or []),
                 "risk_notes": list(state.draft.risk_notes),
                 "derivation_status": str(context_detail.get("llm_derivation_status") or ""),
+                "generation_method": generation_method,
             },
             "process": {
                 "current_stage": state.stage,

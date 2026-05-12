@@ -28,6 +28,7 @@ from .design_types import (
     sanitize_compose_config_patch,
     sanitize_scene_context,
 )
+from .generation_method import infer_generation_method
 from .optimization_planner import RuleBasedOptimizationPlanner
 
 
@@ -61,6 +62,7 @@ class BranchScatterPoint:
     dominated_by_count: int
     label: str
     status: str
+    generation_method: str = "unknown_legacy"
     influence_summary: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,6 +82,7 @@ class BranchNode:
     optimization_directives: List[Dict[str, Any]] = field(default_factory=list)
     llm_candidate_reasoning: str = ""
     candidate_source: str = "branch_llm_candidate"
+    generation_method: str = "unknown_legacy"
     directive_ids: List[str] = field(default_factory=list)
     rejected_edits: List[Dict[str, Any]] = field(default_factory=list)
     scene_layout_path: str = ""
@@ -517,6 +520,12 @@ class BranchRunService:
             rejected_edits=list(candidate.get("rejected_edits", []) or []),
         )
         node.influence_rows = _build_influence_rows(node, parent=parent)
+        node.generation_method = infer_generation_method(
+            candidate_source=node.candidate_source,
+            knowledge_source=state.knowledge_source,
+            influence_rows=node.influence_rows,
+            rag_evidence=node.rag_evidence,
+        )
         node.trace = _build_branch_node_trace(state, node)
         return node
 
@@ -525,6 +534,12 @@ class BranchRunService:
         node_dir.mkdir(parents=True, exist_ok=True)
         node.status = "running"
         node.influence_rows = _build_influence_rows(node, parent=_find_node(state.nodes, node.parent_id))
+        node.generation_method = infer_generation_method(
+            candidate_source=node.candidate_source,
+            knowledge_source=state.knowledge_source,
+            influence_rows=node.influence_rows,
+            rag_evidence=node.rag_evidence,
+        )
         node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
         self._append_node(state.run_id, node)
         _write_json(node_dir / "config_patch.json", node.config_patch)
@@ -587,6 +602,12 @@ class BranchRunService:
             node.status = "succeeded"
             node.finished_at = _utc_now()
             node.influence_rows = _build_influence_rows(node, parent=_find_node(state.nodes, node.parent_id))
+            node.generation_method = infer_generation_method(
+                candidate_source=node.candidate_source,
+                knowledge_source=state.knowledge_source,
+                influence_rows=node.influence_rows,
+                rag_evidence=node.rag_evidence,
+            )
             node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
             _write_json(node_dir / "evaluation.json", node.evaluation)
             _write_json(node_dir / "optimization_directives.json", node.optimization_directives)
@@ -596,6 +617,12 @@ class BranchRunService:
             node.blocker_details = {"error": str(exc), "stage": "generate_or_evaluate"}
             node.finished_at = _utc_now()
             node.influence_rows = _build_influence_rows(node, parent=_find_node(state.nodes, node.parent_id))
+            node.generation_method = infer_generation_method(
+                candidate_source=node.candidate_source,
+                knowledge_source=state.knowledge_source,
+                influence_rows=node.influence_rows,
+                rag_evidence=node.rag_evidence,
+            )
             node.trace = _build_branch_node_trace(state, node, artifact_dir=node_dir)
         finally:
             _write_json(node_dir / "generation_trace.json", node.trace)
@@ -1220,6 +1247,7 @@ def _build_branch_node_trace(
         "schema_version": "generation_trace_v1",
         "run_id": state.run_id,
         "node_id": node.node_id,
+        "generation_method": node.generation_method,
         "status": node.status,
         "created_at": node.created_at,
         "finished_at": node.finished_at,
@@ -1234,6 +1262,7 @@ def _build_branch_node_trace(
             "preset_id": state.preset_id,
             "benchmark_id": state.benchmark_id,
             "batch_id": state.batch_id,
+            "generation_method": node.generation_method,
         },
         "llm_recommendation": {
             "normalized_scene_query": str(node.config_patch.get("query", state.prompt)),
@@ -1244,6 +1273,7 @@ def _build_branch_node_trace(
             "overridden_fields": [],
             "risk_notes": [],
             "derivation_status": node.candidate_source,
+            "generation_method": node.generation_method,
         },
         "influence_rows": list(node.influence_rows),
         "process": {
@@ -1254,6 +1284,7 @@ def _build_branch_node_trace(
                 "rank": node.rank,
                 "status": node.status,
                 "score": node.score,
+                "generation_method": node.generation_method,
                 "artifacts_retained": node.artifacts_retained,
                 "artifact_rank": node.artifact_rank,
             },
@@ -1304,6 +1335,7 @@ def _build_branch_node_trace(
             "preset_id": state.preset_id,
             "benchmark_id": state.benchmark_id,
             "batch_id": state.batch_id,
+            "generation_method": node.generation_method,
         },
         "evaluation": {"status": evaluation_status, **dict(node.evaluation), **({"error": node.error} if node.error else {})},
     }))
@@ -1499,6 +1531,7 @@ def _scatter_points(nodes: Sequence[BranchNode]) -> List[BranchScatterPoint]:
             dominated_by_count=_dominated_by_count(node, nodes),
             label=f"D{node.depth} · #{node.rank}",
             status=node.status,
+            generation_method=node.generation_method,
             influence_summary=_top_influence_summary(node.influence_rows),
         ))
     return points

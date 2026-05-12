@@ -19,7 +19,7 @@ road_metrics.EvalEngine.evaluate()
 walkability / safety / beauty / overall
 ```
 
-输入是 `scene_layout.json`，可选输入是 Viewer 捕获的 `rendered_views` 或 legacy `image_path`。
+输入是 `scene_layout.json`，可选输入是 Viewer 捕获的 `rendered_views` 或 legacy `image_path`。默认评价 profile 是 `local_segment_v1`，面向当前单街段、小场景对比；未来或更大尺度路网可切到 `network_v1`。
 
 场景化七方案批量评价是独立的一层：
 
@@ -41,17 +41,23 @@ ScenarioDesignService run manifest / SCENARIO_GENERATION_REPORT.md
 {
   "layout_path": "/abs/path/to/scene_layout.json",
   "image_path": null,
+  "evaluation_profile": "local_segment_v1",
   "rendered_views": [
     {
       "view_id": "pedestrian_forward",
       "label": "Pedestrian forward view",
+      "image_data_url": "data:image/png;base64,..."
+    },
+    {
+      "view_id": "child_forward",
+      "label": "Child forward view",
       "image_data_url": "data:image/png;base64,..."
     }
   ]
 }
 ```
 
-`rendered_views` 当前由 `web/viewer/src/viewer-evaluation-capture.ts` 捕获，目标是给 safety/beauty 的视觉 LLM 评价提供三张视角图。
+`rendered_views` 当前由 `web/viewer/src/viewer-evaluation-capture.ts` 捕获。`pedestrian_forward`、`pedestrian_reverse`、`overview_topdown` 用于 safety/beauty 的视觉 LLM 评价；`child_forward` 是 1.1m 儿童视角，只用于独立的 child-friendly 辅助评分。
 
 ## 3. API 响应
 
@@ -65,6 +71,9 @@ ScenarioDesignService run manifest / SCENARIO_GENERATION_REPORT.md
 | `overall` | number \| null | 0-100，safety 和 beauty 均可用时返回 |
 | `score_weights` | object | 当前权重 |
 | `score_formula` | string | 公式文本 |
+| `evaluation_profile` | string | 当前评价 profile，默认 `local_segment_v1` |
+| `child_friendly` | object | 儿童友好辅助分，不参与 overall |
+| `indicator_meta` | object | 指标权重、来源、适用尺度和低区分度标注 |
 | `evaluation` | string | 评价摘要 |
 | `suggestions` | array | 改进建议 |
 | `indicators` | object | 子指标摘要 |
@@ -93,7 +102,31 @@ ScenarioDesignService run manifest / SCENARIO_GENERATION_REPORT.md
 overall = W * walkability + S * safety + B * beauty
 ```
 
-## 5. 与旧文档的关系
+`child_friendly` 是辅助维度，不并入上面的 `overall`。缺少 `child_forward` 视角时，它返回 `score: null` 和 `status: missing_child_view`，避免用成人视角或纯结构化数据伪装儿童体验。
+
+## 5. 评价 profile
+
+| Profile | 用途 | 可达性处理 |
+| --- | --- | --- |
+| `local_segment_v1` | 当前默认；适合单街段、小范围场景横向比较 | 降低 `TRANSIT_PROX` 权重，因为这些场景的可达性通常相同或差异很小 |
+| `network_v1` | 预留给更大路网、多个街段或真实 OD/公交可达性差异 | 恢复 `TRANSIT_PROX` 为常规 delight 子项权重 |
+
+`TRANSIT_PROX` 不删除，而是在 `indicator_meta` 中标注为 `network_scale`，并在 `local_segment_v1` 下标记 `low_discrimination: true`。
+
+## 6. 生成来源与评分来源
+
+生成来源和评分来源是两套概念，不能混在一起解释：
+
+| 字段 | 说明 |
+| --- | --- |
+| `generation_method=llm_assisted` | 参数来自 LLM，并结合 RAG、scenario parameter triples、规则约束或优化指令 |
+| `generation_method=pure_llm` | 参数主要由 LLM 直接给出，仍经过 sanitizer 和 deterministic exporter |
+| `generation_method=parametric` | 参数来自 preset、手工 patch、Pareto/search sample 或纯参数采样 |
+| `generation_method=unknown_legacy` | 历史样本缺少足够 provenance，读取时兜底 |
+
+评分来源则由 `llm_status`、`indicator_meta`、`branch_score_fallback` 等字段表达：walkability 是结构化指标；safety/beauty 在视觉 LLM 可用时来自 rendered views，否则 API 保持 N/A，Branch/Benchmark 内部可用带 provenance 的结构化 fallback 维持散点分析。
+
+## 7. 与旧文档的关系
 
 当前仓库中存在多份评价相关文档：
 
@@ -110,7 +143,7 @@ overall = W * walkability + S * safety + B * beauty
 - road-metrics 文档：评价引擎内部架构。
 - archive/planning 文档：历史公式设计和未来扩展。
 
-## 6. 需要补齐的评价能力
+## 8. 需要补齐的评价能力
 
 ### P0：契约稳定
 

@@ -114,6 +114,10 @@ def test_design_assistant_returns_na_for_missing_llm_subscores(tmp_path: Path, m
     assert result["overall"] is None
     assert result["indicators"]["safety_lighting"] is None
     assert result["indicators"]["beauty_coherence"] is None
+    assert result["evaluation_profile"] == "local_segment_v1"
+    assert result["indicator_meta"]["walkability"]["TRANSIT_PROX"]["low_discrimination"] is True
+    assert result["child_friendly"]["score"] is None
+    assert result["child_friendly"]["status"] == "missing_child_view"
 
 
 def test_design_assistant_rejects_cached_layout_only_scores(tmp_path: Path, monkeypatch):
@@ -360,9 +364,121 @@ def test_unified_api_passes_rendered_views_to_service():
 
     response = client.post(
         "/api/design/evaluate/unified",
-        json={"layout_path": "/tmp/scene_layout.json", "rendered_views": rendered_views},
+        json={
+            "layout_path": "/tmp/scene_layout.json",
+            "rendered_views": rendered_views,
+            "evaluation_profile": "network_v1",
+        },
     )
 
     assert response.status_code == 200
     assert service.kwargs["layout_path"] == "/tmp/scene_layout.json"
     assert service.kwargs["rendered_views"] == rendered_views
+    assert service.kwargs["evaluation_profile"] == "network_v1"
+
+
+def test_unified_api_returns_child_friendly_na_without_child_view(tmp_path: Path, monkeypatch):
+    payload = _minimal_layout_payload()
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps(payload), encoding="utf-8")
+
+    def _available(*args, **kwargs):
+        return {
+            "available": True,
+            "source": "llm",
+            "cached": False,
+            "visual_input": "provided",
+            "lighting": 0.7,
+            "visibility": 0.7,
+            "protection": 0.7,
+            "activation": 0.7,
+            "coherence": 0.7,
+            "human_scale": 0.7,
+            "material_contrast": 0.7,
+            "visual_interest": 0.7,
+            "overall": 0.7,
+            "reasoning": "visual evidence",
+        }
+
+    monkeypatch.setattr(eval_engine_module, "evaluate_safety", _available)
+    monkeypatch.setattr(eval_engine_module, "evaluate_beauty", _available)
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_safety", _available)
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_beauty", _available)
+
+    service = DesignAssistantService()
+    client = TestClient(create_app(design_service=service))
+    rendered_views = [
+        {
+            "view_id": "pedestrian_forward",
+            "label": "Pedestrian forward view",
+            "image_data_url": "data:image/png;base64,ZmFrZQ==",
+        }
+    ]
+
+    response = client.post(
+        "/api/design/evaluate/unified",
+        json={"layout_path": str(layout_path), "rendered_views": rendered_views},
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["evaluation_profile"] == "local_segment_v1"
+    assert payload["indicator_meta"]["walkability"]["TRANSIT_PROX"]["low_discrimination"] is True
+    assert payload["child_friendly"]["score"] is None
+    assert payload["child_friendly"]["status"] == "missing_child_view"
+
+
+def test_unified_api_scores_child_friendly_with_child_view(tmp_path: Path, monkeypatch):
+    payload = _minimal_layout_payload()
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps(payload), encoding="utf-8")
+
+    def _available(*args, **kwargs):
+        return {
+            "available": True,
+            "source": "llm",
+            "cached": False,
+            "visual_input": "provided",
+            "lighting": 0.7,
+            "visibility": 0.7,
+            "protection": 0.7,
+            "activation": 0.7,
+            "coherence": 0.7,
+            "human_scale": 0.7,
+            "material_contrast": 0.7,
+            "visual_interest": 0.7,
+            "overall": 0.7,
+            "reasoning": "visual evidence",
+        }
+
+    monkeypatch.setattr(eval_engine_module, "evaluate_safety", _available)
+    monkeypatch.setattr(eval_engine_module, "evaluate_beauty", _available)
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_safety", _available)
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_beauty", _available)
+
+    service = DesignAssistantService()
+    client = TestClient(create_app(design_service=service))
+    rendered_views = [
+        {
+            "view_id": "pedestrian_forward",
+            "label": "Pedestrian forward view",
+            "image_data_url": "data:image/png;base64,ZmFrZQ==",
+        },
+        {
+            "view_id": "child_forward",
+            "label": "Child forward view",
+            "image_data_url": "data:image/png;base64,ZmFrZQ==",
+        },
+    ]
+
+    response = client.post(
+        "/api/design/evaluate/unified",
+        json={"layout_path": str(layout_path), "rendered_views": rendered_views},
+    )
+
+    assert response.status_code == 200
+    child_friendly = response.json()["child_friendly"]
+    assert child_friendly["status"] == "scored_structural_v1"
+    assert isinstance(child_friendly["score"], int)
+    assert child_friendly["indicators"]["visual_input"] == "provided"
+    assert child_friendly["indicators"]["view_id"] == "child_forward"

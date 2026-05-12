@@ -107,7 +107,9 @@ class DesignAssistantService:
             sys.path.insert(0, str(_submodule_path))
         
         from road_metrics import EvalEngine, EvalConfig
-        self.eval_engine = EvalEngine(EvalConfig(enable_llm_eval=True))
+        self._EvalEngine = EvalEngine
+        self._EvalConfig = EvalConfig
+        self.eval_engine = EvalEngine(EvalConfig.for_profile("local_segment_v1", enable_llm_eval=True))
         if self.scene_job_service is None:
             self.scene_job_service = SceneJobService(
                 generator=generate_scene_from_draft,
@@ -583,6 +585,7 @@ class DesignAssistantService:
         image_path: str | None = None,
         rendered_views: List[Mapping[str, Any]] | None = None,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+        evaluation_profile: str = "local_segment_v1",
     ) -> Dict[str, Any]:
         """Evaluate scene with unified 3-dimension scores using road-metrics EvalEngine.
 
@@ -600,6 +603,7 @@ class DesignAssistantService:
             raise RuntimeError(f"Layout file not found: {layout}")
         
         payload = json.loads(layout.read_text(encoding="utf-8"))
+        profile = self._normalize_evaluation_profile(evaluation_profile)
         effective_rendered_views = list(rendered_views or [])
         if not effective_rendered_views:
             effective_rendered_views = rendered_views_for_evaluation_from_payload(
@@ -607,11 +611,20 @@ class DesignAssistantService:
                 limit=DEFAULT_EVALUATION_RENDER_VIEW_LIMIT,
                 base_dir=layout.parent,
             )
+        child_views = [
+            dict(view) for view in effective_rendered_views
+            if str(view.get("view_id") or "").strip().lower() == "child_forward"
+        ]
+        visual_rendered_views = [
+            dict(view) for view in effective_rendered_views
+            if str(view.get("view_id") or "").strip().lower() != "child_forward"
+        ]
         
         # Use EvalEngine from road-metrics submodule
-        result = self.eval_engine.evaluate(
+        engine = self._eval_engine_for_profile(profile)
+        result = engine.evaluate(
             payload,
-            rendered_views=effective_rendered_views,
+            rendered_views=visual_rendered_views,
             image_path=image_path,
         )
         safety_available = self._llm_report_available(result.safety)
@@ -624,11 +637,14 @@ class DesignAssistantService:
             "safety": int(result.safety.final_score * 100) if safety_available else None,
             "beauty": int(result.beauty.final_score * 100) if beauty_available else None,
             "overall": int(result.evaluation_score * 100) if visual_scores_available else None,
-            "score_weights": self._score_weights_payload(),
-            "score_formula": self._score_formula_text(),
-            "evaluation": self._generate_evaluation_text(result),
+            "score_weights": self._score_weights_payload(engine),
+            "score_formula": self._score_formula_text(engine),
+            "evaluation_profile": profile,
+            "evaluation": self._generate_evaluation_text(result, engine=engine),
             "suggestions": self._generate_suggestions(result),
             "indicators": self._extract_indicators(result),
+            "indicator_meta": self._indicator_meta_payload(engine, profile),
+            "child_friendly": self._child_friendly_payload(result, child_views),
             "config_patch": self._generate_config_patch(result),
             "llm_status": self._extract_llm_status(result),
             "quality_layers": dict(getattr(result, "quality_layers", {}) or {}),
@@ -711,17 +727,31 @@ class DesignAssistantService:
     # Evaluation helper methods
     # ========================================================================
 
-    def _score_weights_payload(self) -> Dict[str, float]:
+    def _normalize_evaluation_profile(self, value: str | None) -> str:
+        profile = str(value or "local_segment_v1").strip() or "local_segment_v1"
+        return profile if profile in {"local_segment_v1", "network_v1"} else "local_segment_v1"
+
+    def _eval_engine_for_profile(self, profile: str):
+        engine = self.eval_engine
+        if type(engine) is not self._EvalEngine:
+            return engine
+        active_config = getattr(engine, "config", None)
+        active_profile = str(getattr(active_config, "evaluation_profile", "") or "")
+        if active_config is None or profile == active_profile or not hasattr(self, "_EvalEngine"):
+            return engine
+        return self._EvalEngine(self._EvalConfig.for_profile(profile, enable_llm_eval=True))
+
+    def _score_weights_payload(self, engine: Any | None = None) -> Dict[str, float]:
         """Return the active unified-evaluation aggregation weights."""
-        aggregation = getattr(getattr(self.eval_engine, "config", None), "aggregation", None)
+        aggregation = getattr(getattr(engine or self.eval_engine, "config", None), "aggregation", None)
         return {
             "walkability": float(getattr(aggregation, "walkability_weight", 0.45)),
             "safety": float(getattr(aggregation, "safety_weight", 0.35)),
             "beauty": float(getattr(aggregation, "beauty_weight", 0.20)),
         }
 
-    def _score_formula_text(self) -> str:
-        weights = self._score_weights_payload()
+    def _score_formula_text(self, engine: Any | None = None) -> str:
+        weights = self._score_weights_payload(engine)
         return (
             "overall = "
             f"walkability {weights['walkability']:.2f} + "
@@ -729,7 +759,7 @@ class DesignAssistantService:
             f"beauty {weights['beauty']:.2f}"
         )
 
-    def _generate_evaluation_text(self, result) -> str:
+    def _generate_evaluation_text(self, result, *, engine: Any | None = None) -> str:
         """Generate human-readable evaluation text."""
         w = result.walkability
         s = result.safety
@@ -772,7 +802,7 @@ class DesignAssistantService:
             parts.append(f"最弱安全维度: {s.diagnosis['weakest']}")
         if beauty_available and b.diagnosis.get("weakest"):
             parts.append(f"最弱美观维度: {b.diagnosis['weakest']}")
-        parts.append(f"评分公式: {self._score_formula_text()}")
+        parts.append(f"评分公式: {self._score_formula_text(engine)}")
         
         return "。".join(parts) + "。"
 
@@ -880,6 +910,117 @@ class DesignAssistantService:
             "furniture_occupation_ratio": round(float(getattr(w, "furniture_occupation_ratio", 0.0)) * 100, 1),
             "clear_path_conflict_penalty": round(float(getattr(w, "clear_path_conflict_penalty", 0.0)) * 100, 1),
             "walkability_top_contributors": list(getattr(w, "top_contributors", []) or []),
+        }
+
+    def _indicator_meta_payload(self, engine: Any, profile: str) -> Dict[str, Any]:
+        config = getattr(engine, "config", None)
+        walkability = getattr(config, "walkability", None)
+        delight_weights = dict(getattr(walkability, "delight_component_weights", {}) or {})
+        protection_weight = float(getattr(walkability, "protection_weight", 0.40))
+        comfort_weight = float(getattr(walkability, "comfort_weight", 0.35))
+        delight_weight = float(getattr(walkability, "delight_weight", 0.25))
+        weights = {
+            "LIGHT_UNI": protection_weight / 3.0,
+            "BUFFER_RATIO": protection_weight / 3.0,
+            "CROSS_PROV": protection_weight / 3.0,
+            "SID_CLR": comfort_weight / 4.0,
+            "CLEAR_CONT": comfort_weight / 4.0,
+            "TREE_SHADE": comfort_weight / 4.0,
+            "MICRO_ENV": comfort_weight / 4.0,
+            "FURN_D": delight_weight * float(delight_weights.get("FURN_D", 0.25)),
+            "TRANSIT_PROX": delight_weight * float(delight_weights.get("TRANSIT_PROX", 0.25)),
+            "ENTR_DENS": delight_weight * float(delight_weights.get("ENTR_DENS", 0.25)),
+            "POI_MIX": delight_weight * float(delight_weights.get("POI_MIX", 0.25)),
+        }
+        local = profile == "local_segment_v1"
+        return {
+            "profile": profile,
+            "walkability": {
+                key: {
+                    "weight": round(value, 4),
+                    "source": "structured_layout",
+                    "applicability": "network_scale" if key == "TRANSIT_PROX" else "local_segment",
+                    "low_discrimination": bool(local and key == "TRANSIT_PROX"),
+                    "note": (
+                        "Reduced in local_segment_v1 because single-segment scenes usually share similar transit proximity."
+                        if local and key == "TRANSIT_PROX"
+                        else ""
+                    ),
+                }
+                for key, value in weights.items()
+            },
+            "safety": {
+                "source": "visual_llm_when_available_else_structural",
+                "requires_visual_input": True,
+            },
+            "beauty": {
+                "source": "visual_llm_when_available_else_structural",
+                "requires_visual_input": True,
+            },
+            "child_friendly": {
+                "source": "child_forward_view_gate_plus_structured_layout",
+                "requires_visual_input": True,
+                "included_in_overall": False,
+            },
+        }
+
+    def _child_friendly_payload(self, result, child_views: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+        valid_child_view = next(
+            (
+                view for view in child_views
+                if str(view.get("image_data_url") or "").startswith("data:image/")
+            ),
+            None,
+        )
+        if valid_child_view is None:
+            return {
+                "score": None,
+                "status": "missing_child_view",
+                "indicators": {
+                    "visual_input": "missing",
+                    "required_view_id": "child_forward",
+                    "included_in_overall": False,
+                },
+                "suggestions": ["Capture child_forward view to enable child-friendly auxiliary scoring."],
+            }
+
+        w = result.walkability
+        conflict = float(getattr(w, "clear_path_conflict_penalty", 0.0) or 0.0)
+        base = (
+            0.25 * float(getattr(w, "sid_clr", 0.0) or 0.0)
+            + 0.20 * float(getattr(w, "clear_cont", 0.0) or 0.0)
+            + 0.20 * float(getattr(w, "buffer_ratio", 0.0) or 0.0)
+            + 0.15 * float(getattr(w, "cross_prov", 0.0) or 0.0)
+            + 0.10 * float(getattr(w, "light_uni", 0.0) or 0.0)
+            + 0.10 * float(getattr(w, "tree_shade", 0.0) or 0.0)
+        )
+        score = max(0.0, min(base * (1.0 - 0.30 * max(0.0, min(conflict, 1.0))), 1.0))
+        suggestions: List[str] = []
+        if getattr(w, "sid_clr", 0.0) < 0.65:
+            suggestions.append("Increase clear walking width for child-accompanied movement.")
+        if getattr(w, "buffer_ratio", 0.0) < 0.35:
+            suggestions.append("Strengthen road-edge buffer or protection between children and traffic.")
+        if getattr(w, "cross_prov", 0.0) < 0.5:
+            suggestions.append("Add or distribute crossings for safer child-scale navigation.")
+        if getattr(w, "light_uni", 0.0) < 0.5:
+            suggestions.append("Improve lighting uniformity for lower-height sight lines.")
+        return {
+            "score": int(round(score * 100)),
+            "status": "scored_structural_v1",
+            "indicators": {
+                "visual_input": "provided",
+                "view_id": str(valid_child_view.get("view_id") or "child_forward"),
+                "child_eye_height_m": 1.1,
+                "clear_width": round(float(getattr(w, "sid_clr", 0.0) or 0.0) * 100, 1),
+                "clear_continuity": round(float(getattr(w, "clear_cont", 0.0) or 0.0) * 100, 1),
+                "buffer_protection": round(float(getattr(w, "buffer_ratio", 0.0) or 0.0) * 100, 1),
+                "crossing_provision": round(float(getattr(w, "cross_prov", 0.0) or 0.0) * 100, 1),
+                "lighting_uniformity": round(float(getattr(w, "light_uni", 0.0) or 0.0) * 100, 1),
+                "tree_shade": round(float(getattr(w, "tree_shade", 0.0) or 0.0) * 100, 1),
+                "clear_path_conflict_penalty": round(conflict * 100, 1),
+                "included_in_overall": False,
+            },
+            "suggestions": suggestions,
         }
 
     def _llm_report_available(self, report) -> bool:

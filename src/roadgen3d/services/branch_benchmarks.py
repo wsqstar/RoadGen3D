@@ -16,6 +16,7 @@ from uuid import uuid4
 
 from ..json_safe import make_json_safe
 from ..presets import SCENE_PRESETS
+from .generation_method import infer_generation_method
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -251,6 +252,7 @@ class BranchBenchmarkStore:
         preset_id: str | None = None,
         batch_id: str | None = None,
         run_id: str | None = None,
+        generation_method: str | None = None,
         limit: int = 5000,
     ) -> Dict[str, Any]:
         samples = list(self._read_samples_by_id().values())
@@ -260,6 +262,8 @@ class BranchBenchmarkStore:
             samples = [item for item in samples if str(item.get("batch_id")) == str(batch_id)]
         if run_id:
             samples = [item for item in samples if str(item.get("run_id")) == str(run_id)]
+        if generation_method:
+            samples = [item for item in samples if str(item.get("generation_method") or "unknown_legacy") == str(generation_method)]
         samples.sort(key=lambda item: str(item.get("created_at", "")), reverse=True)
         safe_limit = max(1, min(int(limit or 5000), 10000))
         samples = samples[:safe_limit]
@@ -277,12 +281,14 @@ class BranchBenchmarkStore:
         preset_id: str | None = None,
         batch_id: str | None = None,
         run_id: str | None = None,
+        generation_method: str | None = None,
         limit: int = 5000,
     ) -> Dict[str, Any]:
         payload = self.query_samples(
             preset_id=preset_id,
             batch_id=batch_id,
             run_id=run_id,
+            generation_method=generation_method,
             limit=limit,
         )
         warnings: List[str] = []
@@ -328,6 +334,7 @@ class BranchBenchmarkStore:
             "prompt": str(run_payload.get("prompt") or ""),
             "graph_template_id": str(run_payload.get("graph_template_id") or ""),
             "knowledge_source": str(run_payload.get("knowledge_source") or ""),
+            "generation_method": _sample_generation_method(run_payload, point, node),
             "created_at": str(node.get("finished_at") or node.get("created_at") or run_payload.get("created_at") or utc_now()),
             "status": str(point.get("status") or node.get("status") or "succeeded"),
             "depth": int(point.get("depth") or node.get("depth") or 0),
@@ -358,6 +365,8 @@ class BranchBenchmarkStore:
                 "scene_layout_path": str(node.get("scene_layout_path") or ""),
                 "config_patch": dict(node.get("config_patch") or {}),
                 "influence_rows": list(node.get("influence_rows") or point.get("influence_summary") or []),
+                "knowledge_source": str(run_payload.get("knowledge_source") or ""),
+                "generation_method": _sample_generation_method(run_payload, point, node),
                 **meta,
             }),
             "artifacts_retained": bool(node.get("artifacts_retained")),
@@ -382,6 +391,12 @@ class BranchBenchmarkStore:
                 continue
             sample_id = str(item.get("sample_id", "") or "").strip()
             if sample_id:
+                item.setdefault("generation_method", infer_generation_method(
+                    explicit=str(item.get("generation_method") or ""),
+                    knowledge_source=str(item.get("knowledge_source") or ""),
+                    influence_rows=_records(item.get("influence_rows")),
+                    rag_evidence=_records(item.get("rag_evidence")),
+                ))
                 rows[sample_id] = item
         return rows
 
@@ -592,6 +607,22 @@ def _score(payload: Mapping[str, Any], key: str) -> float | None:
         return None
 
 
+def _sample_generation_method(
+    run_payload: Mapping[str, Any],
+    point: Mapping[str, Any],
+    node: Mapping[str, Any],
+) -> str:
+    explicit = node.get("generation_method") or point.get("generation_method") or run_payload.get("generation_method")
+    return infer_generation_method(
+        explicit=str(explicit or ""),
+        candidate_source=str(node.get("candidate_source") or ""),
+        knowledge_source=str(run_payload.get("knowledge_source") or ""),
+        influence_rows=_records(node.get("influence_rows") or point.get("influence_summary")),
+        rag_evidence=_records(node.get("rag_evidence")),
+        parameter_sources_by_field=_mapping(_mapping(node.get("trace")).get("provenance", {})).get("parameter_sources_by_field", {}),
+    )
+
+
 def _can_restore_sample_artifact(node: Mapping[str, Any]) -> bool:
     if "can_restore_artifact" in node:
         return bool(node.get("can_restore_artifact"))
@@ -649,7 +680,7 @@ def _analysis_features_for_sample(sample: Mapping[str, Any]) -> Dict[str, Any]:
 
 def _input_features_for_sample(sample: Mapping[str, Any]) -> Dict[str, Any]:
     features: Dict[str, Any] = {}
-    for key in ("preset_id", "preset_name", "graph_template_id", "knowledge_source"):
+    for key in ("preset_id", "preset_name", "graph_template_id", "knowledge_source", "generation_method"):
         value = sample.get(key)
         if _is_scalar(value):
             features[key] = value

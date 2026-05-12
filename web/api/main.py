@@ -169,6 +169,7 @@ class EvaluateRequestModel(BaseModel):
     rendered_views: List[RenderedViewModel] = Field(default_factory=list)
     preset_id: str | None = None
     persist_to_benchmark: bool = False
+    evaluation_profile: str = "local_segment_v1"
 
 
 class EvaluateCompareRequestModel(BaseModel):
@@ -992,6 +993,7 @@ def create_app(
         preset_id: str | None = Query(default=None),
         batch_id: str | None = Query(default=None),
         run_id: str | None = Query(default=None),
+        generation_method: str | None = Query(default=None),
         limit: int = Query(default=5000, ge=1, le=10000),
         refresh: bool = Query(default=True),
     ) -> Dict[str, Any]:
@@ -1002,6 +1004,7 @@ def create_app(
             preset_id=preset_id,
             batch_id=batch_id,
             run_id=run_id,
+            generation_method=generation_method,
             limit=int(limit),
         ))
 
@@ -1010,6 +1013,7 @@ def create_app(
         preset_id: str | None = Query(default=None),
         batch_id: str | None = Query(default=None),
         run_id: str | None = Query(default=None),
+        generation_method: str | None = Query(default=None),
         limit: int = Query(default=5000, ge=1, le=10000),
         refresh: bool = Query(default=True),
     ) -> Dict[str, Any]:
@@ -1020,6 +1024,7 @@ def create_app(
             preset_id=preset_id,
             batch_id=batch_id,
             run_id=run_id,
+            generation_method=generation_method,
             limit=int(limit),
         ))
 
@@ -1292,6 +1297,7 @@ def create_app(
                     view.model_dump(exclude_none=True) if hasattr(view, "model_dump") else view.dict(exclude_none=True)
                     for view in request.rendered_views
                 ],
+                evaluation_profile=request.evaluation_profile,
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc

@@ -777,6 +777,16 @@ def test_benchmark_api_persists_branch_and_manual_evaluation_samples(tmp_path: P
     assert payload["items"][0]["preset_id"] == "pedestrian_friendly"
     assert payload["items"][0]["walkability"] == 70
     assert payload["items"][0]["is_pareto_front"] is True
+    assert payload["items"][0]["generation_method"] == "pure_llm"
+
+    method_response = client.get("/api/design/benchmark-samples?generation_method=pure_llm&refresh=false")
+    assert method_response.status_code == 200
+    assert method_response.json()["total"] == 1
+    assert method_response.json()["items"][0]["node_id"] == "node-a"
+
+    empty_method_response = client.get("/api/design/benchmark-samples?generation_method=parametric&refresh=false")
+    assert empty_method_response.status_code == 200
+    assert empty_method_response.json()["total"] == 0
 
     eval_response = client.post(
         "/api/design/evaluate/unified",

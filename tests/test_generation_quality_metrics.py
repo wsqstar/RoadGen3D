@@ -87,6 +87,36 @@ def test_furniture_density_split_and_top_contributors_are_explainable():
     assert any(item["polarity"] == "negative" for item in result.top_contributors)
 
 
+def test_local_segment_profile_reduces_transit_proximity_weight():
+    common = {
+        "placements": [],
+        "length_m": 80.0,
+        "road_width_m": 8.0,
+        "sidewalk_width_m": 1.0,
+        "left_clear_path_width_m": 0.0,
+        "right_clear_path_width_m": 0.0,
+        "mean_entrance_openness": 0.0,
+        "bus_stop_points_xz": [[0.0, 7.0]],
+        "land_use_summary": {},
+    }
+    local_config = EvalConfig.for_profile("local_segment_v1")
+    network_config = EvalConfig.for_profile("network_v1")
+
+    local = compute_walkability(config=local_config.walkability, **common)
+    network = compute_walkability(config=network_config.walkability, **common)
+
+    local_transit = next(
+        item for item in local.top_contributors
+        if item["feature"] == "TRANSIT_PROX" and item["polarity"] == "positive"
+    )
+    network_transit = next(
+        item for item in network.top_contributors
+        if item["feature"] == "TRANSIT_PROX" and item["polarity"] == "positive"
+    )
+    assert local_config.walkability.delight_component_weights["TRANSIT_PROX"] < network_config.walkability.delight_component_weights["TRANSIT_PROX"]
+    assert local_transit["weight"] < network_transit["weight"]
+
+
 def _box_node(
     scene,
     name: str,
