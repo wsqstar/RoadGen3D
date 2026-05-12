@@ -27,5 +27,7 @@ artifacts, tests, and local developer commands.
 - `make workbench-api` remains as a deprecated alias for `make api`.
 - `make ui-api`, `make ui-web`, and `make ui-install` remain compatibility
   aliases for older scripts.
+- `src/roadgen3d/eval_engine` remains an import compatibility facade for
+  `src/roadgen3d/eval_engine_ext/road_metrics`.
 - `web/workbench` requires `ENABLE_ARCHIVED_WORKBENCH=1`; new features should
   not be added there.

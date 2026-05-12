@@ -9,7 +9,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional
 
-from ..eval_engine.core.config import EvalConfig
+from ..eval_engine_ext.road_metrics.core.config import EvalConfig
 from ..eval_engine_ext.road_metrics.evaluators.safety_eval import evaluate_safety
 from ..eval_engine_ext.road_metrics.evaluators.beauty_eval import evaluate_beauty
 from ..eval_quality import (

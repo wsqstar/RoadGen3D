@@ -1,7 +1,7 @@
 """Migration layer for backward compatibility with eval_quality.py.
 
 This module provides drop-in replacements for existing eval_quality functions,
-redirecting them to the new decoupled eval_engine.
+redirecting them to the active eval_engine_ext/road_metrics implementation.
 
 Usage:
     # Old code:
@@ -17,17 +17,17 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Mapping, Sequence
 
-from .core.engine import EvalEngine
-from .core.config import EvalConfig
-from .core.types import (
+from ..eval_engine_ext.road_metrics.core.engine import EvalEngine
+from ..eval_engine_ext.road_metrics.core.config import EvalConfig
+from ..eval_engine_ext.road_metrics.core.types import (
     EvaluationResult,
     WalkabilityIndicators,
     SafetyReport,
     BeautyReport,
 )
-from .reports.writer import (
+from ..eval_engine_ext.road_metrics.reports.writer import (
     write_evaluation_report,
-    write_walkability_report,
+    write_walkability_report as _write_walkability_report,
     write_safety_report,
     write_beauty_report,
 )
@@ -99,15 +99,12 @@ def compute_structured_beauty_report(
 
 def write_walkability_report(result: WalkabilityIndicators, out_path: Path) -> None:
     """Drop-in replacement for eval_quality.write_walkability_report."""
-    from ..reports.writer import write_walkability_report as _write
-
-    # Wrap in EvaluationResult for compatibility
     eval_result = EvaluationResult(
         walkability=result,
         safety=SafetyReport(),
         beauty=BeautyReport(),
     )
-    _write(eval_result, out_path)
+    _write_walkability_report(eval_result, out_path)
 
 
 def write_json_report(data: Mapping[str, Any], out_path: Path) -> None:

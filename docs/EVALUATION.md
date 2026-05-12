@@ -1,7 +1,7 @@
 # RoadGen3D 评价契约
 
 > Status: current draft  
-> Last verified: 2026-05-08  
+> Last verified: 2026-05-12
 > Scope: 当前 RoadGen3D 主流程使用的 road-metrics 评价接口、输出字段和失败降级。历史评价计划文档仍可参考，但本文作为当前实现入口。
 
 ## 1. 当前评价主线
@@ -18,6 +18,9 @@ road_metrics.EvalEngine.evaluate()
   ↓
 walkability / safety / beauty / overall
 ```
+
+代码入口以 `src/roadgen3d/eval_engine_ext/road_metrics` 为准；`src/roadgen3d/eval_engine`
+只保留为旧 import 的兼容 facade，不再作为新的评价实现边界扩展。
 
 输入是 `scene_layout.json`，可选输入是 Viewer 捕获的 `rendered_views` 或 legacy `image_path`。默认评价 profile 是 `local_segment_v1`，面向当前单街段、小场景对比；未来或更大尺度路网可切到 `network_v1`。
 

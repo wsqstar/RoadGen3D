@@ -1,5 +1,9 @@
 # RoadGen3D 评估引擎 (EvalEngine)
 
+> **当前状态**: `roadgen3d.eval_engine` 现在是兼容 facade；活跃实现位于
+> `roadgen3d.eval_engine_ext.road_metrics`。旧 import 仍可用，但新代码应优先引用
+> `eval_engine_ext/road_metrics`。
+
 > **独立的评估子系统**,可独立演进,通过通用参数接口与主系统交互。
 
 ## 🎯 设计目标
