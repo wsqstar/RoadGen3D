@@ -63,7 +63,7 @@ def list_benchmark_samples(
     run_id: str | None = Query(default=None),
     generation_method: str | None = Query(default=None),
     limit: int = Query(default=5000, ge=1, le=10000),
-    refresh: bool = Query(default=True),
+    refresh: bool = Query(default=False),
 ) -> Dict[str, Any]:
     store = request.app.state.benchmark_store
     if refresh:
@@ -85,7 +85,7 @@ def benchmark_analysis(
     run_id: str | None = Query(default=None),
     generation_method: str | None = Query(default=None),
     limit: int = Query(default=5000, ge=1, le=10000),
-    refresh: bool = Query(default=True),
+    refresh: bool = Query(default=False),
 ) -> Dict[str, Any]:
     store = request.app.state.benchmark_store
     if refresh:
@@ -122,4 +122,3 @@ def get_benchmark_batch(batch_id: str, request: Request) -> Dict[str, Any]:
     if result is None:
         raise HTTPException(status_code=404, detail=f"Benchmark batch not found: {batch_id}")
     return make_json_safe(result)
-

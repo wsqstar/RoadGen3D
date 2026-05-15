@@ -810,6 +810,45 @@ def test_benchmark_api_persists_branch_and_manual_evaluation_samples(tmp_path: P
     assert batch_response.json()["children"][0]["preset_id"] == "pedestrian_friendly"
 
 
+def test_benchmark_read_endpoints_do_not_refresh_by_default(tmp_path: Path):
+    class _SpyBenchmarkStore(BranchBenchmarkStore):
+        def __init__(self, root: Path):
+            super().__init__(root)
+            self.import_calls = 0
+
+        def import_branch_manifests(self, branch_root=None):  # type: ignore[override]
+            self.import_calls += 1
+            return {"imported_samples": 0, "branch_root": str(branch_root or "")}
+
+    store = _SpyBenchmarkStore(tmp_path / "bench")
+    store.upsert_samples([{
+        "sample_id": "sample-a",
+        "preset_id": "balanced_complete",
+        "preset_name": "Balanced Complete",
+        "preset_color": "#607D8B",
+        "label": "sample-a",
+        "created_at": "2026-05-01T00:00:00+00:00",
+        "status": "succeeded",
+        "walkability": 72,
+        "safety": 70,
+        "beauty": 68,
+        "overall": 70,
+    }])
+    client = TestClient(create_app(design_service=_FakeService(), benchmark_store=store))
+
+    samples_response = client.get("/api/design/benchmark-samples")
+    analysis_response = client.get("/api/design/benchmark-analysis")
+
+    assert samples_response.status_code == 200
+    assert analysis_response.status_code == 200
+    assert store.import_calls == 0
+
+    refresh_response = client.get("/api/design/benchmark-samples?refresh=true")
+
+    assert refresh_response.status_code == 200
+    assert store.import_calls == 1
+
+
 def test_benchmark_analysis_endpoint_extracts_features_and_statistics(tmp_path: Path):
     store = BranchBenchmarkStore(tmp_path / "bench")
     samples = []

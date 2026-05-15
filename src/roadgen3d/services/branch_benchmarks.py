@@ -127,43 +127,50 @@ class BranchBenchmarkStore:
         self.samples_path = self.root / "samples.jsonl"
         self.summary_path = self.root / "summary.json"
         self._lock = Lock()
+        self._samples_cache_signature: tuple[int, int] | None = None
+        self._samples_cache_rows: Dict[str, Dict[str, Any]] | None = None
+        self._query_cache: Dict[
+            tuple[str, str, str, str, int],
+            tuple[tuple[int, int], Dict[str, Any]],
+        ] = {}
 
     def import_branch_manifests(self, branch_root: str | Path | None = None) -> Dict[str, Any]:
         branch_dir = Path(branch_root or DEFAULT_BRANCH_RUN_DIR).expanduser().resolve()
-        imported = 0
-        for manifest_path in branch_dir.glob("*/manifest.json"):
+        manifests: List[Mapping[str, Any]] = []
+        for manifest_path in sorted(branch_dir.glob("*/manifest.json")):
             try:
-                payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+                manifests.append(json.loads(manifest_path.read_text(encoding="utf-8")))
             except Exception:
                 continue
-            before = len(self._read_samples_by_id())
-            self.upsert_branch_run(payload, default_preset_id=str(payload.get("preset_id") or "custom_legacy"))
-            after = len(self._read_samples_by_id())
-            imported += max(0, after - before)
+
+        imported = 0
+        changed = False
+        with self._lock:
+            by_id = self._read_samples_by_id_locked()
+            for payload in manifests:
+                for sample in self._samples_from_branch_run(
+                    payload,
+                    default_preset_id=str(payload.get("preset_id") or "custom_legacy"),
+                ):
+                    sample_id = str(sample.get("sample_id", "") or "").strip()
+                    if not sample_id:
+                        continue
+                    safe_sample = dict(make_json_safe(sample))
+                    if sample_id not in by_id:
+                        imported += 1
+                    if by_id.get(sample_id) != safe_sample:
+                        by_id[sample_id] = safe_sample
+                        changed = True
+            if changed:
+                self.root.mkdir(parents=True, exist_ok=True)
+                self._write_samples_locked(by_id)
+                self._write_summary_locked(by_id)
+                self._store_samples_cache_locked(by_id)
+                self._clear_query_cache_locked()
         return {"imported_samples": imported, "branch_root": str(branch_dir)}
 
     def upsert_branch_run(self, run_payload: Mapping[str, Any], *, default_preset_id: str = "custom_legacy") -> None:
-        run_id = str(run_payload.get("run_id", "") or "").strip()
-        if not run_id:
-            return
-        nodes = {
-            str(node.get("node_id", "")): dict(node)
-            for node in _records(run_payload.get("nodes"))
-            if str(node.get("node_id", "")).strip()
-        }
-        points = _records(run_payload.get("scatter_points"))
-        samples = []
-        for point in points:
-            node_id = str(point.get("node_id", "") or "").strip()
-            if not node_id:
-                continue
-            node = nodes.get(node_id, {})
-            if str(point.get("status") or node.get("status") or "") != "succeeded":
-                continue
-            if _score(point, "walkability") is None or _score(point, "safety") is None or _score(point, "beauty") is None:
-                continue
-            samples.append(self._sample_from_branch_node(run_payload, point, node, default_preset_id=default_preset_id))
-        self.upsert_samples(samples)
+        self.upsert_samples(self._samples_from_branch_run(run_payload, default_preset_id=default_preset_id))
 
     def upsert_branch_node(self, run_payload: Mapping[str, Any], node: Mapping[str, Any]) -> None:
         node_id = str(node.get("node_id", "") or "").strip()
@@ -245,6 +252,8 @@ class BranchBenchmarkStore:
                     by_id[sample_id] = dict(make_json_safe(sample))
             self._write_samples_locked(by_id)
             self._write_summary_locked(by_id)
+            self._store_samples_cache_locked(by_id)
+            self._clear_query_cache_locked()
 
     def query_samples(
         self,
@@ -255,7 +264,21 @@ class BranchBenchmarkStore:
         generation_method: str | None = None,
         limit: int = 5000,
     ) -> Dict[str, Any]:
-        samples = list(self._read_samples_by_id().values())
+        safe_limit = max(1, min(int(limit or 5000), 10000))
+        cache_key = (
+            str(preset_id or ""),
+            str(batch_id or ""),
+            str(run_id or ""),
+            str(generation_method or ""),
+            safe_limit,
+        )
+        with self._lock:
+            signature = self._samples_file_signature_locked()
+            cached = self._query_cache.get(cache_key)
+            if cached and cached[0] == signature:
+                return _copy_payload(cached[1])
+            samples = list(self._read_samples_by_id_locked().values())
+
         if preset_id:
             samples = [item for item in samples if str(item.get("preset_id")) == str(preset_id)]
         if batch_id:
@@ -265,15 +288,18 @@ class BranchBenchmarkStore:
         if generation_method:
             samples = [item for item in samples if str(item.get("generation_method") or "unknown_legacy") == str(generation_method)]
         samples.sort(key=lambda item: str(item.get("created_at", "")), reverse=True)
-        safe_limit = max(1, min(int(limit or 5000), 10000))
         samples = samples[:safe_limit]
         samples = _annotate_pareto(samples)
-        return {
+        payload = {
             "items": samples,
             "summaries": _summaries_by_preset(samples),
             "total": len(samples),
             "updated_at": utc_now(),
         }
+        with self._lock:
+            if self._samples_file_signature_locked() == signature:
+                self._query_cache[cache_key] = (signature, _copy_payload(payload))
+        return payload
 
     def query_analysis(
         self,
@@ -374,12 +400,48 @@ class BranchBenchmarkStore:
             "artifact_paths": list(node.get("artifact_paths") or []),
         }
 
+    def _samples_from_branch_run(
+        self,
+        run_payload: Mapping[str, Any],
+        *,
+        default_preset_id: str = "custom_legacy",
+    ) -> List[Dict[str, Any]]:
+        run_id = str(run_payload.get("run_id", "") or "").strip()
+        if not run_id:
+            return []
+        nodes = {
+            str(node.get("node_id", "")): dict(node)
+            for node in _records(run_payload.get("nodes"))
+            if str(node.get("node_id", "")).strip()
+        }
+        samples = []
+        for point in _records(run_payload.get("scatter_points")):
+            node_id = str(point.get("node_id", "") or "").strip()
+            if not node_id:
+                continue
+            node = nodes.get(node_id, {})
+            if str(point.get("status") or node.get("status") or "") != "succeeded":
+                continue
+            if _score(point, "walkability") is None or _score(point, "safety") is None or _score(point, "beauty") is None:
+                continue
+            samples.append(self._sample_from_branch_node(
+                run_payload,
+                point,
+                node,
+                default_preset_id=default_preset_id,
+            ))
+        return samples
+
     def _read_samples_by_id(self) -> Dict[str, Dict[str, Any]]:
         with self._lock:
             return self._read_samples_by_id_locked()
 
     def _read_samples_by_id_locked(self) -> Dict[str, Dict[str, Any]]:
+        signature = self._samples_file_signature_locked()
+        if self._samples_cache_signature == signature and self._samples_cache_rows is not None:
+            return _copy_rows_by_id(self._samples_cache_rows)
         if not self.samples_path.exists():
+            self._store_samples_cache_locked({})
             return {}
         rows: Dict[str, Dict[str, Any]] = {}
         for line in self.samples_path.read_text(encoding="utf-8").splitlines():
@@ -398,6 +460,7 @@ class BranchBenchmarkStore:
                     rag_evidence=_records(item.get("rag_evidence")),
                 ))
                 rows[sample_id] = item
+        self._store_samples_cache_locked(rows)
         return rows
 
     def _write_samples_locked(self, rows: Mapping[str, Mapping[str, Any]]) -> None:
@@ -417,6 +480,20 @@ class BranchBenchmarkStore:
             }), ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
+
+    def _samples_file_signature_locked(self) -> tuple[int, int]:
+        try:
+            stat = self.samples_path.stat()
+            return (int(stat.st_mtime_ns), int(stat.st_size))
+        except FileNotFoundError:
+            return (0, 0)
+
+    def _store_samples_cache_locked(self, rows: Mapping[str, Mapping[str, Any]]) -> None:
+        self._samples_cache_signature = self._samples_file_signature_locked()
+        self._samples_cache_rows = _copy_rows_by_id(rows)
+
+    def _clear_query_cache_locked(self) -> None:
+        self._query_cache.clear()
 
 
 @dataclass
@@ -595,6 +672,14 @@ def _records(value: Any) -> List[Dict[str, Any]]:
     if not isinstance(value, list):
         return []
     return [dict(item) for item in value if isinstance(item, Mapping)]
+
+
+def _copy_rows_by_id(rows: Mapping[str, Mapping[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    return {str(key): dict(make_json_safe(value)) for key, value in rows.items()}
+
+
+def _copy_payload(payload: Mapping[str, Any]) -> Dict[str, Any]:
+    return dict(make_json_safe(payload))
 
 
 def _score(payload: Mapping[str, Any], key: str) -> float | None:
