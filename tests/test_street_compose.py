@@ -2798,7 +2798,7 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
 
     assert any(name.startswith("surface_annotation_bus_bay") for name in node_names)
     assert any(name.startswith("surface_annotation_bus_bay_marking") for name in node_names)
-    assert any(name.startswith("surface_annotation_transit_pad") for name in node_names)
+    assert not any(name.startswith("surface_annotation_transit_pad") for name in node_names)
 
     def _vertices_for(prefix: str) -> np.ndarray:
         meshes = [

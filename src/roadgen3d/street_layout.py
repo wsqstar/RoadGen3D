@@ -6137,7 +6137,6 @@ def _build_osm_base_scene(
         "sidewalk",
         "furnishing",
         "context_ground",
-        "transit_pad",
     }
     elevated_surface_annotation_surfaces = [
         patch.get("geometry")
@@ -6674,6 +6673,11 @@ def _build_osm_base_scene(
             return geometry
         return clipped
 
+    def _is_nonvisual_surface_annotation(patch: Mapping[str, Any]) -> bool:
+        role = str(patch.get("surface_role", "") or "").strip().lower()
+        kind = str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
+        return role == "transit_pad" or kind == "transit_pad"
+
     def _surface_annotation_render_spec(patch: Mapping[str, Any]) -> Tuple[float, List[int], float, str, str]:
         role = str(patch.get("surface_role", "") or "colored_pavement").strip().lower()
         material = patch.get("material", {}) if isinstance(patch.get("material", {}), Mapping) else {}
@@ -6949,6 +6953,8 @@ def _build_osm_base_scene(
     for patch_index, patch in enumerate(surface_annotation_patches):
         geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
         if geometry is None or getattr(geometry, "is_empty", True):
+            continue
+        if isinstance(patch, Mapping) and _is_nonvisual_surface_annotation(patch):
             continue
         render_geometry = _surface_annotation_render_geometry(patch, geometry)
         if render_geometry is None or getattr(render_geometry, "is_empty", True):
