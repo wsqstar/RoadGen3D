@@ -2818,7 +2818,7 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     ]
     bus_bay_vertices = np.vstack([np.asarray(mesh.vertices) for mesh in bus_bay_meshes if len(mesh.vertices)])
     assert bus_bay_vertices.size
-    assert float(bus_bay_vertices[:, 1].min()) < -0.02
+    assert float(bus_bay_vertices[:, 1].min()) == pytest.approx(street_layout.BUS_BAY_SURFACE_TOP_Y_M)
     assert float(bus_bay_vertices[:, 1].max()) == pytest.approx(street_layout.BUS_BAY_SURFACE_TOP_Y_M)
     bus_bay_color = np.asarray(bus_bay_meshes[0].visual.material.baseColorFactor, dtype=float)
     if float(bus_bay_color.max()) <= 1.0:
@@ -2827,7 +2827,7 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     assert tracker.surface_role_counts.get("bus_lane", 0) == 0
     sidewalk_vertices = _vertices_for("sidewalk_")
     if sidewalk_vertices.size:
-        bus_bay_sidewalk_clearance = bus_bay.buffer(0.25)
+        bus_bay_sidewalk_clearance = bus_bay.buffer(street_layout.BUS_BAY_SIDEWALK_CLEARANCE_M * 0.75)
         assert not any(
             bus_bay_sidewalk_clearance.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
             for vertex in sidewalk_vertices

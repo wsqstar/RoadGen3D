@@ -3725,8 +3725,9 @@ SURFACE_CROSSING_HEIGHT_M = 0.020
 SURFACE_CROSSING_TOP_Y_M = 0.026
 CROSSING_STRIPE_HEIGHT_M = 0.012
 CROSSING_STRIPE_TOP_Y_M = 0.044
-BUS_BAY_SURFACE_HEIGHT_M = 0.075
-BUS_BAY_SURFACE_TOP_Y_M = 0.024
+BUS_BAY_SURFACE_HEIGHT_M = 0.006
+BUS_BAY_SURFACE_TOP_Y_M = 0.006
+BUS_BAY_SIDEWALK_CLEARANCE_M = 0.04
 CENTER_PAINTED_MEDIAN_HEIGHT_M = LANE_MARK_HEIGHT_M
 CENTER_PAINTED_MEDIAN_TOP_Y_M = LANE_MARK_Y_MIN_M + LANE_MARK_HEIGHT_M
 CENTER_PAINTED_MEDIAN_COLOR = (230, 200, 50, 255)
@@ -6171,9 +6172,8 @@ def _build_osm_base_scene(
     if not getattr(vehicle_clearance_surface, "is_empty", True):
         sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(vehicle_clearance_surface))
     if not getattr(bus_bay_vehicle_zone, "is_empty", True):
-        sidewalk_clearance_width_m = max(LANE_MARK_WIDTH_M, LANE_EDGE_MARK_WIDTH_M, 0.30)
         sidewalk_render_zone = _clean_scene_polygonal_geometry(
-            sidewalk_render_zone.difference(bus_bay_vehicle_zone.buffer(sidewalk_clearance_width_m))
+            sidewalk_render_zone.difference(bus_bay_vehicle_zone.buffer(BUS_BAY_SIDEWALK_CLEARANCE_M, join_style=2))
         )
     curb_elevated_side_zone = _union_scene_polygonal_geometries([
         sidewalk_render_zone,
@@ -6227,6 +6227,7 @@ def _build_osm_base_scene(
         roughness_key: str = "",
         surface_role: str = "",
         horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
+        top_only: bool = False,
     ) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
 
@@ -6255,6 +6256,12 @@ def _build_osm_base_scene(
                 verts[:, 2] = old_y           # Z = northing
                 mesh.vertices = verts
                 mesh.fix_normals()
+                if top_only:
+                    top_face_mask = mesh.face_normals[:, 1] > 0.5
+                    if not bool(top_face_mask.any()):
+                        continue
+                    mesh.update_faces(top_face_mask)
+                    mesh.remove_unreferenced_vertices()
                 mesh = _apply_surface_finish(
                     mesh,
                     surface_role=surface_role or roughness_key or "sidewalk",
@@ -6662,6 +6669,14 @@ def _build_osm_base_scene(
         return preset in {"raised_crossing_warm", "school_crossing"} or any(token in fields or token in preset for token in tokens)
 
     def _surface_annotation_render_geometry(patch: Mapping[str, Any], geometry: object) -> object:
+        if _is_bus_bay_vehicle_patch(patch):
+            try:
+                return _clean_scene_polygonal_geometry(
+                    geometry.buffer(BUS_BAY_SIDEWALK_CLEARANCE_M, join_style=2)
+                )
+            except Exception:
+                logger.debug("Failed to expand bus bay render surface", exc_info=True)
+                return geometry
         if not _is_crossing_surface_patch(patch):
             return geometry
         if getattr(curb_source_surface, "is_empty", True):
@@ -6968,6 +6983,7 @@ def _build_osm_base_scene(
             y_offset=y_offset,
             roughness_key=roughness_key,
             surface_role=surface_role,
+            top_only=isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch),
         )
         if isinstance(patch, Mapping) and _is_crossing_surface_patch(patch):
             _render_crosswalk_zebra_patch(
