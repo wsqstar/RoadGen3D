@@ -2966,6 +2966,43 @@ def test_center_median_renders_as_yellow_lane_mark_fill():
     assert float(center_median_vertices[:, 1].max()) < street_layout.CENTER_ISLAND_TOP_Y_M
 
 
+def test_center_median_marking_stops_at_junction_surface():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    junction_vehicle = shapely_geometry.box(-1.0, -2.0, 1.0, 2.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(-8.0, -2.0, 8.0, 2.0),
+        sidewalk_zone=shapely_geometry.MultiPolygon(),
+        road_arm_geometries=[],
+        junction_geometries=[
+            {
+                "normalized_surface_patches": [
+                    {"surface_role": "carriageway", "geometry": junction_vehicle},
+                ]
+            }
+        ],
+        strip_zones={"center_median": shapely_geometry.box(-8.0, -0.25, 8.0, 0.25)},
+        surface_annotations=[],
+    )
+
+    scene = street_layout._build_osm_base_scene(
+        placement_ctx,
+        texture_mode="solid_color_legacy",
+    )
+    center_median_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_median_")
+    ]
+
+    assert len(center_median_meshes) >= 2
+    for mesh in center_median_meshes:
+        min_x = float(mesh.bounds[0][0])
+        max_x = float(mesh.bounds[1][0])
+        assert max_x <= -1.30 or min_x >= 1.30
+
+
 def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

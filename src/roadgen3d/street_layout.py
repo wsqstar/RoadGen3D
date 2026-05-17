@@ -6087,6 +6087,9 @@ def _build_osm_base_scene(
     )
     base_vehicle_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
     curb_source_surface = _union_scene_polygonal_geometries([base_vehicle_surface, *bus_bay_vehicle_surfaces])
+    junction_marking_exclusion_surface = _union_scene_polygonal_geometries(
+        _junction_marking_exclusion_geometries(junction_geometries)
+    )
     sidewalk_render_zone = _union_scene_polygonal_geometries([sidewalk_zone, *junction_sidewalk_surfaces])
     vehicle_clearance_surface = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
     if not getattr(vehicle_clearance_surface, "is_empty", True):
@@ -6393,15 +6396,24 @@ def _build_osm_base_scene(
         )
     center_median = strip_zones.get("center_median")
     if center_median is not None and not getattr(center_median, "is_empty", True):
-        _extrude_polygon(
-            center_median,
-            CENTER_PAINTED_MEDIAN_HEIGHT_M,
-            list(colors.get("lane_edge", CENTER_PAINTED_MEDIAN_COLOR)),
-            "center_median",
-            y_offset=CENTER_PAINTED_MEDIAN_TOP_Y_M,
-            roughness_key="lane_mark",
-            surface_role="lane_mark",
-        )
+        center_median_render_zone = center_median
+        if not getattr(junction_marking_exclusion_surface, "is_empty", True):
+            try:
+                center_median_render_zone = _clean_scene_polygonal_geometry(
+                    center_median_render_zone.difference(junction_marking_exclusion_surface)
+                )
+            except Exception:
+                logger.debug("Failed to clip center median marking from junctions", exc_info=True)
+        if not getattr(center_median_render_zone, "is_empty", True):
+            _extrude_polygon(
+                center_median_render_zone,
+                CENTER_PAINTED_MEDIAN_HEIGHT_M,
+                list(colors.get("lane_edge", CENTER_PAINTED_MEDIAN_COLOR)),
+                "center_median",
+                y_offset=CENTER_PAINTED_MEDIAN_TOP_Y_M,
+                roughness_key="lane_mark",
+                surface_role="lane_mark",
+            )
     center_grass_belt = strip_zones.get("center_grass_belt")
     if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
         _render_center_flowerbed_polygon(
