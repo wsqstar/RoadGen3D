@@ -6540,6 +6540,11 @@ def _build_osm_base_scene(
     if not curb_source_surface.is_empty:
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
+            if not getattr(bus_bay_vehicle_zone, "is_empty", True):
+                curb_suppression_width_m = max(curb_width * 2.5, 0.30)
+                curb_zone = _clean_scene_polygonal_geometry(
+                    curb_zone.difference(bus_bay_vehicle_zone.buffer(curb_suppression_width_m))
+                )
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",

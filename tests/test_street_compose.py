@@ -2856,17 +2856,22 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     assert not np.any(moved_edge_marking)
 
     curb_vertices = _vertices_for("curb_")
-    assert curb_vertices.size
-    curb_center_span = (curb_vertices[:, 0] > 10.0) & (curb_vertices[:, 0] < 30.0)
-    old_edge_curb = curb_center_span & (curb_vertices[:, 2] > -6.75) & (curb_vertices[:, 2] < -6.45)
-    moved_edge_curb = (
-        (curb_vertices[:, 0] > 7.5)
-        & (curb_vertices[:, 0] < 32.5)
-        & (curb_vertices[:, 2] > -8.75)
-        & (curb_vertices[:, 2] < -8.45)
-    )
-    assert not np.any(old_edge_curb)
-    assert np.any(moved_edge_curb)
+    if curb_vertices.size:
+        curb_center_span = (curb_vertices[:, 0] > 10.0) & (curb_vertices[:, 0] < 30.0)
+        old_edge_curb = curb_center_span & (curb_vertices[:, 2] > -6.75) & (curb_vertices[:, 2] < -6.45)
+        moved_edge_curb = (
+            (curb_vertices[:, 0] > 7.5)
+            & (curb_vertices[:, 0] < 32.5)
+            & (curb_vertices[:, 2] > -8.75)
+            & (curb_vertices[:, 2] < -8.45)
+        )
+        assert not np.any(old_edge_curb)
+        assert not np.any(moved_edge_curb)
+        bus_bay_curb_suppression = bus_bay.buffer(0.25)
+        assert not any(
+            bus_bay_curb_suppression.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
+            for vertex in curb_vertices
+        )
 
 
 def test_structure_lane_markings_have_visible_geometry():
