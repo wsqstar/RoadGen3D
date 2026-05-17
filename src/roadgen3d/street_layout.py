@@ -3719,6 +3719,10 @@ LANE_MARK_Y_MIN_M = 0.018
 LANE_EDGE_MARK_WIDTH_M = 0.16
 LANE_EDGE_MARK_HEIGHT_M = 0.018
 LANE_EDGE_MARK_Y_MIN_M = 0.018
+SURFACE_CROSSING_HEIGHT_M = 0.020
+SURFACE_CROSSING_TOP_Y_M = 0.026
+CROSSING_STRIPE_HEIGHT_M = 0.012
+CROSSING_STRIPE_TOP_Y_M = 0.044
 BUS_BAY_SURFACE_HEIGHT_M = 0.075
 BUS_BAY_SURFACE_TOP_Y_M = 0.024
 CENTER_ISLAND_TOP_Y_M = 0.12
@@ -4046,10 +4050,30 @@ def _drive_lane_internal_offsets(detailed_strip_profiles: Sequence[Mapping[str, 
     edge_offsets = _drive_lane_boundary_offsets(detailed_strip_profiles)
     if len(edge_offsets) < 3:
         return []
+    starts_by_key: Dict[float, float] = {}
+    ends_by_key: Dict[float, float] = {}
+    for profile in detailed_strip_profiles:
+        if (
+            str(profile.get("side", "")).strip().lower() != "center"
+            or str(profile.get("kind", "")).strip().lower() != "drive_lane"
+        ):
+            continue
+        try:
+            inner = float(profile.get("inner_m", 0.0))
+            outer = float(profile.get("outer_m", 0.0))
+        except (TypeError, ValueError):
+            continue
+        start = min(inner, outer)
+        end = max(inner, outer)
+        starts_by_key.setdefault(round(start, 4), start)
+        ends_by_key.setdefault(round(end, 4), end)
+
+    max_edge = max(abs(float(edge_offsets[0])), abs(float(edge_offsets[-1])))
+    shared_keys = set(starts_by_key).intersection(ends_by_key)
     return [
-        offset
-        for offset in edge_offsets[1:-1]
-        if abs(float(offset)) < max(abs(float(edge_offsets[0])), abs(float(edge_offsets[-1]))) - 0.08
+        (starts_by_key[key] + ends_by_key[key]) / 2.0
+        for key in sorted(shared_keys)
+        if abs(float((starts_by_key[key] + ends_by_key[key]) / 2.0)) < max_edge - 0.08
     ]
 
 
@@ -6507,12 +6531,60 @@ def _build_osm_base_scene(
                 pass
         return list(fallback)
 
+    def _is_crossing_surface_patch(patch: Mapping[str, Any]) -> bool:
+        role = str(patch.get("surface_role", "") or "").strip().lower()
+        kind = str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
+        if role in {"safety_island", "median", "median_green", "grass_belt"} or kind in {
+            "safety_island",
+            "median",
+            "median_green",
+            "grass_belt",
+        }:
+            return False
+        fields = " ".join(
+            str(value or "").strip().lower()
+            for value in (
+                role,
+                kind,
+                patch.get("surface_id", ""),
+                patch.get("label", ""),
+                patch.get("annotation_id", ""),
+            )
+        )
+        material = patch.get("material", {}) if isinstance(patch.get("material", {}), Mapping) else {}
+        preset = str(material.get("preset", "") or "").strip().lower()
+        tokens = ("crossing", "crosswalk", "raised_crossing", "school_crossing", "过街", "斑马线")
+        return preset in {"raised_crossing_warm", "school_crossing"} or any(token in fields or token in preset for token in tokens)
+
+    def _surface_annotation_render_geometry(patch: Mapping[str, Any], geometry: object) -> object:
+        if not _is_crossing_surface_patch(patch):
+            return geometry
+        if getattr(curb_source_surface, "is_empty", True):
+            return geometry
+        try:
+            clipped = _clean_scene_polygonal_geometry(geometry.intersection(curb_source_surface))
+        except Exception:
+            logger.debug("Failed to clip crossing surface annotation to vehicle surface", exc_info=True)
+            return geometry
+        return clipped
+
     def _surface_annotation_render_spec(patch: Mapping[str, Any]) -> Tuple[float, List[int], float, str, str]:
         role = str(patch.get("surface_role", "") or "colored_pavement").strip().lower()
         material = patch.get("material", {}) if isinstance(patch.get("material", {}), Mapping) else {}
         preset = str(material.get("preset", "") or "").strip().lower()
         texture_key = str(material.get("texture_key", "") or "").strip().lower()
 
+        if _is_crossing_surface_patch(patch):
+            fallback = colors.get("crossing", (235, 231, 214, 255))
+            if preset == "raised_crossing_warm":
+                fallback = (222, 188, 128, 255)
+            return (
+                SURFACE_CROSSING_HEIGHT_M,
+                _material_color(material, fallback),
+                SURFACE_CROSSING_TOP_Y_M,
+                texture_key or "crossing",
+                "crossing",
+            )
         if role == "bus_lane" or preset == "bus_lane_green":
             color = list(colors.get("bus_lane", (74, 142, 96, 255)))
             if preset == "bus_lane_green":
@@ -6571,27 +6643,6 @@ def _build_osm_base_scene(
             roughness_key="lane_edge",
             surface_role="lane_mark",
         )
-
-    for patch_index, patch in enumerate(surface_annotation_patches):
-        geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
-        if geometry is None or getattr(geometry, "is_empty", True):
-            continue
-        height_m, color, y_offset, roughness_key, surface_role = _surface_annotation_render_spec(patch)
-        _extrude_polygon(
-            geometry,
-            height_m,
-            color,
-            f"surface_annotation_{patch.get('surface_id', patch_index)}",
-            y_offset=y_offset,
-            roughness_key=roughness_key,
-            surface_role=surface_role,
-        )
-        if isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch):
-            _render_bus_bay_edge_markings(
-                geometry,
-                node_name_prefix=f"surface_annotation_bus_bay_marking_{patch.get('surface_id', patch_index)}",
-                adjacent_vehicle_surface=base_vehicle_surface,
-            )
 
     def _render_crosswalk_zebra_patch(
         geometry,
@@ -6683,13 +6734,42 @@ def _build_osm_base_scene(
                 continue
             _extrude_polygon(
                 stripe_geometry,
-                0.012,
+                CROSSING_STRIPE_HEIGHT_M,
                 list(colors.get("lane_mark", (245, 245, 245, 255))),
                 f"{node_name_prefix}_stripe_{stripe_idx}",
-                y_offset=0.010,
+                y_offset=CROSSING_STRIPE_TOP_Y_M,
                 roughness_key="crossing",
                 surface_role="crossing",
                 horizontal_axes=(axis_u, axis_v),
+            )
+
+    for patch_index, patch in enumerate(surface_annotation_patches):
+        geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
+        if geometry is None or getattr(geometry, "is_empty", True):
+            continue
+        render_geometry = _surface_annotation_render_geometry(patch, geometry)
+        if render_geometry is None or getattr(render_geometry, "is_empty", True):
+            continue
+        height_m, color, y_offset, roughness_key, surface_role = _surface_annotation_render_spec(patch)
+        _extrude_polygon(
+            render_geometry,
+            height_m,
+            color,
+            f"surface_annotation_{patch.get('surface_id', patch_index)}",
+            y_offset=y_offset,
+            roughness_key=roughness_key,
+            surface_role=surface_role,
+        )
+        if isinstance(patch, Mapping) and _is_crossing_surface_patch(patch):
+            _render_crosswalk_zebra_patch(
+                render_geometry,
+                node_name_prefix=f"surface_annotation_crossing_marking_{patch.get('surface_id', patch_index)}",
+            )
+        if isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch):
+            _render_bus_bay_edge_markings(
+                render_geometry,
+                node_name_prefix=f"surface_annotation_bus_bay_marking_{patch.get('surface_id', patch_index)}",
+                adjacent_vehicle_surface=base_vehicle_surface,
             )
 
     if junction_geometries:

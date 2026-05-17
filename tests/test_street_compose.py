@@ -2828,6 +2828,82 @@ def test_structure_lane_markings_have_visible_geometry():
     assert max(float(mesh.extents[2]) for mesh in lane_edge_meshes) == pytest.approx(street_layout.LANE_EDGE_MARK_WIDTH_M)
 
 
+def test_drive_lane_internal_offsets_skip_median_boundaries():
+    profiles = [
+        {"side": "center", "kind": "drive_lane", "inner_m": -6.25, "outer_m": -3.25},
+        {"side": "center", "kind": "drive_lane", "inner_m": -3.25, "outer_m": -0.25},
+        {"side": "center", "kind": "median", "inner_m": -0.25, "outer_m": 0.25},
+        {"side": "center", "kind": "drive_lane", "inner_m": 0.25, "outer_m": 3.25},
+        {"side": "center", "kind": "drive_lane", "inner_m": 3.25, "outer_m": 6.25},
+    ]
+
+    assert street_layout._drive_lane_boundary_offsets(profiles) == [-6.25, -3.25, -0.25, 0.25, 3.25, 6.25]
+    assert street_layout._drive_lane_internal_offsets(profiles) == [-3.25, 3.25]
+
+
+def test_crossing_like_surface_annotation_clips_to_carriageway_and_marks_top():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(0.0, -6.0, 24.0, 6.0),
+        sidewalk_zone=shapely_geometry.box(0.0, -10.0, 24.0, 10.0),
+        road_arm_geometries=[],
+        junction_geometries=[],
+        strip_zones={},
+        surface_annotations=[
+            {
+                "surface_id": "school_crossing",
+                "kind": "colored_pavement",
+                "surface_role": "colored_pavement",
+                "label": "学校门前彩色过街",
+                "geometry": shapely_geometry.box(6.0, -9.0, 18.0, 9.0),
+                "material": {"preset": "raised_crossing_warm"},
+            },
+            {
+                "surface_id": "school_crossing_refuge",
+                "kind": "safety_island",
+                "surface_role": "safety_island",
+                "label": "学校过街安全岛",
+                "geometry": shapely_geometry.box(10.0, -0.6, 14.0, 0.6),
+                "material": {"preset": "safety_island_concrete"},
+            },
+        ],
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+
+    def _vertices_for(prefix: str) -> np.ndarray:
+        meshes = [
+            scene.geometry[scene.graph[node_name][1]]
+            for node_name in scene.graph.nodes_geometry
+            if str(node_name).startswith(prefix)
+        ]
+        if not meshes:
+            return np.empty((0, 3))
+        return np.vstack([np.asarray(mesh.vertices) for mesh in meshes if len(mesh.vertices)])
+
+    crossing_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("surface_annotation_school_crossing_")
+        and not str(node_name).startswith("surface_annotation_school_crossing_refuge")
+    ]
+    crossing_vertices = np.vstack([np.asarray(mesh.vertices) for mesh in crossing_meshes if len(mesh.vertices)])
+    assert crossing_vertices.size
+    assert float(crossing_vertices[:, 2].min()) == pytest.approx(-6.0)
+    assert float(crossing_vertices[:, 2].max()) == pytest.approx(6.0)
+    assert float(crossing_vertices[:, 1].max()) == pytest.approx(street_layout.SURFACE_CROSSING_TOP_Y_M)
+
+    stripe_vertices = _vertices_for("surface_annotation_crossing_marking_school_crossing")
+    assert stripe_vertices.size
+    assert float(stripe_vertices[:, 1].max()) == pytest.approx(street_layout.CROSSING_STRIPE_TOP_Y_M)
+
+    refuge_vertices = _vertices_for("surface_annotation_school_crossing_refuge")
+    assert refuge_vertices.size
+    assert float(refuge_vertices[:, 1].max()) == pytest.approx(street_layout.CENTER_ISLAND_TOP_Y_M)
+
+
 def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 
