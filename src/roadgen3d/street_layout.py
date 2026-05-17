@@ -4142,18 +4142,33 @@ def _marking_point_in_exclusion(x_m: float, z_m: float, exclusion_geometries: Se
     return False
 
 
-def _offset_marking_point(
+def _marking_segment_in_exclusion(
     *,
     center_x_m: float,
     center_z_m: float,
     yaw_deg: float,
     lateral_offset_m: float,
-) -> Tuple[float, float]:
-    _, lateral_axis = _road_axes_from_yaw_deg(float(yaw_deg))
-    return (
-        float(center_x_m) + lateral_axis[0] * float(lateral_offset_m),
-        float(center_z_m) + lateral_axis[1] * float(lateral_offset_m),
-    )
+    length_m: float,
+    exclusion_geometries: Sequence[Any] | None,
+) -> bool:
+    if not exclusion_geometries:
+        return False
+    forward_axis, lateral_axis = _road_axes_from_yaw_deg(float(yaw_deg))
+    half_length_m = max(float(length_m), 0.0) * 0.5
+    for longitudinal_offset_m in (-half_length_m, 0.0, half_length_m):
+        sample_x_m = (
+            float(center_x_m)
+            + forward_axis[0] * float(longitudinal_offset_m)
+            + lateral_axis[0] * float(lateral_offset_m)
+        )
+        sample_z_m = (
+            float(center_z_m)
+            + forward_axis[1] * float(longitudinal_offset_m)
+            + lateral_axis[1] * float(lateral_offset_m)
+        )
+        if _marking_point_in_exclusion(sample_x_m, sample_z_m, exclusion_geometries):
+            return True
+    return False
 
 
 def _add_centerline_markings(
@@ -4239,13 +4254,14 @@ def _add_centerline_markings(
                     if len(separator_offsets) == 1
                     else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
                 )
-                marking_x_m, marking_z_m = _offset_marking_point(
+                if _marking_segment_in_exclusion(
                     center_x_m=center_x_m,
                     center_z_m=center_z_m,
                     yaw_deg=yaw_deg,
                     lateral_offset_m=float(lane_z),
-                )
-                if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
+                    length_m=float(dash_length_m),
+                    exclusion_geometries=marking_exclusion_geometries,
+                ):
                     dash_idx += 1
                     distance_m += dash_step_m
                     continue
@@ -4284,13 +4300,14 @@ def _add_centerline_markings(
                 if len(separator_offsets) == 1
                 else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
             )
-            marking_x_m, marking_z_m = _offset_marking_point(
+            if _marking_segment_in_exclusion(
                 center_x_m=world_center_x_m,
                 center_z_m=world_center_z_m,
                 yaw_deg=float(road_yaw_deg),
                 lateral_offset_m=float(lane_z),
-            )
-            if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
+                length_m=float(dash_length_m),
+                exclusion_geometries=marking_exclusion_geometries,
+            ):
                 continue
             _add_road_box(
                 scene,
@@ -4379,13 +4396,14 @@ def _add_lane_edge_markings(
             distance_m = mark_length_m * 0.5
             while distance_m < road_len - mark_length_m * 0.15:
                 center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
-                marking_x_m, marking_z_m = _offset_marking_point(
+                if _marking_segment_in_exclusion(
                     center_x_m=center_x_m,
                     center_z_m=center_z_m,
                     yaw_deg=yaw_deg,
                     lateral_offset_m=float(edge_offset),
-                )
-                if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
+                    length_m=float(mark_length_m),
+                    exclusion_geometries=marking_exclusion_geometries,
+                ):
                     mark_idx += 1
                     distance_m += mark_step_m
                     continue
@@ -4415,13 +4433,14 @@ def _add_lane_edge_markings(
     else:
         # Fallback: render lines without following road shape
         for edge_idx, edge_offset in enumerate(edge_marking_offsets):
-            marking_x_m, marking_z_m = _offset_marking_point(
+            if _marking_segment_in_exclusion(
                 center_x_m=road_center_x_m,
                 center_z_m=road_center_z_m,
                 yaw_deg=road_yaw_deg,
                 lateral_offset_m=float(edge_offset),
-            )
-            if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
+                length_m=float(road_length_m),
+                exclusion_geometries=marking_exclusion_geometries,
+            ):
                 continue
             _add_road_box(
                 scene,
@@ -6108,6 +6127,12 @@ def _build_osm_base_scene(
         and not getattr(patch.get("geometry"), "is_empty", True)
     ]
     bus_bay_vehicle_zone = _union_scene_polygonal_geometries(bus_bay_vehicle_surfaces)
+    bus_bay_marking_exclusion_surfaces: List[Any] = []
+    for surface in bus_bay_vehicle_surfaces:
+        try:
+            bus_bay_marking_exclusion_surfaces.append(surface.buffer(max(LANE_EDGE_MARK_WIDTH_M, LANE_MARK_WIDTH_M)))
+        except Exception:
+            bus_bay_marking_exclusion_surfaces.append(surface)
 
     junction_sidewalk_surfaces: List[Any] = []
     junction_vehicle_surfaces: List[Any] = []
@@ -6641,6 +6666,14 @@ def _build_osm_base_scene(
                 texture_key or "crossing",
                 "crossing",
             )
+        if _is_bus_bay_vehicle_patch(patch):
+            return (
+                BUS_BAY_SURFACE_HEIGHT_M,
+                list(colors.get("carriageway", (65, 68, 72, 255))),
+                BUS_BAY_SURFACE_TOP_Y_M,
+                "carriageway",
+                "carriageway",
+            )
         if role == "bus_lane" or preset == "bus_lane_green":
             color = list(colors.get("bus_lane", (74, 142, 96, 255)))
             if preset == "bus_lane_green":
@@ -6679,11 +6712,48 @@ def _build_osm_base_scene(
         if geometry is None or getattr(geometry, "is_empty", True):
             return
         try:
+            from shapely.geometry import GeometryCollection, LineString, MultiLineString
+            from shapely.ops import substring, unary_union
+
             line_width_m = 0.055
-            line_zone = geometry.boundary.buffer(line_width_m, cap_style=2, join_style=2)
+            dash_length_m = 1.25
+            dash_gap_m = 0.95
+            min_dash_length_m = 0.35
+            source_lines = geometry.boundary
             if adjacent_vehicle_surface is not None and not getattr(adjacent_vehicle_surface, "is_empty", True):
                 vehicle_contact_zone = adjacent_vehicle_surface.buffer(line_width_m * 1.35)
-                line_zone = line_zone.difference(vehicle_contact_zone)
+                source_lines = source_lines.difference(vehicle_contact_zone)
+            line_geometries: List[object] = []
+
+            def _iter_lines(line_geometry: object) -> Iterable[object]:
+                if line_geometry is None or getattr(line_geometry, "is_empty", True):
+                    return
+                if isinstance(line_geometry, LineString):
+                    yield line_geometry
+                    return
+                if isinstance(line_geometry, MultiLineString):
+                    for item in line_geometry.geoms:
+                        yield from _iter_lines(item)
+                    return
+                if isinstance(line_geometry, GeometryCollection):
+                    for item in line_geometry.geoms:
+                        yield from _iter_lines(item)
+
+            for line in _iter_lines(source_lines):
+                line_length = float(getattr(line, "length", 0.0) or 0.0)
+                if line_length < min_dash_length_m:
+                    continue
+                cursor_m = 0.0
+                while cursor_m < line_length:
+                    end_m = min(cursor_m + dash_length_m, line_length)
+                    if end_m - cursor_m >= min_dash_length_m:
+                        segment = substring(line, cursor_m, end_m)
+                        if segment is not None and not getattr(segment, "is_empty", True):
+                            line_geometries.append(segment.buffer(line_width_m, cap_style=2, join_style=2))
+                    cursor_m += dash_length_m + dash_gap_m
+            if not line_geometries:
+                return
+            line_zone = unary_union(line_geometries)
             line_zone = _clean_scene_polygonal_geometry(line_zone)
         except Exception:
             logger.debug("Skipping bus bay edge markings", exc_info=True)
@@ -6970,7 +7040,7 @@ def _build_osm_base_scene(
         *_junction_marking_exclusion_geometries(
             list(getattr(placement_ctx, "junction_geometries", []) or ())
         ),
-        *bus_bay_vehicle_surfaces,
+        *bus_bay_marking_exclusion_surfaces,
     ]
     centerline_marking_exclusion_geometries = list(marking_exclusion_geometries)
     if center_median_marking_exclusion is not None and not getattr(center_median_marking_exclusion, "is_empty", True):

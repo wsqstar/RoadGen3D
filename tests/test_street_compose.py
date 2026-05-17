@@ -2754,6 +2754,14 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
         road_arm_geometries=[],
         junction_geometries=[],
         strip_zones={},
+        carriageway_width_m=13.2,
+        road_reference=SimpleNamespace(coords=[(0.0, 0.0), (40.0, 0.0)], width_m=13.2, highway_type="primary"),
+        detailed_strip_profiles=[
+            {"side": "center", "kind": "drive_lane", "inner_m": -6.6, "outer_m": -3.3},
+            {"side": "center", "kind": "drive_lane", "inner_m": -3.3, "outer_m": 0.0},
+            {"side": "center", "kind": "drive_lane", "inner_m": 0.0, "outer_m": 3.3},
+            {"side": "center", "kind": "drive_lane", "inner_m": 3.3, "outer_m": 6.6},
+        ],
         surface_annotations=[
             {
                 "surface_id": "bus_bay",
@@ -2779,7 +2787,12 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
             pytest.skip("Trimesh triangulation engine is unavailable in this environment")
         raise
 
-    scene = street_layout._build_osm_base_scene(placement_ctx)
+    tracker = create_scene_texture_tracker("solid_color_legacy")
+    scene = street_layout._build_osm_base_scene(
+        placement_ctx,
+        texture_mode="solid_color_legacy",
+        texture_tracker=tracker,
+    )
 
     node_names = {str(name) for name in scene.graph.nodes_geometry}
 
@@ -2807,9 +2820,28 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     assert bus_bay_vertices.size
     assert float(bus_bay_vertices[:, 1].min()) < -0.02
     assert float(bus_bay_vertices[:, 1].max()) == pytest.approx(street_layout.BUS_BAY_SURFACE_TOP_Y_M)
+    bus_bay_color = np.asarray(bus_bay_meshes[0].visual.material.baseColorFactor, dtype=float)
+    if float(bus_bay_color.max()) <= 1.0:
+        bus_bay_color = bus_bay_color * 255.0
+    assert bus_bay_color[:4] == pytest.approx((65, 68, 72, 255))
+    assert tracker.surface_role_counts.get("bus_lane", 0) == 0
 
     marking_vertices = _vertices_for("surface_annotation_bus_bay_marking")
     assert marking_vertices.size
+    marking_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("surface_annotation_bus_bay_marking")
+    ]
+    assert len(marking_meshes) >= 8
+    assert max(max(float(mesh.extents[0]), float(mesh.extents[2])) for mesh in marking_meshes) < 1.8
+    lane_edge_vertices = _vertices_for("lane_edge_")
+    assert lane_edge_vertices.size
+    bus_bay_exclusion = bus_bay.buffer(0.02)
+    assert not any(
+        bus_bay_exclusion.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
+        for vertex in lane_edge_vertices
+    )
     center_span = (marking_vertices[:, 0] > 10.0) & (marking_vertices[:, 0] < 30.0)
     old_edge_marking = center_span & (marking_vertices[:, 2] > -6.75) & (marking_vertices[:, 2] < -6.45)
     moved_edge_marking = (
