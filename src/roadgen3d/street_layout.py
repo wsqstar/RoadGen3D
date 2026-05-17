@@ -6133,6 +6133,20 @@ def _build_osm_base_scene(
             bus_bay_marking_exclusion_surfaces.append(surface.buffer(max(LANE_EDGE_MARK_WIDTH_M, LANE_MARK_WIDTH_M)))
         except Exception:
             bus_bay_marking_exclusion_surfaces.append(surface)
+    elevated_surface_annotation_roles = {
+        "sidewalk",
+        "furnishing",
+        "context_ground",
+        "transit_pad",
+    }
+    elevated_surface_annotation_surfaces = [
+        patch.get("geometry")
+        for patch in surface_annotation_patches
+        if isinstance(patch, Mapping)
+        and str(patch.get("surface_role", "") or "").strip().lower() in elevated_surface_annotation_roles
+        and patch.get("geometry") is not None
+        and not getattr(patch.get("geometry"), "is_empty", True)
+    ]
 
     junction_sidewalk_surfaces: List[Any] = []
     junction_vehicle_surfaces: List[Any] = []
@@ -6157,6 +6171,10 @@ def _build_osm_base_scene(
     vehicle_clearance_surface = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
     if not getattr(vehicle_clearance_surface, "is_empty", True):
         sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(vehicle_clearance_surface))
+    curb_elevated_side_zone = _union_scene_polygonal_geometries([
+        sidewalk_render_zone,
+        *elevated_surface_annotation_surfaces,
+    ])
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
     for geom in (carriageway, sidewalk_render_zone):
@@ -6521,10 +6539,7 @@ def _build_osm_base_scene(
     curb_color = list(colors.get("curb", (145, 145, 145, 255)))
     if not curb_source_surface.is_empty:
         try:
-            curb_zone = _build_curb_boundary_zone(curb_source_surface, sidewalk_render_zone, curb_width)
-            if not getattr(bus_bay_vehicle_zone, "is_empty", True):
-                bus_bay_curb_zone = _build_curb_boundary_zone(bus_bay_vehicle_zone, sidewalk_render_zone, curb_width)
-                curb_zone = _union_scene_polygonal_geometries([curb_zone, bus_bay_curb_zone])
+            curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
@@ -6703,72 +6718,124 @@ def _build_osm_base_scene(
             return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), SIDEWALK_ELEVATION_M + 0.018, texture_key or "transit_pad", "transit_pad"
         return 0.014, _material_color(material, colors.get("colored_pavement", (200, 175, 150, 255))), 0.016, texture_key or "colored_pavement", "colored_pavement"
 
-    def _render_bus_bay_edge_markings(
-        geometry: object,
+    def _render_bus_bay_regular_edge_markings(
         *,
+        road_coords: Sequence[Tuple[float, float]],
+        road_length_m: float,
+        road_width_m: float,
+        edge_offsets_m: Sequence[float],
+        lane_count: int | None,
+        highway_type: str | None,
+        base_lane_width_m: float | None,
         node_name_prefix: str,
-        adjacent_vehicle_surface: object | None = None,
     ) -> None:
-        if geometry is None or getattr(geometry, "is_empty", True):
+        if getattr(bus_bay_vehicle_zone, "is_empty", True):
+            return
+        coords = tuple((float(point[0]), float(point[1])) for point in (road_coords or ()))
+        if len(coords) < 2:
             return
         try:
-            from shapely.geometry import GeometryCollection, LineString, MultiLineString
-            from shapely.ops import substring, unary_union
+            from shapely.geometry import Point
 
-            line_width_m = 0.055
-            dash_length_m = 1.25
-            dash_gap_m = 0.95
-            min_dash_length_m = 0.35
-            source_lines = geometry.boundary
-            if adjacent_vehicle_surface is not None and not getattr(adjacent_vehicle_surface, "is_empty", True):
-                vehicle_contact_zone = adjacent_vehicle_surface.buffer(line_width_m * 1.35)
-                source_lines = source_lines.difference(vehicle_contact_zone)
-            line_geometries: List[object] = []
-
-            def _iter_lines(line_geometry: object) -> Iterable[object]:
-                if line_geometry is None or getattr(line_geometry, "is_empty", True):
-                    return
-                if isinstance(line_geometry, LineString):
-                    yield line_geometry
-                    return
-                if isinstance(line_geometry, MultiLineString):
-                    for item in line_geometry.geoms:
-                        yield from _iter_lines(item)
-                    return
-                if isinstance(line_geometry, GeometryCollection):
-                    for item in line_geometry.geoms:
-                        yield from _iter_lines(item)
-
-            for line in _iter_lines(source_lines):
-                line_length = float(getattr(line, "length", 0.0) or 0.0)
-                if line_length < min_dash_length_m:
-                    continue
-                cursor_m = 0.0
-                while cursor_m < line_length:
-                    end_m = min(cursor_m + dash_length_m, line_length)
-                    if end_m - cursor_m >= min_dash_length_m:
-                        segment = substring(line, cursor_m, end_m)
-                        if segment is not None and not getattr(segment, "is_empty", True):
-                            line_geometries.append(segment.buffer(line_width_m, cap_style=2, join_style=2))
-                    cursor_m += dash_length_m + dash_gap_m
-            if not line_geometries:
-                return
-            line_zone = unary_union(line_geometries)
-            line_zone = _clean_scene_polygonal_geometry(line_zone)
+            bus_bay_marking_zone = bus_bay_vehicle_zone.buffer(max(LANE_MARK_WIDTH_M, LANE_EDGE_MARK_WIDTH_M))
         except Exception:
-            logger.debug("Skipping bus bay edge markings", exc_info=True)
+            logger.debug("Skipping bus bay regular edge markings", exc_info=True)
             return
-        if getattr(line_zone, "is_empty", True):
+        if getattr(bus_bay_marking_zone, "is_empty", True):
             return
-        _extrude_polygon(
-            line_zone,
-            0.010,
-            list(colors.get("lane_edge", colors.get("lane_mark", (245, 245, 245, 255)))),
-            node_name_prefix,
-            y_offset=0.030,
-            roughness_key="lane_edge",
-            surface_role="lane_mark",
+
+        dash_length_m, dash_gap_m = _marking_dash_pattern(
+            road_width_m=float(road_width_m),
+            lane_count=lane_count,
+            base_lane_width_m=base_lane_width_m,
+            highway_type=highway_type,
         )
+        dash_step_m = float(dash_length_m) + float(dash_gap_m)
+        road_len = max(float(road_length_m), _polyline_length_m(coords))
+        if road_len <= 0.0:
+            return
+
+        def _segment_touches_bus_bay(
+            *,
+            center_x_m: float,
+            center_z_m: float,
+            yaw_deg: float,
+            lateral_offset_m: float,
+            length_m: float,
+        ) -> bool:
+            forward_axis, lateral_axis = _road_axes_from_yaw_deg(float(yaw_deg))
+            half_length_m = max(float(length_m), 0.0) * 0.5
+            for longitudinal_offset_m in (-half_length_m, 0.0, half_length_m):
+                sample_x_m = (
+                    float(center_x_m)
+                    + forward_axis[0] * float(longitudinal_offset_m)
+                    + lateral_axis[0] * float(lateral_offset_m)
+                )
+                sample_z_m = (
+                    float(center_z_m)
+                    + forward_axis[1] * float(longitudinal_offset_m)
+                    + lateral_axis[1] * float(lateral_offset_m)
+                )
+                if bus_bay_marking_zone.covers(Point(sample_x_m, sample_z_m)):
+                    return True
+            return False
+
+        for edge_idx, edge_offset_m in enumerate(edge_offsets_m):
+            dash_idx = 0
+            distance_m = float(dash_length_m) * 0.5
+            while distance_m < road_len - float(dash_length_m) * 0.15:
+                center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
+                if _segment_touches_bus_bay(
+                    center_x_m=center_x_m,
+                    center_z_m=center_z_m,
+                    yaw_deg=yaw_deg,
+                    lateral_offset_m=float(edge_offset_m),
+                    length_m=float(dash_length_m),
+                ):
+                    horizontal_axes = _road_axes_from_yaw_deg(yaw_deg)
+                    _add_road_box(
+                        scene,
+                        length_m=float(dash_length_m),
+                        width_m=LANE_MARK_WIDTH_M,
+                        height_m=LANE_MARK_HEIGHT_M,
+                        local_x_m=0.0,
+                        local_z_m=float(edge_offset_m),
+                        road_center_x_m=center_x_m,
+                        road_center_z_m=center_z_m,
+                        road_yaw_deg=yaw_deg,
+                        y_min_m=LANE_MARK_Y_MIN_M,
+                        color=list(colors.get("lane_mark", (245, 245, 245, 255))),
+                        surface_role="lane_mark",
+                        node_name=f"{node_name_prefix}_{edge_idx}_{dash_idx}",
+                        roughness=(roughness or {}).get("lane_mark", 0.30),
+                        texture_mode=texture_mode,
+                        texture_tracker=texture_tracker,
+                        texture_overrides=texture_overrides,
+                        horizontal_axes=horizontal_axes,
+                    )
+                dash_idx += 1
+                distance_m += dash_step_m
+
+    def _regular_lane_edge_offsets(
+        detailed_strip_profiles: Sequence[Mapping[str, Any]],
+        road_width_m: float | None,
+    ) -> List[float]:
+        edge_offsets = _drive_lane_boundary_offsets(list(detailed_strip_profiles or ()))
+        if not edge_offsets:
+            if road_width_m is None or float(road_width_m) <= 0.0:
+                return []
+            edge_inset_m = 0.25
+            edge_offsets = [
+                -float(road_width_m) / 2.0 + edge_inset_m,
+                float(road_width_m) / 2.0 - edge_inset_m,
+            ]
+        if len(edge_offsets) >= 2:
+            edge_offsets = [edge_offsets[0], edge_offsets[-1]]
+        return [
+            float(offset)
+            for offset in edge_offsets
+            if abs(float(offset)) > 0.08
+        ]
 
     def _render_crosswalk_zebra_patch(
         geometry,
@@ -6890,12 +6957,6 @@ def _build_osm_base_scene(
             _render_crosswalk_zebra_patch(
                 render_geometry,
                 node_name_prefix=f"surface_annotation_crossing_marking_{patch.get('surface_id', patch_index)}",
-            )
-        if isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch):
-            _render_bus_bay_edge_markings(
-                render_geometry,
-                node_name_prefix=f"surface_annotation_bus_bay_marking_{patch.get('surface_id', patch_index)}",
-                adjacent_vehicle_surface=base_vehicle_surface,
             )
 
     if junction_geometries:
@@ -7069,6 +7130,11 @@ def _build_osm_base_scene(
                 if lane_separator_offsets
                 else lane_count_hint
             )
+            base_lane_width_m = (
+                road_reference_width_m / float(lane_count_for_markings)
+                if lane_count_for_markings and road_reference_width_m > 0.0
+                else None
+            )
             _add_centerline_markings(
                 scene,
                 road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
@@ -7078,11 +7144,7 @@ def _build_osm_base_scene(
                 road_yaw_deg=float(road_yaw_deg),
                 lane_count=lane_count_for_markings,
                 highway_type=str(getattr(road_reference, "highway_type", "")),
-                base_lane_width_m=(
-                    road_reference_width_m / float(lane_count_for_markings)
-                    if lane_count_for_markings and road_reference_width_m > 0.0
-                    else None
-                ),
+                base_lane_width_m=base_lane_width_m,
                 road_coords=coords,
                 lane_separator_offsets_m=lane_separator_offsets,
                 marking_exclusion_geometries=centerline_marking_exclusion_geometries,
@@ -7112,7 +7174,23 @@ def _build_osm_base_scene(
                 texture_tracker=texture_tracker,
                 texture_overrides=texture_overrides,
             )
+            _render_bus_bay_regular_edge_markings(
+                road_coords=coords,
+                road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
+                road_width_m=road_reference_width_m,
+                edge_offsets_m=_regular_lane_edge_offsets(
+                    list(getattr(placement_ctx, "detailed_strip_profiles", []) or ()),
+                    road_reference_width_m,
+                ),
+                lane_count=lane_count_for_markings,
+                highway_type=str(getattr(road_reference, "highway_type", "")),
+                base_lane_width_m=base_lane_width_m,
+                node_name_prefix=f"surface_annotation_bus_bay_marking_{road_index}",
+            )
     else:
+        fallback_lane_separator_offsets = _drive_lane_internal_offsets(
+            list(getattr(placement_ctx, "detailed_strip_profiles", []) or ())
+        )
         _add_centerline_markings(
             scene,
             road_length_m=float(road_length_m),
@@ -7123,9 +7201,7 @@ def _build_osm_base_scene(
             lane_count=None,
             highway_type="",
             road_coords=_road_reference_coords(placement_ctx),
-            lane_separator_offsets_m=_drive_lane_internal_offsets(
-                list(getattr(placement_ctx, "detailed_strip_profiles", []) or ())
-            ),
+            lane_separator_offsets_m=fallback_lane_separator_offsets,
             marking_exclusion_geometries=centerline_marking_exclusion_geometries,
             color=colors.get("lane_mark", (245, 245, 245, 255)),
             roughness=(roughness or {}).get("lane_mark", 0.30),
@@ -7150,6 +7226,19 @@ def _build_osm_base_scene(
             texture_mode=texture_mode,
             texture_tracker=texture_tracker,
             texture_overrides=texture_overrides,
+        )
+        _render_bus_bay_regular_edge_markings(
+            road_coords=_road_reference_coords(placement_ctx),
+            road_length_m=float(road_length_m),
+            road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+            edge_offsets_m=_regular_lane_edge_offsets(
+                list(getattr(placement_ctx, "detailed_strip_profiles", []) or ()),
+                float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+            ),
+            lane_count=(len(fallback_lane_separator_offsets) + 1 if fallback_lane_separator_offsets else None),
+            highway_type="",
+            base_lane_width_m=None,
+            node_name_prefix="surface_annotation_bus_bay_marking",
         )
 
     for zone in getattr(placement_ctx, "functional_zones", []) or []:

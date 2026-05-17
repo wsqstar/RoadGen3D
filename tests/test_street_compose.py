@@ -2833,8 +2833,10 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
         for node_name in scene.graph.nodes_geometry
         if str(node_name).startswith("surface_annotation_bus_bay_marking")
     ]
-    assert len(marking_meshes) >= 8
-    assert max(max(float(mesh.extents[0]), float(mesh.extents[2])) for mesh in marking_meshes) < 1.8
+    assert len(marking_meshes) >= 3
+    marking_plan_extents = [max(float(mesh.extents[0]), float(mesh.extents[2])) for mesh in marking_meshes]
+    assert max(marking_plan_extents) <= 6.2
+    assert min(marking_plan_extents) > 0.3
     lane_edge_vertices = _vertices_for("lane_edge_")
     assert lane_edge_vertices.size
     bus_bay_exclusion = bus_bay.buffer(0.02)
@@ -2850,8 +2852,8 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
         & (marking_vertices[:, 2] > -8.75)
         & (marking_vertices[:, 2] < -8.45)
     )
-    assert not np.any(old_edge_marking)
-    assert np.any(moved_edge_marking)
+    assert np.any(old_edge_marking)
+    assert not np.any(moved_edge_marking)
 
     curb_vertices = _vertices_for("curb_")
     assert curb_vertices.size
