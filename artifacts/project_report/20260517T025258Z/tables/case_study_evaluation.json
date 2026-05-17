@@ -1,0 +1,1467 @@
+{
+  "scenario": {
+    "scenario_id": "scenario_04_child_friendly_school_corridor",
+    "enabled": true,
+    "title_zh": "方案 4 · 儿童友好型学校走廊",
+    "scenario_type": "child_friendly_school_corridor",
+    "query": "儿童友好型街道，缩窄车道，拓宽学校侧步行空间，彩色步道，彩色过街，中央安全岛",
+    "intent_zh": "在不改变道路拓扑的前提下，缩窄车道并把学校侧空间让给儿童友好步行和过街安全设施。",
+    "preview_layout_path": "artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_04_child_friendly_school_corridor/scene_layout.json",
+    "road_section": {
+      "motor_lanes": 4,
+      "lane_width_m": 3.0,
+      "bike_lane": "none",
+      "sidewalk": "school_side_widened",
+      "median": "local_refuge"
+    },
+    "edge_context": {
+      "left_regions": [
+        "derived_building_region_02",
+        "derived_building_region_03"
+      ],
+      "right_regions": [
+        "derived_building_region_01"
+      ]
+    },
+    "region_overrides": [
+      {
+        "id": "scenario_04_left_school_safe_frontage",
+        "label": "左侧学校安全界面",
+        "source_region_id": "derived_building_region_02",
+        "region_role": "building_region",
+        "land_use_type": "school_child_friendly",
+        "material": {
+          "preset": "campus_frontage"
+        }
+      },
+      {
+        "id": "scenario_04_left_child_activity_edge",
+        "label": "左侧儿童活动界面",
+        "source_region_id": "derived_building_region_03",
+        "region_role": "building_region",
+        "land_use_type": "child_activity_edge",
+        "material": {
+          "preset": "playful_frontage"
+        }
+      },
+      {
+        "id": "scenario_04_right_support_frontage",
+        "label": "右侧商业支持界面",
+        "source_region_id": "derived_building_region_01",
+        "region_role": "building_region",
+        "land_use_type": "support_commercial_frontage",
+        "material": {
+          "preset": "mixed_use_frontage"
+        }
+      }
+    ],
+    "template_patch_operations": [
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "center_01",
+        "width_m": 3.0
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "center_02",
+        "width_m": 3.0
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "center_04",
+        "width_m": 3.0
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "center_05",
+        "width_m": 3.0
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "center_03",
+        "width_m": 0.5
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "left_01",
+        "width_m": 2.2
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "left_02",
+        "width_m": 4.6
+      },
+      {
+        "op": "resize_strip",
+        "all_centerlines": true,
+        "strip_id": "right_02",
+        "width_m": 3.2
+      }
+    ],
+    "functional_zones": [],
+    "surface_annotations": [
+      {
+        "id": "scenario_04_child_colored_walk",
+        "label": "中心线标注 · 学校侧儿童彩色步道",
+        "kind": "colored_pavement",
+        "surface_role": "colored_pavement",
+        "station_start_m": 18,
+        "station_end_m": 132,
+        "lateral_start_m": 8.2,
+        "lateral_end_m": 11.6,
+        "material": {
+          "preset": "child_walk_colored_pavers"
+        }
+      },
+      {
+        "id": "scenario_04_school_crossing",
+        "label": "中心线标注 · 学校门前彩色过街",
+        "kind": "colored_pavement",
+        "surface_role": "colored_pavement",
+        "station_start_m": 56,
+        "station_end_m": 68,
+        "lateral_start_m": -9.0,
+        "lateral_end_m": 9.0,
+        "material": {
+          "preset": "raised_crossing_warm"
+        }
+      },
+      {
+        "id": "scenario_04_refuge_island",
+        "label": "中心线标注 · 学校过街安全岛",
+        "kind": "safety_island",
+        "surface_role": "safety_island",
+        "station_start_m": 57,
+        "station_end_m": 67,
+        "lateral_start_m": -0.8,
+        "lateral_end_m": 0.8,
+        "material": {
+          "preset": "safety_island_concrete"
+        }
+      }
+    ],
+    "compose_config_patch": {
+      "lane_count": 4,
+      "road_width_m": 12.5,
+      "sidewalk_width_m": 4.6,
+      "density": 0.95,
+      "objective_profile": "balanced",
+      "ped_demand_level": "high",
+      "vehicle_demand_level": "medium"
+    }
+  },
+  "layout_source": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_04_child_friendly_school_corridor/scene_layout.json",
+  "layout_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/scene_layout.json",
+  "capture_result": {
+    "status": "succeeded",
+    "source": "existing_3d_capture",
+    "view_count": 12,
+    "views": [
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/01_entrance_1.png",
+        "label": "01_entrance_1",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/02_overview_oblique_45.png",
+        "label": "02_overview_oblique_45",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/03_overview_top.png",
+        "label": "03_overview_top",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/04_junction_pedestrian_1.png",
+        "label": "04_junction_pedestrian_1",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/05_junction_pedestrian_2.png",
+        "label": "05_junction_pedestrian_2",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/06_junction_1.png",
+        "label": "06_junction_1",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/07_junction_2.png",
+        "label": "07_junction_2",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/08_street_1.png",
+        "label": "08_street_1",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/09_street_2.png",
+        "label": "09_street_2",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/10_bench_eye_inst_0026.png",
+        "label": "10_bench_eye_inst_0026",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/11_window_view_inst_0370.png",
+        "label": "11_window_view_inst_0370",
+        "kind": "existing"
+      },
+      {
+        "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/12_rooftop_inst_0370.png",
+        "label": "12_rooftop_inst_0370",
+        "kind": "existing"
+      }
+    ]
+  },
+  "presentation_views": [
+    {
+      "name": "final_plan_axonometric",
+      "title": "Final Plan Axonometric",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/presentation/presentation_views/final_plan_axonometric.png"
+    },
+    {
+      "name": "final_oblique_45_axonometric",
+      "title": "Final Oblique 45 Axonometric",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/presentation/presentation_views/final_oblique_45_axonometric.png"
+    },
+    {
+      "name": "overview_top_design",
+      "title": "Overview Top Design",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/presentation/presentation_views/overview_top_design.png"
+    },
+    {
+      "name": "hero_left",
+      "title": "Hero Left",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/presentation/presentation_views/hero_left.png"
+    },
+    {
+      "name": "hero_right",
+      "title": "Hero Right",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/presentation/presentation_views/hero_right.png"
+    },
+    {
+      "name": "poi_focus",
+      "title": "POI Focus",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/presentation/presentation_views/poi_focus.png"
+    }
+  ],
+  "evaluation": {
+    "walkability": {
+      "indicators": {
+        "SID_CLR": 1.0,
+        "CLEAR_CONT": 0.8478,
+        "FURN_D": 0.65,
+        "AMENITY_SERVICE_DENSITY": 1.0,
+        "FURNITURE_OCCUPATION_RATIO": 1.0,
+        "CLEAR_PATH_CONFLICT_PENALTY": 0.0,
+        "LIGHT_UNI": 0.0,
+        "TREE_SHADE": 0.0,
+        "BUFFER_RATIO": 0.296,
+        "TRANSIT_PROX": 0.0,
+        "CROSS_PROV": 0.5,
+        "ENTR_DENS": 0.0,
+        "POI_MIX": 0.9977,
+        "MICRO_ENV": 0.2
+      },
+      "pillar_scores": {
+        "Protection": 0.2653,
+        "Comfort": 0.512,
+        "Delight": 0.5134
+      },
+      "walkability_index": 0.4137,
+      "top_contributors": [
+        {
+          "feature": "SID_CLR",
+          "score": 1.0,
+          "weight": 0.0875,
+          "contribution": 0.0875,
+          "improvement_potential": 0.0,
+          "polarity": "positive"
+        },
+        {
+          "feature": "CLEAR_CONT",
+          "score": 0.8478,
+          "weight": 0.0875,
+          "contribution": 0.0742,
+          "improvement_potential": 0.0133,
+          "polarity": "positive"
+        },
+        {
+          "feature": "POI_MIX",
+          "score": 0.9977,
+          "weight": 0.07,
+          "contribution": 0.0698,
+          "improvement_potential": 0.0002,
+          "polarity": "positive"
+        },
+        {
+          "feature": "LIGHT_UNI",
+          "score": 0.0,
+          "weight": 0.1333,
+          "contribution": 0.0,
+          "improvement_potential": 0.1333,
+          "polarity": "negative"
+        },
+        {
+          "feature": "BUFFER_RATIO",
+          "score": 0.296,
+          "weight": 0.1333,
+          "contribution": 0.0395,
+          "improvement_potential": 0.0939,
+          "polarity": "negative"
+        },
+        {
+          "feature": "TREE_SHADE",
+          "score": 0.0,
+          "weight": 0.0875,
+          "contribution": 0.0,
+          "improvement_potential": 0.0875,
+          "polarity": "negative"
+        }
+      ],
+      "metadata": {
+        "length_m": 80.0,
+        "sidewalk_width_m": 4.6,
+        "left_clear_path_width_m": 4.6,
+        "right_clear_path_width_m": 3.2,
+        "top_positive_contributors": [
+          {
+            "feature": "SID_CLR",
+            "score": 1.0,
+            "weight": 0.0875,
+            "contribution": 0.0875,
+            "improvement_potential": 0.0,
+            "polarity": "positive"
+          },
+          {
+            "feature": "CLEAR_CONT",
+            "score": 0.8478,
+            "weight": 0.0875,
+            "contribution": 0.0742,
+            "improvement_potential": 0.0133,
+            "polarity": "positive"
+          },
+          {
+            "feature": "POI_MIX",
+            "score": 0.9977,
+            "weight": 0.07,
+            "contribution": 0.0698,
+            "improvement_potential": 0.0002,
+            "polarity": "positive"
+          }
+        ],
+        "top_negative_contributors": [
+          {
+            "feature": "LIGHT_UNI",
+            "score": 0.0,
+            "weight": 0.1333,
+            "contribution": 0.0,
+            "improvement_potential": 0.1333,
+            "polarity": "negative"
+          },
+          {
+            "feature": "BUFFER_RATIO",
+            "score": 0.296,
+            "weight": 0.1333,
+            "contribution": 0.0395,
+            "improvement_potential": 0.0939,
+            "polarity": "negative"
+          },
+          {
+            "feature": "TREE_SHADE",
+            "score": 0.0,
+            "weight": 0.0875,
+            "contribution": 0.0,
+            "improvement_potential": 0.0875,
+            "polarity": "negative"
+          }
+        ]
+      }
+    },
+    "safety": {
+      "features": {
+        "LIGHT_UNI": 0.0,
+        "CROSS_PROV": 0.5,
+        "BUFFER_RATIO": 0.296,
+        "BOLLARD_DENSITY": 1.0,
+        "VISIBILITY_PENALTY": 0.0
+      },
+      "structural_score": 0.4842,
+      "llm_scores": null,
+      "final_score": 0.4842,
+      "llm_required": false,
+      "llm_status": {
+        "enabled": false,
+        "available": false,
+        "source": "disabled",
+        "cached": false,
+        "visual_input": "missing",
+        "reasoning": "N/A"
+      },
+      "needs_review": false,
+      "diagnosis": {
+        "weakest": "LIGHT_UNI",
+        "score": 0.0,
+        "all_scores": [
+          {
+            "feature": "CROSS_PROV",
+            "score": 0.5
+          },
+          {
+            "feature": "LIGHT_UNI",
+            "score": 0.0
+          },
+          {
+            "feature": "BUFFER_RATIO",
+            "score": 0.296
+          },
+          {
+            "feature": "BOLLARD_DENSITY",
+            "score": 1.0
+          },
+          {
+            "feature": "VISIBILITY_PENALTY",
+            "score": 1.0
+          }
+        ]
+      }
+    },
+    "beauty": {
+      "features": {
+        "presentation_score": 0.7311,
+        "active_front_ratio": 0.0,
+        "anchor_poi_score": 0.0,
+        "visual_clutter": 0.0017
+      },
+      "structural_score": 0.3923,
+      "llm_scores": null,
+      "final_score": 0.3923,
+      "llm_required": false,
+      "llm_status": {
+        "enabled": false,
+        "available": false,
+        "source": "disabled",
+        "cached": false,
+        "visual_input": "missing",
+        "reasoning": "N/A"
+      },
+      "needs_review": false,
+      "diagnosis": {
+        "weakest": "active_front_ratio",
+        "score": 0.0,
+        "all_scores": [
+          {
+            "feature": "presentation_score",
+            "score": 0.7311
+          },
+          {
+            "feature": "active_front_ratio",
+            "score": 0.0
+          },
+          {
+            "feature": "anchor_poi_score",
+            "score": 0.0
+          },
+          {
+            "feature": "style_coherence",
+            "score": 0.0
+          },
+          {
+            "feature": "spacing_rhythm",
+            "score": 0.0
+          },
+          {
+            "feature": "visual_clutter",
+            "score": 0.9983
+          }
+        ]
+      }
+    },
+    "evaluation_score": 0.4341,
+    "quality_layers": {
+      "layout_semantic": {
+        "available": true,
+        "score": 0.4341,
+        "status": "succeeded"
+      },
+      "json_glb_consistency": {
+        "available": true,
+        "status": "succeeded",
+        "score": 0.8819,
+        "object_recall": 1.0,
+        "object_precision": 0.9973,
+        "category_accuracy_proxy": 1.0,
+        "category_accuracy": 1.0,
+        "asset_id_match_rate": 1.0,
+        "mean_position_error_m": 1.7501,
+        "mean_scale_error": 0.1756,
+        "matched_count": 376,
+        "expected_count": 376,
+        "glb_metadata_node_count": 485,
+        "metadata_matched_count": 376,
+        "missing_instance_ids": [],
+        "extra_glb_nodes": [
+          "environment_default_sky_dome_GLTF_0"
+        ],
+        "warnings": [
+          "1 GLB instance-like nodes were not in layout"
+        ],
+        "glb_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_04_child_friendly_school_corridor/scene.glb"
+      },
+      "geometry_validity": {
+        "available": true,
+        "status": "succeeded",
+        "score": 0.9753,
+        "geometry_count": 1725,
+        "total_triangle_count": 5683717,
+        "empty_geometry_count": 0,
+        "degenerate_triangle_count": 4000,
+        "degenerate_triangle_ratio": 0.0007,
+        "warnings": [
+          "4000 degenerate triangles",
+          "12 placement instances appear floating",
+          "7 placement bboxes overlap the road zone",
+          "52 instance AABB collision pairs detected",
+          "mesh collision broadphase reached pair budget"
+        ],
+        "blocked_clear_path_ratio": 0.0,
+        "clear_path_conflict_instance_ids": [],
+        "road_conflict_count": 7,
+        "collision_check_mode": "instance_aabb_broadphase",
+        "mesh_collision_count": 52,
+        "mesh_aabb_collision_count": 52,
+        "mesh_aabb_collision_pair_sample": [
+          {
+            "a": "inst_0124",
+            "b": "inst_0134",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.2655,
+              5.4317,
+              0.7015
+            ],
+            "volume_proxy_m3": 1.0116
+          },
+          {
+            "a": "inst_0124",
+            "b": "inst_0143",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.2638,
+              5.4317,
+              1.9913
+            ],
+            "volume_proxy_m3": 2.853
+          },
+          {
+            "a": "inst_0125",
+            "b": "inst_0127",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.219,
+              5.4317,
+              1.4447
+            ],
+            "volume_proxy_m3": 1.7185
+          },
+          {
+            "a": "inst_0125",
+            "b": "inst_0137",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.238,
+              5.4317,
+              1.2823
+            ],
+            "volume_proxy_m3": 1.6574
+          },
+          {
+            "a": "inst_0125",
+            "b": "inst_0139",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.1137,
+              5.4317,
+              1.6228
+            ],
+            "volume_proxy_m3": 1.0022
+          },
+          {
+            "a": "inst_0127",
+            "b": "inst_0137",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.1643,
+              5.4317,
+              0.7268
+            ],
+            "volume_proxy_m3": 0.6487
+          },
+          {
+            "a": "inst_0127",
+            "b": "inst_0139",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.1874,
+              5.4317,
+              1.0673
+            ],
+            "volume_proxy_m3": 1.0862
+          },
+          {
+            "a": "inst_0128",
+            "b": "inst_0138",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.1002,
+              5.4317,
+              0.5861
+            ],
+            "volume_proxy_m3": 0.319
+          },
+          {
+            "a": "inst_0128",
+            "b": "inst_0145",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.0389,
+              5.4317,
+              1.9254
+            ],
+            "volume_proxy_m3": 0.4073
+          },
+          {
+            "a": "inst_0129",
+            "b": "inst_0133",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.07,
+              5.4317,
+              1.9808
+            ],
+            "volume_proxy_m3": 0.7529
+          },
+          {
+            "a": "inst_0132",
+            "b": "inst_0135",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.0603,
+              5.4317,
+              0.9197
+            ],
+            "volume_proxy_m3": 0.3014
+          },
+          {
+            "a": "inst_0134",
+            "b": "inst_0143",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.2366,
+              5.4317,
+              0.6926
+            ],
+            "volume_proxy_m3": 0.8902
+          },
+          {
+            "a": "inst_0137",
+            "b": "inst_0139",
+            "category_a": "lamp",
+            "category_b": "lamp",
+            "overlap_m": [
+              0.059,
+              5.4317,
+              1.6596
+            ],
+            "volume_proxy_m3": 0.5321
+          },
+          {
+            "a": "inst_0147",
+            "b": "inst_0149",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              1.1172,
+              9.1968,
+              7.9897
+            ],
+            "volume_proxy_m3": 82.0939
+          },
+          {
+            "a": "inst_0147",
+            "b": "inst_0182",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              1.7125,
+              9.1968,
+              8.1596
+            ],
+            "volume_proxy_m3": 128.5097
+          },
+          {
+            "a": "inst_0148",
+            "b": "inst_0170",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              1.5631,
+              9.1968,
+              8.0539
+            ],
+            "volume_proxy_m3": 115.7789
+          },
+          {
+            "a": "inst_0148",
+            "b": "inst_0371",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              1.606,
+              9.1968,
+              4.0
+            ],
+            "volume_proxy_m3": 59.0793
+          },
+          {
+            "a": "inst_0149",
+            "b": "inst_0169",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              1.5631,
+              9.1968,
+              8.0631
+            ],
+            "volume_proxy_m3": 115.9111
+          },
+          {
+            "a": "inst_0150",
+            "b": "inst_0151",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              0.8184,
+              10.344,
+              8.0593
+            ],
+            "volume_proxy_m3": 68.2294
+          },
+          {
+            "a": "inst_0150",
+            "b": "inst_0192",
+            "category_a": "building",
+            "category_b": "building",
+            "overlap_m": [
+              1.5631,
+              9.1968,
+              8.06
+            ],
+            "volume_proxy_m3": 115.8668
+          }
+        ],
+        "mesh_aabb_max_penetration_volume_proxy_m3": 128.5097,
+        "mesh_max_penetration_depth_m": null,
+        "mesh_aabb_checked_pair_count": 50000,
+        "collision_warnings": [
+          "mesh collision broadphase reached pair budget"
+        ],
+        "topology_continuity": {
+          "available": true,
+          "status": "succeeded",
+          "score": 1.0,
+          "road_graph_continuity_score": 1.0,
+          "lane_width_consistency_score": 1.0,
+          "drive_lane_width_count": 348,
+          "drive_lane_width_mean_m": 3.0,
+          "drive_lane_width_cv": 0.0,
+          "junction_count": 3,
+          "junction_correctness_score": 1.0,
+          "sidewalk_corner_continuity_score": 1.0,
+          "turning_smoothness_score": 1.0,
+          "junction_issue_samples": [],
+          "surface_component_check_available": true,
+          "road_surface_component_count": 10,
+          "sidewalk_surface_component_count": 5,
+          "invalid_surface_ring_count": 8,
+          "road_surface_area_m2": 9315.0388,
+          "sidewalk_surface_area_m2": 13076.5269,
+          "warnings": []
+        },
+        "floating_instance_ids": [
+          "inst_0028",
+          "inst_0029",
+          "inst_0036",
+          "inst_0041",
+          "inst_0042",
+          "inst_0045",
+          "inst_0051",
+          "inst_0053",
+          "inst_0057",
+          "inst_0059",
+          "inst_0061",
+          "inst_0064"
+        ],
+        "underground_instance_ids": [],
+        "glb_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_04_child_friendly_school_corridor/scene.glb"
+      },
+      "visual_perception": {
+        "available": false,
+        "score": null,
+        "status": "unavailable"
+      },
+      "missing_layers": [
+        "visual_perception"
+      ]
+    },
+    "generation_quality_score": null
+  },
+  "rubric": {
+    "schema_version": "roadgen3d_scenario_rubric_result_v1",
+    "scenario_id": "scenario_04_child_friendly_school_corridor",
+    "status": "Fail",
+    "status_reasons": [
+      "total_score 0.4493 < minimum 0.7000",
+      "metrics below minimum: BUFFER_RATIO, CROSS_PROV, ENTR_DENS, LIGHT_UNI, MICRO_ENV, TRANSIT_PROX, TREE_SHADE, active_front_ratio, anchor_poi_score, spacing_rhythm"
+    ],
+    "total_score": 0.4493,
+    "dimension_scores": {
+      "Walkability": 0.4137,
+      "Safety": 0.4842,
+      "PlaceQuality": 0.3923
+    },
+    "dimension_weights": {
+      "Walkability": 0.3,
+      "Safety": 0.55,
+      "PlaceQuality": 0.15
+    },
+    "thresholds": {
+      "minimum": 0.7,
+      "target": 0.84,
+      "excellent": 0.93
+    },
+    "semantic_design_layers": {
+      "schema_version": "roadgen3d_semantic_design_layers_v1",
+      "resolution_order": [
+        "manual",
+        "llm",
+        "osm",
+        "recommended",
+        "fallback"
+      ],
+      "profile_pair": "quiet_residential+balanced_complete",
+      "skeleton_design_profile": "quiet_residential",
+      "skeleton_design_profile_source": "fallback",
+      "skeleton_design_profile_confidence": 1.0,
+      "skeleton_design_profile_reasons": [
+        "no_skeleton_profile"
+      ],
+      "street_furniture_profile": "balanced_complete",
+      "street_furniture_profile_source": "recommended",
+      "street_furniture_profile_confidence": 0.3,
+      "street_furniture_profile_reasons": [
+        "recommended_from:quiet_residential"
+      ],
+      "layers": {
+        "skeleton_design": {
+          "profile": "quiet_residential",
+          "source": "fallback",
+          "confidence": 1.0,
+          "reasons": [
+            "no_skeleton_profile"
+          ],
+          "weight": 1.0,
+          "overridden_by": ""
+        },
+        "street_furniture": {
+          "profile": "balanced_complete",
+          "source": "recommended",
+          "confidence": 0.3,
+          "reasons": [
+            "recommended_from:quiet_residential"
+          ],
+          "weight": 1.0,
+          "overridden_by": ""
+        }
+      },
+      "candidates": {
+        "skeleton_design": [
+          {
+            "profile": "quiet_residential",
+            "source": "fallback",
+            "confidence": 1.0,
+            "reasons": [
+              "no_skeleton_profile"
+            ],
+            "weight": 1.0,
+            "overridden_by": ""
+          }
+        ],
+        "street_furniture": [
+          {
+            "profile": "balanced_complete",
+            "source": "recommended",
+            "confidence": 0.3,
+            "reasons": [
+              "recommended_from:quiet_residential"
+            ],
+            "weight": 1.0,
+            "overridden_by": ""
+          }
+        ]
+      }
+    },
+    "profile_pair": "quiet_residential+balanced_complete",
+    "profile_pair_threshold_applied": false,
+    "metric_results": [
+      {
+        "metric": "BOLLARD_DENSITY",
+        "dimension": "Safety",
+        "value": 1.0,
+        "minimum": 0.2,
+        "target": 0.45,
+        "excellent": 0.68,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "road_metrics.safety.features"
+      },
+      {
+        "metric": "BUFFER_RATIO",
+        "dimension": "Safety",
+        "value": 0.296,
+        "minimum": 0.35,
+        "target": 0.55,
+        "excellent": 0.72,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.safety.features"
+      },
+      {
+        "metric": "CLEAR_CONT",
+        "dimension": "Walkability",
+        "value": 0.8478,
+        "minimum": 0.78,
+        "target": 0.88,
+        "excellent": 0.96,
+        "direction": "higher",
+        "status": "Review",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "CROSS_PROV",
+        "dimension": "Safety",
+        "value": 0.5,
+        "minimum": 0.75,
+        "target": 0.88,
+        "excellent": 0.96,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.safety.features"
+      },
+      {
+        "metric": "ENTR_DENS",
+        "dimension": "Walkability",
+        "value": 0.0,
+        "minimum": 0.3,
+        "target": 0.5,
+        "excellent": 0.72,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "FURN_D",
+        "dimension": "Walkability",
+        "value": 0.65,
+        "minimum": 0.35,
+        "target": 0.6,
+        "excellent": 0.78,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "LIGHT_UNI",
+        "dimension": "Safety",
+        "value": 0.0,
+        "minimum": 0.75,
+        "target": 0.88,
+        "excellent": 0.95,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.safety.features"
+      },
+      {
+        "metric": "MICRO_ENV",
+        "dimension": "Walkability",
+        "value": 0.2,
+        "minimum": 0.4,
+        "target": 0.6,
+        "excellent": 0.78,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "POI_MIX",
+        "dimension": "Walkability",
+        "value": 0.9977,
+        "minimum": 0.35,
+        "target": 0.6,
+        "excellent": 0.8,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "SID_CLR",
+        "dimension": "Walkability",
+        "value": 1.0,
+        "minimum": 0.7,
+        "target": 0.85,
+        "excellent": 0.95,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "TRANSIT_PROX",
+        "dimension": "Walkability",
+        "value": 0.0,
+        "minimum": 0.35,
+        "target": 0.65,
+        "excellent": 0.82,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "TREE_SHADE",
+        "dimension": "Walkability",
+        "value": 0.0,
+        "minimum": 0.4,
+        "target": 0.6,
+        "excellent": 0.78,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.walkability.indicators"
+      },
+      {
+        "metric": "VISIBILITY_PENALTY",
+        "dimension": "Safety",
+        "value": 0.0,
+        "minimum": 0.18,
+        "target": 0.12,
+        "excellent": 0.06,
+        "direction": "lower",
+        "status": "Pass",
+        "source": "road_metrics.safety.features"
+      },
+      {
+        "metric": "active_front_ratio",
+        "dimension": "PlaceQuality",
+        "value": 0.0,
+        "minimum": 0.3,
+        "target": 0.5,
+        "excellent": 0.72,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.beauty.features"
+      },
+      {
+        "metric": "anchor_poi_score",
+        "dimension": "PlaceQuality",
+        "value": 0.0,
+        "minimum": 0.3,
+        "target": 0.5,
+        "excellent": 0.72,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "road_metrics.beauty.features"
+      },
+      {
+        "metric": "focal_readability",
+        "dimension": "PlaceQuality",
+        "value": 1.0,
+        "minimum": 0.55,
+        "target": 0.72,
+        "excellent": 0.88,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "scene_layout.summary.composition_report"
+      },
+      {
+        "metric": "presentation_score",
+        "dimension": "PlaceQuality",
+        "value": 0.7311,
+        "minimum": 0.5,
+        "target": 0.68,
+        "excellent": 0.82,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "scene_layout.summary.composition_report"
+      },
+      {
+        "metric": "spacing_rhythm",
+        "dimension": "PlaceQuality",
+        "value": 0.0352,
+        "minimum": 0.5,
+        "target": 0.68,
+        "excellent": 0.84,
+        "direction": "higher",
+        "status": "Fail",
+        "source": "scene_layout.summary.composition_report"
+      },
+      {
+        "metric": "style_coherence",
+        "dimension": "PlaceQuality",
+        "value": 1.0,
+        "minimum": 0.5,
+        "target": 0.7,
+        "excellent": 0.86,
+        "direction": "higher",
+        "status": "Pass",
+        "source": "scene_layout.summary.composition_report"
+      },
+      {
+        "metric": "visual_clutter",
+        "dimension": "PlaceQuality",
+        "value": 0.0017,
+        "minimum": 0.5,
+        "target": 0.35,
+        "excellent": 0.2,
+        "direction": "lower",
+        "status": "Pass",
+        "source": "scene_layout.summary.composition_report"
+      }
+    ],
+    "semantic_gates": [
+      {
+        "gate_id": "child_walk_expression",
+        "description": "Child-friendly walk or play-walk surface should be expressed.",
+        "type": "contains_any",
+        "severity": "fail",
+        "status": "Pass",
+        "observed": 1,
+        "message": "1 matching record(s), need 1"
+      },
+      {
+        "gate_id": "school_crossing_expression",
+        "description": "School crossing or crossing surface should be present.",
+        "type": "contains_any",
+        "severity": "fail",
+        "status": "Pass",
+        "observed": 2,
+        "message": "2 matching record(s), need 1"
+      },
+      {
+        "gate_id": "refuge_island_expression",
+        "description": "Refuge island or safety island should be present.",
+        "type": "contains_any",
+        "severity": "fail",
+        "status": "Pass",
+        "observed": 1,
+        "message": "1 matching record(s), need 1"
+      }
+    ],
+    "missing_metrics": [],
+    "capability_gaps": [],
+    "evidence": {
+      "mode": "structural_only",
+      "llm_used": false,
+      "source_of_truth": "data/scenario_designs/hkust_gz_gate_evaluation_rubric.json",
+      "road_metrics_evaluation_score": 0.4341,
+      "generation_quality_score": null,
+      "safety_llm_status": {
+        "enabled": false,
+        "available": false,
+        "source": "disabled",
+        "cached": false,
+        "visual_input": "missing",
+        "reasoning": "N/A"
+      },
+      "beauty_llm_status": {
+        "enabled": false,
+        "available": false,
+        "source": "disabled",
+        "cached": false,
+        "visual_input": "missing",
+        "reasoning": "N/A"
+      }
+    }
+  },
+  "metrics_rows": [
+    {
+      "section": "walkability_indicator",
+      "metric": "SID_CLR",
+      "value": 1.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "CLEAR_CONT",
+      "value": 0.8478,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "FURN_D",
+      "value": 0.65,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "AMENITY_SERVICE_DENSITY",
+      "value": 1.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "FURNITURE_OCCUPATION_RATIO",
+      "value": 1.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "CLEAR_PATH_CONFLICT_PENALTY",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "LIGHT_UNI",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "TREE_SHADE",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "BUFFER_RATIO",
+      "value": 0.296,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "TRANSIT_PROX",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "CROSS_PROV",
+      "value": 0.5,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "ENTR_DENS",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "POI_MIX",
+      "value": 0.9977,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_indicator",
+      "metric": "MICRO_ENV",
+      "value": 0.2,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_pillar",
+      "metric": "Protection",
+      "value": 0.2653,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_pillar",
+      "metric": "Comfort",
+      "value": 0.512,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "walkability_pillar",
+      "metric": "Delight",
+      "value": 0.5134,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "score",
+      "metric": "walkability_index",
+      "value": 0.4137,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety",
+      "metric": "structural_score",
+      "value": 0.4842,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety",
+      "metric": "final_score",
+      "value": 0.4842,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety_feature",
+      "metric": "LIGHT_UNI",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety_feature",
+      "metric": "CROSS_PROV",
+      "value": 0.5,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety_feature",
+      "metric": "BUFFER_RATIO",
+      "value": 0.296,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety_feature",
+      "metric": "BOLLARD_DENSITY",
+      "value": 1.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "safety_feature",
+      "metric": "VISIBILITY_PENALTY",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "beauty",
+      "metric": "structural_score",
+      "value": 0.3923,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "beauty",
+      "metric": "final_score",
+      "value": 0.3923,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "beauty_feature",
+      "metric": "presentation_score",
+      "value": 0.7311,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "beauty_feature",
+      "metric": "active_front_ratio",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "beauty_feature",
+      "metric": "anchor_poi_score",
+      "value": 0.0,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "beauty_feature",
+      "metric": "visual_clutter",
+      "value": 0.0017,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "score",
+      "metric": "evaluation_score",
+      "value": 0.4341,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "score",
+      "metric": "generation_quality_score",
+      "value": null,
+      "source": "EvalEngine"
+    },
+    {
+      "section": "scenario_rubric",
+      "metric": "status",
+      "value": "Fail",
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_rubric",
+      "metric": "total_score",
+      "value": 0.4493,
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_rubric_dimension",
+      "metric": "Walkability",
+      "value": 0.4137,
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_rubric_dimension",
+      "metric": "Safety",
+      "value": 0.4842,
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_rubric_dimension",
+      "metric": "PlaceQuality",
+      "value": 0.3923,
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_semantic_gate",
+      "metric": "child_walk_expression",
+      "value": "Pass",
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_semantic_gate",
+      "metric": "school_crossing_expression",
+      "value": "Pass",
+      "source": "ScenarioRubricEvaluator"
+    },
+    {
+      "section": "scenario_semantic_gate",
+      "metric": "refuge_island_expression",
+      "value": "Pass",
+      "source": "ScenarioRubricEvaluator"
+    }
+  ],
+  "errors": []
+}

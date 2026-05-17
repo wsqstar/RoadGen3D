@@ -1,0 +1,907 @@
+{
+  "version": "capture_manifest_v1",
+  "status": "succeeded",
+  "created_at": "2026-05-17T02:55:42.212078+00:00",
+  "layout_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/scene_layout.json",
+  "scene_glb_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/scenario_design_options/hkust_gz_gate_from_current_layout/scenario_04_child_friendly_school_corridor/scene.glb",
+  "manifest_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/capture_manifest.json",
+  "profile": "quick_12",
+  "resolution": [
+    1280,
+    720
+  ],
+  "view_count": 12,
+  "views": [
+    {
+      "view_id": "entrance_1",
+      "name": "entrance_1",
+      "label": "Entrance street view 1",
+      "kind": "pedestrian",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/01_entrance_1.png",
+      "camera": [
+        -339.375,
+        1.62,
+        -15.0017
+      ],
+      "target": [
+        -321.375,
+        1.48,
+        -7.2517
+      ],
+      "priority": 96,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "overview_oblique_45",
+      "name": "overview_oblique_45",
+      "label": "Overview 45 degree",
+      "kind": "overview",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/02_overview_oblique_45.png",
+      "camera": [
+        -477.6607,
+        279.2728,
+        -486.0051
+      ],
+      "target": [
+        1.0927,
+        2.0,
+        -7.2517
+      ],
+      "priority": 86,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "overview_top",
+      "name": "overview_top",
+      "label": "Overview top",
+      "kind": "overview",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/03_overview_top.png",
+      "camera": [
+        1.0927,
+        631.6885,
+        -7.2417
+      ],
+      "target": [
+        1.0927,
+        0.0,
+        -7.2517
+      ],
+      "priority": 82,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "junction_pedestrian_1",
+      "name": "junction_pedestrian_1",
+      "label": "Pedestrian junction view 1",
+      "kind": "junction_pedestrian",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/04_junction_pedestrian_1.png",
+      "camera": [
+        -333.5262,
+        1.62,
+        -17.0208
+      ],
+      "target": [
+        -321.5262,
+        1.42,
+        -7.4708
+      ],
+      "priority": 92,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "junction_pedestrian_2",
+      "name": "junction_pedestrian_2",
+      "label": "Pedestrian junction view 2",
+      "kind": "junction_pedestrian",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/05_junction_pedestrian_2.png",
+      "camera": [
+        324.9715,
+        1.62,
+        -1.9288
+      ],
+      "target": [
+        336.9715,
+        1.42,
+        -11.4788
+      ],
+      "priority": 91,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "junction_1",
+      "name": "junction_1",
+      "label": "Junction 1",
+      "kind": "junction",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/06_junction_1.png",
+      "camera": [
+        -340.5262,
+        8.5,
+        -21.6708
+      ],
+      "target": [
+        -328.5262,
+        1.0,
+        -9.6708
+      ],
+      "priority": 82,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "junction_2",
+      "name": "junction_2",
+      "label": "Junction 2",
+      "kind": "junction",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/07_junction_2.png",
+      "camera": [
+        -176.3316,
+        8.5,
+        -21.573
+      ],
+      "target": [
+        -164.3316,
+        1.0,
+        -9.573
+      ],
+      "priority": 81,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "street_1",
+      "name": "street_1",
+      "label": "Street eye view 1",
+      "kind": "street",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/08_street_1.png",
+      "camera": [
+        -109.7299,
+        1.62,
+        -9.4392
+      ],
+      "target": [
+        -3.3402,
+        1.45,
+        -7.2517
+      ],
+      "priority": 74,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "street_2",
+      "name": "street_2",
+      "label": "Street eye view 2",
+      "kind": "street",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/09_street_2.png",
+      "camera": [
+        111.9152,
+        1.62,
+        -9.4392
+      ],
+      "target": [
+        218.3049,
+        1.45,
+        -7.2517
+      ],
+      "priority": 73,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "bench_eye_inst_0026",
+      "name": "bench_eye_inst_0026",
+      "label": "Bench eye view 1",
+      "kind": "bench_eye",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/10_bench_eye_inst_0026.png",
+      "camera": [
+        -330.2746,
+        1.35,
+        -0.0549
+      ],
+      "target": [
+        -322.2746,
+        1.32,
+        -7.2517
+      ],
+      "priority": 76,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "window_view_inst_0370",
+      "name": "window_view_inst_0370",
+      "label": "Window street view 1",
+      "kind": "window_view",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/11_window_view_inst_0370.png",
+      "camera": [
+        -323.5404,
+        4.41,
+        15.3982
+      ],
+      "target": [
+        -313.5404,
+        1.4,
+        -7.2517
+      ],
+      "priority": 68,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "view_id": "rooftop_inst_0370",
+      "name": "rooftop_inst_0370",
+      "label": "Rooftop view 1",
+      "kind": "rooftop",
+      "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/project_report/20260517T025258Z/case_study/view_captures/12_rooftop_inst_0370.png",
+      "camera": [
+        -323.5404,
+        12.2,
+        17.8982
+      ],
+      "target": [
+        -311.5404,
+        0.3,
+        -7.2517
+      ],
+      "priority": 66,
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "skipped_targets": [
+    {
+      "target_id": "junction_3",
+      "kind": "junction",
+      "label": "Junction 3",
+      "camera": [
+        -164.6034,
+        8.5,
+        -21.566
+      ],
+      "target": [
+        -152.6034,
+        1.0,
+        -9.566
+      ],
+      "priority": 80,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_4",
+      "kind": "junction",
+      "label": "Junction 4",
+      "camera": [
+        -158.7641,
+        8.5,
+        34.6956
+      ],
+      "target": [
+        -146.7641,
+        1.0,
+        46.6956
+      ],
+      "priority": 79,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_5",
+      "kind": "junction",
+      "label": "Junction 5",
+      "camera": [
+        -158.7461,
+        8.5,
+        -6.2194
+      ],
+      "target": [
+        -146.7461,
+        1.0,
+        5.7806
+      ],
+      "priority": 78,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_6",
+      "kind": "junction",
+      "label": "Junction 6",
+      "camera": [
+        -158.7416,
+        8.5,
+        -16.4482
+      ],
+      "target": [
+        -146.7416,
+        1.0,
+        -4.4482
+      ],
+      "priority": 77,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_7",
+      "kind": "junction",
+      "label": "Junction 7",
+      "camera": [
+        -158.736,
+        8.5,
+        -27.1547
+      ],
+      "target": [
+        -146.736,
+        1.0,
+        -15.1547
+      ],
+      "priority": 76,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_8",
+      "kind": "junction",
+      "label": "Junction 8",
+      "camera": [
+        -158.7293,
+        8.5,
+        -38.339
+      ],
+      "target": [
+        -146.7293,
+        1.0,
+        -26.339
+      ],
+      "priority": 75,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_9",
+      "kind": "junction",
+      "label": "Junction 9",
+      "camera": [
+        -158.716,
+        8.5,
+        -60.7076
+      ],
+      "target": [
+        -146.716,
+        1.0,
+        -48.7076
+      ],
+      "priority": 74,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_10",
+      "kind": "junction",
+      "label": "Junction 10",
+      "camera": [
+        -152.9588,
+        8.5,
+        -21.5591
+      ],
+      "target": [
+        -140.9588,
+        1.0,
+        -9.5591
+      ],
+      "priority": 73,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_11",
+      "kind": "junction",
+      "label": "Junction 11",
+      "camera": [
+        -141.3977,
+        8.5,
+        -21.5522
+      ],
+      "target": [
+        -129.3977,
+        1.0,
+        -9.5522
+      ],
+      "priority": 72,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_12",
+      "kind": "junction",
+      "label": "Junction 12",
+      "camera": [
+        -25.7868,
+        8.5,
+        -21.4834
+      ],
+      "target": [
+        -13.7868,
+        1.0,
+        -9.4834
+      ],
+      "priority": 71,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_13",
+      "kind": "junction",
+      "label": "Junction 13",
+      "camera": [
+        -14.2257,
+        8.5,
+        -21.4765
+      ],
+      "target": [
+        -2.2257,
+        1.0,
+        -9.4765
+      ],
+      "priority": 70,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_14",
+      "kind": "junction",
+      "label": "Junction 14",
+      "camera": [
+        -8.4418,
+        8.5,
+        -27.1686
+      ],
+      "target": [
+        3.5582,
+        1.0,
+        -15.1686
+      ],
+      "priority": 69,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_15",
+      "kind": "junction",
+      "label": "Junction 15",
+      "camera": [
+        -8.4369,
+        8.5,
+        -16.3663
+      ],
+      "target": [
+        3.5631,
+        1.0,
+        -4.3663
+      ],
+      "priority": 68,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_16",
+      "kind": "junction",
+      "label": "Junction 16",
+      "camera": [
+        -8.435,
+        8.5,
+        -38.5596
+      ],
+      "target": [
+        3.565,
+        1.0,
+        -26.5596
+      ],
+      "priority": 67,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "window_view_inst_0369",
+      "kind": "window_view",
+      "label": "Window street view 2",
+      "camera": [
+        324.9792,
+        4.59,
+        -23.0127
+      ],
+      "target": [
+        314.9792,
+        1.4,
+        -7.2517
+      ],
+      "priority": 67,
+      "fov": 60.0,
+      "source": "building_window"
+    },
+    {
+      "target_id": "junction_17",
+      "kind": "junction",
+      "label": "Junction 17",
+      "camera": [
+        -8.4215,
+        8.5,
+        -61.3416
+      ],
+      "target": [
+        3.5785,
+        1.0,
+        -49.3416
+      ],
+      "priority": 66,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_18",
+      "kind": "junction",
+      "label": "Junction 18",
+      "camera": [
+        -8.4203,
+        8.5,
+        -6.1526
+      ],
+      "target": [
+        3.5797,
+        1.0,
+        5.8474
+      ],
+      "priority": 65,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "rooftop_inst_0369",
+      "kind": "rooftop",
+      "label": "Rooftop view 2",
+      "camera": [
+        324.9792,
+        12.6,
+        -25.5128
+      ],
+      "target": [
+        312.9792,
+        0.3,
+        -7.2517
+      ],
+      "priority": 65,
+      "fov": 58.0,
+      "source": "building_rooftop"
+    },
+    {
+      "target_id": "junction_19",
+      "kind": "junction",
+      "label": "Junction 19",
+      "camera": [
+        -8.3538,
+        8.5,
+        34.702
+      ],
+      "target": [
+        3.6462,
+        1.0,
+        46.702
+      ],
+      "priority": 64,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_20",
+      "kind": "junction",
+      "label": "Junction 20",
+      "camera": [
+        -2.5302,
+        8.5,
+        -21.4696
+      ],
+      "target": [
+        9.4698,
+        1.0,
+        -9.4696
+      ],
+      "priority": 63,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "side_left",
+      "kind": "side",
+      "label": "Left side elevation",
+      "camera": [
+        1.0927,
+        186.1819,
+        -382.4224
+      ],
+      "target": [
+        1.0927,
+        2.0,
+        -7.2517
+      ],
+      "priority": 62,
+      "fov": 56.0,
+      "source": "global"
+    },
+    {
+      "target_id": "junction_21",
+      "kind": "junction",
+      "label": "Junction 21",
+      "camera": [
+        9.2998,
+        8.5,
+        -21.4625
+      ],
+      "target": [
+        21.2998,
+        1.0,
+        -9.4625
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_22",
+      "kind": "junction",
+      "label": "Junction 22",
+      "camera": [
+        127.6,
+        8.5,
+        -21.3921
+      ],
+      "target": [
+        139.6,
+        1.0,
+        -9.3921
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_23",
+      "kind": "junction",
+      "label": "Junction 23",
+      "camera": [
+        139.43,
+        8.5,
+        -21.3851
+      ],
+      "target": [
+        151.43,
+        1.0,
+        -9.3851
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_24",
+      "kind": "junction",
+      "label": "Junction 24",
+      "camera": [
+        145.2471,
+        8.5,
+        34.6268
+      ],
+      "target": [
+        157.2471,
+        1.0,
+        46.6268
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_25",
+      "kind": "junction",
+      "label": "Junction 25",
+      "camera": [
+        145.3183,
+        8.5,
+        -6.1065
+      ],
+      "target": [
+        157.3183,
+        1.0,
+        5.8935
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_26",
+      "kind": "junction",
+      "label": "Junction 26",
+      "camera": [
+        145.3361,
+        8.5,
+        -16.2899
+      ],
+      "target": [
+        157.3361,
+        1.0,
+        -4.2899
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_27",
+      "kind": "junction",
+      "label": "Junction 27",
+      "camera": [
+        145.3484,
+        8.5,
+        -27.1159
+      ],
+      "target": [
+        157.3484,
+        1.0,
+        -15.1159
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_28",
+      "kind": "junction",
+      "label": "Junction 28",
+      "camera": [
+        145.3552,
+        8.5,
+        -38.5845
+      ],
+      "target": [
+        157.3552,
+        1.0,
+        -26.5845
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_29",
+      "kind": "junction",
+      "label": "Junction 29",
+      "camera": [
+        145.3689,
+        8.5,
+        -61.5218
+      ],
+      "target": [
+        157.3689,
+        1.0,
+        -49.5218
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_30",
+      "kind": "junction",
+      "label": "Junction 30",
+      "camera": [
+        151.2976,
+        8.5,
+        -21.378
+      ],
+      "target": [
+        163.2976,
+        1.0,
+        -9.378
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_31",
+      "kind": "junction",
+      "label": "Junction 31",
+      "camera": [
+        163.2029,
+        8.5,
+        -21.3709
+      ],
+      "target": [
+        175.2029,
+        1.0,
+        -9.3709
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "junction_32",
+      "kind": "junction",
+      "label": "Junction 32",
+      "camera": [
+        317.9715,
+        8.5,
+        -21.2788
+      ],
+      "target": [
+        329.9715,
+        1.0,
+        -9.2788
+      ],
+      "priority": 62,
+      "fov": 60.0,
+      "source": "junction"
+    },
+    {
+      "target_id": "side_right",
+      "kind": "side",
+      "label": "Right side elevation",
+      "camera": [
+        1.0927,
+        186.1819,
+        367.9189
+      ],
+      "target": [
+        1.0927,
+        2.0,
+        -7.2517
+      ],
+      "priority": 61,
+      "fov": 56.0,
+      "source": "global"
+    },
+    {
+      "target_id": "building_inst_0370",
+      "kind": "building",
+      "label": "Building 1",
+      "camera": [
+        -331.5404,
+        5.684,
+        32.8982
+      ],
+      "target": [
+        -323.5404,
+        3.724,
+        17.8982
+      ],
+      "priority": 58,
+      "fov": 54.0,
+      "source": "building_placement"
+    },
+    {
+      "target_id": "building_inst_0369",
+      "kind": "building",
+      "label": "Building 2",
+      "camera": [
+        316.9792,
+        5.916,
+        -10.5128
+      ],
+      "target": [
+        324.9792,
+        3.876,
+        -25.5128
+      ],
+      "priority": 57,
+      "fov": 54.0,
+      "source": "building_placement"
+    }
+  ],
+  "error": ""
+}

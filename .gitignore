@@ -7,7 +7,11 @@ __pycache__/
 .archive/
 
 # Generated outputs
-artifacts/
+artifacts/*
+!artifacts/project_report/
+artifacts/project_report/*
+!artifacts/project_report/20260517T025258Z/
+!artifacts/project_report/20260517T025258Z/**
 
 .uv-cache/
 .uv-python/
