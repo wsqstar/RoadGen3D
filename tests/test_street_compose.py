@@ -2934,7 +2934,7 @@ def test_sidewalk_render_zone_is_clipped_out_of_carriageway():
     assert not np.any(inside_carriageway)
 
 
-def test_center_median_renders_as_flush_carriageway_fill():
+def test_center_median_renders_as_yellow_lane_mark_fill():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
 
@@ -2947,14 +2947,21 @@ def test_center_median_renders_as_flush_carriageway_fill():
         surface_annotations=[],
     )
 
-    scene = street_layout._build_osm_base_scene(placement_ctx)
-    center_median_vertices = np.vstack([
-        np.asarray(scene.geometry[scene.graph[node_name][1]].vertices)
+    scene = street_layout._build_osm_base_scene(
+        placement_ctx,
+        texture_mode="solid_color_legacy",
+    )
+    center_median_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
         for node_name in scene.graph.nodes_geometry
         if str(node_name).startswith("center_median_")
-    ])
+    ]
+    center_median_vertices = np.vstack([np.asarray(mesh.vertices) for mesh in center_median_meshes])
 
     assert center_median_vertices.size
+    material_color = np.asarray(center_median_meshes[0].visual.material.baseColorFactor, dtype=float)
+    assert material_color[:4] == pytest.approx(street_layout.CENTER_PAINTED_MEDIAN_COLOR)
+    assert float(center_median_vertices[:, 1].min()) == pytest.approx(street_layout.LANE_MARK_Y_MIN_M)
     assert float(center_median_vertices[:, 1].max()) == pytest.approx(street_layout.CENTER_PAINTED_MEDIAN_TOP_Y_M)
     assert float(center_median_vertices[:, 1].max()) < street_layout.CENTER_ISLAND_TOP_Y_M
 
@@ -3088,7 +3095,7 @@ def test_osm_center_grass_belt_renders_as_flowerbed():
     assert max(float(mesh.bounds[1][2]) - float(mesh.bounds[0][2]) for mesh in soil_meshes) == pytest.approx(1.0)
 
 
-def test_osm_plain_center_median_renders_as_neutral_island(monkeypatch: pytest.MonkeyPatch):
+def test_osm_plain_center_median_renders_as_yellow_lane_mark(monkeypatch: pytest.MonkeyPatch):
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
     import trimesh
@@ -3140,9 +3147,12 @@ def test_osm_plain_center_median_renders_as_neutral_island(monkeypatch: pytest.M
 
     assert median_meshes
     assert max(float(mesh.bounds[1][1]) for mesh in median_meshes) == pytest.approx(
-        street_layout.CENTER_ISLAND_TOP_Y_M
+        street_layout.CENTER_PAINTED_MEDIAN_TOP_Y_M
     )
-    assert tracker.surface_role_counts.get("safety_island", 0) >= 1
+    material_color = np.asarray(median_meshes[0].visual.material.baseColorFactor, dtype=float)
+    assert material_color[:4] == pytest.approx(street_layout.CENTER_PAINTED_MEDIAN_COLOR)
+    assert tracker.surface_role_counts.get("lane_mark", 0) >= 1
+    assert tracker.surface_role_counts.get("safety_island", 0) == 0
     assert tracker.surface_role_counts.get("median_green", 0) == 0
 
 

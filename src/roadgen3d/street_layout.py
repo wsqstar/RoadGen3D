@@ -3725,8 +3725,9 @@ CROSSING_STRIPE_HEIGHT_M = 0.012
 CROSSING_STRIPE_TOP_Y_M = 0.044
 BUS_BAY_SURFACE_HEIGHT_M = 0.075
 BUS_BAY_SURFACE_TOP_Y_M = 0.024
-CENTER_PAINTED_MEDIAN_HEIGHT_M = 0.018
-CENTER_PAINTED_MEDIAN_TOP_Y_M = 0.006
+CENTER_PAINTED_MEDIAN_HEIGHT_M = LANE_MARK_HEIGHT_M
+CENTER_PAINTED_MEDIAN_TOP_Y_M = LANE_MARK_Y_MIN_M + LANE_MARK_HEIGHT_M
+CENTER_PAINTED_MEDIAN_COLOR = (230, 200, 50, 255)
 CENTER_ISLAND_TOP_Y_M = 0.12
 CENTER_ISLAND_HEIGHT_M = 0.12
 CENTER_FLOWERBED_CURB_WIDTH_M = 0.12
@@ -6395,11 +6396,11 @@ def _build_osm_base_scene(
         _extrude_polygon(
             center_median,
             CENTER_PAINTED_MEDIAN_HEIGHT_M,
-            list(colors.get("carriageway", (65, 68, 72, 255))),
+            list(colors.get("lane_edge", CENTER_PAINTED_MEDIAN_COLOR)),
             "center_median",
             y_offset=CENTER_PAINTED_MEDIAN_TOP_Y_M,
-            roughness_key="carriageway",
-            surface_role="carriageway",
+            roughness_key="lane_mark",
+            surface_role="lane_mark",
         )
     center_grass_belt = strip_zones.get("center_grass_belt")
     if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
