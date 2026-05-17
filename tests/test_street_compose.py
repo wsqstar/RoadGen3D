@@ -2740,6 +2740,17 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
             return np.empty((0, 3))
         return np.vstack([np.asarray(mesh.vertices) for mesh in meshes if len(mesh.vertices)])
 
+    bus_bay_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("surface_annotation_bus_bay_")
+        and not str(node_name).startswith("surface_annotation_bus_bay_marking")
+    ]
+    bus_bay_vertices = np.vstack([np.asarray(mesh.vertices) for mesh in bus_bay_meshes if len(mesh.vertices)])
+    assert bus_bay_vertices.size
+    assert float(bus_bay_vertices[:, 1].min()) < -0.02
+    assert float(bus_bay_vertices[:, 1].max()) == pytest.approx(street_layout.BUS_BAY_SURFACE_TOP_Y_M)
+
     marking_vertices = _vertices_for("surface_annotation_bus_bay_marking")
     assert marking_vertices.size
     center_span = (marking_vertices[:, 0] > 10.0) & (marking_vertices[:, 0] < 30.0)
@@ -2765,6 +2776,56 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     )
     assert not np.any(old_edge_curb)
     assert np.any(moved_edge_curb)
+
+
+def test_structure_lane_markings_have_visible_geometry():
+    trimesh = pytest.importorskip("trimesh")
+
+    scene = trimesh.Scene()
+    street_layout._add_centerline_markings(
+        scene,
+        road_length_m=36.0,
+        road_width_m=12.4,
+        road_center_x_m=0.0,
+        road_center_z_m=0.0,
+        road_yaw_deg=0.0,
+        lane_count=4,
+        color=(245, 245, 245, 255),
+        roughness=0.30,
+        texture_mode="solid_color_legacy",
+    )
+    street_layout._add_lane_edge_markings(
+        scene,
+        road_length_m=36.0,
+        road_center_x_m=0.0,
+        road_center_z_m=0.0,
+        road_yaw_deg=0.0,
+        detailed_strip_profiles=[
+            {"side": "center", "kind": "drive_lane", "inner_m": -6.2, "outer_m": -3.1},
+            {"side": "center", "kind": "drive_lane", "inner_m": -3.1, "outer_m": 0.0},
+            {"side": "center", "kind": "drive_lane", "inner_m": 0.0, "outer_m": 3.1},
+            {"side": "center", "kind": "drive_lane", "inner_m": 3.1, "outer_m": 6.2},
+        ],
+        edge_color=(230, 200, 50, 255),
+        roughness=0.30,
+        texture_mode="solid_color_legacy",
+    )
+
+    def _meshes_for(prefix: str) -> list:
+        return [
+            scene.geometry[scene.graph[node_name][1]]
+            for node_name in scene.graph.nodes_geometry
+            if str(node_name).startswith(prefix)
+        ]
+
+    lane_mark_meshes = _meshes_for("centerline_mark")
+    lane_edge_meshes = _meshes_for("lane_edge")
+    assert lane_mark_meshes
+    assert lane_edge_meshes
+    assert min(float(mesh.bounds[0][1]) for mesh in lane_mark_meshes) == pytest.approx(street_layout.LANE_MARK_Y_MIN_M)
+    assert min(float(mesh.bounds[0][1]) for mesh in lane_edge_meshes) == pytest.approx(street_layout.LANE_EDGE_MARK_Y_MIN_M)
+    assert max(float(mesh.extents[2]) for mesh in lane_mark_meshes) == pytest.approx(street_layout.LANE_MARK_WIDTH_M)
+    assert max(float(mesh.extents[2]) for mesh in lane_edge_meshes) == pytest.approx(street_layout.LANE_EDGE_MARK_WIDTH_M)
 
 
 def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():

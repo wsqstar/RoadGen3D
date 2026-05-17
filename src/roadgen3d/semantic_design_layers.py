@@ -18,6 +18,7 @@ SKELETON_DESIGN_PROFILES: tuple[str, ...] = (
 )
 
 STREET_FURNITURE_PROFILES: tuple[str, ...] = (
+    "none",
     "balanced_complete",
     "pedestrian_friendly",
     "commercial_vitality",
@@ -66,6 +67,9 @@ _SKELETON_ALIASES = {
 }
 
 _FURNITURE_ALIASES = {
+    "no_furniture": "none",
+    "furniture_free": "none",
+    "structure_only": "none",
     "balanced": "balanced_complete",
     "complete": "balanced_complete",
     "pedestrian": "pedestrian_friendly",
@@ -90,6 +94,15 @@ SKELETON_TO_STREET_FURNITURE_PROFILE: Dict[str, str] = {
 }
 
 STREET_FURNITURE_PROFILE_CONFIG_PATCHES: Dict[str, Dict[str, Any]] = {
+    "none": {
+        "density": 0.1,
+        "amenity_coverage_mode": "off",
+        "curated_street_assets_profile": "disabled",
+        "max_bus_stops_per_scene": 0,
+        "allow_demo_bus_stop_when_osm_absent": False,
+        "minimum_category_presence": (),
+        "optional_category_presence": (),
+    },
     "balanced_complete": {
         "design_rule_profile": "balanced_complete_street_v1",
         "objective_profile": "balanced",

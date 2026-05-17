@@ -876,6 +876,15 @@ _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
 _CURATED_ALLOWLIST_SELECTION_SOURCE = "curated_allowlist_stable"
 
 
+def _street_furniture_disabled(config: StreetComposeConfig | None) -> bool:
+    return str(getattr(config, "street_furniture_profile", "") or "").strip().lower() in {
+        "none",
+        "no_furniture",
+        "furniture_free",
+        "structure_only",
+    }
+
+
 def _normalize_curated_street_assets_profile(value: object) -> str:
     key = str(value or "fixed_hq_v1").strip().lower()
     return key if key in _CURATED_STREET_ASSET_PROFILES else "fixed_hq_v1"
@@ -3704,6 +3713,14 @@ SIDEWALK_ELEVATION_M = 0.20
 BUILDING_GRASS_UNDERLAY_HEIGHT_M = 0.024
 BUILDING_GRASS_UNDERLAY_Y_MIN_M = -0.030
 BUILDING_ACCESS_PATH_Y_MIN_M = SIDEWALK_ELEVATION_M + 0.004
+LANE_MARK_WIDTH_M = 0.22
+LANE_MARK_HEIGHT_M = 0.018
+LANE_MARK_Y_MIN_M = 0.018
+LANE_EDGE_MARK_WIDTH_M = 0.16
+LANE_EDGE_MARK_HEIGHT_M = 0.018
+LANE_EDGE_MARK_Y_MIN_M = 0.018
+BUS_BAY_SURFACE_HEIGHT_M = 0.075
+BUS_BAY_SURFACE_TOP_Y_M = 0.024
 CENTER_ISLAND_TOP_Y_M = 0.12
 CENTER_ISLAND_HEIGHT_M = 0.12
 CENTER_FLOWERBED_CURB_WIDTH_M = 0.12
@@ -3831,7 +3848,7 @@ def _apply_surface_finish(
 ):
     resolved_surface_role = str(surface_role)
     resolved_texture_mode = str(texture_mode)
-    if resolved_surface_role.strip().lower() in {"lane_mark", "lane_edge", "lane_edge_mark", "crossing"}:
+    if resolved_surface_role.strip().lower() in {"lane_mark", "lane_edge", "lane_edge_mark", "crossing", "bus_lane"}:
         resolved_texture_mode = "solid_color_legacy"
     return apply_default_scene_texture(
         mesh,
@@ -4186,14 +4203,14 @@ def _add_centerline_markings(
                 _add_road_box(
                     scene,
                     length_m=float(dash_length_m),
-                    width_m=0.14,
-                    height_m=0.01,
+                    width_m=LANE_MARK_WIDTH_M,
+                    height_m=LANE_MARK_HEIGHT_M,
                     local_x_m=0.0,
                     local_z_m=float(lane_z),
                     road_center_x_m=center_x_m,
                     road_center_z_m=center_z_m,
                     road_yaw_deg=yaw_deg,
-                    y_min_m=0.004,
+                    y_min_m=LANE_MARK_Y_MIN_M,
                     color=color,
                     surface_role="lane_mark",
                     node_name=node_name,
@@ -4225,14 +4242,14 @@ def _add_centerline_markings(
             _add_road_box(
                 scene,
                 length_m=float(dash_length_m),
-                width_m=0.14,
-                height_m=0.01,
+                width_m=LANE_MARK_WIDTH_M,
+                height_m=LANE_MARK_HEIGHT_M,
                 local_x_m=float(dash_x),
                 local_z_m=float(lane_z),
                 road_center_x_m=road_center_x_m,
                 road_center_z_m=road_center_z_m,
                 road_yaw_deg=road_yaw_deg,
-                y_min_m=0.004,
+                y_min_m=LANE_MARK_Y_MIN_M,
                 color=color,
                 surface_role="lane_mark",
                 node_name=node_name,
@@ -4317,14 +4334,14 @@ def _add_lane_edge_markings(
                 _add_road_box(
                     scene,
                     length_m=mark_length_m,
-                    width_m=0.10,
-                    height_m=0.01,
+                    width_m=LANE_EDGE_MARK_WIDTH_M,
+                    height_m=LANE_EDGE_MARK_HEIGHT_M,
                     local_x_m=0.0,
                     local_z_m=float(edge_offset),
                     road_center_x_m=center_x_m,
                     road_center_z_m=center_z_m,
                     road_yaw_deg=yaw_deg,
-                    y_min_m=0.005,
+                    y_min_m=LANE_EDGE_MARK_Y_MIN_M,
                     color=edge_color,
                     surface_role="lane_edge_mark",
                     node_name=f"{node_name_prefix}_{edge_idx}_{mark_idx}",
@@ -4344,14 +4361,14 @@ def _add_lane_edge_markings(
             _add_road_box(
                 scene,
                 length_m=float(road_length_m),
-                width_m=0.10,
-                height_m=0.01,
+                width_m=LANE_EDGE_MARK_WIDTH_M,
+                height_m=LANE_EDGE_MARK_HEIGHT_M,
                 local_x_m=0.0,
                 local_z_m=float(edge_offset),
                 road_center_x_m=road_center_x_m,
                 road_center_z_m=road_center_z_m,
                 road_yaw_deg=road_yaw_deg,
-                y_min_m=0.005,
+                y_min_m=LANE_EDGE_MARK_Y_MIN_M,
                 color=edge_color,
                 surface_role="lane_edge_mark",
                 node_name=f"{node_name_prefix}_{edge_idx}",
@@ -4909,6 +4926,7 @@ def _production_step_definitions(
     layout_mode: str,
     *,
     include_land_use_zoning: bool = True,
+    include_furniture_steps: bool = True,
 ) -> Tuple[Tuple[str, str], ...]:
     if _is_corridor_layout_mode(layout_mode):
         steps: List[Tuple[str, str]] = [
@@ -4916,23 +4934,28 @@ def _production_step_definitions(
         ]
         if include_land_use_zoning:
             steps.append(("land_use_zoning", "Land Use / Zoning"))
-        steps.extend(
-            [
-                ("buildings", "Buildings"),
-                ("poi_context", "POI Context"),
+        steps.extend([
+            ("buildings", "Buildings"),
+            ("poi_context", "POI Context"),
+        ])
+        if include_furniture_steps:
+            steps.extend([
                 ("furniture_anchor", "Furniture Anchor"),
                 ("furniture_required", "Furniture Required"),
                 ("furniture_optional", "Furniture Optional"),
-                ("scene_preview", "Scene Preview"),
-            ]
-        )
+            ])
+        steps.append(("scene_preview", "Scene Preview"))
         return tuple(steps)
-    return (
+    steps = [
         ("road_base", "Road Base"),
-        ("furniture_required", "Furniture Required"),
-        ("furniture_optional", "Furniture Optional"),
-        ("scene_preview", "Scene Preview"),
-    )
+    ]
+    if include_furniture_steps:
+        steps.extend([
+            ("furniture_required", "Furniture Required"),
+            ("furniture_optional", "Furniture Optional"),
+        ])
+    steps.append(("scene_preview", "Scene Preview"))
+    return tuple(steps)
 
 
 def _split_furniture_layers(
@@ -5742,6 +5765,7 @@ def _build_production_steps(
         _production_step_definitions(
             config.layout_mode,
             include_land_use_zoning=not region_direct_mode,
+            include_furniture_steps=not _street_furniture_disabled(config),
         )
     ):
         include_zoning, include_poi_overlays, visible_placements, delta_ids = stage_visibility[step_id]
@@ -6393,6 +6417,9 @@ def _build_osm_base_scene(
     if not curb_source_surface.is_empty:
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, sidewalk_render_zone, curb_width)
+            if not getattr(bus_bay_vehicle_zone, "is_empty", True):
+                bus_bay_curb_zone = _build_curb_boundary_zone(bus_bay_vehicle_zone, sidewalk_render_zone, curb_width)
+                curb_zone = _union_scene_polygonal_geometries([curb_zone, bus_bay_curb_zone])
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
@@ -6490,7 +6517,13 @@ def _build_osm_base_scene(
             color = list(colors.get("bus_lane", (74, 142, 96, 255)))
             if preset == "bus_lane_green":
                 color = [64, 148, 92, 255]
-            return 0.014, _material_color(material, color), 0.016, texture_key or "bus_lane", "bus_lane"
+            return (
+                BUS_BAY_SURFACE_HEIGHT_M,
+                _material_color(material, color),
+                BUS_BAY_SURFACE_TOP_Y_M,
+                texture_key or "bus_lane",
+                "bus_lane",
+            )
         if role == "bike_lane":
             return 0.014, _material_color(material, colors.get("bike_lane", (50, 110, 80, 255))), 0.016, texture_key or "bike_lane", "bike_lane"
         if role == "parking_lane":
@@ -10657,7 +10690,7 @@ def compose_street_scene(
             if pool
         },
     )
-    if config.layout_mode in {"osm", "osm_multiblock"}:
+    if config.layout_mode in {"osm", "osm_multiblock"} and not _street_furniture_disabled(config):
         for poi_type, required_count in asset_backed_poi_anchor_counts(
             extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
         ).items():
@@ -10675,6 +10708,7 @@ def compose_street_scene(
         road_segment_graph,
         placement_ctx,
     )
+    furniture_disabled = _street_furniture_disabled(config)
     spatial_ctx = build_spatial_context(config, road_segment_graph, poi_ctx)
     theme_segments = infer_theme_segments(
         road_segment_graph,
@@ -10705,6 +10739,8 @@ def compose_street_scene(
             "road_width_m": float(config.road_width_m),
             "sidewalk_width_m": float(config.sidewalk_width_m),
             "density": float(config.density),
+            "street_furniture_profile": str(getattr(config, "street_furniture_profile", "")),
+            "street_furniture_disabled": bool(furniture_disabled),
             "ped_demand_level": str(getattr(config, "ped_demand_level", "")),
             "bike_demand_level": str(getattr(config, "bike_demand_level", "")),
             "transit_demand_level": str(getattr(config, "transit_demand_level", "")),
@@ -10868,8 +10904,21 @@ def compose_street_scene(
             }
         )
 
+    if furniture_disabled:
+        slot_plans = []
+        slot_segment_lookup.clear()
+        slot_band_lookup.clear()
+        zone_solver_results = [
+            replace(result, slot_plans=tuple())
+            for result in zone_solver_results
+        ]
+        theme_zone_programs = [
+            {**dict(program), "slot_count": 0}
+            for program in theme_zone_programs
+        ]
+
     # -- Inject explicit annotation furniture instances --
-    if _is_corridor_layout_mode(config.layout_mode) and road_segment_graph is not None:
+    if not furniture_disabled and _is_corridor_layout_mode(config.layout_mode) and road_segment_graph is not None:
         annot_slots, annot_seg_map = _annotation_furniture_to_slot_plans(
             road_segment_graph, theme_segments,
         )
@@ -10934,7 +10983,7 @@ def compose_street_scene(
                     )
                 logger.info("Injected %d center planting tree slots.", len(center_tree_slots))
 
-    if not slot_plans:
+    if not slot_plans and not furniture_disabled:
         raise RuntimeError(
             "Layout solver produced zero slots. "
             "Check the design rule profile, theme inference, asset coverage, or scene length."
@@ -10987,19 +11036,20 @@ def compose_street_scene(
         theme_segments=_compact_theme_segments(theme_segments),
     )
 
-    for poi_type, required_count in asset_backed_poi_anchor_counts(
-        extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
-    ).items():
-        category = asset_category_for_poi(poi_type)
-        actual_count = sum(
-            1
-            for slot in slot_plans
-            if slot.category == category and slot.anchor_poi_type == poi_type
-        )
-        if int(required_count) > int(actual_count):
-            raise RuntimeError(
-                f"Layout solver did not preserve all required POI-backed {category} slots."
+    if not furniture_disabled:
+        for poi_type, required_count in asset_backed_poi_anchor_counts(
+            extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
+        ).items():
+            category = asset_category_for_poi(poi_type)
+            actual_count = sum(
+                1
+                for slot in slot_plans
+                if slot.category == category and slot.anchor_poi_type == poi_type
             )
+            if int(required_count) > int(actual_count):
+                raise RuntimeError(
+                    f"Layout solver did not preserve all required POI-backed {category} slots."
+                )
 
     placement_field_config = load_placement_field_config()
     spatial_hash = UniformSpatialHash(cell_size_m=float(placement_field_config["cell_size_m"]))
@@ -11021,12 +11071,14 @@ def compose_street_scene(
     category_slot_counts: Dict[str, int] = {}
     for slot in ordered_slot_plans:
         category_slot_counts[slot.category] = category_slot_counts.get(slot.category, 0) + 1
-    total_scene_slots = max(len(ordered_slot_plans), 1)
+    total_scene_slots = 0 if furniture_disabled else max(len(ordered_slot_plans), 1)
     placement_progress_interval = max(1, total_scene_slots // 10)
     _emit_progress(
         "asset_composition",
         60,
-        "Composing street furniture and asset placements.",
+        "Skipping street furniture placement for structure-only preview."
+        if furniture_disabled
+        else "Composing street furniture and asset placements.",
         total_slots=total_scene_slots,
         algorithm={
             **_placement_algorithm_detail(),
@@ -12240,7 +12292,7 @@ def compose_street_scene(
         },
     )
 
-    if not placements:
+    if not placements and not furniture_disabled:
         raise RuntimeError(
             "Street composition produced zero furniture placements. "
             "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
@@ -12492,7 +12544,10 @@ def compose_street_scene(
         len(available_core_categories_by_side.get("right", set())),
         int(street_furniture_core_side_counts.get("right", 0)),
     )
-    if furniture_balance_policy != "overall_balanced":
+    if furniture_disabled:
+        street_furniture_balance_ok = True
+        street_furniture_balance_reason = "street_furniture_profile=none"
+    elif furniture_balance_policy != "overall_balanced":
         street_furniture_balance_ok = True
         street_furniture_balance_reason = "manual side-biased mode"
     elif not {"left", "right"} <= compatible_furnishing_sides:

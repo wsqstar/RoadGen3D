@@ -13,6 +13,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.program_generator import PROGRAM_FEATURE_DIM, ProgramGeneratorMLP, ProgramGeneratorRuntime
+from roadgen3d.street_program import infer_street_program
 from roadgen3d.types import InventorySummary, ProgramGenerationInput, StreetComposeConfig
 
 
@@ -56,6 +57,34 @@ def test_program_generator_runtime_falls_back_to_heuristic_when_learned_runtime_
     assert result.backend_used == "heuristic_v1"
     assert "fallback" in result.fallback_reason.lower()
     assert result.program.cross_section_type
+
+
+def test_none_street_furniture_profile_keeps_structure_but_zeroes_requirements():
+    config = StreetComposeConfig(
+        query="four lane safety island structure preview",
+        length_m=80.0,
+        road_width_m=13.2,
+        sidewalk_width_m=3.5,
+        lane_count=4,
+        density=0.9,
+        seed=42,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        street_furniture_profile="none",
+        amenity_coverage_mode="off",
+        minimum_category_presence=(),
+        optional_category_presence=(),
+    )
+
+    program = infer_street_program(
+        config,
+        available_categories=("bench", "lamp", "tree", "bollard", "trash"),
+    )
+
+    assert program.bands
+    assert set(program.furniture_requirements) == {"bench", "lamp", "tree", "trash", "bollard"}
+    assert all(count == 0 for count in program.furniture_requirements.values())
+    assert "street_furniture_disabled" in program.notes
 
 
 def test_program_generator_runtime_loads_checkpoint_and_returns_learned_program(tmp_path: Path):

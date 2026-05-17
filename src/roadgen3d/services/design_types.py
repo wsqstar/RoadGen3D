@@ -105,7 +105,7 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "layout_solver": frozenset({"banded", "milp_template_v1", "hybrid_milp_v1"}),
     "osm_semantic_mode": frozenset({"landuse_rules_v1"}),
     "skeleton_design_profile": frozenset({"child_friendly_school", "walkable_commercial", "vehicle_access_commercial", "transit_priority", "green_walkable", "quiet_residential"}),
-    "street_furniture_profile": frozenset({"balanced_complete", "pedestrian_friendly", "commercial_vitality", "transit_priority", "park_landscape", "quiet_residential"}),
+    "street_furniture_profile": frozenset({"none", "balanced_complete", "pedestrian_friendly", "commercial_vitality", "transit_priority", "park_landscape", "quiet_residential"}),
     "skeleton_design_profile_source": frozenset({"manual", "llm", "osm", "recommended", "fallback"}),
     "street_furniture_profile_source": frozenset({"manual", "llm", "osm", "recommended", "fallback"}),
     "osm_short_road_policy": frozenset({"semantic", "default_style"}),
@@ -214,12 +214,17 @@ def sanitize_compose_config_patch(payload: Mapping[str, Any] | None) -> Dict[str
                 items = []
             patch[key] = tuple(dict.fromkeys(item for item in items if item))
         elif key in _STRING_FIELDS:
+            if key in _ENUM_VALID_VALUES:
+                text = str(value or "").strip().lower()
+                if text in {"", "null", "n/a", "na", "unspecified", "not specified"}:
+                    continue
+                if text not in _ENUM_VALID_VALUES[key]:
+                    continue
+                patch[key] = text
+                continue
             text = _clean_text(value)
             if not text:
                 continue
-            if key in _ENUM_VALID_VALUES:
-                if text.lower() not in _ENUM_VALID_VALUES[key]:
-                    continue
             patch[key] = text
     return patch
 

@@ -156,3 +156,15 @@ def test_street_furniture_defaults_use_skeleton_recommendation_then_fallback():
     fallback = resolve_semantic_design_layers(config=_config(), road_segment_graph=None)
     assert fallback["street_furniture_profile"] == "balanced_complete"
     assert fallback["street_furniture_profile_source"] == "recommended"
+
+
+def test_street_furniture_none_defaults_disable_asset_generation():
+    patch = apply_street_furniture_profile_defaults({
+        "street_furniture_profile": "none",
+    })
+
+    assert patch["street_furniture_profile"] == "none"
+    assert patch["amenity_coverage_mode"] == "off"
+    assert patch["curated_street_assets_profile"] == "disabled"
+    assert patch["minimum_category_presence"] == ()
+    assert patch["optional_category_presence"] == ()

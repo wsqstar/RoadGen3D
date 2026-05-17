@@ -143,6 +143,12 @@ def test_sanitize_compose_config_patch_drops_unregistered_profiles():
     assert "style_preset" not in patch
 
 
+def test_sanitize_compose_config_patch_preserves_no_furniture_profile():
+    patch = sanitize_compose_config_patch({"street_furniture_profile": "none"})
+
+    assert patch["street_furniture_profile"] == "none"
+
+
 def test_sanitize_compose_config_patch_accepts_osm_multiblock_fields():
     patch = sanitize_compose_config_patch(
         {

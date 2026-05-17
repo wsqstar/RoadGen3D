@@ -14,7 +14,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.services.design_matrix import DesignMatrixService
+from roadgen3d.services.design_matrix import DesignMatrixService, _glb_has_street_furniture
 from web.api.main import create_app
 
 
@@ -175,6 +175,13 @@ def test_design_matrix_inventory_ignores_contaminated_no_furniture_ready_cell(tm
 
     assert refreshed_cell["status"] != "ready"
     assert refreshed_cell["layout_path"] == ""
+
+
+def test_design_matrix_no_furniture_glb_check_ignores_sky_dome_asset_name(tmp_path: Path) -> None:
+    glb_path = tmp_path / "structure_preview.glb"
+    glb_path.write_bytes(_minimal_glb(["objaverse_tree_a90b8cca57b44f5492e796cf94d64e80-sky-dome.glb"]))
+
+    assert _glb_has_street_furniture(glb_path) is False
 
 
 def test_design_matrix_scene_job_request_disables_extra_glbs_and_carries_metadata(tmp_path: Path) -> None:

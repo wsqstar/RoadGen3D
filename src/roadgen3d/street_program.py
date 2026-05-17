@@ -166,6 +166,15 @@ def _demand_factor(level: str) -> float:
     return float(_DEMAND_FACTORS.get(str(level).strip().lower(), 1.0))
 
 
+def _street_furniture_disabled(config: StreetComposeConfig) -> bool:
+    return str(getattr(config, "street_furniture_profile", "") or "").strip().lower() in {
+        "none",
+        "no_furniture",
+        "furniture_free",
+        "structure_only",
+    }
+
+
 def _observed_poi_counts(poi_context: object | None) -> Dict[str, int]:
     if poi_context is None:
         return {}
@@ -584,15 +593,23 @@ def infer_street_program(
             right_edge_width_m=right_furnishing_width,
             profile_name=profile_name,
         )
-    requirements = _estimate_furniture_requirements(
-        query=config.query,
-        length_m=float(config.length_m),
-        density=float(config.density),
-        available_categories=available_categories,
-        profile_scales=dict(defaults["density_scales"]),
-        required_categories=tuple(defaults["required_categories"]),
-    )
-    if str(getattr(config, "amenity_coverage_mode", "try") or "try").strip().lower() == "try":
+    furniture_disabled = _street_furniture_disabled(config)
+    if furniture_disabled:
+        requirements = {
+            category: 0
+            for category in DEFAULT_CATEGORIES
+            if category in {str(item).strip().lower() for item in available_categories}
+        }
+    else:
+        requirements = _estimate_furniture_requirements(
+            query=config.query,
+            length_m=float(config.length_m),
+            density=float(config.density),
+            available_categories=available_categories,
+            profile_scales=dict(defaults["density_scales"]),
+            required_categories=tuple(defaults["required_categories"]),
+        )
+    if not furniture_disabled and str(getattr(config, "amenity_coverage_mode", "try") or "try").strip().lower() == "try":
         available_set = {str(category).strip().lower() for category in available_categories}
         for category in _coerce_category_tuple(getattr(config, "minimum_category_presence", ("trash", "bench", "lamp"))):
             if category in available_set:
@@ -600,15 +617,18 @@ def infer_street_program(
     observed_poi_counts = _observed_poi_counts(poi_context)
     control_points: List[str] = ["entry", "midblock", "exit"]
     merged_goals = _merge_goals(str(config.query), tuple(defaults["design_goals"]))
-    reserved_band_categories, merged_goals = _apply_observed_poi_bindings(
-        requirements=requirements,
-        observed_poi_counts=observed_poi_counts,
-        poi_context=poi_context,
-        control_points=control_points,
-        merged_goals=merged_goals,
-        bands=bands,
-        profile_name=profile_name,
-    )
+    if furniture_disabled:
+        reserved_band_categories = {}
+    else:
+        reserved_band_categories, merged_goals = _apply_observed_poi_bindings(
+            requirements=requirements,
+            observed_poi_counts=observed_poi_counts,
+            poi_context=poi_context,
+            control_points=control_points,
+            merged_goals=merged_goals,
+            bands=bands,
+            profile_name=profile_name,
+        )
     throughput_requirements = _throughput_requirements(config, profile_name, max(1, int(config.lane_count)))
     band_bounds = _default_band_bounds(
         bands,
@@ -618,11 +638,16 @@ def infer_street_program(
     )
     topology_requirements = _topology_requirements(profile_name, bands)
 
-    notes = (
-        "heuristic_program_generator_v1",
-        f"profile={profile_name}",
-        "observed_poi_binding_v1",
-        f"objective_profile={str(getattr(config, 'objective_profile', 'balanced')).strip().lower() or 'balanced'}",
+    notes = tuple(
+        item
+        for item in (
+            "heuristic_program_generator_v1",
+            f"profile={profile_name}",
+            "observed_poi_binding_v1",
+            f"objective_profile={str(getattr(config, 'objective_profile', 'balanced')).strip().lower() or 'balanced'}",
+            "street_furniture_disabled" if furniture_disabled else "",
+        )
+        if item
     )
     return StreetProgram(
         query=str(config.query),

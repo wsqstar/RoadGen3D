@@ -33,6 +33,7 @@ STREET_FURNITURE_NAME_RE = re.compile(
     r")([_\s\-.]|$)",
     re.IGNORECASE,
 )
+ENVIRONMENT_NAME_RE = re.compile(r"(^|[_\s\-.])(sky|sky[_\s\-.]*dome|environment)([_\s\-.]|$)", re.IGNORECASE)
 STREET_FURNITURE_CATEGORIES = {
     "bench",
     "bollard",
@@ -588,6 +589,8 @@ def _glb_has_street_furniture(path: Path) -> bool:
             if not isinstance(item, Mapping):
                 continue
             name = str(item.get("name") or "")
+            if ENVIRONMENT_NAME_RE.search(name):
+                continue
             if STREET_FURNITURE_NAME_RE.search(name):
                 return True
     return False
