@@ -3725,6 +3725,8 @@ CROSSING_STRIPE_HEIGHT_M = 0.012
 CROSSING_STRIPE_TOP_Y_M = 0.044
 BUS_BAY_SURFACE_HEIGHT_M = 0.075
 BUS_BAY_SURFACE_TOP_Y_M = 0.024
+CENTER_PAINTED_MEDIAN_HEIGHT_M = 0.018
+CENTER_PAINTED_MEDIAN_TOP_Y_M = 0.006
 CENTER_ISLAND_TOP_Y_M = 0.12
 CENTER_ISLAND_HEIGHT_M = 0.12
 CENTER_FLOWERBED_CURB_WIDTH_M = 0.12
@@ -6078,9 +6080,16 @@ def _build_osm_base_scene(
                 junction_sidewalk_surfaces.append(geometry)
             elif role in junction_vehicle_surface_roles and geometry is not None and not getattr(geometry, "is_empty", True):
                 junction_vehicle_surfaces.append(geometry)
+    road_arm_geometries = list(getattr(placement_ctx, "road_arm_geometries", []) or [])
+    rendered_vehicle_surfaces = (
+        list(road_arm_geometries) if road_arm_geometries else [carriageway]
+    )
+    base_vehicle_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
+    curb_source_surface = _union_scene_polygonal_geometries([base_vehicle_surface, *bus_bay_vehicle_surfaces])
     sidewalk_render_zone = _union_scene_polygonal_geometries([sidewalk_zone, *junction_sidewalk_surfaces])
-    if not getattr(bus_bay_vehicle_zone, "is_empty", True):
-        sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(bus_bay_vehicle_zone))
+    vehicle_clearance_surface = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
+    if not getattr(vehicle_clearance_surface, "is_empty", True):
+        sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(vehicle_clearance_surface))
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
     for geom in (carriageway, sidewalk_render_zone):
@@ -6341,7 +6350,6 @@ def _build_osm_base_scene(
                 placeholder.visual.face_colors = (160, 160, 160, 255)
             _place_zone_furniture_mesh(placeholder, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
 
-    road_arm_geometries = list(getattr(placement_ctx, "road_arm_geometries", []) or [])
     if road_arm_geometries:
         for arm_idx, arm_geom in enumerate(road_arm_geometries):
             if getattr(arm_geom, "is_empty", True):
@@ -6386,12 +6394,12 @@ def _build_osm_base_scene(
     if center_median is not None and not getattr(center_median, "is_empty", True):
         _extrude_polygon(
             center_median,
-            CENTER_ISLAND_HEIGHT_M,
-            list(colors.get("safety_island", colors.get("curb", colors.get("context_ground", (168, 163, 150, 255))))),
+            CENTER_PAINTED_MEDIAN_HEIGHT_M,
+            list(colors.get("carriageway", (65, 68, 72, 255))),
             "center_median",
-            y_offset=CENTER_ISLAND_TOP_Y_M,
-            roughness_key="safety_island",
-            surface_role="safety_island",
+            y_offset=CENTER_PAINTED_MEDIAN_TOP_Y_M,
+            roughness_key="carriageway",
+            surface_role="carriageway",
         )
     center_grass_belt = strip_zones.get("center_grass_belt")
     if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
@@ -6433,11 +6441,6 @@ def _build_osm_base_scene(
     # receive the same curb treatment as straight road arms.
     curb_width = 0.12
     curb_color = list(colors.get("curb", (145, 145, 145, 255)))
-    rendered_vehicle_surfaces = (
-        list(road_arm_geometries) if road_arm_geometries else [carriageway]
-    )
-    base_vehicle_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
-    curb_source_surface = _union_scene_polygonal_geometries([base_vehicle_surface, *bus_bay_vehicle_surfaces])
     if not curb_source_surface.is_empty:
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, sidewalk_render_zone, curb_width)

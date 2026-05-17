@@ -2904,6 +2904,61 @@ def test_crossing_like_surface_annotation_clips_to_carriageway_and_marks_top():
     assert float(refuge_vertices[:, 1].max()) == pytest.approx(street_layout.CENTER_ISLAND_TOP_Y_M)
 
 
+def test_sidewalk_render_zone_is_clipped_out_of_carriageway():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(-5.0, -1.0, 5.0, 1.0),
+        sidewalk_zone=shapely_geometry.box(-2.0, -2.0, 2.0, 2.0),
+        road_arm_geometries=[],
+        junction_geometries=[],
+        strip_zones={},
+        surface_annotations=[],
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+    sidewalk_vertices = np.vstack([
+        np.asarray(scene.geometry[scene.graph[node_name][1]].vertices)
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("sidewalk_")
+    ])
+
+    assert sidewalk_vertices.size
+    inside_carriageway = (
+        (sidewalk_vertices[:, 0] > -1.9)
+        & (sidewalk_vertices[:, 0] < 1.9)
+        & (sidewalk_vertices[:, 2] > -0.9)
+        & (sidewalk_vertices[:, 2] < 0.9)
+    )
+    assert not np.any(inside_carriageway)
+
+
+def test_center_median_renders_as_flush_carriageway_fill():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(-5.0, -2.0, 5.0, 2.0),
+        sidewalk_zone=shapely_geometry.MultiPolygon(),
+        road_arm_geometries=[],
+        junction_geometries=[],
+        strip_zones={"center_median": shapely_geometry.box(-5.0, -0.25, 5.0, 0.25)},
+        surface_annotations=[],
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+    center_median_vertices = np.vstack([
+        np.asarray(scene.geometry[scene.graph[node_name][1]].vertices)
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("center_median_")
+    ])
+
+    assert center_median_vertices.size
+    assert float(center_median_vertices[:, 1].max()) == pytest.approx(street_layout.CENTER_PAINTED_MEDIAN_TOP_Y_M)
+    assert float(center_median_vertices[:, 1].max()) < street_layout.CENTER_ISLAND_TOP_Y_M
+
+
 def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 
