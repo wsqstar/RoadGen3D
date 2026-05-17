@@ -1328,6 +1328,63 @@ def test_building_ground_underlay_excludes_functional_zones_and_stays_below_road
     ) < 0.0
 
 
+def test_building_access_path_is_flush_with_grass_underlay():
+    trimesh = pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    carriageway = shapely_geometry.box(-1.0, -10.0, 1.0, 10.0)
+    placement_ctx = SimpleNamespace(
+        aoi_polygon=shapely_geometry.box(-10.0, -10.0, 10.0, 10.0),
+        carriageway=carriageway,
+        carriageway_polygon=carriageway,
+        sidewalk_zone=shapely_geometry.MultiPolygon(),
+        left_sidewalk_zone=None,
+        right_sidewalk_zone=None,
+        road_arm_geometries=[],
+        strip_zones={},
+        segment_strip_zones={},
+        junction_geometries=[],
+        surface_annotations=[],
+        functional_zones=[],
+    )
+    plan = SimpleNamespace(
+        bbox_xz=(7.0, 9.0, 5.0, 7.0),
+        placement_xz=(8.0, 6.0),
+        street_edge_xz=(1.0, 6.0),
+        side="left",
+        door_center_world_xyz=None,
+        door_width_m=1.0,
+        front_setback_m=1.0,
+    )
+    scene = trimesh.Scene()
+
+    counts = street_layout._add_building_ground_surfaces(
+        scene,
+        [plan],
+        placement_ctx=placement_ctx,
+        config=SimpleNamespace(land_use_buffer_m=20.0, length_m=20.0, road_width_m=2.0),
+        palette={},
+        texture_mode="solid_color_legacy",
+    )
+    access_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("building_access_path_")
+    ]
+    grass_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("building_land_grass_")
+    ]
+
+    assert counts["access_path_count"] >= 1
+    assert access_meshes
+    assert grass_meshes
+    grass_top = street_layout.BUILDING_GRASS_UNDERLAY_TOP_M
+    assert max(float(mesh.bounds[1][1]) for mesh in grass_meshes) == pytest.approx(grass_top)
+    assert max(float(mesh.bounds[1][1]) for mesh in access_meshes) == pytest.approx(grass_top)
+
+
 def test_resolve_building_pose_pushes_building_out_of_sidewalk_forbidden_area():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

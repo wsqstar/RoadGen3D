@@ -3712,7 +3712,9 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
 SIDEWALK_ELEVATION_M = 0.20
 BUILDING_GRASS_UNDERLAY_HEIGHT_M = 0.024
 BUILDING_GRASS_UNDERLAY_Y_MIN_M = -0.030
-BUILDING_ACCESS_PATH_Y_MIN_M = SIDEWALK_ELEVATION_M + 0.004
+BUILDING_GRASS_UNDERLAY_TOP_M = BUILDING_GRASS_UNDERLAY_Y_MIN_M + BUILDING_GRASS_UNDERLAY_HEIGHT_M
+BUILDING_ACCESS_PATH_HEIGHT_M = 0.035
+BUILDING_ACCESS_PATH_Y_MIN_M = BUILDING_GRASS_UNDERLAY_TOP_M - BUILDING_ACCESS_PATH_HEIGHT_M
 LANE_MARK_WIDTH_M = 0.22
 LANE_MARK_HEIGHT_M = 0.018
 LANE_MARK_Y_MIN_M = 0.018
@@ -5631,7 +5633,7 @@ def _add_building_ground_surfaces(
         _add_polygon_slab(
             scene,
             polygon_xz=polygon_xz,
-            height_m=0.035,
+            height_m=BUILDING_ACCESS_PATH_HEIGHT_M,
             y_min_m=BUILDING_ACCESS_PATH_Y_MIN_M,
             color=access_color,
             surface_role="sidewalk",
