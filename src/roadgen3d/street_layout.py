@@ -6171,6 +6171,11 @@ def _build_osm_base_scene(
     vehicle_clearance_surface = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
     if not getattr(vehicle_clearance_surface, "is_empty", True):
         sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(vehicle_clearance_surface))
+    if not getattr(bus_bay_vehicle_zone, "is_empty", True):
+        sidewalk_clearance_width_m = max(LANE_MARK_WIDTH_M, LANE_EDGE_MARK_WIDTH_M, 0.30)
+        sidewalk_render_zone = _clean_scene_polygonal_geometry(
+            sidewalk_render_zone.difference(bus_bay_vehicle_zone.buffer(sidewalk_clearance_width_m))
+        )
     curb_elevated_side_zone = _union_scene_polygonal_geometries([
         sidewalk_render_zone,
         *elevated_surface_annotation_surfaces,
