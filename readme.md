@@ -7,7 +7,7 @@
 [![Evaluation Engine](https://img.shields.io/badge/eval-road--metrics-green)](src/roadgen3d/eval_engine_ext)
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-> 文档入口见 [docs/README.md](docs/README.md)。下午组会可直接使用 [docs/PROJECT_SUMMARY_FOR_MEETING.md](docs/PROJECT_SUMMARY_FOR_MEETING.md)。
+> 文档入口见 [docs/README.md](docs/README.md)，当前进度总控页见 [docs/current-progress.md](docs/current-progress.md)。下午组会可直接使用 [docs/PROJECT_SUMMARY_FOR_MEETING.md](docs/PROJECT_SUMMARY_FOR_MEETING.md)。
 
 ---
 
