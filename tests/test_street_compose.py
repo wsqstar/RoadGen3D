@@ -3060,6 +3060,45 @@ def test_center_median_marking_stops_at_junction_surface():
         assert max_x <= -1.30 or min_x >= 1.30
 
 
+def test_center_median_suppresses_overlapping_centerline_dashes_only():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    placement_ctx = SimpleNamespace(
+        carriageway=shapely_geometry.box(-20.0, -6.2, 20.0, 6.2),
+        sidewalk_zone=shapely_geometry.MultiPolygon(),
+        road_arm_geometries=[],
+        junction_geometries=[],
+        strip_zones={"center_median": shapely_geometry.box(-20.0, -0.25, 20.0, 0.25)},
+        surface_annotations=[],
+        carriageway_width_m=12.4,
+        detailed_strip_profiles=[
+            {"side": "center", "kind": "drive_lane", "inner_m": -6.2, "outer_m": -3.1},
+            {"side": "center", "kind": "drive_lane", "inner_m": -3.1, "outer_m": 0.0},
+            {"side": "center", "kind": "drive_lane", "inner_m": 0.0, "outer_m": 3.1},
+            {"side": "center", "kind": "drive_lane", "inner_m": 3.1, "outer_m": 6.2},
+        ],
+    )
+
+    scene = street_layout._build_osm_base_scene(
+        placement_ctx,
+        texture_mode="solid_color_legacy",
+    )
+    centerline_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("centerline_mark_")
+    ]
+
+    assert centerline_meshes
+    assert not any(
+        float(mesh.bounds[0][2]) < 0.25 and float(mesh.bounds[1][2]) > -0.25
+        for mesh in centerline_meshes
+    )
+    assert any(float(mesh.bounds[0][2]) < -2.9 and float(mesh.bounds[1][2]) > -3.3 for mesh in centerline_meshes)
+    assert any(float(mesh.bounds[0][2]) < 3.3 and float(mesh.bounds[1][2]) > 2.9 for mesh in centerline_meshes)
+
+
 def test_surface_annotation_transit_pad_derives_required_bus_stop_slot():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

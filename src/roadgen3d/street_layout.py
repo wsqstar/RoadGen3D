@@ -4142,6 +4142,20 @@ def _marking_point_in_exclusion(x_m: float, z_m: float, exclusion_geometries: Se
     return False
 
 
+def _offset_marking_point(
+    *,
+    center_x_m: float,
+    center_z_m: float,
+    yaw_deg: float,
+    lateral_offset_m: float,
+) -> Tuple[float, float]:
+    _, lateral_axis = _road_axes_from_yaw_deg(float(yaw_deg))
+    return (
+        float(center_x_m) + lateral_axis[0] * float(lateral_offset_m),
+        float(center_z_m) + lateral_axis[1] * float(lateral_offset_m),
+    )
+
+
 def _add_centerline_markings(
     scene,
     *,
@@ -4219,16 +4233,22 @@ def _add_centerline_markings(
             distance_m = float(dash_length_m) * 0.5
             while distance_m < float(road_length_m) - float(dash_length_m) * 0.5:
                 center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
-                if _marking_point_in_exclusion(center_x_m, center_z_m, marking_exclusion_geometries):
-                    dash_idx += 1
-                    distance_m += dash_step_m
-                    continue
                 horizontal_axes = _road_axes_from_yaw_deg(yaw_deg)
                 node_name = (
                     f"{node_name_prefix}_{dash_idx}"
                     if len(separator_offsets) == 1
                     else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
                 )
+                marking_x_m, marking_z_m = _offset_marking_point(
+                    center_x_m=center_x_m,
+                    center_z_m=center_z_m,
+                    yaw_deg=yaw_deg,
+                    lateral_offset_m=float(lane_z),
+                )
+                if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
+                    dash_idx += 1
+                    distance_m += dash_step_m
+                    continue
                 _add_road_box(
                     scene,
                     length_m=float(dash_length_m),
@@ -4258,16 +4278,20 @@ def _add_centerline_markings(
     while dash_x < float(road_length_m) / 2.0 - float(dash_length_m) * 0.5:
         world_center_x_m = float(road_center_x_m) + math.cos(math.radians(float(road_yaw_deg))) * float(dash_x)
         world_center_z_m = float(road_center_z_m) + math.sin(math.radians(float(road_yaw_deg))) * float(dash_x)
-        if _marking_point_in_exclusion(world_center_x_m, world_center_z_m, marking_exclusion_geometries):
-            dash_idx += 1
-            dash_x += float(dash_length_m) + float(dash_gap_m)
-            continue
         for separator_idx, lane_z in enumerate(separator_offsets):
             node_name = (
                 f"{node_name_prefix}_{dash_idx}"
                 if len(separator_offsets) == 1
                 else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
             )
+            marking_x_m, marking_z_m = _offset_marking_point(
+                center_x_m=world_center_x_m,
+                center_z_m=world_center_z_m,
+                yaw_deg=float(road_yaw_deg),
+                lateral_offset_m=float(lane_z),
+            )
+            if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
+                continue
             _add_road_box(
                 scene,
                 length_m=float(dash_length_m),
@@ -4355,7 +4379,13 @@ def _add_lane_edge_markings(
             distance_m = mark_length_m * 0.5
             while distance_m < road_len - mark_length_m * 0.15:
                 center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
-                if _marking_point_in_exclusion(center_x_m, center_z_m, marking_exclusion_geometries):
+                marking_x_m, marking_z_m = _offset_marking_point(
+                    center_x_m=center_x_m,
+                    center_z_m=center_z_m,
+                    yaw_deg=yaw_deg,
+                    lateral_offset_m=float(edge_offset),
+                )
+                if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
                     mark_idx += 1
                     distance_m += mark_step_m
                     continue
@@ -4385,7 +4415,13 @@ def _add_lane_edge_markings(
     else:
         # Fallback: render lines without following road shape
         for edge_idx, edge_offset in enumerate(edge_marking_offsets):
-            if _marking_point_in_exclusion(road_center_x_m, road_center_z_m, marking_exclusion_geometries):
+            marking_x_m, marking_z_m = _offset_marking_point(
+                center_x_m=road_center_x_m,
+                center_z_m=road_center_z_m,
+                yaw_deg=road_yaw_deg,
+                lateral_offset_m=float(edge_offset),
+            )
+            if _marking_point_in_exclusion(marking_x_m, marking_z_m, marking_exclusion_geometries):
                 continue
             _add_road_box(
                 scene,
@@ -6397,6 +6433,7 @@ def _build_osm_base_scene(
             surface_role="bike_lane",
         )
     center_median = strip_zones.get("center_median")
+    center_median_marking_exclusion = None
     if center_median is not None and not getattr(center_median, "is_empty", True):
         center_median_render_zone = center_median
         if not getattr(junction_marking_exclusion_surface, "is_empty", True):
@@ -6407,6 +6444,7 @@ def _build_osm_base_scene(
             except Exception:
                 logger.debug("Failed to clip center median marking from junctions", exc_info=True)
         if not getattr(center_median_render_zone, "is_empty", True):
+            center_median_marking_exclusion = center_median_render_zone
             _extrude_polygon(
                 center_median_render_zone,
                 CENTER_PAINTED_MEDIAN_HEIGHT_M,
@@ -6934,6 +6972,9 @@ def _build_osm_base_scene(
         ),
         *bus_bay_vehicle_surfaces,
     ]
+    centerline_marking_exclusion_geometries = list(marking_exclusion_geometries)
+    if center_median_marking_exclusion is not None and not getattr(center_median_marking_exclusion, "is_empty", True):
+        centerline_marking_exclusion_geometries.append(center_median_marking_exclusion)
     if not road_references:
         fallback_reference = getattr(placement_ctx, "road_reference", None)
         if fallback_reference is not None:
@@ -6974,7 +7015,7 @@ def _build_osm_base_scene(
                 ),
                 road_coords=coords,
                 lane_separator_offsets_m=lane_separator_offsets,
-                marking_exclusion_geometries=marking_exclusion_geometries,
+                marking_exclusion_geometries=centerline_marking_exclusion_geometries,
                 color=colors.get("lane_mark", (245, 245, 245, 255)),
                 roughness=(roughness or {}).get("lane_mark", 0.30),
                 node_name_prefix=f"centerline_mark_{road_index}",
@@ -7015,7 +7056,7 @@ def _build_osm_base_scene(
             lane_separator_offsets_m=_drive_lane_internal_offsets(
                 list(getattr(placement_ctx, "detailed_strip_profiles", []) or ())
             ),
-            marking_exclusion_geometries=marking_exclusion_geometries,
+            marking_exclusion_geometries=centerline_marking_exclusion_geometries,
             color=colors.get("lane_mark", (245, 245, 245, 255)),
             roughness=(roughness or {}).get("lane_mark", 0.30),
             texture_mode=texture_mode,
