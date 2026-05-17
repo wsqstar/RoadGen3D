@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.8,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.6,
+    "reasoning": "The scene provides excellent visibility and lighting uniformity (1.0) due to its open layout and lack of sightline obstructions. However, physical safety is compromised by a low buffer ratio (0.22) and low bollard density (0.25), placing pedestrians in close proximity to traffic with minimal protection. Activation is limited by repetitive building forms that offer basic surveillance but little street-level engagement.",
+    "cached": false
+  }
+}

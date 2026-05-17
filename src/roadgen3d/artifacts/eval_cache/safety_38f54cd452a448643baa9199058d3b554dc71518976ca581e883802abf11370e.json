@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene lacks any street lighting (LIGHT_UNI: 0.0), which is a critical safety failure. While sightlines are clear due to the linear layout, there is minimal physical protection from traffic (low buffer and bollard metrics) and the building frontages appear inactive, providing little natural surveillance.",
+    "cached": false
+  }
+}

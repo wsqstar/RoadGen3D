@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene features excellent sightlines and openness, reflected in the zero visibility penalty. While the physical buffer from traffic is low (0.22), the high bollard density (1.0) provides a necessary layer of protection. However, the complete lack of lighting uniformity (0.0) is a significant safety concern for nighttime use, and the repetitive building frontage provides only moderate activation.",
+    "cached": false
+  }
+}

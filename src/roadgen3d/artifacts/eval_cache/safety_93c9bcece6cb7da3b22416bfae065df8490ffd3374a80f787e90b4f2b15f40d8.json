@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene offers good visibility due to its straight, open layout and lack of obstructions (VISIBILITY_PENALTY: 0.0). However, lighting is severely inadequate according to metrics (LIGHT_UNI: 0.0042). While sidewalks and crossings are present (CROSS_PROV: 0.5), the physical buffer from traffic is relatively low (BUFFER_RATIO: 0.2222), though some bollards and trees provide partial protection.",
+    "cached": false
+  }
+}

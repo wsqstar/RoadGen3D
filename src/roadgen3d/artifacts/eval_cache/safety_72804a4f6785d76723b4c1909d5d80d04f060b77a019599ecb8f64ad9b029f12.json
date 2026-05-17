@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 1.0,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene exhibits excellent lighting uniformity (1.0) and clear sightlines with no visibility penalties. However, physical pedestrian protection is a significant weakness; the buffer ratio is low (0.22) and bollard density is sparse (0.16), providing minimal separation from the roadway. Activation is strong due to the continuous building frontage, which ensures good natural surveillance.",
+    "cached": false
+  }
+}

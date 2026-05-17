@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene exhibits a critical failure in lighting uniformity (0.0), which severely compromises safety during non-daylight hours. While visibility is excellent due to an open layout and clear sightlines (Visibility Penalty 0.0), and bollards provide a degree of protection (1.0), the low buffer ratio (0.22) and only moderate crossing provision (0.5) result in a low overall safety rating.",
+    "cached": false
+  }
+}

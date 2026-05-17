@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene lacks any recorded lighting infrastructure (LIGHT_UNI: 0.0), which is a critical safety failure. While visibility is high due to open sightlines and protection is bolstered by a high density of bollards (1.0), the low buffer ratio (0.22) and lack of illumination significantly degrade the overall safety impression.",
+    "cached": false
+  }
+}

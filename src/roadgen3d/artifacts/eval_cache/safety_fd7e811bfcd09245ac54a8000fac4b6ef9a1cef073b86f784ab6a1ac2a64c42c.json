@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene lacks any visible street lighting infrastructure, confirmed by a 0.0 lighting metric, which is a critical safety failure for nighttime use. Visibility is high due to clear sightlines and 'eyes-on-the-street' from building windows. Physical protection is weak; while sidewalks and some planters exist, the buffer from the wide roadway is low (0.22) and crossing provision is sparse.",
+    "cached": false
+  }
+}

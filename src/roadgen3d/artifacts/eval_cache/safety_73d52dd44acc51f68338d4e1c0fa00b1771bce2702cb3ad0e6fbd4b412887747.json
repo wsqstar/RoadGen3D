@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.8,
+    "overall": 0.4,
+    "reasoning": "The scene suffers from a complete lack of uniform lighting (0.0 metric), which severely impacts safety after dark. While visibility is high due to clear sightlines and activation is strong from the continuous building frontage, physical protection is mediocre with a low buffer ratio (0.22) and sparse crossing points (0.5).",
+    "cached": false
+  }
+}

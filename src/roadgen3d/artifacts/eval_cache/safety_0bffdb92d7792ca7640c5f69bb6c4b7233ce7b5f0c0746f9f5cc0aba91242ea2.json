@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene demonstrates strong visibility and activation due to the continuous building frontage and high density of points of interest. However, the lighting uniformity metric is extremely low (0.0176), indicating a significant safety concern at night. Physical protection is moderate, with a buffer ratio of 0.22 and average crossing provision (0.5).",
+    "cached": false
+  }
+}

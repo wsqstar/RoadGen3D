@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 1.0,
+    "visibility": 1.0,
+    "protection": 0.4,
+    "activation": 0.8,
+    "overall": 0.8,
+    "reasoning": "The scene exhibits excellent visibility and lighting uniformity (LIGHT_UNI: 1.0) with no sightline obstructions (VISIBILITY_PENALTY: 0.0). Continuous building frontages provide strong passive surveillance. However, physical protection is weak due to a low buffer ratio (0.22) and sparse bollard placement, leaving pedestrians relatively exposed to traffic despite the presence of crossings.",
+    "cached": false
+  }
+}

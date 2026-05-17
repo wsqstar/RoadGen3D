@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.4,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.5,
+    "reasoning": "The scene provides excellent sightlines and openness (Visibility 4), supported by a zero visibility penalty. However, pedestrian safety is compromised by a low buffer ratio (0.22) and sparse bollard density (0.16), leaving pedestrians exposed to the wide roadway. Lighting uniformity is also low (1.0), and the repetitive building structures offer limited street-level activation.",
+    "cached": false
+  }
+}

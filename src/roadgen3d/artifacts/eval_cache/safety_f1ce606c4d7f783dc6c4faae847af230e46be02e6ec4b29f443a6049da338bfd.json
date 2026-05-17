@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.8,
+    "visibility": 1.0,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.7,
+    "reasoning": "The scene features excellent visibility and sightlines with no obstructions (VISIBILITY_PENALTY: 0.0) and high lighting uniformity (LIGHT_UNI: 1.0). However, physical protection is a weak point, with a low buffer ratio (0.22) and sparse bollards (0.25). Continuous building frontages provide consistent passive surveillance, though the environment lacks high-intensity activation.",
+    "cached": false
+  }
+}

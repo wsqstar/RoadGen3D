@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene has excellent visibility and sightlines with passive surveillance from building windows. Pedestrians are somewhat protected by wide sidewalks and a tree buffer (BUFFER_RATIO: 0.22). However, the complete lack of street lighting (LIGHT_UNI: 0.0) is a critical safety failure. While benches are provided, the overall activation remains low due to a lack of diverse points of interest.",
+    "cached": false
+  }
+}

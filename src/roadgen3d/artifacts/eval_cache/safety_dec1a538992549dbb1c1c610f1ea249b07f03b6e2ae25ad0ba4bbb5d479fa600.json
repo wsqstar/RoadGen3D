@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene provides good sightlines and passive surveillance from continuous building frontages, supported by a zero visibility penalty. However, pedestrian safety is significantly undermined by extremely low lighting uniformity (0.04) and minimal physical separation from traffic, as indicated by the low buffer ratio (0.22) and sparse bollard density (0.17).",
+    "cached": false
+  }
+}

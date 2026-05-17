@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene features clear, unobstructed sightlines and continuous building frontages that provide potential surveillance. However, the safety score is heavily penalized by a lack of lighting uniformity (0.0) and a low buffer ratio (0.22) between the sidewalk and the road. While bollards are present at intersections, the overall physical protection and nighttime visibility are inadequate.",
+    "cached": false
+  }
+}

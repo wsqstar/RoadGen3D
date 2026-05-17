@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene exhibits strong visibility and activation due to transparent building facades and a high density of activity nodes. While the physical buffer is narrow (0.22), the high bollard density (1.0) provides a necessary layer of protection. However, the complete lack of uniform lighting (0.0) is a major safety concern for non-daylight hours.",
+    "cached": false
+  }
+}

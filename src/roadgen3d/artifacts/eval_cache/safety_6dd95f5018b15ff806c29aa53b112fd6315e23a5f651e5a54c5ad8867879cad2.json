@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene provides clear sightlines and strong potential for natural surveillance from the continuous building frontages. However, pedestrian safety is significantly hindered by poor lighting adequacy (LIGHT_UNI: 1.0) and a lack of robust physical separation from traffic, reflected in the low buffer ratio (0.22) and sparse bollard density (0.17).",
+    "cached": false
+  }
+}

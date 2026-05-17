@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene provides basic pedestrian infrastructure with continuous sidewalks and regular crossings (CROSS_PROV: 0.5). However, safety is significantly compromised by extremely poor lighting uniformity (LIGHT_UNI: 0.0042) and a narrow buffer between pedestrians and the roadway (BUFFER_RATIO: 0.2222). While visibility is clear and building frontage suggests some activation, the lack of physical protection and adequate illumination results in a low overall safety impression.",
+    "cached": false
+  }
+}

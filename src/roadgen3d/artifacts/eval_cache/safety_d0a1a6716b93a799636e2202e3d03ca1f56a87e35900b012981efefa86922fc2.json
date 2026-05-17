@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 1.0,
+    "visibility": 1.0,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.8,
+    "reasoning": "The design achieves a high safety score for visibility and lighting, supported by a perfect lighting uniformity metric (1.0) and zero visibility penalties. The long, straight corridor provides excellent sightlines. However, physical protection is a weak point, with a low buffer ratio (0.22) and sparse bollards (0.25), meaning pedestrians have little physical separation from the roadway. Activation is moderate, provided by the consistent building frontages along the length of the street.",
+    "cached": false
+  }
+}

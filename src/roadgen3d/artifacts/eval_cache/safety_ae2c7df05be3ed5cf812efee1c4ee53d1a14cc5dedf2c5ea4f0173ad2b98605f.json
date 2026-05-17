@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene lacks any visible street lighting infrastructure, confirmed by a LIGHT_UNI metric of 0.0, which severely impacts night-time safety. Visibility is high during the day due to wide-open sightlines and building windows providing passive surveillance. Physical protection is limited; while sidewalks are wide, the buffer ratio is low (0.22) and there is no robust physical separation from the roadway. Activation is supported by numerous benches and building entrances, but the lack of lighting remains the primary safety concern.",
+    "cached": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene lacks any visible street lighting infrastructure, confirmed by a LIGHT_UNI score of 0.0, which is a critical safety failure for night use. Visibility is high due to wide, open sightlines and windows facing the street, though the environment is sterile. Protection is moderate with sidewalks and bollards present, but the road is excessively wide with sparse crossing provisions. Activation is low as the repetitive building blocks and lack of commercial ground-floor activity provide minimal natural surveillance.",
+    "cached": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene provides excellent sightlines due to its open layout (visibility penalty 0.0), but fails in most other safety categories. Lighting uniformity is very low (1.0), and physical protection is minimal with a low buffer ratio (0.22) and sparse bollards. Activation is limited by the one-sided building arrangement, reducing natural surveillance.",
+    "cached": false
+  }
+}

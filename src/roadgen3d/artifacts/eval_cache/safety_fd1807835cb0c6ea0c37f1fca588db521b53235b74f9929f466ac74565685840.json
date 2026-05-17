@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene provides clear sightlines and continuous building frontage which supports surveillance, but it is severely compromised by a near-total lack of lighting uniformity (0.0042). Physical protection is also weak, with a low buffer ratio (0.22) separating pedestrians from the traffic lanes, despite the presence of some bollards and crossings.",
+    "cached": false
+  }
+}

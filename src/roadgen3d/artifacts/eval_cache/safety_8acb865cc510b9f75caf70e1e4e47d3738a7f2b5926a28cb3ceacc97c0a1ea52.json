@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene demonstrates strong visibility and activation due to clear sightlines and a high density of building entrances/POIs. While the physical buffer from traffic is narrow (0.22), the high bollard density (1.0) provides significant protection. However, the overall score is tempered by a complete lack of lighting uniformity (0.0), which is a critical failure for nighttime safety.",
+    "cached": false
+  }
+}

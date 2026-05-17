@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.2,
+    "overall": 0.3,
+    "reasoning": "The scene lacks any visible street lighting (confirmed by a LIGHT_UNI metric of 0.0), which is a critical safety failure for nighttime use. While sightlines are clear and unobstructed, the environment is desolate and lacks active surveillance or street-level engagement. Protection is basic; although wide sidewalks exist, bollard density is extremely low (0.04) and the wide road layout creates high exposure for pedestrians at junctions.",
+    "cached": false
+  }
+}

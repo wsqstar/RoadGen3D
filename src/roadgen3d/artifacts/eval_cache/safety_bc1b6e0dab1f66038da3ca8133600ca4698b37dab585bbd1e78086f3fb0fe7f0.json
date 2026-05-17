@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 1.0,
+    "visibility": 1.0,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.8,
+    "reasoning": "The scene scores exceptionally well in visibility and lighting uniformity (1.0), ensuring clear sightlines and no dark corners. However, physical protection is a weak point due to a low buffer ratio (0.22), placing pedestrians in close proximity to traffic, though this is partially mitigated by a moderate density of bollards (0.41). Activation is consistent across the corridor but lacks variety.",
+    "cached": false
+  }
+}

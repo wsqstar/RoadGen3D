@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.4,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.2,
+    "overall": 0.4,
+    "reasoning": "The scene offers excellent sightlines with no visibility penalties, but fails in most other safety aspects. Street lighting is visually sparse, which would lead to dark patches at night. Physical protection is weak, supported by a low buffer ratio (0.22) and minimal bollard density (0.16). The environment is extremely sterile with repetitive, inactive facades that provide no social surveillance or 'eyes on the street,' creating a hostile pedestrian experience.",
+    "cached": false
+  }
+}

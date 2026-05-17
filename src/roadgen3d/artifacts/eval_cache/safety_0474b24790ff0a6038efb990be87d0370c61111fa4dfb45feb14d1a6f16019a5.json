@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.0,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene suffers from a complete lack of street lighting according to the metrics (LIGHT_UNI: 0.0), which is a critical safety deficit. While visibility is high due to clear sightlines and bollards provide some protection from traffic, the overall safety is poor because the environment would be unusable/unsafe at night.",
+    "cached": false
+  }
+}

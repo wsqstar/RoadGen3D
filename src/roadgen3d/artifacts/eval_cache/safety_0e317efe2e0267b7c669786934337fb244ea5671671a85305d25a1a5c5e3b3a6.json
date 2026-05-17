@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 1.0,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene features excellent lighting continuity (1.0) and clear sightlines with no visibility penalties. However, pedestrian protection is low, characterized by a minimal buffer ratio (0.22) and very few bollards, leaving pedestrians physically exposed to the adjacent roadway. While the high density of building units suggests good activation and surveillance, the lack of robust physical separation from traffic limits the overall safety score.",
+    "cached": false
+  }
+}

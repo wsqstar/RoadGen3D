@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The scene provides good sightlines and visibility (penalty 0.0) with consistent building frontage for passive surveillance. However, pedestrian safety is significantly compromised by extremely low lighting uniformity (0.04) and minimal physical protection from traffic, reflected in the low buffer ratio and bollard density.",
+    "cached": false
+  }
+}

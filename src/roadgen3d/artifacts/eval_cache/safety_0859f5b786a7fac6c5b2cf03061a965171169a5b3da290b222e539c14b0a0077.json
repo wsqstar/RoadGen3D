@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene lacks any visible street lighting infrastructure, which is corroborated by the very low LIGHT_UNI metric (0.0987), posing a significant safety risk at night. While visibility is good due to wide-open sightlines, the environment is sterile with no active ground-floor uses. Physical protection is limited to basic sidewalks and tree buffers with minimal separation from the roadway.",
+    "cached": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.8,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene exhibits high lighting uniformity (1.0) and excellent visibility with no sightline penalties, providing a strong sense of passive surveillance. However, physical safety is compromised by a low buffer ratio (0.22) and sparse bollard density (0.16), which leaves pedestrians relatively exposed to the adjacent traffic lanes.",
+    "cached": false
+  }
+}

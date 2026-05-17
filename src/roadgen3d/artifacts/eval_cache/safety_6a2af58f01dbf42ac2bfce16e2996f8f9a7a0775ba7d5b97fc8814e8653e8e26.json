@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.8,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene benefits from high lighting uniformity (1.0) and excellent visibility with no sightline penalties. However, pedestrian protection is weak due to a low buffer ratio (0.22) and moderate crossing provisions (0.5). While the continuous building frontage provides basic surveillance, the environment remains somewhat car-centric.",
+    "cached": false
+  }
+}

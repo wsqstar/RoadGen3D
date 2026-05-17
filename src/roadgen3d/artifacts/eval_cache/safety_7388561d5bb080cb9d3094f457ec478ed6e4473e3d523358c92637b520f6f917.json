@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.8,
+    "visibility": 1.0,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.7,
+    "reasoning": "The design features excellent sightlines and no visibility penalties, complemented by high lighting uniformity (1.0). However, pedestrian protection is weak, with a low buffer ratio (0.22) and minimal bollard density (0.25), providing little physical separation from the roadway. Activation is moderate based on the POI distribution in the hero view.",
+    "cached": false
+  }
+}

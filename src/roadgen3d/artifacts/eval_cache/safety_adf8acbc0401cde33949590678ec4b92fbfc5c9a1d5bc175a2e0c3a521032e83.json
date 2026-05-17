@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 1.0,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene features excellent lighting uniformity (1.0) and clear sightlines with no visibility penalties. However, pedestrian protection is lacking due to a low buffer ratio (0.22) and only moderate crossing provisions (0.5), which increases exposure to traffic despite some bollard presence.",
+    "cached": false
+  }
+}

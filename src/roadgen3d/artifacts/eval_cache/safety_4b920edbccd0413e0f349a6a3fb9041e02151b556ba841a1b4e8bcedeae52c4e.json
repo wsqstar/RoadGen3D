@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene offers excellent visibility with clear sightlines and no obstructions, supported by a zero visibility penalty metric. Protection is moderate; while bollard density is high (1.0), the physical buffer from traffic is relatively thin (0.22). Lighting is the weakest point, with a metric of 0.0 indicating poor uniformity. Activation is fair due to the continuous building frontage providing some natural surveillance.",
+    "cached": false
+  }
+}

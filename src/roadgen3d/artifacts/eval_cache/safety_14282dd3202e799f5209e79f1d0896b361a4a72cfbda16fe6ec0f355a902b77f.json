@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.8,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.6,
+    "reasoning": "The scene exhibits excellent visibility with clear sightlines and no obstructions (visibility penalty of 0.0). Lighting uniformity is high (1.0), suggesting a consistent environment at night. However, physical protection is lacking; the buffer ratio is low (0.22) and bollard density is minimal (0.25), meaning pedestrians have little separation from vehicle traffic. Continuous building frontages provide passive surveillance, but the lack of robust physical barriers limits the overall safety score.",
+    "cached": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.6,
+    "activation": 0.8,
+    "overall": 0.6,
+    "reasoning": "The scene exhibits strong visibility and activation due to clear sightlines and a high density of points of interest along the corridor. Protection is moderate; while the physical buffer is thin (0.22), the high bollard density (1.0) provides a necessary safety layer. However, the overall score is tempered by the critical lack of lighting uniformity (0.0), which would significantly degrade perceived safety at night.",
+    "cached": false
+  }
+}

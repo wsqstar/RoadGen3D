@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.4,
+    "visibility": 0.6,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene provides clear sightlines with no visibility penalties, but is undermined by low lighting uniformity (0.1995) and weak physical protection (buffer ratio 0.22 and low bollard density). Pedestrian safety is further limited by one-sided building activation, which reduces natural surveillance.",
+    "cached": false
+  }
+}

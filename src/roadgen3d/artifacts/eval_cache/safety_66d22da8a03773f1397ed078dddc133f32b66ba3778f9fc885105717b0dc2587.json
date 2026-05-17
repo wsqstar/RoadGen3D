@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.6,
+    "overall": 0.4,
+    "reasoning": "The street provides excellent sightlines and visibility (penalty 0.0), supported by a consistent building edge for passive surveillance. However, pedestrian safety is compromised by extremely low lighting uniformity (0.0876) and insufficient physical protection, as evidenced by the low buffer ratio (0.22) and bollard density (0.16).",
+    "cached": false
+  }
+}

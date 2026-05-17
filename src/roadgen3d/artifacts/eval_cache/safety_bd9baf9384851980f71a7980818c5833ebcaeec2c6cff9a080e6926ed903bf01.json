@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v3_visual_context",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.6,
+    "protection": 0.6,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The scene features wide sidewalks and clear sightlines with windows providing some passive surveillance. However, the street lighting is critically inadequate (metric 0.07) and no lamp posts are visible in the renders. While physical protection is moderate with a decent buffer ratio and bollards, the lack of active ground-floor uses and poor illumination significantly reduces the holistic safety impression.",
+    "cached": false
+  }
+}

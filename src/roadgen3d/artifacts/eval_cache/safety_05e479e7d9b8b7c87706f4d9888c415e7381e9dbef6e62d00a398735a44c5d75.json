@@ -1,0 +1,15 @@
+{
+  "version": "safety_eval_v2_visual",
+  "result": {
+    "available": true,
+    "source": "llm",
+    "visual_input": "provided",
+    "lighting": 0.2,
+    "visibility": 0.8,
+    "protection": 0.4,
+    "activation": 0.4,
+    "overall": 0.4,
+    "reasoning": "The environment is highly car-oriented with very poor lighting metrics (LIGHT_UNI: 0.01) and minimal physical buffers between the wide roadway and pedestrian areas. While visibility is high due to an open layout and lack of obstructions, the lack of active street fronts and adequate lighting creates a low sense of security.",
+    "cached": false
+  }
+}
