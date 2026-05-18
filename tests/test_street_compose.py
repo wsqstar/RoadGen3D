@@ -2830,7 +2830,8 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
         for node_name in scene.graph.nodes_geometry
         if str(node_name).startswith("sidewalk_")
     ]
-    assert all(np.all(np.asarray(mesh.face_normals)[:, 1] > 0.5) for mesh in sidewalk_meshes if len(mesh.faces))
+    assert sidewalk_meshes
+    assert any(str(name).startswith("sidewalk_sidewall_") for name in node_names)
     sidewalk_vertices = _vertices_for("sidewalk_")
     if sidewalk_vertices.size:
         bus_bay_sidewalk_clearance = bus_bay.buffer(street_layout.BUS_BAY_SIDEWALK_CLEARANCE_M * 0.75)
@@ -2880,7 +2881,7 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
         )
         assert not np.any(old_edge_curb)
         assert not np.any(moved_edge_curb)
-        bus_bay_curb_suppression = bus_bay.buffer(0.25)
+        bus_bay_curb_suppression = bus_bay.buffer(street_layout.BUS_BAY_CURB_SUPPRESSION_M * 0.9)
         assert not any(
             bus_bay_curb_suppression.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
             for vertex in curb_vertices

@@ -3728,6 +3728,7 @@ CROSSING_STRIPE_TOP_Y_M = 0.044
 BUS_BAY_SURFACE_HEIGHT_M = 0.006
 BUS_BAY_SURFACE_TOP_Y_M = 0.006
 BUS_BAY_SIDEWALK_CLEARANCE_M = 0.04
+BUS_BAY_CURB_SUPPRESSION_M = 0.50
 CENTER_PAINTED_MEDIAN_HEIGHT_M = LANE_MARK_HEIGHT_M
 CENTER_PAINTED_MEDIAN_TOP_Y_M = LANE_MARK_Y_MIN_M + LANE_MARK_HEIGHT_M
 CENTER_PAINTED_MEDIAN_COLOR = (230, 200, 50, 255)
@@ -6277,6 +6278,92 @@ def _build_osm_base_scene(
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
+    def _iter_scene_line_strings(geometry: Any) -> Iterable[Any]:
+        from shapely.geometry import GeometryCollection, LineString, MultiLineString
+
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return
+        if isinstance(geometry, LineString):
+            yield geometry
+            return
+        if isinstance(geometry, MultiLineString):
+            for line in geometry.geoms:
+                if not getattr(line, "is_empty", True):
+                    yield line
+            return
+        if isinstance(geometry, GeometryCollection) or hasattr(geometry, "geoms"):
+            for item in geometry.geoms:
+                yield from _iter_scene_line_strings(item)
+
+    def _render_sidewalk_sidewalls(
+        geom: Any,
+        *,
+        suppress_geometry: Any | None = None,
+        name_prefix: str = "sidewalk_sidewall",
+    ) -> None:
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+        polygons: list[Any] = []
+        if isinstance(geom, ShapelyPolygon):
+            polygons = [geom]
+        elif isinstance(geom, MultiPolygon):
+            polygons = list(geom.geoms)
+
+        sidewalk_color = list(colors.get("sidewalk", (165, 168, 172, 255)))
+        bottom_y = SIDEWALK_ELEVATION_M - 0.08
+        top_y = SIDEWALK_ELEVATION_M
+        wall_vertices: list[list[float]] = []
+        wall_faces: list[list[int]] = []
+        for poly in polygons:
+            if getattr(poly, "is_empty", True):
+                continue
+            linework = poly.boundary
+            if suppress_geometry is not None and not getattr(suppress_geometry, "is_empty", True):
+                try:
+                    linework = linework.difference(suppress_geometry)
+                except Exception:
+                    logger.debug("Failed to clip sidewalk sidewall linework", exc_info=True)
+            for line in _iter_scene_line_strings(linework):
+                coords = list(line.coords)
+                for start, end in zip(coords[:-1], coords[1:]):
+                    x0, z0 = float(start[0]), float(start[1])
+                    x1, z1 = float(end[0]), float(end[1])
+                    if math.hypot(x1 - x0, z1 - z0) < 0.02:
+                        continue
+                    start_idx = len(wall_vertices)
+                    wall_vertices.extend(
+                        [
+                            [x0, bottom_y, z0],
+                            [x1, bottom_y, z1],
+                            [x1, top_y, z1],
+                            [x0, top_y, z0],
+                        ]
+                    )
+                    wall_faces.extend(
+                        [
+                            [start_idx, start_idx + 1, start_idx + 2],
+                            [start_idx, start_idx + 2, start_idx + 3],
+                        ]
+                    )
+        if not wall_vertices:
+            return
+        mesh = trimesh.Trimesh(
+            vertices=np.array(wall_vertices, dtype=float),
+            faces=np.array(wall_faces, dtype=np.int64),
+            process=False,
+        )
+        mesh.fix_normals()
+        mesh = _apply_surface_finish(
+            mesh,
+            surface_role="sidewalk",
+            rgba=sidewalk_color,
+            roughness=(roughness or {}).get("sidewalk", 0.9),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        scene.add_geometry(mesh, node_name=f"{name_prefix}_0")
+
     def _center_flowerbed_parts(geom: object) -> tuple[object, object]:
         from shapely.geometry import MultiPolygon
 
@@ -6468,11 +6555,21 @@ def _build_osm_base_scene(
             surface_role="carriageway",
         )
     if not sidewalk_render_zone.is_empty:
+        has_bus_bay_vehicle_zone = not getattr(bus_bay_vehicle_zone, "is_empty", True)
         _extrude_polygon(
             sidewalk_render_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
             y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
-            top_only=not getattr(bus_bay_vehicle_zone, "is_empty", True),
+            top_only=has_bus_bay_vehicle_zone,
         )
+        if has_bus_bay_vehicle_zone:
+            try:
+                sidewalk_sidewall_suppression = bus_bay_vehicle_zone.buffer(BUS_BAY_CURB_SUPPRESSION_M, join_style=2)
+            except Exception:
+                sidewalk_sidewall_suppression = bus_bay_vehicle_zone
+            _render_sidewalk_sidewalls(
+                sidewalk_render_zone,
+                suppress_geometry=sidewalk_sidewall_suppression,
+            )
 
     # Overlay center strips (bike lane, median) on top of carriageway
     strip_zones = getattr(placement_ctx, "strip_zones", {}) or {}
@@ -6553,9 +6650,8 @@ def _build_osm_base_scene(
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
             if not getattr(bus_bay_vehicle_zone, "is_empty", True):
-                curb_suppression_width_m = max(curb_width * 2.5, 0.30)
                 curb_zone = _clean_scene_polygonal_geometry(
-                    curb_zone.difference(bus_bay_vehicle_zone.buffer(curb_suppression_width_m))
+                    curb_zone.difference(bus_bay_vehicle_zone.buffer(BUS_BAY_CURB_SUPPRESSION_M, join_style=2))
                 )
             if not curb_zone.is_empty:
                 _extrude_polygon(
