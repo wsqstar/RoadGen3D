@@ -6471,6 +6471,7 @@ def _build_osm_base_scene(
         _extrude_polygon(
             sidewalk_render_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
             y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
+            top_only=not getattr(bus_bay_vehicle_zone, "is_empty", True),
         )
 
     # Overlay center strips (bike lane, median) on top of carriageway

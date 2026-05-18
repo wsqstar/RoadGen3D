@@ -2825,6 +2825,12 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
         bus_bay_color = bus_bay_color * 255.0
     assert bus_bay_color[:4] == pytest.approx((65, 68, 72, 255))
     assert tracker.surface_role_counts.get("bus_lane", 0) == 0
+    sidewalk_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("sidewalk_")
+    ]
+    assert all(np.all(np.asarray(mesh.face_normals)[:, 1] > 0.5) for mesh in sidewalk_meshes if len(mesh.faces))
     sidewalk_vertices = _vertices_for("sidewalk_")
     if sidewalk_vertices.size:
         bus_bay_sidewalk_clearance = bus_bay.buffer(street_layout.BUS_BAY_SIDEWALK_CLEARANCE_M * 0.75)
