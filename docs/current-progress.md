@@ -25,7 +25,7 @@ If documents disagree, use this order:
 5. `[now]` [DEPLOYMENT_AND_JOBS.md](DEPLOYMENT_AND_JOBS.md) for local services, job service limits, and artifact boundaries.
 6. `[now]` [README.md](../readme.md) for quick start and high-level repo orientation.
 7. `[plan]` [features/README.md](features/README.md) for feature-specific plans and still-useful design notes.
-8. `【drop】` [archive/README.md](archive/README.md), `web/workbench`, and third-party/vendor docs for historical context only.
+8. `【drop】` [archive/README.md](archive/README.md)、`legacy/web_workbench`（兼容入口 `web/workbench`）及第三方/vendor 文档仅作历史参考。
 
 ## One-Line Project State
 
@@ -66,7 +66,7 @@ If documents disagree, use this order:
 | Data contracts | `[now]` | `data/schemas/scene_layout.schema.json`, `docs/DATA_CONTRACTS.md` | `scene_layout.json` has `schema_version=roadgen3d.scene_layout.v1`; more summary/API schemas still need refinement. |
 | Evaluation | `[now]` | `src/roadgen3d/eval_engine_ext/road_metrics` | Active road-metrics engine for walkability, safety, beauty, overall, child-friendly auxiliary scoring, and scenario rubric inputs. |
 | Viewer local adapter | `[now][todo]` | `web/viewer/vite.config.ts` | Local development file and manifest APIs. Useful now, but production-equivalent FastAPI/artifact service boundaries still need cleanup. |
-| Legacy UI | `【drop】` | `web/workbench` | Historical Workbench only. Do not add new features there. |
+| Legacy UI | `【drop】` | `legacy/web_workbench` | Historical Workbench only. Do not add new features there. |
 
 ## Submodule and External Boundaries
 
@@ -140,6 +140,7 @@ If documents disagree, use this order:
 | `todo.md` | `[todo]` | Small legacy to-do list. Fold actionable items into this progress map or issue tracker later. |
 | `docs/README.md` | `[now]` | Primary documentation navigation entrypoint. |
 | `docs/current-progress.md` | `[now]` | This integrated progress map. |
+| `docs/PROJECT_LAYOUT.md` | `[now]` | Directory split guide and active/legacy boundary map. |
 | `docs/ACTIVE_ENTRYPOINTS.md` | `[now]` | Current entrypoint and legacy alias boundaries. |
 | `docs/ROADGEN3D_FRAMEWORK.md` | `[now]` | Current architecture and main flow source of truth. |
 | `docs/DATA_CONTRACTS.md` | `[now]` | Contracts for request models, `scene_layout.json`, semantic layers, and job status. |
@@ -200,7 +201,7 @@ If documents disagree, use this order:
 | `web/viewer/docs/multi-lane.md` | `[now][plan]` | Multi-lane band geometry notes. |
 | `web/viewer/src/styles/README.md` | `[now]` | Viewer styling organization. |
 | `web/viewer/docs/archive/*` | `【drop】` | Historical refactor and G6 plans. |
-| `web/workbench/README.md`, `web/workbench/tasks.md` | `【drop】` | Archived historical Workbench. |
+| `legacy/web_workbench/README.md`, `legacy/web_workbench/tasks.md` | `【drop】` | Archived historical Workbench. |
 
 ### Archived and Third-Party Docs
 

@@ -1,4 +1,7 @@
 PYTHON := .venv/bin/python
+SCRIPTS_DIR := ops/scripts
+CONFIGS_DIR := ops/configs
+EXAMPLES_DIR := ops/examples
 MODEL_DIR := models/clip-vit-base-patch32
 MANIFEST := data/real/real_assets_manifest.jsonl
 ARTIFACTS := artifacts/real
@@ -170,22 +173,22 @@ viewer-install:
 	npm --prefix web/viewer install
 
 knowledge-build:
-	$(PYTHON) scripts/knowledge/build_pdf_knowledge_base.py \
+	$(PYTHON) $(SCRIPTS_DIR)/knowledge/build_pdf_knowledge_base.py \
 		--pdf-path "knowledge/book/Complete streets design guide.pdf" \
 		--out-dir knowledge/complete_streets
 
 collect:
-	$(PYTHON) scripts/layout_collect_data.py \
+	$(PYTHON) $(SCRIPTS_DIR)/layout_collect_data.py \
 		--manifest $(MANIFEST) --artifacts $(ARTIFACTS) \
 		--out $(M4_DIR)/policy_train.jsonl \
 		--model-dir $(MODEL_DIR) --local-files-only
 
 train:
-	$(PYTHON) scripts/layout_train.py \
+	$(PYTHON) $(SCRIPTS_DIR)/layout_train.py \
 		--data $(M4_DIR)/policy_train.jsonl --out-dir $(M4_DIR)
 
 eval:
-	$(PYTHON) scripts/layout_eval.py \
+	$(PYTHON) $(SCRIPTS_DIR)/layout_eval.py \
 		--placement-policy learned --policy-ckpt $(M4_DIR)/layout_policy.pt \
 		--compare-rule --manifest $(MANIFEST) --artifacts $(ARTIFACTS) \
 		--out-dir $(M4_DIR) --model-dir $(MODEL_DIR) --local-files-only
@@ -196,7 +199,7 @@ SNAPSHOT_ITERS ?= 3
 SF_MANIFEST := data/street_furniture/street_furniture_manifest.jsonl
 
 snapshot-diff:
-	$(PYTHON) scripts/snapshot_diff.py \
+	$(PYTHON) $(SCRIPTS_DIR)/snapshot_diff.py \
 		--query $(SNAPSHOT_QUERY) \
 		--max-iterations $(SNAPSHOT_ITERS) \
 		--manifest $(SF_MANIFEST) \
@@ -284,11 +287,11 @@ test-pipeline:
 		echo "    [配置] 使用预设配置 (LLM 禁用)"; \
 		LLM_FLAG=""; \
 	fi; \
-	uv run python scripts/test_workflow.py $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
+	uv run python $(SCRIPTS_DIR)/test_workflow.py $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	TEST_EXIT=$$?; \
 	echo ""; \
 	echo "[汇总] 生成报告汇总..."; \
-	uv run python scripts/test_pipeline.py; \
+	uv run python $(SCRIPTS_DIR)/test_pipeline.py; \
 	LATEST_REPORT=$$(ls -t $(TEST_REPORTS_DIR)/test_*.md 2>/dev/null | head -n 1); \
 	VIEWER_URL=""; \
 	if [ -n "$$LATEST_REPORT" ]; then \
@@ -359,9 +362,9 @@ test-batch:
 		LLM_FLAG=""; \
 	fi; \
 	if [ -n "$(PRESETS)" ]; then \
-		uv run python scripts/test_batch.py --all --workers 6 $$RANDOM_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR) --presets $(PRESETS); \
+		uv run python $(SCRIPTS_DIR)/test_batch.py --all --workers 6 $$RANDOM_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR) --presets $(PRESETS); \
 	else \
-		uv run python scripts/test_batch.py --all --workers 6 $$RANDOM_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
+		uv run python $(SCRIPTS_DIR)/test_batch.py --all --workers 6 $$RANDOM_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	fi; \
 	TEST_EXIT=$$?; \
 	echo ""; \
@@ -401,9 +404,9 @@ test-preset:
 	else \
 		LLM_FLAG=""; \
 	fi; \
-	uv run python scripts/test_workflow.py $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
+	uv run python $(SCRIPTS_DIR)/test_workflow.py $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	EXIT=$$?; \
-	uv run python scripts/test_pipeline.py; \
+	uv run python $(SCRIPTS_DIR)/test_pipeline.py; \
 	exit $$EXIT
 
 # View latest test report

@@ -44,12 +44,19 @@ RoadGen3D/
 │   ├── branch_runs/        # 分支搜索 manifest、trace、layout、保留的 GLB
 │   └── branch_benchmarks/  # 持久化 benchmark samples 与汇总索引
 │
+├── 🗂️ 运营与工具层 (ops/)
+│   ├── scripts/              # 运维/研究脚本（实际路径：ops/scripts）
+│   ├── configs/              # 运行/实验配置（实际路径：ops/configs）
+│   └── examples/             # 示例场景与演示（实际路径：ops/examples）
 └── 📖 文档 (docs/)
     ├── ROADGEN3D_FRAMEWORK.md         # 当前框架总览和主流程
     ├── DATA_CONTRACTS.md              # 数据契约
     ├── EVALUATION.md                  # 当前评价契约
     ├── DEPLOYMENT_AND_JOBS.md         # 部署与任务边界
-    └── PROJECT_SUMMARY_FOR_MEETING.md # 组会一页总结
+    ├── ACTIVE_ENTRYPOINTS.md          # 活跃入口与兼容边界
+    ├── current-progress.md            # 进度与文档主控索引
+    ├── PROJECT_LAYOUT.md              # 目录分层导航（新增）
+    └── PROJECT_SUMMARY_FOR_MEETING.md  # 组会一页总结
 ```
 
 ### 🔑 核心设计理念
@@ -174,6 +181,17 @@ make dev
 ```bash
 ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web
 ```
+
+兼容性说明：
+
+- 新目录已归位到 `ops/` 与 `legacy/`，根目录保留兼容入口：
+  - `scripts` -> `ops/scripts`
+  - `configs` -> `ops/configs`
+  - `examples` -> `ops/examples`
+  - `evaluation` -> `legacy/evaluation`
+  - `ui` -> `legacy/ui_api_legacy`
+  - `.archive` -> `legacy/_archive`
+  - `web/workbench` -> `legacy/web_workbench`
 
 ### 测试 Pipeline
 
@@ -396,7 +414,7 @@ RoadGen3D/
 │   │   ├── graph_loader.py         # Parse Viewer graph JSON → scene overrides
 │   │   ├── scene_renderer.py       # Matplotlib top-down preview rendering
 │   │   ├── iteration_controller.py # Generate → evaluate → improve loop
-│   │   └── cli.py                  # (entry point via scripts/)
+│   │   └── cli.py                  # (entry point via ops/scripts/)
 │   ├── llm/                # LLM design assistant (optional)
 │   │   ├── glm_client.py
 │   │   ├── prompts.py
@@ -410,9 +428,10 @@ RoadGen3D/
 │   │   ├── branch_runs.py          # Branch / Pareto generation, trace payloads, artifact retention
 │   │   └── branch_benchmarks.py    # Persistent benchmark store, feature extraction, correlations
 │   └── ...
-├── scripts/                # CLI tools (rag_*, asset_*, street_*, layout_*, osm_*, program_*)
-│   ├── auto_scene_pipeline.py      # Auto pipeline CLI entry point
-│   └── run_auto_eval.py            # Multi-version auto evaluation
+├── ops/
+│   ├── scripts/               # CLI tools (rag_*, asset_*, street_*, layout_*, osm_*, program_*)
+│   ├── configs/               # 配置（入口/实验配置、demo 配置）
+│   └── examples/              # 示例脚本与演示入口
 ├── web/
 │   ├── api/                # FastAPI backend service (port 8010)
 │   ├── viewer/             # Active design + Three.js scene viewer (port 4173, submodule)
@@ -586,7 +605,7 @@ Example design directions:
 ### Generate a Street Scene
 
 ```bash
-uv run python scripts/street_compose.py \
+uv run python ops/scripts/street_compose.py \
   --query "modern clean urban street" \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
@@ -608,10 +627,10 @@ Output: `artifacts/real/scene.glb`, `artifacts/real/scene_layout.json`
 
 ```bash
 # Fetch OSM data for an AOI
-uv run python scripts/osm_fetch.py --bbox 116.39 39.90 116.40 39.91
+uv run python ops/scripts/osm_fetch.py --bbox 116.39 39.90 116.40 39.91
 
 # Generate with real OSM geometry + POI constraints
-uv run python scripts/street_compose.py \
+uv run python ops/scripts/street_compose.py \
   --query "urban residential" \
   --layout-mode osm \
   --constraint-mode soft \
@@ -623,7 +642,7 @@ uv run python scripts/street_compose.py \
   --local-files-only
 
 # Evaluate POI compliance
-uv run python scripts/osm_eval_compliance.py \
+uv run python ops/scripts/osm_eval_compliance.py \
   --scene-dir artifacts/m4/eval_scenes/rule
 ```
 
@@ -638,7 +657,7 @@ uv run python scripts/osm_eval_compliance.py \
 
 The checked-in demo configuration is:
 
-- Config: `configs/osm_demos/hkust_gz_350m.json`
+- Config: `ops/configs/osm_demos/hkust_gz_350m.json`
 - Semantic preview artifact: `assets/osm_demos/hkust_gz_350m_semantic_preview.json`
 - Raw Overpass cache: `artifacts/m5/osm_cache/` (ignored by Git)
 - Demo mode: `layout_mode=osm_multiblock`
@@ -667,8 +686,8 @@ Regenerate the lightweight semantic preview:
 UV_CACHE_DIR=.uv-cache \
 MPLCONFIGDIR=/private/tmp/roadgen3d-mpl-cache \
 XDG_CACHE_HOME=/private/tmp/roadgen3d-xdg-cache \
-uv run python scripts/osm_semantic_preview.py \
-  --config configs/osm_demos/hkust_gz_350m.json
+uv run python ops/scripts/osm_semantic_preview.py \
+  --config ops/configs/osm_demos/hkust_gz_350m.json
 ```
 
 ### Auto Scene Pipeline
@@ -677,7 +696,7 @@ Automatically generate, evaluate, and iteratively improve a street scene from a 
 
 ```bash
 # Using built-in Graph Template (HKUST-GZ Gate)
-uv run python scripts/auto_scene_pipeline.py \
+uv run python ops/scripts/auto_scene_pipeline.py \
   --graph-json assets/graph_templates/hkust_gz_gate/annotation.json \
   --max-iterations 1 \
   --local-files-only \
@@ -695,7 +714,7 @@ uv run python scripts/auto_scene_pipeline.py \
 
 ```bash
 # Using Viewer-exported graph JSON
-uv run python scripts/auto_scene_pipeline.py \
+uv run python ops/scripts/auto_scene_pipeline.py \
   --graph-json path/to/exported_graph.json \
   --base-map path/to/reference.png \
   --output-dir artifacts/auto_pipeline/my_scene \
@@ -731,7 +750,7 @@ Stop conditions: early stop after 2 consecutive rounds without score improvement
 Run multiple design queries through the full pipeline in one shot:
 
 ```bash
-uv run python scripts/run_auto_eval.py \
+uv run python ops/scripts/run_auto_eval.py \
   --output-dir artifacts/auto_eval_$(date +%Y%m%d_%H%M%S) \
   --max-iterations 3 \
   --queries "modern transit boulevard" \
@@ -747,7 +766,7 @@ uv run python scripts/run_auto_eval.py \
 
 ```bash
 # Collect distilled policy data
-uv run python scripts/layout_collect_data.py \
+uv run python ops/scripts/layout_collect_data.py \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
   --out artifacts/m4/policy_train.jsonl \
@@ -755,20 +774,20 @@ uv run python scripts/layout_collect_data.py \
   --local-files-only
 
 # Train layout policy (MLP: 32 → 64 → 32 → 1)
-uv run python scripts/layout_train.py \
+uv run python ops/scripts/layout_train.py \
   --data artifacts/m4/policy_train.jsonl \
   --out-dir artifacts/m4 \
   --device cpu
 
 # Use learned policy
-uv run python scripts/street_compose.py \
+uv run python ops/scripts/street_compose.py \
   --placement-policy learned \
   --policy-ckpt artifacts/m4/layout_policy.pt \
   --policy-temperature 0.12 \
   ...
 
 # Evaluate engineering metrics
-uv run python scripts/layout_eval.py \
+uv run python ops/scripts/layout_eval.py \
   --queries data/eval/queries_m4.txt \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
@@ -789,7 +808,7 @@ Reports: `artifacts/m4/eval_report.json`, `artifacts/m4/eval_per_scene.csv`
 Refresh manifest metadata after adding or replacing assets:
 
 ```bash
-uv run python scripts/asset_clean_manifest.py \
+uv run python ops/scripts/asset_clean_manifest.py \
   --manifest data/real/real_assets_manifest.jsonl --write
 ```
 
@@ -943,13 +962,13 @@ LLM_MODEL=gpt-4o-mini
 
 ```bash
 # Test API connectivity
-./scripts/test_llm_api.sh
+./ops/scripts/test_llm_api.sh
 
 # Test with specific model
-./scripts/test_llm_api.sh gpt-4
+./ops/scripts/test_llm_api.sh gpt-4
 
 # List available models
-./scripts/test_llm_api.sh --list
+./ops/scripts/test_llm_api.sh --list
 ```
 
 ## Make Targets
