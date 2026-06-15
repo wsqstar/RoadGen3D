@@ -148,8 +148,10 @@ STREET_FURNITURE_PROFILE_CONFIG_PATCHES: Dict[str, Dict[str, Any]] = {
         "bike_demand_level": "medium",
         "transit_demand_level": "high",
         "vehicle_demand_level": "high",
-        "minimum_category_presence": ("lamp", "bench", "trash"),
-        "optional_category_presence": ("bus_stop", "tree"),
+        "minimum_category_presence": ("bus_stop", "lamp", "bench", "trash"),
+        "optional_category_presence": ("tree",),
+        "max_bus_stops_per_scene": 2,
+        "allow_demo_bus_stop_when_osm_absent": True,
     },
     "park_landscape": {
         "design_rule_profile": "pedestrian_priority_v1",
@@ -240,6 +242,8 @@ def street_furniture_profile_config_patch(profile: str) -> Dict[str, Any]:
     normalized = normalize_street_furniture_profile(profile) or "balanced_complete"
     return {
         "street_furniture_profile": normalized,
+        "furniture_balance_policy": "overall_balanced",
+        "street_furniture_distribution_policy": "road_uniform_v1",
         **dict(STREET_FURNITURE_PROFILE_CONFIG_PATCHES.get(normalized, STREET_FURNITURE_PROFILE_CONFIG_PATCHES["balanced_complete"])),
     }
 

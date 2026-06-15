@@ -225,6 +225,7 @@ def build_compose_config_from_draft(
         asset_scale_mode=str(patch.get("asset_scale_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["asset_scale_mode"])),
         curated_street_assets_profile=str(patch.get("curated_street_assets_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["curated_street_assets_profile"])),
         furniture_balance_policy=str(patch.get("furniture_balance_policy", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["furniture_balance_policy"])),
+        street_furniture_distribution_policy=str(patch.get("street_furniture_distribution_policy", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["street_furniture_distribution_policy"])),
         program_generator=str(patch.get("program_generator", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["program_generator"])),
         layout_solver=str(patch.get("layout_solver", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["layout_solver"])),
         ped_demand_level=str(patch.get("ped_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["ped_demand_level"])),

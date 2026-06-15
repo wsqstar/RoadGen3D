@@ -12,7 +12,14 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 from .eval_metrics import compute_balance_score, compute_spacing_uniformity, compute_style_consistency
 from .placement_field import pair_interaction_scores, poi_attraction_score
 from .poi_taxonomy import asset_category_for_poi, canonicalize_poi_type, nonempty_poi_points, poi_plot_config
-from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, INFRASTRUCTURE_CATEGORY_PRIORITY
+from .street_priors import (
+    DEFAULT_CATEGORIES,
+    DEFAULT_SPACING_M,
+    FURNITURE_RHYTHM_CATEGORIES,
+    FURNITURE_RHYTHM_INTERVAL_M,
+    FURNITURE_SCENE_MAX_COUNTS,
+    INFRASTRUCTURE_CATEGORY_PRIORITY,
+)
 from .types import LayoutSlotPlan, StreetComposeConfig, StreetPlacement, StreetProgram
 
 
@@ -340,6 +347,7 @@ def _mesh_face_count(row: Mapping[str, Any]) -> int:
 
 
 _BLOCKED_ASSET_IDS = {
+    "curated_tree_module_v1",
     "003e74743d454448abf11fd78164a75d",
     "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
     "objaverse_tree_352c29c013434d6585e74332699310e2",
@@ -644,6 +652,15 @@ def shape_program_for_style(program: StreetProgram, config: StreetComposeConfig)
         length_scale = max(float(getattr(config, "length_m", 80.0) or 80.0), 1.0) / 80.0
         return max(1, int(math.ceil(float(base) * length_scale)))
 
+    def _rhythm_min_count(category: str) -> int:
+        if category not in FURNITURE_RHYTHM_CATEGORIES:
+            return 0
+        length = max(float(getattr(config, "length_m", 80.0) or 80.0), 0.0)
+        if length < 30.0:
+            return 1
+        interval = max(float(FURNITURE_RHYTHM_INTERVAL_M.get(category, 70.0)), 1.0)
+        return int(max(2, 2 * math.ceil(length / interval)))
+
     for category, base_count in list(requirements.items()):
         scaled = int(round(float(base_count) * float(preset.category_multipliers.get(category, 1.0))))
         scaled = max(_scaled_min_count(category), scaled)
@@ -653,7 +670,27 @@ def shape_program_for_style(program: StreetProgram, config: StreetComposeConfig)
             scaled = min(int(round(float(max_cap) * length_scale)), scaled)
         if category in enforced_min:
             scaled = max(int(enforced_min[category]), scaled)
+        scaled = max(_rhythm_min_count(category), scaled)
+        if category in FURNITURE_RHYTHM_CATEGORIES and scaled > 1 and scaled % 2:
+            scaled += 1
+        if category in FURNITURE_SCENE_MAX_COUNTS:
+            scaled = min(int(FURNITURE_SCENE_MAX_COUNTS[category]), scaled)
         requirements[category] = max(0, int(scaled))
+
+    distribution_policy = str(
+        getattr(config, "street_furniture_distribution_policy", "road_uniform_v1") or "road_uniform_v1"
+    ).strip().lower()
+    if distribution_policy == "road_uniform_v1":
+        rhythm_counts = [
+            int(requirements.get(category, 0))
+            for category in FURNITURE_RHYTHM_CATEGORIES
+            if int(requirements.get(category, 0)) > 0
+        ]
+        if len(rhythm_counts) >= 2:
+            rhythm_target = max(rhythm_counts)
+            for category in FURNITURE_RHYTHM_CATEGORIES:
+                if int(requirements.get(category, 0)) > 0:
+                    requirements[category] = rhythm_target
 
     goal_list = list(program.design_goals)
     if preset.name == "transit_modern_v1" and "legibility" not in goal_list:
@@ -751,8 +788,13 @@ def apply_composition_pass(
 
     for slot in scored_optional:
         max_cap = preset.category_max_counts.get(slot.category)
+        if slot.category in FURNITURE_SCENE_MAX_COUNTS:
+            max_cap = min(int(max_cap), int(FURNITURE_SCENE_MAX_COUNTS[slot.category])) if max_cap is not None else int(FURNITURE_SCENE_MAX_COUNTS[slot.category])
         if max_cap is not None:
-            scaled_cap = max(int(preset.category_min_counts.get(slot.category, 0)), int(round(float(max_cap) * max(float(config.length_m) / 80.0, 0.75))))
+            if slot.category in FURNITURE_SCENE_MAX_COUNTS:
+                scaled_cap = max(int(preset.category_min_counts.get(slot.category, 0)), int(max_cap))
+            else:
+                scaled_cap = max(int(preset.category_min_counts.get(slot.category, 0)), int(round(float(max_cap) * max(float(config.length_m) / 80.0, 0.75))))
             if kept_by_category.get(slot.category, 0) >= scaled_cap:
                 continue
         nearby = 0

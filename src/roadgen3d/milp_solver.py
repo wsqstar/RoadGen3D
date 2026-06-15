@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Dict, Iterable, List, Sequence, Tuple
 
+from .street_priors import FURNITURE_RHYTHM_CATEGORIES
 from .types import LayoutConflict, LayoutEdit, LayoutSlotPlan, RoadSegmentGraph, StreetBand, StreetProgram
 
 try:
@@ -277,6 +278,73 @@ def _pulp_select(
     return selections, conflicts
 
 
+def _alternating_rhythm_categories(counts: Dict[str, int], first_category: str) -> List[str]:
+    remaining = {category: int(count) for category, count in counts.items() if int(count) > 0}
+    order: List[str] = []
+    previous = ""
+    if first_category in remaining:
+        previous = first_category
+        order.append(first_category)
+        remaining[first_category] -= 1
+    while any(count > 0 for count in remaining.values()):
+        candidates = [
+            category
+            for category, count in remaining.items()
+            if count > 0 and category != previous
+        ]
+        if not candidates:
+            candidates = [category for category, count in remaining.items() if count > 0]
+        category = max(candidates, key=lambda item: (remaining[item], item))
+        order.append(category)
+        remaining[category] -= 1
+        previous = category
+    return order
+
+
+def _retarget_rhythm_slots(
+    slot_plans: Sequence[LayoutSlotPlan],
+    *,
+    required_categories: Iterable[str],
+) -> Tuple[LayoutSlotPlan, ...]:
+    rhythm_categories = tuple(str(category) for category in FURNITURE_RHYTHM_CATEGORIES)
+    rhythm_indices = [
+        index
+        for index, slot in enumerate(slot_plans)
+        if str(slot.category) in rhythm_categories
+    ]
+    if len(rhythm_indices) < 3:
+        return tuple(slot_plans)
+    sorted_indices = sorted(
+        rhythm_indices,
+        key=lambda index: (
+            float(slot_plans[index].x_center_m),
+            float(slot_plans[index].z_center_m),
+            str(slot_plans[index].category),
+        ),
+    )
+    counts: Dict[str, int] = {}
+    for index in sorted_indices:
+        category = str(slot_plans[index].category)
+        counts[category] = counts.get(category, 0) + 1
+    if len([category for category, count in counts.items() if count > 0]) < 2:
+        return tuple(slot_plans)
+    first_category = str(slot_plans[sorted_indices[0]].category)
+    target_order = _alternating_rhythm_categories(counts, first_category)
+    required_set = {str(category) for category in required_categories}
+    category_offsets: Dict[str, int] = {}
+    updated = list(slot_plans)
+    for index, category in zip(sorted_indices, target_order):
+        category_offsets[category] = category_offsets.get(category, 0) + 1
+        slot = slot_plans[index]
+        updated[index] = replace(
+            slot,
+            slot_id=f"{category}_{category_offsets[category] - 1:03d}",
+            category=category,
+            required=bool(slot.required) or category in required_set,
+        )
+    return tuple(updated)
+
+
 def solve_candidate_assignment(
     *,
     program: StreetProgram,
@@ -307,6 +375,7 @@ def solve_candidate_assignment(
         objective_profile=str(objective_profile),
     )
 
+    required_set = set(required_categories)
     slot_plans = tuple(
         LayoutSlotPlan(
             slot_id=f"{category}_{index:03d}",
@@ -317,12 +386,13 @@ def solve_candidate_assignment(
             spacing_m=float(candidate.spacing_m),
             side=str(candidate.side),
             priority=float(candidate.priority),
-            required=category in set(required_categories),
+            required=category in required_set,
         )
         for index, (candidate, category) in enumerate(
             sorted(selected, key=lambda item: (item[1], item[0].x_center_m, item[0].z_center_m))
         )
     )
+    slot_plans = _retarget_rhythm_slots(slot_plans, required_categories=required_set)
 
     if not slot_plans and not conflicts:
         conflicts.append(

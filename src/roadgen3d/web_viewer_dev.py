@@ -276,6 +276,71 @@ def _list_field(layout_payload: Dict[str, Any], key: str) -> List[Any]:
     return list(value) if isinstance(value, list) else []
 
 
+def _build_road_centerlines(layout_payload: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Build compact road centerlines for direction-aware viewer overlays."""
+    scene_graph = layout_payload.get("scene_graph", {})
+    if not isinstance(scene_graph, dict):
+        return []
+
+    segment_road_ids: Dict[str, Any] = {}
+    for profile in _list_field(layout_payload, "segment_semantic_profiles"):
+        if not isinstance(profile, dict):
+            continue
+        segment_id = str(profile.get("segment_id") or "").strip()
+        if segment_id:
+            segment_road_ids[segment_id] = profile.get("road_id")
+
+    groups: Dict[str, Dict[str, Any]] = {}
+    for node in scene_graph.get("nodes", []) or []:
+        if not isinstance(node, dict) or str(node.get("node_type") or "") != "road_segment":
+            continue
+        x = _as_number(node.get("x"))
+        z = _as_number(node.get("z"))
+        if x is None or z is None:
+            continue
+        segment_id = str(node.get("segment_id") or "").strip()
+        road_id = node.get("road_id")
+        if road_id in (None, "") and segment_id:
+            road_id = segment_road_ids.get(segment_id)
+        group_key = str(road_id if road_id not in (None, "") else node.get("centerline_id") or segment_id).strip()
+        if not group_key:
+            continue
+        group = groups.setdefault(group_key, {"road_id": road_id if road_id not in (None, "") else group_key, "points": []})
+        group["points"].append([float(x), float(z)])
+
+    result: List[Dict[str, Any]] = []
+    for group in groups.values():
+        points = list(group.get("points", []))
+        if len(points) < 2:
+            continue
+        min_x = min(point[0] for point in points)
+        max_x = max(point[0] for point in points)
+        min_z = min(point[1] for point in points)
+        max_z = max(point[1] for point in points)
+        if (max_x - min_x) >= (max_z - min_z):
+            points.sort(key=lambda point: (point[0], point[1]))
+        else:
+            points.sort(key=lambda point: (point[1], point[0]))
+
+        deduped: List[List[float]] = []
+        for point in points:
+            if deduped and abs(deduped[-1][0] - point[0]) < 0.05 and abs(deduped[-1][1] - point[1]) < 0.05:
+                continue
+            deduped.append([round(point[0], 3), round(point[1], 3)])
+        if len(deduped) >= 2:
+            result.append({"road_id": group.get("road_id"), "points_xz": deduped})
+
+    def sort_key(item: Dict[str, Any]) -> tuple[int, float, str]:
+        road_id = item.get("road_id")
+        try:
+            return (0, float(road_id), str(road_id))
+        except (TypeError, ValueError):
+            return (1, 0.0, str(road_id))
+
+    result.sort(key=sort_key)
+    return result
+
+
 def _build_layout_overlay(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
     street_program = layout_payload.get("street_program", {})
     if not isinstance(street_program, dict):
@@ -287,6 +352,7 @@ def _build_layout_overlay(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
     return make_json_safe(
         {
             "bands": list(bands) if isinstance(bands, list) else [],
+            "road_centerlines": _build_road_centerlines(layout_payload),
             "building_footprints": _list_field(layout_payload, "building_footprints"),
             "generated_lots": _list_field(layout_payload, "generated_lots"),
             "building_regions": _list_field(layout_payload, "building_regions"),

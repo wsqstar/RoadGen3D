@@ -9,6 +9,7 @@ from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
 from .osm_ingest import OsmLandUsePolygon, OsmRoad, OsmSemanticBlock, ProjectedFeatures
 from .poi_taxonomy import extract_poi_points_by_type
+from .street_priors import FURNITURE_SCENE_MAX_COUNTS
 
 OSM_SEMANTIC_RULESET_VERSION = "landuse_rules_v1"
 OSM_CONTEXT_FIT_RULESET_VERSION = "socioeconomic_fit_v1"
@@ -575,6 +576,8 @@ def apply_osm_bus_stop_constraints(
 
     eligible_names = _coerce_text_tuple(getattr(config, "bus_stop_eligible_road_names", ()))
     max_count = int(getattr(config, "max_bus_stops_per_scene", 0) or 0)
+    if max_count <= 0:
+        max_count = int(FURNITURE_SCENE_MAX_COUNTS.get("bus_stop", 2))
     allow_demo = bool(getattr(config, "allow_demo_bus_stop_when_osm_absent", False))
     roads = list(getattr(projected_features, "roads", []) or [])
     eligible_roads = [road for road in roads if _road_name_matches(road, eligible_names)]

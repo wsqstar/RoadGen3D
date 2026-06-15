@@ -118,7 +118,7 @@ from .spatial_viz import (
     plot_poi_exclusion_overview,
     plot_zoning_grid_preview as plot_zoning_grid_preview_2d,
 )
-from .street_priors import CATEGORY_PLACEMENT_RANK, DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
+from .street_priors import CATEGORY_PLACEMENT_RANK, DEFAULT_CATEGORIES, DEFAULT_SPACING_M, FURNITURE_RHYTHM_CATEGORIES, SIDE_PREF
 from .street_program import infer_street_program
 from .street_band_semantics import (
     band_name_aliases,
@@ -504,7 +504,10 @@ def _resolve_split_component_mesh_path(payload: Mapping[str, object], base_dir: 
     return None
 
 
+_CURATED_TREE_MODULE_ASSET_ID = "curated_tree_module_v1"
+
 _BLOCKED_ASSET_IDS = {
+    _CURATED_TREE_MODULE_ASSET_ID,
     "003e74743d454448abf11fd78164a75d",
     "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
     "objaverse_tree_352c29c013434d6585e74332699310e2",
@@ -866,11 +869,15 @@ _GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop"})
 _CARRIAGEWAY_CLEARANCE_CATEGORIES = frozenset(set(_GROUND_LEVEL_CATEGORIES) | {"tree"})
 _TREE_TRUNK_CLEARANCE_HALF_EXTENT_M = 0.28
 _TREE_TRUNK_CLEARANCE_BUFFER_M = 0.12
+_TREE_PIT_SIZE_M = 0.72
+_TREE_PIT_HEIGHT_M = 0.018
+_TREE_PIT_ROAD_CLEARANCE_M = 0.08
 _CURATED_STREET_ASSET_PROFILES = {"fixed_hq_v1", "disabled"}
+_CURATED_RAILING_MODULE_ASSET_ID = "curated_railing_module_v1"
 _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
     "lamp": "lamp_modern_production",
     "trash": "objaverse_trash_f16b7d84113d4cba869412ee95769910",
-    "bollard": "curated_railing_module_v1",
+    "bollard": "e62f62684b614e38998b890a974e1820",
     "tree": "objaverse_tree_909de376b61d4a2fb073e195fb719619",
 }
 _CURATED_ALLOWLIST_SELECTION_SOURCE = "curated_allowlist_stable"
@@ -1130,7 +1137,7 @@ def _create_curated_bus_stop_entry(*, asset_id: str = "curated_bus_stop_shelter_
     return row, entry
 
 
-def _create_curated_tree_entry(*, asset_id: str = "curated_tree_module_v1") -> Tuple[Dict[str, object], _MeshCacheEntry]:
+def _create_curated_tree_entry(*, asset_id: str = _CURATED_TREE_MODULE_ASSET_ID) -> Tuple[Dict[str, object], _MeshCacheEntry]:
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
 
@@ -1153,6 +1160,15 @@ def _create_curated_tree_entry(*, asset_id: str = "curated_tree_module_v1") -> T
 
     bounds = np.asarray(scene.bounds, dtype=np.float64)
     span = bounds[1] - bounds[0]
+    blocked = str(asset_id) in _BLOCKED_ASSET_IDS
+    quality_notes = [
+        "curated_asset_fallback",
+        "tree_upright_validated",
+        "scene_blocked" if blocked else "scene_ready",
+        "generator=virtual_curated_v1",
+    ]
+    if blocked:
+        quality_notes.insert(3, "disabled_by_asset_blocklist")
     row: Dict[str, object] = {
         "asset_id": str(asset_id),
         "category": "tree",
@@ -1162,21 +1178,18 @@ def _create_curated_tree_entry(*, asset_id: str = "curated_tree_module_v1") -> T
         "generator_type": "virtual_curated_v1",
         "theme_tags": ["landscape", "walkable", "campus", "shade"],
         "affordance_tags": ["shade", "greenery", "streetscape"],
-        "scene_eligible": True,
+        "scene_eligible": not blocked,
         "quality_tier": 3,
         "mesh_face_count": int(
             sum(len(np.asarray(getattr(geom, "faces", []), dtype=np.int64)) for geom in scene.geometry.values())
         ),
-        "quality_notes": [
-            "curated_asset_fallback",
-            "tree_upright_validated",
-            "scene_ready",
-            "generator=virtual_curated_v1",
-        ],
+        "quality_notes": quality_notes,
         "metric_width_m": float(max(span[0], 1e-3)),
         "metric_height_m": float(max(span[1], 1e-3)),
         "metric_depth_m": float(max(span[2], 1e-3)),
     }
+    if blocked:
+        row["scene_exclusion_reason"] = "disabled_by_asset_blocklist"
     entry = _MeshCacheEntry(
         mesh=scene,
         half_x=float(max(span[0] / 2.0, 1e-3)),
@@ -1204,9 +1217,10 @@ def _inject_curated_virtual_assets(
     injected_rows = list(rows)
     railing_asset_id = str(locked_asset_ids.get("bollard", "") or "")
     if railing_asset_id and railing_asset_id not in asset_ids_present:
-        railing_row, railing_entry = _create_curated_railing_entry(asset_id=railing_asset_id)
-        injected_rows.append(railing_row)
-        mesh_cache.set_full_entry(railing_asset_id, railing_entry)
+        if railing_asset_id == _CURATED_RAILING_MODULE_ASSET_ID:
+            railing_row, railing_entry = _create_curated_railing_entry(asset_id=railing_asset_id)
+            injected_rows.append(railing_row)
+            mesh_cache.set_full_entry(railing_asset_id, railing_entry)
     if not any(str(row.get("category", "")) == "bus_stop" and _row_scene_eligible(row) for row in injected_rows):
         bus_stop_row, bus_stop_entry = _create_curated_bus_stop_entry()
         injected_rows.append(bus_stop_row)
@@ -1214,7 +1228,7 @@ def _inject_curated_virtual_assets(
     if not any(
         str(row.get("category", "")) == "tree" and _row_scene_eligible(row) and _is_external_tree_asset(row)
         for row in injected_rows
-    ):
+    ) and _CURATED_TREE_MODULE_ASSET_ID not in _BLOCKED_ASSET_IDS:
         tree_row, tree_entry = _create_curated_tree_entry()
         injected_rows.append(tree_row)
         mesh_cache.set_full_entry(str(tree_row["asset_id"]), tree_entry)
@@ -1536,6 +1550,11 @@ def _validate_config(config: StreetComposeConfig) -> None:
         "side_biased_legacy",
     }:
         raise ValueError("furniture_balance_policy must be 'overall_balanced' or 'side_biased_legacy'")
+    if str(getattr(config, "street_furniture_distribution_policy", "road_uniform_v1")).strip().lower() not in {
+        "road_uniform_v1",
+        "legacy",
+    }:
+        raise ValueError("street_furniture_distribution_policy must be 'road_uniform_v1' or 'legacy'")
     if str(getattr(config, "placement_logging_mode", "full_with_ui_summary")).strip().lower() not in {
         "off",
         "summary_only",
@@ -2499,6 +2518,93 @@ def _globalize_theme_slot_plans(
     return tuple(updated_slots), slot_to_segment
 
 
+def _alternating_rhythm_category_order(counts: Mapping[str, int], first_category: str) -> List[str]:
+    remaining = {str(category): int(count) for category, count in counts.items() if int(count) > 0}
+    order: List[str] = []
+    previous = ""
+    if first_category in remaining:
+        previous = first_category
+        order.append(first_category)
+        remaining[first_category] -= 1
+    while any(count > 0 for count in remaining.values()):
+        candidates = [
+            category
+            for category, count in remaining.items()
+            if count > 0 and category != previous
+        ]
+        if not candidates:
+            candidates = [category for category, count in remaining.items() if count > 0]
+        category = max(candidates, key=lambda item: (remaining[item], item))
+        order.append(category)
+        remaining[category] -= 1
+        previous = category
+    return order
+
+
+def _rhythm_slot_id(slot_id: str, *, category: str, ordinal: int) -> str:
+    parts = str(slot_id or "").split("_")
+    if len(parts) >= 3 and parts[0] == "theme":
+        return f"{parts[0]}_{parts[1]}_{category}_{ordinal:03d}"
+    return f"{category}_{ordinal:03d}"
+
+
+def _retarget_road_uniform_rhythm_slots(
+    slot_plans: Sequence[object],
+    *,
+    config: StreetComposeConfig,
+) -> Tuple[Tuple[object, ...], Dict[str, str]]:
+    policy = str(getattr(config, "street_furniture_distribution_policy", "road_uniform_v1") or "road_uniform_v1").strip().lower()
+    if policy != "road_uniform_v1":
+        return tuple(slot_plans), {}
+    rhythm_categories = {str(category) for category in FURNITURE_RHYTHM_CATEGORIES}
+    rhythm_indices = [
+        index
+        for index, slot in enumerate(slot_plans)
+        if str(getattr(slot, "category", "")) in rhythm_categories
+        and not str(getattr(slot, "slot_id", "")).startswith("center_planting_tree")
+    ]
+    if len(rhythm_indices) < 3:
+        return tuple(slot_plans), {}
+    sorted_indices = sorted(
+        rhythm_indices,
+        key=lambda index: (
+            float(getattr(slot_plans[index], "x_center_m", 0.0)),
+            float(getattr(slot_plans[index], "z_center_m", 0.0)),
+            str(getattr(slot_plans[index], "category", "")),
+        ),
+    )
+    counts: Dict[str, int] = {}
+    for index in sorted_indices:
+        category = str(getattr(slot_plans[index], "category", ""))
+        counts[category] = counts.get(category, 0) + 1
+    if len([category for category, count in counts.items() if count > 0]) < 2:
+        return tuple(slot_plans), {}
+    first_category = str(getattr(slot_plans[sorted_indices[0]], "category", ""))
+    target_order = _alternating_rhythm_category_order(counts, first_category)
+    required_categories = {
+        str(category).strip().lower()
+        for category in tuple(getattr(config, "minimum_category_presence", ()) or ())
+        if str(category).strip()
+    }
+    category_offsets: Dict[str, int] = {}
+    id_map: Dict[str, str] = {}
+    updated = list(slot_plans)
+    for index, category in zip(sorted_indices, target_order):
+        slot = slot_plans[index]
+        old_id = str(getattr(slot, "slot_id", ""))
+        category_offsets[category] = category_offsets.get(category, 0) + 1
+        new_id = _rhythm_slot_id(old_id, category=category, ordinal=category_offsets[category] - 1)
+        updated[index] = replace(
+            slot,
+            slot_id=new_id,
+            category=category,
+            required=bool(getattr(slot, "required", False)) or category in required_categories,
+        )
+        if old_id and old_id != new_id:
+            id_map[old_id] = new_id
+    return tuple(updated), id_map
+
+
 def _annotation_furniture_to_slot_plans(
     road_segment_graph: object,
     theme_segments: Sequence[object],
@@ -2584,6 +2690,7 @@ def _surface_annotation_bus_stop_slot_plans(
     placement_ctx: object | None,
     theme_segments: Sequence[ThemeSegment],
     road_segment_graph: object | None,
+    config: StreetComposeConfig | None = None,
 ) -> List[LayoutSlotPlan]:
     """Create required bus stop slots from paired transit pad and bus bay surfaces."""
 
@@ -2641,7 +2748,11 @@ def _surface_annotation_bus_stop_slot_plans(
 
     slots: List[LayoutSlotPlan] = []
     seen_keys: set[Tuple[str, str]] = set()
+    max_slots = int(getattr(config, "max_bus_stops_per_scene", 0) or 2)
+    max_slots = max(1, max_slots)
     for pad in transit_pads:
+        if len(slots) >= max_slots:
+            break
         pad_centerline = str(pad.get("centerline_id", "") or "")
         pad_side_sign = -1 if _lateral_center(pad) < 0.0 else 1
         matching_bays = [
@@ -3728,7 +3839,6 @@ CROSSING_STRIPE_TOP_Y_M = 0.044
 BUS_BAY_SURFACE_HEIGHT_M = 0.006
 BUS_BAY_SURFACE_TOP_Y_M = 0.006
 BUS_BAY_SIDEWALK_CLEARANCE_M = 0.04
-BUS_BAY_CURB_SUPPRESSION_M = 0.50
 CENTER_PAINTED_MEDIAN_HEIGHT_M = LANE_MARK_HEIGHT_M
 CENTER_PAINTED_MEDIAN_TOP_Y_M = LANE_MARK_Y_MIN_M + LANE_MARK_HEIGHT_M
 CENTER_PAINTED_MEDIAN_COLOR = (230, 200, 50, 255)
@@ -3995,6 +4105,12 @@ def _road_axes_from_yaw_deg(yaw_deg: float) -> Tuple[tuple[float, float], tuple[
     )
 
 
+def _ground_pose_yaw_from_world_yaw_deg(yaw_deg: float) -> float:
+    # _apply_ground_pose uses the renderer's +Z convention, while road
+    # references use the street X/Z plane convention from the source geometry.
+    return -float(yaw_deg)
+
+
 def _add_road_box(
     scene,
     *,
@@ -4173,6 +4289,62 @@ def _marking_segment_in_exclusion(
     return False
 
 
+def _marking_segment_supported_by_surface(
+    *,
+    center_x_m: float,
+    center_z_m: float,
+    yaw_deg: float,
+    lateral_offset_m: float,
+    length_m: float,
+    allowed_geometries: Sequence[Any] | None,
+    mark_width_m: float = 0.0,
+    padding_m: float = 0.05,
+) -> bool:
+    if not allowed_geometries:
+        return True
+    from shapely.geometry import Point
+
+    forward_axis, lateral_axis = _road_axes_from_yaw_deg(float(yaw_deg))
+    half_length_m = max(float(length_m), 0.0) * 0.5
+    half_width_m = max(float(mark_width_m), 0.0) * 0.5
+    sample_offsets = (-half_length_m, 0.0, half_length_m)
+    lateral_offsets = [float(lateral_offset_m)]
+    if half_width_m > 0.0:
+        lateral_offsets.extend(
+            [
+                float(lateral_offset_m) - half_width_m,
+                float(lateral_offset_m) + half_width_m,
+            ]
+        )
+    for longitudinal_offset_m in sample_offsets:
+        for sampled_lateral_offset_m in lateral_offsets:
+            sample_x_m = (
+                float(center_x_m)
+                + forward_axis[0] * float(longitudinal_offset_m)
+                + lateral_axis[0] * float(sampled_lateral_offset_m)
+            )
+            sample_z_m = (
+                float(center_z_m)
+                + forward_axis[1] * float(longitudinal_offset_m)
+                + lateral_axis[1] * float(sampled_lateral_offset_m)
+            )
+            point = Point(sample_x_m, sample_z_m)
+            supported = False
+            for geometry in allowed_geometries:
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                try:
+                    surface = geometry.buffer(float(padding_m)) if float(padding_m) > 0.0 else geometry
+                    if surface.covers(point):
+                        supported = True
+                        break
+                except Exception:
+                    continue
+            if not supported:
+                return False
+    return True
+
+
 def _add_centerline_markings(
     scene,
     *,
@@ -4187,6 +4359,7 @@ def _add_centerline_markings(
     road_coords: Sequence[Tuple[float, float]] | None = None,
     lane_separator_offsets_m: Sequence[float] | None = None,
     marking_exclusion_geometries: Sequence[Any] | None = None,
+    marking_allowed_geometries: Sequence[Any] | None = None,
     color: Sequence[int],
     roughness: float,
     node_name_prefix: str = "centerline_mark",
@@ -4256,6 +4429,18 @@ def _add_centerline_markings(
                     if len(separator_offsets) == 1
                     else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
                 )
+                if not _marking_segment_supported_by_surface(
+                    center_x_m=center_x_m,
+                    center_z_m=center_z_m,
+                    yaw_deg=yaw_deg,
+                    lateral_offset_m=float(lane_z),
+                    length_m=float(dash_length_m),
+                    allowed_geometries=marking_allowed_geometries,
+                    mark_width_m=LANE_MARK_WIDTH_M,
+                ):
+                    dash_idx += 1
+                    distance_m += dash_step_m
+                    continue
                 if _marking_segment_in_exclusion(
                     center_x_m=center_x_m,
                     center_z_m=center_z_m,
@@ -4276,7 +4461,7 @@ def _add_centerline_markings(
                     local_z_m=float(lane_z),
                     road_center_x_m=center_x_m,
                     road_center_z_m=center_z_m,
-                    road_yaw_deg=yaw_deg,
+                    road_yaw_deg=_ground_pose_yaw_from_world_yaw_deg(yaw_deg),
                     y_min_m=LANE_MARK_Y_MIN_M,
                     color=color,
                     surface_role="lane_mark",
@@ -4302,6 +4487,16 @@ def _add_centerline_markings(
                 if len(separator_offsets) == 1
                 else f"{node_name_prefix}_{separator_idx}_{dash_idx}"
             )
+            if not _marking_segment_supported_by_surface(
+                center_x_m=world_center_x_m,
+                center_z_m=world_center_z_m,
+                yaw_deg=float(road_yaw_deg),
+                lateral_offset_m=float(lane_z),
+                length_m=float(dash_length_m),
+                allowed_geometries=marking_allowed_geometries,
+                mark_width_m=LANE_MARK_WIDTH_M,
+            ):
+                continue
             if _marking_segment_in_exclusion(
                 center_x_m=world_center_x_m,
                 center_z_m=world_center_z_m,
@@ -4320,7 +4515,7 @@ def _add_centerline_markings(
                 local_z_m=float(lane_z),
                 road_center_x_m=road_center_x_m,
                 road_center_z_m=road_center_z_m,
-                road_yaw_deg=road_yaw_deg,
+                road_yaw_deg=_ground_pose_yaw_from_world_yaw_deg(road_yaw_deg),
                 y_min_m=LANE_MARK_Y_MIN_M,
                 color=color,
                 surface_role="lane_mark",
@@ -4347,6 +4542,7 @@ def _add_lane_edge_markings(
     highway_type: str | None = None,
     road_coords: Sequence[Tuple[float, float]] | None = None,
     marking_exclusion_geometries: Sequence[Any] | None = None,
+    marking_allowed_geometries: Sequence[Any] | None = None,
     edge_color: Sequence[int] = (230, 200, 50, 255),  # Yellow for lane edges
     roughness: float = 0.30,
     node_name_prefix: str = "lane_edge",
@@ -4398,6 +4594,18 @@ def _add_lane_edge_markings(
             distance_m = mark_length_m * 0.5
             while distance_m < road_len - mark_length_m * 0.15:
                 center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, distance_m)
+                if not _marking_segment_supported_by_surface(
+                    center_x_m=center_x_m,
+                    center_z_m=center_z_m,
+                    yaw_deg=yaw_deg,
+                    lateral_offset_m=float(edge_offset),
+                    length_m=float(mark_length_m),
+                    allowed_geometries=marking_allowed_geometries,
+                    mark_width_m=LANE_EDGE_MARK_WIDTH_M,
+                ):
+                    mark_idx += 1
+                    distance_m += mark_step_m
+                    continue
                 if _marking_segment_in_exclusion(
                     center_x_m=center_x_m,
                     center_z_m=center_z_m,
@@ -4419,7 +4627,7 @@ def _add_lane_edge_markings(
                     local_z_m=float(edge_offset),
                     road_center_x_m=center_x_m,
                     road_center_z_m=center_z_m,
-                    road_yaw_deg=yaw_deg,
+                    road_yaw_deg=_ground_pose_yaw_from_world_yaw_deg(yaw_deg),
                     y_min_m=LANE_EDGE_MARK_Y_MIN_M,
                     color=edge_color,
                     surface_role="lane_edge_mark",
@@ -4435,6 +4643,16 @@ def _add_lane_edge_markings(
     else:
         # Fallback: render lines without following road shape
         for edge_idx, edge_offset in enumerate(edge_marking_offsets):
+            if not _marking_segment_supported_by_surface(
+                center_x_m=road_center_x_m,
+                center_z_m=road_center_z_m,
+                yaw_deg=road_yaw_deg,
+                lateral_offset_m=float(edge_offset),
+                length_m=float(road_length_m),
+                allowed_geometries=marking_allowed_geometries,
+                mark_width_m=LANE_EDGE_MARK_WIDTH_M,
+            ):
+                continue
             if _marking_segment_in_exclusion(
                 center_x_m=road_center_x_m,
                 center_z_m=road_center_z_m,
@@ -4453,7 +4671,7 @@ def _add_lane_edge_markings(
                 local_z_m=float(edge_offset),
                 road_center_x_m=road_center_x_m,
                 road_center_z_m=road_center_z_m,
-                road_yaw_deg=road_yaw_deg,
+                road_yaw_deg=_ground_pose_yaw_from_world_yaw_deg(road_yaw_deg),
                 y_min_m=LANE_EDGE_MARK_Y_MIN_M,
                 color=edge_color,
                 surface_role="lane_edge_mark",
@@ -4487,6 +4705,28 @@ def _add_beauty_scene_proxies(
     road_width_m = float(getattr(street_program, "road_width_m", config.road_width_m))
     lane_count = max(1, int(getattr(street_program, "lane_count", config.lane_count)))
     render_linear_road_overlays = not _is_corridor_layout_mode(getattr(config, "layout_mode", "template"))
+
+    def _tree_pit_center_xz(placement: StreetPlacement) -> Tuple[float, float]:
+        x_m = float(placement.position_xyz[0])
+        z_m = float(placement.position_xyz[2])
+        if _is_center_planting_band_name(getattr(placement, "anchor_geom_id", "")):
+            return x_m, z_m
+        half_pit_m = _TREE_PIT_SIZE_M / 2.0
+        min_lateral_offset_m = float(road_width_m) / 2.0 + half_pit_m + _TREE_PIT_ROAD_CLEARANCE_M
+        if min_lateral_offset_m <= half_pit_m:
+            return x_m, z_m
+        _forward_axis, lateral_axis = _road_axes_from_yaw_deg(road_yaw_deg)
+        dx_m = x_m - float(road_center_x_m)
+        dz_m = z_m - float(road_center_z_m)
+        lateral_offset_m = dx_m * lateral_axis[0] + dz_m * lateral_axis[1]
+        side_sign = 1.0 if lateral_offset_m >= 0.0 else -1.0
+        if abs(lateral_offset_m) >= min_lateral_offset_m:
+            return x_m, z_m
+        shift_m = side_sign * (min_lateral_offset_m - abs(lateral_offset_m))
+        return (
+            x_m + lateral_axis[0] * shift_m,
+            z_m + lateral_axis[1] * shift_m,
+        )
 
     if render_linear_road_overlays:
         if lane_count > 1:
@@ -4558,15 +4798,16 @@ def _add_beauty_scene_proxies(
         x_m = float(placement.position_xyz[0])
         z_m = float(placement.position_xyz[2])
         if placement.category == "tree":
+            pit_x_m, pit_z_m = _tree_pit_center_xz(placement)
             _add_road_box(
                 scene,
-                length_m=1.2,
-                width_m=1.2,
-                height_m=0.03,
+                length_m=_TREE_PIT_SIZE_M,
+                width_m=_TREE_PIT_SIZE_M,
+                height_m=_TREE_PIT_HEIGHT_M,
                 local_x_m=0.0,
                 local_z_m=0.0,
-                road_center_x_m=x_m,
-                road_center_z_m=z_m,
+                road_center_x_m=pit_x_m,
+                road_center_z_m=pit_z_m,
                 road_yaw_deg=0.0,
                 y_min_m=_placement_surface_y_m(placement) + 0.001,
                 color=colors.get("tree_pit", (98, 93, 76, 255)),
@@ -6113,6 +6354,20 @@ def _build_osm_base_scene(
             return MultiPolygon()
         return _clean_scene_polygonal_geometry(unary_union(valid))
 
+    def _close_scene_polygonal_gaps(geometry: Any, tolerance_m: float) -> Any:
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return _clean_scene_polygonal_geometry(geometry)
+        tolerance = max(float(tolerance_m), 0.0)
+        if tolerance <= 0.0:
+            return _clean_scene_polygonal_geometry(geometry)
+        try:
+            closed = geometry.buffer(tolerance, join_style=2).buffer(-tolerance, join_style=2)
+        except Exception:
+            logger.debug("Failed to close tiny scene polygonal gaps", exc_info=True)
+            return _clean_scene_polygonal_geometry(geometry)
+        cleaned = _clean_scene_polygonal_geometry(closed)
+        return cleaned if not getattr(cleaned, "is_empty", True) else _clean_scene_polygonal_geometry(geometry)
+
     surface_annotation_patches = list(getattr(placement_ctx, "surface_annotations", []) or [])
 
     def _is_bus_bay_vehicle_patch(patch: Mapping[str, Any]) -> bool:
@@ -6129,6 +6384,7 @@ def _build_osm_base_scene(
         and not getattr(patch.get("geometry"), "is_empty", True)
     ]
     bus_bay_vehicle_zone = _union_scene_polygonal_geometries(bus_bay_vehicle_surfaces)
+    has_bus_bay_vehicle_zone = not getattr(bus_bay_vehicle_zone, "is_empty", True)
     bus_bay_marking_exclusion_surfaces: List[Any] = []
     for surface in bus_bay_vehicle_surfaces:
         try:
@@ -6164,25 +6420,27 @@ def _build_osm_base_scene(
         list(road_arm_geometries) if road_arm_geometries else [carriageway]
     )
     base_vehicle_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
-    curb_source_surface = _union_scene_polygonal_geometries([base_vehicle_surface, *bus_bay_vehicle_surfaces])
+    vehicle_surface_zone = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
+    if has_bus_bay_vehicle_zone:
+        vehicle_surface_zone = _close_scene_polygonal_gaps(
+            vehicle_surface_zone,
+            BUS_BAY_SIDEWALK_CLEARANCE_M,
+        )
+    curb_source_surface = vehicle_surface_zone
     junction_marking_exclusion_surface = _union_scene_polygonal_geometries(
         _junction_marking_exclusion_geometries(junction_geometries)
     )
     sidewalk_render_zone = _union_scene_polygonal_geometries([sidewalk_zone, *junction_sidewalk_surfaces])
-    vehicle_clearance_surface = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
+    vehicle_clearance_surface = vehicle_surface_zone
     if not getattr(vehicle_clearance_surface, "is_empty", True):
         sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(vehicle_clearance_surface))
-    if not getattr(bus_bay_vehicle_zone, "is_empty", True):
-        sidewalk_render_zone = _clean_scene_polygonal_geometry(
-            sidewalk_render_zone.difference(bus_bay_vehicle_zone.buffer(BUS_BAY_SIDEWALK_CLEARANCE_M, join_style=2))
-        )
     curb_elevated_side_zone = _union_scene_polygonal_geometries([
         sidewalk_render_zone,
         *elevated_surface_annotation_surfaces,
     ])
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
-    for geom in (carriageway, sidewalk_render_zone):
+    for geom in (vehicle_surface_zone, sidewalk_render_zone):
         if geom is None or getattr(geom, "is_empty", True):
             continue
         bounds = getattr(geom, "bounds", None)
@@ -6533,7 +6791,19 @@ def _build_osm_base_scene(
                 placeholder.visual.face_colors = (160, 160, 160, 255)
             _place_zone_furniture_mesh(placeholder, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
 
-    if road_arm_geometries:
+    curb_width = 0.12
+    if has_bus_bay_vehicle_zone:
+        if not getattr(vehicle_surface_zone, "is_empty", True):
+            _extrude_polygon(
+                vehicle_surface_zone,
+                0.06,
+                list(colors.get("carriageway", (65, 68, 72, 255))),
+                "carriageway",
+                roughness_key="carriageway",
+                surface_role="carriageway",
+                top_only=True,
+            )
+    elif road_arm_geometries:
         for arm_idx, arm_geom in enumerate(road_arm_geometries):
             if getattr(arm_geom, "is_empty", True):
                 continue
@@ -6555,7 +6825,6 @@ def _build_osm_base_scene(
             surface_role="carriageway",
         )
     if not sidewalk_render_zone.is_empty:
-        has_bus_bay_vehicle_zone = not getattr(bus_bay_vehicle_zone, "is_empty", True)
         _extrude_polygon(
             sidewalk_render_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
             y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
@@ -6563,9 +6832,12 @@ def _build_osm_base_scene(
         )
         if has_bus_bay_vehicle_zone:
             try:
-                sidewalk_sidewall_suppression = bus_bay_vehicle_zone.buffer(BUS_BAY_CURB_SUPPRESSION_M, join_style=2)
+                sidewalk_sidewall_suppression = vehicle_surface_zone.buffer(
+                    curb_width + BUS_BAY_SIDEWALK_CLEARANCE_M,
+                    join_style=2,
+                )
             except Exception:
-                sidewalk_sidewall_suppression = bus_bay_vehicle_zone
+                sidewalk_sidewall_suppression = vehicle_surface_zone
             _render_sidewalk_sidewalls(
                 sidewalk_render_zone,
                 suppress_geometry=sidewalk_sidewall_suppression,
@@ -6644,15 +6916,10 @@ def _build_osm_base_scene(
     # Curb: only along the raised facility-lane boundary, not around road-arm endpoints.
     # Include normalized junction carriageway surfaces so curved turn/apron edges
     # receive the same curb treatment as straight road arms.
-    curb_width = 0.12
     curb_color = list(colors.get("curb", (145, 145, 145, 255)))
     if not curb_source_surface.is_empty:
         try:
             curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
-            if not getattr(bus_bay_vehicle_zone, "is_empty", True):
-                curb_zone = _clean_scene_polygonal_geometry(
-                    curb_zone.difference(bus_bay_vehicle_zone.buffer(BUS_BAY_CURB_SUPPRESSION_M, join_style=2))
-                )
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
@@ -6767,13 +7034,7 @@ def _build_osm_base_scene(
 
     def _surface_annotation_render_geometry(patch: Mapping[str, Any], geometry: object) -> object:
         if _is_bus_bay_vehicle_patch(patch):
-            try:
-                return _clean_scene_polygonal_geometry(
-                    geometry.buffer(BUS_BAY_SIDEWALK_CLEARANCE_M, join_style=2)
-                )
-            except Exception:
-                logger.debug("Failed to expand bus bay render surface", exc_info=True)
-                return geometry
+            return _clean_scene_polygonal_geometry(geometry)
         if not _is_crossing_surface_patch(patch):
             return geometry
         if getattr(curb_source_surface, "is_empty", True):
@@ -6928,7 +7189,7 @@ def _build_osm_base_scene(
                         local_z_m=float(edge_offset_m),
                         road_center_x_m=center_x_m,
                         road_center_z_m=center_z_m,
-                        road_yaw_deg=yaw_deg,
+                        road_yaw_deg=_ground_pose_yaw_from_world_yaw_deg(yaw_deg),
                         y_min_m=LANE_MARK_Y_MIN_M,
                         color=list(colors.get("lane_mark", (245, 245, 245, 255))),
                         surface_role="lane_mark",
@@ -7242,6 +7503,11 @@ def _build_osm_base_scene(
     if road_references:
         for road_index, road_reference in enumerate(road_references):
             coords = _road_reference_coords(road_reference)
+            road_marking_allowed_geometries: List[Any] = []
+            if road_index < len(road_arm_geometries):
+                road_arm_geometry = road_arm_geometries[road_index]
+                if road_arm_geometry is not None and not getattr(road_arm_geometry, "is_empty", True):
+                    road_marking_allowed_geometries.append(road_arm_geometry)
             road_reference_width_m = float(getattr(road_reference, "width_m", 0.0) or 0.0)
             road_reference_width_m = road_reference_width_m or float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0)
             lane_count_hint: int | None = None
@@ -7277,6 +7543,7 @@ def _build_osm_base_scene(
                 road_coords=coords,
                 lane_separator_offsets_m=lane_separator_offsets,
                 marking_exclusion_geometries=centerline_marking_exclusion_geometries,
+                marking_allowed_geometries=road_marking_allowed_geometries,
                 color=colors.get("lane_mark", (245, 245, 245, 255)),
                 roughness=(roughness or {}).get("lane_mark", 0.30),
                 node_name_prefix=f"centerline_mark_{road_index}",
@@ -7296,6 +7563,7 @@ def _build_osm_base_scene(
                 highway_type=str(getattr(road_reference, "highway_type", "")),
                 road_coords=coords,
                 marking_exclusion_geometries=marking_exclusion_geometries,
+                marking_allowed_geometries=road_marking_allowed_geometries,
                 edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
                 roughness=(roughness or {}).get("lane_edge", 0.30),
                 node_name_prefix=f"lane_edge_{road_index}",
@@ -11298,6 +11566,15 @@ def compose_street_scene(
             theme_segment=theme_segment,
             road_segment_graph=road_segment_graph,
         )
+        zone_slots, rhythm_slot_id_map = _retarget_road_uniform_rhythm_slots(
+            zone_slots,
+            config=zone_config,
+        )
+        if rhythm_slot_id_map:
+            zone_slot_segments = {
+                rhythm_slot_id_map.get(str(slot_id), str(slot_id)): segment
+                for slot_id, segment in zone_slot_segments.items()
+            }
         zone_solver_result = replace(zone_solver_result, slot_plans=tuple(zone_slots))
         zone_solver_results.append(zone_solver_result)
         slot_plans.extend(zone_slots)
@@ -11365,6 +11642,7 @@ def compose_street_scene(
             placement_ctx=placement_ctx,
             theme_segments=theme_segments,
             road_segment_graph=road_segment_graph,
+            config=config,
         )
         if surface_bus_stop_slots:
             slot_plans.extend(surface_bus_stop_slots)
@@ -11512,6 +11790,7 @@ def compose_street_scene(
             "spatial_hash_cell_size_m": float(placement_field_config["cell_size_m"]),
             "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
             "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
+            "street_furniture_distribution_policy": str(getattr(config, "street_furniture_distribution_policy", "road_uniform_v1")),
         },
         slot_plan_summary=_summarize_slot_plans(ordered_slot_plans),
         category_slot_counts=dict(category_slot_counts),
@@ -13378,9 +13657,10 @@ def compose_street_scene(
         "selected_sky_backend": str(sky_selection.backend_name) if sky_selection is not None else "",
         "environment_source_dataset": str(environment_source_dataset),
         "environment_source_datasets": list(environment_source_datasets),
-        "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
-        "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
-        "placement_logging_mode": str(getattr(config, "placement_logging_mode", "full_with_ui_summary")),
+            "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
+            "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
+            "street_furniture_distribution_policy": str(getattr(config, "street_furniture_distribution_policy", "road_uniform_v1")),
+            "placement_logging_mode": str(getattr(config, "placement_logging_mode", "full_with_ui_summary")),
         "tree_asset_by_theme": dict(theme_tree_asset_lock),
         "tree_theme_reselection_count": int(tree_theme_reselection_count),
         "placement_log_path": str(placement_log_path),

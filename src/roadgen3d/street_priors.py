@@ -16,6 +16,7 @@ DEFAULT_CATEGORIES: Tuple[str, ...] = (
 )
 
 INFRASTRUCTURE_CATEGORY_PRIORITY: Tuple[str, ...] = (
+    "bus_stop",
     "lamp",
     "tree",
     "bench",
@@ -44,6 +45,18 @@ DEFAULT_SPACING_M: Dict[str, float] = {
     "mailbox": 40.0,
     "hydrant": 30.0,
     "bollard": 6.0,
+}
+
+FURNITURE_SCENE_MAX_COUNTS: Dict[str, int] = {
+    "trash": 2,
+    "bench": 3,
+    "bus_stop": 2,
+}
+
+FURNITURE_RHYTHM_CATEGORIES: Tuple[str, ...] = ("lamp", "tree")
+FURNITURE_RHYTHM_INTERVAL_M: Dict[str, float] = {
+    "lamp": 18.0,
+    "tree": 14.0,
 }
 
 SIDE_PREF: Dict[str, str] = {

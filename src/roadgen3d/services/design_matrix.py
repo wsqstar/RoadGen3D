@@ -354,7 +354,8 @@ class DesignMatrixService:
             **structure_patch,
             **furniture_patch,
         }
-        compose_patch["furniture_balance_policy"] = "side_biased_legacy"
+        compose_patch["furniture_balance_policy"] = "overall_balanced"
+        compose_patch["street_furniture_distribution_policy"] = "road_uniform_v1"
         if furniture.key == "preset:balanced_complete":
             compose_patch["density"] = min(
                 float(compose_patch.get("density", BALANCED_COMPLETE_MATRIX_DENSITY_CAP) or BALANCED_COMPLETE_MATRIX_DENSITY_CAP),
@@ -599,12 +600,14 @@ def _glb_has_street_furniture(path: Path) -> bool:
 def _matrix_ready_cell_is_current(payload: Mapping[str, Any], metadata: Mapping[str, Any]) -> bool:
     furniture_key = str(metadata.get("furniture_key") or "")
     counts = _placement_category_counts(payload)
-    if furniture_key != "none" and int(counts.get("tree", 0)) <= 0:
+    if furniture_key != "none" and _street_furniture_count(counts) <= 0:
         return False
     if furniture_key != "preset:balanced_complete":
         return True
     config = payload.get("config") if isinstance(payload.get("config"), Mapping) else {}
-    if str(config.get("furniture_balance_policy") or "").strip().lower() != "side_biased_legacy":
+    if str(config.get("furniture_balance_policy") or "").strip().lower() != "overall_balanced":
+        return False
+    if str(config.get("street_furniture_distribution_policy") or "").strip().lower() != "road_uniform_v1":
         return False
     try:
         if float(config.get("density", 1.0) or 1.0) > BALANCED_COMPLETE_MATRIX_DENSITY_CAP + 1e-6:
@@ -612,6 +615,10 @@ def _matrix_ready_cell_is_current(payload: Mapping[str, Any], metadata: Mapping[
     except (TypeError, ValueError):
         return False
     return int(counts.get("lamp", 0)) <= BALANCED_COMPLETE_MATRIX_LAMP_LIMIT
+
+
+def _street_furniture_count(counts: Mapping[str, int]) -> int:
+    return sum(int(counts.get(category, 0) or 0) for category in STREET_FURNITURE_CATEGORIES)
 
 
 def _require_tree_as_matrix_furniture(compose_patch: Dict[str, Any]) -> None:

@@ -19,7 +19,13 @@ from .street_band_semantics import (
     has_detailed_strip_profiles,
     iter_detailed_strip_profiles,
 )
-from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M
+from .street_priors import (
+    DEFAULT_CATEGORIES,
+    DEFAULT_SPACING_M,
+    FURNITURE_RHYTHM_CATEGORIES,
+    FURNITURE_RHYTHM_INTERVAL_M,
+    FURNITURE_SCENE_MAX_COUNTS,
+)
 from .types import StreetBand, StreetComposeConfig, StreetProgram
 
 _PROFILE_DEFAULTS: Dict[str, Dict[str, object]] = {
@@ -447,6 +453,57 @@ def _estimate_furniture_requirements(
     return requirements
 
 
+def _rhythm_min_count(category: str, length_m: float) -> int:
+    if category not in FURNITURE_RHYTHM_CATEGORIES:
+        return 0
+    length = max(float(length_m), 0.0)
+    if length < 30.0:
+        return 1
+    interval = max(float(FURNITURE_RHYTHM_INTERVAL_M.get(category, 70.0)), 1.0)
+    return int(max(2, 2 * math.ceil(length / interval)))
+
+
+def _apply_furniture_design_quantity_rules(
+    requirements: Dict[str, int],
+    *,
+    config: StreetComposeConfig,
+    available_categories: Iterable[str],
+) -> Dict[str, int]:
+    available = {str(category).strip().lower() for category in available_categories}
+    normalized = {
+        str(category): max(0, int(count))
+        for category, count in dict(requirements).items()
+        if str(category) in available
+    }
+    for category in FURNITURE_RHYTHM_CATEGORIES:
+        if category not in available:
+            continue
+        minimum = _rhythm_min_count(category, float(config.length_m))
+        if minimum > 0:
+            normalized[category] = max(int(normalized.get(category, 0)), int(minimum))
+        if normalized.get(category, 0) > 1 and normalized[category] % 2:
+            normalized[category] += 1
+    distribution_policy = str(
+        getattr(config, "street_furniture_distribution_policy", "road_uniform_v1") or "road_uniform_v1"
+    ).strip().lower()
+    if distribution_policy == "road_uniform_v1":
+        rhythm_counts = [
+            int(normalized.get(category, 0))
+            for category in FURNITURE_RHYTHM_CATEGORIES
+            if category in available and int(normalized.get(category, 0)) > 0
+        ]
+        if len(rhythm_counts) >= 2:
+            rhythm_target = max(rhythm_counts)
+            for category in FURNITURE_RHYTHM_CATEGORIES:
+                if category in available and int(normalized.get(category, 0)) > 0:
+                    normalized[category] = rhythm_target
+    for category, cap in FURNITURE_SCENE_MAX_COUNTS.items():
+        if category not in normalized:
+            continue
+        normalized[category] = min(int(cap), int(normalized[category]))
+    return normalized
+
+
 def _throughput_requirements(config: StreetComposeConfig, profile_name: str, lane_count: int) -> Dict[str, float]:
     ped_factor = _demand_factor(str(getattr(config, "ped_demand_level", "medium")))
     transit_factor = _demand_factor(str(getattr(config, "transit_demand_level", "medium")))
@@ -614,6 +671,12 @@ def infer_street_program(
         for category in _coerce_category_tuple(getattr(config, "minimum_category_presence", ("trash", "bench", "lamp"))):
             if category in available_set:
                 requirements[category] = max(1, int(requirements.get(category, 0) or 0))
+    if not furniture_disabled:
+        requirements = _apply_furniture_design_quantity_rules(
+            requirements,
+            config=config,
+            available_categories=available_categories,
+        )
     observed_poi_counts = _observed_poi_counts(poi_context)
     control_points: List[str] = ["entry", "midblock", "exit"]
     merged_goals = _merge_goals(str(config.query), tuple(defaults["design_goals"]))

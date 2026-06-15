@@ -19,7 +19,7 @@ from .street_band_semantics import (
     detailed_strip_kind_from_band_name,
     resolve_band_by_alias,
 )
-from .street_priors import CATEGORY_PLACEMENT_RANK, CATEGORY_SUBSTITUTIONS, SIDE_PREF
+from .street_priors import CATEGORY_PLACEMENT_RANK, CATEGORY_SUBSTITUTIONS, FURNITURE_RHYTHM_CATEGORIES, SIDE_PREF
 from .types import (
     BandSolution,
     ConstraintSet,
@@ -1226,9 +1226,26 @@ def _build_slot_plans(
 ) -> Tuple[LayoutSlotPlan, ...]:
     slot_plans: List[LayoutSlotPlan] = []
     required_categories = _required_categories(solver_input.constraint_set)
+    required_categories.update(
+        str(category).strip().lower()
+        for category in tuple(getattr(solver_input.config, "minimum_category_presence", ()) or ())
+        if str(category).strip()
+    )
     placement_context = solver_input.placement_context
     bilateral_side_counts: Dict[str, int] = {"left": 0, "right": 0}
     allowed_bands_by_category: Dict[str, Tuple[StreetBand, ...]] = {}
+    distribution_policy = str(
+        getattr(solver_input.config, "street_furniture_distribution_policy", "road_uniform_v1")
+        or "road_uniform_v1"
+    ).strip().lower()
+    shared_rhythm_count = max(
+        (
+            int(resolved_program.furniture_requirements.get(category, 0))
+            for category in FURNITURE_RHYTHM_CATEGORIES
+            if int(resolved_program.furniture_requirements.get(category, 0)) > 0
+        ),
+        default=0,
+    )
 
     def _poi_anchor_data(category: str) -> List[Tuple[str, List[Tuple[float, float]]]]:
         if placement_context is None:
@@ -1326,10 +1343,20 @@ def _build_slot_plans(
         est_width = _ASSET_WIDTH_ESTIMATES.get(str(category), 1.5)
         min_spacing = 1.5 # Minimum clearance between assets
 
-        segment = float(solver_input.config.length_m) / float(max(remaining_count, 1))
+        if distribution_policy == "road_uniform_v1" and str(category) in FURNITURE_RHYTHM_CATEGORIES and shared_rhythm_count > 0:
+            segment = float(solver_input.config.length_m) / float(max(shared_rhythm_count, 1))
+        else:
+            segment = float(solver_input.config.length_m) / float(max(remaining_count, 1))
         
         # Optimization: Recalculate segment based on asset size
-        if remaining_count > 1:
+        if (
+            remaining_count > 1
+            and not (
+                distribution_policy == "road_uniform_v1"
+                and str(category) in FURNITURE_RHYTHM_CATEGORIES
+                and shared_rhythm_count > 0
+            )
+        ):
             total_length = float(solver_input.config.length_m)
             # Space required by assets themselves
             total_assets_width = remaining_count * est_width
@@ -1354,12 +1381,15 @@ def _build_slot_plans(
             bilateral_side_counts=bilateral_side_counts,
         )
         for idx, band in enumerate(ordered_bands):
+            rhythm_phase = 0.5
+            if distribution_policy == "road_uniform_v1" and str(category) in FURNITURE_RHYTHM_CATEGORIES:
+                rhythm_phase = 0.25 if str(category) == "lamp" else 0.75
             slot_plans.append(
                 LayoutSlotPlan(
                     slot_id=f"{category}_{idx:03d}",
                     category=category,
                     band_name=band.name,
-                    x_center_m=-float(solver_input.config.length_m) / 2.0 + (idx + 0.5) * segment,
+                    x_center_m=-float(solver_input.config.length_m) / 2.0 + (idx + rhythm_phase) * segment,
                     z_center_m=float(band.z_center_m),
                     spacing_m=float(segment),
                     side=str(band.side),
@@ -1728,13 +1758,19 @@ class LayoutSolverRuntime:
                 fallback_reason=f"{requested} does not support POI-backed anchored slots; fallback to banded",
                 road_segment_graph_summary=graph_summary,
             )
+        milp_required_categories = set(_required_categories(solver_input.constraint_set))
+        milp_required_categories.update(
+            str(category).strip().lower()
+            for category in tuple(getattr(solver_input.config, "minimum_category_presence", ()) or ())
+            if str(category).strip()
+        )
         slot_plans, milp_conflicts, meta = solve_candidate_assignment(
             program=resolved_program,
             length_m=float(solver_input.config.length_m),
             segment_length_m=float(getattr(solver_input.config, "segment_length_m", 12.0)),
             graph=solver_input.road_segment_graph,
             requirements=dict(resolved_program.furniture_requirements),
-            required_categories=_required_categories(solver_input.constraint_set),
+            required_categories=milp_required_categories,
             reserved_band_categories=dict(resolved_program.reserved_band_categories),
             keepout_rules=keepout_rules,
             objective_profile=str(resolved_program.objective_profile),
