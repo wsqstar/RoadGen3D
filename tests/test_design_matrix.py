@@ -204,7 +204,8 @@ def test_design_matrix_scene_job_request_disables_extra_glbs_and_carries_metadat
     assert options["design_matrix_cell"]["furniture_key"] == "preset:transit_priority"
     compose_patch = request["draft"]["compose_config_patch"]
     assert compose_patch["street_furniture_profile"] == "transit_priority"
-    assert compose_patch["furniture_balance_policy"] == "side_biased_legacy"
+    assert compose_patch["furniture_balance_policy"] == "overall_balanced"
+    assert compose_patch["street_furniture_distribution_policy"] == "road_uniform_v1"
     assert "tree" in compose_patch["minimum_category_presence"]
     assert "tree" not in compose_patch["optional_category_presence"]
 
@@ -235,8 +236,9 @@ def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expire
     })
     compose_patch = prepared["scene_job_request"]["draft"]["compose_config_patch"]
 
-    assert compose_patch["furniture_balance_policy"] == "side_biased_legacy"
+    assert compose_patch["furniture_balance_policy"] == "overall_balanced"
     assert compose_patch["density"] == 0.22
+    assert compose_patch["street_furniture_distribution_policy"] == "road_uniform_v1"
     assert "tree" in compose_patch["minimum_category_presence"]
 
     inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
@@ -249,7 +251,11 @@ def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expire
         tmp_path / "dense" / "scene_layout.json",
         target["metadata"],
         _minimal_glb(["scene"]),
-        config={"density": 0.6, "furniture_balance_policy": "overall_balanced"},
+        config={
+            "density": 0.6,
+            "furniture_balance_policy": "overall_balanced",
+            "street_furniture_distribution_policy": "road_uniform_v1",
+        },
         placements=[{"category": "tree"}] + [{"category": "lamp"} for _ in range(48)],
     )
 
@@ -260,7 +266,30 @@ def test_design_matrix_balanced_complete_preview_uses_compact_density_and_expire
     assert refreshed_cell["layout_path"] == ""
 
 
-def test_design_matrix_inventory_expires_furniture_ready_cell_without_tree(tmp_path: Path) -> None:
+def test_design_matrix_inventory_accepts_furniture_ready_cell_without_tree(tmp_path: Path) -> None:
+    service = _service(tmp_path)
+    inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    target = next(
+        cell
+        for cell in inventory["cells"]
+        if cell["structure_key"] == "scenario:scenario_03" and cell["furniture_key"] == "preset:transit_priority"
+    )
+    ready_layout = _write_matrix_layout(
+        tmp_path / "ready" / "scene_layout.json",
+        target["metadata"],
+        _minimal_glb(["scene"]),
+        placements=[{"category": "lamp"}],
+    )
+    os.utime(ready_layout, (2000, 2000))
+
+    refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    refreshed_cell = next(cell for cell in refreshed["cells"] if cell["cell_key"] == target["cell_key"])
+
+    assert refreshed_cell["status"] == "ready"
+    assert refreshed_cell["layout_path"] == str(ready_layout)
+
+
+def test_design_matrix_inventory_expires_furniture_cell_without_any_furniture(tmp_path: Path) -> None:
     service = _service(tmp_path)
     inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
     target = next(
@@ -272,7 +301,7 @@ def test_design_matrix_inventory_expires_furniture_ready_cell_without_tree(tmp_p
         tmp_path / "stale" / "scene_layout.json",
         target["metadata"],
         _minimal_glb(["scene"]),
-        placements=[{"category": "lamp"}],
+        placements=[{"category": "building"}],
     )
     os.utime(stale_layout, (2000, 2000))
 
@@ -282,13 +311,35 @@ def test_design_matrix_inventory_expires_furniture_ready_cell_without_tree(tmp_p
     assert refreshed_cell["status"] != "ready"
     assert refreshed_cell["layout_path"] == ""
 
+
+def test_design_matrix_balanced_complete_prefers_current_distribution_policy(tmp_path: Path) -> None:
+    service = _service(tmp_path)
+    inventory = service.inventory({"graph_template_id": "hkust_gz_gate"})
+    target = next(
+        cell
+        for cell in inventory["cells"]
+        if cell["structure_key"] == "scenario:scenario_06" and cell["furniture_key"] == "preset:balanced_complete"
+    )
+    legacy_layout = _write_matrix_layout(
+        tmp_path / "legacy" / "scene_layout.json",
+        target["metadata"],
+        _minimal_glb(["scene"]),
+        config={"density": 0.22, "furniture_balance_policy": "side_biased_legacy"},
+        placements=[{"category": "tree"}],
+    )
     ready_layout = _write_matrix_layout(
         tmp_path / "ready" / "scene_layout.json",
         target["metadata"],
         _minimal_glb(["scene"]),
-        placements=[{"category": "tree"}],
+        config={
+            "density": 0.22,
+            "furniture_balance_policy": "overall_balanced",
+            "street_furniture_distribution_policy": "road_uniform_v1",
+        },
+        placements=[{"category": "bench"}],
     )
-    os.utime(ready_layout, (3000, 3000))
+    os.utime(legacy_layout, (3000, 3000))
+    os.utime(ready_layout, (2000, 2000))
 
     refreshed = service.inventory({"graph_template_id": "hkust_gz_gate"})
     refreshed_cell = next(cell for cell in refreshed["cells"] if cell["cell_key"] == target["cell_key"])

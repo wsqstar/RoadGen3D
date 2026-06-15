@@ -43,12 +43,12 @@ def test_lane_edge_markings_follow_curved_polyline(monkeypatch: pytest.MonkeyPat
     )
 
     assert len(calls) > 12
-    assert {round(float(call["local_z_m"]), 1) for call in calls} == {-3.5, 3.5}
+    assert {round(float(call["local_z_m"]), 1) for call in calls} == {-7.0, 7.0}
     assert all(float(call["local_x_m"]) == pytest.approx(0.0) for call in calls)
     assert all(call["surface_role"] == "lane_edge_mark" for call in calls)
-    assert all(float(call["length_m"]) == pytest.approx(1.8) for call in calls)
+    assert all(float(call["length_m"]) == pytest.approx(2.0) for call in calls)
     assert any(round(float(call["road_yaw_deg"])) == 0 for call in calls)
-    assert any(round(float(call["road_yaw_deg"])) == 90 for call in calls)
+    assert any(round(float(call["road_yaw_deg"])) == -90 for call in calls)
     assert any(float(call["road_center_x_m"]) == pytest.approx(10.0) and float(call["road_center_z_m"]) > 0.0 for call in calls)
 
 
@@ -71,6 +71,6 @@ def test_lane_edge_markings_straight_fallback_uses_lateral_offsets(monkeypatch: 
     )
 
     assert len(calls) == 2
-    assert {round(float(call["local_z_m"]), 1) for call in calls} == {-3.5, 3.5}
+    assert {round(float(call["local_z_m"]), 1) for call in calls} == {-7.0, 7.0}
     assert all(float(call["local_x_m"]) == pytest.approx(0.0) for call in calls)
     assert all(float(call["length_m"]) == pytest.approx(30.0) for call in calls)

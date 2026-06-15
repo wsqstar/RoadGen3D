@@ -87,6 +87,36 @@ def test_none_street_furniture_profile_keeps_structure_but_zeroes_requirements()
     assert "street_furniture_disabled" in program.notes
 
 
+def test_furniture_quantity_rules_cap_low_frequency_and_raise_rhythm_categories():
+    config = StreetComposeConfig(
+        query="pedestrian-friendly boulevard with transit access",
+        length_m=80.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.4,
+        seed=42,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        minimum_category_presence=("lamp", "tree", "bench", "trash"),
+    )
+
+    program = infer_street_program(
+        config,
+        available_categories=("bench", "lamp", "tree", "trash", "bus_stop"),
+    )
+    requirements = program.furniture_requirements
+
+    assert requirements["trash"] <= 2
+    assert requirements["bench"] <= 3
+    assert requirements["bus_stop"] <= 2
+    assert requirements["lamp"] >= 10
+    assert requirements["tree"] >= 10
+    assert requirements["lamp"] == requirements["tree"]
+    assert requirements["lamp"] % 2 == 0
+    assert requirements["tree"] % 2 == 0
+
+
 def test_program_generator_runtime_loads_checkpoint_and_returns_learned_program(tmp_path: Path):
     torch = pytest.importorskip("torch")
 

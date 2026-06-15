@@ -1006,7 +1006,7 @@ def test_load_real_manifest_repairs_split_component_mesh_path(tmp_path: Path):
     assert "parent-split-052" in metadata
 
 
-def test_curated_virtual_assets_inject_scene_ready_tree_when_tree_pool_unusable():
+def test_curated_virtual_assets_skip_disabled_tree_when_tree_pool_unusable():
     cache = street_layout._LazyMeshCache({})
     injected = street_layout._inject_curated_virtual_assets(
         [
@@ -1028,8 +1028,8 @@ def test_curated_virtual_assets_inject_scene_ready_tree_when_tree_pool_unusable(
         for row in injected
         if str(row.get("category", "")) == "tree" and street_layout._is_external_tree_asset(row)
     ]
-    assert [row["asset_id"] for row in tree_rows] == ["curated_tree_module_v1"]
-    assert "curated_tree_module_v1" in cache
+    assert [row["asset_id"] for row in tree_rows] == []
+    assert "curated_tree_module_v1" not in cache
 
 
 def test_add_instance_meshes_adds_doors_only_for_procedural_buildings(tmp_path: Path):
@@ -2492,11 +2492,18 @@ def test_pick_category_candidate_fixed_hq_uses_seeded_allowlist(monkeypatch):
             "bollard",
             source="curated_virtual",
             quality_tier=3,
+            scene_eligible=False,
+        ),
+        "e62f62684b614e38998b890a974e1820": _asset_row(
+            "e62f62684b614e38998b890a974e1820",
+            "bollard",
+            source="urbanverse",
+            quality_tier=3,
             scene_eligible=True,
         ),
         "lamp_other": _asset_row("lamp_other", "lamp"),
         "trash_other": _asset_row("trash_other", "trash"),
-        "bollard_other": _asset_row("bollard_other", "bollard"),
+        "bollard_other": _asset_row("bollard_other", "bollard", scene_eligible=False),
     }
     hits = [
         RetrievalHit(asset_id="lamp_other", score=0.99),
@@ -2596,7 +2603,7 @@ def test_pick_category_candidate_fixed_hq_uses_seeded_allowlist(monkeypatch):
         "curated_allowlist_stable",
     )
     assert (bollard_row["asset_id"], bollard_score, bollard_source) == (
-        "curated_railing_module_v1",
+        "e62f62684b614e38998b890a974e1820",
         1.0,
         "curated_allowlist_stable",
     )
@@ -2605,13 +2612,18 @@ def test_pick_category_candidate_fixed_hq_uses_seeded_allowlist(monkeypatch):
 def test_validate_curated_locked_assets_reports_available_fallbacks():
     asset_by_id = {
         "lamp_modern_production": _asset_row("lamp_modern_production", "lamp", scene_eligible=True),
-        "curated_railing_module_v1": _asset_row("curated_railing_module_v1", "bollard", source="curated_virtual", scene_eligible=True),
+        "e62f62684b614e38998b890a974e1820": _asset_row(
+            "e62f62684b614e38998b890a974e1820",
+            "bollard",
+            source="urbanverse",
+            scene_eligible=True,
+        ),
     }
 
     usable = street_layout._validate_curated_locked_assets(asset_by_id=asset_by_id, profile="fixed_hq_v1")
 
     assert usable["lamp"] == "lamp_modern_production"
-    assert usable["bollard"] == "curated_railing_module_v1"
+    assert usable["bollard"] == "e62f62684b614e38998b890a974e1820"
     assert "trash" not in usable
 
 
@@ -2681,6 +2693,59 @@ def test_osm_beauty_scene_proxies_skip_linear_road_overlays():
     assert not any(name.startswith("lane_mark_") for name in node_names)
     assert not any(name.startswith("curb_") for name in node_names)
     assert not any(name.startswith("crossing_patch_") for name in node_names)
+
+
+def test_tree_pit_proxy_is_compact_and_stays_outside_carriageway():
+    trimesh = pytest.importorskip("trimesh")
+    scene = trimesh.Scene()
+    placement_ctx = SimpleNamespace(road_reference=None)
+    street_program = SimpleNamespace(road_width_m=8.0, lane_count=2)
+    poi_ctx = PoiContext(
+        entrance_points_xz=(),
+        bus_stop_points_xz=(),
+        fire_points_xz=(),
+        poi_points_by_type_xz={},
+    )
+
+    street_layout._add_beauty_scene_proxies(
+        scene,
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=1,
+            max_trials_per_slot=5,
+            layout_mode="template",
+        ),
+        street_program=street_program,
+        placement_ctx=placement_ctx,
+        poi_ctx=poi_ctx,
+        placements=[
+            StreetPlacement(
+                instance_id="tree_0001",
+                asset_id="tree_asset",
+                category="tree",
+                score=1.0,
+                position_xyz=[0.0, street_layout.SIDEWALK_ELEVATION_M, 4.15],
+                yaw_deg=0.0,
+                scale=1.0,
+                bbox_xz=[-0.2, 0.2, 3.95, 4.35],
+                selection_source="test",
+                anchor_geom_id="left_furnishing",
+            )
+        ],
+    )
+
+    tree_pit_mesh = scene.geometry[scene.graph["tree_pit_0"][1]]
+    vertices = np.asarray(tree_pit_mesh.vertices)
+    assert float(tree_pit_mesh.extents[0]) == pytest.approx(street_layout._TREE_PIT_SIZE_M)
+    assert float(tree_pit_mesh.extents[2]) == pytest.approx(street_layout._TREE_PIT_SIZE_M)
+    assert float(vertices[:, 2].min()) >= 4.0 + street_layout._TREE_PIT_ROAD_CLEARANCE_M - 1e-6
+    assert float(vertices[:, 2].min()) < 4.15
 
 
 def test_osm_curb_zone_excludes_road_endpoint_caps():
@@ -2795,6 +2860,7 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     )
 
     node_names = {str(name) for name in scene.graph.nodes_geometry}
+    vehicle_surface_zone = placement_ctx.carriageway.union(bus_bay)
 
     assert any(name.startswith("surface_annotation_bus_bay") for name in node_names)
     assert any(name.startswith("surface_annotation_bus_bay_marking") for name in node_names)
@@ -2820,11 +2886,34 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     assert bus_bay_vertices.size
     assert float(bus_bay_vertices[:, 1].min()) == pytest.approx(street_layout.BUS_BAY_SURFACE_TOP_Y_M)
     assert float(bus_bay_vertices[:, 1].max()) == pytest.approx(street_layout.BUS_BAY_SURFACE_TOP_Y_M)
+    assert float(bus_bay_vertices[:, 0].min()) == pytest.approx(bus_bay.bounds[0])
+    assert float(bus_bay_vertices[:, 2].min()) == pytest.approx(bus_bay.bounds[1])
+    assert float(bus_bay_vertices[:, 0].max()) == pytest.approx(bus_bay.bounds[2])
+    assert float(bus_bay_vertices[:, 2].max()) == pytest.approx(bus_bay.bounds[3])
     bus_bay_color = np.asarray(bus_bay_meshes[0].visual.material.baseColorFactor, dtype=float)
     if float(bus_bay_color.max()) <= 1.0:
         bus_bay_color = bus_bay_color * 255.0
     assert bus_bay_color[:4] == pytest.approx((65, 68, 72, 255))
     assert tracker.surface_role_counts.get("bus_lane", 0) == 0
+    carriageway_meshes = [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("carriageway")
+    ]
+    assert carriageway_meshes
+    bus_bay_connection_zone = bus_bay.buffer(0.02)
+    for mesh in carriageway_meshes:
+        vertices = np.asarray(mesh.vertices)
+        if not len(vertices):
+            continue
+        mesh_plan_bounds = shapely_geometry.box(
+            float(vertices[:, 0].min()),
+            float(vertices[:, 2].min()),
+            float(vertices[:, 0].max()),
+            float(vertices[:, 2].max()),
+        )
+        if mesh_plan_bounds.intersects(bus_bay_connection_zone):
+            assert np.all(np.asarray(mesh.face_normals)[:, 1] > 0.5)
     sidewalk_meshes = [
         scene.geometry[scene.graph[node_name][1]]
         for node_name in scene.graph.nodes_geometry
@@ -2832,12 +2921,20 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     ]
     assert sidewalk_meshes
     assert any(str(name).startswith("sidewalk_sidewall_") for name in node_names)
-    sidewalk_vertices = _vertices_for("sidewalk_")
-    if sidewalk_vertices.size:
-        bus_bay_sidewalk_clearance = bus_bay.buffer(street_layout.BUS_BAY_SIDEWALK_CLEARANCE_M * 0.75)
+    sidewalk_top_vertices = np.vstack(
+        [
+            np.asarray(scene.geometry[scene.graph[node_name][1]].vertices)
+            for node_name in scene.graph.nodes_geometry
+            if str(node_name).startswith("sidewalk_")
+            and not str(node_name).startswith("sidewalk_sidewall_")
+            and len(scene.geometry[scene.graph[node_name][1]].vertices)
+        ]
+    )
+    if sidewalk_top_vertices.size:
+        vehicle_surface_interior = vehicle_surface_zone.buffer(-0.01)
         assert not any(
-            bus_bay_sidewalk_clearance.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
-            for vertex in sidewalk_vertices
+            vehicle_surface_interior.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
+            for vertex in sidewalk_top_vertices
         )
 
     marking_vertices = _vertices_for("surface_annotation_bus_bay_marking")
@@ -2880,12 +2977,86 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
             & (curb_vertices[:, 2] < -8.45)
         )
         assert not np.any(old_edge_curb)
-        assert not np.any(moved_edge_curb)
-        bus_bay_curb_suppression = bus_bay.buffer(street_layout.BUS_BAY_CURB_SUPPRESSION_M * 0.9)
-        assert not any(
-            bus_bay_curb_suppression.covers(shapely_geometry.Point(float(vertex[0]), float(vertex[2])))
+        assert np.any(moved_edge_curb)
+        curb_points = [
+            shapely_geometry.Point(float(vertex[0]), float(vertex[2]))
             for vertex in curb_vertices
+        ]
+        left_taper = shapely_geometry.LineString([(0.0, -6.6), (8.0, -8.6)])
+        right_taper = shapely_geometry.LineString([(40.0, -6.6), (32.0, -8.6)])
+        assert any(left_taper.buffer(0.18).covers(point) for point in curb_points)
+        assert any(right_taper.buffer(0.18).covers(point) for point in curb_points)
+
+
+def test_road_reference_markings_stay_on_matching_road_arm_surface():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    import trimesh
+
+    full_coords = [(0.0, 0.0), (60.0, -36.0)]
+    allowed_coords = [(0.0, 0.0), (32.0, -19.2)]
+    full_length = float(np.hypot(60.0, -36.0))
+    allowed_length = float(np.hypot(32.0, -19.2))
+    road_width = 13.2
+    allowed_arm = shapely_geometry.LineString(allowed_coords).buffer(road_width * 0.5, cap_style="flat")
+    sidewalk_zone = allowed_arm.buffer(3.0).difference(allowed_arm)
+    placement_ctx = SimpleNamespace(
+        carriageway=allowed_arm,
+        sidewalk_zone=sidewalk_zone,
+        road_arm_geometries=[allowed_arm],
+        junction_geometries=[],
+        strip_zones={},
+        carriageway_width_m=road_width,
+        road_reference=SimpleNamespace(coords=full_coords, width_m=road_width, highway_type="primary"),
+        road_references=[SimpleNamespace(coords=full_coords, width_m=road_width, highway_type="primary")],
+        detailed_strip_profiles=[
+            {"side": "center", "kind": "drive_lane", "inner_m": -6.6, "outer_m": -3.3},
+            {"side": "center", "kind": "drive_lane", "inner_m": -3.3, "outer_m": 0.0},
+            {"side": "center", "kind": "drive_lane", "inner_m": 0.0, "outer_m": 3.3},
+            {"side": "center", "kind": "drive_lane", "inner_m": 3.3, "outer_m": 6.6},
+        ],
+        surface_annotations=[],
+    )
+
+    try:
+        trimesh.creation.extrude_polygon(
+            shapely_geometry.Polygon([(0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0)]),
+            0.01,
         )
+    except ValueError as exc:
+        if "No available triangulation engine" in str(exc):
+            pytest.skip("Trimesh triangulation engine is unavailable in this environment")
+        raise
+
+    scene = street_layout._build_osm_base_scene(
+        placement_ctx,
+        texture_mode="solid_color_legacy",
+        texture_tracker=create_scene_texture_tracker("solid_color_legacy"),
+    )
+    marking_centers = []
+    marking_axes = []
+    for node_name in scene.graph.nodes_geometry:
+        name = str(node_name)
+        if not (name.startswith("centerline_mark_0") or name.startswith("lane_edge_0")):
+            continue
+        vertices = np.asarray(scene.geometry[scene.graph[node_name][1]].vertices)
+        if len(vertices):
+            xz_vertices = vertices[:, [0, 2]]
+            marking_centers.append(xz_vertices.mean(axis=0))
+            centered_vertices = xz_vertices - xz_vertices.mean(axis=0)
+            covariance = centered_vertices.T @ centered_vertices
+            eigen_values, eigen_vectors = np.linalg.eigh(covariance)
+            marking_axes.append(eigen_vectors[:, int(np.argmax(eigen_values))])
+
+    assert marking_centers
+    forward = np.array([60.0 / full_length, -36.0 / full_length], dtype=float)
+    projections = [float(np.dot(center, forward)) for center in marking_centers]
+    assert max(projections) <= allowed_length + 1.5
+    assert all(abs(float(np.dot(axis, forward))) > 0.95 for axis in marking_axes)
+    assert all(
+        allowed_arm.buffer(0.25).covers(shapely_geometry.Point(float(center[0]), float(center[1])))
+        for center in marking_centers
+    )
 
 
 def test_structure_lane_markings_have_visible_geometry():

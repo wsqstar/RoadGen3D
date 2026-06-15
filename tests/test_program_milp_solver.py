@@ -185,6 +185,106 @@ def test_short_segment_min_counts_scale_by_length():
     assert counts["bench"] <= 1
 
 
+def test_road_uniform_policy_alternates_tree_and_lamp_slots():
+    config = replace(
+        _config(profile="pedestrian_priority_v1", layout_solver="banded"),
+        length_m=80.0,
+        density=0.5,
+        minimum_category_presence=("lamp", "tree"),
+        optional_category_presence=(),
+    )
+    available = ("lamp", "tree")
+    program = infer_street_program(config, available)
+    runtime = LayoutSolverRuntime(backend="banded")
+
+    result = runtime.solve(
+        LayoutSolverInput(
+            program=program,
+            config=config,
+            available_categories=available,
+            constraint_set=load_constraint_set("pedestrian_priority_v1"),
+            inventory_summary=_inventory(*available),
+        )
+    )
+
+    rhythm_slots = sorted(
+        [slot for slot in result.slot_plans if slot.category in {"lamp", "tree"}],
+        key=lambda slot: float(slot.x_center_m),
+    )
+    rhythm_categories = [slot.category for slot in rhythm_slots]
+    assert rhythm_categories.count("lamp") >= 10
+    assert rhythm_categories.count("tree") >= 10
+    assert rhythm_categories.count("lamp") == rhythm_categories.count("tree")
+    assert all(left != right for left, right in zip(rhythm_categories, rhythm_categories[1:]))
+
+
+def test_hybrid_graph_solver_retargets_tree_and_lamp_slots_to_alternate():
+    nodes = []
+    for idx in range(24):
+        start_x = float(idx * 6.0)
+        end_x = float((idx + 1) * 6.0)
+        center_x = (start_x + end_x) * 0.5
+        nodes.append(
+            RoadSegmentNode(
+                segment_id=f"seg_{idx:04d}",
+                road_id=1,
+                start_xy=(start_x, 0.0),
+                end_xy=(end_x, 0.0),
+                center_xy=(center_x, 0.0),
+                length_m=6.0,
+                is_junction=False,
+                bands=(
+                    RoadSegmentBand(
+                        band_id=f"seg_{idx:04d}_left",
+                        segment_id=f"seg_{idx:04d}",
+                        side="left",
+                        kind="left_furnishing",
+                        width_m=2.5,
+                        allowed_categories=("lamp", "tree"),
+                    ),
+                    RoadSegmentBand(
+                        band_id=f"seg_{idx:04d}_right",
+                        segment_id=f"seg_{idx:04d}",
+                        side="right",
+                        kind="right_furnishing",
+                        width_m=2.5,
+                        allowed_categories=("lamp", "tree"),
+                    ),
+                ),
+            )
+        )
+    graph = RoadSegmentGraph(nodes=tuple(nodes), edges=(), mode="osm")
+    config = replace(
+        _config(profile="pedestrian_priority_v1", layout_solver="hybrid_milp_v1"),
+        length_m=120.0,
+        segment_length_m=6.0,
+        minimum_category_presence=("lamp", "tree"),
+        optional_category_presence=(),
+    )
+    available = ("lamp", "tree")
+    result = LayoutSolverRuntime(backend="hybrid_milp_v1").solve(
+        LayoutSolverInput(
+            program=infer_street_program(config, available),
+            config=config,
+            available_categories=available,
+            constraint_set=load_constraint_set("pedestrian_priority_v1"),
+            inventory_summary=_inventory(*available),
+            road_segment_graph=graph,
+        )
+    )
+
+    rhythm_categories = [
+        slot.category
+        for slot in sorted(
+            [slot for slot in result.slot_plans if slot.category in {"lamp", "tree"}],
+            key=lambda slot: float(slot.x_center_m),
+        )
+    ]
+    assert rhythm_categories.count("lamp") == rhythm_categories.count("tree")
+    assert rhythm_categories.count("lamp") >= 10
+    assert all(left != right for left, right in zip(rhythm_categories, rhythm_categories[1:]))
+
+
 def test_milp_template_solver_reports_segment_graph_summary_for_osm():
     config = _config(profile="transit_priority_v1", layout_mode="osm")
     available = ("bench", "lamp", "tree", "bus_stop")
