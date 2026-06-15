@@ -23,9 +23,17 @@ If documents disagree, use this order:
 3. `[now]` [DATA_CONTRACTS.md](DATA_CONTRACTS.md) for schema, request, job, and `scene_layout.json` contracts.
 4. `[now]` [EVALUATION.md](EVALUATION.md) for scoring APIs, evaluation fields, and road-metrics boundaries.
 5. `[now]` [DEPLOYMENT_AND_JOBS.md](DEPLOYMENT_AND_JOBS.md) for local services, job service limits, and artifact boundaries.
-6. `[now]` [README.md](../readme.md) for quick start and high-level repo orientation.
+6. `[now]` [README.md](../readme.md) for quick start and high-level repo orientation, including the authoritative task roadmap at [`#roadmap`](../readme.md#roadmap).
 7. `[plan]` [features/README.md](features/README.md) for feature-specific plans and still-useful design notes.
 8. `【drop】` [archive/README.md](archive/README.md)、`legacy/web_workbench`（兼容入口 `web/workbench`）及第三方/vendor 文档仅作历史参考。
+
+### Task Entrypoint (统一入口)
+
+- 当前任务与状态入口统一在 root `readme.md#roadmap`：
+  - `### Completed ✓`
+  - `### Pending`
+  - `### Deferred`
+- 本文档保持架构、边界、里程碑、技术债的集成说明，不再承载单独待办清单文件。
 
 ## Repository Layout & Compatibility Map
 
@@ -145,8 +153,7 @@ If documents disagree, use this order:
 
 | Document | Status | Use it for |
 | --- | --- | --- |
-| `readme.md` | `[now][todo]` | Quick start and high-level repo architecture. Needs small consistency cleanup around active vs vendor submodules. |
-| `todo.md` | `[todo]` | Small legacy to-do list. Fold actionable items into this progress map or issue tracker later. |
+| `readme.md` | `[now]` | Quick start and high-level repo architecture. Task status and execution queue are centralized in the `## Roadmap` section (`Completed` / `Pending` / `Deferred`). |
 | `docs/README.md` | `[now]` | Primary documentation navigation entrypoint. |
 | `docs/current-progress.md` | `[now]` | This integrated progress map. |
 | `docs/PROJECT_LAYOUT.md` | `[now]` | Directory split guide and active/legacy boundary map. |
@@ -226,7 +233,7 @@ If documents disagree, use this order:
 - `[todo]` Update [PROJECT_SUMMARY_FOR_MEETING.md](PROJECT_SUMMARY_FOR_MEETING.md): it still says `scene_layout.json` lacks `schema_version` / JSON Schema, while [DATA_CONTRACTS.md](DATA_CONTRACTS.md) documents `schema_version=roadgen3d.scene_layout.v1` and `data/schemas/scene_layout.schema.json`.
 - `[todo]` Reconcile root README language about "3 submodules" with `.gitmodules`: active product submodules are Viewer and road-metrics, while tools/vendor submodules are supporting or external.
 - `[todo]` Reconcile asset counts: older inventory, building survey, street furniture manifest notes, and README numbers are from different snapshots.
-- `[todo]` Decide whether `todo.md` should remain a separate root file or be folded into this progress map.
+- `[now]` `todo.md` 已折叠到 root `readme.md` 的 `## Roadmap`，并按 `Completed / Pending / Deferred` 统一维护。
 - `[now]` `docs/current-progress.md` is linked from [docs/README.md](README.md) as the current progress and documentation integration map.
 - `[todo]` Clarify whether feature docs should stay as design notes or be split into implemented feature docs vs future design docs.
 - `[todo]` Keep OSM wording precise: OSM/context support exists, but current stable demo path is Scenario Designs over graph templates.

@@ -72,8 +72,8 @@ RoadGen3D/
 
 ## 四、文档同步指引
 
-- `readme.md`：新增目录示意与兼容说明
+- `readme.md`：新增目录示意与兼容说明；`Roadmap` 已内置任务状态入口（Completed / Pending / Deferred）
 - `docs/ACTIVE_ENTRYPOINTS.md`：入口层和兼容边界说明
 - `docs/current-progress.md`：活跃/历史文档归集说明
 - 本页：统一目录导航
-
+- 任务入口统一指向：`readme.md#roadmap`（Completed / Pending / Deferred），避免分散待办记录文件
