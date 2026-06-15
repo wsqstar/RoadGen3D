@@ -998,6 +998,18 @@ make eval                 # Run engineering evaluation
 - **Persistent Benchmark Store** — `samples.jsonl` 持久化历史样本，可跨 run / batch 复用
 - **Correlation Analysis 面板** — 后端抽取 input / scene / derived 特征并计算 Spearman、preset residual、delta、Kruskal-Wallis、feature importance
 - **GLB 按需重建** — 对保留 `scene_layout.json` 但缺失 `scene.glb` 的样本可重新组装 GLB
+- **LLM 评估接入** — 接入 `zetatechs/yizhan api`，新增 `/api/design/evaluate/unified`，评估维度设为步行性(45%)、安全性(35%)、美观性(20%)，并清理 mock 评估路径
+
+### Pending
+
+- **场景图叠加到 3D** — 将 2D 场景图拓扑叠加到 3D 视图
+  - Viewer 中展示场景图节点与边
+  - 显示节点标注与边属性信息
+
+### Deferred
+
+- ~~研究区域指定 (OSM)~~ — 暂不处理，当前使用预设模板模式
+- ~~十个预设场景~~ — 暂不处理，当前使用既有 6 个预设（步行友好、商业活力、公交优先、公园景观、安静居住、平衡街道）
 
 ### Near-term
 
