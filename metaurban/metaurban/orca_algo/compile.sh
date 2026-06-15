@@ -1,4 +1,0 @@
-mkdir build
-cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DFULL_OUTPUT_FLAG=OFF -DFULL_LOG_FLAG=OFF -DMAPF_LOG_FLAG=OFF ..
-make -j8

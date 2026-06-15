@@ -1,1 +1,0 @@
-from metaurban.scenario.scenario_description import ScenarioDescription
