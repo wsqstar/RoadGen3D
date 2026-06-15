@@ -1,7 +1,7 @@
 # RoadGen3D Current Progress
 
 > Status: current integration map
-> Last updated: 2026-05-15
+> Last updated: 2026-06-15
 > Scope: Summarize the current implementation, architecture, documentation map, active gaps, and dropped/archived surfaces. This page is a routing layer over the existing Markdown files, not a replacement for the detailed source documents.
 
 ## Tag Syntax
@@ -26,6 +26,15 @@ If documents disagree, use this order:
 6. `[now]` [README.md](../readme.md) for quick start and high-level repo orientation.
 7. `[plan]` [features/README.md](features/README.md) for feature-specific plans and still-useful design notes.
 8. `【drop】` [archive/README.md](archive/README.md)、`legacy/web_workbench`（兼容入口 `web/workbench`）及第三方/vendor 文档仅作历史参考。
+
+## Repository Layout & Compatibility Map
+
+- 活跃运行层与历史归档层分离：
+  - 活跃运行：`src/`、`web/`、`ops/`、`docs/`、`tests/`、`data/`、`assets/`、`models/`、`artifacts/`。
+  - 历史：`legacy/`（包含 `evaluation`、`ui_api_legacy`、`web_workbench`、`_archive`）。
+  - 子模块边界：`web/viewer`、`src/roadgen3d/eval_engine_ext`、`tools/download3dAssets`、`vendor/RoadGen`、`vendor/RoadPen`、`metaurban`。
+  - 根目录兼容入口：`scripts`、`configs`、`examples`、`evaluation`、`ui`、`.archive`、`web/workbench`。
+- 规则：新内容优先编辑 `ops/`、`legacy/` 正式路径；兼容路径仅用于旧脚本与历史调用回退。
 
 ## One-Line Project State
 

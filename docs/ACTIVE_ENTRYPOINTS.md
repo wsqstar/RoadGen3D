@@ -1,7 +1,7 @@
 # RoadGen3D Active Entrypoints
 
 > Status: current  
-> Last verified: 2026-05-12
+> Last verified: 2026-06-15
 
 RoadGen3D root is the backend business and generation orchestration repository.
 The active frontend and evaluation engine are independent submodules with stable

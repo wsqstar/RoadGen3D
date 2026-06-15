@@ -42,8 +42,14 @@ web/viewer/*.tsbuildinfo
 web/workbench/node_modules/
 web/workbench/dist/
 web/workbench/*.tsbuildinfo
+legacy/web_workbench/node_modules/
+legacy/web_workbench/dist/
+legacy/web_workbench/*.tsbuildinfo
 .env
 data/street_furniture/
+
+.venv/
+.pytest_cache/
 
 
 # graph rag
@@ -57,3 +63,8 @@ data/street_furniture_data.tar.gz
 assets/building/buildings.tar.gz
 assets/building/assets_std_glb_flat/
 assets/building/assets_std_obj/
+
+# Local tool artifacts and assistant scratch dirs
+.playwright-mcp/
+.qoder/
+.qwen/
