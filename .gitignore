@@ -6,16 +6,11 @@ __pycache__/
 # Archived legacy files
 .archive/
 
-# Generated outputs
-artifacts/*
-!artifacts/branch_benchmarks/
-!artifacts/branch_benchmarks/**
-!artifacts/design_matrix/
-!artifacts/design_matrix/**
-!artifacts/project_report/
-artifacts/project_report/*
-!artifacts/project_report/20260517T025258Z/
-!artifacts/project_report/20260517T025258Z/**
+# Generated outputs live on the server; keep local artifacts as ignored runtime cache.
+artifacts/**
+!artifacts/
+!artifacts/README.md
+!artifacts/.gitkeep
 
 .uv-cache/
 .uv-python/

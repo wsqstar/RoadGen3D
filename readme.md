@@ -41,8 +41,7 @@ RoadGen3D/
 │   └── knowledge/          # GraphRAG 知识库索引
 │
 ├── 🧪 生成实验与 Benchmark (artifacts/)
-│   ├── branch_runs/        # 分支搜索 manifest、trace、layout、保留的 GLB
-│   └── branch_benchmarks/  # 持久化 benchmark samples 与汇总索引
+│   └── README.md           # 本地临时运行缓存入口；长期产物保存在服务器
 │
 ├── 🗂️ 运营与工具层 (ops/)
 │   ├── scripts/              # 运维/研究脚本（实际路径：ops/scripts）
@@ -192,6 +191,16 @@ ENABLE_ARCHIVED_WORKBENCH=1 make workbench-web
   - `ui` -> `legacy/ui_api_legacy`
   - `.archive` -> `legacy/_archive`
   - `web/workbench` -> `legacy/web_workbench`
+
+Artifacts 说明：
+
+- `artifacts/` 现在只作为本地临时运行缓存，不再保存到公开 Git 仓库。
+- 已迁移的完整产物快照位于 `docker-dev:/workspace/dev/github/gistudio/RoadGen3D/artifacts/`。
+- 需要恢复本地副本时执行：
+
+```bash
+rsync -a --partial docker-dev:/workspace/dev/github/gistudio/RoadGen3D/artifacts/ artifacts/
+```
 
 ### 测试 Pipeline
 

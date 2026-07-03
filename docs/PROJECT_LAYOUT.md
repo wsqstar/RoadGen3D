@@ -9,7 +9,7 @@
 - 历史内容集中到 `legacy/`
 - 根目录保留兼容入口，不影响现有命令和脚本调用
 
-> 状态说明：不改动主要运行能力，不移动 `data/`、`models/`、`artifacts/` 等大体量运行数据目录。
+> 状态说明：不改动主要运行能力；`data/`、`models/` 仍保持本地路径不变。`artifacts/` 仅保留小型说明/占位文件，长期运行产物已迁移到服务器。
 
 ## 一、根目录层级
 
@@ -22,7 +22,7 @@ RoadGen3D/
 ├── assets/             # 运行与展示资产（与 artifacts 配合）
 ├── data/               # 运行输入与缓存数据（不迁移）
 ├── models/             # 模型目录（不迁移）
-├── artifacts/          # 运行产物（不迁移）
+├── artifacts/          # 本地临时运行缓存；完整快照在 docker-dev
 ├── tools/              # 工具子模块（保持不动）
 ├── legacy/             # 历史与停产目录
 │   ├── evaluation/     # legacy 文档与停产评估脚本入口
@@ -70,7 +70,18 @@ RoadGen3D/
 - `tools/` 及 `vendor/` 保持子模块管理边界，不作为日常目录重构对象。
 - `web/viewer` 为当前前端主入口；`web/workbench` 为历史入口，默认不启动。
 
-## 四、文档同步指引
+## 四、Artifacts 边界
+
+- `artifacts/` 不再作为公开仓库数据目录，只保留 `artifacts/README.md` 或占位文件。
+- 完整历史产物快照位于 `docker-dev:/workspace/dev/github/gistudio/RoadGen3D/artifacts/`。
+- 本地运行仍可临时写入 `artifacts/`，这些文件默认被 Git 忽略。
+- 如需恢复本地副本：
+
+```bash
+rsync -a --partial docker-dev:/workspace/dev/github/gistudio/RoadGen3D/artifacts/ artifacts/
+```
+
+## 五、文档同步指引
 
 - `readme.md`：新增目录示意与兼容说明；`Roadmap` 已内置任务状态入口（Completed / Pending / Deferred）
 - `docs/ACTIVE_ENTRYPOINTS.md`：入口层和兼容边界说明
