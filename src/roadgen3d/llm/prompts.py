@@ -621,7 +621,7 @@ def build_graph_aware_design_messages(
         "你需要根据道路网络结构、RAG 设计指南证据和参考底图设计街道家具布局参数。"
         "你只能输出 JSON。"
         "字段必须包含："
-        "`compose_config_patch`(object) 和 `design_summary`(string)。"
+        "`compose_config_patch`(object)、`citations_by_field`(object<string,string[]>) 和 `design_summary`(string)。"
         f"compose_config_patch 只能使用这些字段：{allowed_fields}。"
         f"design_rule_profile 只能使用这些值：{allowed_design_rules}。"
         f"style_preset 只能使用这些值：{allowed_style_presets}。"
@@ -637,6 +637,8 @@ def build_graph_aware_design_messages(
         "请尽量为所有允许字段都给出非空值，不要输出 None/null。"
         "如果 RAG evidence 中 knowledge_source 为 scenario_parameters，text 是结构化情景-参数-值 JSON，"
         "请优先用于可匹配场景和参数的数值推导。"
+        "如果某个 compose_config_patch 字段直接受 RAG evidence 支持，必须在 citations_by_field 中写入该字段对应的 chunk_id；"
+        "无直接证据的推断字段不要伪造引用。"
         "不要编造具体资产 ID。"
     )
     serialized_evidence = [

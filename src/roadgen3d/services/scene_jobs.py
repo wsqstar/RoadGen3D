@@ -323,6 +323,26 @@ class SceneJobService:
                 or context_detail.get("parameterSourcesByField")
                 or state.draft.parameter_sources_by_field
             ),
+            "parameter_decisions_by_field": dict(
+                context_detail.get("parameter_decisions_by_field")
+                or context_detail.get("parameterDecisionsByField")
+                or {}
+            ),
+            "scenario_parameter_patch": dict(
+                context_detail.get("scenario_parameter_patch")
+                or context_detail.get("scenarioParameterPatch")
+                or {}
+            ),
+            "scenario_parameter_candidates": list(
+                context_detail.get("scenario_parameter_candidates")
+                or context_detail.get("scenarioParameterCandidates")
+                or []
+            ),
+            "llm_citations_by_field": _normalize_mapping_of_lists(
+                context_detail.get("llm_citations_by_field")
+                or context_detail.get("llmCitationsByField")
+                or {}
+            ),
             "knowledge_source": str(context_detail.get("knowledge_source") or context_detail.get("knowledgeSource") or ""),
             "evidence_count": int(context_detail.get("evidence_count") or 0),
         }
@@ -370,6 +390,8 @@ class SceneJobService:
                 "raw_fields": list(context_detail.get("llm_raw_fields") or []),
                 "defaulted_fields": list(context_detail.get("defaulted_fields") or []),
                 "overridden_fields": list(context_detail.get("overridden_llm_fields") or []),
+                "parameter_decisions_by_field": dict(provenance.get("parameter_decisions_by_field") or {}),
+                "llm_citations_by_field": dict(provenance.get("llm_citations_by_field") or {}),
                 "risk_notes": list(state.draft.risk_notes),
                 "derivation_status": str(context_detail.get("llm_derivation_status") or ""),
                 "generation_method": generation_method,

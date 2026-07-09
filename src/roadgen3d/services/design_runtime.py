@@ -23,6 +23,7 @@ from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
 from .design_types import (
+    ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
     DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
     DesignDraft,
     SceneContext,
@@ -817,57 +818,302 @@ def _style_intent_preserved_explicit_fields(
     return sorted(field_name for field_name in explicit_patch if field_name not in overridden)
 
 
+_PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
+_SOURCE_RANKS: Dict[str, int] = {
+    "default_after_llm": 0,
+    "llm_derived": 15,
+    "preset_default": 20,
+    "rag_supported_llm": 30,
+    "parameter_triple": 40,
+    "prompt_input": 45,
+    "scenario_hard_constraint": 50,
+    "runtime_fixed": 55,
+    _STYLE_BLEND_TARGET_SOURCE: 57,
+    _STYLE_TRANSFER_TARGET_SOURCE: 57,
+    "explicit_input": 60,
+}
+
+
+def _coerce_field_set(value: Any) -> set[str]:
+    if isinstance(value, str):
+        candidates = [value]
+    elif isinstance(value, Sequence) and not isinstance(value, (bytes, bytearray)):
+        candidates = list(value)
+    else:
+        candidates = []
+    return {
+        str(item).strip()
+        for item in candidates
+        if str(item).strip() in _PATCH_FIELD_SET
+    }
+
+
+def _normalize_citations_by_field(value: Any) -> Dict[str, tuple[str, ...]]:
+    if not isinstance(value, Mapping):
+        return {}
+    normalized: Dict[str, tuple[str, ...]] = {}
+    for raw_field, raw_citations in value.items():
+        field = str(raw_field or "").strip()
+        if field not in _PATCH_FIELD_SET:
+            continue
+        if isinstance(raw_citations, str):
+            citations = [raw_citations]
+        elif isinstance(raw_citations, Sequence) and not isinstance(raw_citations, (bytes, bytearray)):
+            citations = [str(item) for item in raw_citations]
+        else:
+            citations = []
+        cleaned = tuple(dict.fromkeys(item.strip() for item in citations if item.strip()))
+        if cleaned:
+            normalized[field] = cleaned
+    return normalized
+
+
+def _evidence_ids(evidence: Sequence[Any]) -> set[str]:
+    return {str(getattr(item, "chunk_id", "") or "").strip() for item in evidence if str(getattr(item, "chunk_id", "") or "").strip()}
+
+
+def _filter_citations_to_evidence(citations: Mapping[str, tuple[str, ...]], evidence: Sequence[Any]) -> Dict[str, tuple[str, ...]]:
+    allowed = _evidence_ids(evidence)
+    if not allowed:
+        return dict(citations)
+    filtered: Dict[str, tuple[str, ...]] = {}
+    for field, ids in citations.items():
+        kept = tuple(item for item in ids if item in allowed)
+        if kept:
+            filtered[field] = kept
+    return filtered
+
+
+def _is_scenario_parameter_evidence(item: Any) -> bool:
+    return (
+        str(getattr(item, "knowledge_source", "") or "").strip() == "scenario_parameters"
+        or str(getattr(item, "chunk_id", "") or "").startswith("scenario_parameters::")
+    )
+
+
+def _scenario_parameter_patch_from_evidence(
+    evidence: Sequence[Any],
+) -> tuple[Dict[str, Any], Dict[str, tuple[str, ...]], list[Dict[str, Any]]]:
+    best_by_field: Dict[str, tuple[float, Dict[str, Any]]] = {}
+    for item in evidence:
+        if not _is_scenario_parameter_evidence(item):
+            continue
+        try:
+            payload = json.loads(str(getattr(item, "text", "") or "{}"))
+        except Exception:
+            continue
+        if not isinstance(payload, Mapping):
+            continue
+        field = str(payload.get("parameter_name") or "").strip()
+        if field not in _PATCH_FIELD_SET:
+            continue
+        raw_value = payload.get("normalized_value")
+        if raw_value is None or raw_value == "":
+            continue
+        normalized = sanitize_compose_config_patch({field: raw_value})
+        if field not in normalized:
+            continue
+        confidence = float(payload.get("confidence") or 0.0)
+        score = float(getattr(item, "score", 0.0) or 0.0)
+        rank = confidence + score
+        row = {
+            "field": field,
+            "value": normalized[field],
+            "source": "parameter_triple",
+            "citations": [str(getattr(item, "chunk_id", "") or payload.get("chunk_id") or "")],
+            "confidence": confidence,
+            "score": score,
+            "scenario_label": str(payload.get("scenario_label") or ""),
+            "raw_value": payload.get("raw_value"),
+            "unit": str(payload.get("unit") or ""),
+        }
+        current = best_by_field.get(field)
+        if current is None or rank > current[0]:
+            best_by_field[field] = (rank, row)
+    patch: Dict[str, Any] = {}
+    citations: Dict[str, tuple[str, ...]] = {}
+    rows: list[Dict[str, Any]] = []
+    for field, (_, row) in best_by_field.items():
+        patch[field] = row["value"]
+        citation_ids = tuple(item for item in row["citations"] if item)
+        if citation_ids:
+            citations[field] = citation_ids
+        rows.append(row)
+    rows.sort(key=lambda row: str(row.get("field") or ""))
+    return patch, citations, rows
+
+
+def _scene_context_scenario_fields(scene_context: SceneContext | None) -> set[str]:
+    if scene_context is None or not isinstance(scene_context.scenario_design_variant, Mapping):
+        return set()
+    patch = scene_context.scenario_design_variant.get("compose_config_patch")
+    return set(sanitize_compose_config_patch(patch if isinstance(patch, Mapping) else {}).keys())
+
+
+def _public_candidate(candidate: Mapping[str, Any]) -> Dict[str, Any]:
+    return {
+        "source": str(candidate.get("source") or ""),
+        "value": candidate.get("value"),
+        "citations": list(candidate.get("citations") or []),
+    }
+
+
+def _set_parameter_decision(
+    decisions: Dict[str, Dict[str, Any]],
+    field: str,
+    value: Any,
+    *,
+    source: str,
+    citations: Sequence[str] = (),
+) -> None:
+    normalized = sanitize_compose_config_patch({field: value})
+    if field not in normalized:
+        return
+    candidate = {
+        "field": field,
+        "value": normalized[field],
+        "source": source,
+        "citations": list(dict.fromkeys(str(item).strip() for item in citations if str(item).strip())),
+        "rank": _SOURCE_RANKS.get(source, 10),
+        "overridden_candidates": [],
+        "rejected_candidates": [],
+    }
+    existing = decisions.get(field)
+    if existing is None:
+        decisions[field] = candidate
+        return
+    if int(candidate["rank"]) >= int(existing.get("rank", 0)):
+        candidate["overridden_candidates"] = [
+            _public_candidate(existing),
+            *list(existing.get("overridden_candidates") or []),
+        ]
+        decisions[field] = candidate
+    else:
+        existing.setdefault("rejected_candidates", []).append(_public_candidate(candidate))
+
+
+def _finalize_parameter_decisions(decisions: Mapping[str, Mapping[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    finalized: Dict[str, Dict[str, Any]] = {}
+    for field, decision in decisions.items():
+        finalized[field] = {
+            "field": field,
+            "value": decision.get("value"),
+            "source": str(decision.get("source") or ""),
+            "citations": list(decision.get("citations") or []),
+            "overridden_candidates": list(decision.get("overridden_candidates") or []),
+            "rejected_candidates": list(decision.get("rejected_candidates") or []),
+        }
+    return finalized
+
+
+def _merge_parameter_decisions(
+    draft: DesignDraft,
+    llm_patch: Mapping[str, Any],
+    *,
+    triple_patch: Mapping[str, Any] | None = None,
+    triple_citations: Mapping[str, tuple[str, ...]] | None = None,
+    llm_citations: Mapping[str, tuple[str, ...]] | None = None,
+    generation_options_payload: Mapping[str, Any] | None = None,
+    scene_context: SceneContext | None = None,
+) -> tuple[Dict[str, Any], Dict[str, str], list[str], list[str], Dict[str, Dict[str, Any]]]:
+    explicit_patch = sanitize_compose_config_patch(draft.compose_config_patch)
+    normalized_llm_patch = sanitize_compose_config_patch(llm_patch)
+    normalized_triple_patch = sanitize_compose_config_patch(triple_patch or {})
+    style_intent = _style_intent_for_draft(draft)
+    style_intent_patch = dict(style_intent.get("patch") or {})
+    style_intent_source = str(style_intent.get("source") or "")
+    options_payload = dict(generation_options_payload or {})
+    manual_fields = (
+        _coerce_field_set(options_payload.get("explicit_override_fields"))
+        | _coerce_field_set(options_payload.get("manual_override_fields"))
+    )
+    scenario_fields = (
+        _coerce_field_set(options_payload.get("scenario_compose_patch_fields"))
+        | _scene_context_scenario_fields(scene_context)
+    )
+    preset_fields = _coerce_field_set(options_payload.get("preset_config_patch_fields"))
+    course_fields = _coerce_field_set(options_payload.get("course_delivery_config_fields"))
+    variant_fields = _coerce_field_set(options_payload.get("design_variant_adjusted_fields"))
+    metadata_fields = manual_fields | scenario_fields | preset_fields | course_fields | variant_fields
+    if not metadata_fields:
+        preset_id = str(options_payload.get("preset_id") or "").strip().lower()
+        if preset_id and preset_id not in {"custom", "__custom__", "llm", "llm-driven", "skip_llm", "none", "disabled"}:
+            preset_fields = set(explicit_patch)
+        else:
+            manual_fields = set(explicit_patch)
+
+    decisions: Dict[str, Dict[str, Any]] = {}
+    for field_name, explicit_value in explicit_patch.items():
+        if field_name in manual_fields or (metadata_fields and field_name not in metadata_fields):
+            source = "explicit_input"
+        elif field_name in course_fields:
+            source = "runtime_fixed"
+        elif field_name in scenario_fields:
+            source = "scenario_hard_constraint"
+        else:
+            source = "preset_default"
+        _set_parameter_decision(decisions, field_name, explicit_value, source=source)
+
+    for field_name, value in normalized_llm_patch.items():
+        citations = tuple((llm_citations or {}).get(field_name, ()))
+        source = "rag_supported_llm" if citations else "llm_derived"
+        _set_parameter_decision(decisions, field_name, value, source=source, citations=citations)
+
+    for field_name, value in normalized_triple_patch.items():
+        _set_parameter_decision(
+            decisions,
+            field_name,
+            value,
+            source="parameter_triple",
+            citations=tuple((triple_citations or {}).get(field_name, ())),
+        )
+
+    for field_name, value in sanitize_compose_config_patch(style_intent_patch).items():
+        _set_parameter_decision(
+            decisions,
+            field_name,
+            value,
+            source=style_intent_source or _STYLE_TRANSFER_TARGET_SOURCE,
+        )
+
+    if draft.normalized_scene_query and "query" not in decisions:
+        _set_parameter_decision(decisions, "query", str(draft.normalized_scene_query).strip(), source="prompt_input")
+
+    defaulted_fields: list[str] = []
+    for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
+        if field_name in decisions:
+            continue
+        _set_parameter_decision(decisions, field_name, default_value, source="default_after_llm")
+        defaulted_fields.append(field_name)
+
+    finalized_decisions = _finalize_parameter_decisions(decisions)
+    merged_patch = {field: decision["value"] for field, decision in finalized_decisions.items()}
+    parameter_sources = {field: decision["source"] for field, decision in finalized_decisions.items()}
+    overridden_llm_fields = sorted(
+        field
+        for field, decision in finalized_decisions.items()
+        if any(
+            candidate.get("source") in {"llm_derived", "rag_supported_llm"}
+            for candidate in [
+                *list(decision.get("overridden_candidates", [])),
+                *list(decision.get("rejected_candidates", [])),
+            ]
+        )
+    )
+    return merged_patch, parameter_sources, defaulted_fields, overridden_llm_fields, finalized_decisions
+
+
 def _merge_llm_patch_with_explicit_inputs(
     draft: DesignDraft,
     llm_patch: Mapping[str, Any],
 ) -> tuple[Dict[str, Any], Dict[str, str], list[str], list[str]]:
-    """Merge an LLM patch with explicit user inputs.
+    """Backward-compatible merge wrapper used by older callers/tests."""
 
-    Explicit inputs always win over LLM suggestions.  The returned parameter
-    sources make that precedence visible to the UI and to diagnostics.
-    """
-
-    explicit_patch = sanitize_compose_config_patch(draft.compose_config_patch)
-    normalized_llm_patch = sanitize_compose_config_patch(llm_patch)
-    style_intent = _style_intent_for_draft(draft)
-    style_intent_patch = dict(style_intent.get("patch") or {})
-    style_intent_source = str(style_intent.get("source") or "")
-    merged_patch = dict(normalized_llm_patch)
-    controlled_patch = {**explicit_patch, **style_intent_patch}
-    explicit_fields = set(explicit_patch)
-    style_intent_fields = set(style_intent_patch)
-    llm_fields = set(normalized_llm_patch)
-    overridden_llm_fields: list[str] = []
-
-    for field_name, explicit_value in controlled_patch.items():
-        if field_name in normalized_llm_patch and normalized_llm_patch[field_name] != explicit_value:
-            overridden_llm_fields.append(field_name)
-        merged_patch[field_name] = explicit_value
-
-    if draft.normalized_scene_query and "query" not in merged_patch:
-        merged_patch["query"] = str(draft.normalized_scene_query).strip()
-
-    defaulted_fields: list[str] = []
-    for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
-        if field_name in merged_patch:
-            continue
-        merged_patch[field_name] = default_value
-        defaulted_fields.append(field_name)
-
-    parameter_sources: Dict[str, str] = {}
-    for field_name in merged_patch:
-        if field_name in style_intent_fields:
-            parameter_sources[field_name] = style_intent_source or _STYLE_TRANSFER_TARGET_SOURCE
-        elif field_name in explicit_fields:
-            parameter_sources[field_name] = "explicit_input"
-        elif field_name == "query" and draft.normalized_scene_query:
-            parameter_sources[field_name] = "prompt_input"
-        elif field_name in llm_fields:
-            parameter_sources[field_name] = "llm_derived"
-        else:
-            parameter_sources[field_name] = "default_after_llm"
-
-    return merged_patch, parameter_sources, defaulted_fields, sorted(overridden_llm_fields)
+    merged_patch, parameter_sources, defaulted_fields, overridden_llm_fields, _ = _merge_parameter_decisions(
+        draft,
+        llm_patch,
+    )
+    return merged_patch, parameter_sources, defaulted_fields, overridden_llm_fields
 
 
 def _derive_draft_with_llm(
@@ -876,6 +1122,7 @@ def _derive_draft_with_llm(
     base_config: StreetComposeConfig,
     scene_context: SceneContext,
     options: SceneGenerationOptions,
+    generation_options_payload: Mapping[str, Any] | None = None,
     progress_callback: ProgressCallback | None = None,
 ) -> DesignDraft:
     _emit_progress(
@@ -963,10 +1210,26 @@ def _derive_draft_with_llm(
             explicit_patch,
             style_intent_patch,
         )
-        llm_patch, parameter_sources, defaulted_fields, overridden_llm_fields = _merge_llm_patch_with_explicit_inputs(
+        structured_patch, structured_citations, structured_rows = _scenario_parameter_patch_from_evidence(evidence)
+        llm_citations = _filter_citations_to_evidence(
+            _normalize_citations_by_field(llm_response.get("citations_by_field")),
+            evidence,
+        )
+        llm_patch, parameter_sources, defaulted_fields, overridden_llm_fields, parameter_decisions = _merge_parameter_decisions(
             draft,
             raw_patch,
+            triple_patch=structured_patch,
+            triple_citations=structured_citations,
+            llm_citations=llm_citations,
+            generation_options_payload=generation_options_payload,
+            scene_context=scene_context,
         )
+        field_citations = {
+            field: tuple(decision.get("citations") or ())
+            for field, decision in parameter_decisions.items()
+            if decision.get("citations")
+        }
+        citations_by_field = {**citations_by_field, **field_citations}
         design_summary = str(llm_response.get("design_summary", "") or "").strip()
         _emit_progress(
             progress_callback,
@@ -992,6 +1255,10 @@ def _derive_draft_with_llm(
             style_transfer_target_patch=style_intent_patch if style_intent_mode == "transfer" else {},
             style_transfer_overridden_explicit_fields=style_intent_overridden_explicit_fields if style_intent_mode == "transfer" else [],
             parameter_sources_by_field=parameter_sources,
+            parameter_decisions_by_field=parameter_decisions,
+            scenario_parameter_patch=structured_patch,
+            scenario_parameter_candidates=structured_rows,
+            llm_citations_by_field=llm_citations,
             # RAG evidence fields for frontend display
             citations_by_field=citations_by_field,
             rag_queries=list(rag_queries),
@@ -1315,6 +1582,13 @@ def generate_scene_from_draft(
 
     draft_to_use = draft
     normalized_scene_context = sanitize_scene_context(scene_context)
+    generation_options_payload: Mapping[str, Any] = (
+        generation_options
+        if isinstance(generation_options, Mapping)
+        else generation_options.to_dict()
+        if isinstance(generation_options, SceneGenerationOptions)
+        else {}
+    )
     base_config = build_compose_config_from_draft(draft_to_use, patch_overrides=patch_overrides)
     if _wants_llm_parameter_derivation(generation_options):
         draft_to_use = _derive_draft_with_llm(
@@ -1322,6 +1596,7 @@ def generate_scene_from_draft(
             base_config=base_config,
             scene_context=normalized_scene_context,
             options=options,
+            generation_options_payload=generation_options_payload,
             progress_callback=progress_callback,
         )
         base_config = build_compose_config_from_draft(draft_to_use, patch_overrides=patch_overrides)

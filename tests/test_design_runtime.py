@@ -407,7 +407,7 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     assert user_payload["rag_evidence"][0]["parameter_hints"]["sidewalk_width_m"]
     assert any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
     assert result.compose_config["road_width_m"] == 9.0
-    assert result.compose_config["sidewalk_width_m"] == 4.2
+    assert result.compose_config["sidewalk_width_m"] == 3.658
     llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
     detail = llm_event["detail"]
     assert detail["graph_summary"]["road_count"] == 7
@@ -416,6 +416,10 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     assert any(item["knowledge_source"] == "scenario_parameters" for item in detail["rag_evidence"])
     assert detail["parameter_sources_by_field"]["query"] == "prompt_input"
     assert detail["parameter_sources_by_field"]["road_width_m"] == "llm_derived"
+    assert detail["parameter_sources_by_field"]["sidewalk_width_m"] == "parameter_triple"
+    assert detail["parameter_decisions_by_field"]["sidewalk_width_m"]["citations"] == [
+        "scenario_parameters::matrix::street_type_walkable_commercial_corridor::sidewalk_width_m"
+    ]
     assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
     assert "target_street_type" in detail["defaulted_fields"]
     assert "target_street_type" not in detail["llm_raw_fields"]
@@ -718,9 +722,9 @@ def test_generate_scene_from_draft_style_blend_preserves_base_and_promotes_targe
     assert detail["style_blend_mode"] == "blend"
     assert detail["style_blend_base_profile"] == "pedestrian_friendly"
     assert detail["style_blend_target_profile"] == "transit_priority"
-    assert detail["parameter_sources_by_field"]["street_furniture_profile"] == "explicit_input"
-    assert detail["parameter_sources_by_field"]["design_rule_profile"] == "explicit_input"
-    assert detail["parameter_sources_by_field"]["style_preset"] == "explicit_input"
+    assert detail["parameter_sources_by_field"]["street_furniture_profile"] == "preset_default"
+    assert detail["parameter_sources_by_field"]["design_rule_profile"] == "preset_default"
+    assert detail["parameter_sources_by_field"]["style_preset"] == "preset_default"
     assert detail["parameter_sources_by_field"]["density"] == "style_blend_target"
     assert "bus_stop" in detail["style_blend_patch"]["minimum_category_presence"]
     assert "street_furniture_profile" in detail["style_blend_preserved_explicit_fields"]
@@ -1308,3 +1312,163 @@ def test_generate_scene_from_draft_supports_reference_annotation_layout(tmp_path
     assert result.summary["scenario_id"] == "scenario_demo"
     assert result.summary["reference_annotation_path"] == str(annotation_path)
     assert payload["summary"]["generator"] == "reference_annotation_bridge_v1"
+
+
+def _decision_test_draft(
+    patch: dict[str, object] | None = None,
+    *,
+    query: str = "walkable evidence decision",
+) -> DesignDraft:
+    return DesignDraft(
+        normalized_scene_query=query,
+        compose_config_patch=dict(patch or {}),
+        citations_by_field={},
+        design_summary="summary",
+    )
+
+
+def test_scenario_parameter_evidence_builds_sanitized_patch_and_citations():
+    evidence = [
+        RagEvidence(
+            chunk_id="scenario_parameters::matrix::walkable_corridor::sidewalk_width_m",
+            doc_id="scenario_parameter_triples",
+            section_title="Walkable Corridor / sidewalk_width_m",
+            page_start=0,
+            page_end=0,
+            text=json.dumps(
+                {
+                    "scenario_id": "street_type.walkable_corridor",
+                    "scenario_label": "Walkable corridor",
+                    "parameter_name": "sidewalk_width_m",
+                    "normalized_value": "3.75",
+                    "raw_value": "3.75 m",
+                    "unit": "m",
+                    "confidence": 0.82,
+                }
+            ),
+            source_path="knowledge/scenario_parameter_triples.jsonl",
+            score=0.91,
+            knowledge_source="scenario_parameters",
+        ),
+        RagEvidence(
+            chunk_id="scenario_parameters::matrix::walkable_corridor::style_preset",
+            doc_id="scenario_parameter_triples",
+            section_title="Walkable Corridor / style_preset",
+            page_start=0,
+            page_end=0,
+            text=json.dumps(
+                {
+                    "scenario_id": "street_type.walkable_corridor",
+                    "parameter_name": "style_preset",
+                    "normalized_value": "not_a_registered_style",
+                }
+            ),
+            source_path="knowledge/scenario_parameter_triples.jsonl",
+            score=0.99,
+            knowledge_source="scenario_parameters",
+        ),
+    ]
+
+    patch, citations, rows = runtime._scenario_parameter_patch_from_evidence(evidence)
+
+    assert patch == {"sidewalk_width_m": 3.75}
+    assert citations == {
+        "sidewalk_width_m": ("scenario_parameters::matrix::walkable_corridor::sidewalk_width_m",)
+    }
+    assert rows == [
+        {
+            "field": "sidewalk_width_m",
+            "value": 3.75,
+            "source": "parameter_triple",
+            "citations": ["scenario_parameters::matrix::walkable_corridor::sidewalk_width_m"],
+            "confidence": 0.82,
+            "score": 0.91,
+            "scenario_label": "Walkable corridor",
+            "raw_value": "3.75 m",
+            "unit": "m",
+        }
+    ]
+
+
+def test_cited_llm_parameter_overrides_preset_field():
+    merged, sources, _, _, decisions = runtime._merge_parameter_decisions(
+        _decision_test_draft({"road_width_m": 7.0}),
+        {"road_width_m": 9.5},
+        llm_citations={"road_width_m": ("complete-streets-001",)},
+        generation_options_payload={"preset_config_patch_fields": ["road_width_m"]},
+    )
+
+    assert merged["road_width_m"] == 9.5
+    assert sources["road_width_m"] == "rag_supported_llm"
+    assert decisions["road_width_m"]["citations"] == ["complete-streets-001"]
+    assert decisions["road_width_m"]["overridden_candidates"] == [
+        {"source": "preset_default", "value": 7.0, "citations": []}
+    ]
+
+
+def test_structured_parameter_triple_overrides_cited_llm_parameter():
+    merged, sources, _, overridden_llm_fields, decisions = runtime._merge_parameter_decisions(
+        _decision_test_draft(),
+        {"sidewalk_width_m": 3.1},
+        triple_patch={"sidewalk_width_m": "4.2"},
+        triple_citations={"sidewalk_width_m": ("scenario_parameters::matrix::walkable::sidewalk_width_m",)},
+        llm_citations={"sidewalk_width_m": ("complete-streets-001",)},
+    )
+
+    assert merged["sidewalk_width_m"] == 4.2
+    assert sources["sidewalk_width_m"] == "parameter_triple"
+    assert "sidewalk_width_m" in overridden_llm_fields
+    assert decisions["sidewalk_width_m"]["citations"] == [
+        "scenario_parameters::matrix::walkable::sidewalk_width_m"
+    ]
+    assert decisions["sidewalk_width_m"]["overridden_candidates"] == [
+        {"source": "rag_supported_llm", "value": 3.1, "citations": ["complete-streets-001"]}
+    ]
+
+
+def test_manual_parameter_metadata_keeps_explicit_value_and_records_rejected_candidates():
+    merged, sources, _, overridden_llm_fields, decisions = runtime._merge_parameter_decisions(
+        _decision_test_draft({"sidewalk_width_m": 2.8}),
+        {"sidewalk_width_m": 3.6},
+        triple_patch={"sidewalk_width_m": 4.4},
+        triple_citations={"sidewalk_width_m": ("scenario_parameters::matrix::walkable::sidewalk_width_m",)},
+        llm_citations={"sidewalk_width_m": ("complete-streets-001",)},
+        generation_options_payload={"manual_override_fields": ["sidewalk_width_m"]},
+    )
+
+    assert merged["sidewalk_width_m"] == 2.8
+    assert sources["sidewalk_width_m"] == "explicit_input"
+    assert overridden_llm_fields == ["sidewalk_width_m"]
+    assert decisions["sidewalk_width_m"]["overridden_candidates"] == []
+    assert decisions["sidewalk_width_m"]["rejected_candidates"] == [
+        {"source": "rag_supported_llm", "value": 3.6, "citations": ["complete-streets-001"]},
+        {
+            "source": "parameter_triple",
+            "value": 4.4,
+            "citations": ["scenario_parameters::matrix::walkable::sidewalk_width_m"],
+        },
+    ]
+
+
+def test_runtime_fixed_course_field_rejects_structured_and_llm_candidates():
+    merged, sources, _, overridden_llm_fields, decisions = runtime._merge_parameter_decisions(
+        _decision_test_draft({"layout_solver": "hybrid_milp_v1"}),
+        {"layout_solver": "banded"},
+        triple_patch={"layout_solver": "milp_template_v1"},
+        triple_citations={"layout_solver": ("scenario_parameters::course::layout_solver",)},
+        llm_citations={"layout_solver": ("solver-guidance-001",)},
+        generation_options_payload={"course_delivery_config_fields": ["layout_solver"]},
+    )
+
+    assert merged["layout_solver"] == "hybrid_milp_v1"
+    assert sources["layout_solver"] == "runtime_fixed"
+    assert overridden_llm_fields == ["layout_solver"]
+    assert decisions["layout_solver"]["overridden_candidates"] == []
+    assert decisions["layout_solver"]["rejected_candidates"] == [
+        {"source": "rag_supported_llm", "value": "banded", "citations": ["solver-guidance-001"]},
+        {
+            "source": "parameter_triple",
+            "value": "milp_template_v1",
+            "citations": ["scenario_parameters::course::layout_solver"],
+        },
+    ]
