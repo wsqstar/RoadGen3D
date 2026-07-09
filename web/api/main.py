@@ -16,7 +16,6 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.api.junction_templates import router as junction_templates_router  # noqa: E402
 from roadgen3d.capture_3d import capture_views_for_layout  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
@@ -82,7 +81,6 @@ def create_app(
         evaluation_router,
         assets_router,
         knowledge_router,
-        junction_templates_router,
     ):
         app.include_router(router)
 

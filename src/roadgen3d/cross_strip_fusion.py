@@ -9,7 +9,6 @@ Core rules:
 
 This module provides a shared geometry generator that can be used by:
 - Reference Plan Annotator (frontend overlay)
-- Junction Editor (default seed generation)
 - Backend bridge (Python pipeline)
 """
 

@@ -37,7 +37,7 @@
 
 | 文档 | 说明 |
 | --- | --- |
-| [features/README.md](features/README.md) | Viewer、scene compare、junction editor、场景设计和测试工作流专题索引 |
+| [features/README.md](features/README.md) | Viewer、scene compare、场景设计和测试工作流专题索引 |
 
 ## 历史归档
 

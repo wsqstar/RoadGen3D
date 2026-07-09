@@ -17,8 +17,6 @@
 
 | 文档 | 说明 |
 | --- | --- |
-| [junction-editor.md](junction-editor.md) | junction editor 功能说明 |
-| [QUICK_START_JUNCTION_EDITOR.md](QUICK_START_JUNCTION_EDITOR.md) | junction editor 快速入口 |
 | [cross-junction-ribbon-corner-data-layer.md](cross-junction-ribbon-corner-data-layer.md) | cross junction surface 数据层设计 |
 | [scatter-plot-features.md](scatter-plot-features.md) | 评分散点图和 correlation analysis 功能说明 |
 

@@ -15,7 +15,7 @@ integration contracts.
 | Surface | Active entrypoint | Responsibility | Ownership boundary |
 | --- | --- | --- | --- |
 | API service | `web/api/main.py` via `make api` | FastAPI routes for design, generation, scene jobs, evaluation, knowledge, assets, and artifacts | Root repo owns orchestration and schemas |
-| Viewer | `web/viewer` via `make viewer-web` | React/AntD + Three.js/G6 viewer, annotation, asset editor, junction editor, evaluation display | `GIStudio/Viewer` submodule owns frontend implementation |
+| Viewer | `web/viewer` via `make viewer-web` | React/AntD + Three.js/G6 viewer, annotation, asset editor, evaluation display | `GIStudio/Viewer` submodule owns frontend implementation |
 | Evaluation engine | `src/roadgen3d/eval_engine_ext` | road-metrics scoring engine and LLM/visual evaluators | `road-metrics` submodule owns metric internals |
 | Generation core | `src/roadgen3d/services`, `src/roadgen3d/llm`, `src/roadgen3d/*.py` | Prompt/draft orchestration, graph-template composition, scene jobs, GLB/layout artifacts | Root repo owns product workflow |
 | Legacy workbench | `legacy/web_workbench`（兼容入口 `web/workbench`） | Archived historical UI only | Not an active product entrypoint |

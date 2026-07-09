@@ -185,8 +185,6 @@ If documents disagree, use this order:
 | `docs/features/roadgen3d_scenario_plan.md` | `[plan]` | Scenario implementation plan, assets, and capability gaps. |
 | `docs/features/design-test-workflow.md` | `[plan][todo]` | Test/report workflow design; should be reconciled with current benchmark/golden artifact roadmap. |
 | `docs/features/ANALYTICAL_DIORAMA_VISUAL_DIRECTION.md` | `[plan]` | Viewer visual direction for analytical diorama mode. |
-| `docs/features/junction-editor.md` | `[now][plan]` | Junction editor feature notes. |
-| `docs/features/QUICK_START_JUNCTION_EDITOR.md` | `[now]` | Junction editor quick start. |
 | `docs/features/cross-junction-ribbon-corner-data-layer.md` | `[plan]` | Cross-junction surface data layer design. |
 | `docs/features/scatter-plot-features.md` | `[now][plan]` | Score scatter and correlation-analysis feature notes. |
 | `docs/features/SCENE_COMPARE_FEATURE.md` | `[now][plan]` | Scene compare feature design. |
