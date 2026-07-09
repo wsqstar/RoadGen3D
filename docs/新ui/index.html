@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoadGen3D 界面参考</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page" data-od-id="page-roadgen3d-reference">
+    <header class="topbar" data-od-id="topbar-reference">
+      <div class="brand-lockup" data-od-id="brand-reference">
+        <span class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-title">
+          <strong>RoadGen3D 界面参考</strong>
+          <span>控制面板分析与优化原型</span>
+        </span>
+      </div>
+      <nav class="topbar-actions" aria-label="页面导航" data-od-id="nav-reference">
+        <a class="button" href="analysis-report.html" data-od-id="nav-analysis">查看分析</a>
+        <a class="button primary" href="optimized-control-panel.html" data-od-id="nav-prototype">打开优化界面</a>
+      </nav>
+    </header>
+
+    <main class="page-shell" data-od-id="main-reference">
+      <section class="hero" data-od-id="hero-reference">
+        <div>
+          <div class="eyebrow">RoadGen3D UI REVIEW</div>
+          <h1 data-od-id="h1-reference">保留全部能力，重排控制面板的信息层级。</h1>
+          <p data-od-id="hero-copy-reference">
+            本次参考基于 RoadGen3D 当前入口、旧 Workbench 与 Viewer 面板语义：不删生成、评估、对比、历史、资产、浮动车道、帮助等能力，只把浏览、控制、分析拆成更稳定的可折叠工作台。
+          </p>
+        </div>
+        <aside class="hero-aside" data-od-id="hero-context-reference">
+          <div class="eyebrow">当前结论</div>
+          <div class="pill-row" aria-label="结论标签">
+            <span class="pill" data-tone="ok">Viewer 应继续做主入口</span>
+            <span class="pill" data-tone="ok">旧 Workbench 语义可迁入侧栏</span>
+            <span class="pill" data-tone="warn">生成轨迹需要常驻可追踪</span>
+          </div>
+          <div class="mini-map" aria-label="控制面板布局示意" data-od-id="mini-layout-reference">
+            <svg viewBox="0 0 420 140" role="img" aria-label="三栏工作台布局">
+              <rect x="18" y="18" width="82" height="104" rx="8" fill="white" stroke="oklch(87% 0.012 248)" />
+              <rect x="112" y="18" width="194" height="104" rx="8" fill="white" stroke="oklch(87% 0.012 248)" />
+              <rect x="318" y="18" width="84" height="104" rx="8" fill="white" stroke="oklch(87% 0.012 248)" />
+              <path d="M130 82 C172 35 231 120 288 58" stroke="oklch(55% 0.14 238)" stroke-width="5" fill="none" stroke-linecap="round" />
+              <path d="M142 58 C188 94 220 38 274 92" stroke="oklch(57% 0.14 152)" stroke-width="3" fill="none" stroke-linecap="round" />
+              <circle cx="60" cy="45" r="5" fill="oklch(57% 0.14 152)" />
+              <circle cx="60" cy="70" r="5" fill="oklch(55% 0.14 238)" />
+              <circle cx="60" cy="95" r="5" fill="oklch(71% 0.16 72)" />
+              <rect x="338" y="40" width="44" height="7" rx="3.5" fill="oklch(55% 0.14 238)" />
+              <rect x="338" y="62" width="34" height="7" rx="3.5" fill="oklch(57% 0.14 152)" />
+              <rect x="338" y="84" width="50" height="7" rx="3.5" fill="oklch(71% 0.16 72)" />
+            </svg>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel-grid" aria-label="输出文件" data-od-id="screen-links">
+        <a class="link-card" href="analysis-report.html" data-od-id="link-analysis-report">
+          <span class="eyebrow">01 ANALYSIS</span>
+          <h2>界面分析报告</h2>
+          <p>梳理现有 RoadGen3D 的视觉气质、功能面、信息架构问题，以及“展开/收起”应该如何承载浏览、控制、分析。</p>
+          <span class="button compact">查看报告</span>
+        </a>
+        <a class="link-card" href="optimized-control-panel.html" data-od-id="link-optimized-panel">
+          <span class="eyebrow">02 PROTOTYPE</span>
+          <h2>优化控制面板</h2>
+          <p>一个响应式、可交互的 Viewer 工作台参考：左侧浏览、中央控制、右侧分析、底部任务与产物轨迹。</p>
+          <span class="button compact primary">打开原型</span>
+        </a>
+      </section>
+
+      <section class="section" data-od-id="scope-reference">
+        <h2 data-od-id="h2-scope-reference">保留边界</h2>
+        <div class="table-wrap">
+          <table aria-label="保留能力清单" data-od-id="table-preserved-capabilities">
+            <thead>
+              <tr>
+                <th>能力面</th>
+                <th>保留内容</th>
+                <th>界面处理</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>浏览</td>
+                <td>Recent Layouts、Scene、Scene Graph、Asset Editor、Annotation、Floating Lane</td>
+                <td>归入左侧可折叠浏览栏，保持当前场景上下文不丢失。</td>
+              </tr>
+              <tr>
+                <td>控制</td>
+                <td>Design Assistant、结构、家具目标、矩阵、补充要求、输出数量、Generate & Load</td>
+                <td>放在中央控制面板，与 3D 画布同屏，避免跳页打断。</td>
+              </tr>
+              <tr>
+                <td>分析</td>
+                <td>Evaluate、Compare、History、Presets、Benchmark、Run History、LLM Status</td>
+                <td>归入右侧分析栏和底部任务轨迹，默认收起但一键展开。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoadGen3D 界面分析报告</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page" data-od-id="page-analysis-report">
+    <header class="topbar" data-od-id="topbar-analysis">
+      <div class="brand-lockup" data-od-id="brand-analysis">
+        <span class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-title">
+          <strong>RoadGen3D 界面分析报告</strong>
+          <span>现状风格、功能边界与布局建议</span>
+        </span>
+      </div>
+      <nav class="topbar-actions" aria-label="页面导航" data-od-id="nav-analysis-report">
+        <a class="button" href="index.html" data-od-id="nav-back-index">返回入口</a>
+        <a class="button primary" href="optimized-control-panel.html" data-od-id="nav-open-prototype">打开优化界面</a>
+      </nav>
+    </header>
+
+    <main class="page-shell" data-od-id="main-analysis">
+      <section class="hero" data-od-id="hero-analysis">
+        <div>
+          <div class="eyebrow">STYLE DIAGNOSIS</div>
+          <h1 data-od-id="h1-analysis">RoadGen3D 已经像工程系统，下一步是让控制台像工作台。</h1>
+          <p data-od-id="analysis-lead">
+            当前界面有完整的生成、评估、对比、历史、资产和 Viewer 能力，但“流程页”和“场景画布”分散。优化重点不是删功能，而是把功能按任务上下文重排：左侧浏览对象，中间控制生成，右侧分析结果，底部追踪任务与产物。
+          </p>
+        </div>
+        <aside class="hero-aside" data-od-id="analysis-summary">
+          <div class="eyebrow">建议方向</div>
+          <ul class="metric-list" aria-label="建议方向摘要">
+            <li>
+              <strong>视觉系统</strong>
+              <span>保留道路/城市主题蓝和评估语义色，但降低大面积蓝色和卡片阴影。</span>
+            </li>
+            <li>
+              <strong>信息架构</strong>
+              <span>从三步线性页面转为 Viewer 工作台，分析层随场景切换同步。</span>
+            </li>
+            <li>
+              <strong>交互策略</strong>
+              <span>展开/收起不是省空间装饰，而是把低频分析和高级设置变成上下文抽屉。</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="section" data-od-id="current-style-section">
+        <h2 data-od-id="h2-current-style">现有风格判断</h2>
+        <p class="section-lead">
+          旧 Workbench 使用明亮 HKUST 蓝、Ant Design 组件、三步流程和卡片网格；当前 Viewer 已经出现更接近桌面工作台的左右栏、设置面板、Design/Evaluate/Compare/History 右侧标签。整体方向应从“演示型卡片应用”转向“专业场景生成控制台”。
+        </p>
+        <div class="panel-grid three">
+          <article class="panel plain" data-od-id="style-card-color">
+            <div class="panel-head">
+              <div>
+                <h3>颜色</h3>
+                <p>当前蓝黄主题识别度高，但蓝色同时承担品牌、按钮、状态、选中，导致层级偏吵。</p>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="pill-row">
+                <span class="pill">HKUST 蓝保留为域色</span>
+                <span class="pill" data-tone="ok">绿色负责成功/就绪</span>
+                <span class="pill" data-tone="warn">黄色只做缺失/等待</span>
+              </div>
+            </div>
+          </article>
+          <article class="panel plain" data-od-id="style-card-layout">
+            <div class="panel-head">
+              <div>
+                <h3>布局</h3>
+                <p>旧 Workbench 的 1200px 居中容器适合说明页，不适合长期运行和并行分析。</p>
+              </div>
+            </div>
+            <div class="panel-body">
+              <ul class="metric-list">
+                <li><strong>保留</strong><span>三步流程、方案卡、评估卡、对比表。</span></li>
+                <li><strong>调整</strong><span>把流程拆成栏位和抽屉，减少页面跳转。</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="panel plain" data-od-id="style-card-density">
+            <div class="panel-head">
+              <div>
+                <h3>密度</h3>
+                <p>开发者需要同时看到布局、任务、指标和产物路径；界面应提高信息密度。</p>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="pill-row">
+                <span class="pill">单屏保留上下文</span>
+                <span class="pill">指标使用等宽数字</span>
+                <span class="pill">高级项默认折叠</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" data-od-id="capability-map-section">
+        <h2 data-od-id="h2-capability-map">功能面不能删，只能重排</h2>
+        <div class="table-wrap">
+          <table aria-label="RoadGen3D 功能面映射" data-od-id="table-capability-map">
+            <thead>
+              <tr>
+                <th>原能力</th>
+                <th>现状入口</th>
+                <th>建议归位</th>
+                <th>原因</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Recent Layouts / Scene</td>
+                <td>Viewer 左侧入口</td>
+                <td>左侧浏览栏常驻</td>
+                <td>开发者切场景时不能丢失右侧评估和任务上下文。</td>
+              </tr>
+              <tr>
+                <td>Design Assistant</td>
+                <td>Viewer 右侧 Design 面板</td>
+                <td>中间控制面板 + 可折叠高级项</td>
+                <td>结构、家具、矩阵、补充要求是生成控制，不应被藏在纯分析侧栏。</td>
+              </tr>
+              <tr>
+                <td>Evaluate / Compare / History</td>
+                <td>Viewer 右侧标签</td>
+                <td>右侧分析栏</td>
+                <td>评估、对比、历史都依赖当前场景，应随画布同步更新。</td>
+              </tr>
+              <tr>
+                <td>Scene Job operations</td>
+                <td>状态文案和生成过程按钮</td>
+                <td>底部任务轨迹</td>
+                <td>长任务需要可展开事件流，显示 stage、progress、error、result 路径。</td>
+              </tr>
+              <tr>
+                <td>Round-trip / bridge report</td>
+                <td>CLI 与 JSON 报告语义</td>
+                <td>分析栏的“数据一致性”模块</td>
+                <td>保留 status、geo_delta、node_recall、edge_recall、topology_ok、loss_digest 语义。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" data-od-id="layout-recommendation-section">
+        <h2 data-od-id="h2-layout-recommendation">展开/收起的正确用法</h2>
+        <p class="section-lead">
+          展开/收起应该反映任务频率，而不是简单隐藏内容。RoadGen3D 的控制面板可以用四层来组织：常驻、悬停展开、按需抽屉、任务轨迹。
+        </p>
+        <div class="table-wrap">
+          <table aria-label="展开收起策略" data-od-id="table-disclosure-strategy">
+            <thead>
+              <tr>
+                <th>层级</th>
+                <th>放什么</th>
+                <th>默认状态</th>
+                <th>设计理由</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>常驻层</td>
+                <td>当前 Layout、Scene、生成按钮、画布、核心评分</td>
+                <td>展开</td>
+                <td>这些信息决定当前任务，不应被用户找来找去。</td>
+              </tr>
+              <tr>
+                <td>浏览栏</td>
+                <td>最近布局、场景树、对象层、资产入口</td>
+                <td>桌面展开，窄屏收起</td>
+                <td>浏览对象需要连续操作，但移动端必须让画布优先。</td>
+              </tr>
+              <tr>
+                <td>分析栏</td>
+                <td>评估、对比、历史、Benchmark、LLM 状态</td>
+                <td>桌面展开，可固定；中屏抽屉</td>
+                <td>分析是高价值次级任务，应该随场景同步但不遮挡画布。</td>
+              </tr>
+              <tr>
+                <td>底部轨迹</td>
+                <td>任务事件、stage、progress、产物路径、错误</td>
+                <td>收起为状态条</td>
+                <td>长任务和失败排查需要完整轨迹，但不应常年占据主视野。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" data-od-id="implementation-notes-section">
+        <h2 data-od-id="h2-implementation-notes">落地建议</h2>
+        <div class="panel-grid">
+          <article class="panel" data-od-id="implementation-card-viewer">
+            <div class="panel-head">
+              <div>
+                <h3>以 Viewer 为壳</h3>
+                <p>不要恢复独立 Workbench 作为主体验。</p>
+              </div>
+            </div>
+            <div class="panel-body">
+              <ul class="metric-list">
+                <li><strong>保留 Viewer</strong><span>3D 场景、Scene Graph、Annotation、Asset Editor 继续作为主画布生态。</span></li>
+                <li><strong>迁移语义</strong><span>旧 Workbench 的三步生成、方案卡、评估卡可以变成 Viewer 面板内容。</span></li>
+              </ul>
+            </div>
+          </article>
+          <article class="panel" data-od-id="implementation-card-contracts">
+            <div class="panel-head">
+              <div>
+                <h3>让状态可解释</h3>
+                <p>开发者最需要知道任务为什么成功、失败或等待。</p>
+              </div>
+            </div>
+            <div class="panel-body">
+              <ul class="metric-list">
+                <li><strong>任务轨迹</strong><span>展示 created、started、stage、progress、finished、error 和 result。</span></li>
+                <li><strong>一致性指标</strong><span>桥接检查保留 conversion_ok、geo_delta、topology_ok、loss_digest。</span></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
+

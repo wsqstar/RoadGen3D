@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoadGen3D 优化控制面板</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-frame" data-od-id="page-optimized-control-panel">
+    <header class="topbar" data-od-id="topbar-optimized">
+      <div class="brand-lockup" data-od-id="brand-optimized">
+        <span class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand-title">
+          <h1 data-od-id="h1-control-panel-title">RoadGen3D Viewer</h1>
+          <span>布局浏览、场景生成、评估分析同屏工作台</span>
+        </span>
+      </div>
+      <nav class="topbar-actions" aria-label="全局导航" data-od-id="nav-optimized">
+        <a class="button" href="analysis-report.html" data-od-id="nav-read-analysis">分析报告</a>
+        <button class="button" type="button" data-open-right data-od-id="button-open-analysis">分析栏</button>
+        <button class="button primary" type="button" data-run data-od-id="button-generate-load">生成并加载</button>
+      </nav>
+    </header>
+
+    <main class="control-shell" data-control-shell data-od-id="main-control-shell">
+      <aside class="rail left" aria-label="浏览栏" data-od-id="rail-browser">
+        <div class="rail-head" data-od-id="rail-browser-head">
+          <div class="rail-title">
+            <span class="eyebrow">BROWSE</span>
+            <strong>布局与对象</strong>
+          </div>
+          <button class="icon-button" type="button" aria-label="收起左侧浏览栏" title="收起左侧浏览栏" data-toggle-left data-od-id="button-toggle-left">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+          </button>
+        </div>
+        <div class="rail-body" data-od-id="rail-browser-body">
+          <details class="rail-section" open data-od-id="section-recent-layouts">
+            <summary>最近布局</summary>
+            <div class="content">
+              <div class="field">
+                <label for="layout-select">Recent Result</label>
+                <select id="layout-select" data-od-id="select-layout">
+                  <option>20260416T103045Z / hkust_gz_gate</option>
+                  <option>20260415T082702Z / commercial_vitality</option>
+                  <option>20260414T194812Z / pedestrian_priority</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="scene-select">Scene</label>
+                <select id="scene-select" data-od-id="select-scene">
+                  <option>Final Scene</option>
+                  <option>Road Base</option>
+                  <option>Furniture Anchor</option>
+                  <option>Lighting Pass</option>
+                </select>
+              </div>
+              <div class="scene-list" role="listbox" aria-label="场景列表" data-od-id="scene-list">
+                <button class="scene-item" type="button" aria-selected="true" data-od-id="scene-item-final">
+                  <strong>Final Scene</strong>
+                  <span>scene_layout.json :: final_scene</span>
+                </button>
+                <button class="scene-item" type="button" aria-selected="false" data-od-id="scene-item-road-base">
+                  <strong>Road Base</strong>
+                  <span>production_steps[0]</span>
+                </button>
+                <button class="scene-item" type="button" aria-selected="false" data-od-id="scene-item-furniture">
+                  <strong>Furniture Anchor</strong>
+                  <span>production_steps[1]</span>
+                </button>
+              </div>
+            </div>
+          </details>
+
+          <details class="rail-section" open data-od-id="section-scene-graph">
+            <summary>场景图层</summary>
+            <div class="content">
+              <div class="stack-list" data-od-id="layer-stack-list">
+                <button class="stack-item is-active" type="button" data-od-id="layer-road">
+                  <strong>道路骨架</strong>
+                  <span>roads / edges / junctions</span>
+                </button>
+                <button class="stack-item" type="button" data-od-id="layer-surfaces">
+                  <strong>设计面</strong>
+                  <span>sidewalk / furnishing / crossing</span>
+                </button>
+                <button class="stack-item" type="button" data-od-id="layer-assets">
+                  <strong>街道家具</strong>
+                  <span>tree / lamp / bench / bus_stop</span>
+                </button>
+                <button class="stack-item" type="button" data-od-id="layer-annotation">
+                  <strong>标注与修补</strong>
+                  <span>annotation / patch / control_point</span>
+                </button>
+              </div>
+            </div>
+          </details>
+
+          <details class="rail-section" data-od-id="section-tools">
+            <summary>辅助入口</summary>
+            <div class="content">
+              <div class="pill-row">
+                <span class="pill">Asset Editor</span>
+                <span class="pill">Annotation</span>
+                <span class="pill">Floating Lane</span>
+                <span class="pill">Help</span>
+              </div>
+            </div>
+          </details>
+        </div>
+      </aside>
+
+      <section class="stage" aria-label="场景控制台" aria-busy="false" data-stage-region data-od-id="stage-control">
+        <div class="mobile-nav" aria-label="移动端快捷导航" data-od-id="mobile-nav">
+          <a class="button compact" href="index.html">入口</a>
+          <a class="button compact" href="analysis-report.html">分析</a>
+          <button class="button compact" type="button" data-open-generate data-od-id="mobile-button-open-generate">设置</button>
+          <button class="button compact" type="button" data-open-right>右侧分析</button>
+          <button class="button compact primary" type="button" data-run data-od-id="mobile-button-generate-load">生成</button>
+        </div>
+
+        <div class="stage-toolbar" data-od-id="stage-toolbar">
+          <div class="toolbar-group" data-od-id="toolbar-left">
+            <div class="segmented" aria-label="画布模式" data-od-id="segmented-view-mode">
+              <button type="button" aria-pressed="true">3D</button>
+              <button type="button" aria-pressed="false">2D</button>
+              <button type="button" aria-pressed="false">Graph</button>
+            </div>
+            <button class="button compact" type="button" data-od-id="button-compare-split">双场景对比</button>
+            <button class="button compact" type="button" data-od-id="button-camera-sync">同步相机</button>
+            <button class="button compact" type="button" data-open-generate data-od-id="button-open-generate-settings">生成设置</button>
+          </div>
+          <div class="toolbar-group" data-od-id="toolbar-right">
+            <span class="pill" data-tone="ok">topology_ok</span>
+            <span class="pill">geo_delta 0.42m</span>
+            <span class="pill" data-tone="warn">2 个缺失格</span>
+          </div>
+        </div>
+
+        <div class="stage-canvas" data-od-id="stage-canvas">
+          <div class="canvas-grid" data-od-id="workspace-grid">
+            <article class="viewport-panel" data-od-id="viewport-panel">
+              <div class="panel-head">
+                <div>
+                  <h2 data-od-id="h2-current-scene">HKUST_GZ_GATE / Final Scene</h2>
+                  <p>当前画布保留 Viewer 的主视野，控制和分析围绕它展开。</p>
+                </div>
+                <div class="pill-row viewport-pills" aria-label="场景视图状态">
+                  <span class="pill" data-tone="ok">ready</span>
+                  <span class="pill">4:3 浏览区</span>
+                </div>
+              </div>
+              <div class="viewer-canvas" data-od-id="viewer-canvas">
+                <svg viewBox="0 0 720 540" role="img" aria-label="道路场景画布示意">
+                  <defs>
+                    <linearGradient id="roadFill" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="oklch(83% 0.018 245)" />
+                      <stop offset="1" stop-color="oklch(74% 0.024 245)" />
+                    </linearGradient>
+                  </defs>
+                  <rect x="34" y="50" width="150" height="80" rx="8" fill="oklch(91% 0.02 145)" stroke="oklch(74% 0.06 145)" />
+                  <rect x="520" y="48" width="154" height="86" rx="8" fill="oklch(91% 0.02 145)" stroke="oklch(74% 0.06 145)" />
+                  <path d="M38 306 C128 184 226 148 337 218 C451 291 536 262 682 170" fill="none" stroke="url(#roadFill)" stroke-width="72" stroke-linecap="round" />
+                  <path d="M38 306 C128 184 226 148 337 218 C451 291 536 262 682 170" fill="none" stroke="oklch(42% 0.02 250)" stroke-width="3" stroke-dasharray="14 16" stroke-linecap="round" />
+                  <path d="M86 340 C176 224 248 196 344 252 C444 310 554 286 676 218" fill="none" stroke="oklch(57% 0.14 152)" stroke-width="16" stroke-linecap="round" opacity="0.7" />
+                  <path d="M88 258 C178 164 250 126 350 184 C460 248 544 220 656 132" fill="none" stroke="oklch(55% 0.14 238)" stroke-width="10" stroke-linecap="round" opacity="0.72" />
+                  <g fill="oklch(57% 0.14 152)">
+                    <circle cx="162" cy="229" r="7" />
+                    <circle cx="210" cy="196" r="7" />
+                    <circle cx="466" cy="279" r="7" />
+                    <circle cx="552" cy="257" r="7" />
+                    <circle cx="612" cy="228" r="7" />
+                  </g>
+                  <g fill="oklch(71% 0.16 72)">
+                    <rect x="287" y="188" width="30" height="18" rx="4" />
+                    <rect x="392" y="261" width="30" height="18" rx="4" />
+                    <rect x="520" y="212" width="30" height="18" rx="4" />
+                  </g>
+                  <g stroke="oklch(55% 0.14 238)" stroke-width="2" fill="none" opacity="0.72">
+                    <rect x="302" y="116" width="92" height="58" rx="6" />
+                    <rect x="432" y="112" width="76" height="48" rx="6" />
+                    <rect x="188" y="292" width="90" height="52" rx="6" />
+                  </g>
+                </svg>
+                <div class="canvas-callout callout-a" data-od-id="callout-road-base">
+                  <strong>Road Base</strong>
+                  <span>avg_width 18.4m</span>
+                </div>
+                <div class="canvas-callout callout-b" data-od-id="callout-final-score">
+                  <strong>Final Scene</strong>
+                  <span>overall 84</span>
+                </div>
+                <div class="canvas-callout callout-c" data-od-id="callout-furniture">
+                  <strong>Furniture Anchor</strong>
+                  <span>tree / lamp / bench</span>
+                </div>
+              </div>
+              <div class="stage-footer" data-od-id="stage-status-footer">
+                <div class="status-line" role="status" aria-live="polite">
+                  <span class="status-dot" data-status-dot aria-hidden="true"></span>
+                  <span data-status-line>Final Scene 已载入，右侧分析栏同步更新。</span>
+                </div>
+                <button class="button compact" type="button" data-copy-summary data-od-id="button-copy-summary">复制摘要</button>
+              </div>
+            </article>
+
+            <section class="generation-dock" aria-label="生成快捷入口" data-od-id="generation-dock">
+              <div>
+                <span class="eyebrow">GENERATE</span>
+                <strong>生成 + 浏览优先</strong>
+                <span>主视图保持 4:3；结构、家具、评估参数在弹窗里调整。</span>
+              </div>
+              <div class="toolbar-group">
+                <button class="button compact" type="button" data-open-generate data-od-id="dock-button-open-generate">打开生成控制</button>
+                <button class="button compact primary" type="button" data-run data-od-id="dock-button-run">生成并加载</button>
+              </div>
+            </section>
+
+            <dialog id="generation-dialog" class="generation-dialog control-panel" aria-labelledby="generation-dialog-title" data-generation-dialog data-od-id="generation-control-panel">
+              <div class="panel-head">
+                <div>
+                  <h2 id="generation-dialog-title" data-od-id="h2-generate-control">生成控制</h2>
+                  <p>完整生成流程以弹窗承载，确认后回到 4:3 场景浏览。</p>
+                </div>
+                <button class="icon-button" type="button" aria-label="关闭生成控制" title="关闭生成控制" data-close-generate data-od-id="button-close-generate-dialog">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                </button>
+              </div>
+              <div class="panel-body">
+                <div class="workspace-tabs" role="tablist" aria-label="控制模式" data-tabs="control-tabs" data-od-id="tabs-control">
+                  <button role="tab" type="button" aria-selected="true" tabindex="0" aria-controls="tab-design" data-od-id="tab-design">设计</button>
+                  <button role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="tab-matrix" data-od-id="tab-matrix">矩阵</button>
+                  <button role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="tab-export" data-od-id="tab-export">导出</button>
+                </div>
+
+                <div id="control-tabs" data-od-id="control-tab-panels">
+                  <section id="tab-design" class="tab-panel" role="tabpanel" data-od-id="tabpanel-design">
+                    <div class="field">
+                      <label for="structure-select">街道结构</label>
+                      <select id="structure-select" data-od-id="select-structure">
+                        <option>HKUST_GZ_GATE / 校园入口</option>
+                        <option>完整街道 / complete_street</option>
+                        <option>共享街道 / shared_surface</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="furniture-select">街道家具设计目标</label>
+                      <select id="furniture-select" data-od-id="select-furniture">
+                        <option>平衡：安全、舒适、美观</option>
+                        <option>步行优先：树荫与可达性</option>
+                        <option>商业活力：停留与门面激活</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="prompt-text">补充要求</label>
+                      <textarea id="prompt-text" data-od-id="textarea-prompt">更像校园入口，减少车行压迫感，加强夜间照明。</textarea>
+                    </div>
+                    <details class="rail-section" data-od-id="advanced-generation">
+                      <summary>高级设置</summary>
+                      <div class="content">
+                        <div class="field">
+                          <label for="template-input">Graph Template</label>
+                          <input id="template-input" value="hkust_gz_gate" data-od-id="input-template" />
+                        </div>
+                        <div class="pill-row">
+                          <span class="pill">生成 3 个轻微变化方案</span>
+                          <span class="pill">LLM parse 开启</span>
+                        </div>
+                      </div>
+                    </details>
+                    <div class="state-grid" aria-label="运行状态覆盖" data-od-id="state-coverage">
+                      <div class="state-card" data-state-card="empty" data-od-id="state-empty">
+                        <strong>未选择场景</strong>
+                        <span>保留最近结果入口，不清空右侧分析。</span>
+                      </div>
+                      <div class="state-card" data-state-card="loading" data-od-id="state-loading">
+                        <strong>生成队列中</strong>
+                        <span>结构、家具、评估阶段进入任务轨迹。</span>
+                      </div>
+                      <div class="state-card" data-state-card="error" data-od-id="state-error">
+                        <strong>需要处理</strong>
+                        <span>显示缺失资产或解析失败原因。</span>
+                      </div>
+                      <div class="state-card is-active" data-state-card="done" data-od-id="state-done">
+                        <strong>已完成</strong>
+                        <span>加载场景并保留可导出产物。</span>
+                      </div>
+                    </div>
+                    <button class="button primary wide" type="button" data-run data-od-id="button-panel-generate-load">生成并加载当前方案</button>
+                  </section>
+
+                  <section id="tab-matrix" class="tab-panel" role="tabpanel" hidden data-od-id="tabpanel-matrix">
+                    <div class="matrix" aria-label="结构家具矩阵" data-od-id="design-matrix">
+                      <div class="head">结构 / 家具</div>
+                      <div class="head">平衡</div>
+                      <div class="head">步行</div>
+                      <div class="head">商业</div>
+                      <div class="head">校园入口</div>
+                      <button type="button" data-state="ready">ready</button>
+                      <button type="button" data-state="running">running</button>
+                      <button type="button" data-state="missing">missing</button>
+                      <div class="head">共享街道</div>
+                      <button type="button" data-state="ready">ready</button>
+                      <button type="button" data-state="missing">missing</button>
+                      <button type="button" data-state="ready">ready</button>
+                    </div>
+                  </section>
+
+                  <section id="tab-export" class="tab-panel" role="tabpanel" hidden data-od-id="tabpanel-export">
+                    <div class="stack-list">
+                      <div class="stack-item is-active" data-od-id="export-layout">
+                        <strong>scene_layout.json</strong>
+                        <span>layout + production_steps + final_scene</span>
+                      </div>
+                      <div class="stack-item" data-od-id="export-glb">
+                        <strong>scene.glb</strong>
+                        <span>可恢复 3D 产物</span>
+                      </div>
+                      <div class="stack-item" data-od-id="export-report">
+                        <strong>evaluation_report.json</strong>
+                        <span>walkability / safety / beauty / overall</span>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </dialog>
+          </div>
+        </div>
+      </section>
+
+      <aside class="rail right" aria-label="分析栏" data-od-id="rail-analysis">
+        <div class="rail-head" data-od-id="rail-analysis-head">
+          <div class="rail-title">
+            <span class="eyebrow">ANALYZE</span>
+            <strong>评估、对比、历史</strong>
+          </div>
+          <button class="icon-button" type="button" aria-label="收起右侧分析栏" title="收起右侧分析栏" data-toggle-right data-od-id="button-toggle-right">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+        <div class="rail-body" data-od-id="rail-analysis-body">
+          <div class="workspace-tabs" role="tablist" aria-label="分析标签" data-tabs="analysis-tabs" data-od-id="tabs-analysis">
+            <button role="tab" type="button" aria-selected="true" tabindex="0" aria-controls="tab-evaluate" data-od-id="tab-evaluate">评估</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="tab-compare" data-od-id="tab-compare">对比</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="tab-history" data-od-id="tab-history">历史</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" aria-controls="tab-consistency" data-od-id="tab-consistency">一致性</button>
+          </div>
+
+          <div id="analysis-tabs" data-od-id="analysis-tab-panels">
+            <section id="tab-evaluate" class="tab-panel" role="tabpanel" data-od-id="tabpanel-evaluate">
+              <div class="score-grid" data-od-id="score-grid">
+                <div class="score-card" data-od-id="score-overall"><span>综合</span><strong>84</strong></div>
+                <div class="score-card" data-od-id="score-walkability"><span>步行性</span><strong>88</strong></div>
+                <div class="score-card" data-od-id="score-safety"><span>安全性</span><strong>79</strong></div>
+                <div class="score-card" data-od-id="score-beauty"><span>美观度</span><strong>82</strong></div>
+              </div>
+              <details class="rail-section" open data-od-id="section-llm-status">
+                <summary>LLM 状态</summary>
+                <div class="content">
+                  <div class="pill-row">
+                    <span class="pill" data-tone="ok">Safety Live</span>
+                    <span class="pill">Beauty Cache</span>
+                    <span class="pill">Rule fallback 可用</span>
+                  </div>
+                </div>
+              </details>
+              <details class="rail-section" data-od-id="section-score-weight">
+                <summary>评分权重</summary>
+                <div class="content code">overall = 0.45W + 0.35S + 0.20B</div>
+              </details>
+            </section>
+
+            <section id="tab-compare" class="tab-panel" role="tabpanel" hidden data-od-id="tabpanel-compare">
+              <div class="compare-pair" data-od-id="compare-pair">
+                <div class="compare-box">
+                  <strong>方案 A</strong>
+                  <span class="muted">20260415T082702Z / Road Base</span>
+                </div>
+                <div class="compare-box">
+                  <strong>方案 B</strong>
+                  <span class="muted">20260416T103045Z / Final Scene</span>
+                </div>
+              </div>
+              <div class="section">
+                <div class="diff-row"><span>配置变化</span><strong>12</strong></div>
+                <div class="diff-row"><span>放置移动</span><strong>7</strong></div>
+                <div class="diff-row"><span>2D 差异图</span><strong>overlay</strong></div>
+                <div class="diff-row"><span>3D 对比</span><strong>可开启</strong></div>
+              </div>
+            </section>
+
+            <section id="tab-history" class="tab-panel" role="tabpanel" hidden data-od-id="tabpanel-history">
+              <div class="stack-list">
+                <button class="stack-item is-active" type="button" data-scheme="ready" data-od-id="history-ready">
+                  <strong>最近成功方案</strong>
+                  <span>overall 84 · retained artifact</span>
+                </button>
+                <button class="stack-item" type="button" data-scheme="warning" data-od-id="history-warning">
+                  <strong>需要复查方案</strong>
+                  <span>lighting pass warning</span>
+                </button>
+                <button class="stack-item" type="button" data-scheme="failed" data-od-id="history-failed">
+                  <strong>失败任务</strong>
+                  <span>asset restore missing</span>
+                </button>
+              </div>
+            </section>
+
+            <section id="tab-consistency" class="tab-panel" role="tabpanel" hidden data-od-id="tabpanel-consistency">
+              <div class="diff-row"><span>conversion_ok</span><strong>true</strong></div>
+              <div class="diff-row"><span>geo_delta</span><strong>0.42m</strong></div>
+              <div class="diff-row"><span>node_recall</span><strong>0.97</strong></div>
+              <div class="diff-row"><span>edge_recall</span><strong>0.95</strong></div>
+              <div class="diff-row"><span>topology_ok</span><strong>true</strong></div>
+              <details class="rail-section" data-od-id="section-loss-digest">
+                <summary>loss_digest</summary>
+                <div class="content">少量家具节点位置发生容差内偏移；道路拓扑保持一致。</div>
+              </details>
+            </section>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <aside class="bottom-tray collapsed" data-bottom-tray aria-label="任务与产物轨迹" data-od-id="bottom-task-tray">
+      <div class="tray-head" data-od-id="tray-head">
+        <div>
+          <h2 data-od-id="h2-task-tray">任务跟踪与产物</h2>
+          <span class="muted">保留长任务的 stage、progress、error、result 路径，便于复盘和排错。</span>
+        </div>
+        <button class="button compact" type="button" aria-expanded="false" data-toggle-tray data-od-id="button-toggle-tray">展开</button>
+      </div>
+      <div class="tray-body" data-od-id="tray-body">
+        <section class="event-list" aria-label="运行事件" data-od-id="event-list">
+          <div class="event"><time>10:31:04</time><span>scene job created · graph_template=hkust_gz_gate</span></div>
+          <div class="event"><time>10:31:09</time><span>draft structure parsed · LLM semantic parse fallback ready</span></div>
+          <div class="event"><time>10:31:34</time><span>furniture placement completed · tree/lamp/bench</span></div>
+          <div class="event"><time>10:32:02</time><span>evaluation completed · overall=84</span></div>
+        </section>
+        <section class="artifact-list" aria-label="产物列表" data-od-id="artifact-list">
+          <div class="artifact"><span>scene_layout.json</span><strong class="code">ready</strong></div>
+          <div class="artifact"><span>scene.glb</span><strong class="code">retained</strong></div>
+          <div class="artifact"><span>scene.ply</span><strong class="code">ready</strong></div>
+          <div class="artifact"><span>viewer_url</span><strong class="code">open</strong></div>
+        </section>
+      </div>
+    </aside>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
