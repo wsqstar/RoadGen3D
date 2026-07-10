@@ -1,0 +1,88 @@
+% beamercolorthemehkustgzugod.sty
+% =============================================================================
+% HKUST(GZ) UGOD 学术 Beamer 配色主题
+% 基于标准 Madrid 主题，采用香港科技大学（广州）品牌蓝 + 金配色重新设计
+%
+% HKUST 品牌色参考：
+%   UST Blue:  Pantone 295, CMYK 100c 70m 0y 40k, RGB 0,51,102,  Web #003366
+%   UST Gold:  Pantone 872, CMYK 40c 50m 100y 0k, RGB 153,102,0, Web #996600
+%   Yellow:    Pantone 124, CMYK 20c 40m 100y 0k, RGB 204,153,0, Web #CC9900
+%   Silver:    Pantone 877, CMYK 50k,              RGB 136,136,136, Web #888888
+%
+% 本配色方案：
+%   主色 蓝   #003366 / #1A4D7A / #336699 —— 标题结构、section、框架、主图表
+%   强调 金   #996600 / #CC9900           —— 关键词、结论、重要数字、高亮
+%   辅色 灰蓝 / 浅灰 #4A7A8C / #EAECEF / #F5F7F8 —— 背景区块、辅助信息
+%   背景 白   #FFFFFF
+%   正文 深灰 #323236
+% =============================================================================
+\ProvidesPackage{beamercolorthemehkustgzugod}[2026/07/09 HKUST(GZ) UGOD academic palette for Madrid]
+
+\RequirePackage{xcolor}
+
+% --- 调色板 ------------------------------------------------------------------
+% 主色：HKUST 蓝
+\definecolor{hkustblue}{HTML}{003366}    % 深青蓝（主标题 / 主结构）
+\definecolor{hkustblue2}{HTML}{1A4D7A}   % 标准学术蓝（结构线 / 层级）
+\definecolor{hkustblue3}{HTML}{336699}   % 柔和蓝（辅助图表）
+\definecolor{hkustbluelt}{HTML}{B3CCE6}  % 极浅蓝（深底上的副标题文字）
+% 强调：HKUST 金 / 黄
+\definecolor{hkustgold}{HTML}{996600}    % 学术金（主强调）
+\definecolor{hkustgoldlt}{HTML}{CC9900}  % 柔和金黄（次强调 / highlight）
+\definecolor{hkustgoldbg}{HTML}{F5E6CC}  % 浅金底（强调块体）
+% 辅色：灰蓝 / 浅灰
+\definecolor{hkustteal}{HTML}{4A7A8C}    % 灰蓝绿（冷静辅助）
+\definecolor{cardgrey}{HTML}{EAECEF}     % 浅灰（分割 / 卡片背景）
+\definecolor{bgsoft}{HTML}{F5F7F8}       % 更浅背景灰（区块层次）
+% 中性文字
+\definecolor{hkustink}{HTML}{323236}     % 正文深灰
+\definecolor{hkustgrey}{HTML}{787880}    % 次级文字灰
+
+% --- 基础 --------------------------------------------------------------------
+\setbeamercolor{normal text}{fg=hkustink,bg=white}
+\setbeamercolor{structure}{fg=hkustblue}       % 结构默认走主蓝
+\setbeamercolor{alerted text}{fg=hkustgold}
+\setbeamercolor{example text}{fg=hkustteal}
+
+% --- Madrid 页脚 / 页眉三段色块（蓝色渐变：深 -> 标准 -> 柔和）----------------
+\setbeamercolor{palette primary}{fg=white,bg=hkustblue}
+\setbeamercolor{palette secondary}{fg=white,bg=hkustblue2}
+\setbeamercolor{palette tertiary}{fg=white,bg=hkustblue3}
+\setbeamercolor{palette quaternary}{fg=white,bg=hkustblue}
+\setbeamercolor{author in head/foot}{fg=white,bg=hkustblue}
+\setbeamercolor{title in head/foot}{fg=white,bg=hkustblue2}
+\setbeamercolor{date in head/foot}{fg=white,bg=hkustblue3}
+
+% --- 标题 / frametitle（主蓝结构）-------------------------------------------
+\setbeamercolor{title}{fg=white,bg=hkustblue}
+\setbeamercolor{subtitle}{fg=hkustbluelt}
+\setbeamercolor{frametitle}{fg=white,bg=hkustblue}
+\setbeamercolor{framesubtitle}{fg=hkustgold}
+
+% --- 章节 / Part 标题（主蓝）------------------------------------------------
+\setbeamercolor{section title}{fg=hkustblue}
+\setbeamercolor{part title}{fg=hkustblue}
+\setbeamercolor{section in toc}{fg=hkustink}
+
+% --- 列表标记 / 编号（金色强调）---------------------------------------------
+\setbeamercolor{itemize item}{fg=hkustgold}
+\setbeamercolor{itemize subitem}{fg=hkustgold}
+\setbeamercolor{itemize subsubitem}{fg=hkustgrey}
+\setbeamercolor{enumerate item}{fg=hkustgold}
+\setbeamercolor{enumerate subitem}{fg=hkustgold}
+
+% --- 块 ----------------------------------------------------------------------
+% 普通 block：标准学术蓝标题（结构），极浅灰底
+\setbeamercolor{block title}{fg=white,bg=hkustblue2}
+\setbeamercolor{block body}{fg=hkustink,bg=bgsoft}
+% alertblock（callout 要点框）：金标题（强调），浅金底
+\setbeamercolor{block title alerted}{fg=white,bg=hkustgold}
+\setbeamercolor{block body alerted}{fg=hkustink,bg=hkustgoldbg}
+% exampleblock：灰蓝标题（辅助），浅灰底
+\setbeamercolor{block title example}{fg=white,bg=hkustteal}
+\setbeamercolor{block body example}{fg=hkustink,bg=cardgrey}
+
+% --- 图注 --------------------------------------------------------------------
+\setbeamercolor{caption name}{fg=hkustgold}
+
+\mode<all>
