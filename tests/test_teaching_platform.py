@@ -40,11 +40,14 @@ class FakeDesignService:
         call_dir.mkdir(parents=True, exist_ok=True)
         layout_path = call_dir / "scene_layout.json"
         glb_path = call_dir / "scene.glb"
+        step_glb_path = call_dir / "road-base.glb"
+        step_glb_path.write_bytes(b"fixture-road-base-glb")
         layout_path.write_text(json.dumps({
             "version": "roadgen3d.scene_layout.v1",
             "placements": [{"instance_id": f"tree-{call_index}", "category": "tree"}],
             "summary": {"walkability": 70 + call_index},
             "compose_config": dict(draft.compose_config_patch),
+            "production_steps": [{"step_id": "road_base", "title": "Road Base", "glb_path": str(step_glb_path)}],
         }), encoding="utf-8")
         glb_path.write_bytes(b"fixture-glb")
         if generation_options.get("capture_3d_views", True) and generation_options.get("retain_glb_policy") != "always":
@@ -134,6 +137,111 @@ def test_geojson_crs_transform_stable_ids_and_intersection_annotation():
     assert [item["id"] for item in geojson["features"]] == [item["id"] for item in second["geojson"]["features"]]
     assert reviewed["role_counts"] == {"centerline": 2, "road_intersection": 1}
     assert first["quality_report"]["conversion_ok"] is True
+
+
+def test_shared_workflow_source_annotation_review_and_project_viewer_manifest(client: TestClient):
+    _teacher_token, student_token, course = _bootstrap_course_and_student(client)
+    project = client.post("/api/v1/projects", headers=_auth(student_token), json={
+        "course_id": course["id"],
+        "name": "Shared workbench contract",
+        "city": "广州",
+        "aoi_bbox": [113.541, 22.791, 113.548, 22.798],
+    }).json()
+    imported = client.post(f"/api/v1/projects/{project['id']}/sources/geojson", headers=_auth(student_token), json={
+        "geojson": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "id": "osm-road-1",
+                "properties": {"highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.541, 22.791], [113.548, 22.798]]},
+            }],
+        },
+    }).json()
+
+    workflow_response = client.get(
+        f"/api/v1/projects/{project['id']}/sources/{imported['id']}/workflow-source",
+        headers=_auth(student_token),
+    )
+    assert workflow_response.status_code == 200, workflow_response.text
+    workflow_source = workflow_response.json()
+    assert workflow_source["annotation"]["centerlines"][0]["id"] == "osm-road-1"
+    assert workflow_source["annotation"]["image_width_px"] != 1024
+    assert workflow_source["annotation"]["pixels_per_meter"] == pytest.approx(2.0)
+
+    reviewed_response = client.post(
+        f"/api/v1/projects/{project['id']}/sources/{imported['id']}/review",
+        headers=_auth(student_token),
+        json={
+            "annotation": workflow_source["annotation"],
+            "actions": [{"op": "approve_reference_annotation", "feature_id": "osm-road-1"}],
+            "notes": "Approved in shared editor",
+        },
+    )
+    assert reviewed_response.status_code == 201, reviewed_response.text
+    reviewed = reviewed_response.json()
+    assert reviewed["quality_report"]["review_annotation_preserved"] is True
+
+    generated = client.post(f"/api/v1/projects/{project['id']}/generate", headers=_auth(student_token), json={
+        "source_id": reviewed["id"],
+        "generation_mode": "baseline",
+    })
+    assert generated.status_code == 202, generated.text
+    revision = generated.json()["result"]["revision"]
+    manifest_response = client.get(
+        f"/api/v1/projects/{project['id']}/revisions/{revision['id']}/viewer-manifest",
+        headers=_auth(student_token),
+    )
+    assert manifest_response.status_code == 200, manifest_response.text
+    manifest = manifest_response.json()
+    assert manifest["final_scene"]["artifact_id"] == revision["glb_artifact_id"]
+    assert manifest["final_scene"]["glb_url"] == ""
+    assert manifest["layout_path"] == f"project-revision:{revision['id']}"
+    assert manifest["production_steps"][0]["step_id"] == "road_base"
+    assert manifest["production_steps"][0]["artifact_id"]
+    assert manifest["production_steps"][0]["glb_url"] == ""
+    assert "/Users/" not in json.dumps(manifest)
+    assert manifest["layout_revision"]["revision"] == revision["revision_number"]
+
+
+def test_public_osm_scene_source_uses_shared_full_normalizer(client: TestClient, monkeypatch):
+    from web.api.routers import scene_sources as scene_sources_router
+
+    monkeypatch.setattr(scene_sources_router, "fetch_osm_data", lambda *_args, **_kwargs: {"elements": [{"id": 1}]})
+    monkeypatch.setattr(scene_sources_router, "raw_osm_to_geojson", lambda _raw: {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "id": "osm-road-1",
+                "properties": {"tags": {"highway": "residential"}, "highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.541, 22.791], [113.548, 22.798]]},
+            },
+            {
+                "type": "Feature",
+                "id": "osm-building-2",
+                "properties": {"tags": {"building": "university"}},
+                "geometry": {"type": "Polygon", "coordinates": [[[113.542, 22.792], [113.543, 22.792], [113.543, 22.793], [113.542, 22.792]]]},
+            },
+            {
+                "type": "Feature",
+                "id": "osm-tree-3",
+                "properties": {"tags": {"natural": "tree"}},
+                "geometry": {"type": "Point", "coordinates": [113.544, 22.794]},
+            },
+        ],
+    })
+    response = client.post("/api/scene-sources/osm", json={
+        "source_id": "guangzhou-shared-osm",
+        "aoi_bbox": [113.541, 22.791, 113.548, 22.798],
+    })
+    assert response.status_code == 200, response.text
+    payload = response.json()
+    assert payload["source"]["producer"] == "osm"
+    assert payload["annotation"]["centerlines"][0]["id"] == "osm-road-1"
+    assert payload["annotation"]["control_points"][0]["kind"] == "tree_candidate"
+    assert payload["aligned_buildings"][0]["editable"] is False
+    assert payload["osm"]["attribution"] == "© OpenStreetMap contributors"
 
 
 def test_geojson_building_footprint_persists_exact_region_and_osm_height():

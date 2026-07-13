@@ -326,8 +326,13 @@ def collect_building_footprints(
 ) -> Tuple[BuildingFootprint, ...]:
     """Collect nearby OSM building footprints or fallback proxy footprints."""
 
+    buildings = list(getattr(projected_features, "buildings", ()) or [])
+    has_locked_context_massing = any(
+        str((getattr(building, "tags", {}) or {}).get("roadgen3d_context_massing", "")).lower() == "white"
+        for building in buildings
+    )
     building_regions = _normalized_building_region_records(placement_context)
-    if building_regions:
+    if building_regions and not has_locked_context_massing:
         return _building_region_footprints(
             placement_context=placement_context,
             theme_segments=theme_segments,
@@ -342,7 +347,6 @@ def collect_building_footprints(
     except Exception:
         return tuple()
 
-    buildings = list(getattr(projected_features, "buildings", ()) or [])
     road_geom = getattr(placement_context, "carriageway", None)
     graph_streetwall_reference = _explicit_streetwall_reference_from_graph(road_segment_graph)
     fallback_streetwall_reference = _streetwall_reference_widths(
@@ -388,22 +392,24 @@ def collect_building_footprints(
             if len(coords) < 4:
                 continue
             polygon = ShapelyPolygon(coords)
-            if polygon.is_empty or polygon.area <= 4.0 or not polygon.intersects(road_buffer):
+            if polygon.is_empty or polygon.area <= 4.0:
                 continue
-            if buildable_corridor is not None and not polygon.intersects(buildable_corridor):
+            if not is_white_context_massing and not polygon.intersects(road_buffer):
                 continue
-            if (
+            if not is_white_context_massing and buildable_corridor is not None and not polygon.intersects(buildable_corridor):
+                continue
+            if not is_white_context_massing and (
                 building_exclusion_zone is not None
                 and not getattr(building_exclusion_zone, "is_empty", True)
                 and float(polygon.intersection(building_exclusion_zone).area) > 1e-4
             ):
                 continue
-            matched_region = _last_matching_building_region_for_polygon(
+            matched_region = None if is_white_context_massing else _last_matching_building_region_for_polygon(
                 tuple((float(x), float(y)) for x, y in tuple(polygon.exterior.coords)),
                 building_regions,
                 polygon_geom=polygon,
             )
-            if building_regions and matched_region is None:
+            if not is_white_context_massing and building_regions and matched_region is None:
                 continue
             centroid = (float(polygon.centroid.x), float(polygon.centroid.y))
             theme_id = assign_theme_id_for_point(centroid, theme_segments, road_segment_graph)

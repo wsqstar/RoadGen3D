@@ -101,6 +101,12 @@ class OsmBuildingSourceRequestModel(BaseModel):
     aoi_bbox: List[float] = Field(..., min_length=4, max_length=4)
 
 
+class OsmSceneSourceRequestModel(BaseModel):
+    source_id: str = Field(default="osm-scene", min_length=1, max_length=96)
+    aoi_bbox: List[float] = Field(..., min_length=4, max_length=4)
+    force_refetch: bool = False
+
+
 class ReferenceAnnotationDeriveRegionsRequestModel(BaseModel):
     annotation: Dict[str, Any]
     options: Dict[str, Any] = Field(default_factory=dict)

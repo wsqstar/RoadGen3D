@@ -17,7 +17,9 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from roadgen3d.osm_ingest import fetch_osm_data
+from roadgen3d.scene_sources import normalize_scene_source
 from roadgen3d.scene_layout_edits import apply_scene_layout_edits, scene_revision_for_layout
+from roadgen3d.web_viewer_dev import build_layout_manifest_payload
 
 from .artifacts import ArtifactStore, create_artifact_store, safe_object_key
 from .auth import digest_secret, hash_password, issue_invite_code, issue_session_token, normalize_email, verify_password
@@ -279,6 +281,7 @@ class TeachingPlatformService:
                     "source": kind,
                     "role_counts": normalized["role_counts"],
                     "warnings": normalized["warnings"],
+                    "source_alignment": normalized["source_alignment"],
                     **dict(provenance or {}),
                 },
                 quality_report=normalized["quality_report"],
@@ -295,11 +298,14 @@ class TeachingPlatformService:
         project_id: str,
         source_id: str,
         *,
-        geojson: Mapping[str, Any],
+        annotation: Mapping[str, Any] | None = None,
+        geojson: Mapping[str, Any] | None = None,
         actions: Sequence[Mapping[str, Any]] | None = None,
         notes: str = "",
     ) -> dict[str, Any]:
         """Persist a reviewed annotation as a new immutable source version."""
+        if annotation is None and geojson is None:
+            raise ValueError("Review requires annotation or geojson.")
         with self.database.session() as db:
             project, _ = self._require_project(db, actor_id, project_id, write=True)
             parent = db.get(SceneSourceRecord, source_id)
@@ -309,10 +315,74 @@ class TeachingPlatformService:
             if artifact is None:
                 raise NotFound("The source GeoJSON artifact is missing.")
             parent_key = artifact.object_key
+        action_log = [dict(item) for item in actions or []]
+        if annotation is not None:
+            normalized = normalize_scene_source({
+                "kind": "reference_annotation",
+                "source_id": new_id(),
+                "producer": "manual",
+                "annotation": annotation,
+            })
+            normalized_payload = normalized.to_graph_payload()
+            reviewed_at = _iso(now_utc())
+            with self.database.session() as db:
+                project, _ = self._require_project(db, actor_id, project_id, write=True)
+                parent = db.get(SceneSourceRecord, source_id)
+                if parent is None or parent.project_id != project.id:
+                    raise NotFound("Scene source not found in this project.")
+                reviewed_id = new_id()
+                raw_artifact = self._store_artifact(
+                    db, actor_id, project.id, "reference_annotation_review",
+                    f"{reviewed_id}-review.json", json_bytes(annotation), "application/json",
+                )
+                normalized_artifact = self._store_artifact(
+                    db, actor_id, project.id, "source_geojson_normalized",
+                    f"{reviewed_id}.geojson", json_bytes(normalized.geojson), "application/geo+json",
+                )
+                annotation_artifact = self._store_artifact(
+                    db, actor_id, project.id, "reference_annotation",
+                    f"{reviewed_id}-annotation.json", json_bytes(normalized.annotation), "application/json",
+                )
+                record = SceneSourceRecord(
+                    id=reviewed_id,
+                    project_id=project.id,
+                    created_by=actor_id,
+                    kind="reviewed_annotation",
+                    raw_artifact_id=raw_artifact.id,
+                    normalized_artifact_id=normalized_artifact.id,
+                    annotation_artifact_id=annotation_artifact.id,
+                    provenance={
+                        **dict(parent.provenance),
+                        "source": "reviewed_annotation",
+                        "parent_source_id": source_id,
+                        "review_status": "approved",
+                        "review_notes": str(notes).strip()[:2_000],
+                        "review_actions": action_log,
+                        "reviewed_at": reviewed_at,
+                        "warnings": list(normalized.warnings),
+                        "role_counts": dict(normalized_payload.get("summary") or {}),
+                        "annotation_sha256": normalized.source.get("annotation_sha256"),
+                    },
+                    quality_report={
+                        **dict(parent.quality_report),
+                        "review_annotation_preserved": True,
+                        "review_action_count": len(action_log),
+                    },
+                )
+                db.add(record)
+                project.workflow_step = "design"
+                self._audit(db, actor_id, project.id, "source.review_approved", {
+                    "source_id": record.id,
+                    "parent_source_id": source_id,
+                    "action_count": len(action_log),
+                    "format": "reference_annotation",
+                })
+                db.flush()
+                return self._source(record)
+
+        assert geojson is not None
         with self.artifacts.open(parent_key) as handle:
             parent_geojson = json.loads(handle.read().decode("utf-8"))
-
-        action_log = [dict(item) for item in actions or []]
         reviewed = self.import_geojson(
             actor_id,
             project_id,
@@ -351,6 +421,44 @@ class TeachingPlatformService:
             db.flush()
             return self._source(record)
 
+    def workflow_source(self, actor_id: str, project_id: str, source_id: str) -> dict[str, Any]:
+        """Return a persisted source in the expert workbench's canonical shape."""
+
+        with self.database.session() as db:
+            self._require_project(db, actor_id, project_id)
+            source = db.get(SceneSourceRecord, source_id)
+            if source is None or source.project_id != project_id:
+                raise NotFound("Scene source not found in this project.")
+            annotation_artifact = db.get(Artifact, source.annotation_artifact_id) if source.annotation_artifact_id else None
+            geojson_artifact = db.get(Artifact, source.normalized_artifact_id)
+            if annotation_artifact is None or geojson_artifact is None:
+                raise NotFound("The normalized source artifacts are missing.")
+            annotation_key = annotation_artifact.object_key
+            geojson_key = geojson_artifact.object_key
+            provenance = dict(source.provenance)
+            source_kind = source.kind
+        with self.artifacts.open(annotation_key) as handle:
+            annotation = json.loads(handle.read().decode("utf-8"))
+        with self.artifacts.open(geojson_key) as handle:
+            geojson_payload = json.loads(handle.read().decode("utf-8"))
+        normalized = normalize_scene_source({
+            "kind": "reference_annotation",
+            "source_id": source_id,
+            "producer": "osm" if source_kind == "osm" else "manual",
+            "annotation": annotation,
+        })
+        payload = normalized.to_graph_payload()
+        payload["geojson"] = geojson_payload
+        payload["warnings"] = list(provenance.get("warnings") or normalized.warnings)
+        payload["source"] = {
+            **dict(payload.get("source") or {}),
+            "source_id": source_id,
+            "persisted_kind": source_kind,
+        }
+        if isinstance(provenance.get("source_alignment"), Mapping):
+            payload["source_alignment"] = dict(provenance["source_alignment"])
+        return payload
+
     def import_osm(self, actor_id: str, project_id: str, *, force_refetch: bool = False) -> dict[str, Any]:
         with self.database.session() as db:
             project, _ = self._require_project(db, actor_id, project_id, write=True)
@@ -359,13 +467,25 @@ class TeachingPlatformService:
             bbox = tuple(float(item) for item in project.aoi_bbox)
         raw = fetch_osm_data(bbox, Path(os.getenv("ROADGEN_OSM_CACHE", "artifacts/osm_cache")), force_refetch=force_refetch)
         geojson = raw_osm_to_geojson(raw)
-        return self.import_geojson(actor_id, project_id, geojson, kind="osm", provenance={
+        imported = self.import_geojson(actor_id, project_id, geojson, kind="osm", provenance={
             "provider": "OpenStreetMap/Overpass",
             "attribution": "© OpenStreetMap contributors",
             "bbox": list(bbox),
             "fetched_at": _iso(now_utc()),
             "raw_element_count": len(raw.get("elements", [])),
         })
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            record = db.get(SceneSourceRecord, imported["id"])
+            if record is None:
+                raise NotFound("Imported OSM source was not persisted.")
+            raw_artifact = self._store_artifact(
+                db, actor_id, project.id, "source_osm_raw",
+                f"{record.id}-overpass.json", json_bytes(raw), "application/json",
+            )
+            record.raw_artifact_id = raw_artifact.id
+            db.flush()
+            return self._source(record)
 
     def generate_project_scene(
         self,
@@ -471,6 +591,11 @@ class TeachingPlatformService:
             if isinstance(region, Mapping)
             and str(region.get("region_role") or "") == "building_region"
         )
+        source_building_ids.extend(
+            str(building.get("osm_id") or building.get("source_id") or building.get("id") or "")
+            for building in source_context.get("aligned_buildings", [])
+            if isinstance(building, Mapping)
+        )
         source_building_ids = list(dict.fromkeys(item for item in source_building_ids if item))
         course_building_patch = {
             "building_representation": "transparent_massing",
@@ -505,11 +630,30 @@ class TeachingPlatformService:
         glb_path = Path(str(result.get("scene_glb_path") or result.get("glb_path") or "")).expanduser().resolve()
         if not layout_path.is_file() or not glb_path.is_file():
             raise RuntimeError("Scene generation did not produce scene_layout.json and scene.glb.")
+        layout_payload = json.loads(layout_path.read_text(encoding="utf-8"))
+        production_step_payloads: list[dict[str, Any]] = []
+        for index, step in enumerate(layout_payload.get("production_steps") or []):
+            if not isinstance(step, Mapping):
+                continue
+            step_path_text = str(step.get("glb_path") or "").strip()
+            if not step_path_text:
+                continue
+            step_path = Path(step_path_text).expanduser()
+            if not step_path.is_absolute():
+                step_path = (layout_path.parent / step_path).resolve()
+            if not step_path.is_file():
+                continue
+            production_step_payloads.append({
+                "step_id": str(step.get("step_id") or f"step-{index + 1}"),
+                "title": str(step.get("title") or step.get("step_id") or f"Production step {index + 1}"),
+                "data": step_path.read_bytes(),
+            })
         revision = self.create_revision(
             actor_id,
             project_id,
-            layout=json.loads(layout_path.read_text(encoding="utf-8")),
+            layout=layout_payload,
             glb=glb_path.read_bytes(),
+            production_steps=production_step_payloads,
             source_id=source_id,
             parent_id=None if is_baseline else parent_revision_id,
             branch_kind="baseline" if is_baseline else "ai_edit",
@@ -533,6 +677,7 @@ class TeachingPlatformService:
                     "alpha_mode": "BLEND",
                 },
                 "source_building_ids": [item for item in source_building_ids if item],
+                "source_alignment": source_context.get("source_alignment"),
             },
         )
         emit("baseline_evaluation", 90, "Scoring the saved scene revision.", revision_id=revision["id"])
@@ -565,7 +710,7 @@ class TeachingPlatformService:
         return artifact, self.artifacts.open(artifact.object_key)
 
     # ---- scene revisions ---------------------------------------------------------------
-    def create_revision(self, actor_id: str, project_id: str, *, layout: Mapping[str, Any], glb: bytes | None, source_id: str | None, parent_id: str | None, branch_kind: str, label: str, commands: Sequence[Mapping[str, Any]] | None = None, provenance: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    def create_revision(self, actor_id: str, project_id: str, *, layout: Mapping[str, Any], glb: bytes | None, source_id: str | None, parent_id: str | None, branch_kind: str, label: str, commands: Sequence[Mapping[str, Any]] | None = None, provenance: Mapping[str, Any] | None = None, production_steps: Sequence[Mapping[str, Any]] | None = None) -> dict[str, Any]:
         if branch_kind not in {"baseline", "human_edit", "ai_edit"}:
             raise ValueError("branch_kind must be baseline, human_edit, or ai_edit.")
         with self.database.session() as db:
@@ -578,6 +723,27 @@ class TeachingPlatformService:
             revision_number = int(db.scalar(select(func.max(SceneRevisionRecord.revision_number)).where(SceneRevisionRecord.project_id == project.id)) or 0) + 1
             layout_artifact = self._store_artifact(db, actor_id, project.id, "scene_layout", f"revision-{revision_number:06d}-scene_layout.json", json_bytes(layout), "application/json")
             glb_artifact = self._store_artifact(db, actor_id, project.id, "scene_glb", f"revision-{revision_number:06d}-scene.glb", glb, "model/gltf-binary") if glb else None
+            step_artifacts: list[dict[str, str]] = []
+            for index, step in enumerate(production_steps or []):
+                data = step.get("data")
+                if not isinstance(data, bytes):
+                    continue
+                raw_step_id = str(step.get("step_id") or f"step-{index + 1}")[:96]
+                step_id = "".join(char if char.isalnum() or char in {"-", "_"} else "-" for char in raw_step_id).strip("-") or f"step-{index + 1}"
+                title = str(step.get("title") or step_id)[:180]
+                artifact = self._store_artifact(
+                    db, actor_id, project.id, "scene_step_glb",
+                    f"revision-{revision_number:06d}-{step_id}.glb", data, "model/gltf-binary",
+                )
+                step_artifacts.append({"step_id": step_id, "title": title, "artifact_id": artifact.id})
+            revision_provenance = {
+                "schema_version": "roadgen3d.scene_revision.v1",
+                **dict(provenance or {}),
+                "viewer_artifacts": {
+                    "final_scene_artifact_id": glb_artifact.id if glb_artifact else None,
+                    "production_steps": step_artifacts,
+                },
+            }
             revision = SceneRevisionRecord(
                 project_id=project.id,
                 source_id=source_id,
@@ -589,7 +755,7 @@ class TeachingPlatformService:
                 layout_artifact_id=layout_artifact.id,
                 glb_artifact_id=glb_artifact.id if glb_artifact else None,
                 commands=[dict(item) for item in commands or []],
-                provenance={"schema_version": "roadgen3d.scene_revision.v1", **dict(provenance or {})},
+                provenance=revision_provenance,
             )
             db.add(revision)
             project.workflow_step = "design"
@@ -601,6 +767,60 @@ class TeachingPlatformService:
         with self.database.session() as db:
             self._require_project(db, actor_id, project_id)
             return [self._revision(item) for item in db.scalars(select(SceneRevisionRecord).where(SceneRevisionRecord.project_id == project_id).order_by(SceneRevisionRecord.revision_number.desc())).all()]
+
+    def viewer_manifest(self, actor_id: str, project_id: str, revision_id: str) -> dict[str, Any]:
+        """Build a project-safe Viewer manifest backed only by artifact IDs."""
+
+        with self.database.session() as db:
+            self._require_project(db, actor_id, project_id)
+            revision = db.get(SceneRevisionRecord, revision_id)
+            if revision is None or revision.project_id != project_id:
+                raise NotFound("Scene revision not found in this project.")
+            layout_artifact = db.get(Artifact, revision.layout_artifact_id) if revision.layout_artifact_id else None
+            glb_artifact = db.get(Artifact, revision.glb_artifact_id) if revision.glb_artifact_id else None
+            if layout_artifact is None or glb_artifact is None:
+                raise NotFound("The revision does not contain a viewable scene.")
+            layout_key = layout_artifact.object_key
+            provenance = dict(revision.provenance)
+            revision_number = revision.revision_number
+            branch_kind = revision.branch_kind
+        with self.artifacts.open(layout_key) as handle:
+            layout_payload = json.loads(handle.read().decode("utf-8"))
+        viewer_artifacts = provenance.get("viewer_artifacts") if isinstance(provenance.get("viewer_artifacts"), Mapping) else {}
+        steps = viewer_artifacts.get("production_steps") if isinstance(viewer_artifacts, Mapping) else []
+        production_steps = [
+            {
+                "step_id": str(item.get("step_id") or "production-step"),
+                "title": str(item.get("title") or item.get("step_id") or "Production Step"),
+                "artifact_id": str(item.get("artifact_id")),
+                "glb_url": "",
+            }
+            for item in steps or []
+            if isinstance(item, Mapping) and item.get("artifact_id")
+        ]
+        manifest = build_layout_manifest_payload(
+            layout_payload,
+            layout_identity=f"project-revision:{revision_id}",
+            final_scene={"label": "Final Scene", "artifact_id": glb_artifact.id, "glb_url": ""},
+            production_steps=production_steps,
+        )
+        manifest["layout_revision"] = {
+            "lineage_id": project_id,
+            "revision": int(revision_number),
+            "sha256": layout_artifact.sha256,
+        }
+        manifest["project_revision"] = {
+            "project_id": project_id,
+            "revision_id": revision_id,
+            "branch_kind": branch_kind,
+        }
+        manifest["context_massing"] = {
+            "editable": False,
+            "summary": {"building_representation": provenance.get("building_representation")},
+            "source": {"source_building_ids": provenance.get("source_building_ids", [])},
+            "source_alignment": provenance.get("source_alignment"),
+        }
+        return manifest
 
     def edit_revision(self, actor_id: str, project_id: str, revision_id: str, *, commands: Sequence[Mapping[str, Any]], branch_kind: str, label: str, provenance: Mapping[str, Any] | None = None) -> dict[str, Any]:
         with self.database.session() as db:

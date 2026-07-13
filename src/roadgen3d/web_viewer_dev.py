@@ -9,7 +9,7 @@ import shlex
 from datetime import datetime, timezone
 from hashlib import sha1
 from pathlib import Path
-from typing import Any, Dict, Iterable, List
+from typing import Any, Dict, Iterable, List, Mapping, Sequence
 from urllib.parse import quote
 
 from .json_safe import make_json_safe
@@ -527,6 +527,37 @@ def cache_scene_layout_for_viewer(
     return cached_layout
 
 
+def build_layout_manifest_payload(
+    payload: Mapping[str, Any],
+    *,
+    final_scene: Mapping[str, Any],
+    production_steps: Sequence[Mapping[str, Any]] = (),
+    layout_identity: str | None = None,
+) -> Dict[str, Any]:
+    """Build the canonical Viewer manifest without assuming local paths."""
+
+    outputs = payload.get("outputs", {}) or {}
+    manifest = {
+        "summary": make_json_safe(payload.get("summary") or {}),
+        "visual_style": make_json_safe(payload.get("visual_style") or {}),
+        "final_scene": make_json_safe(dict(final_scene)),
+        "production_steps": make_json_safe([dict(item) for item in production_steps]),
+        "default_selection": "final_scene",
+        "spawn_point": infer_spawn_payload(payload)["spawn_point"],
+        "forward_vector": infer_spawn_payload(payload)["forward_vector"],
+        "scene_bounds": _build_scene_bounds(payload),
+        "instances": _build_instance_payloads(payload),
+        "layout_overlay": _build_layout_overlay(payload),
+        "comparison_metadata": _build_comparison_metadata(payload, list(production_steps)),
+        "lighting_preset": outputs.get("lighting_preset", "bright_day"),
+        "lighting_params": outputs.get("lighting_params"),
+        "environment_state": payload.get("environment_state") or outputs.get("environment_state"),
+    }
+    if layout_identity:
+        manifest["layout_path"] = layout_identity
+    return manifest
+
+
 def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
     resolved_layout = resolve_scene_layout_path(layout_path)
     payload = json.loads(resolved_layout.read_text(encoding="utf-8"))
@@ -555,27 +586,15 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
                 "glb_url": f"./api/file?path={quote(str(glb_path), safe='')}",
             }
         )
-    spawn_payload = infer_spawn_payload(payload)
-    return {
-        "layout_path": str(resolved_layout),
-        "summary": make_json_safe(payload.get("summary") or {}),
-        "visual_style": make_json_safe(payload.get("visual_style") or {}),
-        "final_scene": {
+    return build_layout_manifest_payload(
+        payload,
+        layout_identity=str(resolved_layout),
+        final_scene={
             "label": "Final Scene",
             "glb_url": f"./api/file?path={quote(str(final_scene_path), safe='')}",
         },
-        "production_steps": production_steps,
-        "default_selection": "final_scene",
-        "spawn_point": spawn_payload["spawn_point"],
-        "forward_vector": spawn_payload["forward_vector"],
-        "scene_bounds": _build_scene_bounds(payload),
-        "instances": _build_instance_payloads(payload),
-        "layout_overlay": _build_layout_overlay(payload),
-        "comparison_metadata": _build_comparison_metadata(payload, production_steps),
-        "lighting_preset": outputs.get("lighting_preset", "bright_day"),
-        "lighting_params": outputs.get("lighting_params"),
-        "environment_state": payload.get("environment_state") or outputs.get("environment_state"),
-    }
+        production_steps=production_steps,
+    )
 
 
 def build_web_viewer_url(layout_path: str | Path) -> str:

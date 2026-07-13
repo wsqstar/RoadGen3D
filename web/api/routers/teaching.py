@@ -185,12 +185,18 @@ def list_sources(project_id: str, request: Request, actor: dict[str, Any] = Depe
     return {"items": _call(lambda: _service(request).list_sources(actor["id"], project_id))}
 
 
+@router.get("/projects/{project_id}/sources/{source_id}/workflow-source")
+def get_workflow_source(project_id: str, source_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).workflow_source(actor["id"], project_id, source_id))
+
+
 @router.post("/projects/{project_id}/sources/{source_id}/review", status_code=201)
 def approve_source_review(project_id: str, source_id: str, body: AnnotationReviewRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     return _call(lambda: _service(request).approve_source_review(
         actor["id"],
         project_id,
         source_id,
+        annotation=body.annotation,
         geojson=body.geojson,
         actions=body.actions,
         notes=body.notes,
@@ -233,6 +239,11 @@ def edit_revision(project_id: str, revision_id: str, body: RevisionEditRequest, 
 @router.get("/projects/{project_id}/revisions")
 def list_revisions(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
     return {"items": _call(lambda: _service(request).list_revisions(actor["id"], project_id))}
+
+
+@router.get("/projects/{project_id}/revisions/{revision_id}/viewer-manifest")
+def get_revision_viewer_manifest(project_id: str, revision_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).viewer_manifest(actor["id"], project_id, revision_id))
 
 
 @router.get("/projects/{project_id}/jobs")

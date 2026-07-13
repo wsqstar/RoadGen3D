@@ -223,7 +223,12 @@ def test_aligned_osm_buildings_become_noneditable_white_context_massing() -> Non
         theme_name="context_white_massing",
         target_height_m=12.0,
     )
-    assert set(map(tuple, entry.mesh.visual.face_colors.tolist())) == {(238, 240, 242, 255)}
+    material = entry.mesh.visual.material
+    assert material.name == "roadgen3d_transparent_massing"
+    assert material.baseColorFactor.tolist() == [244, 247, 248, 107]
+    assert material.alphaMode == "BLEND"
+    assert material.roughnessFactor == pytest.approx(1.0)
+    assert material.metallicFactor == pytest.approx(0.0)
 
 
 def _write_editable_scene(root: Path) -> tuple[Path, dict]:

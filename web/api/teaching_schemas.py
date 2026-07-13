@@ -53,7 +53,8 @@ class OsmImportRequest(BaseModel):
 
 
 class AnnotationReviewRequest(BaseModel):
-    geojson: Dict[str, Any]
+    annotation: Dict[str, Any] | None = None
+    geojson: Dict[str, Any] | None = None
     actions: List[Dict[str, Any]] = Field(default_factory=list, max_length=1_000)
     notes: str = Field(default="", max_length=2_000)
 
