@@ -9,7 +9,7 @@ import os
 import platform
 import tempfile
 import zipfile
-from datetime import timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
@@ -379,6 +379,7 @@ class TeachingPlatformService:
         goal_weights: Mapping[str, Any] | None = None,
         generator: Callable[..., Mapping[str, Any]],
         evaluator: Callable[..., Mapping[str, Any]] | None = None,
+        progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
     ) -> dict[str, Any]:
         from roadgen3d.llm.design_workflow import parse_design_draft
         from roadgen3d.eval_engine_ext.road_metrics.evaluators.llm_client import public_llm_capabilities_from_env
@@ -438,8 +439,50 @@ class TeachingPlatformService:
             fallback_query=design_query,
             current_patch=compose_patch,
         )
+        def emit(stage: str, progress: int, message: str, **detail: Any) -> None:
+            if progress_callback is None:
+                return
+            progress_callback({
+                "stage": stage,
+                "progress": progress,
+                "message": message,
+                "detail": detail,
+            })
+
+        def forward_generation_progress(event: Mapping[str, Any] | str) -> None:
+            payload = dict(event) if isinstance(event, Mapping) else {"message": str(event)}
+            try:
+                raw_progress = float(payload.get("progress", 0))
+            except (TypeError, ValueError):
+                raw_progress = 0.0
+            payload["progress"] = 8 + int(round(max(0.0, min(100.0, raw_progress)) * 0.74))
+            if progress_callback is not None:
+                progress_callback(payload)
+
+        source_building_ids = [
+            str(feature.get("id") or feature.get("properties", {}).get("stable_id") or "")
+            for feature in annotation.get("features", [])
+            if isinstance(feature, Mapping)
+            and str(feature.get("properties", {}).get("role") or "") in {"building", "building_footprint"}
+        ]
+        source_building_ids.extend(
+            str(region.get("source_region_id") or region.get("id") or "")
+            for region in annotation.get("regions", [])
+            if isinstance(region, Mapping)
+            and str(region.get("region_role") or "") == "building_region"
+        )
+        source_building_ids = list(dict.fromkeys(item for item in source_building_ids if item))
+        course_building_patch = {
+            "building_representation": "transparent_massing",
+            "surrounding_building_mode": "footprint_based",
+            "auto_land_use_mode": "off",
+            "infill_policy": "off",
+            "building_height_mode": "class_only",
+        }
+        emit("annotation_resolving", 8, "Parsing the approved 2D annotation.", source_id=source_id)
         result = dict(generator(
             draft,
+            patch_overrides=course_building_patch,
             scene_context={
                 "layout_mode": "reference_annotation",
                 "reference_annotation": annotation,
@@ -455,7 +498,9 @@ class TeachingPlatformService:
                 # screenshots, which otherwise leaves the UI at NO SCENE.
                 "retain_glb_policy": "always",
             },
+            progress_callback=forward_generation_progress,
         ))
+        emit("artifact_persisting", 84, "Saving the editable scene artifacts.")
         layout_path = Path(str(result.get("scene_layout_path") or result.get("layout_path") or "")).expanduser().resolve()
         glb_path = Path(str(result.get("scene_glb_path") or result.get("glb_path") or "")).expanduser().resolve()
         if not layout_path.is_file() or not glb_path.is_file():
@@ -479,8 +524,18 @@ class TeachingPlatformService:
                 "compose_config_patch": compose_patch,
                 "llm_capabilities": capabilities,
                 "generator_result": result,
+                "building_representation": "transparent_massing",
+                "massing_material": {
+                    "base_color": "#F4F7F8",
+                    "opacity": 0.42,
+                    "roughness": 1.0,
+                    "metallic": 0.0,
+                    "alpha_mode": "BLEND",
+                },
+                "source_building_ids": [item for item in source_building_ids if item],
             },
         )
+        emit("baseline_evaluation", 90, "Scoring the saved scene revision.", revision_id=revision["id"])
         evaluation = None
         if evaluator is not None:
             profiles = self.list_evaluation_profiles(actor_id, project_id)
@@ -488,6 +543,11 @@ class TeachingPlatformService:
             if profile:
                 evaluation = self.create_evaluation_run(actor_id, project_id, revision_id=revision["id"], profile_id=profile["id"])
                 evaluation = self.run_evaluation(actor_id, evaluation["id"], evaluator)
+                emit("baseline_evaluation", 98, "Baseline evaluation completed.", evaluation_status=evaluation["status"])
+            else:
+                emit("baseline_evaluation", 98, "Scene generated; no evaluation profile is configured.", evaluation_status="not_configured")
+        else:
+            emit("baseline_evaluation", 98, "Scene generated; no evaluator is configured.", evaluation_status="not_configured")
         return {"revision": revision, "evaluation": evaluation}
 
     def list_sources(self, actor_id: str, project_id: str) -> list[dict[str, Any]]:
@@ -732,6 +792,26 @@ class TeachingPlatformService:
             db.flush()
             return self._job(job)
 
+    def list_jobs(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        kind: str | None = None,
+        statuses: Sequence[str] | None = None,
+        limit: int = 20,
+    ) -> list[dict[str, Any]]:
+        with self.database.session() as db:
+            self._require_project(db, actor_id, project_id)
+            query = select(Job).where(Job.project_id == project_id)
+            if kind:
+                query = query.where(Job.kind == str(kind))
+            normalized_statuses = tuple(str(item) for item in statuses or () if str(item))
+            if normalized_statuses:
+                query = query.where(Job.status.in_(normalized_statuses))
+            jobs = db.scalars(query.order_by(Job.created_at.desc()).limit(max(1, min(int(limit), 100)))).all()
+            return [self._job(item) for item in jobs]
+
     def recover_incomplete_jobs(self) -> list[str]:
         """Return durable queued work and reset jobs interrupted during a worker restart."""
         with self.database.session() as db:
@@ -740,6 +820,9 @@ class TeachingPlatformService:
                 if job.status == "running":
                     job.status = "queued"
                     job.progress = 0
+                    job.stage = "queued"
+                    job.message = "Recovered after worker restart."
+                    job.detail = {"recovered": True}
                     job.error = "Recovered after worker restart."
             return [job.id for job in jobs]
 
@@ -752,6 +835,9 @@ class TeachingPlatformService:
                 return self._job(job)
             job.status = "running"
             job.progress = 5
+            job.stage = "starting"
+            job.message = "Starting teaching workflow."
+            job.detail = {}
             job.attempts += 1
             owner_id = job.owner_id
             project_id = job.project_id
@@ -779,12 +865,59 @@ class TeachingPlatformService:
                     goal_weights=(payload.get("goal_weights") if isinstance(payload.get("goal_weights"), Mapping) else None),
                     generator=generator,
                     evaluator=evaluator,
+                    progress_callback=lambda event: self.update_job_progress(job_id, event),
                 )
             else:
                 raise ValueError(f"Unsupported teaching job kind: {kind}")
         except Exception as exc:
+            self.update_job_progress(job_id, {
+                "stage": "failed",
+                "progress": 100,
+                "message": str(exc) or "The task failed.",
+                "detail": {"error": str(exc)},
+            })
             return self.update_job(job_id, status="failed", progress=100, error=str(exc))
+        self.update_job_progress(job_id, {
+            "stage": "succeeded",
+            "progress": 100,
+            "message": "Scene generation and baseline evaluation completed." if kind == "scene_generate" else "Task completed.",
+        })
         return self.update_job(job_id, status="succeeded", progress=100, result=result)
+
+    def update_job_progress(self, job_id: str, event: Mapping[str, Any] | str) -> dict[str, Any]:
+        payload = dict(event) if isinstance(event, Mapping) else {"message": str(event)}
+        with self.database.session() as db:
+            job = db.get(Job, job_id)
+            if job is None:
+                raise NotFound("Job not found.")
+            if job.status == "cancelled":
+                return self._job(job)
+            stage = str(payload.get("stage") or job.stage or "running")
+            message = str(payload.get("message") or stage.replace("_", " ").title())
+            try:
+                requested_progress = int(round(float(payload.get("progress", job.progress))))
+            except (TypeError, ValueError):
+                requested_progress = int(job.progress)
+            progress = max(int(job.progress), max(0, min(100, requested_progress)))
+            raw_detail = payload.get("detail")
+            detail = dict(raw_detail) if isinstance(raw_detail, Mapping) else {
+                key: value
+                for key, value in payload.items()
+                if key not in {"stage", "message", "progress"}
+            }
+            operation = {
+                "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "stage": stage,
+                "progress": progress,
+                "message": message,
+                "detail": detail,
+            }
+            job.stage = stage
+            job.message = message
+            job.progress = progress
+            job.detail = detail
+            job.operations = [*list(job.operations or []), operation][-50:]
+            return self._job(job)
 
     def cancel_job(self, actor_id: str, job_id: str) -> dict[str, Any]:
         with self.database.session() as db:
@@ -798,6 +931,8 @@ class TeachingPlatformService:
             if job.status not in {"queued", "running"}:
                 raise Conflict("Only queued or running jobs can be cancelled.")
             job.status = "cancelled"
+            job.stage = "cancelled"
+            job.message = "Cancelled by user."
             job.error = "Cancelled by user."
             return self._job(job)
 
@@ -930,7 +1065,22 @@ class TeachingPlatformService:
 
     @staticmethod
     def _job(item: Job) -> dict[str, Any]:
-        return {"id": item.id, "project_id": item.project_id, "kind": item.kind, "status": item.status, "progress": item.progress, "result": item.result, "error": item.error, "attempts": item.attempts, "created_at": _iso(item.created_at), "updated_at": _iso(item.updated_at)}
+        return {
+            "id": item.id,
+            "project_id": item.project_id,
+            "kind": item.kind,
+            "status": item.status,
+            "progress": item.progress,
+            "stage": item.stage,
+            "message": item.message,
+            "detail": item.detail,
+            "operations": item.operations,
+            "result": item.result,
+            "error": item.error,
+            "attempts": item.attempts,
+            "created_at": _iso(item.created_at),
+            "updated_at": _iso(item.updated_at),
+        }
 
 
 def json_bytes(value: Mapping[str, Any]) -> bytes:

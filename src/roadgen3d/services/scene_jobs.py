@@ -46,6 +46,7 @@ class _SceneJobState:
     result: SceneGenerationResult | None = None
     evaluation: Dict[str, Any] = field(default_factory=lambda: {"status": "pending"})
     trace_artifact_path: str = ""
+    progress_callback: Callable[[Mapping[str, Any]], None] | None = None
 
 
 class SceneJobService:
@@ -72,6 +73,7 @@ class SceneJobService:
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
         scene_context: SceneContext | None = None,
+        progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
     ) -> SceneJobCreateResponse:
         self._ensure_worker()
         job_id = uuid4().hex
@@ -81,6 +83,7 @@ class SceneJobService:
             patch_overrides=dict(patch_overrides or {}),
             generation_options=dict(generation_options or {}),
             scene_context=scene_context,
+            progress_callback=progress_callback,
             created_at=_utc_now(),
         )
         with self._condition:
@@ -130,12 +133,14 @@ class SceneJobService:
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
         scene_context: SceneContext | None = None,
+        progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
     ) -> SceneGenerationResult:
         created = self.submit_job(
             draft=draft,
             patch_overrides=patch_overrides,
             generation_options=generation_options,
             scene_context=scene_context,
+            progress_callback=progress_callback,
         )
         status = self.wait_for_job(created.job_id)
         if status is None:
@@ -228,6 +233,8 @@ class SceneJobService:
             payload = event
         else:
             payload = {"message": str(event)}
+        callback: Callable[[Mapping[str, Any]], None] | None = None
+        forwarded_event: Dict[str, Any] | None = None
         with self._condition:
             state = self._jobs.get(job_id)
             if state is None:
@@ -254,7 +261,14 @@ class SceneJobService:
                 message=message,
                 detail=detail if isinstance(detail, Mapping) else {"value": detail},
             )
+            callback = state.progress_callback
+            forwarded_event = dict(state.operations[-1]) if state.operations else None
             self._condition.notify_all()
+        if callback is not None and forwarded_event is not None:
+            try:
+                callback(forwarded_event)
+            except Exception:
+                pass
 
     @staticmethod
     def _coerce_progress(value: Any, fallback: int) -> int:

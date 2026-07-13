@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
+from typing import Any, Callable, Dict, Iterable, List, Mapping, Sequence, Tuple
 
 from ..knowledge import (
     ClipTextEmbedderAdapter,
@@ -342,12 +342,14 @@ class DesignAssistantService:
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
         scene_context: Mapping[str, Any] | SceneContext | None = None,
+        progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
     ) -> Dict[str, Any]:
         return self.scene_job_service.run_job_sync(
             draft=draft,
             patch_overrides=patch_overrides,
             generation_options=generation_options,
             scene_context=sanitize_scene_context(scene_context),
+            progress_callback=progress_callback,
         ).to_dict()
 
     def create_scene_job(

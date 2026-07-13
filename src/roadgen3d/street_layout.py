@@ -1515,6 +1515,11 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("osm_multiblock_max_extent_m must be > 0")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
+    if str(getattr(config, "building_representation", "asset")).strip().lower() not in {
+        "asset",
+        "transparent_massing",
+    }:
+        raise ValueError("building_representation must be 'asset' or 'transparent_massing'")
     if str(getattr(config, "surrounding_building_mode", "grid_growth")).strip().lower() not in {"footprint_based", "grid_growth"}:
         raise ValueError("surrounding_building_mode must be 'footprint_based' or 'grid_growth'")
     if str(getattr(config, "auto_land_use_mode", "road_buffer")).strip().lower() not in {"road_buffer", "off"}:
@@ -2996,15 +3001,47 @@ def _placeholder_building_entry(
     height_class: str,
     theme_name: str,
     target_height_m: float = 0.0,
+    polygon_xz: Sequence[Sequence[float]] | None = None,
+    center_xz: Sequence[float] | None = None,
 ) -> _MeshCacheEntry:
     white_context_massing = str(theme_name) == "context_white_massing"
     if white_context_massing:
         trimesh = _require_trimesh()
         height_m = float(target_height_m) if target_height_m > 0.0 else 12.0
-        mesh = trimesh.creation.box(
-            extents=(float(frontage_width_m), float(height_m), float(depth_m))
+        mesh = None
+        if polygon_xz and center_xz and len(center_xz) >= 2:
+            try:
+                from shapely.geometry import Polygon as ShapelyPolygon
+
+                center_x, center_z = float(center_xz[0]), float(center_xz[1])
+                footprint = ShapelyPolygon([
+                    (float(point[0]) - center_x, float(point[1]) - center_z)
+                    for point in polygon_xz
+                ]).buffer(0)
+                mesh = trimesh.creation.extrude_polygon(footprint, height_m)
+                vertices = mesh.vertices.copy()
+                old_y = vertices[:, 1].copy()
+                old_z = vertices[:, 2].copy()
+                vertices[:, 1] = old_z
+                vertices[:, 2] = old_y
+                mesh.vertices = vertices
+                mesh.fix_normals()
+            except Exception:
+                logger.debug("Falling back to rectangular transparent massing for %s", asset_id)
+                mesh = None
+        if mesh is None:
+            mesh = trimesh.creation.box(
+                extents=(float(frontage_width_m), float(height_m), float(depth_m))
+            )
+        material = trimesh.visual.material.PBRMaterial(
+            name="roadgen3d_transparent_massing",
+            baseColorFactor=[244, 247, 248, 107],
+            metallicFactor=0.0,
+            roughnessFactor=1.0,
+            alphaMode="BLEND",
+            doubleSided=True,
         )
-        mesh.visual.face_colors = [238, 240, 242, 255]
+        mesh.visual = trimesh.visual.TextureVisuals(material=material)
     else:
         try:
             from .parametric_assets import generate_parametric_asset
@@ -10027,7 +10064,14 @@ def _place_building_targets(
     for target_idx, target in ordered_targets:
         theme_id = str(target.get("theme_id", "") or "")
         theme_segment = theme_by_id.get(theme_id, theme_segments[0] if theme_segments else None)
-        white_context_massing = str(target.get("source", "") or "") == "osm_context_white_massing"
+        transparent_massing = (
+            str(getattr(config, "building_representation", "asset") or "asset").strip().lower()
+            == "transparent_massing"
+        )
+        white_context_massing = (
+            str(target.get("source", "") or "") == "osm_context_white_massing"
+            or transparent_massing
+        )
         force_analytical_procedural_building = (
             str(getattr(config, "style_preset", "") or "").strip().lower() == "analytical_diorama_v1"
         )
@@ -10042,6 +10086,11 @@ def _place_building_targets(
         frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
         depth_m = float(target.get("depth_m", 10.0) or 10.0)
         _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
+        target_center_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
+        target_center_xz = (
+            float(target_center_xz_raw[0]),
+            float(target_center_xz_raw[1]),
+        )
         if white_context_massing:
             ranked_candidates = ()
             retrieval_payload = {
@@ -10076,7 +10125,13 @@ def _place_building_targets(
 
         row: Optional[Dict[str, object]] = None
         score = 0.0
-        source = "osm_white_massing" if white_context_massing else "procedural_fallback"
+        source = (
+            "course_transparent_massing"
+            if transparent_massing
+            else "osm_white_massing"
+            if white_context_massing
+            else "procedural_fallback"
+        )
         scale_decision: Dict[str, object] = {}
         rejected_candidates: List[Dict[str, object]] = []
         accepted_candidates: List[Tuple[int, Dict[str, object], float, Dict[str, object]]] = []
@@ -10143,7 +10198,7 @@ def _place_building_targets(
             fallback_reason = ""
         else:
             asset_id = (
-                f"osm_white_massing_{str(target.get('target_id', target_idx)).replace('/', '_')}"
+                f"transparent_massing_{str(target.get('target_id', target_idx)).replace('/', '_')}"
                 if white_context_massing
                 else f"building_fallback_{str(target.get('target_kind', 'footprint'))}_{target_idx:03d}"
             )
@@ -10154,6 +10209,8 @@ def _place_building_targets(
                 height_class=str(target.get("height_class", "midrise") or "midrise"),
                 theme_name=theme_name,
                 target_height_m=_target_height_m,
+                polygon_xz=(target.get("polygon_xz") if white_context_massing else None),
+                center_xz=(target_center_xz if white_context_massing else None),
             )
             # Store the fallback entry (includes full mesh)
             mesh_cache.set_full_entry(asset_id, fallback_entry)
@@ -10172,11 +10229,6 @@ def _place_building_targets(
             fallback_count += 1
             fallback_reason = "context_white_massing" if white_context_massing else "no_building_asset_match"
 
-        target_center_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
-        target_center_xz = (
-            float(target_center_xz_raw[0]),
-            float(target_center_xz_raw[1]),
-        )
         street_edge_xz_raw = target.get("street_edge_xz", ()) or ()
         if len(street_edge_xz_raw) >= 2:
             street_edge_xz = (float(street_edge_xz_raw[0]), float(street_edge_xz_raw[1]))
@@ -10193,14 +10245,18 @@ def _place_building_targets(
             float(street_edge_xz[1]) - float(target_center_xz[1]),
             fallback=target_base_yaw,
         )
-        building_yaw_deg = _final_asset_yaw_deg(
-            desired_front_yaw_deg=desired_building_front_yaw,
-            canonical_front=building_canonical_front,
-            asset_yaw_offset_deg=building_asset_yaw_offset,
+        building_yaw_deg = (
+            0.0
+            if white_context_massing
+            else _final_asset_yaw_deg(
+                desired_front_yaw_deg=desired_building_front_yaw,
+                canonical_front=building_canonical_front,
+                asset_yaw_offset_deg=building_asset_yaw_offset,
+            )
         )
         placement_strategy = str(target.get("placement_strategy", "") or "")
         front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
-        if "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
+        if not white_context_massing and "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
             target_center_xz = _front_aligned_building_visual_center(
                 entry=entry,
                 yaw_deg=float(building_yaw_deg),
@@ -10219,9 +10275,9 @@ def _place_building_targets(
             center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
             center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
             scale=scale_xyz,
-            placement_ctx=placement_ctx,
-            forbidden_geometry=building_forbidden_geom,
-            config=config,
+            placement_ctx=None if white_context_massing else placement_ctx,
+            forbidden_geometry=None if white_context_massing else building_forbidden_geom,
+            config=None if white_context_massing else config,
             bbox_clearance_m=0.15,
             vehicle_clearance_m=0.40,
         )
@@ -10258,7 +10314,7 @@ def _place_building_targets(
             max_overlap_area = max(max_overlap_area, _bbox_overlap_area(bbox, existing_bbox))
             if max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
                 break
-        if max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
+        if not white_context_massing and max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
             building_overlap_rejected_count += 1
             add_skip_reason("building_bbox_overlap")
             if row is not None:
@@ -11209,7 +11265,11 @@ def compose_street_scene(
 
     # Load building assets from UrbanVerse manifest
     building_manifest_path = ROOT / "assets" / "building" / "buildings_manifest.jsonl"
-    building_rows = _load_building_manifest(building_manifest_path)
+    use_building_assets = (
+        str(getattr(config, "building_representation", "asset") or "asset").strip().lower()
+        == "asset"
+    )
+    building_rows = _load_building_manifest(building_manifest_path) if use_building_assets else []
     building_asset_count = 0
     if building_rows:
         logger.info("Loaded %d building assets from UrbanVerse manifest", len(building_rows))
@@ -11247,6 +11307,8 @@ def compose_street_scene(
         "Loaded retrieval index and building assets.",
         object_asset_count=len(rows),
         building_asset_count=building_asset_count,
+        building_representation=str(getattr(config, "building_representation", "asset") or "asset"),
+        building_asset_retrieval_skipped=not use_building_assets,
     )
 
     policy_runtime: Optional[LayoutPolicyRuntime] = None

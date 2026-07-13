@@ -3,10 +3,52 @@
 from __future__ import annotations
 
 import os
+from concurrent.futures import Future, ThreadPoolExecutor
+from threading import Lock
+from typing import Any
 
 from roadgen3d.llm.design_workflow import DesignAssistantService
 
 from .service import TeachingPlatformService
+
+
+class LocalTeachingJobExecutor:
+    """Small process-local executor used by ``make dev`` without Redis."""
+
+    def __init__(self, service: TeachingPlatformService, design_service: Any) -> None:
+        self.service = service
+        self.design_service = design_service
+        self.pool = ThreadPoolExecutor(
+            max_workers=max(1, int(os.getenv("ROADGEN_LOCAL_JOB_WORKERS", "2"))),
+            thread_name_prefix="roadgen3d-teaching",
+        )
+        self._lock = Lock()
+        self._futures: dict[str, Future[dict[str, Any]]] = {}
+
+    def submit(self, job_id: str) -> None:
+        with self._lock:
+            existing = self._futures.get(job_id)
+            if existing is not None and not existing.done():
+                return
+            future = self.pool.submit(
+                self.service.execute_job,
+                job_id,
+                evaluator=self.design_service.evaluate_scene_unified,
+                generator=self.design_service.generate_scene,
+            )
+            self._futures[job_id] = future
+            future.add_done_callback(lambda _future, resolved_id=job_id: self._discard(resolved_id))
+
+    def recover(self) -> None:
+        for job_id in self.service.recover_incomplete_jobs():
+            self.submit(job_id)
+
+    def shutdown(self) -> None:
+        self.pool.shutdown(wait=False, cancel_futures=False)
+
+    def _discard(self, job_id: str) -> None:
+        with self._lock:
+            self._futures.pop(job_id, None)
 
 
 def execute_job(job_id: str) -> dict:

@@ -366,10 +366,21 @@ def _geojson_to_annotation(
                 raise ValueError(f"Polygon feature '{feature_id}' is degenerate.")
             if role in {"building", "building_footprint"}:
                 local_ring = _closed_ring([list(pair_to_local(pair)) for pair in ring])
+                tags = dict(properties.get("tags") or {})
+                regions.append({
+                    "id": feature_id,
+                    "label": str(properties.get("label") or properties.get("name") or feature_id),
+                    "region_role": "building_region",
+                    "kind": str(properties.get("building") or tags.get("building") or "building"),
+                    "land_use_type": str(properties.get("land_use") or tags.get("landuse") or ""),
+                    "source_region_id": str(properties.get("osm_id") or feature_id),
+                    "points": [{"x": p[0], "y": p[1]} for p in pixel_ring[:-1]],
+                    "material": _building_height_metadata(properties, tags),
+                })
                 aligned_buildings.append({
                     "osm_id": str(properties.get("osm_id") or feature_id),
                     "polygon_xz": local_ring,
-                    "tags": dict(properties.get("tags") or {}),
+                    "tags": tags,
                     "source_id": feature_id,
                     "editable": False,
                 })
@@ -535,6 +546,45 @@ def _optional_positive(value: Any, default: float) -> float:
     if value in {None, ""}:
         return default
     return _positive_number(value, "feature width")
+
+
+def _building_height_metadata(
+    properties: Mapping[str, Any],
+    tags: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """Persist deterministic height inputs with an approved footprint."""
+
+    def _number(*values: Any) -> float | None:
+        for value in values:
+            if value in (None, ""):
+                continue
+            text = str(value).lower().replace("meters", "").replace("meter", "").replace("m", "").strip()
+            try:
+                number = float(text)
+            except (TypeError, ValueError):
+                continue
+            if math.isfinite(number) and number > 0.0:
+                return number
+        return None
+
+    declared_height_m = _number(properties.get("height"), tags.get("height"))
+    levels = _number(
+        properties.get("building:levels"),
+        properties.get("building_levels"),
+        tags.get("building:levels"),
+    )
+    height_m = declared_height_m
+    if height_m is None and levels is not None:
+        height_m = max(3.0, levels * 3.0)
+    payload: Dict[str, Any] = {"height_source": "class_rule"}
+    if height_m is not None:
+        payload.update({
+            "target_height_m": float(height_m),
+            "height_source": "osm.height" if declared_height_m is not None else "osm.building_levels",
+        })
+    if levels is not None:
+        payload["building_levels"] = float(levels)
+    return payload
 
 
 def _nonnegative_int(value: Any, default: int) -> int:

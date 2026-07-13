@@ -3,6 +3,7 @@ from __future__ import annotations
 import io
 import json
 import sys
+import time
 import zipfile
 from pathlib import Path
 
@@ -27,7 +28,13 @@ class FakeDesignService:
         self.output_dir = output_dir
         self.generation_calls: list[dict] = []
 
-    def generate_scene(self, draft, *, scene_context: dict, generation_options: dict, **_kwargs):
+    def generate_scene(self, draft, *, scene_context: dict, generation_options: dict, **kwargs):
+        progress_callback = kwargs.get("progress_callback")
+        if progress_callback:
+            progress_callback({"stage": "context_resolving", "progress": 15, "message": "Fixture annotation resolved."})
+            progress_callback({"stage": "layout_generation", "progress": 44, "message": "Fixture layout generated."})
+            progress_callback({"stage": "mesh_generation", "progress": 76, "message": "Fixture massing generated.", "detail": {"building_count": 1}})
+            progress_callback({"stage": "glb_export", "progress": 88, "message": "Fixture GLB exported."})
         call_index = len(self.generation_calls) + 1
         call_dir = self.output_dir / f"generated-{call_index}"
         call_dir.mkdir(parents=True, exist_ok=True)
@@ -46,6 +53,7 @@ class FakeDesignService:
             "draft": draft.to_dict(),
             "scene_context": scene_context,
             "generation_options": generation_options,
+            "patch_overrides": dict(kwargs.get("patch_overrides") or {}),
         })
         return {"scene_layout_path": str(layout_path), "scene_glb_path": str(glb_path)}
 
@@ -126,6 +134,55 @@ def test_geojson_crs_transform_stable_ids_and_intersection_annotation():
     assert [item["id"] for item in geojson["features"]] == [item["id"] for item in second["geojson"]["features"]]
     assert reviewed["role_counts"] == {"centerline": 2, "road_intersection": 1}
     assert first["quality_report"]["conversion_ok"] is True
+
+
+def test_geojson_building_footprint_persists_exact_region_and_osm_height():
+    from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
+
+    normalized = normalize_teaching_geojson({
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "id": "road-1",
+                "properties": {"highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.541, 22.791], [113.548, 22.798]]},
+            },
+            {
+                "type": "Feature",
+                "id": "building-42",
+                "properties": {"building": "university", "building:levels": "6"},
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[
+                        [113.5420, 22.7920],
+                        [113.5424, 22.7920],
+                        [113.5424, 22.7923],
+                        [113.5420, 22.7923],
+                        [113.5420, 22.7920],
+                    ]],
+                },
+            },
+        ],
+    }, source_id="building-persistence")
+
+    building_region = next(
+        region for region in normalized["annotation"]["regions"]
+        if region["region_role"] == "building_region"
+    )
+    assert building_region["id"] == "building-42"
+    assert len(building_region["points"]) == 4
+    assert building_region["material"] == {
+        "target_height_m": 18.0,
+        "height_source": "osm.building_levels",
+        "building_levels": 6.0,
+    }
+    bridge = build_reference_annotation_scene_bridge(
+        normalized["annotation"],
+        compose_config={"auto_land_use_mode": "off", "surrounding_building_mode": "footprint_based"},
+    )
+    assert bridge.placement_context.building_regions[0]["region_id"] == "building-42"
+    assert bridge.placement_context.building_regions[0]["target_height_m"] == pytest.approx(18.0)
 
 
 def test_course_project_geojson_revision_evaluation_compare_and_export(client: TestClient, monkeypatch):
@@ -211,9 +268,21 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     })
     assert baseline_job.status_code == 202, baseline_job.text
     assert baseline_job.json()["status"] == "succeeded"
+    assert baseline_job.json()["stage"] == "succeeded"
+    assert baseline_job.json()["progress"] == 100
+    assert any(item["stage"] == "mesh_generation" for item in baseline_job.json()["operations"])
     baseline = baseline_job.json()["result"]["revision"]
     assert baseline["branch_kind"] == "baseline"
     assert baseline["provenance"]["generation_method"] == "parametric"
+    assert baseline["provenance"]["building_representation"] == "transparent_massing"
+    assert baseline["provenance"]["massing_material"]["opacity"] == pytest.approx(0.42)
+    assert client.app.state.design_service.generation_calls[0]["patch_overrides"] == {
+        "building_representation": "transparent_massing",
+        "surrounding_building_mode": "footprint_based",
+        "auto_land_use_mode": "off",
+        "infill_policy": "off",
+        "building_height_mode": "class_only",
+    }
     assert baseline_job.json()["result"]["evaluation"]["status"] == "succeeded"
     human = client.post(f"/api/v1/projects/{project['id']}/revisions", headers=_auth(student_token), json={
         "source_id": source["id"],
@@ -310,6 +379,17 @@ def test_durable_job_recovery_and_cancellation_are_terminal(client: TestClient):
 
     running = service.create_job(actor["id"], None, kind="project_export", payload={})
     service.update_job(running["id"], status="running", progress=40)
+    for index in range(55):
+        service.update_job_progress(running["id"], {
+            "stage": "layout_generation",
+            "progress": index,
+            "message": f"step {index}",
+        })
+    progressed = service.get_job(actor["id"], running["id"])
+    assert progressed["progress"] == 54
+    assert len(progressed["operations"]) == 50
+    service.update_job_progress(running["id"], {"stage": "context_resolving", "progress": 12, "message": "late lower progress"})
+    assert service.get_job(actor["id"], running["id"])["progress"] == 54
     assert running["id"] in service.recover_incomplete_jobs()
     assert service.get_job(actor["id"], running["id"])["status"] == "queued"
 
@@ -318,3 +398,83 @@ def test_durable_job_recovery_and_cancellation_are_terminal(client: TestClient):
     after_late_completion = service.update_job(running["id"], status="succeeded", progress=100, result={"unexpected": True})
     assert after_late_completion["status"] == "cancelled"
     assert after_late_completion["result"] == {}
+
+
+def test_local_generation_returns_immediately_and_project_job_list_recovers_status(client: TestClient, monkeypatch):
+    monkeypatch.setenv("ROADGEN_JOB_MODE", "local")
+    _teacher_token, student_token, course = _bootstrap_course_and_student(client)
+    project = client.post("/api/v1/projects", headers=_auth(student_token), json={
+        "course_id": course["id"],
+        "name": "Local progress studio",
+        "aoi_bbox": [113.54, 22.79, 113.55, 22.80],
+    }).json()
+    imported = client.post(f"/api/v1/projects/{project['id']}/sources/geojson", headers=_auth(student_token), json={
+        "geojson": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "properties": {"highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.541, 22.791], [113.548, 22.798]]},
+            }],
+        },
+    }).json()
+    normalized = client.get(f"/api/v1/artifacts/{imported['normalized_artifact_id']}", headers=_auth(student_token)).json()
+    reviewed = client.post(
+        f"/api/v1/projects/{project['id']}/sources/{imported['id']}/review",
+        headers=_auth(student_token),
+        json={"geojson": normalized, "actions": [], "notes": "approved"},
+    ).json()
+    response = client.post(f"/api/v1/projects/{project['id']}/generate", headers=_auth(student_token), json={
+        "source_id": reviewed["id"],
+        "generation_mode": "baseline",
+    })
+    assert response.status_code == 202
+    assert response.json()["status"] == "queued"
+    job_id = response.json()["id"]
+    job = response.json()
+    for _ in range(100):
+        job = client.get(f"/api/v1/jobs/{job_id}", headers=_auth(student_token)).json()
+        if job["status"] in {"succeeded", "failed"}:
+            break
+        time.sleep(0.02)
+    assert job["status"] == "succeeded", job
+    listed = client.get(
+        f"/api/v1/projects/{project['id']}/jobs?kind=scene_generate&limit=1",
+        headers=_auth(student_token),
+    )
+    assert listed.status_code == 200
+    assert listed.json()["items"][0]["id"] == job_id
+    assert listed.json()["items"][0]["operations"]
+
+
+def test_transparent_massing_material_contract():
+    from roadgen3d.street_layout import _placeholder_building_entry
+
+    entry = _placeholder_building_entry(
+        asset_id="massing-fixture",
+        frontage_width_m=10.0,
+        depth_m=8.0,
+        height_class="midrise",
+        theme_name="context_white_massing",
+        target_height_m=15.0,
+    )
+    material = entry.mesh.visual.material
+    assert material.name == "roadgen3d_transparent_massing"
+    assert list(material.baseColorFactor) == [244, 247, 248, 107]
+    assert material.alphaMode == "BLEND"
+    assert material.roughnessFactor == pytest.approx(1.0)
+    assert material.metallicFactor == pytest.approx(0.0)
+
+    footprint_entry = _placeholder_building_entry(
+        asset_id="massing-footprint-fixture",
+        frontage_width_m=20.0,
+        depth_m=20.0,
+        height_class="midrise",
+        theme_name="context_white_massing",
+        target_height_m=18.0,
+        polygon_xz=((10.0, 20.0), (16.0, 20.0), (15.0, 24.0), (10.0, 20.0)),
+        center_xz=(13.0, 22.0),
+    )
+    assert footprint_entry.native_height_y == pytest.approx(18.0)
+    assert footprint_entry.raw_size_m["width_m"] == pytest.approx(6.0)
+    assert footprint_entry.raw_size_m["depth_m"] == pytest.approx(4.0)

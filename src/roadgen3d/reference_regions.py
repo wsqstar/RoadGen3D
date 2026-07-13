@@ -362,6 +362,8 @@ def _region_building_record(
     land_use_type: str = "",
     side: str = "",
     nearest_centerline_id: str = "",
+    target_height_m: float = 0.0,
+    height_source: str = "",
 ) -> Dict[str, Any]:
     bounds = polygon.bounds
     centroid = polygon.representative_point()
@@ -380,6 +382,8 @@ def _region_building_record(
         "land_use_type": str(land_use_type),
         "side": str(side),
         "nearest_centerline_id": str(nearest_centerline_id),
+        "target_height_m": max(0.0, float(target_height_m)),
+        "height_source": str(height_source),
     }
 
 
@@ -400,6 +404,8 @@ def explicit_building_region_records_from_regions(annotation: ReferenceAnnotatio
                     source="region",
                     source_region_id=region.source_region_id,
                     land_use_type=region.land_use_type,
+                    target_height_m=float(region.material.get("target_height_m", 0.0) or 0.0),
+                    height_source=str(region.material.get("height_source", "") or ""),
                 )
             )
     return records

@@ -36,6 +36,24 @@ router = APIRouter(prefix="/api/v1", tags=["teaching-platform"])
 bearer = HTTPBearer(auto_error=False)
 
 
+def _dispatch_job(request: Request, job: dict[str, Any]) -> dict[str, Any]:
+    mode = os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower()
+    if mode == "rq":
+        enqueue_job(job["id"])
+        return job
+    if mode == "local":
+        request.app.state.teaching_job_executor.submit(job["id"])
+        return job
+    if mode != "inline":
+        raise ValueError("ROADGEN_JOB_MODE must be inline, local, or rq.")
+    design = request.app.state.design_service
+    return _service(request).execute_job(
+        job["id"],
+        evaluator=design.evaluate_scene_unified,
+        generator=design.generate_scene,
+    )
+
+
 def _service(request: Request) -> TeachingPlatformService:
     return request.app.state.teaching_service
 
@@ -75,10 +93,10 @@ def _auto_evaluate_revision(
         return {**revision, "auto_evaluation": None, "evaluation_job": None}
     evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=revision["id"], profile_id=selected["id"], weights=weights)
     job = service.create_job(actor["id"], project_id, kind="evaluation", payload={"run_id": evaluation["id"]})
-    if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
-        enqueue_job(job["id"])
+    if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() in {"rq", "local"}:
+        _dispatch_job(request, job)
         return {**revision, "auto_evaluation": evaluation, "evaluation_job": job}
-    completed = service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+    completed = _dispatch_job(request, job)
     refreshed = next(item for item in service.list_evaluations(actor["id"], project_id) if item["id"] == evaluation["id"])
     return {**revision, "auto_evaluation": refreshed, "evaluation_job": completed}
 
@@ -158,10 +176,7 @@ def import_osm(project_id: str, body: OsmImportRequest, request: Request, actor:
     def run():
         service = _service(request)
         job = service.create_job(actor["id"], project_id, kind="osm_import", payload={"force_refetch": body.force_refetch})
-        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
-            enqueue_job(job["id"])
-            return job
-        return service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+        return _dispatch_job(request, job)
     return _call(run)
 
 
@@ -193,11 +208,7 @@ def generate_scene(project_id: str, body: SceneGenerateRequest, request: Request
             "parent_revision_id": body.parent_revision_id,
             "goal_weights": body.goal_weights,
         })
-        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
-            enqueue_job(job["id"])
-            return job
-        design = request.app.state.design_service
-        return service.execute_job(job["id"], evaluator=design.evaluate_scene_unified, generator=design.generate_scene)
+        return _dispatch_job(request, job)
     return _call(run)
 
 
@@ -224,6 +235,24 @@ def list_revisions(project_id: str, request: Request, actor: dict[str, Any] = De
     return {"items": _call(lambda: _service(request).list_revisions(actor["id"], project_id))}
 
 
+@router.get("/projects/{project_id}/jobs")
+def list_project_jobs(
+    project_id: str,
+    request: Request,
+    kind: str | None = Query(default=None),
+    status: list[str] | None = Query(default=None),
+    limit: int = Query(default=20, ge=1, le=100),
+    actor: dict[str, Any] = Depends(_actor),
+):
+    return {"items": _call(lambda: _service(request).list_jobs(
+        actor["id"],
+        project_id,
+        kind=kind,
+        statuses=status,
+        limit=limit,
+    ))}
+
+
 @router.get("/projects/{project_id}/evaluation-profiles")
 def list_profiles(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
     return {"items": _call(lambda: _service(request).list_evaluation_profiles(actor["id"], project_id))}
@@ -242,10 +271,10 @@ def create_evaluation(project_id: str, body: EvaluationCreateRequest, request: R
         if not body.auto_run:
             return {"evaluation": evaluation, "job": None}
         job = service.create_job(actor["id"], project_id, kind="evaluation", payload={"run_id": evaluation["id"]})
-        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
-            enqueue_job(job["id"])
+        if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() in {"rq", "local"}:
+            _dispatch_job(request, job)
             return {"evaluation": evaluation, "job": job}
-        completed = service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+        completed = _dispatch_job(request, job)
         return {"evaluation": service.list_evaluations(actor["id"], project_id)[0], "job": completed}
     return _call(run)
 
@@ -265,10 +294,7 @@ def export_project(project_id: str, request: Request, actor: dict[str, Any] = De
     def run():
         service = _service(request)
         job = service.create_job(actor["id"], project_id, kind="project_export", payload={})
-        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
-            enqueue_job(job["id"])
-            return job
-        return service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+        return _dispatch_job(request, job)
     return _call(run)
 
 
@@ -286,11 +312,7 @@ def cancel_job(job_id: str, request: Request, actor: dict[str, Any] = Depends(_a
 def retry_job(job_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
     def run():
         job = _service(request).retry_job(actor["id"], job_id)
-        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
-            enqueue_job(job["id"])
-            return job
-        design = request.app.state.design_service
-        return _service(request).execute_job(job["id"], evaluator=design.evaluate_scene_unified, generator=design.generate_scene)
+        return _dispatch_job(request, job)
     return _call(run)
 
 

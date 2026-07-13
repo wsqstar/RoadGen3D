@@ -650,6 +650,8 @@ def _normalized_building_region_records(
                 "width_m": float(region.get("width_m", 0.0) if isinstance(region, Mapping) else 0.0),
                 "height_m": float(region.get("height_m", 0.0) if isinstance(region, Mapping) else 0.0),
                 "yaw_deg": float(region.get("yaw_deg", 0.0) if isinstance(region, Mapping) else 0.0),
+                "target_height_m": float(region.get("target_height_m", 0.0) if isinstance(region, Mapping) else 0.0),
+                "height_source": str(region.get("height_source", "") if isinstance(region, Mapping) else ""),
                 "polygon_xz": polygon_xz,
                 "bbox": _polygon_bbox(polygon_xz),
                 "geom": (
@@ -795,7 +797,11 @@ def _building_region_footprints(
         frontage_width_m, depth_m = _region_frontage_depth_metrics(region)
         yaw_deg = float(region.get("yaw_deg", 0.0) or 0.0)
         footprint_id = str(region.get("region_id", "") or f"building_region_{index:02d}")
-        if height_mode == "theme_random":
+        declared_height_m = max(0.0, float(region.get("target_height_m", 0.0) or 0.0))
+        if declared_height_m > 0.0:
+            target_height_m = declared_height_m
+            height_class = height_class_from_height_m(target_height_m)
+        elif height_mode == "theme_random":
             target_height_m = sample_building_target_height(
                 seed=seed,
                 target_id=footprint_id,

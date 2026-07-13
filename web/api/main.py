@@ -26,6 +26,7 @@ from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E
 from roadgen3d.llm.design_workflow import DesignAssistantService  # noqa: E402
 from roadgen3d.street_layout import rebuild_glb_from_layout  # noqa: E402
 from roadgen3d.teaching import TeachingPlatformService  # noqa: E402
+from roadgen3d.teaching.jobs import LocalTeachingJobExecutor  # noqa: E402
 from web.api.routers import catalog as catalog_routes  # noqa: E402
 from web.api.routers import diff_capture as diff_capture_routes  # noqa: E402
 from web.api.routers.assets import router as assets_router  # noqa: E402
@@ -64,6 +65,10 @@ def create_app(
     )
     app.state.design_service = design_service or DesignAssistantService()
     app.state.teaching_service = teaching_service or TeachingPlatformService()
+    app.state.teaching_job_executor = LocalTeachingJobExecutor(
+        app.state.teaching_service,
+        app.state.design_service,
+    )
     app.state.benchmark_store = benchmark_store or BranchBenchmarkStore()
     app.state.branch_run_service = BranchRunService(
         design_service=app.state.design_service,
@@ -101,6 +106,16 @@ def create_app(
         teaching_router,
     ):
         app.include_router(router)
+
+    def recover_local_jobs() -> None:
+        if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() == "local":
+            app.state.teaching_job_executor.recover()
+
+    def shutdown_local_jobs() -> None:
+        app.state.teaching_job_executor.shutdown()
+
+    app.add_event_handler("startup", recover_local_jobs)
+    app.add_event_handler("shutdown", shutdown_local_jobs)
 
     return app
 

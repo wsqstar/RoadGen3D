@@ -152,6 +152,10 @@ class Job(Base, TimestampMixin):
     kind: Mapped[str] = mapped_column(String(40), nullable=False)
     status: Mapped[str] = mapped_column(String(24), default="queued", nullable=False)
     progress: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    stage: Mapped[str] = mapped_column(String(64), default="queued", nullable=False)
+    message: Mapped[str] = mapped_column(Text, default="Waiting for a worker.", nullable=False)
+    detail: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
+    operations: Mapped[list[dict[str, Any]]] = mapped_column(JSON, default=list, nullable=False)
     payload: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
     result: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
     error: Mapped[str] = mapped_column(Text, default="", nullable=False)
@@ -181,4 +185,3 @@ class AuditLog(Base):
     action: Mapped[str] = mapped_column(String(100), nullable=False)
     detail: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now_utc, nullable=False)
-

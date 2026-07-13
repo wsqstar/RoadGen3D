@@ -117,6 +117,7 @@ class StreetComposeConfig:
     enable_surrounding_buildings: bool = True
     surrounding_building_mode: str = "grid_growth"
     building_search_topk: int = 5
+    building_representation: str = "asset"  # "asset" | "transparent_massing"
     theme_inference_mode: str = "deterministic_auto"
     theme_vocab_name: str = "fixed_v1"
     building_height_mode: str = "theme_random"  # "class_only" | "theme_random"

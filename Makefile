@@ -111,7 +111,8 @@ api:
 	@if lsof -nP -iTCP:$(UI_API_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
 		echo "Design API already available at http://$(UI_API_HOST):$(UI_API_PORT)"; \
 	else \
-		MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT); \
+		MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m alembic upgrade head; \
+		ROADGEN_JOB_MODE=$${ROADGEN_JOB_MODE:-local} MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT); \
 	fi
 
 workbench-api:
