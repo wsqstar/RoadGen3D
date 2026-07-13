@@ -22,7 +22,7 @@ from roadgen3d.scene_layout_edits import apply_scene_layout_edits, scene_revisio
 from .artifacts import ArtifactStore, create_artifact_store, safe_object_key
 from .auth import digest_secret, hash_password, issue_invite_code, issue_session_token, normalize_email, verify_password
 from .database import TeachingDatabase
-from .geojson_pipeline import normalize_teaching_geojson, raw_osm_to_geojson
+from .geojson_pipeline import normalize_teaching_geojson, raw_osm_to_geojson, round_trip_report
 from .models import (
     Artifact,
     AuditLog,
@@ -241,7 +241,12 @@ class TeachingPlatformService:
                 raw_artifact_id=raw_artifact.id,
                 normalized_artifact_id=normalized_artifact.id,
                 annotation_artifact_id=annotation_artifact.id,
-                provenance={"source": kind, **dict(provenance or {})},
+                provenance={
+                    "source": kind,
+                    "role_counts": normalized["role_counts"],
+                    "warnings": normalized["warnings"],
+                    **dict(provenance or {}),
+                },
                 quality_report=normalized["quality_report"],
             )
             db.add(record)
@@ -249,6 +254,68 @@ class TeachingPlatformService:
             self._audit(db, actor_id, project.id, "source.import", {"source_id": record.id, "kind": kind})
             db.flush()
             return self._source(record, normalized)
+
+    def approve_source_review(
+        self,
+        actor_id: str,
+        project_id: str,
+        source_id: str,
+        *,
+        geojson: Mapping[str, Any],
+        actions: Sequence[Mapping[str, Any]] | None = None,
+        notes: str = "",
+    ) -> dict[str, Any]:
+        """Persist a reviewed annotation as a new immutable source version."""
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            parent = db.get(SceneSourceRecord, source_id)
+            if parent is None or parent.project_id != project.id:
+                raise NotFound("Scene source not found in this project.")
+            artifact = db.get(Artifact, parent.normalized_artifact_id)
+            if artifact is None:
+                raise NotFound("The source GeoJSON artifact is missing.")
+            parent_key = artifact.object_key
+        with self.artifacts.open(parent_key) as handle:
+            parent_geojson = json.loads(handle.read().decode("utf-8"))
+
+        action_log = [dict(item) for item in actions or []]
+        reviewed = self.import_geojson(
+            actor_id,
+            project_id,
+            geojson,
+            kind="reviewed_annotation",
+            provenance={
+                "parent_source_id": source_id,
+                "review_status": "approved",
+                "review_notes": str(notes).strip()[:2_000],
+                "review_actions": action_log,
+                "reviewed_at": _iso(now_utc()),
+            },
+        )
+        reviewed_artifact, reviewed_handle = self.artifact(actor_id, reviewed["normalized_artifact_id"])
+        try:
+            reviewed_geojson = json.loads(reviewed_handle.read().decode("utf-8"))
+        finally:
+            reviewed_handle.close()
+        delta = round_trip_report(parent_geojson, reviewed_geojson)
+        with self.database.session() as db:
+            record = db.get(SceneSourceRecord, reviewed["id"])
+            project = db.get(Project, project_id)
+            if record is None or project is None:
+                raise NotFound("Reviewed scene source was not persisted.")
+            record.quality_report = {**dict(record.quality_report), "review_delta": delta}
+            record.provenance = {
+                **dict(record.provenance),
+                "review_artifact_sha256": reviewed_artifact.sha256,
+            }
+            project.workflow_step = "design"
+            self._audit(db, actor_id, project.id, "source.review_approved", {
+                "source_id": record.id,
+                "parent_source_id": source_id,
+                "action_count": len(action_log),
+            })
+            db.flush()
+            return self._source(record)
 
     def import_osm(self, actor_id: str, project_id: str, *, force_refetch: bool = False) -> dict[str, Any]:
         with self.database.session() as db:
@@ -741,8 +808,10 @@ class TeachingPlatformService:
     @staticmethod
     def _source(item: SceneSourceRecord, normalized: Mapping[str, Any] | None = None) -> dict[str, Any]:
         payload = {"id": item.id, "project_id": item.project_id, "kind": item.kind, "schema_version": item.schema_version, "raw_artifact_id": item.raw_artifact_id, "normalized_artifact_id": item.normalized_artifact_id, "annotation_artifact_id": item.annotation_artifact_id, "provenance": item.provenance, "quality_report": item.quality_report, "created_at": _iso(item.created_at)}
-        if normalized:
-            payload.update({"role_counts": normalized.get("role_counts", {}), "warnings": normalized.get("warnings", [])})
+        payload.update({
+            "role_counts": (normalized or {}).get("role_counts", item.provenance.get("role_counts", {})),
+            "warnings": (normalized or {}).get("warnings", item.provenance.get("warnings", [])),
+        })
         return payload
 
     @staticmethod

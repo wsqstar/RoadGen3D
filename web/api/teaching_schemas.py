@@ -52,6 +52,12 @@ class OsmImportRequest(BaseModel):
     force_refetch: bool = False
 
 
+class AnnotationReviewRequest(BaseModel):
+    geojson: Dict[str, Any]
+    actions: List[Dict[str, Any]] = Field(default_factory=list, max_length=1_000)
+    notes: str = Field(default="", max_length=2_000)
+
+
 class SceneGenerateRequest(BaseModel):
     source_id: str
     prompt: str = Field(default="", max_length=2_000)

@@ -54,7 +54,12 @@ def _stable_id(feature: Mapping[str, Any], index: int) -> str:
 def _role_for(geometry_type: str, properties: Mapping[str, Any]) -> tuple[str, float, str]:
     explicit = str(properties.get("role") or "").strip().lower()
     if explicit:
-        return explicit, 1.0, "explicit_property"
+        try:
+            confidence = float(properties.get("annotation_confidence", 1.0))
+        except (TypeError, ValueError):
+            confidence = 1.0
+        source = str(properties.get("annotation_source") or "explicit_property").strip()
+        return explicit, max(0.0, min(1.0, confidence)), source
     tags = properties.get("tags") if isinstance(properties.get("tags"), Mapping) else properties
     if geometry_type == "LineString" and tags.get("highway"):
         return "centerline", 0.98, "osm.highway"
@@ -150,7 +155,11 @@ def _append_road_intersections(features: list[dict[str, Any]]) -> None:
     from shapely.geometry import LineString, Point
 
     roads = [item for item in features if item["geometry"]["type"] == "LineString" and item["properties"].get("role") == "centerline"]
-    seen: set[tuple[float, float]] = set()
+    seen: set[tuple[float, float]] = {
+        (round(float(item["geometry"]["coordinates"][0]), 9), round(float(item["geometry"]["coordinates"][1]), 9))
+        for item in features
+        if item["geometry"]["type"] == "Point" and item["properties"].get("role") == "road_intersection"
+    }
     additions: list[dict[str, Any]] = []
     for left_index, left in enumerate(roads):
         left_line = LineString(left["geometry"]["coordinates"])

@@ -13,6 +13,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from roadgen3d.teaching.jobs import enqueue_job
 from roadgen3d.teaching.service import TeachingError, TeachingPlatformService
 from web.api.teaching_schemas import (
+    AnnotationReviewRequest,
     BootstrapRequest,
     CourseCreateRequest,
     EvaluationCreateRequest,
@@ -151,6 +152,18 @@ def import_osm(project_id: str, body: OsmImportRequest, request: Request, actor:
 @router.get("/projects/{project_id}/sources")
 def list_sources(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
     return {"items": _call(lambda: _service(request).list_sources(actor["id"], project_id))}
+
+
+@router.post("/projects/{project_id}/sources/{source_id}/review", status_code=201)
+def approve_source_review(project_id: str, source_id: str, body: AnnotationReviewRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).approve_source_review(
+        actor["id"],
+        project_id,
+        source_id,
+        geojson=body.geojson,
+        actions=body.actions,
+        notes=body.notes,
+    ))
 
 
 @router.post("/projects/{project_id}/generate", status_code=202)

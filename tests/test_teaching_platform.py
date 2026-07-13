@@ -89,12 +89,14 @@ def test_geojson_crs_transform_stable_ids_and_intersection_annotation():
     }
     first = normalize_teaching_geojson(payload, source_id="crs-test")
     second = normalize_teaching_geojson(payload, source_id="crs-test-2")
+    reviewed = normalize_teaching_geojson(first["geojson"], source_id="crs-review")
     geojson = first["geojson"]
     assert geojson["roadgen3d"]["crs"] == "EPSG:4326"
     assert geojson["roadgen3d"]["source_crs"] == "EPSG:3857"
     assert first["role_counts"] == {"centerline": 2, "road_intersection": 1}
     assert geojson["features"][2]["geometry"]["coordinates"] == pytest.approx([0.0, 0.0])
     assert [item["id"] for item in geojson["features"]] == [item["id"] for item in second["geojson"]["features"]]
+    assert reviewed["role_counts"] == {"centerline": 2, "road_intersection": 1}
     assert first["quality_report"]["conversion_ok"] is True
 
 
@@ -142,8 +144,40 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     assert normalized["roadgen3d"]["crs"] == "EPSG:4326"
     assert normalized["features"][2]["properties"]["annotation_confidence"] == pytest.approx(0.98)
 
+    reviewed_geojson = json.loads(json.dumps(normalized))
+    reviewed_geojson["features"][0]["properties"].update({
+        "annotation_status": "human_modified",
+        "annotation_source": "manual.course_review",
+        "annotation_confidence": 1.0,
+    })
+    reviewed_geojson["features"].append({
+        "type": "Feature",
+        "id": "manual-tree-1",
+        "properties": {
+            "role": "tree_candidate",
+            "annotation_status": "human_added",
+            "annotation_source": "manual.course_review",
+            "annotation_confidence": 1.0,
+        },
+        "geometry": {"type": "Point", "coordinates": [113.545, 22.795]},
+    })
+    reviewed_response = client.post(
+        f"/api/v1/projects/{project['id']}/sources/{source['id']}/review",
+        headers=_auth(student_token),
+        json={"geojson": reviewed_geojson, "actions": [{"op": "add_feature", "feature_id": "manual-tree-1"}], "notes": "Checked against OSM basemap"},
+    )
+    assert reviewed_response.status_code == 201, reviewed_response.text
+    reviewed = reviewed_response.json()
+    assert reviewed["kind"] == "reviewed_annotation"
+    assert reviewed["provenance"]["parent_source_id"] == source["id"]
+    assert reviewed["quality_report"]["review_delta"]["feature_count_after"] == 4
+    assert reviewed["quality_report"]["conversion_ok"] is True
+    assert reviewed["quality_report"]["review_delta"]["conversion_ok"] is False
+    listed_sources = client.get(f"/api/v1/projects/{project['id']}/sources", headers=_auth(student_token)).json()["items"]
+    assert listed_sources[0]["role_counts"] == {"centerline": 1, "building_footprint": 1, "tree_candidate": 2}
+
     baseline = client.post(f"/api/v1/projects/{project['id']}/revisions", headers=_auth(student_token), json={
-        "source_id": source["id"],
+        "source_id": reviewed["id"],
         "branch_kind": "baseline",
         "label": "Initial generated scene",
         "layout": {"version": "roadgen3d.scene_layout.v1", "placements": [], "summary": {"walkability": 70}},
