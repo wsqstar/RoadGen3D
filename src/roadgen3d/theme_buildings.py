@@ -380,6 +380,11 @@ def collect_building_footprints(
         )
         for building in buildings:
             coords = tuple((float(x), float(y)) for x, y in getattr(building, "coords", ()) or ())
+            building_tags = {
+                str(key): str(value)
+                for key, value in dict(getattr(building, "tags", {}) or {}).items()
+            }
+            is_white_context_massing = building_tags.get("roadgen3d_context_massing", "").lower() == "white"
             if len(coords) < 4:
                 continue
             polygon = ShapelyPolygon(coords)
@@ -407,7 +412,20 @@ def collect_building_footprints(
             if matched_region is not None:
                 yaw_deg = float(matched_region.get("yaw_deg", yaw_deg) or yaw_deg)
             fid = f"building_{len(footprints):03d}"
-            if height_mode == "theme_random":
+            if is_white_context_massing:
+                fid = f"osm_context_{getattr(building, 'osm_id', len(footprints))}"
+            if is_white_context_massing:
+                raw_height = building_tags.get("height", "").lower().replace("meters", "").replace("meter", "").replace("m", "").strip()
+                raw_levels = building_tags.get("building:levels", "").strip()
+                try:
+                    _th = max(3.0, float(raw_height))
+                except (TypeError, ValueError):
+                    try:
+                        _th = max(3.0, float(raw_levels) * 3.0)
+                    except (TypeError, ValueError):
+                        _th = 12.0
+                _hc = height_class_from_height_m(_th)
+            elif height_mode == "theme_random":
                 _theme_key = theme_name
                 _th = sample_building_target_height(
                     seed=seed,
@@ -425,7 +443,7 @@ def collect_building_footprints(
             footprints.append(
                 BuildingFootprint(
                     footprint_id=fid,
-                    source="osm",
+                    source="osm_context_white_massing" if is_white_context_massing else "osm",
                     polygon_xz=tuple((float(x), float(y)) for x, y in tuple(polygon.exterior.coords)),
                     centroid_xz=centroid,
                     frontage_width_m=float(frontage_width_m),

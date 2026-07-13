@@ -81,6 +81,8 @@ def test_eval_engine_falls_back_to_structural_scores_when_llm_unavailable(monkey
     assert result.beauty.llm_scores is None
     assert result.safety.llm_status["available"] is False
     assert result.beauty.llm_status["available"] is False
+    assert result.safety.llm_status["error"] == "missing credentials"
+    assert result.beauty.llm_status["error"] == "missing credentials"
     assert result.safety.final_score == result.safety.structural_score
     assert result.beauty.final_score == result.beauty.structural_score
 
@@ -116,8 +118,41 @@ def test_design_assistant_returns_na_for_missing_llm_subscores(tmp_path: Path, m
     assert result["indicators"]["beauty_coherence"] is None
     assert result["evaluation_profile"] == "local_segment_v1"
     assert result["indicator_meta"]["walkability"]["TRANSIT_PROX"]["low_discrimination"] is True
+    assert result["indicator_meta"]["walkability"]["TREE_SHADE"]["source"] == (
+        "solar_canopy_projection_union_over_local_sidewalk_grid"
+    )
+    assert (
+        result["indicator_meta"]["walkability"]["TREE_SHADE"]["evidence"]["method"]
+        == "solar_canopy_projection_v1"
+    )
+    assert result["indicator_meta"]["walkability"]["FURNITURE_OCCUPATION_RATIO"]["included_in_walkability_index"] is False
+    assert isinstance(result["indicators"]["transit_proximity_score"], float)
+    assert "vehicle_throughput_compliance" not in result["indicators"]
+    assert result["indicator_meta"]["safety"]["missing_visual_policy"] == "n/a"
+    assert result["indicator_meta"]["beauty"]["structural_fallback_in_overall"] is False
+    assert "rule_satisfaction" not in result["indicators"]
+    assert "experimental_evidence" not in result
     assert result["child_friendly"]["score"] is None
     assert result["child_friendly"]["status"] == "missing_child_view"
+
+
+def test_design_assistant_auto_selects_network_profile_for_graph_layout(tmp_path: Path):
+    payload = _minimal_layout_payload()
+    payload["summary"]["road_segment_graph_summary"] = {
+        "segment_count": 8,
+        "road_count": 3,
+        "avg_segment_length_m": 25.0,
+    }
+    layout_path = tmp_path / "network_scene_layout.json"
+    layout_path.write_text(json.dumps(payload), encoding="utf-8")
+
+    result = DesignAssistantService().evaluate_scene_unified(layout_path=str(layout_path))
+
+    assert result["evaluation_profile"] == "network_v1"
+    assert result["indicator_meta"]["walkability"]["TRANSIT_PROX"]["applicability"] == "network_proxy"
+    assert result["indicator_meta"]["walkability"]["TREE_SHADE"]["source"] == (
+        "summed_solar_projected_canopy_area_over_network_sidewalk_area_proxy"
+    )
 
 
 def test_design_assistant_rejects_cached_layout_only_scores(tmp_path: Path, monkeypatch):
@@ -190,6 +225,7 @@ def test_eval_engine_passes_rendered_views_to_visual_evaluators(monkeypatch):
             "activation": 0.75,
             "overall": 0.7,
             "reasoning": "visual safety evidence",
+            "model": {"provider": "openai", "capability": "vision", "model": "vision-a"},
         }
 
     def _beauty_available(*args, **kwargs):
@@ -205,6 +241,7 @@ def test_eval_engine_passes_rendered_views_to_visual_evaluators(monkeypatch):
             "visual_interest": 0.7,
             "overall": 0.72,
             "reasoning": "visual beauty evidence",
+            "model": {"provider": "openai", "capability": "vision", "model": "vision-a"},
         }
 
     monkeypatch.setattr(eval_engine_module, "evaluate_safety", _safety_available)
@@ -217,6 +254,8 @@ def test_eval_engine_passes_rendered_views_to_visual_evaluators(monkeypatch):
     assert calls["beauty"]["rendered_views"] == rendered_views
     assert result.safety.llm_status["visual_input"] == "provided"
     assert result.beauty.llm_status["visual_input"] == "provided"
+    assert result.safety.llm_status["model"]["model"] == "vision-a"
+    assert result.beauty.llm_status["model"]["capability"] == "vision"
     assert result.safety.llm_scores is not None
     assert result.beauty.llm_scores is not None
 
@@ -230,6 +269,10 @@ def test_visual_evaluator_normalizers_preserve_view_context():
             "camera": [4.0, 1.35, 2.0],
             "target": [4.0, 0.8, 0.0],
             "priority": 75,
+            "projection": "perspective",
+            "horizontal_fov_deg": 63.0,
+            "vertical_fov_deg": 41.0,
+            "content_origin": "viewer_webgl_capture",
             "image_data_url": "data:image/png;base64,ZmFrZQ==",
         }
     ]
@@ -239,10 +282,85 @@ def test_visual_evaluator_normalizers_preserve_view_context():
 
     assert safety_views[0]["kind"] == "bench_eye"
     assert beauty_views[0]["camera"] == [4.0, 1.35, 2.0]
+    assert safety_views[0]["projection"] == "perspective"
+    assert beauty_views[0]["horizontal_fov_deg"] == 63.0
     safety_messages = safety_eval._build_safety_eval_messages({}, safety_views)
     beauty_messages = beauty_eval._build_beauty_eval_messages({}, beauty_views)
+    assert "viewer_webgl_capture" in safety_messages[1]["content"][0]["text"]
     assert "bench_eye" in safety_messages[1]["content"][0]["text"]
     assert "bench_eye" in beauty_messages[1]["content"][0]["text"]
+
+
+def test_visual_evaluator_cache_keys_include_model_and_camera_context():
+    rendered_views = [{
+        "view_id": "street_1",
+        "label": "Street view",
+        "kind": "street",
+        "camera": [0.0, 1.6, 8.0],
+        "target": [0.0, 1.2, 0.0],
+        "projection": "perspective",
+        "horizontal_fov_deg": 60.0,
+        "vertical_fov_deg": 40.0,
+        "content_origin": "viewer_webgl_capture",
+        "image_data_url": "data:image/png;base64,ZmFrZQ==",
+    }]
+    normalized = safety_eval._normalize_rendered_views(rendered_views, None)
+    model_a = {"provider": "openai", "capability": "vision", "model": "model-a"}
+    model_b = {"provider": "openai", "capability": "vision", "model": "model-b"}
+
+    safety_a = safety_eval._cache_key({}, normalized, model_a)
+    safety_b = safety_eval._cache_key({}, normalized, model_b)
+    beauty_a = beauty_eval._cache_key({}, normalized, model_a)
+    beauty_b = beauty_eval._cache_key({}, normalized, model_b)
+
+    assert safety_a != safety_b
+    assert beauty_a != beauty_b
+
+
+def test_visual_cache_hit_does_not_require_live_credentials(monkeypatch):
+    identity = {
+        "provider": "openai",
+        "protocol": "openai_chat_completions",
+        "capability": "vision",
+        "model": "vision-a",
+        "endpoint_fingerprint": "sha256:test",
+    }
+    monkeypatch.setattr(
+        safety_eval.LLMSettings,
+        "public_identity_from_env",
+        classmethod(lambda cls, capability="text": identity),
+    )
+    monkeypatch.setattr(safety_eval, "_load_cached", lambda _key: {
+        "lighting": 0.8,
+        "visibility": 0.7,
+        "protection": 0.6,
+        "activation": 0.7,
+        "overall": 0.7,
+        "reasoning": "cached visual evidence",
+        "evidence": {
+            key: [{"view_id": "street_1", "observation": f"Visible evidence for {key}."}]
+            for key in ("lighting", "visibility", "protection", "activation", "overall")
+        },
+        "limitations": ["Single synthetic view."],
+        "confidence": 0.6,
+    })
+
+    class FailIfClientConstructed:
+        def __init__(self):
+            raise AssertionError("cache hit must not require a live client")
+
+    monkeypatch.setattr(safety_eval, "LLMClient", FailIfClientConstructed)
+    result = safety_eval.evaluate_safety(
+        features={},
+        rendered_views=[{
+            "view_id": "street_1",
+            "label": "Street view",
+            "image_data_url": "data:image/png;base64,ZmFrZQ==",
+        }],
+    )
+
+    assert result["source"] == "cache"
+    assert result["model"] == identity
 
 
 def test_design_assistant_auto_selects_representative_captured_views(tmp_path: Path):
@@ -482,3 +600,6 @@ def test_unified_api_scores_child_friendly_with_child_view(tmp_path: Path, monke
     assert isinstance(child_friendly["score"], int)
     assert child_friendly["indicators"]["visual_input"] == "provided"
     assert child_friendly["indicators"]["view_id"] == "child_forward"
+    assert child_friendly["indicators"]["visual_pixels_scored"] is False
+    assert child_friendly["indicators"]["image_role"] == "availability_gate_only"
+    assert child_friendly["limitations"]

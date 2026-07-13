@@ -2242,6 +2242,11 @@ def _validate_station_strip_patches(annotation: ReferenceAnnotation) -> None:
 def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotation:
     if not _is_record(payload):
         raise ValueError("Annotation JSON must be an object.")
+    version = _as_string(payload.get("version"), ANNOTATION_SCHEMA_VERSION)
+    if version != ANNOTATION_SCHEMA_VERSION:
+        raise ValueError(
+            f"Annotation version must be '{ANNOTATION_SCHEMA_VERSION}', got {version or '<missing>'}."
+        )
 
     centerlines_raw = payload.get("centerlines") or []
     junctions_raw = payload.get("junctions") or []
@@ -2280,11 +2285,11 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         raise ValueError("At least one centerline is required.")
 
     annotation = ReferenceAnnotation(
-        version=_as_string(payload.get("version"), ANNOTATION_SCHEMA_VERSION),
+        version=version,
         plan_id=_as_string(payload.get("plan_id"), "custom_annotation"),
         image_path=_as_string(payload.get("image_path"), ""),
-        image_width_px=max(0, _as_int(payload.get("image_width_px"), "image_width_px", default=0)),
-        image_height_px=max(0, _as_int(payload.get("image_height_px"), "image_height_px", default=0)),
+        image_width_px=_as_int(payload.get("image_width_px"), "image_width_px", default=0),
+        image_height_px=_as_int(payload.get("image_height_px"), "image_height_px", default=0),
         pixels_per_meter=max(
             0.1,
             _as_float(
@@ -2328,6 +2333,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
             for index, item in enumerate(junction_compositions_raw)
         ),
     )
+    if annotation.image_width_px <= 0 or annotation.image_height_px <= 0:
+        raise ValueError("Annotation image_width_px and image_height_px must be positive.")
     _validate_surface_annotations(annotation)
     _validate_station_strip_patches(annotation)
     _validate_explicit_junction_model(annotation)

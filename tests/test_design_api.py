@@ -43,6 +43,16 @@ def test_api_root_returns_viewer_and_health_hints():
     assert payload["viewer_url"].startswith("http://127.0.0.1:4173")
 
 
+def test_health_exposes_only_active_model_capabilities():
+    client = TestClient(create_app(design_service=_FakeService()))
+
+    response = client.get("/api/health")
+
+    assert response.status_code == 200
+    capabilities = response.json()["capabilities"]
+    assert set(capabilities) == {"llm"}
+
+
 def test_osm_semantic_preview_endpoint_returns_preview(monkeypatch):
     captured: dict[str, object] = {}
 

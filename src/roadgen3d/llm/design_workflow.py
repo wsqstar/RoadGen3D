@@ -585,7 +585,8 @@ class DesignAssistantService:
         image_path: str | None = None,
         rendered_views: List[Mapping[str, Any]] | None = None,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
-        evaluation_profile: str = "local_segment_v1",
+        evaluation_profile: str = "auto",
+        evaluation_config: Mapping[str, Any] | None = None,
     ) -> Dict[str, Any]:
         """Evaluate scene with unified 3-dimension scores using road-metrics EvalEngine.
 
@@ -594,6 +595,7 @@ class DesignAssistantService:
             image_path: Optional legacy path to rendered preview image
             rendered_views: Rendered scene views as data URLs for visual LLM evaluation
             knowledge_source: Knowledge source to use (pdf_rag, graph_rag, hybrid, or none)
+            evaluation_config: Optional scoring and walkability overrides merged over the profile
 
         Returns:
             Dict with walkability, safety, beauty (0-100), overall (0-100), evaluation, suggestions
@@ -603,7 +605,7 @@ class DesignAssistantService:
             raise RuntimeError(f"Layout file not found: {layout}")
         
         payload = json.loads(layout.read_text(encoding="utf-8"))
-        profile = self._normalize_evaluation_profile(evaluation_profile)
+        profile = self._normalize_evaluation_profile(evaluation_profile, payload=payload)
         effective_rendered_views = list(rendered_views or [])
         if not effective_rendered_views:
             effective_rendered_views = rendered_views_for_evaluation_from_payload(
@@ -621,7 +623,10 @@ class DesignAssistantService:
         ]
         
         # Use EvalEngine from road-metrics submodule
-        engine = self._eval_engine_for_profile(profile)
+        engine = self._eval_engine_for_profile(
+            profile,
+            evaluation_config=evaluation_config,
+        )
         result = engine.evaluate(
             payload,
             rendered_views=visual_rendered_views,
@@ -640,10 +645,15 @@ class DesignAssistantService:
             "score_weights": self._score_weights_payload(engine),
             "score_formula": self._score_formula_text(engine),
             "evaluation_profile": profile,
+            "effective_evaluation_config": self._effective_evaluation_config_payload(engine),
             "evaluation": self._generate_evaluation_text(result, engine=engine),
             "suggestions": self._generate_suggestions(result),
             "indicators": self._extract_indicators(result),
-            "indicator_meta": self._indicator_meta_payload(engine, profile),
+            "indicator_meta": self._indicator_meta_payload(
+                engine,
+                profile,
+                walkability_metadata=getattr(result.walkability, "metadata", {}),
+            ),
             "child_friendly": self._child_friendly_payload(result, child_views),
             "config_patch": self._generate_config_patch(result),
             "llm_status": self._extract_llm_status(result),
@@ -727,27 +737,127 @@ class DesignAssistantService:
     # Evaluation helper methods
     # ========================================================================
 
-    def _normalize_evaluation_profile(self, value: str | None) -> str:
-        profile = str(value or "local_segment_v1").strip() or "local_segment_v1"
-        return profile if profile in {"local_segment_v1", "network_v1"} else "local_segment_v1"
+    def _normalize_evaluation_profile(
+        self,
+        value: str | None,
+        *,
+        payload: Mapping[str, Any] | None = None,
+    ) -> str:
+        profile = str(value or "auto").strip().lower() or "auto"
+        if profile in {"local_segment_v1", "network_v1"}:
+            return profile
+        if profile != "auto":
+            return "local_segment_v1"
+        summary = payload.get("summary", {}) if isinstance(payload, Mapping) else {}
+        summary = summary if isinstance(summary, Mapping) else {}
+        graph_summary = summary.get("road_segment_graph_summary")
+        graph = graph_summary if isinstance(graph_summary, Mapping) else {}
+        segment_count = int(graph.get("segment_count") or summary.get("segment_count") or 0)
+        road_count = int(
+            graph.get("road_count")
+            or summary.get("road_count")
+            or summary.get("centerline_count")
+            or 0
+        )
+        return "network_v1" if segment_count > 1 or road_count > 1 else "local_segment_v1"
 
-    def _eval_engine_for_profile(self, profile: str):
+    def _eval_engine_for_profile(
+        self,
+        profile: str,
+        *,
+        evaluation_config: Mapping[str, Any] | None = None,
+    ):
         engine = self.eval_engine
+        overrides = dict(evaluation_config or {})
+        unsupported_keys = sorted(set(overrides) - {"aggregation", "walkability"})
+        if unsupported_keys:
+            raise RuntimeError(
+                "Invalid evaluation_config: unsupported field(s): "
+                + ", ".join(unsupported_keys)
+            )
         if type(engine) is not self._EvalEngine:
+            if overrides:
+                raise RuntimeError(
+                    "evaluation_config overrides require the standard evaluation engine"
+                )
             return engine
         active_config = getattr(engine, "config", None)
         active_profile = str(getattr(active_config, "evaluation_profile", "") or "")
-        if active_config is None or profile == active_profile or not hasattr(self, "_EvalEngine"):
+        if not overrides and (
+            active_config is None
+            or profile == active_profile
+            or not hasattr(self, "_EvalEngine")
+        ):
             return engine
-        return self._EvalEngine(self._EvalConfig.for_profile(profile, enable_llm_eval=True))
+        try:
+            profile_config = self._EvalConfig.for_profile(
+                profile,
+                enable_llm_eval=True,
+            )
+            effective_config = self._EvalConfig.from_dict(
+                overrides,
+                base_config=profile_config,
+            )
+        except (TypeError, ValueError) as exc:
+            raise RuntimeError(f"Invalid evaluation_config: {exc}") from exc
+        return self._EvalEngine(effective_config)
 
     def _score_weights_payload(self, engine: Any | None = None) -> Dict[str, float]:
-        """Return the active unified-evaluation aggregation weights."""
-        aggregation = getattr(getattr(engine or self.eval_engine, "config", None), "aggregation", None)
+        """Return normalized weights for the registered unified dimensions."""
+        aggregation = getattr(
+            getattr(engine or self.eval_engine, "config", None),
+            "aggregation",
+            None,
+        )
+        component_names = ("walkability", "safety", "beauty")
+        resolver = getattr(aggregation, "normalized_dimension_weights", None)
+        if callable(resolver):
+            return {
+                name: float(value)
+                for name, value in resolver(component_names).items()
+            }
+        raw = {
+            name: float(getattr(aggregation, f"{name}_weight", 1.0))
+            for name in component_names
+        }
+        total = sum(raw.values())
+        if total <= 0.0:
+            raise RuntimeError("Evaluation score weights must not all be zero")
+        return {name: value / total for name, value in raw.items()}
+
+    def _effective_evaluation_config_payload(
+        self,
+        engine: Any | None = None,
+    ) -> Dict[str, Any]:
+        """Return the effective, API-round-trippable evaluation settings."""
+        config = getattr(engine or self.eval_engine, "config", None)
+        serializer = getattr(config, "to_dict", None)
+        serialized = dict(serializer()) if callable(serializer) else {}
+        walkability = dict(serialized.get("walkability", {}) or {})
+        walkability_keys = (
+            "clear_width_min",
+            "clear_width_ideal",
+            "amenity_density_ideal",
+            "amenity_count_density_ideal",
+            "lamp_spacing_m",
+            "transit_stop_spacing_m",
+            "crossing_spacing_m",
+            "entrance_density_ideal",
+            "tree_shade_grid_resolution_m",
+            "tree_sun_azimuth_deg",
+            "tree_sun_elevation_deg",
+            "tree_canopy_center_height_ratio",
+            "tree_canopy_vertical_ratio",
+        )
         return {
-            "walkability": float(getattr(aggregation, "walkability_weight", 0.45)),
-            "safety": float(getattr(aggregation, "safety_weight", 0.35)),
-            "beauty": float(getattr(aggregation, "beauty_weight", 0.20)),
+            "aggregation": {
+                "dimension_weights": self._score_weights_payload(engine),
+            },
+            "walkability": {
+                key: walkability[key]
+                for key in walkability_keys
+                if key in walkability
+            },
         }
 
     def _score_formula_text(self, engine: Any | None = None) -> str:
@@ -900,19 +1010,21 @@ class DesignAssistantService:
             "sidewalk_adequacy": self._classify(w.sid_clr),
             "furniture_density": self._classify(w.furn_d),
             "tree_shading_rate": self._classify(w.tree_shade),
-            "vehicle_throughput_compliance": "Pass" if w.transit_prox > 0.3 else "Fail",
-            "rule_satisfaction": (
-                round(result.evaluation_score, 2)
-                if self._llm_report_available(s) and self._llm_report_available(b)
-                else None
-            ),
+            "transit_proximity_score": round(float(w.transit_prox) * 100, 1),
             "amenity_service_density": round(float(getattr(w, "amenity_service_density_score", 0.0)) * 100, 1),
             "furniture_occupation_ratio": round(float(getattr(w, "furniture_occupation_ratio", 0.0)) * 100, 1),
+            "furniture_overcrowding_penalty": round(float(getattr(w, "furniture_overcrowding_penalty", 0.0)) * 100, 1),
             "clear_path_conflict_penalty": round(float(getattr(w, "clear_path_conflict_penalty", 0.0)) * 100, 1),
             "walkability_top_contributors": list(getattr(w, "top_contributors", []) or []),
         }
 
-    def _indicator_meta_payload(self, engine: Any, profile: str) -> Dict[str, Any]:
+    def _indicator_meta_payload(
+        self,
+        engine: Any,
+        profile: str,
+        *,
+        walkability_metadata: Mapping[str, Any] | None = None,
+    ) -> Dict[str, Any]:
         config = getattr(engine, "config", None)
         walkability = getattr(config, "walkability", None)
         delight_weights = dict(getattr(walkability, "delight_component_weights", {}) or {})
@@ -933,34 +1045,100 @@ class DesignAssistantService:
             "POI_MIX": delight_weight * float(delight_weights.get("POI_MIX", 0.25)),
         }
         local = profile == "local_segment_v1"
+        source_by_key = {
+            "LIGHT_UNI": "lamp_placement_positions",
+            "BUFFER_RATIO": "cross_section_dimensions",
+            "CROSS_PROV": "crossing_points_and_segment_length",
+            "SID_CLR": "clear_path_dimensions",
+            "CLEAR_CONT": "clear_path_dimensions_and_placement_bboxes",
+            "TREE_SHADE": "solar_canopy_projection_union_over_local_sidewalk_grid",
+            "MICRO_ENV": "tree_shade_noise_shielding_and_entrance_openness",
+            "FURN_D": "amenity_placements_and_clear_path_conflicts",
+            "TRANSIT_PROX": "spatial_context_or_bus_stop_placements",
+            "ENTR_DENS": "entrance_count_and_segment_length",
+            "POI_MIX": "land_use_summary_and_spatial_context_pois",
+        }
+        if not local:
+            source_by_key.update({
+                "LIGHT_UNI": "lamp_count_per_network_length_proxy",
+                "CROSS_PROV": "crossing_count_per_network_length",
+                "CLEAR_CONT": "clear_path_dimensions_and_solver_violations",
+                "TREE_SHADE": "summed_solar_projected_canopy_area_over_network_sidewalk_area_proxy",
+                "TRANSIT_PROX": "bus_stop_points_or_placements_per_network_length_proxy",
+            })
+        walkability_meta = {
+            key: {
+                "weight": round(value, 4),
+                "source": source_by_key[key],
+                "applicability": "network_proxy" if (not local and key in {"LIGHT_UNI", "TREE_SHADE", "TRANSIT_PROX"}) else "local_and_network",
+                "included_in_walkability_index": True,
+                "low_discrimination": bool(local and key == "TRANSIT_PROX"),
+                "note": (
+                    "Reduced in local_segment_v1 because single-segment scenes usually share similar transit proximity."
+                    if local and key == "TRANSIT_PROX"
+                    else "Network-scale proxy; interpret comparatively, not as observed service performance."
+                    if not local and key in {"LIGHT_UNI", "TREE_SHADE", "TRANSIT_PROX"}
+                    else ""
+                ),
+            }
+            for key, value in weights.items()
+        }
+        tree_shade_evidence = dict(
+            (walkability_metadata or {}).get("tree_shade_metadata", {}) or {}
+        )
+        if tree_shade_evidence:
+            walkability_meta["TREE_SHADE"]["evidence"] = tree_shade_evidence
+        walkability_meta.update({
+            "AMENITY_SERVICE_DENSITY": {
+                "weight": 0.0,
+                "source": "amenity_count_and_segment_length",
+                "applicability": "local_and_network",
+                "included_in_walkability_index": False,
+                "role": "FURN_D diagnostic",
+            },
+            "FURNITURE_OCCUPATION_RATIO": {
+                "weight": 0.0,
+                "source": "furniture_footprints_over_sidewalk_area",
+                "applicability": "local_and_network",
+                "included_in_walkability_index": False,
+                "role": "FURN_D diagnostic",
+            },
+            "FURNITURE_OVERCROWDING_PENALTY": {
+                "weight": 0.0,
+                "source": "furniture_area_density_above_configured_threshold",
+                "applicability": "local_and_network",
+                "included_in_walkability_index": False,
+                "role": "FURN_D diagnostic",
+            },
+            "CLEAR_PATH_CONFLICT_PENALTY": {
+                "weight": 0.0,
+                "source": "solver_clear_path_violations" if not local else "placement_bbox_intersection_with_clear_path",
+                "applicability": "local_and_network",
+                "included_in_walkability_index": False,
+                "role": "CLEAR_CONT and FURN_D diagnostic",
+            },
+        })
         return {
             "profile": profile,
-            "walkability": {
-                key: {
-                    "weight": round(value, 4),
-                    "source": "structured_layout",
-                    "applicability": "network_scale" if key == "TRANSIT_PROX" else "local_segment",
-                    "low_discrimination": bool(local and key == "TRANSIT_PROX"),
-                    "note": (
-                        "Reduced in local_segment_v1 because single-segment scenes usually share similar transit proximity."
-                        if local and key == "TRANSIT_PROX"
-                        else ""
-                    ),
-                }
-                for key, value in weights.items()
-            },
+            "walkability": walkability_meta,
             "safety": {
-                "source": "visual_llm_when_available_else_structural",
+                "source": "visual_llm_from_declared_rendered_views",
                 "requires_visual_input": True,
+                "missing_visual_policy": "n/a",
+                "structural_fallback_in_overall": False,
             },
             "beauty": {
-                "source": "visual_llm_when_available_else_structural",
+                "source": "visual_llm_from_declared_rendered_views",
                 "requires_visual_input": True,
+                "missing_visual_policy": "n/a",
+                "structural_fallback_in_overall": False,
             },
             "child_friendly": {
                 "source": "child_forward_view_gate_plus_structured_layout",
                 "requires_visual_input": True,
                 "included_in_overall": False,
+                "image_role": "availability_gate_only",
+                "visual_pixels_scored": False,
             },
         }
 
@@ -980,6 +1158,8 @@ class DesignAssistantService:
                     "visual_input": "missing",
                     "required_view_id": "child_forward",
                     "included_in_overall": False,
+                    "visual_pixels_scored": False,
+                    "scoring_basis": "structured_layout_only",
                 },
                 "suggestions": ["Capture child_forward view to enable child-friendly auxiliary scoring."],
             }
@@ -1019,8 +1199,15 @@ class DesignAssistantService:
                 "tree_shade": round(float(getattr(w, "tree_shade", 0.0) or 0.0) * 100, 1),
                 "clear_path_conflict_penalty": round(conflict * 100, 1),
                 "included_in_overall": False,
+                "visual_pixels_scored": False,
+                "image_role": "availability_gate_only",
+                "scoring_basis": "structured_layout_only",
             },
             "suggestions": suggestions,
+            "limitations": [
+                "The child_forward image gates availability but its pixels are not scored.",
+                "Traffic speed, driver yielding, supervision, and observed child behavior are not modeled.",
+            ],
         }
 
     def _llm_report_available(self, report) -> bool:

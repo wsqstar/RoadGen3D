@@ -13,6 +13,8 @@ from roadgen3d.llm.design_workflow import parse_design_draft
 from roadgen3d.services.design_types import sanitize_compose_config_patch, sanitize_scene_context
 from web.api.schemas import GenerateRequestModel, SceneJobCreateRequestModel
 
+ROOT = Path(__file__).resolve().parents[2]
+
 
 def dump_model(model: BaseModel) -> Dict[str, Any]:
     if hasattr(model, "model_dump"):
@@ -72,6 +74,11 @@ def prepare_scene_generation_request(
         or generation_options.get("scenario_id")
         or ""
     ).strip()
+    if scene_context_payload.get("reference_annotation_path"):
+        raise ValueError(
+            "reference_annotation_path is not accepted from API clients; "
+            "submit scene_context.reference_annotation inline."
+        )
     if not scenario_id:
         return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
 
@@ -106,6 +113,62 @@ def prepare_scene_generation_request(
         graph_template_id=graph_template_id,
         validate=True,
     )
+    scenario_annotation_path = str(scenario_inputs.get("reference_annotation_path") or "").strip()
+    if scenario_annotation_path:
+        candidate = Path(scenario_annotation_path).expanduser()
+        if not candidate.is_absolute():
+            candidate = ROOT / candidate
+        candidate = candidate.resolve()
+        try:
+            candidate.relative_to(ROOT)
+        except ValueError as exc:
+            raise ValueError("Scenario reference annotation escaped the trusted repository root.") from exc
+        if candidate.suffix.lower() != ".json" or not candidate.is_file():
+            raise ValueError("Scenario reference annotation is not a trusted JSON file.")
+        if candidate.stat().st_size > 10 * 1024 * 1024:
+            raise ValueError("Scenario reference annotation exceeds the 10 MiB limit.")
+        annotation_payload = json.loads(candidate.read_text(encoding="utf-8"))
+        if not isinstance(annotation_payload, dict):
+            raise ValueError("Scenario reference annotation must contain a JSON object.")
+        scenario_summary = dict(scenario_inputs.get("scenario") or {})
+        scenario_compose_patch = sanitize_compose_config_patch(
+            scenario_inputs.get("compose_config_patch") or {}
+        )
+        if not bool(generation_options.get("scenario_compose_patch_applied")):
+            draft = replace(
+                draft,
+                compose_config_patch={
+                    **sanitize_compose_config_patch(draft.compose_config_patch),
+                    **scenario_compose_patch,
+                },
+                template_patch=None,
+            )
+        scene_context_payload.update({
+            "layout_mode": "reference_annotation",
+            "reference_annotation": annotation_payload,
+            "reference_annotation_path": None,
+            "template_patch": None,
+            "scenario_id": scenario_id,
+            "scenario_title": str(scenario_summary.get("title_zh") or scenario_id),
+            "scenario_design_variant": scenario_summary,
+            "source_context": {
+                "source": {
+                    "schema_version": "roadgen3d_scene_source_v1",
+                    "source_id": scenario_id,
+                    "kind": "reference_annotation",
+                    "producer": "catalog",
+                },
+                "aligned_buildings": [],
+                "source_alignment": {
+                    "schema_version": "roadgen3d.source_alignment.v1",
+                    "status": "n/a",
+                    "reason": "catalog_annotation_has_no_geographic_alignment",
+                },
+            },
+        })
+        generation_options["scenario_id"] = scenario_id
+        generation_options["scenario_title"] = str(scenario_summary.get("title_zh") or scenario_id)
+        return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
     scenario_summary = dict(scenario_inputs.get("scenario") or {})
     template_patch = dict(scenario_inputs.get("template_patch") or {})
     scenario_compose_patch = sanitize_compose_config_patch(

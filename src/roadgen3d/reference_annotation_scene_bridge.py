@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
 import math
 from dataclasses import dataclass
 from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
-from .osm_ingest import OsmRoad, ProjectedFeatures
+from .osm_ingest import OsmBuilding, OsmRoad, ProjectedFeatures
 from .placement_zones import (
     PlacementContext,
     build_placement_context,
@@ -324,10 +325,79 @@ def _annotation_surface_records(
     return records
 
 
+def _aligned_building_records(
+    values: Sequence[Mapping[str, Any]] | None,
+    source_alignment: Mapping[str, Any] | None,
+) -> Tuple[List[OsmBuilding], Dict[str, Any]]:
+    requested = len(values or ())
+    alignment = dict(source_alignment or {})
+    if requested and str(alignment.get("status", "")).lower() != "aligned":
+        return [], {
+            "requested": requested,
+            "accepted": 0,
+            "skipped": requested,
+            "status": "n/a",
+            "reason": str(alignment.get("reason") or "missing_alignment"),
+        }
+    buildings: List[OsmBuilding] = []
+    skipped = 0
+    for index, value in enumerate(values or ()):
+        if not isinstance(value, Mapping):
+            skipped += 1
+            continue
+        raw_ring = value.get("polygon_xz")
+        if not isinstance(raw_ring, Sequence) or isinstance(raw_ring, (str, bytes)):
+            skipped += 1
+            continue
+        ring: List[Tuple[float, float]] = []
+        try:
+            for point in raw_ring:
+                if not isinstance(point, Sequence) or isinstance(point, (str, bytes)) or len(point) < 2:
+                    raise ValueError
+                x, z = float(point[0]), float(point[1])
+                if not math.isfinite(x) or not math.isfinite(z):
+                    raise ValueError
+                ring.append((x, z))
+        except (TypeError, ValueError):
+            skipped += 1
+            continue
+        if ring and ring[0] != ring[-1]:
+            ring.append(ring[0])
+        if len(ring) < 4 or len(set(ring[:-1])) < 3:
+            skipped += 1
+            continue
+        raw_id = value.get("osm_id") or value.get("source_id") or f"aligned-building-{index + 1}"
+        try:
+            osm_id = int(raw_id)
+        except (TypeError, ValueError):
+            osm_id = int(hashlib.sha256(str(raw_id).encode("utf-8")).hexdigest()[:15], 16)
+        buildings.append(
+            OsmBuilding(
+                osm_id=osm_id,
+                coords=ring,
+                tags={
+                    **{str(key): str(item) for key, item in dict(value.get("tags") or {}).items()},
+                    "roadgen3d_context_massing": "white",
+                    "roadgen3d_editable": "false",
+                },
+            )
+        )
+    accepted = len(buildings)
+    return buildings, {
+        "requested": requested,
+        "accepted": accepted,
+        "skipped": skipped,
+        "status": "aligned" if accepted or not requested else "aligned_empty",
+        "reason": "" if accepted or not requested else "all_buildings_invalid",
+    }
+
+
 def build_reference_annotation_scene_bridge(
     annotation_input: ReferenceAnnotation | Mapping[str, Any],
     *,
     compose_config: StreetComposeConfig | Mapping[str, Any] | None = None,
+    aligned_buildings: Sequence[Mapping[str, Any]] | None = None,
+    source_alignment: Mapping[str, Any] | None = None,
 ) -> ReferenceAnnotationSceneBridgeResult:
     annotation = (
         annotation_input
@@ -357,9 +427,13 @@ def build_reference_annotation_scene_bridge(
         bbox_m = (float(min_x), float(min_y), float(max_x), float(max_y))
     else:
         bbox_m = _graph_bbox(local_centerlines, padding_m=float(ANNOTATION_SCENE_BBOX_PADDING_M))
+    source_buildings, source_building_summary = _aligned_building_records(
+        aligned_buildings,
+        source_alignment,
+    )
     projected_features = ProjectedFeatures(
         roads=synthetic_roads,
-        buildings=[],
+        buildings=source_buildings,
         entrances=[],
         bus_stops=[],
         fire_points=[],
@@ -442,6 +516,8 @@ def build_reference_annotation_scene_bridge(
         "derived_region_count": int(len(getattr(placement_context, "derived_regions", []) or [])),
         "derived_building_region_count": int(len(derived_region_payload.get("building_regions", []) or [])),
         "region_derivation_summary": dict(derived_region_payload.get("summary", {}) or {}),
+        "osm_context_massing": source_building_summary,
+        "source_alignment": dict(source_alignment or {}),
     }
     return ReferenceAnnotationSceneBridgeResult(
         annotation=annotation,

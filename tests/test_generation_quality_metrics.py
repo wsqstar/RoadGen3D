@@ -18,6 +18,7 @@ if str(EVAL_ENGINE_EXT) not in sys.path:
 
 from road_metrics.core.config import EvalConfig  # noqa: E402
 from road_metrics.core.engine import EvalEngine  # noqa: E402
+from road_metrics.core.types import SceneLayout  # noqa: E402
 from road_metrics.metrics.generation_quality import (  # noqa: E402
     evaluate_geometry_validity,
     evaluate_json_glb_consistency,
@@ -37,6 +38,80 @@ def _lamp(instance_id: str, x: float) -> dict:
         "position_xyz": [x, 0.0, 4.0],
         "bbox_xz": [x - 0.15, x + 0.15, 3.85, 4.15],
     }
+
+
+def test_scene_layout_parser_preserves_explicit_zero_values():
+    scene = SceneLayout.from_layout_payload({
+        "summary": {
+            "length_m": 0.0,
+            "road_width_m": 0.0,
+            "sidewalk_width_m": 0.0,
+            "left_clear_path_width_m": 0.0,
+            "right_clear_path_width_m": 0.0,
+            "mean_entrance_openness": 0.0,
+            "mean_noise_shielding": 0.0,
+        },
+        "config": {"lane_count": 0, "density": 0.0},
+    })
+
+    assert scene.length_m == 0.0
+    assert scene.road_width_m == 0.0
+    assert scene.sidewalk_width_m == 0.0
+    assert scene.left_clear_path_width_m == 0.0
+    assert scene.right_clear_path_width_m == 0.0
+    assert scene.mean_entrance_openness == 0.0
+    assert scene.lane_count == 0
+    assert scene.density == 0.0
+
+
+def test_network_profile_uses_derived_total_length_and_network_proxies():
+    payload = {
+        "summary": {
+            "length_m": 80.0,
+            "road_width_m": 8.0,
+            "sidewalk_width_m": 2.0,
+            "left_clear_path_width_m": 1.8,
+            "right_clear_path_width_m": 1.8,
+            "spatial_context": {
+                "bus_stop_points_xz": [],
+                "poi_points_by_type_xz": {},
+            },
+            "road_segment_graph_summary": {
+                "segment_count": 10,
+                "road_count": 3,
+                "avg_segment_length_m": 20.0,
+            },
+        },
+        "placements": [
+            _lamp("inst_lamp_1", 0.0),
+            _lamp("inst_lamp_2", 25.0),
+            {
+                "instance_id": "inst_tree_1",
+                "category": "tree",
+                "position_xyz": [100.0, 0.0, 100.0],
+                "final_size_m": {"canopy_width_m": 4.0},
+            },
+            {
+                "instance_id": "inst_bus_stop_1",
+                "category": "bus_stop",
+                "position_xyz": [100.0, 0.0, 100.0],
+                "bbox_xz": [99.5, 100.5, 99.5, 100.5],
+            },
+        ],
+    }
+    scene = SceneLayout.from_layout_payload(payload)
+    engine = EvalEngine(EvalConfig.for_profile("network_v1"))
+
+    result = engine.evaluate(payload)
+
+    assert scene.network_length_m == pytest.approx(200.0)
+    assert result.walkability.metadata["length_m"] == 200.0
+    assert result.walkability.metadata["network_mode"] is True
+    assert result.walkability.metadata["lighting_method"] == "service_density_proxy"
+    assert result.walkability.metadata["tree_shade_method"] == "solar_canopy_projection_v1"
+    assert result.walkability.metadata["transit_method"] == "stop_service_density_proxy"
+    assert result.walkability.transit_prox == pytest.approx(1.0)
+    assert 0.0 < result.walkability.tree_shade < 1.0
 
 
 def test_light_uniformity_requires_adequate_lamp_count():
@@ -76,15 +151,83 @@ def test_furniture_density_split_and_top_contributors_are_explainable():
         left_furnishing_width_m=1.0,
         right_furnishing_width_m=1.0,
     )
+    unobstructed = compute_walkability(
+        placements=[],
+        length_m=10.0,
+        road_width_m=4.0,
+        sidewalk_width_m=3.0,
+        left_clear_path_width_m=2.0,
+        right_clear_path_width_m=2.0,
+        left_furnishing_width_m=1.0,
+        right_furnishing_width_m=1.0,
+    )
     payload = result.to_dict()
 
     assert result.amenity_service_density_score > 0.0
-    assert result.furniture_occupation_ratio > 0.0
+    assert result.furniture_occupation_ratio == pytest.approx(1.0 / 60.0, abs=1e-4)
+    assert result.furniture_overcrowding_penalty == 0.0
     assert result.clear_path_conflict_penalty > 0.0
     assert result.furn_d < result.amenity_service_density_score
+    assert result.clear_cont < unobstructed.clear_cont
     assert "AMENITY_SERVICE_DENSITY" in payload["indicators"]
+    assert "FURNITURE_OVERCROWDING_PENALTY" in payload["indicators"]
     assert any(item["polarity"] == "positive" for item in result.top_contributors)
     assert any(item["polarity"] == "negative" for item in result.top_contributors)
+
+
+def test_explicit_zero_clear_width_is_not_replaced_by_sidewalk_width():
+    result = compute_walkability(
+        placements=[],
+        length_m=20.0,
+        road_width_m=8.0,
+        sidewalk_width_m=3.0,
+        left_clear_path_width_m=0.0,
+        right_clear_path_width_m=0.0,
+    )
+
+    assert result.sid_clr == 0.0
+    assert result.clear_cont == 0.0
+    assert result.metadata["left_clear_path_width_m"] == 0.0
+    assert result.metadata["right_clear_path_width_m"] == 0.0
+
+
+def test_tree_shade_is_measured_on_sidewalks_and_uses_final_canopy_size():
+    sidewalk_tree = {
+        "instance_id": "inst_tree_sidewalk",
+        "category": "tree",
+        "position_xyz": [0.0, 0.0, 5.5],
+        "scale": 10.0,
+        "native_size_m": {"canopy_width_m": 10.0},
+        "final_size_m": {"canopy_width_m": 2.0},
+    }
+    road_center_tree = {
+        **sidewalk_tree,
+        "instance_id": "inst_tree_road",
+        "position_xyz": [0.0, 0.0, 0.0],
+    }
+    common = {
+        "length_m": 10.0,
+        "road_width_m": 8.0,
+        "sidewalk_width_m": 3.0,
+    }
+
+    sidewalk_result = compute_walkability(placements=[sidewalk_tree], **common)
+    road_result = compute_walkability(placements=[road_center_tree], **common)
+
+    assert sidewalk_result.tree_shade > 0.0
+    assert road_result.tree_shade == 0.0
+
+
+def test_crossing_provision_does_not_reward_missing_crossings():
+    result = compute_walkability(
+        placements=[],
+        length_m=80.0,
+        road_width_m=8.0,
+        sidewalk_width_m=3.0,
+        poi_points_by_type_xz={},
+    )
+
+    assert result.cross_prov == 0.0
 
 
 def test_local_segment_profile_reduces_transit_proximity_weight():

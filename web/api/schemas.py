@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from roadgen3d.presets import SCENE_PRESETS
 
@@ -83,6 +83,24 @@ class ReferenceAnnotationConvertRequestModel(BaseModel):
     compose_config: Dict[str, Any] = Field(default_factory=dict)
 
 
+class SceneSourceNormalizeRequestModel(BaseModel):
+    source: Dict[str, Any]
+    compose_config: Dict[str, Any] = Field(default_factory=dict)
+
+
+class SceneSourceExtractRequestModel(BaseModel):
+    source_id: str = Field(default="ai-source", min_length=1, max_length=96)
+    image_data_url: str = Field(..., min_length=32, max_length=28_000_000)
+    prompt: str = Field(default="", max_length=4_000)
+    image: Dict[str, Any]
+    compose_config: Dict[str, Any] = Field(default_factory=dict)
+
+
+class OsmBuildingSourceRequestModel(BaseModel):
+    source_id: str = Field(default="osm-buildings", min_length=1, max_length=96)
+    aoi_bbox: List[float] = Field(..., min_length=4, max_length=4)
+
+
 class ReferenceAnnotationDeriveRegionsRequestModel(BaseModel):
     annotation: Dict[str, Any]
     options: Dict[str, Any] = Field(default_factory=dict)
@@ -111,6 +129,41 @@ class RenderedViewModel(BaseModel):
     width: int | None = None
     height: int | None = None
     source: str | None = None
+    projection: str | None = None
+    horizontal_fov_deg: float | None = None
+    vertical_fov_deg: float | None = None
+    content_origin: str | None = None
+
+
+class EvaluationAggregationConfigModel(BaseModel):
+    dimension_weights: Dict[str, float] = Field(default_factory=dict)
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class EvaluationWalkabilityConfigModel(BaseModel):
+    clear_width_min: float | None = None
+    clear_width_ideal: float | None = None
+    amenity_density_ideal: float | None = None
+    amenity_count_density_ideal: float | None = None
+    lamp_spacing_m: float | None = None
+    transit_stop_spacing_m: float | None = None
+    crossing_spacing_m: float | None = None
+    entrance_density_ideal: float | None = None
+    tree_shade_grid_resolution_m: float | None = None
+    tree_sun_azimuth_deg: float | None = None
+    tree_sun_elevation_deg: float | None = None
+    tree_canopy_center_height_ratio: float | None = None
+    tree_canopy_vertical_ratio: float | None = None
+
+    model_config = ConfigDict(extra="forbid")
+
+
+class EvaluationConfigModel(BaseModel):
+    aggregation: EvaluationAggregationConfigModel | None = None
+    walkability: EvaluationWalkabilityConfigModel | None = None
+
+    model_config = ConfigDict(extra="forbid")
 
 
 class EvaluateRequestModel(BaseModel):
@@ -119,7 +172,8 @@ class EvaluateRequestModel(BaseModel):
     rendered_views: List[RenderedViewModel] = Field(default_factory=list)
     preset_id: str | None = None
     persist_to_benchmark: bool = False
-    evaluation_profile: str = "local_segment_v1"
+    evaluation_profile: str = "auto"
+    evaluation_config: EvaluationConfigModel | None = None
 
 
 class EvaluateCompareRequestModel(BaseModel):
@@ -176,6 +230,24 @@ class BenchmarkBatchCreateRequestModel(BaseModel):
     early_stop_patience: int = Field(default=20, ge=1, le=100)
     retain_topk_artifacts: int = Field(default=10, ge=1, le=20)
     score_with_rendered_views: bool = True
+
+
+class SceneEditBaseModel(BaseModel):
+    revision: int = Field(ge=0)
+    sha256: str = Field(min_length=64, max_length=64, pattern=r"^[0-9a-f]{64}$")
+
+
+class SceneMoveInstanceCommandModel(BaseModel):
+    command_id: str = Field(min_length=1, max_length=128)
+    op: Literal["move_instance"]
+    instance_id: str = Field(min_length=1, max_length=256)
+    position_xyz: List[float] = Field(min_length=3, max_length=3)
+
+
+class SceneLayoutEditRequestModel(BaseModel):
+    layout_path: str = Field(min_length=1)
+    base: SceneEditBaseModel
+    commands: List[SceneMoveInstanceCommandModel] = Field(min_length=1, max_length=100)
 
 
 class RebuildLayoutGlbRequestModel(BaseModel):

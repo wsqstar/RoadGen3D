@@ -6,6 +6,7 @@ from ..eval_engine_ext.road_metrics.evaluators.llm_client import (
     LLMConfigurationError,
     LLMResponseError,
     LLMSettings,
+    public_llm_capabilities_from_env,
 )
 from .prompts import (
     build_parameter_followup_query_messages,
@@ -25,6 +26,7 @@ __all__ = [
     "LLMConfigurationError",
     "LLMResponseError",
     "LLMSettings",
+    "public_llm_capabilities_from_env",
     "build_parameter_followup_query_messages",
     "build_design_draft_messages",
     "build_design_intent_messages",

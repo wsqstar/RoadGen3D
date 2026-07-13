@@ -38,8 +38,18 @@ def evaluate_scene_unified(request_body: EvaluateRequestModel, request: Request)
                 for view in request_body.rendered_views
             ],
             evaluation_profile=request_body.evaluation_profile,
+            evaluation_config=(
+                request_body.evaluation_config.model_dump(exclude_none=True)
+                if request_body.evaluation_config is not None
+                and hasattr(request_body.evaluation_config, "model_dump")
+                else (
+                    request_body.evaluation_config.dict(exclude_none=True)
+                    if request_body.evaluation_config is not None
+                    else None
+                )
+            ),
         )
-    except RuntimeError as exc:
+    except (RuntimeError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     if request_body.persist_to_benchmark:
         request.app.state.benchmark_store.upsert_evaluation(

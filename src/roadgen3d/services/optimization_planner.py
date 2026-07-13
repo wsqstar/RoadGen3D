@@ -220,20 +220,6 @@ class RuleBasedOptimizationPlanner:
                     risk="Excess density can increase blocked slots and hurt clear-path scores.",
                 )
             )
-        if _score(indicators.get("vehicle_throughput_compliance")) < 0.5:
-            directives.append(
-                OptimizationDirective(
-                    directive_id="protect-throughput",
-                    target_metric="vehicle_throughput_compliance",
-                    problem="Vehicle or transit throughput is not compliant.",
-                    direction="Adjust demand profile instead of making large geometry changes.",
-                    allowed_fields=("transit_demand_level", "vehicle_demand_level", "lane_count", "query"),
-                    suggested_delta={"transit_demand_level": "high"},
-                    bounds={"lane_count": _numeric_bounds(patch, "lane_count", step=1.0, minimum=1, maximum=4)},
-                    enum_values={"transit_demand_level": _DEMAND_ORDER, "vehicle_demand_level": _DEMAND_ORDER},
-                    risk="Lane-count changes are allowed only by one step.",
-                )
-            )
 
     def _append_visual_directives(
         self,

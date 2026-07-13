@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import logging
+import re
 from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
@@ -1307,24 +1309,32 @@ def _build_graph_template_out_dir(base_out_dir: Path, template_id: str) -> Path:
 
 def _build_reference_annotation_out_dir(base_out_dir: Path, annotation_id: str) -> Path:
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    return (Path(base_out_dir).expanduser().resolve() / "reference_annotation" / str(annotation_id) / timestamp).resolve()
+    safe_id = re.sub(r"[^a-zA-Z0-9_.-]+", "-", str(annotation_id or "reference_annotation")).strip("._-")
+    safe_id = (safe_id or "reference_annotation")[:96]
+    return (Path(base_out_dir).expanduser().resolve() / "reference_annotation" / safe_id / timestamp).resolve()
 
 
 def _load_reference_annotation_payload(path_value: str | Path | None) -> Dict[str, Any]:
     raw_path = str(path_value or "").strip()
     if not raw_path:
-        raise RuntimeError("reference_annotation layout mode requires reference_annotation_path.")
+        raise RuntimeError(
+            "reference_annotation layout mode requires an inline reference_annotation "
+            "or a trusted catalog reference_annotation_path."
+        )
     path = Path(raw_path).expanduser()
     if not path.is_absolute():
-        path = (ROOT / path).resolve()
-    if not path.exists():
-        raise RuntimeError(f"Reference annotation JSON not found: {path}")
+        path = ROOT / path
+    path = path.resolve()
+    if path.suffix.lower() != ".json" or not path.exists() or not path.is_file():
+        raise RuntimeError("Trusted reference annotation must be an existing JSON file.")
+    if path.stat().st_size > 10 * 1024 * 1024:
+        raise RuntimeError("Reference annotation JSON exceeds the 10 MiB limit.")
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
-        raise RuntimeError(f"Invalid reference annotation JSON: {path}: {exc}") from exc
+        raise RuntimeError(f"Invalid reference annotation JSON: {exc}") from exc
     if not isinstance(payload, Mapping):
-        raise RuntimeError(f"Reference annotation JSON must be an object: {path}")
+        raise RuntimeError("Reference annotation JSON must be an object.")
     return dict(payload)
 
 
@@ -1399,21 +1409,37 @@ def _generate_reference_annotation_scene_from_draft(
     scene_context: SceneContext,
     progress_callback: ProgressCallback | None = None,
 ) -> SceneGenerationResult:
-    annotation_payload = _load_reference_annotation_payload(scene_context.reference_annotation_path)
+    if isinstance(scene_context.reference_annotation, Mapping):
+        annotation_payload = dict(scene_context.reference_annotation)
+        annotation_source = "inline"
+    else:
+        annotation_payload = _load_reference_annotation_payload(scene_context.reference_annotation_path)
+        annotation_source = "trusted_catalog"
     annotation_id = str(
         scene_context.scenario_id
         or annotation_payload.get("plan_id")
-        or Path(str(scene_context.reference_annotation_path or "reference_annotation")).stem
+        or "reference_annotation"
     ).strip() or "reference_annotation"
+    source_context = (
+        dict(scene_context.source_context)
+        if isinstance(scene_context.source_context, Mapping)
+        else {}
+    )
     _emit_progress(
         progress_callback,
         stage="context_resolving",
         progress=15,
         message="Building reference-annotation layout bridge.",
-        reference_annotation_path=str(scene_context.reference_annotation_path or ""),
+        reference_annotation_source=annotation_source,
         reference_annotation_id=annotation_id,
     )
-    bridge = build_reference_annotation_scene_bridge(annotation_payload, compose_config=base_config)
+    bridge_kwargs: Dict[str, Any] = {"compose_config": base_config}
+    if source_context:
+        bridge_kwargs.update({
+            "aligned_buildings": source_context.get("aligned_buildings"),
+            "source_alignment": source_context.get("source_alignment"),
+        })
+    bridge = build_reference_annotation_scene_bridge(annotation_payload, **bridge_kwargs)
     config = replace(base_config, layout_mode="reference_annotation")
     out_dir = _build_reference_annotation_out_dir(options.out_dir, annotation_id)
     _emit_progress(
@@ -1449,8 +1475,30 @@ def _generate_reference_annotation_scene_from_draft(
         progress_callback=progress_callback,
     )
     _capture_scene_views_if_requested(result, options=options, progress_callback=progress_callback)
+    normalized_annotation_payload = (
+        bridge.annotation.to_dict()
+        if hasattr(bridge, "annotation") and hasattr(bridge.annotation, "to_dict")
+        else annotation_payload
+    )
+    annotation_bytes = json.dumps(
+        normalized_annotation_payload,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+    ).encode("utf-8")
     context_summary = {
-        "reference_annotation_path": str(scene_context.reference_annotation_path or ""),
+        "reference_annotation_source": annotation_source,
+        "reference_annotation_sha256": hashlib.sha256(annotation_bytes).hexdigest(),
+        "scene_source": (
+            dict(source_context.get("source"))
+            if isinstance(source_context.get("source"), Mapping)
+            else {}
+        ),
+        "source_alignment": (
+            dict(source_context.get("source_alignment"))
+            if isinstance(source_context.get("source_alignment"), Mapping)
+            else {}
+        ),
         "scenario_id": scene_context.scenario_id,
         "scenario_title": scene_context.scenario_title,
         "scenario_design_variant": (
@@ -1459,6 +1507,8 @@ def _generate_reference_annotation_scene_from_draft(
             else None
         ),
     }
+    if annotation_source == "trusted_catalog":
+        context_summary["reference_annotation_path"] = str(scene_context.reference_annotation_path or "")
     return _build_scene_generation_result(
         config=config,
         compose_result=result,

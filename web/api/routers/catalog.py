@@ -14,6 +14,7 @@ from roadgen3d.graph_templates import (
     load_graph_template_annotation_payload,
 )
 from roadgen3d.json_safe import make_json_safe
+from roadgen3d.llm import public_llm_capabilities_from_env
 from roadgen3d.metaurban_procedural import (
     get_metaurban_reference_plan,
     list_metaurban_reference_plans,
@@ -56,6 +57,9 @@ def health(request: Request) -> Dict[str, Any]:
         "ok": True,
         "default_pdf_path": str(service.default_pdf_path),
         "default_artifact_dir": str(service.default_artifact_dir),
+        "capabilities": {
+            "llm": public_llm_capabilities_from_env(),
+        },
     })
 
 

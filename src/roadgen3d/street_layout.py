@@ -2997,43 +2997,54 @@ def _placeholder_building_entry(
     theme_name: str,
     target_height_m: float = 0.0,
 ) -> _MeshCacheEntry:
-    try:
-        from .parametric_assets import generate_parametric_asset
-
-        params: Dict[str, object] = {
-            "frontage_width_m": float(frontage_width_m),
-            "depth_m": float(depth_m),
-            "height_class": str(height_class),
-            "theme_name": str(theme_name),
-        }
-        if target_height_m > 0.0:
-            params["height_m"] = float(target_height_m)
-        result = generate_parametric_asset(
-            {
-                "asset_kind": "building",
-                "runtime_profile": "preview",
-                "params": params,
-            }
-        )
-        mesh = result.mesh
-    except Exception:
+    white_context_massing = str(theme_name) == "context_white_massing"
+    if white_context_massing:
         trimesh = _require_trimesh()
-        if target_height_m > 0.0:
-            height_m = float(target_height_m)
-        else:
-            height_m = {
-                "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
-                "midrise": max(float(frontage_width_m) * 1.4, 14.0),
-                "highrise": max(float(frontage_width_m) * 2.0, 22.0),
-            }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
-        mesh = trimesh.creation.box(extents=(float(frontage_width_m), float(height_m), float(depth_m)))
-        face_color = {
-            "residential": (188, 174, 153, 255),
-            "commercial": (176, 184, 192, 255),
-            "transit": (151, 165, 182, 255),
-            "green": (166, 171, 148, 255),
-        }.get(str(theme_name), (178, 180, 178, 255))
-        mesh.visual.face_colors = list(face_color)
+        height_m = float(target_height_m) if target_height_m > 0.0 else 12.0
+        mesh = trimesh.creation.box(
+            extents=(float(frontage_width_m), float(height_m), float(depth_m))
+        )
+        mesh.visual.face_colors = [238, 240, 242, 255]
+    else:
+        try:
+            from .parametric_assets import generate_parametric_asset
+
+            params: Dict[str, object] = {
+                "frontage_width_m": float(frontage_width_m),
+                "depth_m": float(depth_m),
+                "height_class": str(height_class),
+                "theme_name": str(theme_name),
+            }
+            if target_height_m > 0.0:
+                params["height_m"] = float(target_height_m)
+            result = generate_parametric_asset(
+                {
+                    "asset_kind": "building",
+                    "runtime_profile": "preview",
+                    "params": params,
+                }
+            )
+            mesh = result.mesh
+        except Exception:
+            trimesh = _require_trimesh()
+            if target_height_m > 0.0:
+                height_m = float(target_height_m)
+            else:
+                height_m = {
+                    "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
+                    "midrise": max(float(frontage_width_m) * 1.4, 14.0),
+                    "highrise": max(float(frontage_width_m) * 2.0, 22.0),
+                }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
+            mesh = trimesh.creation.box(
+                extents=(float(frontage_width_m), float(height_m), float(depth_m))
+            )
+            face_color = {
+                "residential": (188, 174, 153, 255),
+                "commercial": (176, 184, 192, 255),
+                "transit": (151, 165, 182, 255),
+                "green": (166, 171, 148, 255),
+            }.get(str(theme_name), (178, 180, 178, 255))
+            mesh.visual.face_colors = list(face_color)
     bounds = mesh.bounds
     span = bounds[1] - bounds[0]
     return _MeshCacheEntry(
@@ -10016,6 +10027,7 @@ def _place_building_targets(
     for target_idx, target in ordered_targets:
         theme_id = str(target.get("theme_id", "") or "")
         theme_segment = theme_by_id.get(theme_id, theme_segments[0] if theme_segments else None)
+        white_context_massing = str(target.get("source", "") or "") == "osm_context_white_massing"
         force_analytical_procedural_building = (
             str(getattr(config, "style_preset", "") or "").strip().lower() == "analytical_diorama_v1"
         )
@@ -10025,21 +10037,30 @@ def _place_building_targets(
         )
         if force_analytical_procedural_building:
             theme_name = "analytical"
+        if white_context_massing:
+            theme_name = "context_white_massing"
         frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
         depth_m = float(target.get("depth_m", 10.0) or 10.0)
         _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
-        ranked_candidates, retrieval_payload = _rank_building_candidates_for_target(
-            query=config.query,
-            theme_name=theme_name,
-            frontage_width_m=frontage_width_m,
-            depth_m=depth_m,
-            road_type=str(road_type),
-            height_class=str(target.get("height_class", "") or ""),
-            embedder=embedder,
-            index_store=index_store,
-            asset_by_id=asset_by_id,
-            search_topk=int(getattr(config, "building_search_topk", 5)),
-        )
+        if white_context_massing:
+            ranked_candidates = ()
+            retrieval_payload = {
+                "query": "white OSM context massing",
+                "forced_procedural_fallback": "osm_white_massing_v1",
+            }
+        else:
+            ranked_candidates, retrieval_payload = _rank_building_candidates_for_target(
+                query=config.query,
+                theme_name=theme_name,
+                frontage_width_m=frontage_width_m,
+                depth_m=depth_m,
+                road_type=str(road_type),
+                height_class=str(target.get("height_class", "") or ""),
+                embedder=embedder,
+                index_store=index_store,
+                asset_by_id=asset_by_id,
+                search_topk=int(getattr(config, "building_search_topk", 5)),
+            )
         retrieval_payload.update(
             {
                 f"{str(target.get('target_kind', 'footprint'))}_id": str(target.get("target_id", "") or ""),
@@ -10055,7 +10076,7 @@ def _place_building_targets(
 
         row: Optional[Dict[str, object]] = None
         score = 0.0
-        source = "procedural_fallback"
+        source = "osm_white_massing" if white_context_massing else "procedural_fallback"
         scale_decision: Dict[str, object] = {}
         rejected_candidates: List[Dict[str, object]] = []
         accepted_candidates: List[Tuple[int, Dict[str, object], float, Dict[str, object]]] = []
@@ -10121,7 +10142,11 @@ def _place_building_targets(
             asset_count += 1
             fallback_reason = ""
         else:
-            asset_id = f"building_fallback_{str(target.get('target_kind', 'footprint'))}_{target_idx:03d}"
+            asset_id = (
+                f"osm_white_massing_{str(target.get('target_id', target_idx)).replace('/', '_')}"
+                if white_context_massing
+                else f"building_fallback_{str(target.get('target_kind', 'footprint'))}_{target_idx:03d}"
+            )
             fallback_entry = _placeholder_building_entry(
                 asset_id=asset_id,
                 frontage_width_m=frontage_width_m,
@@ -10145,7 +10170,7 @@ def _place_building_targets(
             entry = mesh_cache.get_metadata(asset_id)
             scale_xyz = [1.0, 1.0, 1.0]
             fallback_count += 1
-            fallback_reason = "no_building_asset_match"
+            fallback_reason = "context_white_massing" if white_context_massing else "no_building_asset_match"
 
         target_center_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
         target_center_xz = (
@@ -10273,9 +10298,13 @@ def _place_building_targets(
                 key: float(value) * uniform_scale_for_size
                 for key, value in building_native_size.items()
             }
-        building_asset_scale_mode = "building_real_preserve" if row is not None else "procedural_fallback_fit"
+        building_asset_scale_mode = (
+            "osm_white_massing_exact_footprint_bounds"
+            if white_context_massing
+            else ("building_real_preserve" if row is not None else "procedural_fallback_fit")
+        )
         instance_id = f"inst_{instance_index:04d}"
-        should_attach_door = (
+        should_attach_door = not white_context_massing and (
             str(source).strip().lower() == "procedural_fallback"
             or str(asset_id).startswith("building_fallback_")
             or str(fallback_reason).strip() == "no_building_asset_match"

@@ -26,6 +26,10 @@ _PRESERVED_METADATA_KEYS = (
     "width",
     "height",
     "source",
+    "projection",
+    "horizontal_fov_deg",
+    "vertical_fov_deg",
+    "content_origin",
 )
 
 

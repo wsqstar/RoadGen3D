@@ -133,6 +133,69 @@ def match_placements_greedy(
     return matched, a_unmatched, b_unmatched
 
 
+def match_placements_identity_first(
+    a_placements: Sequence[Mapping[str, Any]],
+    b_placements: Sequence[Mapping[str, Any]],
+) -> Tuple[List[Tuple[int, int, str]], List[int], List[int]]:
+    """Match unique durable instance IDs first, then legacy ID-less rows by proximity."""
+
+    a_ids: Dict[str, int] = {}
+    b_ids: Dict[str, int] = {}
+    duplicate_a: set[str] = set()
+    duplicate_b: set[str] = set()
+    for index, placement in enumerate(a_placements):
+        instance_id = str(placement.get("instance_id", "") or "").strip()
+        if instance_id in a_ids:
+            duplicate_a.add(instance_id)
+        elif instance_id:
+            a_ids[instance_id] = index
+    for index, placement in enumerate(b_placements):
+        instance_id = str(placement.get("instance_id", "") or "").strip()
+        if instance_id in b_ids:
+            duplicate_b.add(instance_id)
+        elif instance_id:
+            b_ids[instance_id] = index
+    durable_ids = sorted((set(a_ids) & set(b_ids)) - duplicate_a - duplicate_b)
+    matched: List[Tuple[int, int, str]] = [
+        (a_ids[instance_id], b_ids[instance_id], "instance_id")
+        for instance_id in durable_ids
+    ]
+    used_a = {item[0] for item in matched}
+    used_b = {item[1] for item in matched}
+    if (
+        len(a_ids) == len(a_placements)
+        and len(b_ids) == len(b_placements)
+        and not duplicate_a
+        and not duplicate_b
+    ):
+        return (
+            matched,
+            [index for index in range(len(a_placements)) if index not in used_a],
+            [index for index in range(len(b_placements)) if index not in used_b],
+        )
+    remaining_a_indices = [index for index in range(len(a_placements)) if index not in used_a]
+    remaining_b_indices = [index for index in range(len(b_placements)) if index not in used_b]
+    remaining_a = [a_placements[index] for index in remaining_a_indices]
+    remaining_b = [b_placements[index] for index in remaining_b_indices]
+    legacy_matches, legacy_a_unmatched, legacy_b_unmatched = match_placements_greedy(
+        remaining_a,
+        remaining_b,
+    )
+    matched.extend(
+        (
+            remaining_a_indices[a_index],
+            remaining_b_indices[b_index],
+            "legacy_proximity",
+        )
+        for a_index, b_index in legacy_matches
+    )
+    return (
+        matched,
+        [remaining_a_indices[index] for index in legacy_a_unmatched],
+        [remaining_b_indices[index] for index in legacy_b_unmatched],
+    )
+
+
 def compute_placements_diff(
     a_payload: Mapping[str, Any],
     b_payload: Mapping[str, Any],
@@ -164,10 +227,10 @@ def compute_placements_diff(
     for cat in all_cats:
         a_list = a_by_cat.get(cat, [])
         b_list = b_by_cat.get(cat, [])
-        matched, a_unmatched, b_unmatched = match_placements_greedy(a_list, b_list)
+        matched, a_unmatched, b_unmatched = match_placements_identity_first(a_list, b_list)
 
         shifts: List[float] = []
-        for ai, bi in matched:
+        for ai, bi, match_method in matched:
             ax, az = position_xz(a_list[ai])
             bx, bz = position_xz(b_list[bi])
             dist = math.hypot(ax - bx, az - bz)
@@ -177,6 +240,8 @@ def compute_placements_diff(
                 moved_instances.append(
                     {
                         "category": cat,
+                        "instance_id": str(a_list[ai].get("instance_id") or b_list[bi].get("instance_id") or ""),
+                        "match_method": match_method,
                         "distance_m": round(dist, 4),
                         "a": {"position_xyz": a_list[ai].get("position_xyz")},
                         "b": {"position_xyz": b_list[bi].get("position_xyz")},
@@ -187,6 +252,7 @@ def compute_placements_diff(
             deleted_instances.append(
                 {
                     "category": cat,
+                    "instance_id": str(a_list[ai].get("instance_id") or ""),
                     "position_xyz": a_list[ai].get("position_xyz"),
                 }
             )
@@ -195,6 +261,7 @@ def compute_placements_diff(
             added_instances.append(
                 {
                     "category": cat,
+                    "instance_id": str(b_list[bi].get("instance_id") or ""),
                     "position_xyz": b_list[bi].get("position_xyz"),
                 }
             )

@@ -359,6 +359,8 @@ class SceneContext:
     reference_plan_id: str | None = None
     graph_template_id: str | None = None
     reference_annotation_path: str | None = None
+    reference_annotation: Dict[str, Any] | None = None
+    source_context: Dict[str, Any] | None = None
     template_patch: Dict[str, Any] | None = None
     scenario_id: str | None = None
     scenario_title: str | None = None
@@ -372,6 +374,16 @@ class SceneContext:
             "reference_plan_id": self.reference_plan_id,
             "graph_template_id": self.graph_template_id,
             "reference_annotation_path": self.reference_annotation_path,
+            "reference_annotation": (
+                dict(self.reference_annotation)
+                if isinstance(self.reference_annotation, Mapping)
+                else None
+            ),
+            "source_context": (
+                dict(self.source_context)
+                if isinstance(self.source_context, Mapping)
+                else None
+            ),
             "template_patch": dict(self.template_patch) if isinstance(self.template_patch, Mapping) else None,
             "scenario_id": self.scenario_id,
             "scenario_title": self.scenario_title,
@@ -396,6 +408,18 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
     reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None
     graph_template_id = _clean_text(raw.get("graph_template_id")) or None
     reference_annotation_path = _clean_text(raw.get("reference_annotation_path")) or None
+    raw_reference_annotation = raw.get("reference_annotation")
+    reference_annotation = (
+        dict(raw_reference_annotation)
+        if isinstance(raw_reference_annotation, Mapping)
+        else None
+    )
+    raw_source_context = raw.get("source_context")
+    source_context = (
+        dict(raw_source_context)
+        if isinstance(raw_source_context, Mapping)
+        else None
+    )
     scenario_id = _clean_text(raw.get("scenario_id")) or None
     scenario_title = _clean_text(raw.get("scenario_title")) or None
     raw_template_patch = raw.get("template_patch")
@@ -413,6 +437,8 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         reference_plan_id=reference_plan_id if layout_mode == "metaurban" else None,
         graph_template_id=graph_template_id if layout_mode == "graph_template" else None,
         reference_annotation_path=reference_annotation_path if layout_mode == "reference_annotation" else None,
+        reference_annotation=reference_annotation if layout_mode == "reference_annotation" else None,
+        source_context=source_context if layout_mode == "reference_annotation" else None,
         template_patch=template_patch if layout_mode == "graph_template" else None,
         scenario_id=scenario_id if layout_mode in {"graph_template", "reference_annotation"} else None,
         scenario_title=scenario_title if layout_mode in {"graph_template", "reference_annotation"} else None,

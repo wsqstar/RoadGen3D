@@ -1,0 +1,12 @@
+{
+  "schema_version": "roadgen3d.model_input_browser_index.v1",
+  "source_root": "../../../mappedinfo/urban-llava-suite/training/reports/raw_geojson_input_browser_20260711",
+  "corpora": [
+    {"profileId": "raw_geojson_question_only_geometry_v1", "jsonl": "raw_geojson_question_only_geometry_v1/model_input_browser_1000.jsonl", "manifest": "raw_geojson_question_only_geometry_v1/model_input_browser_1000_manifest.json"},
+    {"profileId": "raw_geojson_question_only_native_properties_v1", "jsonl": "raw_geojson_question_only_native_properties_v1/model_input_browser_1000.jsonl", "manifest": "raw_geojson_question_only_native_properties_v1/model_input_browser_1000_manifest.json"},
+    {"profileId": "raw_geojson_local_context_geometry_v1", "jsonl": "raw_geojson_local_context_geometry_v1/model_input_browser_1000.jsonl", "manifest": "raw_geojson_local_context_geometry_v1/model_input_browser_1000_manifest.json"},
+    {"profileId": "raw_geojson_local_context_native_properties_v1", "jsonl": "raw_geojson_local_context_native_properties_v1/model_input_browser_1000.jsonl", "manifest": "raw_geojson_local_context_native_properties_v1/model_input_browser_1000_manifest.json"},
+    {"profileId": "raw_geojson_tile_geometry_v1", "jsonl": "raw_geojson_tile_geometry_v1/model_input_browser_1000.jsonl", "manifest": "raw_geojson_tile_geometry_v1/model_input_browser_1000_manifest.json"},
+    {"profileId": "raw_geojson_tile_native_properties_v1", "jsonl": "raw_geojson_tile_native_properties_v1/model_input_browser_1000.jsonl", "manifest": "raw_geojson_tile_native_properties_v1/model_input_browser_1000_manifest.json"}
+  ]
+}

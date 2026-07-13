@@ -785,6 +785,10 @@ def _normalize_captured_views(
             "priority": int(target.get("priority", raw.get("priority", 0)) or 0),
             "width": int(raw.get("width", resolution[0]) or resolution[0]),
             "height": int(raw.get("height", resolution[1]) or resolution[1]),
+            "source": str(target.get("source") or raw.get("source") or "roadgen3d_capture_3d"),
+            "projection": str(target.get("projection") or raw.get("projection") or "perspective"),
+            "vertical_fov_deg": _float_or_none(target.get("fov", raw.get("fov"))),
+            "content_origin": "roadgen3d_synthetic_render",
         })
     return normalized
 

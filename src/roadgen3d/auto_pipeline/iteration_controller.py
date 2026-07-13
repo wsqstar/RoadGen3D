@@ -31,9 +31,9 @@ from .scene_renderer import render_topdown_preview
 
 
 # 默认聚合权重 (与 EvalConfig.AggregationConfig 默认值一致)
-DEFAULT_WALKABILITY_WEIGHT = 0.45
-DEFAULT_SAFETY_WEIGHT = 0.35
-DEFAULT_BEAUTY_WEIGHT = 0.20
+DEFAULT_WALKABILITY_WEIGHT = 1.0 / 3.0
+DEFAULT_SAFETY_WEIGHT = 1.0 / 3.0
+DEFAULT_BEAUTY_WEIGHT = 1.0 / 3.0
 
 
 @dataclass
@@ -218,7 +218,7 @@ class AutoIterationController:
             beauty_report = compute_structured_beauty_report(layout_payload, llm_scores=llm_beauty_scores)
 
             # Compute combined evaluation score using configurable weights
-            # Default: W=0.45, S=0.35, B=0.20 (可通過 eval_config 調整)
+            # Default: equal thirds; EvalConfig may override and normalizes raw weights.
             walkability_index = float(walkability.walkability_index)
             safety_score = float(safety_report.get("final_score", 0.0))
             beauty_score = float(beauty_report.get("final_score", 0.0))
