@@ -19,6 +19,12 @@ from roadgen3d.services.scene_context_service import ResolvedSceneContext
 import roadgen3d.services.design_runtime as runtime
 
 
+def test_course_skip_llm_flag_prevents_parameter_derivation():
+    assert runtime._wants_llm_parameter_derivation({"skip_llm": True}) is False
+    assert runtime._wants_llm_parameter_derivation({"preset_id": "skip_llm"}) is False
+    assert runtime._wants_llm_parameter_derivation({"preset_id": "llm"}) is True
+
+
 def test_normalize_scene_generation_options_includes_design_variant_fields(tmp_path: Path):
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text("{}", encoding="utf-8")

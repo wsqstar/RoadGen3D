@@ -12,6 +12,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from roadgen3d.teaching.jobs import enqueue_job
 from roadgen3d.teaching.service import TeachingError, TeachingPlatformService
+from roadgen3d.eval_engine_ext.road_metrics.evaluators.llm_client import public_llm_capabilities_from_env
 from web.api.teaching_schemas import (
     AnnotationReviewRequest,
     BootstrapRequest,
@@ -102,6 +103,21 @@ def me(actor: dict[str, Any] = Depends(_actor)):
     return actor
 
 
+@router.get("/capabilities")
+def capabilities(actor: dict[str, Any] = Depends(_actor)):
+    """Expose safe runtime choices without returning credentials or paths."""
+
+    llm = public_llm_capabilities_from_env()
+    return {
+        "llm": llm,
+        "design_generation": {
+            "baseline": "parametric",
+            "redesign_default": "llm" if llm.get("configured") else "parametric",
+            "parametric_fallback": True,
+        },
+    }
+
+
 @router.get("/courses")
 def courses(request: Request, actor: dict[str, Any] = Depends(_actor)):
     return {"items": _call(lambda: _service(request).list_courses(actor["id"]))}
@@ -170,7 +186,13 @@ def approve_source_review(project_id: str, source_id: str, body: AnnotationRevie
 def generate_scene(project_id: str, body: SceneGenerateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     def run():
         service = _service(request)
-        job = service.create_job(actor["id"], project_id, kind="scene_generate", payload={"source_id": body.source_id, "prompt": body.prompt})
+        job = service.create_job(actor["id"], project_id, kind="scene_generate", payload={
+            "source_id": body.source_id,
+            "prompt": body.prompt,
+            "generation_mode": body.generation_mode,
+            "parent_revision_id": body.parent_revision_id,
+            "goal_weights": body.goal_weights,
+        })
         if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
             enqueue_job(job["id"])
             return job

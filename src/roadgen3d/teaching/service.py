@@ -92,6 +92,40 @@ def _normalized_weights(value: Mapping[str, Any] | None) -> dict[str, float]:
     return {key: round(number / total, 8) for key, number in weights.items()}
 
 
+def _parameter_patch_for_design_goals(
+    weights: Mapping[str, Any] | None,
+    *,
+    query: str,
+) -> tuple[dict[str, Any], dict[str, float]]:
+    """Turn teaching-level objectives into a stable parametric design patch.
+
+    This is deliberately small and inspectable: it is the offline fallback for
+    classes that do not configure an LLM service, not a hidden learned model.
+    """
+
+    normalized = _normalized_weights(weights)
+    walkability = normalized.get("walkability", 0.0)
+    safety = normalized.get("safety", 0.0)
+    beauty = normalized.get("beauty", 0.0)
+    dominant = max(normalized, key=normalized.get)
+    objective_profile = "greening" if beauty >= max(walkability, safety) else "balanced"
+    return {
+        "query": query,
+        "design_rule_profile": "pedestrian_priority_v1" if walkability + safety >= 0.60 else "balanced_complete_street_v1",
+        "objective_profile": objective_profile,
+        "style_preset": "lush_walkable_v1" if beauty + walkability >= 0.55 else "civic_clean_v1",
+        "sidewalk_width_m": round(2.4 + (1.25 * walkability) + (0.65 * safety) + (0.15 * beauty), 2),
+        "density": round(0.82 + (0.12 * walkability) + (0.05 * safety) + (0.34 * beauty), 2),
+        "ped_demand_level": "high" if walkability + safety >= 0.55 else "medium",
+        "bike_demand_level": "medium" if dominant in {"walkability", "safety"} else "low",
+        "street_furniture_profile": "park_landscape" if dominant == "beauty" else "pedestrian_friendly",
+        "street_furniture_profile_source": "manual",
+        "skeleton_design_profile": "green_walkable" if dominant == "beauty" else "walkable_commercial",
+        "skeleton_design_profile_source": "manual",
+        "seed": 42,
+    }, normalized
+
+
 class TeachingPlatformService:
     def __init__(self, database: TeachingDatabase | None = None, artifact_store: ArtifactStore | None = None) -> None:
         self.database = database or TeachingDatabase()
@@ -340,10 +374,18 @@ class TeachingPlatformService:
         *,
         source_id: str,
         prompt: str,
+        generation_mode: str = "baseline",
+        parent_revision_id: str | None = None,
+        goal_weights: Mapping[str, Any] | None = None,
         generator: Callable[..., Mapping[str, Any]],
         evaluator: Callable[..., Mapping[str, Any]] | None = None,
     ) -> dict[str, Any]:
         from roadgen3d.llm.design_workflow import parse_design_draft
+        from roadgen3d.eval_engine_ext.road_metrics.evaluators.llm_client import public_llm_capabilities_from_env
+
+        requested_mode = str(generation_mode or "baseline").strip().lower()
+        if requested_mode not in {"baseline", "auto", "llm", "parametric"}:
+            raise ValueError("generation_mode must be baseline, auto, llm, or parametric.")
 
         with self.database.session() as db:
             project, _ = self._require_project(db, actor_id, project_id, write=True)
@@ -356,18 +398,45 @@ class TeachingPlatformService:
             annotation_key = annotation_artifact.object_key
             source_context = {"source_id": source.id, "provenance": source.provenance, "quality_report": source.quality_report}
             query = str(prompt or project.design_goal or "balanced complete street").strip()
+            parent = db.get(SceneRevisionRecord, parent_revision_id) if parent_revision_id else None
+            if parent_revision_id and (parent is None or parent.project_id != project.id):
+                raise NotFound("Parent revision not found in this project.")
+            existing_baseline = db.scalar(
+                select(SceneRevisionRecord)
+                .where(SceneRevisionRecord.project_id == project.id, SceneRevisionRecord.branch_kind == "baseline")
+                .order_by(SceneRevisionRecord.revision_number.desc())
+            )
+        capabilities = public_llm_capabilities_from_env()
+        llm_configured = bool(capabilities.get("configured"))
+        is_baseline = requested_mode == "baseline" or (not parent_revision_id and existing_baseline is None)
+        resolved_mode = "parametric" if is_baseline else requested_mode
+        if resolved_mode == "auto":
+            resolved_mode = "llm" if llm_configured else "parametric"
+        fallback_reason = ""
+        if resolved_mode == "llm" and not llm_configured:
+            resolved_mode = "parametric"
+            fallback_reason = "llm_not_configured"
+        if not is_baseline and parent_revision_id is None:
+            raise ValueError("A redesign must specify parent_revision_id.")
+
+        design_query = query
+        if not is_baseline:
+            normalized_for_prompt = _normalized_weights(goal_weights)
+            targets = ", ".join(f"{key} {value:.0%}" for key, value in normalized_for_prompt.items())
+            design_query = f"{query}. Redesign this approved street scene for these priorities: {targets}."
+        compose_patch, normalized_weights = _parameter_patch_for_design_goals(goal_weights, query=design_query)
         with self.artifacts.open(annotation_key) as handle:
             annotation = json.loads(handle.read().decode("utf-8"))
         draft = parse_design_draft(
             {
-                "normalized_scene_query": query,
-                "compose_config_patch": {"query": query},
-                "design_summary": f"Course project generation for {query}",
+                "normalized_scene_query": design_query,
+                "compose_config_patch": compose_patch,
+                "design_summary": f"Course project {resolved_mode} generation for {design_query}",
                 "risk_notes": [],
             },
             evidence=(),
-            fallback_query=query,
-            current_patch={},
+            fallback_query=design_query,
+            current_patch=compose_patch,
         )
         result = dict(generator(
             draft,
@@ -376,7 +445,16 @@ class TeachingPlatformService:
                 "reference_annotation": annotation,
                 "source_context": source_context,
             },
-            generation_options={"course_project_id": project_id, "skip_llm": True},
+            generation_options={
+                "course_project_id": project_id,
+                "preset_id": "llm" if resolved_mode == "llm" else "skip_llm",
+                "skip_llm": resolved_mode != "llm",
+                "random_seed": 42,
+                # Course revisions must keep their editable model.  The generic
+                # capture pipeline defaults to deleting non-selected GLBs after
+                # screenshots, which otherwise leaves the UI at NO SCENE.
+                "retain_glb_policy": "always",
+            },
         ))
         layout_path = Path(str(result.get("scene_layout_path") or result.get("layout_path") or "")).expanduser().resolve()
         glb_path = Path(str(result.get("scene_glb_path") or result.get("glb_path") or "")).expanduser().resolve()
@@ -388,10 +466,20 @@ class TeachingPlatformService:
             layout=json.loads(layout_path.read_text(encoding="utf-8")),
             glb=glb_path.read_bytes(),
             source_id=source_id,
-            parent_id=None,
-            branch_kind="baseline",
-            label="Generated baseline",
-            provenance={"generation_method": "course_reference_annotation", "prompt": query, "generator_result": result},
+            parent_id=None if is_baseline else parent_revision_id,
+            branch_kind="baseline" if is_baseline else "ai_edit",
+            label="Generated baseline" if is_baseline else ("LLM design candidate" if resolved_mode == "llm" else "Parametric design candidate"),
+            provenance={
+                "generation_method": "llm_assisted" if resolved_mode == "llm" else "parametric",
+                "requested_generation_mode": requested_mode,
+                "resolved_generation_mode": resolved_mode,
+                "fallback_reason": fallback_reason,
+                "prompt": design_query,
+                "goal_weights": normalized_weights,
+                "compose_config_patch": compose_patch,
+                "llm_capabilities": capabilities,
+                "generator_result": result,
+            },
         )
         evaluation = None
         if evaluator is not None:
@@ -681,7 +769,17 @@ class TeachingPlatformService:
             elif kind == "scene_generate":
                 if generator is None:
                     raise RuntimeError("No scene generator is configured for this worker.")
-                result = self.generate_project_scene(owner_id, str(project_id), source_id=str(payload.get("source_id")), prompt=str(payload.get("prompt") or ""), generator=generator, evaluator=evaluator)
+                result = self.generate_project_scene(
+                    owner_id,
+                    str(project_id),
+                    source_id=str(payload.get("source_id")),
+                    prompt=str(payload.get("prompt") or ""),
+                    generation_mode=str(payload.get("generation_mode") or "baseline"),
+                    parent_revision_id=(str(payload.get("parent_revision_id")) if payload.get("parent_revision_id") else None),
+                    goal_weights=(payload.get("goal_weights") if isinstance(payload.get("goal_weights"), Mapping) else None),
+                    generator=generator,
+                    evaluator=evaluator,
+                )
             else:
                 raise ValueError(f"Unsupported teaching job kind: {kind}")
         except Exception as exc:

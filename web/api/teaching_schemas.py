@@ -61,6 +61,9 @@ class AnnotationReviewRequest(BaseModel):
 class SceneGenerateRequest(BaseModel):
     source_id: str
     prompt: str = Field(default="", max_length=2_000)
+    generation_mode: Literal["baseline", "auto", "llm", "parametric"] = "baseline"
+    parent_revision_id: str | None = None
+    goal_weights: Dict[str, float] | None = None
 
 
 class RevisionCreateRequest(BaseModel):

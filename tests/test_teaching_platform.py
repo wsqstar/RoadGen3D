@@ -23,6 +23,32 @@ from web.api.main import create_app
 
 
 class FakeDesignService:
+    def __init__(self, output_dir: Path):
+        self.output_dir = output_dir
+        self.generation_calls: list[dict] = []
+
+    def generate_scene(self, draft, *, scene_context: dict, generation_options: dict, **_kwargs):
+        call_index = len(self.generation_calls) + 1
+        call_dir = self.output_dir / f"generated-{call_index}"
+        call_dir.mkdir(parents=True, exist_ok=True)
+        layout_path = call_dir / "scene_layout.json"
+        glb_path = call_dir / "scene.glb"
+        layout_path.write_text(json.dumps({
+            "version": "roadgen3d.scene_layout.v1",
+            "placements": [{"instance_id": f"tree-{call_index}", "category": "tree"}],
+            "summary": {"walkability": 70 + call_index},
+            "compose_config": dict(draft.compose_config_patch),
+        }), encoding="utf-8")
+        glb_path.write_bytes(b"fixture-glb")
+        if generation_options.get("capture_3d_views", True) and generation_options.get("retain_glb_policy") != "always":
+            glb_path.unlink()
+        self.generation_calls.append({
+            "draft": draft.to_dict(),
+            "scene_context": scene_context,
+            "generation_options": generation_options,
+        })
+        return {"scene_layout_path": str(layout_path), "scene_glb_path": str(glb_path)}
+
     def evaluate_scene_unified(self, *, layout_path: str, evaluation_profile: str, evaluation_config: dict, **_kwargs):
         layout = json.loads(open(layout_path, encoding="utf-8").read())
         weights = evaluation_config["aggregation"]["dimension_weights"]
@@ -43,9 +69,11 @@ class FakeDesignService:
 @pytest.fixture()
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("ROADGEN_ALLOW_DEV_BOOTSTRAP", "1")
+    for name in ("ROADGEN_LLM_API_KEY", "GRAPHRAG_API_KEY", "key", "OPENAI_API_KEY"):
+        monkeypatch.setenv(name, "")
     database = TeachingDatabase(f"sqlite:///{tmp_path / 'teaching.db'}")
     service = TeachingPlatformService(database, LocalArtifactStore(tmp_path / "objects"))
-    app = create_app(design_service=FakeDesignService(), teaching_service=service)
+    app = create_app(design_service=FakeDesignService(tmp_path / "generated"), teaching_service=service)
     with TestClient(app) as test_client:
         yield test_client
 
@@ -100,7 +128,7 @@ def test_geojson_crs_transform_stable_ids_and_intersection_annotation():
     assert first["quality_report"]["conversion_ok"] is True
 
 
-def test_course_project_geojson_revision_evaluation_compare_and_export(client: TestClient):
+def test_course_project_geojson_revision_evaluation_compare_and_export(client: TestClient, monkeypatch):
     teacher_token, student_token, course = _bootstrap_course_and_student(client)
     project_response = client.post("/api/v1/projects", headers=_auth(student_token), json={
         "course_id": course["id"],
@@ -176,17 +204,20 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     listed_sources = client.get(f"/api/v1/projects/{project['id']}/sources", headers=_auth(student_token)).json()["items"]
     assert listed_sources[0]["role_counts"] == {"centerline": 1, "building_footprint": 1, "tree_candidate": 2}
 
-    baseline = client.post(f"/api/v1/projects/{project['id']}/revisions", headers=_auth(student_token), json={
+    baseline_job = client.post(f"/api/v1/projects/{project['id']}/generate", headers=_auth(student_token), json={
         "source_id": reviewed["id"],
-        "branch_kind": "baseline",
-        "label": "Initial generated scene",
-        "layout": {"version": "roadgen3d.scene_layout.v1", "placements": [], "summary": {"walkability": 70}},
+        "generation_mode": "baseline",
+        "prompt": "walkable campus edge",
     })
-    assert baseline.status_code == 201, baseline.text
-    assert baseline.json()["auto_evaluation"]["status"] == "succeeded"
+    assert baseline_job.status_code == 202, baseline_job.text
+    assert baseline_job.json()["status"] == "succeeded"
+    baseline = baseline_job.json()["result"]["revision"]
+    assert baseline["branch_kind"] == "baseline"
+    assert baseline["provenance"]["generation_method"] == "parametric"
+    assert baseline_job.json()["result"]["evaluation"]["status"] == "succeeded"
     human = client.post(f"/api/v1/projects/{project['id']}/revisions", headers=_auth(student_token), json={
         "source_id": source["id"],
-        "parent_id": baseline.json()["id"],
+        "parent_id": baseline["id"],
         "branch_kind": "human_edit",
         "label": "Student tree edit",
         "commands": [{"command_id": "add-tree-1", "op": "add_instance", "category": "tree"}],
@@ -196,9 +227,9 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     assert human.status_code == 201, human.text
     assert human.json()["auto_evaluation"]["weights"] == {"walkability": 0.45, "safety": 0.35, "beauty": 0.2}
 
-    compared = client.post(f"/api/v1/projects/{project['id']}/comparisons", headers=_auth(student_token), json={"revision_ids": [baseline.json()["id"], human.json()["id"]]})
+    compared = client.post(f"/api/v1/projects/{project['id']}/comparisons", headers=_auth(student_token), json={"revision_ids": [baseline["id"], human.json()["id"]]})
     assert compared.status_code == 200
-    assert compared.json()["items"][1]["score_delta"]["walkability"] == pytest.approx(12.0)
+    assert compared.json()["items"][1]["score_delta"]["walkability"] == pytest.approx(11.0)
     assert "not causal" in compared.json()["claim_scope"]
 
     exported = client.post(f"/api/v1/projects/{project['id']}/exports", headers=_auth(student_token))
@@ -213,6 +244,40 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
         assert manifest["schema_version"] == "roadgen3d.project_bundle.v1"
         assert len(manifest["revisions"]) == 2
         assert len(manifest["evaluations"]) == 2
+
+    capabilities = client.get("/api/v1/capabilities", headers=_auth(student_token))
+    assert capabilities.status_code == 200
+    assert capabilities.json()["llm"]["configured"] is False
+    assert capabilities.json()["design_generation"]["redesign_default"] == "parametric"
+
+    redesign_job = client.post(f"/api/v1/projects/{project['id']}/generate", headers=_auth(student_token), json={
+        "source_id": reviewed["id"],
+        "parent_revision_id": baseline["id"],
+        "generation_mode": "auto",
+        "prompt": "walkable campus edge",
+        "goal_weights": {"walkability": 70, "safety": 20, "beauty": 10},
+    })
+    assert redesign_job.status_code == 202, redesign_job.text
+    redesign = redesign_job.json()["result"]["revision"]
+    assert redesign["branch_kind"] == "ai_edit"
+    assert redesign["parent_id"] == baseline["id"]
+    assert redesign["provenance"]["requested_generation_mode"] == "auto"
+    assert redesign["provenance"]["resolved_generation_mode"] == "parametric"
+    assert redesign["provenance"]["goal_weights"] == {"walkability": 0.7, "safety": 0.2, "beauty": 0.1}
+
+    monkeypatch.setenv("ROADGEN_LLM_API_KEY", "fixture-key")
+    llm_job = client.post(f"/api/v1/projects/{project['id']}/generate", headers=_auth(student_token), json={
+        "source_id": reviewed["id"],
+        "parent_revision_id": redesign["id"],
+        "generation_mode": "auto",
+        "prompt": "walkable campus edge",
+        "goal_weights": {"walkability": 20, "safety": 30, "beauty": 50},
+    })
+    assert llm_job.status_code == 202, llm_job.text
+    llm_revision = llm_job.json()["result"]["revision"]
+    assert llm_revision["parent_id"] == redesign["id"]
+    assert llm_revision["provenance"]["resolved_generation_mode"] == "llm"
+    assert llm_revision["provenance"]["generation_method"] == "llm_assisted"
 
 
 def test_student_cannot_read_another_students_project(client: TestClient):

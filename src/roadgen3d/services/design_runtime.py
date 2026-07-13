@@ -563,6 +563,12 @@ def _wants_llm_parameter_derivation(
     """
     if not isinstance(generation_options, Mapping):
         return False
+    # ``skip_llm`` was the original course-workflow switch.  Keep honoring it
+    # explicitly so a server without API credentials can always produce the
+    # deterministic 2D -> 3D baseline instead of accidentally entering the
+    # LLM parameter-derivation path.
+    if bool(generation_options.get("skip_llm")):
+        return False
     preset_id = str(generation_options.get("preset_id", "") or "").strip().lower()
     # Always enable LLM derivation for both custom and presets
     return preset_id not in {"none", "disabled", "skip_llm"}
@@ -602,7 +608,11 @@ def _graph_summary_for_llm_derivation(
         bridge = build_metaurban_scene_bridge(base_config, plan_id=plan_id)
         return dict(bridge.summary_metadata)
     if scene_context.layout_mode == "reference_annotation":
-        annotation_payload = _load_reference_annotation_payload(scene_context.reference_annotation_path)
+        annotation_payload = (
+            dict(scene_context.reference_annotation)
+            if isinstance(scene_context.reference_annotation, Mapping)
+            else _load_reference_annotation_payload(scene_context.reference_annotation_path)
+        )
         bridge = build_reference_annotation_scene_bridge(annotation_payload, compose_config=base_config)
         return dict(bridge.summary_metadata)
     resolved = resolve_scene_context(
