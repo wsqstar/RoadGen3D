@@ -1,0 +1,266 @@
+"""Multi-tenant course and project API."""
+
+from __future__ import annotations
+
+import base64
+import os
+from typing import Any
+
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi.responses import StreamingResponse
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
+from roadgen3d.teaching.jobs import enqueue_job
+from roadgen3d.teaching.service import TeachingError, TeachingPlatformService
+from web.api.teaching_schemas import (
+    BootstrapRequest,
+    CourseCreateRequest,
+    EvaluationCreateRequest,
+    EvaluationProfileCreateRequest,
+    GeoJsonImportRequest,
+    LoginRequest,
+    OsmImportRequest,
+    ProjectCreateRequest,
+    RegisterRequest,
+    RevisionCompareRequest,
+    RevisionCreateRequest,
+    RevisionEditRequest,
+    SceneGenerateRequest,
+    WorkflowStepRequest,
+)
+
+
+router = APIRouter(prefix="/api/v1", tags=["teaching-platform"])
+bearer = HTTPBearer(auto_error=False)
+
+
+def _service(request: Request) -> TeachingPlatformService:
+    return request.app.state.teaching_service
+
+
+def _actor(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)) -> dict[str, Any]:
+    try:
+        return _service(request).authenticate(credentials.credentials if credentials else "")
+    except TeachingError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail()) from exc
+
+
+def _call(callback):
+    try:
+        return callback()
+    except TeachingError as exc:
+        raise HTTPException(status_code=exc.status_code, detail=exc.detail()) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail={"code": "validation_error", "message": str(exc)}) from exc
+
+
+def _auto_evaluate_revision(
+    request: Request,
+    actor: dict[str, Any],
+    project_id: str,
+    revision: dict[str, Any],
+    *,
+    auto_evaluate: bool,
+    profile_id: str | None,
+    weights: dict[str, float] | None,
+) -> dict[str, Any]:
+    if not auto_evaluate:
+        return {**revision, "auto_evaluation": None, "evaluation_job": None}
+    service = _service(request)
+    profiles = service.list_evaluation_profiles(actor["id"], project_id)
+    selected = next((item for item in profiles if item["id"] == profile_id), None) if profile_id else next((item for item in profiles if item["is_default"]), profiles[0] if profiles else None)
+    if selected is None:
+        return {**revision, "auto_evaluation": None, "evaluation_job": None}
+    evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=revision["id"], profile_id=selected["id"], weights=weights)
+    job = service.create_job(actor["id"], project_id, kind="evaluation", payload={"run_id": evaluation["id"]})
+    if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
+        enqueue_job(job["id"])
+        return {**revision, "auto_evaluation": evaluation, "evaluation_job": job}
+    completed = service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+    refreshed = next(item for item in service.list_evaluations(actor["id"], project_id) if item["id"] == evaluation["id"])
+    return {**revision, "auto_evaluation": refreshed, "evaluation_job": completed}
+
+
+@router.post("/auth/bootstrap", status_code=201)
+def bootstrap(body: BootstrapRequest, request: Request):
+    return _call(lambda: _service(request).bootstrap_admin(email=body.email, password=body.password, display_name=body.display_name, token=body.bootstrap_token))
+
+
+@router.post("/auth/login")
+def login(body: LoginRequest, request: Request):
+    return _call(lambda: _service(request).login(email=body.email, password=body.password))
+
+
+@router.post("/auth/register", status_code=201)
+def register(body: RegisterRequest, request: Request):
+    return _call(lambda: _service(request).register_student(email=body.email, password=body.password, display_name=body.display_name, course_code=body.course_code, invite_code=body.invite_code))
+
+
+@router.get("/me")
+def me(actor: dict[str, Any] = Depends(_actor)):
+    return actor
+
+
+@router.get("/courses")
+def courses(request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_courses(actor["id"]))}
+
+
+@router.post("/courses", status_code=201)
+def create_course(body: CourseCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).create_course(actor["id"], name=body.name, code=body.code))
+
+
+@router.get("/projects")
+def projects(request: Request, course_id: str | None = Query(default=None), actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_projects(actor["id"], course_id=course_id))}
+
+
+@router.post("/projects", status_code=201)
+def create_project(body: ProjectCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).create_project(actor["id"], course_id=body.course_id, name=body.name, city=body.city, design_goal=body.design_goal, aoi_bbox=body.aoi_bbox))
+
+
+@router.get("/projects/{project_id}")
+def get_project(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).get_project(actor["id"], project_id))
+
+
+@router.patch("/projects/{project_id}/workflow")
+def update_workflow(project_id: str, body: WorkflowStepRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).update_project_step(actor["id"], project_id, body.workflow_step))
+
+
+@router.post("/projects/{project_id}/sources/geojson", status_code=201)
+def import_geojson(project_id: str, body: GeoJsonImportRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).import_geojson(actor["id"], project_id, body.geojson))
+
+
+@router.post("/projects/{project_id}/sources/osm", status_code=202)
+def import_osm(project_id: str, body: OsmImportRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        service = _service(request)
+        job = service.create_job(actor["id"], project_id, kind="osm_import", payload={"force_refetch": body.force_refetch})
+        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
+            enqueue_job(job["id"])
+            return job
+        return service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+    return _call(run)
+
+
+@router.get("/projects/{project_id}/sources")
+def list_sources(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_sources(actor["id"], project_id))}
+
+
+@router.post("/projects/{project_id}/generate", status_code=202)
+def generate_scene(project_id: str, body: SceneGenerateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        service = _service(request)
+        job = service.create_job(actor["id"], project_id, kind="scene_generate", payload={"source_id": body.source_id, "prompt": body.prompt})
+        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
+            enqueue_job(job["id"])
+            return job
+        design = request.app.state.design_service
+        return service.execute_job(job["id"], evaluator=design.evaluate_scene_unified, generator=design.generate_scene)
+    return _call(run)
+
+
+@router.post("/projects/{project_id}/revisions", status_code=201)
+def create_revision(project_id: str, body: RevisionCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        glb = base64.b64decode(body.glb_base64, validate=True) if body.glb_base64 else None
+        revision = _service(request).create_revision(actor["id"], project_id, layout=body.layout, glb=glb, source_id=body.source_id, parent_id=body.parent_id, branch_kind=body.branch_kind, label=body.label, commands=body.commands, provenance=body.provenance)
+        return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights)
+    return _call(run)
+
+
+@router.post("/projects/{project_id}/revisions/{revision_id}/edits", status_code=201)
+def edit_revision(project_id: str, revision_id: str, body: RevisionEditRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        service = _service(request)
+        revision = service.edit_revision(actor["id"], project_id, revision_id, commands=body.commands, branch_kind=body.branch_kind, label=body.label, provenance=body.provenance)
+        return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights)
+    return _call(run)
+
+
+@router.get("/projects/{project_id}/revisions")
+def list_revisions(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_revisions(actor["id"], project_id))}
+
+
+@router.get("/projects/{project_id}/evaluation-profiles")
+def list_profiles(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_evaluation_profiles(actor["id"], project_id))}
+
+
+@router.post("/courses/{course_id}/evaluation-profiles", status_code=201)
+def create_profile(course_id: str, body: EvaluationProfileCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).create_evaluation_profile(actor["id"], course_id, name=body.name, weights=body.weights))
+
+
+@router.post("/projects/{project_id}/evaluations", status_code=202)
+def create_evaluation(project_id: str, body: EvaluationCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        service = _service(request)
+        evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=body.revision_id, profile_id=body.profile_id, weights=body.weights, seed=body.seed)
+        if not body.auto_run:
+            return {"evaluation": evaluation, "job": None}
+        job = service.create_job(actor["id"], project_id, kind="evaluation", payload={"run_id": evaluation["id"]})
+        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
+            enqueue_job(job["id"])
+            return {"evaluation": evaluation, "job": job}
+        completed = service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+        return {"evaluation": service.list_evaluations(actor["id"], project_id)[0], "job": completed}
+    return _call(run)
+
+
+@router.get("/projects/{project_id}/evaluations")
+def list_evaluations(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_evaluations(actor["id"], project_id))}
+
+
+@router.post("/projects/{project_id}/comparisons")
+def compare(project_id: str, body: RevisionCompareRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).compare_revisions(actor["id"], project_id, body.revision_ids))
+
+
+@router.post("/projects/{project_id}/exports", status_code=202)
+def export_project(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        service = _service(request)
+        job = service.create_job(actor["id"], project_id, kind="project_export", payload={})
+        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
+            enqueue_job(job["id"])
+            return job
+        return service.execute_job(job["id"], evaluator=request.app.state.design_service.evaluate_scene_unified)
+    return _call(run)
+
+
+@router.get("/jobs/{job_id}")
+def get_job(job_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).get_job(actor["id"], job_id))
+
+
+@router.post("/jobs/{job_id}/cancel")
+def cancel_job(job_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).cancel_job(actor["id"], job_id))
+
+
+@router.post("/jobs/{job_id}/retry", status_code=202)
+def retry_job(job_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        job = _service(request).retry_job(actor["id"], job_id)
+        if os.getenv("ROADGEN_JOB_MODE", "inline").lower() == "rq":
+            enqueue_job(job["id"])
+            return job
+        design = request.app.state.design_service
+        return _service(request).execute_job(job["id"], evaluator=design.evaluate_scene_unified, generator=design.generate_scene)
+    return _call(run)
+
+
+@router.get("/artifacts/{artifact_id}")
+def download_artifact(artifact_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    artifact, handle = _call(lambda: _service(request).artifact(actor["id"], artifact_id))
+    filename = artifact.object_key.rsplit("/", 1)[-1]
+    return StreamingResponse(handle, media_type=artifact.media_type, headers={"Content-Disposition": f'attachment; filename="{filename}"', "X-Content-SHA256": artifact.sha256})

@@ -155,12 +155,16 @@ def apply_scene_layout_edits(
             candidate["summary"] = summary
             layout_bytes = _json_bytes(candidate)
             stage_layout_path.write_bytes(layout_bytes)
-            _rewrite_glb_transforms(
-                source_layout_path=source_path,
-                source_payload=source_payload,
-                commands=normalized_commands,
-                destination=stage_glb_path,
-            )
+            if all(str(item.get("op")) in {"move_instance", "rotate_instance", "scale_instance"} for item in normalized_commands):
+                _rewrite_glb_transforms(
+                    source_layout_path=source_path,
+                    source_payload=source_payload,
+                    candidate_payload=candidate,
+                    commands=normalized_commands,
+                    destination=stage_glb_path,
+                )
+            else:
+                _rebuild_glb_for_structural_edits(stage_layout_path, stage_glb_path)
             if not stage_glb_path.is_file() or stage_glb_path.stat().st_size <= 0:
                 raise SceneRebuildFailed("Scene GLB transform update produced no output.")
             final_dir.parent.mkdir(parents=True, exist_ok=True)
@@ -182,13 +186,8 @@ def apply_scene_layout_edits(
             sha256=revision_sha,
         )
         undo_commands = [
-            {
-                "command_id": f"undo:{item['command_id']}",
-                "op": "move_instance",
-                "instance_id": item["instance_id"],
-                "position_xyz": item["before_position_xyz"],
-            }
-            for item in reversed(applied)
+            {"command_id": f"undo:{item.get('command_id', uuid.uuid4().hex)}", **dict(item["command"])}
+            for item in reversed(inverse)
         ]
         return {
             "source": current.to_dict(),
@@ -276,36 +275,71 @@ def _current_revision(
 
 def _normalize_commands(commands: Sequence[Mapping[str, Any]]) -> list[Dict[str, Any]]:
     if not isinstance(commands, Sequence) or isinstance(commands, (str, bytes)) or not (1 <= len(commands) <= 100):
-        raise SceneLayoutEditError("commands must contain between 1 and 100 move commands.")
+        raise SceneLayoutEditError("commands must contain between 1 and 100 scene edit commands.")
     command_ids: set[str] = set()
-    targets: set[str] = set()
     normalized = []
+    supported = {
+        "move_instance", "rotate_instance", "scale_instance", "delete_instance",
+        "add_instance", "duplicate_instance", "replace_asset", "set_building_style",
+        "auto_plant_trees",
+    }
     for index, command in enumerate(commands):
-        if not isinstance(command, Mapping) or str(command.get("op", "")) != "move_instance":
-            raise SceneLayoutEditError(f"commands[{index}] must be a move_instance command.")
+        if not isinstance(command, Mapping):
+            raise SceneLayoutEditError(f"commands[{index}] must be an object.")
+        op = str(command.get("op", "") or "").strip()
+        if op not in supported:
+            raise SceneLayoutEditError(f"commands[{index}].op must be one of {sorted(supported)}.")
         command_id = str(command.get("command_id", "") or "").strip()
-        instance_id = str(command.get("instance_id", "") or "").strip()
         if not command_id or command_id in command_ids:
             raise SceneLayoutEditError(f"commands[{index}].command_id must be nonempty and unique.")
-        if not instance_id or instance_id in targets:
-            raise SceneLayoutEditError(f"commands[{index}].instance_id must be nonempty and unique in the batch.")
-        raw_position = command.get("position_xyz")
-        if not isinstance(raw_position, (list, tuple)) or len(raw_position) != 3:
-            raise SceneLayoutEditError(f"commands[{index}].position_xyz must contain three numbers.")
-        try:
-            position = [float(item) for item in raw_position]
-        except (TypeError, ValueError) as exc:
-            raise SceneLayoutEditError(f"commands[{index}].position_xyz must be numeric.") from exc
-        if not all(math.isfinite(item) and abs(item) <= 1_000_000 for item in position):
-            raise SceneLayoutEditError(f"commands[{index}].position_xyz must be finite and within scene limits.")
         command_ids.add(command_id)
-        targets.add(instance_id)
-        normalized.append({
-            "command_id": command_id,
-            "op": "move_instance",
-            "instance_id": instance_id,
-            "position_xyz": position,
-        })
+        item: Dict[str, Any] = {"command_id": command_id, "op": op}
+        if op == "auto_plant_trees":
+            points = command.get("points_xyz")
+            if not isinstance(points, Sequence) or isinstance(points, (str, bytes)) or not (1 <= len(points) <= 100):
+                raise SceneLayoutEditError(f"commands[{index}].points_xyz must contain 1..100 positions.")
+            item.update({
+                "points_xyz": [_finite_vector(point, 3, f"commands[{index}].points_xyz") for point in points],
+                "asset_id": str(command.get("asset_id") or "tree_auto_candidate"),
+                "category": "tree",
+                "instance_prefix": str(command.get("instance_prefix") or f"auto-tree-{command_id}"),
+            })
+            normalized.append(item)
+            continue
+        instance_id = str(command.get("instance_id", "") or "").strip()
+        if not instance_id:
+            raise SceneLayoutEditError(f"commands[{index}].instance_id is required.")
+        item["instance_id"] = instance_id
+        if op in {"move_instance", "add_instance"}:
+            item["position_xyz"] = _finite_vector(command.get("position_xyz"), 3, f"commands[{index}].position_xyz")
+        if op == "rotate_instance":
+            item["yaw_deg"] = _finite_number(command.get("yaw_deg"), f"commands[{index}].yaw_deg") % 360.0
+        if op == "scale_instance":
+            scale = _finite_number(command.get("scale"), f"commands[{index}].scale")
+            if not 0.01 <= scale <= 100:
+                raise SceneLayoutEditError(f"commands[{index}].scale must be within 0.01..100.")
+            item["scale"] = scale
+        if op in {"add_instance", "replace_asset"}:
+            item["asset_id"] = str(command.get("asset_id", "") or "").strip()
+            if not item["asset_id"]:
+                raise SceneLayoutEditError(f"commands[{index}].asset_id is required.")
+            item["category"] = str(command.get("category") or "street_furniture")
+        if op == "add_instance":
+            item["yaw_deg"] = _finite_number(command.get("yaw_deg", 0), f"commands[{index}].yaw_deg") % 360.0
+            item["scale"] = _finite_number(command.get("scale", 1), f"commands[{index}].scale")
+            if not 0.01 <= item["scale"] <= 100:
+                raise SceneLayoutEditError(f"commands[{index}].scale must be within 0.01..100.")
+        if op == "duplicate_instance":
+            item["new_instance_id"] = str(command.get("new_instance_id") or "").strip()
+            if not item["new_instance_id"]:
+                raise SceneLayoutEditError(f"commands[{index}].new_instance_id is required.")
+            if command.get("position_xyz") is not None:
+                item["position_xyz"] = _finite_vector(command.get("position_xyz"), 3, f"commands[{index}].position_xyz")
+        if op == "set_building_style":
+            item["style_id"] = str(command.get("style_id") or "").strip()
+            if not item["style_id"]:
+                raise SceneLayoutEditError(f"commands[{index}].style_id is required.")
+        normalized.append(item)
     return normalized
 
 
@@ -326,39 +360,142 @@ def _apply_commands(payload: Dict[str, Any], commands: Sequence[Mapping[str, Any
     applied: list[Dict[str, Any]] = []
     inverse: list[Dict[str, Any]] = []
     for command in commands:
+        op = str(command["op"])
+        if op == "auto_plant_trees":
+            for point_index, point in enumerate(command["points_xyz"]):
+                instance_id = f"{command['instance_prefix']}-{point_index + 1:03d}"
+                if instance_id in by_id:
+                    raise SceneLayoutEditError(f"Duplicate generated tree instance_id: {instance_id}")
+                placement = _new_placement(instance_id, str(command["asset_id"]), "tree", point, 0.0, 1.0)
+                placements.append(placement)
+                by_id[instance_id] = placement
+                applied.append({"command_id": str(command["command_id"]), "op": "add_instance", "instance_id": instance_id, "position_xyz": list(point)})
+                inverse.append({"command_id": str(command["command_id"]), "command": {"op": "delete_instance", "instance_id": instance_id}})
+            continue
         instance_id = str(command["instance_id"])
+        if op == "add_instance":
+            if instance_id in by_id:
+                raise SceneLayoutEditError(f"Duplicate placement instance_id: {instance_id}")
+            placement = _new_placement(instance_id, str(command["asset_id"]), str(command["category"]), command["position_xyz"], float(command["yaw_deg"]), float(command["scale"]))
+            placements.append(placement)
+            by_id[instance_id] = placement
+            applied.append({"command_id": command["command_id"], "op": op, "instance_id": instance_id})
+            inverse.append({"command_id": command["command_id"], "command": {"op": "delete_instance", "instance_id": instance_id}})
+            continue
         placement = by_id.get(instance_id)
         if placement is None:
             raise SceneLayoutEditError(f"Unknown placement instance_id: {instance_id}")
-        if bool(placement.get("editable") is False) or str(placement.get("selection_source", "")) == "osm_white_massing":
-            raise SceneLayoutEditError(f"Placement '{instance_id}' is immutable context massing.")
-        old = _position(placement.get("position_xyz"), f"placement '{instance_id}'")
-        new = [float(item) for item in command["position_xyz"]]
-        delta = [new[0] - old[0], new[1] - old[1], new[2] - old[2]]
-        placement["position_xyz"] = new
-        placement["bbox_xz"] = _translated_bbox(placement.get("bbox_xz"), delta[0], delta[2], instance_id)
-        placement["placement_status"] = "edited_unvalidated"
-        for building in building_rows:
-            if isinstance(building, dict) and str(building.get("instance_id", "")) == instance_id:
-                if "position_xyz" in building:
-                    building["position_xyz"] = list(new)
-                if "bbox_xz" in building:
-                    building["bbox_xz"] = _translated_bbox(building.get("bbox_xz"), delta[0], delta[2], instance_id)
-        applied.append({
-            "command_id": str(command["command_id"]),
-            "op": "move_instance",
-            "instance_id": instance_id,
-            "before_position_xyz": old,
-            "position_xyz": new,
-        })
-        inverse.append({"instance_id": instance_id, "position_xyz": old})
+        _require_editable(placement, instance_id)
+        if op == "move_instance":
+            old = _position(placement.get("position_xyz"), f"placement '{instance_id}'")
+            new = list(command["position_xyz"])
+            delta = [new[0] - old[0], new[1] - old[1], new[2] - old[2]]
+            placement["position_xyz"] = new
+            placement["bbox_xz"] = _translated_bbox(placement.get("bbox_xz"), delta[0], delta[2], instance_id)
+            _sync_building_rows(building_rows, instance_id, position=new, delta=delta)
+            before = {"position_xyz": old}
+            undo = {"op": op, "instance_id": instance_id, "position_xyz": old}
+        elif op == "rotate_instance":
+            old_yaw = float(placement.get("yaw_deg", 0.0) or 0.0)
+            placement["yaw_deg"] = float(command["yaw_deg"])
+            before = {"yaw_deg": old_yaw}
+            undo = {"op": op, "instance_id": instance_id, "yaw_deg": old_yaw}
+        elif op == "scale_instance":
+            old_scale = float(placement.get("scale", 1.0) or 1.0)
+            placement["scale"] = float(command["scale"])
+            before = {"scale": old_scale}
+            undo = {"op": op, "instance_id": instance_id, "scale": old_scale}
+        elif op == "delete_instance":
+            snapshot = copy.deepcopy(placement)
+            placements.remove(placement)
+            del by_id[instance_id]
+            before = {"placement": snapshot}
+            undo = _placement_to_add(snapshot)
+        elif op == "duplicate_instance":
+            new_id = str(command["new_instance_id"])
+            if new_id in by_id:
+                raise SceneLayoutEditError(f"Duplicate placement instance_id: {new_id}")
+            clone = copy.deepcopy(placement)
+            clone["instance_id"] = new_id
+            if "position_xyz" in command:
+                old = _position(placement.get("position_xyz"), f"placement '{instance_id}'")
+                new = list(command["position_xyz"])
+                clone["position_xyz"] = new
+                clone["bbox_xz"] = _translated_bbox(clone.get("bbox_xz"), new[0] - old[0], new[2] - old[2], new_id)
+            placements.append(clone)
+            by_id[new_id] = clone
+            before = {"source_instance_id": instance_id}
+            undo = {"op": "delete_instance", "instance_id": new_id}
+        elif op == "replace_asset":
+            old_asset, old_category = str(placement.get("asset_id", "")), str(placement.get("category", ""))
+            placement["asset_id"] = str(command["asset_id"])
+            placement["category"] = str(command["category"])
+            before = {"asset_id": old_asset, "category": old_category}
+            undo = {"op": op, "instance_id": instance_id, "asset_id": old_asset, "category": old_category}
+        elif op == "set_building_style":
+            old_style = str(placement.get("style_id") or placement.get("theme_id") or "")
+            placement["style_id"] = str(command["style_id"])
+            placement["theme_id"] = str(command["style_id"])
+            for building in building_rows:
+                if isinstance(building, dict) and str(building.get("instance_id")) == instance_id:
+                    building["style_id"] = str(command["style_id"])
+                    building["theme_id"] = str(command["style_id"])
+            before = {"style_id": old_style}
+            undo = {"op": op, "instance_id": instance_id, "style_id": old_style or "default"}
+        else:
+            raise SceneLayoutEditError(f"Unsupported normalized command: {op}")
+        if op not in {"delete_instance", "duplicate_instance"}:
+            placement["placement_status"] = "edited_unvalidated"
+        applied.append({"command_id": str(command["command_id"]), "op": op, "instance_id": instance_id, "before": before})
+        inverse.append({"command_id": str(command["command_id"]), "command": undo})
     return payload, applied, inverse
+
+
+def _finite_number(value: Any, label: str) -> float:
+    try:
+        result = float(value)
+    except (TypeError, ValueError) as exc:
+        raise SceneLayoutEditError(f"{label} must be numeric.") from exc
+    if not math.isfinite(result) or abs(result) > 1_000_000:
+        raise SceneLayoutEditError(f"{label} must be finite and within scene limits.")
+    return result
+
+
+def _finite_vector(value: Any, length: int, label: str) -> list[float]:
+    if not isinstance(value, (list, tuple)) or len(value) != length:
+        raise SceneLayoutEditError(f"{label} must contain {length} numbers.")
+    return [_finite_number(item, label) for item in value]
+
+
+def _require_editable(placement: Mapping[str, Any], instance_id: str) -> None:
+    if bool(placement.get("editable") is False) or str(placement.get("selection_source", "")) == "osm_white_massing":
+        raise SceneLayoutEditError(f"Placement '{instance_id}' is immutable context massing.")
+
+
+def _new_placement(instance_id: str, asset_id: str, category: str, position: Sequence[float], yaw_deg: float, scale: float) -> Dict[str, Any]:
+    x, y, z = [float(item) for item in position]
+    half = max(0.25, 0.5 * float(scale))
+    return {"instance_id": instance_id, "asset_id": asset_id, "category": category, "position_xyz": [x, y, z], "yaw_deg": yaw_deg, "scale": scale, "bbox_xz": [x - half, x + half, z - half, z + half], "selection_source": "manual_scene_edit", "placement_group": "street_furniture", "placement_status": "edited_unvalidated", "editable": True}
+
+
+def _placement_to_add(placement: Mapping[str, Any]) -> Dict[str, Any]:
+    return {"op": "add_instance", "instance_id": str(placement.get("instance_id")), "asset_id": str(placement.get("asset_id") or "restored_asset"), "category": str(placement.get("category") or "street_furniture"), "position_xyz": list(placement.get("position_xyz") or [0, 0, 0]), "yaw_deg": float(placement.get("yaw_deg", 0) or 0), "scale": float(placement.get("scale", 1) or 1)}
+
+
+def _sync_building_rows(building_rows: Sequence[Any], instance_id: str, *, position: Sequence[float], delta: Sequence[float]) -> None:
+    for building in building_rows:
+        if isinstance(building, dict) and str(building.get("instance_id", "")) == instance_id:
+            if "position_xyz" in building:
+                building["position_xyz"] = list(position)
+            if "bbox_xz" in building:
+                building["bbox_xz"] = _translated_bbox(building.get("bbox_xz"), float(delta[0]), float(delta[2]), instance_id)
 
 
 def _rewrite_glb_transforms(
     *,
     source_layout_path: Path,
     source_payload: Mapping[str, Any],
+    candidate_payload: Mapping[str, Any],
     commands: Sequence[Mapping[str, Any]],
     destination: Path,
 ) -> None:
@@ -371,12 +508,11 @@ def _rewrite_glb_transforms(
     if not source_glb.is_file():
         raise SceneRebuildFailed("The source layout does not reference an existing GLB.")
     scene = trimesh.load(source_glb, force="scene", process=False)
-    placements = {str(item.get("instance_id")): item for item in source_payload.get("placements", []) if isinstance(item, Mapping)}
+    placements = {str(item.get("instance_id")): dict(item) for item in source_payload.get("placements", []) if isinstance(item, Mapping)}
     for command in commands:
         instance_id = str(command["instance_id"])
-        old = _position(placements[instance_id].get("position_xyz"), f"placement '{instance_id}'")
-        new = [float(item) for item in command["position_xyz"]]
-        delta = np.array([new[0] - old[0], new[1] - old[1], new[2] - old[2]], dtype=float)
+        placement = placements[instance_id]
+        op = str(command["op"])
         matched = False
         for node_name in list(scene.graph.nodes):
             node_text = str(node_name)
@@ -384,11 +520,28 @@ def _rewrite_glb_transforms(
                 continue
             transform, geometry = scene.graph.get(node_name)
             updated = np.array(transform, dtype=float, copy=True)
-            updated[:3, 3] += delta
+            if op == "move_instance":
+                old = _position(placement.get("position_xyz"), f"placement '{instance_id}'")
+                new = [float(item) for item in command["position_xyz"]]
+                updated[:3, 3] += np.array([new[0] - old[0], new[1] - old[1], new[2] - old[2]], dtype=float)
+            elif op == "rotate_instance":
+                old_yaw = float(placement.get("yaw_deg", 0) or 0)
+                delta_rad = math.radians(float(command["yaw_deg"]) - old_yaw)
+                rotation = np.array([[math.cos(delta_rad), 0, math.sin(delta_rad)], [0, 1, 0], [-math.sin(delta_rad), 0, math.cos(delta_rad)]], dtype=float)
+                updated[:3, :3] = updated[:3, :3] @ rotation
+            elif op == "scale_instance":
+                old_scale = float(placement.get("scale", 1) or 1)
+                updated[:3, :3] *= float(command["scale"]) / old_scale
             scene.graph.update(frame_to=node_name, matrix=updated, geometry=geometry)
             matched = True
         if not matched:
             raise SceneRebuildFailed(f"GLB contains no node for placement '{instance_id}'.")
+        if op == "move_instance":
+            placement["position_xyz"] = list(command["position_xyz"])
+        elif op == "rotate_instance":
+            placement["yaw_deg"] = float(command["yaw_deg"])
+        elif op == "scale_instance":
+            placement["scale"] = float(command["scale"])
     destination.parent.mkdir(parents=True, exist_ok=True)
     exported = scene.export(file_type="glb")
     if not isinstance(exported, (bytes, bytearray)):
@@ -397,7 +550,7 @@ def _rewrite_glb_transforms(
         bytes(exported),
         source_glb.read_bytes(),
         commands=commands,
-        placements=placements,
+        candidate_payload=candidate_payload,
     )
     destination.write_bytes(exported_bytes)
 
@@ -407,7 +560,7 @@ def _restore_glb_instance_metadata(
     source: bytes,
     *,
     commands: Sequence[Mapping[str, Any]],
-    placements: Mapping[str, Mapping[str, Any]],
+    candidate_payload: Mapping[str, Any],
 ) -> bytes:
     exported_doc, exported_tail, version = _decode_glb_json(exported)
     source_doc, _, _ = _decode_glb_json(source)
@@ -419,11 +572,11 @@ def _restore_glb_instance_metadata(
     exported_nodes = exported_doc.get("nodes")
     if not isinstance(exported_nodes, list):
         raise SceneRebuildFailed("Exported GLB has no node table.")
-    for command in commands:
-        instance_id = str(command["instance_id"])
-        old = _position(placements[instance_id].get("position_xyz"), f"placement '{instance_id}'")
-        new = [float(item) for item in command["position_xyz"]]
-        dx, dz = new[0] - old[0], new[2] - old[2]
+    final_placements = {str(item.get("instance_id")): item for item in candidate_payload.get("placements", []) if isinstance(item, Mapping)}
+    for instance_id in {str(command["instance_id"]) for command in commands}:
+        placement = final_placements.get(instance_id)
+        if placement is None:
+            raise SceneRebuildFailed(f"Edited placement disappeared before GLB metadata update: {instance_id}")
         patched = 0
         for node in exported_nodes:
             if not isinstance(node, dict):
@@ -436,25 +589,22 @@ def _restore_glb_instance_metadata(
             if isinstance(source_extras, Mapping):
                 extras = copy.deepcopy(dict(source_extras))
             else:
-                placement = placements[instance_id]
                 extras = {
                     "schema": "roadgen3d_instance_metadata_v1",
                     "instance_id": instance_id,
                     "category": str(placement.get("category", "")),
                     "asset_id": str(placement.get("asset_id", "")),
-                    "position_xyz": list(old),
+                    "position_xyz": list(placement.get("position_xyz") or [0, 0, 0]),
                     "bbox_xz": list(placement.get("bbox_xz") or []),
                 }
-            extras["position_xyz"] = list(new)
-            for key in ("bbox_xz", "source_bbox"):
-                value = extras.get(key)
-                if isinstance(value, (list, tuple)) and len(value) == 4:
-                    extras[key] = [
-                        float(value[0]) + dx,
-                        float(value[1]) + dx,
-                        float(value[2]) + dz,
-                        float(value[3]) + dz,
-                    ]
+            extras.update({
+                "position_xyz": list(placement.get("position_xyz") or [0, 0, 0]),
+                "bbox_xz": list(placement.get("bbox_xz") or []),
+                "yaw_deg": float(placement.get("yaw_deg", 0) or 0),
+                "scale": float(placement.get("scale", 1) or 1),
+                "asset_id": str(placement.get("asset_id", "")),
+                "category": str(placement.get("category", "")),
+            })
             node["extras"] = extras
             patched += 1
         if patched == 0:
@@ -472,6 +622,25 @@ def _restore_glb_instance_metadata(
         + padded_json
         + exported_tail
     )
+
+
+def _rebuild_glb_for_structural_edits(layout_path: Path, destination: Path) -> None:
+    from .street_layout import rebuild_glb_from_layout
+
+    manifest_path = ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl"
+    if not manifest_path.is_file():
+        raise SceneRebuildFailed("Structural scene edits require the street-furniture manifest.")
+    try:
+        result = rebuild_glb_from_layout(layout_path=layout_path, manifest_path=manifest_path, out_dir=layout_path.parent / "rebuild")
+        rebuilt = Path(str(result.get("scene_glb", ""))).resolve()
+        if not rebuilt.is_file():
+            raise RuntimeError("rebuild_glb_from_layout returned no scene_glb")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(rebuilt, destination)
+    except SceneLayoutEditError:
+        raise
+    except Exception as exc:
+        raise SceneRebuildFailed(f"Failed to rebuild structural scene edits: {exc}") from exc
 
 
 def _decode_glb_json(data: bytes) -> tuple[Dict[str, Any], bytes, int]:

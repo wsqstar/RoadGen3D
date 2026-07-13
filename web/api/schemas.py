@@ -247,7 +247,7 @@ class SceneMoveInstanceCommandModel(BaseModel):
 class SceneLayoutEditRequestModel(BaseModel):
     layout_path: str = Field(min_length=1)
     base: SceneEditBaseModel
-    commands: List[SceneMoveInstanceCommandModel] = Field(min_length=1, max_length=100)
+    commands: List[Dict[str, Any]] = Field(min_length=1, max_length=100)
 
 
 class RebuildLayoutGlbRequestModel(BaseModel):

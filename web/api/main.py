@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -24,6 +25,7 @@ from roadgen3d.services.scene_context_service import build_osm_semantic_preview 
 from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
 from roadgen3d.llm.design_workflow import DesignAssistantService  # noqa: E402
 from roadgen3d.street_layout import rebuild_glb_from_layout  # noqa: E402
+from roadgen3d.teaching import TeachingPlatformService  # noqa: E402
 from web.api.routers import catalog as catalog_routes  # noqa: E402
 from web.api.routers import diff_capture as diff_capture_routes  # noqa: E402
 from web.api.routers.assets import router as assets_router  # noqa: E402
@@ -35,22 +37,33 @@ from web.api.routers.scene_jobs import router as scene_jobs_router  # noqa: E402
 from web.api.routers.scene_layout_edits import router as scene_layout_edits_router  # noqa: E402
 from web.api.routers.scene_sources import router as scene_sources_router  # noqa: E402
 from web.api.routers.scenario_designs import router as scenario_designs_router  # noqa: E402
+from web.api.routers.teaching import router as teaching_router  # noqa: E402
 
 
 def create_app(
     *,
     design_service: DesignAssistantService | Any | None = None,
     benchmark_store: BranchBenchmarkStore | None = None,
+    teaching_service: TeachingPlatformService | None = None,
 ) -> FastAPI:
     app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
+    allowed_origins = [
+        item.strip()
+        for item in os.getenv(
+            "ROADGEN_CORS_ORIGINS",
+            "http://127.0.0.1:4173,http://localhost:4173",
+        ).split(",")
+        if item.strip()
+    ]
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=allowed_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
     app.state.design_service = design_service or DesignAssistantService()
+    app.state.teaching_service = teaching_service or TeachingPlatformService()
     app.state.benchmark_store = benchmark_store or BranchBenchmarkStore()
     app.state.branch_run_service = BranchRunService(
         design_service=app.state.design_service,
@@ -85,6 +98,7 @@ def create_app(
         evaluation_router,
         assets_router,
         knowledge_router,
+        teaching_router,
     ):
         app.include_router(router)
 

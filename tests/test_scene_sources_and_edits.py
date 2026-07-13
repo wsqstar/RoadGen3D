@@ -24,7 +24,7 @@ import trimesh
 from roadgen3d.osm_ingest import OsmBuilding, OsmFeatures
 from roadgen3d.diff_engine import compute_placements_diff
 from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
-from roadgen3d.scene_layout_edits import SceneRevisionConflict, apply_scene_layout_edits
+from roadgen3d.scene_layout_edits import SceneRevisionConflict, _apply_commands, _normalize_commands, apply_scene_layout_edits
 from roadgen3d.scene_sources import normalize_scene_source
 from roadgen3d.street_layout import _placeholder_building_entry
 from roadgen3d.theme_buildings import collect_building_footprints
@@ -327,6 +327,64 @@ def test_scene_edit_publishes_new_layout_and_glb_without_mutating_source(tmp_pat
             revision_root=revision_root,
         )
     assert conflict.value.current["revision"] == 1
+
+
+def test_scene_edit_command_protocol_supports_full_student_edit_set() -> None:
+    payload = {
+        "placements": [
+            {"instance_id": "tree-1", "asset_id": "tree-a", "category": "tree", "position_xyz": [0, 0, 0], "bbox_xz": [-0.5, 0.5, -0.5, 0.5], "yaw_deg": 0, "scale": 1},
+            {"instance_id": "building-1", "asset_id": "building-a", "category": "building", "position_xyz": [5, 0, 5], "bbox_xz": [4, 6, 4, 6], "yaw_deg": 0, "scale": 1},
+        ],
+        "building_placements": [{"instance_id": "building-1", "style_id": "default"}],
+    }
+    commands = _normalize_commands([
+        {"command_id": "move", "op": "move_instance", "instance_id": "tree-1", "position_xyz": [1, 0, 2]},
+        {"command_id": "rotate", "op": "rotate_instance", "instance_id": "tree-1", "yaw_deg": 90},
+        {"command_id": "scale", "op": "scale_instance", "instance_id": "tree-1", "scale": 1.5},
+        {"command_id": "duplicate", "op": "duplicate_instance", "instance_id": "tree-1", "new_instance_id": "tree-2", "position_xyz": [3, 0, 2]},
+        {"command_id": "replace", "op": "replace_asset", "instance_id": "tree-2", "asset_id": "tree-b", "category": "tree"},
+        {"command_id": "style", "op": "set_building_style", "instance_id": "building-1", "style_id": "lingnan"},
+        {"command_id": "plant", "op": "auto_plant_trees", "asset_id": "tree-auto", "points_xyz": [[7, 0, 1], [9, 0, 1]]},
+        {"command_id": "delete", "op": "delete_instance", "instance_id": "tree-1"},
+    ])
+
+    updated, applied, inverse = _apply_commands(payload, commands)
+
+    by_id = {item["instance_id"]: item for item in updated["placements"]}
+    assert "tree-1" not in by_id
+    assert by_id["tree-2"]["asset_id"] == "tree-b"
+    assert by_id["tree-2"]["position_xyz"] == [3.0, 0.0, 2.0]
+    assert updated["building_placements"][0]["style_id"] == "lingnan"
+    assert len([key for key in by_id if key.startswith("auto-tree-plant")]) == 2
+    assert len(applied) == 9  # auto planting expands into two applied rows
+    assert inverse[-1]["command"]["op"] == "add_instance"
+
+
+def test_scene_edit_rotates_and_scales_glb_and_publishes_revision(tmp_path: Path) -> None:
+    editable_root = tmp_path / "artifacts"
+    layout_path, _ = _write_editable_scene(editable_root)
+    source_sha = hashlib.sha256(layout_path.read_bytes()).hexdigest()
+
+    result = apply_scene_layout_edits(
+        layout_path=layout_path,
+        base_revision=0,
+        base_sha256=source_sha,
+        commands=[
+            {"command_id": "rotate", "op": "rotate_instance", "instance_id": "inst_0001", "yaw_deg": 90},
+            {"command_id": "scale", "op": "scale_instance", "instance_id": "inst_0001", "scale": 2},
+        ],
+        editable_root=editable_root,
+        revision_root=editable_root / "scene_layout_edits",
+    )
+
+    published = json.loads(Path(result["revision"]["layout_path"]).read_text(encoding="utf-8"))
+    assert published["placements"][0]["yaw_deg"] == pytest.approx(90)
+    assert published["placements"][0]["scale"] == pytest.approx(2)
+    assert [item["op"] for item in result["undo"]["commands"]] == ["scale_instance", "rotate_instance"]
+    scene = trimesh.load(result["revision"]["scene_glb_path"], force="scene", process=False)
+    node = next(name for name in scene.graph.nodes if str(name).startswith("inst_0001"))
+    transform, _ = scene.graph.get(node)
+    assert np.linalg.norm(transform[:3, 0]) == pytest.approx(2.0)
 
 
 
