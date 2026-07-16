@@ -205,10 +205,10 @@ def test_shared_workflow_source_annotation_review_and_project_viewer_manifest(cl
 
 
 def test_public_osm_scene_source_uses_shared_full_normalizer(client: TestClient, monkeypatch):
-    from web.api.routers import scene_sources as scene_sources_router
+    from roadgen3d.services import osm_scene_source as osm_scene_source_service
 
-    monkeypatch.setattr(scene_sources_router, "fetch_osm_data", lambda *_args, **_kwargs: {"elements": [{"id": 1}]})
-    monkeypatch.setattr(scene_sources_router, "raw_osm_to_geojson", lambda _raw: {
+    monkeypatch.setattr(osm_scene_source_service, "fetch_osm_data", lambda *_args, **_kwargs: {"elements": [{"id": 1}]})
+    monkeypatch.setattr(osm_scene_source_service, "raw_osm_to_geojson", lambda _raw: {
         "type": "FeatureCollection",
         "features": [
             {
@@ -242,6 +242,80 @@ def test_public_osm_scene_source_uses_shared_full_normalizer(client: TestClient,
     assert payload["annotation"]["control_points"][0]["kind"] == "tree_candidate"
     assert payload["aligned_buildings"][0]["editable"] is False
     assert payload["osm"]["attribution"] == "© OpenStreetMap contributors"
+
+    _teacher_token, student_token, course = _bootstrap_course_and_student(client)
+    project_response = client.post("/api/v1/projects", headers=_auth(student_token), json={
+        "course_id": course["id"],
+        "name": "Shared OSM parity",
+        "city": "广州",
+        "design_goal": "walkable street",
+        "aoi_bbox": [113.541, 22.791, 113.548, 22.798],
+    })
+    assert project_response.status_code == 201, project_response.text
+    project = project_response.json()
+    import_response = client.post(
+        f"/api/v1/projects/{project['id']}/sources/osm",
+        headers=_auth(student_token),
+        json={},
+    )
+    assert import_response.status_code == 202, import_response.text
+    job = import_response.json()
+    for _ in range(50):
+        if job["status"] in {"succeeded", "failed", "cancelled"}:
+            break
+        time.sleep(0.02)
+        job = client.get(f"/api/v1/jobs/{job['id']}", headers=_auth(student_token)).json()
+    assert job["status"] == "succeeded", job
+    sources = client.get(f"/api/v1/projects/{project['id']}/sources", headers=_auth(student_token)).json()["items"]
+    assert len(sources) == 1
+    workflow_source = client.get(
+        f"/api/v1/projects/{project['id']}/sources/{sources[0]['id']}/workflow-source",
+        headers=_auth(student_token),
+    )
+    assert workflow_source.status_code == 200, workflow_source.text
+    course_payload = workflow_source.json()
+    assert [item["id"] for item in course_payload["annotation"]["centerlines"]] == [item["id"] for item in payload["annotation"]["centerlines"]]
+    assert [item["id"] for item in course_payload["annotation"]["control_points"]] == [item["id"] for item in payload["annotation"]["control_points"]]
+    assert course_payload["source_alignment"] == payload["source_alignment"]
+
+
+def test_shared_osm_scene_source_validates_bbox_and_forwards_cache_policy(tmp_path: Path, monkeypatch):
+    from roadgen3d.services import osm_scene_source as osm_scene_source_service
+
+    calls: list[dict] = []
+
+    def fake_fetch(bbox, cache_dir, *, force_refetch=False):
+        calls.append({"bbox": bbox, "cache_dir": Path(cache_dir), "force_refetch": force_refetch})
+        return {"elements": []}
+
+    monkeypatch.setattr(osm_scene_source_service, "fetch_osm_data", fake_fetch)
+    monkeypatch.setattr(osm_scene_source_service, "raw_osm_to_geojson", lambda _raw: {
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "id": "osm-road-force-refresh",
+            "properties": {"highway": "residential"},
+            "geometry": {"type": "LineString", "coordinates": [[113.542, 22.792], [113.547, 22.797]]},
+        }],
+    })
+    bundle = osm_scene_source_service.fetch_normalized_osm_scene_source(
+        aoi_bbox=[113.541, 22.791, 113.548, 22.798],
+        source_id="shared-force-refresh",
+        cache_dir=tmp_path / "osm-cache",
+        force_refetch=True,
+    )
+    assert calls == [{
+        "bbox": (113.541, 22.791, 113.548, 22.798),
+        "cache_dir": tmp_path / "osm-cache",
+        "force_refetch": True,
+    }]
+    assert bundle["normalized"]["annotation"]["plan_id"] == "shared-force-refresh"
+    with pytest.raises(ValueError, match="reversed"):
+        osm_scene_source_service.fetch_normalized_osm_scene_source(
+            aoi_bbox=[113.548, 22.798, 113.541, 22.791],
+            source_id="invalid-bbox",
+            cache_dir=tmp_path / "osm-cache",
+        )
 
 
 def test_geojson_building_footprint_persists_exact_region_and_osm_height():

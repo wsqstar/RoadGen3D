@@ -16,7 +16,7 @@ from typing import Any, Callable, Mapping, Sequence
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from roadgen3d.osm_ingest import fetch_osm_data
+from roadgen3d.services.osm_scene_source import fetch_normalized_osm_scene_source
 from roadgen3d.scene_sources import normalize_scene_source
 from roadgen3d.scene_layout_edits import apply_scene_layout_edits, scene_revision_for_layout
 from roadgen3d.web_viewer_dev import build_layout_manifest_payload
@@ -24,7 +24,7 @@ from roadgen3d.web_viewer_dev import build_layout_manifest_payload
 from .artifacts import ArtifactStore, create_artifact_store, safe_object_key
 from .auth import digest_secret, hash_password, issue_invite_code, issue_session_token, normalize_email, verify_password
 from .database import TeachingDatabase
-from .geojson_pipeline import normalize_teaching_geojson, raw_osm_to_geojson, round_trip_report
+from .geojson_pipeline import normalize_teaching_geojson, round_trip_report
 from .models import (
     Artifact,
     AuditLog,
@@ -266,7 +266,38 @@ class TeachingPlatformService:
             project, _ = self._require_project(db, actor_id, project_id, write=True)
             source_id = new_id()
             normalized = normalize_teaching_geojson(payload, source_id=source_id, bbox=project.aoi_bbox)
-            raw_artifact = self._store_artifact(db, actor_id, project.id, "source_geojson_raw", f"{source_id}-raw.geojson", json_bytes(payload), "application/geo+json")
+        return self._persist_normalized_source(
+            actor_id,
+            project_id,
+            source_id=source_id,
+            kind=kind,
+            raw_payload=payload,
+            raw_kind="source_geojson_raw",
+            raw_filename=f"{source_id}-raw.geojson",
+            raw_content_type="application/geo+json",
+            normalized=normalized,
+            provenance=provenance,
+        )
+
+    def _persist_normalized_source(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        source_id: str,
+        kind: str,
+        raw_payload: Mapping[str, Any],
+        raw_kind: str,
+        raw_filename: str,
+        raw_content_type: str,
+        normalized: Mapping[str, Any],
+        provenance: Mapping[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        """Persist an already-normalized source without running a second converter."""
+
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            raw_artifact = self._store_artifact(db, actor_id, project.id, raw_kind, raw_filename, json_bytes(raw_payload), raw_content_type)
             normalized_artifact = self._store_artifact(db, actor_id, project.id, "source_geojson_normalized", f"{source_id}.geojson", json_bytes(normalized["geojson"]), "application/geo+json")
             annotation_artifact = self._store_artifact(db, actor_id, project.id, "reference_annotation", f"{source_id}-annotation.json", json_bytes(normalized["annotation"]), "application/json")
             record = SceneSourceRecord(
@@ -465,27 +496,25 @@ class TeachingPlatformService:
             if not project.aoi_bbox:
                 raise ValueError("Select an AOI before importing OSM.")
             bbox = tuple(float(item) for item in project.aoi_bbox)
-        raw = fetch_osm_data(bbox, Path(os.getenv("ROADGEN_OSM_CACHE", "artifacts/osm_cache")), force_refetch=force_refetch)
-        geojson = raw_osm_to_geojson(raw)
-        imported = self.import_geojson(actor_id, project_id, geojson, kind="osm", provenance={
-            "provider": "OpenStreetMap/Overpass",
-            "attribution": "© OpenStreetMap contributors",
-            "bbox": list(bbox),
-            "fetched_at": _iso(now_utc()),
-            "raw_element_count": len(raw.get("elements", [])),
-        })
-        with self.database.session() as db:
-            project, _ = self._require_project(db, actor_id, project_id, write=True)
-            record = db.get(SceneSourceRecord, imported["id"])
-            if record is None:
-                raise NotFound("Imported OSM source was not persisted.")
-            raw_artifact = self._store_artifact(
-                db, actor_id, project.id, "source_osm_raw",
-                f"{record.id}-overpass.json", json_bytes(raw), "application/json",
-            )
-            record.raw_artifact_id = raw_artifact.id
-            db.flush()
-            return self._source(record)
+        source_id = new_id()
+        bundle = fetch_normalized_osm_scene_source(
+            aoi_bbox=bbox,
+            source_id=source_id,
+            cache_dir=Path(os.getenv("ROADGEN_OSM_CACHE", "artifacts/osm_cache")),
+            force_refetch=force_refetch,
+        )
+        return self._persist_normalized_source(
+            actor_id,
+            project_id,
+            source_id=source_id,
+            kind="osm",
+            raw_payload=bundle["raw_osm"],
+            raw_kind="source_osm_raw",
+            raw_filename=f"{source_id}-overpass.json",
+            raw_content_type="application/json",
+            normalized=bundle["normalized"],
+            provenance=bundle["provenance"],
+        )
 
     def generate_project_scene(
         self,

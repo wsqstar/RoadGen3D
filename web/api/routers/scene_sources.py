@@ -10,7 +10,11 @@ from fastapi import APIRouter, HTTPException
 from roadgen3d.json_safe import make_json_safe
 from roadgen3d.llm import LLMClient, LLMConfigurationError, LLMResponseError
 from roadgen3d.osm_ingest import fetch_osm_data, parse_osm_features
-from roadgen3d.scene_source_geojson import normalize_teaching_geojson, raw_osm_to_geojson
+from roadgen3d.services.osm_scene_source import (
+    fetch_normalized_osm_scene_source,
+    osm_scene_source_response,
+    validate_osm_aoi_bbox,
+)
 from roadgen3d.scene_sources import normalize_scene_source, validate_image_data_url
 from web.api.schemas import (
     OsmBuildingSourceRequestModel,
@@ -110,35 +114,15 @@ def fetch_osm_scene_source(request: OsmSceneSourceRequestModel) -> Dict[str, Any
     """Fetch and normalize one complete OSM AOI into ReferenceAnnotation."""
 
     try:
-        bbox = _validated_bbox(request.aoi_bbox)
-        raw = fetch_osm_data(
-            bbox,
-            ROOT / "artifacts" / "osm_cache",
-            force_refetch=bool(request.force_refetch),
-        )
-        normalized = normalize_teaching_geojson(
-            raw_osm_to_geojson(raw),
+        bundle = fetch_normalized_osm_scene_source(
+            aoi_bbox=request.aoi_bbox,
             source_id=request.source_id,
-            bbox=bbox,
+            cache_dir=ROOT / "artifacts" / "osm_cache",
+            force_refetch=bool(request.force_refetch),
         )
     except (RuntimeError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    payload = dict(normalized["graph_payload"])
-    payload["source"] = {
-        **dict(payload.get("source") or {}),
-        "kind": "geojson",
-        "producer": "osm",
-    }
-    payload["geojson"] = normalized["geojson"]
-    payload["warnings"] = normalized["warnings"]
-    payload["quality_report"] = normalized["quality_report"]
-    payload["role_counts"] = normalized["role_counts"]
-    payload["osm"] = {
-        "bbox_wgs84": list(bbox),
-        "raw_element_count": len(raw.get("elements", [])),
-        "attribution": "© OpenStreetMap contributors",
-    }
-    return make_json_safe(payload)
+    return make_json_safe(osm_scene_source_response(bundle))
 
 
 @router.post("/osm-buildings", deprecated=True)
@@ -197,9 +181,4 @@ def fetch_osm_building_source(request: OsmBuildingSourceRequestModel) -> Dict[st
 
 
 def _validated_bbox(value: Any) -> tuple[float, float, float, float]:
-    if not isinstance(value, (list, tuple)) or len(value) != 4:
-        raise ValueError("aoi_bbox must be [west,south,east,north].")
-    west, south, east, north = (float(item) for item in value)
-    if not (-180.0 <= west < east <= 180.0 and -90.0 <= south < north <= 90.0):
-        raise ValueError("aoi_bbox is reversed or outside WGS84 bounds.")
-    return west, south, east, north
+    return validate_osm_aoi_bbox(value)
