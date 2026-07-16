@@ -245,6 +245,20 @@ class _FakeService:
             return None
         return self.list_scene_jobs(limit=1)[0]
 
+    def cancel_scene_job(self, job_id: str):
+        if job_id != "job-demo":
+            return None
+        return SceneJobStatusResponse(
+            job_id="job-demo",
+            status="cancelled",
+            created_at="2026-03-23T00:00:00+00:00",
+            started_at="2026-03-23T00:00:01+00:00",
+            finished_at="2026-03-23T00:00:01+00:00",
+            stage="cancelled",
+            progress=55,
+            operations=(),
+        )
+
     def list_recent_scenes(self, *, limit=20):
         return [
             SceneRecord(
@@ -467,6 +481,11 @@ def test_design_api_endpoints_return_expected_shapes():
     assert job_status_response.json()["trace"]["schema_version"] == "generation_trace_v1"
     assert job_status_response.json()["trace"]["evaluation"]["status"] == "succeeded"
     assert job_status_response.json()["trace"]["provenance"]["rag_evidence"][0]["knowledge_source"] == "scenario_parameters"
+
+    job_cancel_response = client.post("/api/scene/jobs/job-demo/cancel")
+    assert job_cancel_response.status_code == 200
+    assert job_cancel_response.json()["status"] == "cancelled"
+    assert job_cancel_response.json()["stage"] == "cancelled"
 
     recent_response = client.get("/api/scenes/recent")
     assert recent_response.status_code == 200

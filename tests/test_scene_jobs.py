@@ -123,6 +123,44 @@ def test_scene_job_service_exposes_running_progress():
     assert completed.progress == 100
 
 
+def test_scene_job_cancellation_blocks_late_success():
+    progress_recorded = Event()
+    release_generator = Event()
+
+    def _generator(draft, **kwargs):
+        kwargs["progress_callback"]({
+            "stage": "asset_composition",
+            "progress": 64,
+            "message": "Placing street assets.",
+        })
+        progress_recorded.set()
+        release_generator.wait(timeout=2.0)
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={"instance_count": 7},
+            scene_layout_path="/tmp/late-layout.json",
+            scene_glb_path="/tmp/late-scene.glb",
+            scene_ply_path="/tmp/late-scene.ply",
+            viewer_url="http://127.0.0.1:4173/?layout=late",
+        )
+
+    service = SceneJobService(generator=_generator)
+    created = service.submit_job(draft=_draft())
+    assert progress_recorded.wait(timeout=2.0)
+
+    cancelled = service.cancel_job(created.job_id)
+    assert cancelled is not None
+    assert cancelled.status == "cancelled"
+    assert cancelled.stage == "cancelled"
+
+    release_generator.set()
+    terminal = service.wait_for_job(created.job_id, timeout_s=2.0)
+    assert terminal is not None
+    assert terminal.status == "cancelled"
+    assert terminal.result is None
+    assert service.list_recent_scenes(limit=10) == []
+
+
 def test_scene_job_service_preserves_graph_template_scene_context():
     captured = {}
 

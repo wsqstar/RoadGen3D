@@ -373,6 +373,9 @@ class DesignAssistantService:
     def get_scene_job(self, job_id: str) -> SceneJobStatusResponse | None:
         return self.scene_job_service.get_job(job_id)
 
+    def cancel_scene_job(self, job_id: str) -> SceneJobStatusResponse | None:
+        return self.scene_job_service.cancel_job(job_id)
+
     def list_recent_scenes(self, *, limit: int = 20) -> List[SceneRecord]:
         return self.scene_job_service.list_recent_scenes(limit=limit)
 

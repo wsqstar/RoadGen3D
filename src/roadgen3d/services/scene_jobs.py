@@ -104,6 +104,24 @@ class SceneJobService:
             ordered = sorted(self._jobs.values(), key=lambda item: item.created_at, reverse=True)
             return [self._to_status_response(item) for item in ordered[: max(1, int(limit))]]
 
+    def cancel_job(self, job_id: str) -> SceneJobStatusResponse | None:
+        with self._condition:
+            state = self._jobs.get(str(job_id))
+            if state is None:
+                return None
+            if state.status in {"succeeded", "failed", "cancelled"}:
+                return self._to_status_response(state)
+            state.status = "cancelled"
+            state.finished_at = _utc_now()
+            self._apply_progress_locked(
+                state,
+                stage="cancelled",
+                progress=state.progress,
+                message="Scene generation cancelled.",
+            )
+            self._condition.notify_all()
+            return self._to_status_response(state)
+
     def list_recent_scenes(self, *, limit: int = 20) -> List[SceneRecord]:
         with self._lock:
             ordered = sorted(
@@ -119,7 +137,7 @@ class SceneJobService:
                 return None
             while True:
                 state = self._jobs[job_id]
-                if state.status in {"succeeded", "failed"}:
+                if state.status in {"succeeded", "failed", "cancelled"}:
                     return self._to_status_response(state)
                 if timeout_s is None:
                     self._condition.wait(timeout=0.5)
@@ -165,6 +183,9 @@ class SceneJobService:
                 if state is None:
                     self._condition.notify_all()
                     continue
+                if state.status == "cancelled":
+                    self._condition.notify_all()
+                    continue
                 state.status = "running"
                 state.started_at = _utc_now()
                 self._apply_progress_locked(
@@ -185,7 +206,7 @@ class SceneJobService:
             except Exception as exc:
                 with self._condition:
                     latest = self._jobs.get(job_id)
-                    if latest is not None:
+                    if latest is not None and latest.status != "cancelled":
                         latest.status = "failed"
                         latest.error = str(exc)
                         latest.finished_at = _utc_now()
@@ -200,7 +221,7 @@ class SceneJobService:
                 continue
             with self._condition:
                 latest = self._jobs.get(job_id)
-                if latest is not None:
+                if latest is not None and latest.status != "cancelled":
                     latest.result = result
                     self._apply_progress_locked(
                         latest,
@@ -213,7 +234,7 @@ class SceneJobService:
             evaluation = self._evaluate_result(result)
             with self._condition:
                 latest = self._jobs.get(job_id)
-                if latest is not None:
+                if latest is not None and latest.status != "cancelled":
                     latest.status = "succeeded"
                     latest.result = result
                     latest.evaluation = evaluation
@@ -237,7 +258,7 @@ class SceneJobService:
         forwarded_event: Dict[str, Any] | None = None
         with self._condition:
             state = self._jobs.get(job_id)
-            if state is None:
+            if state is None or state.status == "cancelled":
                 return
             stage = str(payload.get("stage") or payload.get("status") or state.stage or "running")
             message = str(

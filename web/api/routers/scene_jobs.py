@@ -60,6 +60,15 @@ def get_scene_job(job_id: str, request: Request) -> Dict[str, Any]:
     return make_json_safe(result.to_dict())
 
 
+@router.post("/api/scene/jobs/{job_id}/cancel")
+def cancel_scene_job(job_id: str, request: Request) -> Dict[str, Any]:
+    service = request.app.state.design_service
+    result = service.cancel_scene_job(job_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail=f"Scene job not found: {job_id}")
+    return make_json_safe(result.to_dict())
+
+
 @router.get("/api/scenes/recent")
 def list_recent_scenes(request: Request, limit: int = Query(default=12, ge=1, le=100)) -> Dict[str, Any]:
     service = request.app.state.design_service
