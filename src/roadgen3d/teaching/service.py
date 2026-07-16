@@ -16,7 +16,12 @@ from typing import Any, Callable, Mapping, Sequence
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from roadgen3d.services.osm_scene_source import fetch_normalized_osm_scene_source
+from roadgen3d.services.osm_scene_source import fetch_normalized_osm_scene_source, osm_scene_source_response
+from roadgen3d.services.osm_road_study import (
+    build_osm_road_preview,
+    preview_bundle_from_raw,
+    select_osm_road_study_area,
+)
 from roadgen3d.scene_sources import normalize_scene_source
 from roadgen3d.scene_layout_edits import apply_scene_layout_edits, scene_revision_for_layout
 from roadgen3d.web_viewer_dev import build_layout_manifest_payload
@@ -490,7 +495,14 @@ class TeachingPlatformService:
             payload["source_alignment"] = dict(provenance["source_alignment"])
         return payload
 
-    def import_osm(self, actor_id: str, project_id: str, *, force_refetch: bool = False) -> dict[str, Any]:
+    def import_osm(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        force_refetch: bool = False,
+        progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
+    ) -> dict[str, Any]:
         with self.database.session() as db:
             project, _ = self._require_project(db, actor_id, project_id, write=True)
             if not project.aoi_bbox:
@@ -502,6 +514,7 @@ class TeachingPlatformService:
             source_id=source_id,
             cache_dir=Path(os.getenv("ROADGEN_OSM_CACHE", "artifacts/osm_cache")),
             force_refetch=force_refetch,
+            progress_callback=progress_callback,
         )
         return self._persist_normalized_source(
             actor_id,
@@ -515,6 +528,149 @@ class TeachingPlatformService:
             normalized=bundle["normalized"],
             provenance=bundle["provenance"],
         )
+
+    def create_osm_preview(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        force_refetch: bool = False,
+        progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
+    ) -> dict[str, Any]:
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            if not project.aoi_bbox:
+                raise ValueError("Select an OSM retrieval area before importing OSM.")
+            bbox = tuple(float(item) for item in project.aoi_bbox)
+        preview_id = new_id()
+        source_id = new_id()
+        bundle = build_osm_road_preview(
+            aoi_bbox=bbox,
+            source_id=source_id,
+            cache_dir=Path(os.getenv("ROADGEN_OSM_CACHE", "artifacts/osm_cache")),
+            force_refetch=force_refetch,
+            preview_id=preview_id,
+            progress_callback=progress_callback,
+        )
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            artifact = self._store_artifact(
+                db,
+                actor_id,
+                project.id,
+                "osm_preview_raw",
+                f"{preview_id}-overpass.json",
+                json_bytes(bundle.raw_osm),
+                "application/json",
+            )
+            self._audit(db, actor_id, project.id, "source.osm_preview", {
+                "preview_id": preview_id,
+                "raw_artifact_id": artifact.id,
+                "retrieval_bbox": list(bbox),
+            })
+            return {**dict(bundle.preview), "raw_artifact_id": artifact.id}
+
+    def select_osm_preview(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        raw_artifact_id: str,
+        preview_id: str,
+        seed_logical_road_id: str,
+        hop_count: int,
+        context_buffer_m: float,
+    ) -> dict[str, Any]:
+        raw_osm, bundle, selected = self._resolve_osm_preview_selection(
+            actor_id,
+            project_id,
+            raw_artifact_id=raw_artifact_id,
+            preview_id=preview_id,
+            seed_logical_road_id=seed_logical_road_id,
+            hop_count=hop_count,
+            context_buffer_m=context_buffer_m,
+        )
+        source_id = str(selected["normalized"]["annotation"]["plan_id"])
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            bbox = tuple(float(item) for item in (project.aoi_bbox or ()))
+        result = self._persist_normalized_source(
+            actor_id,
+            project_id,
+            source_id=source_id,
+            kind="osm_road_study",
+            raw_payload=raw_osm,
+            raw_kind="source_osm_raw",
+            raw_filename=f"{source_id}-overpass.json",
+            raw_content_type="application/json",
+            normalized=selected["normalized"],
+            provenance={
+                "provider": "OpenStreetMap/Overpass",
+                "attribution": "© OpenStreetMap contributors",
+                "road_study": selected["study"],
+                "retrieval_bbox": list(bbox),
+            },
+        )
+        return {**result, "osm_study": selected["study"]}
+
+    def preview_osm_selection(
+        self,
+        actor_id: str,
+        project_id: str,
+        **options: Any,
+    ) -> dict[str, Any]:
+        raw_osm, bundle, selected = self._resolve_osm_preview_selection(actor_id, project_id, **options)
+        payload = osm_scene_source_response({
+            "bbox": tuple(selected["study"]["annotation_bbox"]),
+            "raw_osm": raw_osm,
+            "geojson": selected["filtered_geojson"],
+            "normalized": selected["normalized"],
+            "provenance": {
+                "provider": "OpenStreetMap/Overpass",
+                "attribution": "© OpenStreetMap contributors",
+                "bbox": list(bundle.bbox),
+                "raw_element_count": len(raw_osm.get("elements", [])),
+            },
+        })
+        payload["osm_study"] = selected["study"]
+        payload["warnings"] = list(selected["study"]["warnings"])
+        return payload
+
+    def _resolve_osm_preview_selection(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        raw_artifact_id: str,
+        preview_id: str,
+        seed_logical_road_id: str,
+        hop_count: int,
+        context_buffer_m: float,
+    ) -> tuple[dict[str, Any], Any, dict[str, Any]]:
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            artifact = db.get(Artifact, raw_artifact_id)
+            if artifact is None or artifact.project_id != project.id or artifact.kind != "osm_preview_raw":
+                raise NotFound("OSM preview artifact not found in this project.")
+            object_key = artifact.object_key
+            bbox = tuple(float(item) for item in (project.aoi_bbox or ()))
+        with self.artifacts.open(object_key) as handle:
+            raw_osm = json.loads(handle.read().decode("utf-8"))
+        source_id = new_id()
+        bundle = preview_bundle_from_raw(
+            raw_osm=raw_osm,
+            aoi_bbox=bbox,
+            source_id=source_id,
+            preview_id=preview_id,
+        )
+        selected = select_osm_road_study_area(
+            bundle,
+            seed_logical_road_id=seed_logical_road_id,
+            hop_count=hop_count,
+            context_buffer_m=context_buffer_m,
+            source_id=source_id,
+        )
+        return raw_osm, bundle, selected
 
     def generate_project_scene(
         self,
@@ -1094,7 +1250,19 @@ class TeachingPlatformService:
             payload = dict(job.payload)
         try:
             if kind == "osm_import":
-                result = self.import_osm(owner_id, str(project_id), force_refetch=bool(payload.get("force_refetch")))
+                result = self.import_osm(
+                    owner_id,
+                    str(project_id),
+                    force_refetch=bool(payload.get("force_refetch")),
+                    progress_callback=lambda event: self.update_job_progress(job_id, event),
+                )
+            elif kind == "osm_preview":
+                result = self.create_osm_preview(
+                    owner_id,
+                    str(project_id),
+                    force_refetch=bool(payload.get("force_refetch")),
+                    progress_callback=lambda event: self.update_job_progress(job_id, event),
+                )
             elif kind == "evaluation":
                 if evaluator is None:
                     raise RuntimeError("No evaluator is configured for this worker.")

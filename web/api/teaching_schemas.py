@@ -52,6 +52,14 @@ class OsmImportRequest(BaseModel):
     force_refetch: bool = False
 
 
+class OsmRoadStudySelectionRequest(BaseModel):
+    raw_artifact_id: str = Field(min_length=1, max_length=64)
+    preview_id: str = Field(min_length=1, max_length=64)
+    seed_logical_road_id: str = Field(min_length=1, max_length=160)
+    hop_count: Literal[1, 2] = 1
+    context_buffer_m: float = Field(default=100.0, ge=25.0, le=300.0)
+
+
 class AnnotationReviewRequest(BaseModel):
     annotation: Dict[str, Any] | None = None
     geojson: Dict[str, Any] | None = None

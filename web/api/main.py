@@ -22,6 +22,7 @@ from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, Br
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
 from roadgen3d.services.design_matrix import DesignMatrixService  # noqa: E402
 from roadgen3d.services.scene_context_service import build_osm_semantic_preview  # noqa: E402
+from roadgen3d.services.osm_source_jobs import OsmSourceJobService  # noqa: E402
 from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
 from roadgen3d.llm.design_workflow import DesignAssistantService  # noqa: E402
 from roadgen3d.street_layout import rebuild_glb_from_layout  # noqa: E402
@@ -65,6 +66,9 @@ def create_app(
     )
     app.state.design_service = design_service or DesignAssistantService()
     app.state.teaching_service = teaching_service or TeachingPlatformService()
+    app.state.osm_source_job_service = OsmSourceJobService(
+        cache_dir=Path(os.getenv("ROADGEN_OSM_CACHE", ROOT / "artifacts" / "osm_cache")),
+    )
     app.state.teaching_job_executor = LocalTeachingJobExecutor(
         app.state.teaching_service,
         app.state.design_service,
@@ -114,6 +118,7 @@ def create_app(
 
     def shutdown_local_jobs() -> None:
         app.state.teaching_job_executor.shutdown()
+        app.state.osm_source_job_service.shutdown()
 
     app.add_event_handler("startup", recover_local_jobs)
     app.add_event_handler("shutdown", shutdown_local_jobs)

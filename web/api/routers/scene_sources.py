@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Dict, Mapping
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 
 from roadgen3d.json_safe import make_json_safe
 from roadgen3d.llm import LLMClient, LLMConfigurationError, LLMResponseError
@@ -19,6 +19,7 @@ from roadgen3d.scene_sources import normalize_scene_source, validate_image_data_
 from web.api.schemas import (
     OsmBuildingSourceRequestModel,
     OsmSceneSourceRequestModel,
+    OsmRoadStudySelectionRequestModel,
     SceneSourceExtractRequestModel,
     SceneSourceNormalizeRequestModel,
 )
@@ -123,6 +124,60 @@ def fetch_osm_scene_source(request: OsmSceneSourceRequestModel) -> Dict[str, Any
     except (RuntimeError, TypeError, ValueError) as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     return make_json_safe(osm_scene_source_response(bundle))
+
+
+@router.post("/osm/jobs", status_code=202)
+def create_osm_source_job(request_body: OsmSceneSourceRequestModel, request: Request) -> Dict[str, Any]:
+    try:
+        validate_osm_aoi_bbox(request_body.aoi_bbox)
+        return make_json_safe(request.app.state.osm_source_job_service.create_job(request_body.model_dump()))
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.get("/osm/jobs/{job_id}")
+def get_osm_source_job(job_id: str, request: Request) -> Dict[str, Any]:
+    payload = request.app.state.osm_source_job_service.get_job(job_id)
+    if payload is None:
+        raise HTTPException(status_code=404, detail=f"OSM acquisition job not found: {job_id}")
+    return make_json_safe(payload)
+
+
+@router.post("/osm/jobs/{job_id}/cancel")
+def cancel_osm_source_job(job_id: str, request: Request) -> Dict[str, Any]:
+    payload = request.app.state.osm_source_job_service.cancel_job(job_id)
+    if payload is None:
+        raise HTTPException(status_code=404, detail=f"OSM acquisition job not found: {job_id}")
+    return make_json_safe(payload)
+
+
+@router.post("/osm/jobs/{job_id}/retry", status_code=202)
+def retry_osm_source_job(job_id: str, request: Request) -> Dict[str, Any]:
+    payload = request.app.state.osm_source_job_service.retry_job(job_id)
+    if payload is None:
+        raise HTTPException(status_code=404, detail=f"OSM acquisition job not found: {job_id}")
+    return make_json_safe(payload)
+
+
+@router.post("/osm/previews/{preview_id}/selection")
+def select_osm_road_study_area(
+    preview_id: str,
+    request_body: OsmRoadStudySelectionRequestModel,
+    request: Request,
+) -> Dict[str, Any]:
+    try:
+        payload = request.app.state.osm_source_job_service.select(
+            preview_id,
+            seed_logical_road_id=request_body.seed_logical_road_id,
+            hop_count=request_body.hop_count,
+            context_buffer_m=request_body.context_buffer_m,
+            source_id=request_body.source_id,
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except (RuntimeError, TypeError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return make_json_safe(payload)
 
 
 @router.post("/osm-buildings", deprecated=True)

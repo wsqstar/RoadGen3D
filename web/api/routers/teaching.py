@@ -22,6 +22,7 @@ from web.api.teaching_schemas import (
     GeoJsonImportRequest,
     LoginRequest,
     OsmImportRequest,
+    OsmRoadStudySelectionRequest,
     ProjectCreateRequest,
     RegisterRequest,
     RevisionCompareRequest,
@@ -178,6 +179,57 @@ def import_osm(project_id: str, body: OsmImportRequest, request: Request, actor:
         job = service.create_job(actor["id"], project_id, kind="osm_import", payload={"force_refetch": body.force_refetch})
         return _dispatch_job(request, job)
     return _call(run)
+
+
+@router.post("/projects/{project_id}/osm-previews", status_code=202)
+def create_osm_preview(project_id: str, body: OsmImportRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        service = _service(request)
+        job = service.create_job(actor["id"], project_id, kind="osm_preview", payload={"force_refetch": body.force_refetch})
+        return _dispatch_job(request, job)
+    return _call(run)
+
+
+@router.post("/projects/{project_id}/osm-previews/{preview_id}/selection", status_code=201)
+def select_osm_preview(
+    project_id: str,
+    preview_id: str,
+    body: OsmRoadStudySelectionRequest,
+    request: Request,
+    actor: dict[str, Any] = Depends(_actor),
+):
+    if body.preview_id != preview_id:
+        raise HTTPException(status_code=422, detail={"code": "validation_error", "message": "preview_id does not match the route."})
+    return _call(lambda: _service(request).select_osm_preview(
+        actor["id"],
+        project_id,
+        raw_artifact_id=body.raw_artifact_id,
+        preview_id=preview_id,
+        seed_logical_road_id=body.seed_logical_road_id,
+        hop_count=body.hop_count,
+        context_buffer_m=body.context_buffer_m,
+    ))
+
+
+@router.post("/projects/{project_id}/osm-previews/{preview_id}/selection-preview")
+def preview_osm_selection(
+    project_id: str,
+    preview_id: str,
+    body: OsmRoadStudySelectionRequest,
+    request: Request,
+    actor: dict[str, Any] = Depends(_actor),
+):
+    if body.preview_id != preview_id:
+        raise HTTPException(status_code=422, detail={"code": "validation_error", "message": "preview_id does not match the route."})
+    return _call(lambda: _service(request).preview_osm_selection(
+        actor["id"],
+        project_id,
+        raw_artifact_id=body.raw_artifact_id,
+        preview_id=preview_id,
+        seed_logical_road_id=body.seed_logical_road_id,
+        hop_count=body.hop_count,
+        context_buffer_m=body.context_buffer_m,
+    ))
 
 
 @router.get("/projects/{project_id}/sources")

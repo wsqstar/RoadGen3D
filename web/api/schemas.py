@@ -107,6 +107,13 @@ class OsmSceneSourceRequestModel(BaseModel):
     force_refetch: bool = False
 
 
+class OsmRoadStudySelectionRequestModel(BaseModel):
+    seed_logical_road_id: str = Field(..., min_length=1, max_length=160)
+    hop_count: Literal[1, 2] = 1
+    context_buffer_m: float = Field(default=100.0, ge=25.0, le=300.0)
+    source_id: Optional[str] = Field(default=None, min_length=1, max_length=96)
+
+
 class ReferenceAnnotationDeriveRegionsRequestModel(BaseModel):
     annotation: Dict[str, Any]
     options: Dict[str, Any] = Field(default_factory=dict)

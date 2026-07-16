@@ -8,7 +8,7 @@ import logging
 import math
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Mapping, Optional, Tuple
 
 from .poi_taxonomy import (
     CANONICAL_FIRE_POI,
@@ -19,6 +19,7 @@ from .poi_taxonomy import (
 )
 
 logger = logging.getLogger(__name__)
+OVERPASS_QUERY_VERSION = "roadgen3d-osm-context-v3"
 
 # Default road widths (metres) by highway type when OSM `width` tag is absent.
 _DEFAULT_WIDTH_M: Dict[str, float] = {
@@ -67,6 +68,7 @@ class OsmRoad:
     coords: List[Tuple[float, float]]  # [(lon, lat), ...]
     width_m: float  # estimated or from tag
     tags: Dict[str, str] = field(default_factory=dict)
+    node_ids: List[int] = field(default_factory=list)
 
 
 @dataclass
@@ -75,6 +77,15 @@ class OsmBuilding:
 
     osm_id: int
     coords: List[Tuple[float, float]]
+    tags: Dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
+class OsmContextPoint:
+    """One stable OSM point retained for annotation and corridor filtering."""
+
+    osm_id: int
+    coords: Tuple[float, float]
     tags: Dict[str, str] = field(default_factory=dict)
 
 
@@ -134,6 +145,7 @@ class OsmFeatures:
     buildings: List[OsmBuilding] = field(default_factory=list)
     land_use_polygons: List[OsmLandUsePolygon] = field(default_factory=list)
     semantic_blocks: List[OsmSemanticBlock] = field(default_factory=list)
+    context_points: List[OsmContextPoint] = field(default_factory=list)
     entrances: List[Tuple[float, float]] = field(default_factory=list)  # (lon, lat)
     bus_stops: List[Tuple[float, float]] = field(default_factory=list)
     fire_points: List[Tuple[float, float]] = field(default_factory=list)
@@ -174,8 +186,12 @@ def auto_detect_utm_epsg(lon: float, lat: float) -> int:
 # Overpass fetch + cache
 # ---------------------------------------------------------------------------
 
-def _bbox_hash(bbox: Tuple[float, float, float, float]) -> str:
-    key = f"{bbox[0]:.6f},{bbox[1]:.6f},{bbox[2]:.6f},{bbox[3]:.6f}"
+def _bbox_hash(
+    bbox: Tuple[float, float, float, float],
+    *,
+    query_version: str = OVERPASS_QUERY_VERSION,
+) -> str:
+    key = f"{query_version}|{bbox[0]:.6f},{bbox[1]:.6f},{bbox[2]:.6f},{bbox[3]:.6f}"
     return hashlib.md5(key.encode()).hexdigest()[:12]
 
 
@@ -195,6 +211,7 @@ def _build_overpass_query(bbox: Tuple[float, float, float, float]) -> str:
         "(\n"
         f'  way["highway"~"{_HIGHWAY_FILTER}"]({bb});\n'
         f'  way["building"]({bb});\n'
+        f'  node["natural"="tree"]({bb});\n'
         f"{poi_clauses}\n"
         f"{semantic_clauses}\n"
         ");\n"
@@ -208,6 +225,7 @@ def fetch_osm_data(
     bbox: Tuple[float, float, float, float],
     cache_dir: Path,
     force_refetch: bool = False,
+    progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
 ) -> Dict[str, Any]:
     """Fetch OSM data via Overpass API.  Returns the raw JSON dict.
 
@@ -218,11 +236,29 @@ def fetch_osm_data(
 
     cache_dir = Path(cache_dir)
     cache_dir.mkdir(parents=True, exist_ok=True)
-    cache_path = cache_dir / f"overpass_{_bbox_hash(bbox)}.json"
+    cache_path = cache_dir / f"overpass_{_bbox_hash(bbox, query_version=OVERPASS_QUERY_VERSION)}.json"
 
+    def emit(stage: str, progress: int, message: str, **detail: Any) -> None:
+        if progress_callback is not None:
+            progress_callback({
+                "stage": stage,
+                "progress": progress,
+                "message": message,
+                "detail": detail,
+            })
+
+    emit("cache_lookup", 5, "Checking the local OSM cache.", query_version=OVERPASS_QUERY_VERSION)
     if cache_path.exists() and not force_refetch:
         logger.info("OSM cache hit: %s", cache_path)
-        return json.loads(cache_path.read_text(encoding="utf-8"))
+        data = json.loads(cache_path.read_text(encoding="utf-8"))
+        emit(
+            "cache_lookup",
+            48,
+            "Loaded the OSM snapshot from cache.",
+            cache_hit=True,
+            element_count=len(data.get("elements", [])),
+        )
+        return data
 
     query = _build_overpass_query(bbox)
     logger.info("Fetching OSM data from Overpass for bbox=%s ...", bbox)
@@ -234,6 +270,15 @@ def fetch_osm_data(
     last_exc: Optional[Exception] = None
     for attempt in range(3):
         try:
+            emit(
+                "overpass_fetch",
+                10,
+                f"Requesting the complete OSM context (attempt {attempt + 1}/3).",
+                attempt=attempt + 1,
+                max_attempts=3,
+                cache_hit=False,
+                progress_mode="indeterminate",
+            )
             resp = requests.post(
                 url,
                 data={"data": query},
@@ -247,11 +292,30 @@ def fetch_osm_data(
             data = resp.json()
             cache_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
             logger.info("OSM data cached to %s (%d elements)", cache_path, len(data.get("elements", [])))
+            emit(
+                "overpass_fetch",
+                52,
+                "Received the OSM snapshot.",
+                attempt=attempt + 1,
+                cache_hit=False,
+                element_count=len(data.get("elements", [])),
+                progress_mode="determinate",
+            )
             return data
         except Exception as exc:
             last_exc = exc
             wait = 2 ** attempt
             logger.warning("Overpass request failed (attempt %d): %s – retrying in %ds", attempt + 1, exc, wait)
+            emit(
+                "overpass_fetch",
+                10,
+                f"Overpass attempt {attempt + 1} failed; retrying.",
+                attempt=attempt + 1,
+                max_attempts=3,
+                retry_in_seconds=wait,
+                error=str(exc),
+                progress_mode="indeterminate",
+            )
             time.sleep(wait)
     raise RuntimeError(f"Overpass API failed after 3 attempts: {last_exc}") from last_exc
 
@@ -377,6 +441,7 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
     buildings: List[OsmBuilding] = []
     land_use_polygons: List[OsmLandUsePolygon] = []
     semantic_points_by_type: Dict[str, List[Tuple[float, float]]] = {}
+    context_points: List[OsmContextPoint] = []
     poi_points_by_type: Dict[str, List[Tuple[float, float]]] = normalize_poi_points_by_type({})
     way_coords_by_id: Dict[int, List[Tuple[float, float]]] = {}
     for el in elements:
@@ -411,6 +476,7 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
                             coords=coords,
                             width_m=width_m,
                             tags=dict(tags),
+                            node_ids=[int(item) for item in el.get("nodes", [])],
                         )
                     )
 
@@ -459,10 +525,18 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
             if lon_lat is None:
                 continue
 
-            for poi_type in detect_poi_types_from_tags(tags):
+            poi_types = detect_poi_types_from_tags(tags)
+            semantic_types = _semantic_point_types_from_tags(tags)
+            for poi_type in poi_types:
                 poi_points_by_type.setdefault(poi_type, []).append(lon_lat)
-            for semantic_type in _semantic_point_types_from_tags(tags):
+            for semantic_type in semantic_types:
                 semantic_points_by_type.setdefault(semantic_type, []).append(lon_lat)
+            if poi_types or semantic_types or tags.get("natural") == "tree":
+                context_points.append(OsmContextPoint(
+                    osm_id=int(el["id"]),
+                    coords=lon_lat,
+                    tags=dict(tags),
+                ))
 
     entrances = list(poi_points_by_type.get("entrance", []))
     bus_stops = list(poi_points_by_type.get("bus_stop", []))
@@ -487,6 +561,7 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
         buildings=buildings,
         land_use_polygons=land_use_polygons,
         semantic_blocks=semantic_blocks,
+        context_points=context_points,
         entrances=entrances,
         bus_stops=bus_stops,
         fire_points=fire_points,
@@ -531,6 +606,7 @@ def project_to_local(
             coords=proj_coords,
             width_m=road.width_m,
             tags=dict(getattr(road, "tags", {}) or {}),
+            node_ids=list(getattr(road, "node_ids", []) or []),
         ))
     proj_buildings: List[OsmBuilding] = []
     for building in features.buildings:

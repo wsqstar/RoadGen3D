@@ -103,6 +103,19 @@ def test_parse_osm_features_road_count():
     assert features.roads[0].highway_type == "residential"
     assert len(features.roads[0].coords) == 3
     assert features.roads[0].tags["highway"] == "residential"
+    assert features.roads[0].node_ids == [1, 2, 3]
+
+
+def test_parse_osm_features_retains_tree_id_and_tags():
+    data = {
+        "elements": [
+            {"type": "node", "id": 77, "lon": 116.3905, "lat": 39.9005, "tags": {"natural": "tree", "species": "ginkgo"}},
+        ]
+    }
+    features = parse_osm_features(data)
+    assert len(features.context_points) == 1
+    assert features.context_points[0].osm_id == 77
+    assert features.context_points[0].tags["species"] == "ginkgo"
 
 
 def test_parse_osm_features_poi_counts():
@@ -342,16 +355,26 @@ def test_cache_hit_no_network(tmp_path: Path):
     cache_path.write_text(json.dumps(_MINIMAL_OVERPASS_RESPONSE), encoding="utf-8")
 
     # Patch requests.post at the module where it will be imported
+    events: list[dict] = []
     with patch.dict("sys.modules", {"requests": type(sys)("requests")}):
         # Inject a post that would fail if called
         sys.modules["requests"].post = lambda *a, **kw: (_ for _ in ()).throw(  # type: ignore
             RuntimeError("Should not fetch")
         )
         # Should not raise because it reads from cache
-        data = fetch_osm_data(bbox=bbox, cache_dir=tmp_path)
+        data = fetch_osm_data(bbox=bbox, cache_dir=tmp_path, progress_callback=events.append)
 
     assert "elements" in data
     assert len(data["elements"]) > 0
+    assert events[-1]["stage"] == "cache_lookup"
+    assert events[-1]["detail"]["cache_hit"] is True
+
+
+def test_cache_hash_changes_with_query_version():
+    from roadgen3d.osm_ingest import _bbox_hash
+
+    bbox = (116.39, 39.90, 116.40, 39.91)
+    assert _bbox_hash(bbox, query_version="v1") != _bbox_hash(bbox, query_version="v2")
 
 
 def test_fetch_osm_data_sets_overpass_headers(tmp_path: Path):
@@ -378,6 +401,8 @@ def test_fetch_osm_data_sets_overpass_headers(tmp_path: Path):
         data = fetch_osm_data(bbox=bbox, cache_dir=tmp_path)
 
     headers = dict(captured["kwargs"]["headers"])  # type: ignore[index]
+    query = str(captured["kwargs"]["data"]["data"])  # type: ignore[index]
     assert data == {"elements": []}
     assert headers["Accept"] == "application/json"
     assert "RoadGen3D" in headers["User-Agent"]
+    assert 'node["natural"="tree"]' in query

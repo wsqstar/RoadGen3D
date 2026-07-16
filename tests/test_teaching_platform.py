@@ -279,6 +279,87 @@ def test_public_osm_scene_source_uses_shared_full_normalizer(client: TestClient,
     assert course_payload["source_alignment"] == payload["source_alignment"]
 
 
+def test_course_osm_preview_selects_road_without_refetch(client: TestClient, monkeypatch):
+    from roadgen3d.services.osm_road_study import preview_bundle_from_raw
+
+    raw = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 113.5410, "lat": 22.7940},
+            {"type": "node", "id": 2, "lon": 113.5440, "lat": 22.7940},
+            {"type": "node", "id": 3, "lon": 113.5470, "lat": 22.7940},
+            {"type": "node", "id": 10, "lon": 113.5430, "lat": 22.7942},
+            {"type": "node", "id": 11, "lon": 113.5435, "lat": 22.7942},
+            {"type": "node", "id": 12, "lon": 113.5435, "lat": 22.7947},
+            {"type": "node", "id": 13, "lon": 113.5430, "lat": 22.7947},
+            {"type": "way", "id": 101, "nodes": [1, 2], "tags": {"highway": "residential", "name": "Course Road"}},
+            {"type": "way", "id": 102, "nodes": [2, 3], "tags": {"highway": "residential", "name": "Course Road"}},
+            {"type": "way", "id": 201, "nodes": [10, 11, 12, 13, 10], "tags": {"building": "yes"}},
+        ]
+    }
+    calls = 0
+
+    def _preview(**kwargs):
+        nonlocal calls
+        calls += 1
+        callback = kwargs.get("progress_callback")
+        if callback:
+            callback({"stage": "parse_features", "progress": 64, "message": "fixture parsed"})
+            callback({"stage": "prepare_selection", "progress": 94, "message": "fixture ready"})
+        return preview_bundle_from_raw(
+            raw_osm=raw,
+            aoi_bbox=kwargs["aoi_bbox"],
+            source_id=kwargs["source_id"],
+            preview_id=kwargs["preview_id"],
+        )
+
+    monkeypatch.setattr("roadgen3d.teaching.service.build_osm_road_preview", _preview)
+    _teacher_token, student_token, course = _bootstrap_course_and_student(client)
+    project = client.post("/api/v1/projects", headers=_auth(student_token), json={
+        "course_id": course["id"],
+        "name": "Road study course flow",
+        "city": "广州",
+        "aoi_bbox": [113.5400, 22.7920, 113.5480, 22.7980],
+    }).json()
+    response = client.post(
+        f"/api/v1/projects/{project['id']}/osm-previews",
+        headers=_auth(student_token),
+        json={},
+    )
+    assert response.status_code == 202, response.text
+    job = response.json()
+    for _ in range(50):
+        if job["status"] in {"succeeded", "failed", "cancelled"}:
+            break
+        time.sleep(0.02)
+        job = client.get(f"/api/v1/jobs/{job['id']}", headers=_auth(student_token)).json()
+    assert job["status"] == "succeeded", job
+    preview = job["result"]
+    seed_id = preview["logical_roads"]["features"][0]["properties"]["logical_road_id"]
+    selection = {
+        "raw_artifact_id": preview["raw_artifact_id"],
+        "preview_id": preview["preview_id"],
+        "seed_logical_road_id": seed_id,
+        "hop_count": 1,
+        "context_buffer_m": 100,
+    }
+    preview_response = client.post(
+        f"/api/v1/projects/{project['id']}/osm-previews/{preview['preview_id']}/selection-preview",
+        headers=_auth(student_token),
+        json=selection,
+    )
+    assert preview_response.status_code == 200, preview_response.text
+    assert len(preview_response.json()["annotation"]["centerlines"]) == 2
+    selected = client.post(
+        f"/api/v1/projects/{project['id']}/osm-previews/{preview['preview_id']}/selection",
+        headers=_auth(student_token),
+        json=selection,
+    )
+    assert selected.status_code == 201, selected.text
+    assert selected.json()["kind"] == "osm_road_study"
+    assert selected.json()["osm_study"]["selection"]["context_buffer_m"] == 100
+    assert calls == 1
+
+
 def test_shared_osm_scene_source_validates_bbox_and_forwards_cache_policy(tmp_path: Path, monkeypatch):
     from roadgen3d.services import osm_scene_source as osm_scene_source_service
 

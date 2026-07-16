@@ -322,9 +322,20 @@ def osm_features_to_geojson(features: OsmFeatures) -> dict[str, Any]:
         rows.append({"type": "Feature", "id": f"osm-building-{building.osm_id}", "properties": {"tags": building.tags}, "geometry": {"type": "Polygon", "coordinates": [[list(point) for point in building.coords]]}})
     for polygon in features.land_use_polygons:
         rows.append({"type": "Feature", "id": f"osm-zone-{polygon.osm_id}", "properties": {"tags": polygon.tags, "source_type": polygon.source_type}, "geometry": {"type": "Polygon", "coordinates": [[list(point) for point in polygon.coords]]}})
-    for kind, points in features.poi_points_by_type.items():
-        for index, point in enumerate(points):
-            rows.append({"type": "Feature", "id": f"osm-poi-{kind}-{index + 1}", "properties": {"tags": {"amenity": kind}, "poi_type": kind}, "geometry": {"type": "Point", "coordinates": list(point)}})
+    context_points = list(getattr(features, "context_points", []) or [])
+    if context_points:
+        for point in context_points:
+            is_tree = point.tags.get("natural") == "tree"
+            rows.append({
+                "type": "Feature",
+                "id": f"osm-{'tree' if is_tree else 'poi'}-{point.osm_id}",
+                "properties": {"tags": dict(point.tags), "osm_id": int(point.osm_id)},
+                "geometry": {"type": "Point", "coordinates": list(point.coords)},
+            })
+    else:
+        for kind, points in features.poi_points_by_type.items():
+            for index, point in enumerate(points):
+                rows.append({"type": "Feature", "id": f"osm-poi-{kind}-{index + 1}", "properties": {"tags": {"amenity": kind}, "poi_type": kind}, "geometry": {"type": "Point", "coordinates": list(point)}})
     return {"type": "FeatureCollection", "features": rows}
 
 

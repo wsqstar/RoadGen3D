@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Mapping, Sequence, TypedDict
+from typing import Any, Callable, Mapping, Sequence, TypedDict
 
 from roadgen3d.osm_ingest import fetch_osm_data
 from roadgen3d.scene_source_geojson import normalize_teaching_geojson, raw_osm_to_geojson
@@ -38,12 +38,20 @@ def fetch_normalized_osm_scene_source(
     source_id: str,
     cache_dir: str | Path,
     force_refetch: bool = False,
+    progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
 ) -> OsmSceneSourceBundle:
     """Fetch one OSM AOI and normalize it into the canonical scene-source graph."""
 
     bbox = validate_osm_aoi_bbox(aoi_bbox)
-    raw = fetch_osm_data(bbox, Path(cache_dir), force_refetch=bool(force_refetch))
+    fetch_options: dict[str, Any] = {"force_refetch": bool(force_refetch)}
+    if progress_callback is not None:
+        fetch_options["progress_callback"] = progress_callback
+    raw = fetch_osm_data(bbox, Path(cache_dir), **fetch_options)
+    if progress_callback is not None:
+        progress_callback({"stage": "parse_features", "progress": 64, "message": "Parsing OSM roads and context objects."})
     geojson = raw_osm_to_geojson(raw)
+    if progress_callback is not None:
+        progress_callback({"stage": "normalize_annotation", "progress": 82, "message": "Normalizing the OSM source into ReferenceAnnotation."})
     normalized = normalize_teaching_geojson(geojson, source_id=str(source_id), bbox=bbox)
     provenance = {
         "provider": "OpenStreetMap/Overpass",
