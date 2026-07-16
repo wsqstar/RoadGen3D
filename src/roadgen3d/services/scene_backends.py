@@ -409,6 +409,7 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
         *,
         manifest_path: str | Path | None = None,
         manifest_paths: Sequence[str | Path] | None = None,
+        manifest_names: Sequence[str] | None = None,
         manifest_v2_path: str | Path | None = None,
     ) -> None:
         self.manifest_path = Path(manifest_path).expanduser().resolve() if manifest_path else None
@@ -417,6 +418,7 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
             for path in (manifest_paths or ())
             if path not in (None, "") and str(path).strip()
         )
+        self.manifest_names = tuple(str(name).strip() for name in (manifest_names or ()) if str(name).strip())
         self.manifest_v2_path = Path(manifest_v2_path).expanduser().resolve() if manifest_v2_path else None
         self.last_load_summary: Dict[str, object] = {}
 
@@ -427,19 +429,32 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
             if raw_legacy_path:
                 manifest_sources = [Path(raw_legacy_path).expanduser().resolve()]
 
-        source_rows: List[Dict[str, object]] = []
+        rows_by_source: List[List[Dict[str, object]]] = []
         loaded_paths: List[str] = []
         missing_paths: List[str] = []
-        for source_path in manifest_sources:
+        for source_index, source_path in enumerate(manifest_sources):
             if not source_path.exists():
                 missing_paths.append(str(source_path))
                 continue
             loaded_rows = _load_legacy_object_rows(source_path)
+            logical_name = (
+                self.manifest_names[source_index]
+                if source_index < len(self.manifest_names)
+                else source_path.name
+            )
+            source_batch: List[Dict[str, object]] = []
             for row in loaded_rows:
                 enriched = dict(row)
                 enriched.setdefault("manifest_source_path", str(source_path))
-                source_rows.append(enriched)
+                enriched.setdefault("manifest_source_name", logical_name)
+                source_batch.append(enriched)
+            rows_by_source.append(source_batch)
             loaded_paths.append(str(source_path))
+
+        # Candidate repositories are ordered by priority. The existing merge helper
+        # lets later rows win, so reverse only the named candidate batches.
+        ordered_batches = list(reversed(rows_by_source)) if self.manifest_names else rows_by_source
+        source_rows = [row for batch in ordered_batches for row in batch]
 
         v2_path = self.manifest_v2_path if self.manifest_v2_path and self.manifest_v2_path.exists() else None
         if v2_path is None:
@@ -448,6 +463,7 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
             merged_rows = _merge_object_rows((), source_rows)
             self.last_load_summary = {
                 "manifest_paths": loaded_paths,
+                "manifest_names": list(self.manifest_names),
                 "missing_manifest_paths": missing_paths,
                 "manifest_source_count": int(len(loaded_paths)),
                 "manifest_row_count": int(len(source_rows)),
@@ -461,6 +477,7 @@ class ManifestObjectAssetBackend(ObjectAssetBackend):
         merged_rows = _merge_object_rows(source_rows, overlay_rows)
         self.last_load_summary = {
             "manifest_paths": loaded_paths + [str(v2_path)],
+            "manifest_names": list(self.manifest_names),
             "missing_manifest_paths": missing_paths,
             "manifest_source_count": int(len(loaded_paths) + 1),
             "manifest_row_count": int(len(source_rows) + len(overlay_rows)),

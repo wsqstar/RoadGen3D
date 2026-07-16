@@ -329,11 +329,27 @@ def normalize_scene_generation_options(
         return (width, height)
 
     manifest_paths = _resolve_manifest_paths(payload)
+    raw_manifest_names = payload.get("manifest_names")
+    manifest_names = tuple(
+        str(item).strip()
+        for item in (raw_manifest_names if isinstance(raw_manifest_names, Sequence) and not isinstance(raw_manifest_names, str) else ())
+        if str(item).strip()
+    )
+    raw_candidate_manifests = payload.get("candidate_asset_manifests")
+    candidate_asset_manifests = tuple(
+        dict(item)
+        for item in (raw_candidate_manifests if isinstance(raw_candidate_manifests, Sequence) and not isinstance(raw_candidate_manifests, str) else ())
+        if isinstance(item, Mapping)
+    )
     return SceneGenerationOptions(
         manifest_path=manifest_paths[0],
         artifacts_dir=Path(str(payload.get("artifacts_dir", DEFAULT_SCENE_GENERATION_OPTIONS.artifacts_dir))).expanduser().resolve(),
         out_dir=Path(str(payload.get("out_dir", DEFAULT_SCENE_GENERATION_OPTIONS.out_dir))).expanduser().resolve(),
         manifest_paths=manifest_paths,
+        manifest_names=manifest_names,
+        candidate_asset_manifests=candidate_asset_manifests,
+        candidate_asset_count=max(0, int(payload.get("candidate_asset_count", 0) or 0)),
+        candidate_asset_manifest_snapshot_id=str(payload.get("candidate_asset_manifest_snapshot_id", "") or ""),
         preset_id=str(payload.get("preset_id", DEFAULT_SCENE_GENERATION_OPTIONS.preset_id) or "").strip(),
         random_seed=_resolve_optional_int(payload.get("random_seed", DEFAULT_SCENE_GENERATION_OPTIONS.random_seed)),
         design_variant_id=str(payload.get("design_variant_id", DEFAULT_SCENE_GENERATION_OPTIONS.design_variant_id) or "").strip(),
@@ -494,6 +510,10 @@ def _generation_options_summary(options: SceneGenerationOptions) -> Dict[str, An
     }
     if options.design_matrix_cell:
         summary["design_matrix_cell"] = dict(make_json_safe(options.design_matrix_cell))
+    if options.candidate_asset_manifests:
+        summary["candidate_asset_manifests"] = [dict(make_json_safe(item)) for item in options.candidate_asset_manifests]
+        summary["candidate_asset_count"] = int(options.candidate_asset_count)
+        summary["candidate_asset_manifest_snapshot_id"] = str(options.candidate_asset_manifest_snapshot_id or "")
     return summary
 
 
@@ -547,6 +567,7 @@ def _build_scene_backends(options: SceneGenerationOptions):
     object_backend = ManifestObjectAssetBackend(
         manifest_path=options.manifest_path,
         manifest_paths=options.manifest_paths,
+        manifest_names=options.manifest_names,
         manifest_v2_path=options.object_manifest_v2_path,
     )
     ground_backend = ManifestGroundMaterialBackend(

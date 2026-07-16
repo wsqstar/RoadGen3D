@@ -46,6 +46,23 @@ def test_normalize_scene_generation_options_includes_design_variant_fields(tmp_p
     assert options.random_seed == 42
 
 
+def test_normalize_scene_generation_options_preserves_candidate_provenance(tmp_path: Path):
+    manifest = tmp_path / "candidate.jsonl"
+    manifest.write_text("{}\n", encoding="utf-8")
+    options = runtime.normalize_scene_generation_options({
+        "manifest_paths": [str(manifest)],
+        "manifest_names": ["candidate.jsonl"],
+        "candidate_asset_manifests": [{"name": "candidate.jsonl", "fingerprint": "abc", "priority": 0}],
+        "candidate_asset_count": 7,
+        "candidate_asset_manifest_snapshot_id": "snapshot-1",
+    })
+
+    assert options.manifest_names == ("candidate.jsonl",)
+    assert options.candidate_asset_count == 7
+    assert options.candidate_asset_manifests[0]["fingerprint"] == "abc"
+    assert runtime._generation_options_summary(options)["candidate_asset_manifest_snapshot_id"] == "snapshot-1"
+
+
 def test_generate_scene_from_draft_includes_design_variant_metadata_in_summary(tmp_path: Path, monkeypatch):
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text(json.dumps({"summary": {"instance_count": 5}}), encoding="utf-8")

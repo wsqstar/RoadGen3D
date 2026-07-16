@@ -13396,6 +13396,7 @@ def compose_street_scene(
     asset_source_unique_assets: Dict[str, set[str]] = {}
     asset_source_categories: Dict[str, set[str]] = {}
     asset_source_generator_types: Dict[str, set[str]] = {}
+    used_asset_ids_by_manifest: Dict[str, set[str]] = {}
     parametric_instance_count = 0
     for placement in placements:
         selection_source_counts[placement.selection_source] = selection_source_counts.get(placement.selection_source, 0) + 1
@@ -13413,6 +13414,10 @@ def compose_street_scene(
         asset_source_unique_assets.setdefault(source_key, set()).add(placement.asset_id)
         asset_source_categories.setdefault(source_key, set()).add(str(placement.category))
         asset_source_generator_types.setdefault(source_key, set()).add(str(generator_key))
+        asset_row = asset_by_id.get(placement.asset_id, {})
+        manifest_source_name = str(asset_row.get("manifest_source_name") or "").strip()
+        if manifest_source_name:
+            used_asset_ids_by_manifest.setdefault(manifest_source_name, set()).add(placement.asset_id)
         if generator_key == "parametric":
             parametric_instance_count += 1
     # Count Scene-type assets using metadata only (no mesh loading needed)
@@ -13781,6 +13786,10 @@ def compose_street_scene(
                 key=lambda key: (-int(asset_source_counts.get(key, 0)), str(key)),
             )
         ],
+        "used_asset_ids_by_manifest": {
+            name: sorted(asset_ids)
+            for name, asset_ids in sorted(used_asset_ids_by_manifest.items())
+        },
         "parametric_instance_count": int(parametric_instance_count),
         "asset_library_scene_instances": int(asset_library_scene_instances),
         "production_step_count": int(len(production_steps)),

@@ -233,7 +233,10 @@ def test_scene_job_service_builds_generation_trace_and_writes_artifact(tmp_path:
         })
         return SceneGenerationResult(
             compose_config=draft.compose_config_patch,
-            summary={"instance_count": 7},
+            summary={
+                "instance_count": 7,
+                "used_asset_ids_by_manifest": {"fixture.jsonl": ["bench-ready"]},
+            },
             scene_layout_path=str(layout_path),
             scene_glb_path=str(tmp_path / "scene.glb"),
             viewer_url="http://127.0.0.1:4173/?layout=demo",
@@ -244,7 +247,13 @@ def test_scene_job_service_builds_generation_trace_and_writes_artifact(tmp_path:
         return {"walkability": 88, "safety": None, "beauty": None, "overall": None, "evaluation": "solid"}
 
     service = SceneJobService(generator=_generator, evaluator=_evaluator)
-    created = service.submit_job(draft=_draft())
+    created = service.submit_job(
+        draft=_draft(),
+        generation_options={
+            "candidate_asset_manifests": [{"name": "fixture.jsonl", "fingerprint": "abc", "priority": 0}],
+            "candidate_asset_count": 4,
+        },
+    )
     status = service.wait_for_job(created.job_id, timeout_s=2.0)
 
     assert status is not None
@@ -253,6 +262,9 @@ def test_scene_job_service_builds_generation_trace_and_writes_artifact(tmp_path:
     assert trace["schema_version"] == "generation_trace_v1"
     assert trace["provenance"]["rag_evidence"][0]["knowledge_source"] == "scenario_parameters"
     assert trace["provenance"]["citations_by_field"]["sidewalk_width_m"] == ["scenario_parameters::demo"]
+    assert trace["provenance"]["candidate_asset_count"] == 4
+    assert trace["provenance"]["candidate_asset_manifests"][0]["name"] == "fixture.jsonl"
+    assert trace["provenance"]["used_asset_ids_by_manifest"] == {"fixture.jsonl": ["bench-ready"]}
     assert trace["llm_recommendation"]["config_patch"]["sidewalk_width_m"] == 4.0
     assert trace["evaluation"]["status"] == "succeeded"
     assert trace["evaluation"]["walkability"] == 88

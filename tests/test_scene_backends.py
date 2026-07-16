@@ -197,6 +197,31 @@ def test_object_backend_manifest_disable_is_global_deny_vote(tmp_path: Path):
     assert row["scene_disabled_manifest_reasons"] == ["bad_scale"]
 
 
+def test_named_candidate_manifests_use_first_repository_as_priority(tmp_path: Path):
+    _touch_meshes(tmp_path, "lamp.glb")
+    preferred = tmp_path / "preferred.jsonl"
+    fallback = tmp_path / "fallback.jsonl"
+    common = {
+        "asset_id": "lamp_shared",
+        "category": "lamp",
+        "mesh_path": "lamp.glb",
+        "latent_path": "lamp.pt",
+        "scene_eligible": True,
+    }
+    preferred.write_text(json.dumps({**common, "text_desc": "preferred"}) + "\n", encoding="utf-8")
+    fallback.write_text(json.dumps({**common, "text_desc": "fallback"}) + "\n", encoding="utf-8")
+
+    backend = ManifestObjectAssetBackend(
+        manifest_paths=(preferred, fallback),
+        manifest_names=("preferred.jsonl", "fallback.jsonl"),
+    )
+    _, rows = backend.load_rows()
+
+    assert rows[0]["text_desc"] == "preferred"
+    assert rows[0]["manifest_source_name"] == "preferred.jsonl"
+    assert backend.last_load_summary["manifest_names"] == ["preferred.jsonl", "fallback.jsonl"]
+
+
 def test_object_backend_default_disable_index_blocks_enabled_overlay(tmp_path: Path, monkeypatch):
     _touch_meshes(tmp_path, "lamp.glb")
     disabled_library = tmp_path / "default_disabled.jsonl"

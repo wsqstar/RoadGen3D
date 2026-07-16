@@ -29,7 +29,7 @@ from roadgen3d.teaching import TeachingPlatformService  # noqa: E402
 from roadgen3d.teaching.jobs import LocalTeachingJobExecutor  # noqa: E402
 from web.api.routers import catalog as catalog_routes  # noqa: E402
 from web.api.routers import diff_capture as diff_capture_routes  # noqa: E402
-from web.api.routers.assets import router as assets_router  # noqa: E402
+from web.api.routers.assets import catalog_router as asset_catalog_router, router as assets_router  # noqa: E402
 from web.api.routers.branch_benchmarks import router as branch_benchmarks_router  # noqa: E402
 from web.api.routers.design import router as design_router  # noqa: E402
 from web.api.routers.evaluation import router as evaluation_router  # noqa: E402
@@ -102,6 +102,7 @@ def create_app(
         diff_capture_routes.router,
         evaluation_router,
         assets_router,
+        asset_catalog_router,
         knowledge_router,
         teaching_router,
     ):

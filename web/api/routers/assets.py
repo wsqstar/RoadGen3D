@@ -9,14 +9,36 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 
 from roadgen3d.json_safe import make_json_safe
+from roadgen3d.services.asset_manifest_registry import list_manifest_summaries, read_manifest_page
 from web.api.schemas import AssetManifestSplitRequestModel
 
 ROOT = Path(__file__).resolve().parents[3]
 
 router = APIRouter(prefix="/api/asset-manifest", tags=["assets"])
+catalog_router = APIRouter(tags=["assets"])
+
+
+@catalog_router.get("/api/asset-manifests")
+def list_asset_manifests() -> Dict[str, Any]:
+    return make_json_safe({"manifests": list_manifest_summaries()})
+
+
+@router.get("")
+def get_asset_manifest(
+    name: str,
+    offset: int = Query(default=0, ge=0),
+    limit: int = Query(default=100, ge=1, le=500),
+    eligibility: str = Query(default="all", pattern="^(eligible|disabled|all)$"),
+) -> Dict[str, Any]:
+    try:
+        return make_json_safe(read_manifest_page(name, offset=offset, limit=limit, eligibility=eligibility))
+    except ValueError as exc:
+        message = str(exc)
+        status = 404 if message.startswith("Unknown registered") else 400
+        raise HTTPException(status_code=status, detail=message) from exc
 
 
 def _is_relative_to(path: Path, root: Path) -> bool:

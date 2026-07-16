@@ -359,6 +359,8 @@ class SceneJobService:
             ),
             "knowledge_source": str(context_detail.get("knowledge_source") or context_detail.get("knowledgeSource") or ""),
             "evidence_count": int(context_detail.get("evidence_count") or 0),
+            "candidate_asset_manifests": list(state.generation_options.get("candidate_asset_manifests") or []),
+            "candidate_asset_count": int(state.generation_options.get("candidate_asset_count") or 0),
         }
         if not provenance["evidence_count"]:
             provenance["evidence_count"] = len(provenance["rag_evidence"])
@@ -376,6 +378,11 @@ class SceneJobService:
             or state.draft.compose_config_patch
         )
         result = state.result
+        provenance["used_asset_ids_by_manifest"] = (
+            dict(result.summary.get("used_asset_ids_by_manifest") or {})
+            if result is not None
+            else {}
+        )
         result_payload = {
             "compose_config": dict(result.compose_config) if result is not None else {},
             "summary": dict(result.summary) if result is not None else {},

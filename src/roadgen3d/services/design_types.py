@@ -520,6 +520,10 @@ class SceneGenerationOptions:
     capture_defer_glb_retention: bool = False
     design_matrix_cell: Dict[str, Any] = field(default_factory=dict)
     manifest_paths: Tuple[Path, ...] = ()
+    manifest_names: Tuple[str, ...] = ()
+    candidate_asset_manifests: Tuple[Dict[str, Any], ...] = ()
+    candidate_asset_count: int = 0
+    candidate_asset_manifest_snapshot_id: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -529,6 +533,10 @@ class SceneGenerationOptions:
             "design_variant_name": self.design_variant_name,
             "manifest_path": str(self.manifest_path),
             "manifest_paths": [str(path) for path in self.manifest_paths],
+            "manifest_names": list(self.manifest_names),
+            "candidate_asset_manifests": [dict(item) for item in self.candidate_asset_manifests],
+            "candidate_asset_count": int(self.candidate_asset_count),
+            "candidate_asset_manifest_snapshot_id": self.candidate_asset_manifest_snapshot_id,
             "artifacts_dir": str(self.artifacts_dir),
             "out_dir": str(self.out_dir),
             "object_manifest_v2_path": str(self.object_manifest_v2_path) if self.object_manifest_v2_path is not None else None,
