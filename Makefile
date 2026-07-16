@@ -14,6 +14,7 @@ VIEWER_HOST ?= 127.0.0.1
 VIEWER_PORT ?= 4173
 VIEWER_PORT_SCAN_LIMIT := 20
 VIEWER_IDENTITY_TEXT := RoadGen3D Viewer
+DEV_STATE_FILE := .roadgen-dev-state
 GRAPH_TEMPLATE := hkust_gz_gate
 ENABLE_ARCHIVED_WORKBENCH ?= 0
 
@@ -59,7 +60,12 @@ dev:
 	@set -e; \
 	viewer_port="$(VIEWER_PORT)"; \
 	search_end=$$(( $(VIEWER_PORT) + $(VIEWER_PORT_SCAN_LIMIT) )); \
-	if curl -fsS --max-time 1 "http://$(VIEWER_HOST):$$viewer_port/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then \
+	existing_viewer=""; \
+	for candidate in $$(seq $(VIEWER_PORT) $$search_end); do \
+		if curl --noproxy '*' -fsS --max-time 1 "http://$(VIEWER_HOST):$$candidate/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then existing_viewer="$$candidate"; break; fi; \
+	done; \
+	if [ -n "$$existing_viewer" ]; then \
+		viewer_port="$$existing_viewer"; \
 		echo "RoadGen3D Viewer already available at http://$(VIEWER_HOST):$$viewer_port"; \
 	elif lsof -nP -iTCP:$$viewer_port -sTCP:LISTEN >/dev/null 2>&1; then \
 		echo "Port $$viewer_port is occupied by another service; looking for a free Viewer port."; \
@@ -77,30 +83,38 @@ dev:
 		viewer_port="$$found_port"; \
 		echo "RoadGen3D Viewer will start at http://$(VIEWER_HOST):$$viewer_port"; \
 	fi; \
-	trap 'kill 0' INT TERM EXIT; \
-	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) api & \
-		ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & \
+	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) api & api_pid=$$!; \
+	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & viewer_pid=$$!; \
+	{ echo "VIEWER_PORT=$$viewer_port"; echo "API_PORT=$(UI_API_PORT)"; echo "VIEWER_MAKE_PID=$$viewer_pid"; echo "API_MAKE_PID=$$api_pid"; } > $(DEV_STATE_FILE); \
+	cleanup() { kill -TERM $$viewer_pid $$api_pid 2>/dev/null || true; rm -f $(DEV_STATE_FILE); }; \
+	trap cleanup INT TERM EXIT; \
 	wait
 
 stop:
 	@echo "Stopping RoadGen3D dev services (viewer + design API) ..."
 	@set -e; \
-	for port in $(VIEWER_PORT) $(UI_API_PORT); do \
-		pids=""; \
-		pids=$$(lsof -nP -iTCP:$$port -sTCP:LISTEN -t 2>/dev/null || true); \
-		if [ -n "$$pids" ]; then \
-			echo "Found PID(s) on port $$port: $$pids"; \
-			kill -TERM $$pids || true; \
-			sleep 1; \
-			remaining=$$(lsof -nP -iTCP:$$port -sTCP:LISTEN -t 2>/dev/null || true); \
-			if [ -n "$$remaining" ]; then \
-				echo "Forcing shutdown on port $$port: $$remaining"; \
-				kill -KILL $$remaining || true; \
-			fi; \
-		else \
-			echo "Port $$port is idle."; \
+	viewer_ports=""; api_port="$(UI_API_PORT)"; \
+	if [ -f $(DEV_STATE_FILE) ]; then \
+		. ./$(DEV_STATE_FILE); \
+		viewer_ports="$$VIEWER_PORT"; api_port="$$API_PORT"; \
+	else \
+		viewer_ports=$$(seq $(VIEWER_PORT) $$(( $(VIEWER_PORT) + $(VIEWER_PORT_SCAN_LIMIT) ))); \
+	fi; \
+	for port in $$viewer_ports; do \
+		if curl --noproxy '*' -fsS --max-time 1 "http://$(VIEWER_HOST):$$port/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then \
+			pids=$$(lsof -nP -iTCP:$$port -sTCP:LISTEN -t 2>/dev/null || true); \
+			if [ -n "$$pids" ]; then echo "Stopping RoadGen3D Viewer on $$port: $$pids"; kill -TERM $$pids || true; fi; \
+		elif [ "$$port" = "$(VIEWER_PORT)" ]; then \
+			echo "Port $$port is not a RoadGen3D Viewer; leaving it untouched."; \
 		fi; \
-	done
+	done; \
+	if curl --noproxy '*' -fsS --max-time 1 "http://$(UI_API_HOST):$$api_port/api/health" >/dev/null 2>&1; then \
+		pids=$$(lsof -nP -iTCP:$$api_port -sTCP:LISTEN -t 2>/dev/null || true); \
+		if [ -n "$$pids" ]; then echo "Stopping RoadGen3D API on $$api_port: $$pids"; kill -TERM $$pids || true; fi; \
+	else \
+		echo "No RoadGen3D API detected on $$api_port."; \
+	fi; \
+	rm -f $(DEV_STATE_FILE)
 
 gradio-dev:
 	@echo "ERROR: gradio-dev 已废弃。请使用 'make dev' 启动新的前后端分离架构"
@@ -147,7 +161,12 @@ viewer-web:
 	@set -e; \
 	viewer_port="$(VIEWER_PORT)"; \
 	search_end=$$(( $(VIEWER_PORT) + $(VIEWER_PORT_SCAN_LIMIT) )); \
-	if curl -fsS --max-time 1 "http://$(VIEWER_HOST):$$viewer_port/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then \
+	existing_viewer=""; \
+	for candidate in $$(seq $(VIEWER_PORT) $$search_end); do \
+		if curl --noproxy '*' -fsS --max-time 1 "http://$(VIEWER_HOST):$$candidate/" 2>/dev/null | grep -q "$(VIEWER_IDENTITY_TEXT)"; then existing_viewer="$$candidate"; break; fi; \
+	done; \
+	if [ -n "$$existing_viewer" ]; then \
+		viewer_port="$$existing_viewer"; \
 		echo "RoadGen3D Viewer already available at http://$(VIEWER_HOST):$$viewer_port"; \
 		exit 0; \
 	elif lsof -nP -iTCP:$$viewer_port -sTCP:LISTEN >/dev/null 2>&1; then \
