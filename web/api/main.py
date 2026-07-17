@@ -39,6 +39,7 @@ from web.api.routers.scene_jobs import router as scene_jobs_router  # noqa: E402
 from web.api.routers.scene_layout_edits import router as scene_layout_edits_router  # noqa: E402
 from web.api.routers.scene_sources import router as scene_sources_router  # noqa: E402
 from web.api.routers.scenario_designs import router as scenario_designs_router  # noqa: E402
+from web.api.routers.starter_scenes import router as starter_scenes_router  # noqa: E402
 from web.api.routers.teaching import router as teaching_router  # noqa: E402
 
 
@@ -102,6 +103,7 @@ def create_app(
         scene_layout_edits_router,
         scene_jobs_router,
         scenario_designs_router,
+        starter_scenes_router,
         branch_benchmarks_router,
         diff_capture_routes.router,
         evaluation_router,
