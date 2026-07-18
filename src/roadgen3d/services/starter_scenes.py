@@ -14,7 +14,11 @@ from roadgen3d.scene_layout_edits import scene_revision_for_layout
 ROOT = Path(__file__).resolve().parents[3]
 STARTER_ROOT = (ROOT / "assets" / "starter_scenes").resolve()
 MATERIALIZED_ROOT = (ROOT / "artifacts" / "starter_scenes").resolve()
-DEFAULT_STARTER_SCENE_ID = "guangzhou_road_skeleton_v1"
+DEFAULT_STARTER_SCENE_ID = "guangzhou_road_skeleton_v2"
+REGISTERED_STARTER_SCENE_IDS = frozenset({
+    "guangzhou_road_skeleton_v1",
+    "guangzhou_road_skeleton_v2",
+})
 
 
 class StarterSceneError(RuntimeError):
@@ -23,7 +27,7 @@ class StarterSceneError(RuntimeError):
 
 def _registered_dir(scene_id: str) -> Path:
     clean_id = str(scene_id or "").strip()
-    if clean_id != DEFAULT_STARTER_SCENE_ID:
+    if clean_id not in REGISTERED_STARTER_SCENE_IDS:
         raise StarterSceneError(f"Unknown starter scene: {clean_id}")
     directory = (STARTER_ROOT / clean_id).resolve()
     try:
@@ -159,6 +163,7 @@ def materialize_starter_scene(scene_id: str) -> dict[str, Any]:
 
 __all__ = [
     "DEFAULT_STARTER_SCENE_ID",
+    "REGISTERED_STARTER_SCENE_IDS",
     "StarterSceneError",
     "load_starter_scene",
     "materialize_starter_scene",

@@ -1,0 +1,24 @@
+{
+  "id": "guangzhou_road_skeleton_v2",
+  "version": "2.0.0",
+  "label": "广州道路骨架",
+  "retrieval_bbox": [
+    113.26616931271059,
+    23.13367933500995,
+    113.27325598728942,
+    23.13728296499005
+  ],
+  "seed_logical_road_id": "logical-road-582a625e6adf",
+  "hop_count": 1,
+  "context_buffer_m": 100,
+  "random_seed": 42,
+  "source_fingerprint": "743cb4ca06034c0679c443178c04a7e0363e63be5db2b5bdff792f88bc8dd26e",
+  "scene_fingerprint": "17c35075754ae37b68f0a1499498bfb4df5edd246a1eadf83871554ffa1b2462",
+  "provenance": {
+    "provider": "OpenStreetMap/Overpass",
+    "attribution": "© OpenStreetMap contributors",
+    "network_required": false,
+    "osm_geojson_file": "osm_snapshot.geojson",
+    "geometry_generator": "roadgen3d_continuous_junction_fusion_v2"
+  }
+}

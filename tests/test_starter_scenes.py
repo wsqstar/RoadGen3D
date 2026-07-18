@@ -6,6 +6,10 @@ from pathlib import Path
 import sys
 
 from fastapi.testclient import TestClient
+import numpy as np
+from shapely.geometry import Polygon
+from shapely.ops import unary_union
+import trimesh
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -18,11 +22,29 @@ from roadgen3d.services import starter_scenes
 from web.api.main import create_app
 
 
-SCENE_ID = "guangzhou_road_skeleton_v1"
+SCENE_ID = "guangzhou_road_skeleton_v2"
 
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _glb_top_projection(scene: trimesh.Scene, node_prefix: str):
+    flattened = scene.graph.to_flattened()
+    triangles = []
+    for node_name in scene.graph.nodes_geometry:
+        if not str(node_name).startswith(node_prefix):
+            continue
+        item = flattened[node_name]
+        mesh = scene.geometry[item["geometry"]].copy()
+        mesh.apply_transform(np.asarray(item["transform"]))
+        for triangle in mesh.triangles:
+            if float(np.ptp(triangle[:, 1])) > 1e-6 or float(np.mean(triangle[:, 1])) <= 0.14:
+                continue
+            polygon = Polygon(triangle[:, [0, 2]])
+            if polygon.is_valid and polygon.area > 1e-10:
+                triangles.append(polygon)
+    return unary_union(triangles)
 
 
 def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
@@ -53,6 +75,45 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert scene_layout["building_placements"] == []
     assert scene_layout["config"]["street_furniture_profile"] == "none"
     assert scene_layout["config"]["amenity_coverage_mode"] == "off"
+    assert scene_layout["config"]["junction_corner_radius_mode"] == "auto"
+    assert scene_layout["config"]["junction_precision_grid_m"] == 0.001
+    assert scene_layout["config"]["junction_curve_max_angle_deg"] == 2.0
+    assert scene_layout["config"]["junction_curve_max_chord_m"] == 0.25
+    assert scene_layout["config"]["junction_marking_setback_m"] == 0.5
+    assert scene_layout["config"]["urban_lane_edge_mode"] == "explicit_only"
+    assert scene_layout["config"]["curb_width_m"] == 0.12
+    assert scene_layout["config"]["curb_reveal_m"] == 0.15
+    osm_geometry = scene_layout["summary"]["osm_geometry"]
+    surface_qa = osm_geometry["surface_geometry_qa"]
+    assert surface_qa["ok"] is True
+    assert surface_qa["curb_sidewalk_overlap_area_m2"] == 0.0
+    assert surface_qa["curb_width_m"] == 0.12
+    assert surface_qa["curb_reveal_m"] == 0.15
+    assert surface_qa["curb_top_mode"] == "flush_with_sidewalk"
+    assert surface_qa["mesh_boundary_clearance_m"] == 0.002
+    assert surface_qa["final_surface_sliver_count"] == 0
+    assert surface_qa["degenerate_top_face_count"] == 0
+    assert surface_qa["minimum_top_triangle_angle_deg"] > 0.0
+    marking_qa = osm_geometry["marking_geometry_qa"]
+    assert marking_qa["ok"] is True
+    assert marking_qa["urban_lane_edge_mode"] == "explicit_only"
+    assert marking_qa["marking_junction_intrusion_area_m2"] == 0.0
+    assert marking_qa["duplicate_marking_area_m2"] == 0.0
+    assert marking_qa["unexpected_lane_edge_count"] == 0
+    assert marking_qa["rendered_lane_edge_ribbon_count"] == 0
+    junction_qa = [
+        item["geometry_qa"]
+        for item in osm_geometry["junction_geometries"]
+        if item.get("geometry_qa")
+    ]
+    assert junction_qa
+    assert all(item["ok"] for item in junction_qa)
+    assert all(item["coplanar_overlap_area_m2"] <= 1e-4 for item in junction_qa)
+    assert all(
+        item["junction_uncovered_area_m2"] <= item["junction_uncovered_limit_m2"]
+        for item in junction_qa
+    )
+    assert all(item["sliver_component_count"] == 0 for item in junction_qa)
     assert manifest["instances"] == {}
     assert manifest["layout_overlay"]["road_centerlines"]
     assert manifest["final_scene"]["glb_url"].endswith("/road_base.glb")
@@ -61,6 +122,37 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
         text = (directory / name).read_text(encoding="utf-8")
         assert "/Users/" not in text
         assert "artifacts/" not in text
+
+
+def test_retired_v1_starter_remains_addressable_for_existing_links() -> None:
+    package = starter_scenes.load_starter_scene("guangzhou_road_skeleton_v1")
+
+    assert package["id"] == "guangzhou_road_skeleton_v1"
+    assert package["viewer_manifest_url"].endswith("/guangzhou_road_skeleton_v1/manifest")
+
+
+def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
+    scene = trimesh.load(
+        starter_scenes.STARTER_ROOT / SCENE_ID / "road_base.glb",
+        force="scene",
+    )
+    curb = _glb_top_projection(scene, "curb_")
+    sidewalk = _glb_top_projection(scene, "sidewalk_")
+
+    assert curb.area > 100.0
+    assert sidewalk.area > 1000.0
+    assert curb.intersection(sidewalk).area <= 1e-4
+
+    node_names = [str(node_name) for node_name in scene.graph.nodes_geometry]
+    assert not any(node_name.startswith("lane_edge_") for node_name in node_names)
+    assert any(node_name.startswith("centerline_mark_") for node_name in node_names)
+    face_areas = np.concatenate(
+        [
+            np.asarray(scene.geometry[scene.graph[node_name][1]].area_faces, dtype=float)
+            for node_name in scene.graph.nodes_geometry
+        ]
+    )
+    assert int(np.count_nonzero(face_areas <= 1e-10)) == 0
 
 
 def test_starter_materialization_is_idempotent_and_never_mutates_bundle(tmp_path, monkeypatch) -> None:

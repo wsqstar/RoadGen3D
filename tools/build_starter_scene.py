@@ -22,15 +22,19 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
+from roadgen3d.reference_annotation import build_reference_annotation_compose_config  # noqa: E402
+from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge  # noqa: E402
 from roadgen3d.services.osm_road_study import (  # noqa: E402
     preview_bundle_from_raw,
     select_osm_road_study_area,
 )
 from roadgen3d.services.osm_scene_source import osm_scene_source_response  # noqa: E402
+from roadgen3d.street_layout import _build_osm_base_scene, _serialize_osm_geometry  # noqa: E402
 from roadgen3d.web_viewer_dev import build_layout_manifest  # noqa: E402
 
-SCENE_ID = "guangzhou_road_skeleton_v1"
+SCENE_ID = "guangzhou_road_skeleton_v2"
 BUNDLED_DIR = ROOT / "assets" / "starter_scenes" / SCENE_ID
+SOURCE_DIR = ROOT / "assets" / "starter_scenes" / "guangzhou_road_skeleton_v1"
 RETRIEVAL_BBOX = [113.26616931271059, 23.13367933500995, 113.27325598728942, 23.13728296499005]
 SEED_LOGICAL_ROAD_ID = "logical-road-582a625e6adf"
 SNAPSHOT_TIMESTAMP = "2026-07-17T00:00:00Z"
@@ -63,7 +67,7 @@ def _strip_machine_paths(value: Any) -> Any:
     return value
 
 
-def _starter_layout(source_layout: dict[str, Any]) -> dict[str, Any]:
+def _starter_layout(source_layout: dict[str, Any], osm_geometry: dict[str, Any]) -> dict[str, Any]:
     summary = dict(source_layout.get("summary") or {})
     for key in list(summary):
         if any(token in key for token in ("asset_", "manifest", "retrieval_prediction", "render_views")):
@@ -75,6 +79,8 @@ def _starter_layout(source_layout: dict[str, Any]) -> dict[str, Any]:
         "starter_scene_id": SCENE_ID,
         "starter_scene_kind": "osm_road_skeleton",
         "random_seed": 42,
+        "osm_geometry": osm_geometry,
+        "surface_geometry_qa": dict(osm_geometry.get("surface_geometry_qa") or {}),
     })
     config = dict(source_layout.get("config") or {})
     config.update({
@@ -84,6 +90,18 @@ def _starter_layout(source_layout: dict[str, Any]) -> dict[str, Any]:
         "curated_street_assets_profile": "disabled",
         "enable_surrounding_buildings": False,
         "seed": 42,
+        "junction_corner_radius_mode": "auto",
+        "junction_corner_min_radius_m": 3.0,
+        "junction_corner_max_radius_m": 8.0,
+        "junction_precision_grid_m": 0.001,
+        "junction_seam_extension_m": 0.02,
+        "junction_curve_max_angle_deg": 2.0,
+        "junction_curve_max_chord_m": 0.25,
+        "junction_marking_setback_m": 0.5,
+        "urban_lane_edge_mode": "explicit_only",
+        "curb_width_m": 0.12,
+        "curb_reveal_m": 0.15,
+        "curb_top_mode": "flush_with_sidewalk",
     })
     step = next(
         dict(item)
@@ -118,9 +136,8 @@ def _starter_layout(source_layout: dict[str, Any]) -> dict[str, Any]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--raw-osm", type=Path, default=BUNDLED_DIR / "osm_snapshot.json")
-    parser.add_argument("--source-layout", type=Path, default=BUNDLED_DIR / "scene_layout.json")
-    parser.add_argument("--source-road-glb", type=Path, default=BUNDLED_DIR / "road_base.glb")
+    parser.add_argument("--raw-osm", type=Path, default=SOURCE_DIR / "osm_snapshot.json")
+    parser.add_argument("--source-layout", type=Path, default=SOURCE_DIR / "scene_layout.json")
     parser.add_argument("--output", type=Path, default=BUNDLED_DIR)
     args = parser.parse_args()
     output = args.output.resolve()
@@ -165,12 +182,44 @@ def main() -> int:
     response = _strip_machine_paths(response)
 
     _copy_if_distinct(args.raw_osm, output / "osm_snapshot.json")
-    _copy_if_distinct(args.source_road_glb, output / "road_base.glb")
     _write_json(output / "osm_snapshot.geojson", response["geojson"])
     _write_json(output / "normalized_source.json", response)
 
+    compose_config = build_reference_annotation_compose_config({
+        "layout_mode": "reference_annotation",
+        "seed": 42,
+        "street_furniture_profile": "none",
+        "amenity_coverage_mode": "off",
+        "curated_street_assets_profile": "disabled",
+        "enable_surrounding_buildings": False,
+        "junction_corner_radius_mode": "auto",
+        "junction_corner_min_radius_m": 3.0,
+        "junction_corner_max_radius_m": 8.0,
+        "junction_precision_grid_m": 0.001,
+        "junction_seam_extension_m": 0.02,
+        "junction_curve_max_angle_deg": 2.0,
+        "junction_curve_max_chord_m": 0.25,
+        "junction_marking_setback_m": 0.5,
+        "urban_lane_edge_mode": "explicit_only",
+        "curb_width_m": 0.12,
+        "curb_reveal_m": 0.15,
+    })
+    bridge = build_reference_annotation_scene_bridge(
+        response["annotation"],
+        compose_config=compose_config,
+        aligned_buildings=response.get("aligned_buildings") or [],
+        source_alignment=response.get("source_alignment") or {},
+    )
+    road_scene = _build_osm_base_scene(
+        bridge.placement_context,
+        config=compose_config,
+        texture_mode="solid_color_legacy",
+    )
+    road_scene.export(output / "road_base.glb")
+    osm_geometry = _serialize_osm_geometry(bridge.placement_context)
+
     source_layout = json.loads(args.source_layout.read_text(encoding="utf-8"))
-    starter_layout = _starter_layout(source_layout)
+    starter_layout = _starter_layout(source_layout, osm_geometry)
     _write_json(output / "scene_layout.json", starter_layout)
 
     # Build the compact 2D/Graph overlay from the same deterministic layout.
@@ -193,7 +242,7 @@ def main() -> int:
 
     package = {
         "id": SCENE_ID,
-        "version": "1.0.0",
+        "version": "2.0.0",
         "label": "广州道路骨架",
         "retrieval_bbox": RETRIEVAL_BBOX,
         "seed_logical_road_id": SEED_LOGICAL_ROAD_ID,
@@ -207,6 +256,7 @@ def main() -> int:
             "attribution": "© OpenStreetMap contributors",
             "network_required": False,
             "osm_geojson_file": "osm_snapshot.geojson",
+            "geometry_generator": "roadgen3d_continuous_junction_fusion_v2",
         },
     }
     _write_json(output / "package.json", package)
