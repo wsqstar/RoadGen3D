@@ -70,6 +70,23 @@ def test_infer_spawn_payload_defaults_to_street_center():
     assert payload["forward_vector"] == [1.0, 0.0, 0.0]
 
 
+def test_infer_spawn_payload_uses_first_road_segment_and_direction():
+    payload = viewer.infer_spawn_payload(
+        {
+            "scene_graph": {
+                "nodes": [
+                    {"node_id": "building:ignored", "node_type": "building", "x": -999, "z": -999},
+                    {"node_id": "road_segment:001", "node_type": "road_segment", "x": 116.5, "z": 74.0},
+                    {"node_id": "road_segment:002", "node_type": "road_segment", "x": 119.5, "z": 70.0},
+                ]
+            }
+        }
+    )
+
+    assert payload["spawn_point"] == [116.5, 1.65, 74.0]
+    assert payload["forward_vector"] == pytest.approx([0.6, 0.0, -0.8])
+
+
 def test_build_web_viewer_dev_command_allows_external_layout_parent(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     repo_root = (tmp_path / "repo").resolve()
     viewer_dir = repo_root / "web" / "viewer"

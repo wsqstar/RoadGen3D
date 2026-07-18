@@ -102,6 +102,38 @@ def content_type_for(path: Path) -> str:
 
 
 def infer_spawn_payload(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
+    scene_graph = layout_payload.get("scene_graph") or {}
+    nodes = scene_graph.get("nodes") if isinstance(scene_graph, Mapping) else None
+    road_nodes: list[tuple[float, float]] = []
+    if isinstance(nodes, list):
+        for node in nodes:
+            if not isinstance(node, Mapping):
+                continue
+            if str(node.get("node_type") or "").strip().lower() != "road_segment":
+                continue
+            x = _as_number(node.get("x"))
+            z = _as_number(node.get("z"))
+            if x is None or z is None:
+                continue
+            road_nodes.append((x, z))
+            if len(road_nodes) >= 2:
+                break
+
+    if road_nodes:
+        spawn_x, spawn_z = road_nodes[0]
+        forward_x, forward_z = 1.0, 0.0
+        if len(road_nodes) > 1:
+            delta_x = road_nodes[1][0] - spawn_x
+            delta_z = road_nodes[1][1] - spawn_z
+            length = (delta_x * delta_x + delta_z * delta_z) ** 0.5
+            if length > 1e-6:
+                forward_x = delta_x / length
+                forward_z = delta_z / length
+        return {
+            "spawn_point": [round(spawn_x, 6), 1.65, round(spawn_z, 6)],
+            "forward_vector": [round(forward_x, 6), 0.0, round(forward_z, 6)],
+        }
+
     return {
         "spawn_point": [0.0, 1.65, 0.0],
         "forward_vector": [1.0, 0.0, 0.0],
