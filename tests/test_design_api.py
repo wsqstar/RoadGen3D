@@ -731,6 +731,69 @@ def test_design_api_endpoints_return_expected_shapes():
     assert invalid_osm_response.status_code == 400
 
 
+def test_scene_job_scenario_does_not_replace_inline_reference_annotation():
+    service = _FakeService()
+    client = TestClient(create_app(design_service=service))
+    user_annotation = {
+        "schema_version": "roadgen3d_reference_annotation_v2",
+        "plan_id": "user_osm_study_area",
+        "image_width_px": 1200,
+        "image_height_px": 800,
+        "pixels_per_meter": 2.0,
+        "centerlines": [
+            {
+                "id": "osm-road-user-main",
+                "road_width_m": 18.0,
+                "points": [{"x": 100, "y": 400}, {"x": 1100, "y": 400}],
+            }
+        ],
+        "junctions": [],
+        "control_points": [],
+        "building_regions": [
+            {
+                "id": "osm-building-user-1",
+                "center_px": {"x": 300, "y": 250},
+                "width_px": 80,
+                "height_px": 60,
+            }
+        ],
+    }
+
+    response = client.post(
+        "/api/scene/jobs",
+        json={
+            "draft": {
+                "normalized_scene_query": "generate from the approved OSM annotation",
+                "compose_config_patch": {},
+                "citations_by_field": {},
+                "design_summary": "user source",
+                "risk_notes": [],
+            },
+            "scene_context": {
+                "layout_mode": "reference_annotation",
+                "reference_annotation": user_annotation,
+                "source_context": {
+                    "source": {"source_id": "user-osm-source", "kind": "osm"},
+                    "aligned_buildings": [],
+                    "source_alignment": {"status": "aligned"},
+                },
+                "scenario_id": "scenario_01_basic_complete_street",
+                "scenario_title": "Basic Complete Street",
+            },
+            "generation_options": {
+                "scenario_compose_patch_applied": False,
+            },
+        },
+    )
+
+    assert response.status_code == 200
+    assert service.last_scene_context is not None
+    assert service.last_scene_context.layout_mode == "reference_annotation"
+    assert service.last_scene_context.reference_annotation["plan_id"] == "user_osm_study_area"
+    assert service.last_scene_context.reference_annotation["centerlines"][0]["id"] == "osm-road-user-main"
+    assert service.last_scene_context.template_patch is None
+
+
 def test_branch_run_api_endpoints_return_expected_shapes():
     app = create_app(design_service=_FakeService())
     branch_service = _FakeBranchRunService()

@@ -87,6 +87,58 @@ def prepare_scene_generation_request(
         or generation_options.get("graph_template_id")
         or "hkust_gz_gate"
     ).strip() or "hkust_gz_gate"
+    inline_reference_annotation = scene_context_payload.get("reference_annotation")
+    is_inline_reference_mode = (
+        str(scene_context_payload.get("layout_mode") or "").strip().lower()
+        == "reference_annotation"
+        and isinstance(inline_reference_annotation, dict)
+    )
+    if is_inline_reference_mode:
+        # The approved inline annotation is the source of truth. A selected
+        # scenario may contribute parameter patches, but it must never replace
+        # the user's OSM/GeoJSON geometry with a catalog annotation or graph
+        # template that merely happens to share the same generation dialog.
+        scenario_inputs = scenario_design_service.generation_inputs_for_scenario(
+            scenario_id,
+            graph_template_id=graph_template_id,
+            validate=True,
+        )
+        scenario_summary = dict(
+            scene_context_payload.get("scenario_design_variant")
+            or scenario_inputs.get("scenario")
+            or {}
+        )
+        scenario_compose_patch = sanitize_compose_config_patch(
+            scenario_inputs.get("compose_config_patch") or {}
+        )
+        if not bool(generation_options.get("scenario_compose_patch_applied")):
+            draft = replace(
+                draft,
+                compose_config_patch={
+                    **sanitize_compose_config_patch(draft.compose_config_patch),
+                    **scenario_compose_patch,
+                },
+                template_patch=None,
+            )
+        scene_context_payload.update({
+            "layout_mode": "reference_annotation",
+            "reference_annotation": dict(inline_reference_annotation),
+            "reference_annotation_path": None,
+            "template_patch": None,
+            "scenario_id": scenario_id,
+            "scenario_title": str(
+                scene_context_payload.get("scenario_title")
+                or scenario_summary.get("title_zh")
+                or scenario_id
+            ),
+            "scenario_design_variant": scenario_summary,
+        })
+        generation_options["scenario_id"] = scenario_id
+        generation_options["scenario_title"] = str(
+            scene_context_payload.get("scenario_title") or scenario_id
+        )
+        return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
+
     inline_template_patch = scene_context_payload.get("template_patch")
     if isinstance(inline_template_patch, dict) and inline_template_patch.get("operations") is not None:
         scenario_summary = dict(scene_context_payload.get("scenario_design_variant") or {})
@@ -195,4 +247,3 @@ def prepare_scene_generation_request(
     generation_options["scenario_id"] = scenario_id
     generation_options["scenario_title"] = str(scenario_summary.get("title_zh") or scenario_id)
     return draft, sanitize_scene_context(scene_context_payload), patch_overrides, generation_options
-
