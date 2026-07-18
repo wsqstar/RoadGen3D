@@ -662,3 +662,28 @@ def test_explicit_junction_scene_bridge_serializes_split_lines_and_control_point
     assert len(serialized["junction_geometries"][0]["skeleton_foot_points"]) == 3
     assert len(serialized["junction_geometries"][0]["sub_lane_control_points"]) > 0
     assert "quadrant_corner_kernels" not in serialized["junction_geometries"][0]
+
+
+def test_guangzhou_junction_09_is_disjoint_with_design_generation_width():
+    pytest.importorskip("shapely")
+    payload = json.loads(
+        (ROOT / "assets" / "starter_scenes" / "guangzhou_road_skeleton_v1" / "normalized_source.json")
+        .read_text(encoding="utf-8")
+    )
+
+    bridge = build_reference_annotation_scene_bridge(
+        payload["annotation"],
+        compose_config=build_reference_annotation_compose_config({
+            "road_width_m": 13.5,
+            "density": 0.6,
+            "building_representation": "transparent_massing",
+        }),
+    )
+
+    junction = next(
+        item
+        for item in bridge.placement_context.junction_geometries
+        if item.get("junction_id") == "junction_09"
+    )
+    assert junction["geometry_qa"]["ok"] is True
+    assert junction["geometry_qa"]["coplanar_overlap_area_m2"] == 0.0

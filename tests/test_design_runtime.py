@@ -25,6 +25,41 @@ def test_course_skip_llm_flag_prevents_parameter_derivation():
     assert runtime._wants_llm_parameter_derivation({"preset_id": "llm"}) is True
 
 
+def test_reference_annotation_llm_summary_does_not_build_final_junction_meshes(monkeypatch):
+    payload = json.loads(
+        (ROOT / "assets" / "starter_scenes" / "guangzhou_road_skeleton_v1" / "normalized_source.json")
+        .read_text(encoding="utf-8")
+    )
+    annotation = payload["annotation"]
+    draft = DesignDraft(
+        normalized_scene_query="balanced complete street",
+        compose_config_patch={"road_width_m": 13.5, "density": 0.6},
+        citations_by_field={},
+        design_summary="",
+    )
+
+    monkeypatch.setattr(
+        runtime,
+        "build_reference_annotation_scene_bridge",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(
+            AssertionError("LLM graph summary must not build final junction surfaces")
+        ),
+    )
+
+    summary = runtime._graph_summary_for_llm_derivation(
+        build_compose_config_from_draft(draft),
+        scene_context=SceneContext(
+            layout_mode="reference_annotation",
+            reference_annotation=annotation,
+        ),
+        options=runtime.DEFAULT_SCENE_GENERATION_OPTIONS,
+    )
+
+    assert summary["road_count"] == 6
+    assert summary["junction_count"] == 3
+    assert summary["compose_fallback_road_width_m"] == 13.5
+
+
 def test_normalize_scene_generation_options_includes_design_variant_fields(tmp_path: Path):
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text("{}", encoding="utf-8")

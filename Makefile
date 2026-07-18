@@ -83,7 +83,7 @@ dev:
 		viewer_port="$$found_port"; \
 		echo "RoadGen3D Viewer will start at http://$(VIEWER_HOST):$$viewer_port"; \
 	fi; \
-	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) api & api_pid=$$!; \
+	ROADGEN_API_RELOAD=1 ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) api & api_pid=$$!; \
 	ROADGEN_VIEWER_HOST=$(VIEWER_HOST) ROADGEN_VIEWER_PORT=$$viewer_port $(MAKE) viewer-web VIEWER_PORT=$$viewer_port & viewer_pid=$$!; \
 	{ echo "VIEWER_PORT=$$viewer_port"; echo "API_PORT=$(UI_API_PORT)"; echo "VIEWER_MAKE_PID=$$viewer_pid"; echo "API_MAKE_PID=$$api_pid"; } > $(DEV_STATE_FILE); \
 	cleanup() { kill -TERM $$viewer_pid $$api_pid 2>/dev/null || true; rm -f $(DEV_STATE_FILE); }; \
@@ -126,7 +126,9 @@ api:
 		echo "Design API already available at http://$(UI_API_HOST):$(UI_API_PORT)"; \
 	else \
 		MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m alembic upgrade head; \
-		ROADGEN_JOB_MODE=$${ROADGEN_JOB_MODE:-local} MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT); \
+		reload_args=""; \
+		if [ "$${ROADGEN_API_RELOAD:-0}" = "1" ]; then reload_args="--reload --reload-dir src --reload-dir web/api"; fi; \
+		ROADGEN_JOB_MODE=$${ROADGEN_JOB_MODE:-local} MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT) $$reload_args; \
 	fi
 
 workbench-api:

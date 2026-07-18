@@ -20,6 +20,7 @@ from ..semantic_design_layers import (
 from ..capture_3d import capture_views_for_layout
 from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
+from ..reference_annotation import build_reference_annotation_graph_payload
 from ..reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
 from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
@@ -639,8 +640,16 @@ def _graph_summary_for_llm_derivation(
             if isinstance(scene_context.reference_annotation, Mapping)
             else _load_reference_annotation_payload(scene_context.reference_annotation_path)
         )
-        bridge = build_reference_annotation_scene_bridge(annotation_payload, compose_config=base_config)
-        return dict(bridge.summary_metadata)
+        # LLM parameter derivation only needs the source graph contract.  Building
+        # final junction meshes here used to run export-grade surface QA before
+        # the LLM had derived any parameters, so a geometry diagnostic was
+        # misleadingly reported as an LLM failure.  Keep mesh construction and
+        # strict QA in the actual generation phase.
+        graph_payload = build_reference_annotation_graph_payload(
+            annotation_payload,
+            config=base_config,
+        )
+        return dict(graph_payload.get("summary") or {})
     resolved = resolve_scene_context(
         scene_context,
         config=base_config,
