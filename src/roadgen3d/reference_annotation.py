@@ -2343,6 +2343,23 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
 
 def build_reference_annotation_compose_config(overrides: Mapping[str, Any] | None = None) -> StreetComposeConfig:
     payload: MutableMapping[str, Any] = dict(overrides or {})
+    corner_mode = _as_string(payload.get("junction_corner_radius_mode"), "auto").strip().lower()
+    if corner_mode not in {"auto", "fixed"}:
+        raise ValueError("junction_corner_radius_mode must be 'auto' or 'fixed'.")
+    fixed_corner_radius = payload.get("junction_corner_radius_m")
+    fixed_corner_radius_m = (
+        max(0.25, _as_float(fixed_corner_radius, "junction_corner_radius_m"))
+        if fixed_corner_radius is not None
+        else None
+    )
+    min_corner_radius_m = max(
+        0.25,
+        _as_float(payload.get("junction_corner_min_radius_m"), "junction_corner_min_radius_m", default=3.0),
+    )
+    max_corner_radius_m = max(
+        min_corner_radius_m,
+        _as_float(payload.get("junction_corner_max_radius_m"), "junction_corner_max_radius_m", default=8.0),
+    )
     return StreetComposeConfig(
         query=_as_string(payload.get("query"), "reference annotation graph"),
         length_m=max(24.0, _as_float(payload.get("length_m"), "length_m", default=120.0)),
@@ -2355,6 +2372,21 @@ def build_reference_annotation_compose_config(overrides: Mapping[str, Any] | Non
         max_trials_per_slot=max(1, _as_int(payload.get("max_trials_per_slot"), "max_trials_per_slot", default=30)),
         segment_length_m=max(4.0, _as_float(payload.get("segment_length_m"), "segment_length_m", default=12.0)),
         layout_mode=_as_string(payload.get("layout_mode"), "annotation"),
+        junction_corner_radius_mode=corner_mode,
+        junction_corner_radius_m=fixed_corner_radius_m,
+        junction_corner_min_radius_m=min_corner_radius_m,
+        junction_corner_max_radius_m=max_corner_radius_m,
+        junction_precision_grid_m=max(
+            0.0001,
+            _as_float(payload.get("junction_precision_grid_m"), "junction_precision_grid_m", default=0.001),
+        ),
+        junction_seam_extension_m=max(
+            0.0,
+            _as_float(payload.get("junction_seam_extension_m"), "junction_seam_extension_m", default=0.02),
+        ),
+        curb_width_m=max(0.05, _as_float(payload.get("curb_width_m"), "curb_width_m", default=0.12)),
+        curb_reveal_m=max(0.05, _as_float(payload.get("curb_reveal_m"), "curb_reveal_m", default=0.15)),
+        curb_top_mode="flush_with_sidewalk",
     )
 
 

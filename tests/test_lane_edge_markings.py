@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -74,3 +75,51 @@ def test_lane_edge_markings_straight_fallback_uses_lateral_offsets(monkeypatch: 
     assert {round(float(call["local_z_m"]), 1) for call in calls} == {-7.0, 7.0}
     assert all(float(call["local_x_m"]) == pytest.approx(0.0) for call in calls)
     assert all(float(call["length_m"]) == pytest.approx(30.0) for call in calls)
+
+
+def test_default_lane_edge_policy_suppresses_ordinary_curbed_urban_road():
+    road = SimpleNamespace(highway_type="secondary", tags={})
+
+    assert street_layout._road_requires_lane_edge_marking(
+        road,
+        FOUR_LANE_PROFILES,
+        mode="explicit_only",
+    ) is False
+
+
+@pytest.mark.parametrize(
+    ("road", "profiles"),
+    [
+        (SimpleNamespace(highway_type="motorway", tags={}), FOUR_LANE_PROFILES),
+        (SimpleNamespace(highway_type="secondary", tags={"shoulder": "yes"}), FOUR_LANE_PROFILES),
+        (
+            SimpleNamespace(highway_type="secondary", tags={}),
+            [*FOUR_LANE_PROFILES, {"side": "right", "kind": "bike_lane", "inner_m": 7.0, "outer_m": 8.8}],
+        ),
+    ],
+)
+def test_explicit_or_special_road_semantics_keep_lane_edges(road, profiles):
+    assert street_layout._road_requires_lane_edge_marking(
+        road,
+        profiles,
+        mode="explicit_only",
+    ) is True
+
+
+def test_continuous_marking_ribbons_are_clipped_before_junction():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    exclusion = shapely_geometry.box(-2.0, -5.0, 2.0, 5.0)
+    allowed = shapely_geometry.box(-20.0, -7.0, 20.0, 7.0)
+    geometry = street_layout._lane_edge_marking_ribbon_geometry(
+        road_coords=((-20.0, 0.0), (20.0, 0.0)),
+        road_width_m=14.0,
+        detailed_strip_profiles=FOUR_LANE_PROFILES,
+        allowed_geometries=[allowed],
+        exclusion_geometries=[exclusion],
+    )
+
+    assert not geometry.is_empty
+    assert geometry.intersection(exclusion).area == pytest.approx(0.0, abs=1e-9)
+    assert geometry.bounds[0] >= allowed.bounds[0]
+    assert geometry.bounds[2] <= allowed.bounds[2]

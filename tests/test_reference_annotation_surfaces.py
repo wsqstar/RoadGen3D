@@ -13,7 +13,10 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.reference_annotation import parse_reference_annotation
-from roadgen3d.junction_surface_normalization import normalize_junction_surface_geometry
+from roadgen3d.junction_surface_normalization import (
+    normalize_junction_surface_geometries,
+    normalize_junction_surface_geometry,
+)
 from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
 from roadgen3d.street_layout import _build_osm_base_scene
 
@@ -215,6 +218,27 @@ def test_junction_surface_normalization_partitions_and_keeps_raw_debug() -> None
     crossing = next(patch for patch in surfaces if patch["surface_role"] == "crossing")
     assert crossing["is_overlay"] is True
     assert crossing["horizontal_axes"] == [[1.0, 0.0], [0.0, 1.0]]
+
+
+def test_continuous_junction_qa_rejects_unresolved_sliver() -> None:
+    pytest.importorskip("shapely")
+    from shapely.geometry import box
+
+    with pytest.raises(ValueError, match=r"Junction surface QA failed.*slivers=1"):
+        normalize_junction_surface_geometries([
+            {
+                "junction_id": "junction_bad_sliver",
+                "generation_mode": "continuous_junction_fusion_auto",
+                "debug_info": {"precision_grid_m": 0.001},
+                "canonical_surface_patches": [
+                    {
+                        "surface_id": "isolated_sliver",
+                        "surface_role": "sidewalk",
+                        "geometry": box(0.0, 0.0, 0.005, 0.2),
+                    },
+                ],
+            },
+        ])
 
 
 def test_junction_surface_normalization_keeps_crosswalk_sources_separate() -> None:

@@ -300,6 +300,32 @@ def test_build_segment_graph_from_annotation_builds_junctions_and_roundabout():
     assert any(hint.strip_kind == "clear_sidewalk" for hint in north_branch_node.metaurban_asset_hints)
 
 
+def test_reference_annotation_compose_config_keeps_geometry_policy_reproducible():
+    config = build_reference_annotation_compose_config(
+        {
+            "junction_corner_radius_mode": "fixed",
+            "junction_corner_radius_m": 5.5,
+            "junction_precision_grid_m": 0.002,
+            "junction_seam_extension_m": 0.03,
+            "curb_width_m": 0.14,
+            "curb_reveal_m": 0.16,
+        }
+    )
+
+    assert config.junction_corner_radius_mode == "fixed"
+    assert config.junction_corner_radius_m == pytest.approx(5.5)
+    assert config.junction_corner_min_radius_m == pytest.approx(3.0)
+    assert config.junction_corner_max_radius_m == pytest.approx(8.0)
+    assert config.junction_precision_grid_m == pytest.approx(0.002)
+    assert config.junction_seam_extension_m == pytest.approx(0.03)
+    assert config.curb_width_m == pytest.approx(0.14)
+    assert config.curb_reveal_m == pytest.approx(0.16)
+    assert config.curb_top_mode == "flush_with_sidewalk"
+
+    with pytest.raises(ValueError, match="junction_corner_radius_mode"):
+        build_reference_annotation_compose_config({"junction_corner_radius_mode": "random"})
+
+
 def test_build_segment_graph_from_annotation_detects_shared_vertex_junction_without_explicit_marker():
     payload = _sample_annotation_payload()
     payload["junctions"] = []

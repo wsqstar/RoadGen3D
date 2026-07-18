@@ -1481,6 +1481,14 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("topdown_render_mode must be 'legacy_vector' or 'design_tiles_v1'")
     if str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")).strip().lower() not in VALID_SCENE_TEXTURE_MODES:
         raise ValueError("scene_texture_mode must be 'topdown_tiles_v1' or 'solid_color_legacy'")
+    if str(getattr(config, "urban_lane_edge_mode", "explicit_only")).strip().lower() not in {"explicit_only", "always"}:
+        raise ValueError("urban_lane_edge_mode must be 'explicit_only' or 'always'")
+    if float(getattr(config, "junction_marking_setback_m", 0.5)) < 0.0:
+        raise ValueError("junction_marking_setback_m must be >= 0")
+    if float(getattr(config, "junction_curve_max_angle_deg", 2.0)) <= 0.0:
+        raise ValueError("junction_curve_max_angle_deg must be > 0")
+    if float(getattr(config, "junction_curve_max_chord_m", 0.25)) <= 0.0:
+        raise ValueError("junction_curve_max_chord_m must be > 0")
     if int(getattr(config, "topdown_canvas_px", 2048)) <= 0:
         raise ValueError("topdown_canvas_px must be > 0")
     if str(getattr(config, "asset_curation_mode", "scene_ready_first")).strip().lower() not in {
@@ -3868,7 +3876,9 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
     mesh.apply_translation([float(x_m), 0.0, float(z_m)])
 
 
-SIDEWALK_ELEVATION_M = 0.20
+DEFAULT_CURB_REVEAL_M = 0.15
+DEFAULT_CURB_WIDTH_M = 0.12
+SIDEWALK_ELEVATION_M = DEFAULT_CURB_REVEAL_M
 BUILDING_GRASS_UNDERLAY_HEIGHT_M = 0.024
 BUILDING_GRASS_UNDERLAY_Y_MIN_M = -0.030
 BUILDING_GRASS_UNDERLAY_TOP_M = BUILDING_GRASS_UNDERLAY_Y_MIN_M + BUILDING_GRASS_UNDERLAY_HEIGHT_M
@@ -4391,6 +4401,214 @@ def _marking_segment_supported_by_surface(
             if not supported:
                 return False
     return True
+
+
+def _clean_marking_polygonal_geometry(geometry: Any) -> Any:
+    """Return valid polygonal marking geometry without numerical fragments."""
+    from shapely.geometry import GeometryCollection, MultiPolygon, Polygon
+    from shapely.ops import unary_union
+
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return MultiPolygon()
+    if not getattr(geometry, "is_valid", True):
+        try:
+            geometry = geometry.buffer(0)
+        except Exception:
+            return MultiPolygon()
+    if isinstance(geometry, Polygon):
+        components = [geometry]
+    elif isinstance(geometry, MultiPolygon):
+        components = list(geometry.geoms)
+    elif isinstance(geometry, GeometryCollection) or hasattr(geometry, "geoms"):
+        components = [
+            item
+            for item in geometry.geoms
+            if isinstance(item, (Polygon, MultiPolygon)) and not getattr(item, "is_empty", True)
+        ]
+    else:
+        return MultiPolygon()
+    flattened = [
+        part
+        for component in components
+        for part in (list(component.geoms) if isinstance(component, MultiPolygon) else [component])
+        if float(getattr(part, "area", 0.0) or 0.0) > 1e-6
+    ]
+    return unary_union(flattened) if flattened else MultiPolygon()
+
+
+def _iter_marking_lines(geometry: Any) -> Iterable[Any]:
+    from shapely.geometry import LineString, MultiLineString
+
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return
+    if isinstance(geometry, LineString):
+        yield geometry
+        return
+    if isinstance(geometry, MultiLineString) or hasattr(geometry, "geoms"):
+        for item in geometry.geoms:
+            yield from _iter_marking_lines(item)
+
+
+def _offset_marking_lines(
+    road_coords: Sequence[Tuple[float, float]],
+    lateral_offset_m: float,
+) -> List[Any]:
+    from shapely.geometry import LineString
+
+    if len(road_coords) < 2:
+        return []
+    line = LineString([(float(x), float(z)) for x, z in road_coords])
+    if getattr(line, "is_empty", True) or float(line.length) <= 1e-6:
+        return []
+    if abs(float(lateral_offset_m)) <= 1e-6:
+        return [line]
+    try:
+        offset = line.offset_curve(float(lateral_offset_m), quad_segs=16, join_style=1)
+    except (AttributeError, TypeError):
+        side = "left" if float(lateral_offset_m) >= 0.0 else "right"
+        offset = line.parallel_offset(abs(float(lateral_offset_m)), side=side, resolution=16, join_style=1)
+    return [candidate for candidate in _iter_marking_lines(offset) if float(candidate.length) > 1e-6]
+
+
+def _clip_marking_geometry(
+    geometry: Any,
+    *,
+    allowed_geometries: Sequence[Any] | None,
+    exclusion_geometries: Sequence[Any] | None,
+) -> Any:
+    from shapely.ops import unary_union
+
+    clipped = _clean_marking_polygonal_geometry(geometry)
+    allowed = [item for item in (allowed_geometries or ()) if item is not None and not getattr(item, "is_empty", True)]
+    excluded = [item for item in (exclusion_geometries or ()) if item is not None and not getattr(item, "is_empty", True)]
+    try:
+        if allowed:
+            clipped = clipped.intersection(unary_union(allowed))
+        if excluded and not getattr(clipped, "is_empty", True):
+            clipped = clipped.difference(unary_union(excluded))
+    except Exception:
+        logger.debug("Failed to clip road marking ribbon", exc_info=True)
+    return _clean_marking_polygonal_geometry(clipped)
+
+
+def _centerline_marking_ribbon_geometry(
+    *,
+    road_coords: Sequence[Tuple[float, float]],
+    road_width_m: float,
+    lane_count: int | None,
+    base_lane_width_m: float | None,
+    highway_type: str | None,
+    lane_separator_offsets_m: Sequence[float] | None,
+    allowed_geometries: Sequence[Any] | None,
+    exclusion_geometries: Sequence[Any] | None,
+) -> Any:
+    from shapely.ops import substring, unary_union
+
+    explicit_offsets = tuple(float(offset) for offset in (lane_separator_offsets_m or ()))
+    if not explicit_offsets and not _should_render_centerline_marking(
+        carriageway_width_m=float(road_width_m), lane_count=lane_count
+    ):
+        return _clean_marking_polygonal_geometry(None)
+    if explicit_offsets:
+        offsets = list(explicit_offsets)
+    else:
+        lane_count_int = int(lane_count or 0)
+        if 1 < lane_count_int <= 8 and float(road_width_m) > 0.0:
+            lane_width_m = float(road_width_m) / float(lane_count_int)
+            offsets = [
+                -float(road_width_m) / 2.0 + lane_width_m * float(index)
+                for index in range(1, lane_count_int)
+            ]
+        else:
+            offsets = [0.0]
+    half_width_m = max(float(road_width_m) / 2.0, 0.0)
+    offsets = [offset for offset in offsets if half_width_m <= 0.0 or abs(offset) < half_width_m - 0.08]
+    deduped: List[float] = []
+    for offset in sorted(offsets):
+        if not any(abs(offset - existing) <= 0.02 for existing in deduped):
+            deduped.append(float(offset))
+    dash_length_m, dash_gap_m = _marking_dash_pattern(
+        road_width_m=float(road_width_m),
+        lane_count=lane_count,
+        base_lane_width_m=base_lane_width_m,
+        highway_type=highway_type,
+    )
+    highway_key = str(highway_type or "").strip().lower()
+    dash_length_m, dash_gap_m = ((6.0, 9.0) if any(token in highway_key for token in ("motorway", "trunk", "express", "freeway")) else (4.0, 6.0))
+    ribbons: List[Any] = []
+    for offset in deduped:
+        for line in _offset_marking_lines(road_coords, offset):
+            distance_m = dash_length_m * 0.5
+            while distance_m < float(line.length) - dash_length_m * 0.5:
+                dash = substring(
+                    line,
+                    max(0.0, distance_m - dash_length_m * 0.5),
+                    min(float(line.length), distance_m + dash_length_m * 0.5),
+                )
+                if not getattr(dash, "is_empty", True) and float(getattr(dash, "length", 0.0) or 0.0) > 0.05:
+                    ribbons.append(dash.buffer(LANE_MARK_WIDTH_M * 0.5, cap_style="flat", join_style="round"))
+                distance_m += dash_length_m + dash_gap_m
+    merged = unary_union(ribbons) if ribbons else None
+    return _clip_marking_geometry(
+        merged,
+        allowed_geometries=allowed_geometries,
+        exclusion_geometries=exclusion_geometries,
+    )
+
+
+def _road_requires_lane_edge_marking(
+    road_reference: Any,
+    detailed_strip_profiles: Sequence[Mapping[str, Any]],
+    *,
+    mode: str,
+) -> bool:
+    if str(mode).strip().lower() == "always":
+        return True
+    highway_key = str(getattr(road_reference, "highway_type", "") or "").strip().lower()
+    if any(token in highway_key for token in ("motorway", "trunk", "express", "freeway")):
+        return True
+    tags = dict(getattr(road_reference, "tags", {}) or {})
+    explicit_keys = (
+        "edge_marking",
+        "road_marking",
+        "shoulder",
+        "shoulder:both",
+        "shoulder:left",
+        "shoulder:right",
+    )
+    if any(str(tags.get(key, "")).strip().lower() not in {"", "no", "none", "0", "false"} for key in explicit_keys):
+        return True
+    special_strip_kinds = {"shoulder", "bike_lane", "bus_lane"}
+    return any(str(strip.get("kind", "")).strip().lower() in special_strip_kinds for strip in detailed_strip_profiles)
+
+
+def _lane_edge_marking_ribbon_geometry(
+    *,
+    road_coords: Sequence[Tuple[float, float]],
+    road_width_m: float,
+    detailed_strip_profiles: Sequence[Mapping[str, Any]],
+    allowed_geometries: Sequence[Any] | None,
+    exclusion_geometries: Sequence[Any] | None,
+) -> Any:
+    from shapely.ops import unary_union
+
+    offsets = _drive_lane_boundary_offsets(list(detailed_strip_profiles))
+    if not offsets and float(road_width_m) > 0.0:
+        offsets = [-float(road_width_m) / 2.0 + 0.25, float(road_width_m) / 2.0 - 0.25]
+    if len(offsets) >= 2:
+        offsets = [offsets[0], offsets[-1]]
+    ribbons: List[Any] = []
+    for offset in offsets:
+        if abs(float(offset)) <= 0.08:
+            continue
+        for line in _offset_marking_lines(road_coords, float(offset)):
+            ribbons.append(line.buffer(LANE_EDGE_MARK_WIDTH_M * 0.5, cap_style="flat", join_style="round"))
+    merged = unary_union(ribbons) if ribbons else None
+    return _clip_marking_geometry(
+        merged,
+        allowed_geometries=allowed_geometries,
+        exclusion_geometries=exclusion_geometries,
+    )
 
 
 def _add_centerline_markings(
@@ -5429,6 +5647,7 @@ def _stage_scene_base(
     if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None:
         return _build_osm_base_scene(
             placement_ctx,
+            config=config,
             palette=palette,
             roughness=roughness,
             texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
@@ -6347,6 +6566,7 @@ def _sample_pose_osm(
 def _build_osm_base_scene(
     placement_ctx: object,
     *,
+    config: StreetComposeConfig | None = None,
     palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
     roughness: Optional[Dict[str, float]] = None,
     texture_mode: str = "topdown_tiles_v1",
@@ -6356,6 +6576,12 @@ def _build_osm_base_scene(
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
+    curb_width = max(float(getattr(config, "curb_width_m", DEFAULT_CURB_WIDTH_M) or DEFAULT_CURB_WIDTH_M), 0.05)
+    sidewalk_top_y_m = max(float(getattr(config, "curb_reveal_m", DEFAULT_CURB_REVEAL_M) or DEFAULT_CURB_REVEAL_M), 0.05)
+    surface_precision_grid_m = max(
+        float(getattr(config, "junction_precision_grid_m", 0.001) or 0.001),
+        0.0001,
+    )
 
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
@@ -6387,6 +6613,76 @@ def _build_osm_base_scene(
             ]
             return _clean_scene_polygonal_geometry(unary_union(polygons)) if polygons else MultiPolygon()
         return MultiPolygon()
+
+    def _polygon_component_count(geometry: Any, *, max_area_m2: float | None = None) -> int:
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+        cleaned = _clean_scene_polygonal_geometry(geometry)
+        if isinstance(cleaned, ShapelyPolygon):
+            components = [cleaned]
+        elif isinstance(cleaned, MultiPolygon):
+            components = list(cleaned.geoms)
+        else:
+            components = []
+        if max_area_m2 is None:
+            return len(components)
+        return sum(1 for component in components if float(component.area) < float(max_area_m2))
+
+    def _clean_final_surface_geometry(
+        geometry: Any,
+        *,
+        minimum_component_area_m2: float,
+        simplify_tolerance_m: float | None = None,
+    ) -> tuple[Any, int]:
+        """Return millimetre-snapped polygonal surface without numerical shards."""
+        from shapely import set_precision
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+        from shapely.ops import unary_union
+
+        cleaned = _clean_scene_polygonal_geometry(geometry)
+        if getattr(cleaned, "is_empty", True):
+            return MultiPolygon(), 0
+        try:
+            cleaned = _clean_scene_polygonal_geometry(
+                set_precision(cleaned, grid_size=surface_precision_grid_m)
+            )
+        except Exception:
+            logger.debug("Failed to precision-snap final road surface", exc_info=True)
+        if isinstance(cleaned, ShapelyPolygon):
+            components = [cleaned]
+        elif isinstance(cleaned, MultiPolygon):
+            components = list(cleaned.geoms)
+        else:
+            components = []
+        retained = [
+            component
+            for component in components
+            if float(component.area) >= float(minimum_component_area_m2)
+            and len(component.exterior.coords) >= 4
+        ]
+        removed_count = len(components) - len(retained)
+        if not retained:
+            return MultiPolygon(), removed_count
+        normalized = _clean_scene_polygonal_geometry(unary_union(retained))
+        tolerance_m = (
+            max(surface_precision_grid_m * 2.0, 0.005)
+            if simplify_tolerance_m is None
+            else max(float(simplify_tolerance_m), 0.0)
+        )
+        try:
+            # Remove millimetre stair-steps left by layered boolean operations.
+            # Five millimetres is below visible street-design accuracy while
+            # preventing near-zero top triangles and serrated curb textures.
+            if tolerance_m > 0.0:
+                normalized = _clean_scene_polygonal_geometry(
+                    normalized.simplify(
+                        tolerance_m,
+                        preserve_topology=True,
+                    )
+                )
+        except Exception:
+            logger.debug("Failed to simplify final road surface", exc_info=True)
+        return normalized, removed_count
 
     def _union_scene_polygonal_geometries(geometries: Sequence[Any]) -> Any:
         from shapely.geometry import MultiPolygon
@@ -6486,6 +6782,89 @@ def _build_osm_base_scene(
         sidewalk_render_zone,
         *elevated_surface_annotation_surfaces,
     ])
+    curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
+    # Two precision cells are still only 2 mm at the default scale, but are
+    # wide enough to survive GLTF float32 quantization on 100 m-scale scenes.
+    mesh_boundary_clearance_m = max(surface_precision_grid_m * 2.0, 0.002)
+    if not getattr(curb_zone, "is_empty", True):
+        try:
+            from shapely import difference, set_precision
+
+            curb_zone = _clean_scene_polygonal_geometry(
+                set_precision(curb_zone, grid_size=surface_precision_grid_m)
+            )
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                difference(
+                    set_precision(sidewalk_render_zone, grid_size=surface_precision_grid_m),
+                    curb_zone,
+                    grid_size=surface_precision_grid_m,
+                )
+            )
+            # GLTF stores positions as float32. A sub-grid clearance on the
+            # sidewalk side prevents independently triangulated shared edges
+            # from becoming hairline coplanar triangles after serialization.
+            # This is horizontal geometry clearance, not a depth/render offset.
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                sidewalk_render_zone.difference(curb_zone.buffer(mesh_boundary_clearance_m))
+            )
+        except Exception:
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(curb_zone))
+    sidewalk_render_zone, removed_sidewalk_sliver_count = _clean_final_surface_geometry(
+        sidewalk_render_zone,
+        minimum_component_area_m2=0.01,
+    )
+    curb_zone, removed_curb_sliver_count = _clean_final_surface_geometry(
+        curb_zone,
+        minimum_component_area_m2=0.002,
+    )
+    if not getattr(curb_zone, "is_empty", True):
+        try:
+            from shapely import difference, set_precision
+
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                difference(
+                    set_precision(sidewalk_render_zone, grid_size=surface_precision_grid_m),
+                    set_precision(
+                        curb_zone.buffer(mesh_boundary_clearance_m),
+                        grid_size=surface_precision_grid_m,
+                    ),
+                    grid_size=surface_precision_grid_m,
+                )
+            )
+        except Exception:
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                sidewalk_render_zone.difference(curb_zone.buffer(mesh_boundary_clearance_m))
+            )
+    curb_sidewalk_overlap_area_m2 = float(
+        curb_zone.intersection(sidewalk_render_zone).area
+        if not getattr(curb_zone, "is_empty", True) and not getattr(sidewalk_render_zone, "is_empty", True)
+        else 0.0
+    )
+    if curb_sidewalk_overlap_area_m2 > 1e-4:
+        raise ValueError(
+            f"Curb/sidewalk surface QA failed: overlap={curb_sidewalk_overlap_area_m2:.6f}m2"
+        )
+    final_surface_sliver_count = (
+        _polygon_component_count(sidewalk_render_zone, max_area_m2=0.01)
+        + _polygon_component_count(curb_zone, max_area_m2=0.002)
+    )
+    if final_surface_sliver_count:
+        raise ValueError(
+            "Final road surface QA failed: numerical sidewalk/curb components remain "
+            f"(count={final_surface_sliver_count})"
+        )
+    surface_geometry_qa = {
+        "ok": True,
+        "curb_sidewalk_overlap_area_m2": round(curb_sidewalk_overlap_area_m2, 6),
+        "curb_width_m": round(curb_width, 6),
+        "curb_reveal_m": round(sidewalk_top_y_m, 6),
+        "curb_top_mode": "flush_with_sidewalk",
+        "mesh_boundary_clearance_m": round(mesh_boundary_clearance_m, 6),
+        "final_surface_sliver_count": int(final_surface_sliver_count),
+        "removed_surface_sliver_count": int(removed_sidewalk_sliver_count + removed_curb_sliver_count),
+    }
+    setattr(placement_ctx, "surface_geometry_qa", surface_geometry_qa)
+    scene.metadata["surface_geometry_qa"] = surface_geometry_qa
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
     for geom in (vehicle_surface_zone, sidewalk_render_zone):
@@ -6545,6 +6924,45 @@ def _build_osm_base_scene(
         This puts the top surface at Y = y_offset with the road lying flat on XZ.
         """
         from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+        def _extrude_with_constrained_triangulation(polygon: Any) -> Any:
+            """Extrude a polygon from a constrained-Delaunay top partition."""
+            try:
+                from shapely import constrained_delaunay_triangles
+
+                triangulation = constrained_delaunay_triangles(polygon)
+                triangles = [
+                    item
+                    for item in getattr(triangulation, "geoms", ())
+                    if isinstance(item, ShapelyPolygon)
+                    and not getattr(item, "is_empty", True)
+                    and float(item.area) > 1e-10
+                ]
+                if not triangles:
+                    raise ValueError("constrained triangulation produced no faces")
+                vertex_lookup: Dict[Tuple[float, float], int] = {}
+                vertices_2d: List[Tuple[float, float]] = []
+                faces: List[List[int]] = []
+                for triangle in triangles:
+                    face: List[int] = []
+                    for x, y in list(triangle.exterior.coords)[:3]:
+                        key = (round(float(x), 9), round(float(y), 9))
+                        if key not in vertex_lookup:
+                            vertex_lookup[key] = len(vertices_2d)
+                            vertices_2d.append((float(x), float(y)))
+                        face.append(vertex_lookup[key])
+                    if len(set(face)) == 3:
+                        faces.append(face)
+                if not faces:
+                    raise ValueError("constrained triangulation produced only degenerate faces")
+                return trimesh.creation.extrude_triangulation(
+                    np.asarray(vertices_2d, dtype=float),
+                    np.asarray(faces, dtype=int),
+                    height,
+                )
+            except (AttributeError, ImportError, TypeError, ValueError):
+                return trimesh.creation.extrude_polygon(polygon, height)
+
         polygons = []
         if isinstance(geom, ShapelyPolygon):
             polygons = [geom]
@@ -6554,7 +6972,33 @@ def _build_osm_base_scene(
             if poly.is_empty:
                 continue
             try:
-                mesh = trimesh.creation.extrude_polygon(poly, height)
+                cleaned_poly, _removed = _clean_final_surface_geometry(
+                    poly,
+                    minimum_component_area_m2=1e-6,
+                    simplify_tolerance_m=0.0,
+                )
+                if isinstance(cleaned_poly, MultiPolygon):
+                    cleaned_parts = list(cleaned_poly.geoms)
+                    if len(cleaned_parts) != 1:
+                        for part_index, part in enumerate(cleaned_parts):
+                            _extrude_polygon(
+                                part,
+                                height,
+                                color,
+                                f"{name_prefix}_{idx}_{part_index}",
+                                y_offset=y_offset,
+                                roughness_key=roughness_key,
+                                surface_role=surface_role,
+                                horizontal_axes=horizontal_axes,
+                                top_only=top_only,
+                            )
+                        continue
+                    poly = cleaned_parts[0]
+                elif isinstance(cleaned_poly, ShapelyPolygon):
+                    poly = cleaned_poly
+                else:
+                    continue
+                mesh = _extrude_with_constrained_triangulation(poly)
                 # Swap Y<->Z so road lies flat on XZ ground plane (Y-up)
                 verts = mesh.vertices.copy()
                 old_y = verts[:, 1].copy()   # was northing
@@ -6569,6 +7013,11 @@ def _build_osm_base_scene(
                         continue
                     mesh.update_faces(top_face_mask)
                     mesh.remove_unreferenced_vertices()
+                if hasattr(mesh, "nondegenerate_faces"):
+                    mesh.update_faces(mesh.nondegenerate_faces(height=max(surface_precision_grid_m * 0.1, 1e-8)))
+                if hasattr(mesh, "unique_faces"):
+                    mesh.update_faces(mesh.unique_faces())
+                mesh.remove_unreferenced_vertices()
                 mesh = _apply_surface_finish(
                     mesh,
                     surface_role=surface_role or roughness_key or "sidewalk",
@@ -6616,8 +7065,8 @@ def _build_osm_base_scene(
             polygons = list(geom.geoms)
 
         sidewalk_color = list(colors.get("sidewalk", (165, 168, 172, 255)))
-        bottom_y = SIDEWALK_ELEVATION_M - 0.08
-        top_y = SIDEWALK_ELEVATION_M
+        bottom_y = sidewalk_top_y_m - 0.08
+        top_y = sidewalk_top_y_m
         wall_vertices: list[list[float]] = []
         wall_faces: list[list[int]] = []
         for poly in polygons:
@@ -6839,7 +7288,6 @@ def _build_osm_base_scene(
                 placeholder.visual.face_colors = (160, 160, 160, 255)
             _place_zone_furniture_mesh(placeholder, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
 
-    curb_width = 0.12
     if has_bus_bay_vehicle_zone:
         if not getattr(vehicle_surface_zone, "is_empty", True):
             _extrude_polygon(
@@ -6875,7 +7323,7 @@ def _build_osm_base_scene(
     if not sidewalk_render_zone.is_empty:
         _extrude_polygon(
             sidewalk_render_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
-            y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
+            y_offset=sidewalk_top_y_m, roughness_key="sidewalk", surface_role="sidewalk",
             top_only=has_bus_bay_vehicle_zone,
         )
         if has_bus_bay_vehicle_zone:
@@ -6967,11 +7415,10 @@ def _build_osm_base_scene(
     curb_color = list(colors.get("curb", (145, 145, 145, 255)))
     if not curb_source_surface.is_empty:
         try:
-            curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
             if not curb_zone.is_empty:
                 _extrude_polygon(
-                    curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
-                    y_offset=SIDEWALK_ELEVATION_M, roughness_key="curb", surface_role="curb",
+                    curb_zone, sidewalk_top_y_m, curb_color, "curb",
+                    y_offset=sidewalk_top_y_m, roughness_key="curb", surface_role="curb",
                 )
         except Exception:
             logger.debug("Skipping curb geometry in OSM base scene")
@@ -7025,7 +7472,7 @@ def _build_osm_base_scene(
                 height_m,
                 list(colors.get(color_key, colors.get("sidewalk", (165, 168, 172, 255)))),
                 f"junction_{node_name}_{junction_index}_{patch_index}",
-                y_offset=SIDEWALK_ELEVATION_M,
+                y_offset=sidewalk_top_y_m,
                 roughness_key=color_key,
                 surface_role=surface_role,
             )
@@ -7035,7 +7482,7 @@ def _build_osm_base_scene(
         if role == "crossing":
             return 0.01, list(colors.get("lane_mark", (245, 245, 245, 255))), 0.008, "crossing", "crossing"
         if role in {"sidewalk", "furnishing", "context_ground"}:
-            return 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), SIDEWALK_ELEVATION_M, "sidewalk", "sidewalk"
+            return 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), sidewalk_top_y_m, "sidewalk", "sidewalk"
         if role in {"bike_lane", "bus_lane", "parking_lane"}:
             return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
         return 0.012, list(colors.get("carriageway", (65, 68, 72, 255))), 0.004, "carriageway", "carriageway"
@@ -7083,6 +7530,12 @@ def _build_osm_base_scene(
     def _surface_annotation_render_geometry(patch: Mapping[str, Any], geometry: object) -> object:
         if _is_bus_bay_vehicle_patch(patch):
             return _clean_scene_polygonal_geometry(geometry)
+        role = str(patch.get("surface_role", "") or "").strip().lower()
+        if role in elevated_surface_annotation_roles and not getattr(curb_zone, "is_empty", True):
+            try:
+                return _clean_scene_polygonal_geometry(geometry.difference(curb_zone))
+            except Exception:
+                logger.debug("Failed to reserve exclusive curb surface ownership", exc_info=True)
         if not _is_crossing_surface_patch(patch):
             return geometry
         if getattr(curb_source_surface, "is_empty", True):
@@ -7150,7 +7603,7 @@ def _build_osm_base_scene(
         if role == "shared_street_surface":
             return 0.014, _material_color(material, colors.get("shared_street_surface", (180, 160, 140, 255))), 0.016, texture_key or "shared_street_surface", "shared_street_surface"
         if role == "transit_pad":
-            return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), SIDEWALK_ELEVATION_M + 0.018, texture_key or "transit_pad", "transit_pad"
+            return 0.014, _material_color(material, colors.get("transit_pad", (118, 129, 145, 255))), sidewalk_top_y_m + 0.018, texture_key or "transit_pad", "transit_pad"
         return 0.014, _material_color(material, colors.get("colored_pavement", (200, 175, 150, 255))), 0.016, texture_key or "colored_pavement", "colored_pavement"
 
     def _render_bus_bay_regular_edge_markings(
@@ -7477,7 +7930,7 @@ def _build_osm_base_scene(
                     0.014 if is_center_turn else 0.055,
                     color,
                     f"junction_turn_lane_{junction_index}_{patch_index}",
-                    y_offset=0.010 if is_center_turn else SIDEWALK_ELEVATION_M,
+                    y_offset=0.010 if is_center_turn else sidewalk_top_y_m,
                     roughness_key=color_key,
                     surface_role=surface_role,
                 )
@@ -7535,9 +7988,17 @@ def _build_osm_base_scene(
         float(fallback_length_m),
     )
     road_references = list(getattr(placement_ctx, "road_references", []) or [])
+    marking_setback_m = max(
+        float(getattr(config, "junction_marking_setback_m", 0.5) or 0.5),
+        0.0,
+    )
+    lane_edge_mode = str(
+        getattr(config, "urban_lane_edge_mode", "explicit_only") or "explicit_only"
+    ).strip().lower()
     marking_exclusion_geometries = [
         *_junction_marking_exclusion_geometries(
-            list(getattr(placement_ctx, "junction_geometries", []) or ())
+            list(getattr(placement_ctx, "junction_geometries", []) or ()),
+            padding_m=marking_setback_m,
         ),
         *bus_bay_marking_exclusion_surfaces,
     ]
@@ -7548,6 +8009,65 @@ def _build_osm_base_scene(
         fallback_reference = getattr(placement_ctx, "road_reference", None)
         if fallback_reference is not None:
             road_references = [fallback_reference]
+    marking_geometry_records: List[Dict[str, Any]] = []
+    suppressed_lane_edge_count = 0
+    rendered_marking_union_by_role: Dict[str, Any] = {}
+    deduplicated_marking_area_m2 = 0.0
+
+    def _render_longitudinal_marking(
+        geometry: Any,
+        *,
+        role: str,
+        road_key: str,
+        node_name: str,
+    ) -> None:
+        nonlocal deduplicated_marking_area_m2
+        from shapely.ops import unary_union
+
+        if geometry is None or getattr(geometry, "is_empty", True):
+            return
+        prior_geometry = rendered_marking_union_by_role.get(role)
+        if prior_geometry is not None and not getattr(prior_geometry, "is_empty", True):
+            overlap_area_m2 = float(geometry.intersection(prior_geometry).area)
+            if overlap_area_m2 > 0.0:
+                deduplicated_marking_area_m2 += overlap_area_m2
+                geometry = _clean_marking_polygonal_geometry(geometry.difference(prior_geometry))
+                if getattr(geometry, "is_empty", True):
+                    return
+        if role == "lane_edge_mark":
+            color = list(colors.get("lane_edge", (230, 200, 50, 255)))
+            roughness_key = "lane_edge"
+            height_m = LANE_EDGE_MARK_HEIGHT_M
+            top_y_m = LANE_EDGE_MARK_Y_MIN_M + LANE_EDGE_MARK_HEIGHT_M
+        else:
+            color = list(colors.get("lane_mark", (245, 245, 245, 255)))
+            roughness_key = "lane_mark"
+            height_m = LANE_MARK_HEIGHT_M
+            top_y_m = LANE_MARK_Y_MIN_M + LANE_MARK_HEIGHT_M
+        _extrude_polygon(
+            geometry,
+            height_m,
+            color,
+            node_name,
+            y_offset=top_y_m,
+            roughness_key=roughness_key,
+            surface_role=roughness_key,
+            top_only=True,
+        )
+        marking_geometry_records.append(
+            {
+                "role": role,
+                "road_key": road_key,
+                "geometry": geometry,
+                "area_m2": float(getattr(geometry, "area", 0.0) or 0.0),
+            }
+        )
+        rendered_marking_union_by_role[role] = (
+            unary_union([prior_geometry, geometry])
+            if prior_geometry is not None and not getattr(prior_geometry, "is_empty", True)
+            else geometry
+        )
+
     if road_references:
         for road_index, road_reference in enumerate(road_references):
             coords = _road_reference_coords(road_reference)
@@ -7578,53 +8098,54 @@ def _build_osm_base_scene(
                 if lane_count_for_markings and road_reference_width_m > 0.0
                 else None
             )
-            _add_centerline_markings(
-                scene,
-                road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
+            road_key = str(
+                getattr(road_reference, "logical_road_id", "")
+                or getattr(road_reference, "osm_id", "")
+                or road_index
+            )
+            centerline_geometry = _centerline_marking_ribbon_geometry(
+                road_coords=coords,
                 road_width_m=road_reference_width_m,
-                road_center_x_m=float(road_center_x_m),
-                road_center_z_m=float(road_center_z_m),
-                road_yaw_deg=float(road_yaw_deg),
                 lane_count=lane_count_for_markings,
-                highway_type=str(getattr(road_reference, "highway_type", "")),
                 base_lane_width_m=base_lane_width_m,
-                road_coords=coords,
-                lane_separator_offsets_m=lane_separator_offsets,
-                marking_exclusion_geometries=centerline_marking_exclusion_geometries,
-                marking_allowed_geometries=road_marking_allowed_geometries,
-                color=colors.get("lane_mark", (245, 245, 245, 255)),
-                roughness=(roughness or {}).get("lane_mark", 0.30),
-                node_name_prefix=f"centerline_mark_{road_index}",
-                texture_mode=texture_mode,
-                texture_tracker=texture_tracker,
-                texture_overrides=texture_overrides,
-            )
-            # Add lane edge markings for this road reference
-            _add_lane_edge_markings(
-                scene,
-                road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
-                road_center_x_m=float(road_center_x_m),
-                road_center_z_m=float(road_center_z_m),
-                road_yaw_deg=float(road_yaw_deg),
-                road_width_m=road_reference_width_m,
-                detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
                 highway_type=str(getattr(road_reference, "highway_type", "")),
-                road_coords=coords,
-                marking_exclusion_geometries=marking_exclusion_geometries,
-                marking_allowed_geometries=road_marking_allowed_geometries,
-                edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
-                roughness=(roughness or {}).get("lane_edge", 0.30),
-                node_name_prefix=f"lane_edge_{road_index}",
-                texture_mode=texture_mode,
-                texture_tracker=texture_tracker,
-                texture_overrides=texture_overrides,
+                lane_separator_offsets_m=lane_separator_offsets,
+                allowed_geometries=road_marking_allowed_geometries,
+                exclusion_geometries=centerline_marking_exclusion_geometries,
             )
+            _render_longitudinal_marking(
+                centerline_geometry,
+                role="centerline_mark",
+                road_key=road_key,
+                node_name=f"centerline_mark_{road_index}",
+            )
+            detailed_profiles = list(getattr(placement_ctx, "detailed_strip_profiles", []) or [])
+            if _road_requires_lane_edge_marking(
+                road_reference,
+                detailed_profiles,
+                mode=lane_edge_mode,
+            ):
+                lane_edge_geometry = _lane_edge_marking_ribbon_geometry(
+                    road_coords=coords,
+                    road_width_m=road_reference_width_m,
+                    detailed_strip_profiles=detailed_profiles,
+                    allowed_geometries=road_marking_allowed_geometries,
+                    exclusion_geometries=marking_exclusion_geometries,
+                )
+                _render_longitudinal_marking(
+                    lane_edge_geometry,
+                    role="lane_edge_mark",
+                    road_key=road_key,
+                    node_name=f"lane_edge_{road_index}",
+                )
+            else:
+                suppressed_lane_edge_count += 2
             _render_bus_bay_regular_edge_markings(
                 road_coords=coords,
                 road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
                 road_width_m=road_reference_width_m,
                 edge_offsets_m=_regular_lane_edge_offsets(
-                    list(getattr(placement_ctx, "detailed_strip_profiles", []) or ()),
+                    detailed_profiles,
                     road_reference_width_m,
                 ),
                 lane_count=lane_count_for_markings,
@@ -7636,55 +8157,221 @@ def _build_osm_base_scene(
         fallback_lane_separator_offsets = _drive_lane_internal_offsets(
             list(getattr(placement_ctx, "detailed_strip_profiles", []) or ())
         )
-        _add_centerline_markings(
-            scene,
-            road_length_m=float(road_length_m),
-            road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
-            road_center_x_m=float(road_center_x_m),
-            road_center_z_m=float(road_center_z_m),
-            road_yaw_deg=float(road_yaw_deg),
-            lane_count=None,
+        fallback_coords = _road_reference_coords(placement_ctx)
+        if len(fallback_coords) < 2 and float(road_length_m) > 0.0:
+            half_length_m = float(road_length_m) * 0.5
+            yaw_radians = math.radians(float(road_yaw_deg))
+            direction_x = math.cos(yaw_radians)
+            direction_z = math.sin(yaw_radians)
+            fallback_coords = [
+                (
+                    float(road_center_x_m) - direction_x * half_length_m,
+                    float(road_center_z_m) - direction_z * half_length_m,
+                ),
+                (
+                    float(road_center_x_m) + direction_x * half_length_m,
+                    float(road_center_z_m) + direction_z * half_length_m,
+                ),
+            ]
+        fallback_width_m = float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0)
+        fallback_centerline_geometry = _centerline_marking_ribbon_geometry(
+            road_coords=fallback_coords,
+            road_width_m=fallback_width_m,
+            lane_count=(len(fallback_lane_separator_offsets) + 1 if fallback_lane_separator_offsets else None),
+            base_lane_width_m=None,
             highway_type="",
-            road_coords=_road_reference_coords(placement_ctx),
             lane_separator_offsets_m=fallback_lane_separator_offsets,
-            marking_exclusion_geometries=centerline_marking_exclusion_geometries,
-            color=colors.get("lane_mark", (245, 245, 245, 255)),
-            roughness=(roughness or {}).get("lane_mark", 0.30),
-            texture_mode=texture_mode,
-            texture_tracker=texture_tracker,
-            texture_overrides=texture_overrides,
+            allowed_geometries=[vehicle_surface_zone],
+            exclusion_geometries=centerline_marking_exclusion_geometries,
         )
-        # Add lane edge markings (fallback path)
-        _add_lane_edge_markings(
-            scene,
-            road_length_m=float(road_length_m),
-            road_center_x_m=float(road_center_x_m),
-            road_center_z_m=float(road_center_z_m),
-            road_yaw_deg=float(road_yaw_deg),
-            road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
-            highway_type="",
-            detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
-            road_coords=_road_reference_coords(placement_ctx),
-            marking_exclusion_geometries=marking_exclusion_geometries,
-            edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
-            roughness=(roughness or {}).get("lane_edge", 0.30),
-            texture_mode=texture_mode,
-            texture_tracker=texture_tracker,
-            texture_overrides=texture_overrides,
+        _render_longitudinal_marking(
+            fallback_centerline_geometry,
+            role="centerline_mark",
+            road_key="fallback",
+            node_name="centerline_mark",
         )
+        # A fallback road has no explicit OSM semantics. Under explicit-only
+        # policy its visual edge follows the curb rather than a painted line.
+        if lane_edge_mode == "always":
+            fallback_lane_edge_geometry = _lane_edge_marking_ribbon_geometry(
+                road_coords=fallback_coords,
+                road_width_m=fallback_width_m,
+                detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
+                allowed_geometries=[vehicle_surface_zone],
+                exclusion_geometries=marking_exclusion_geometries,
+            )
+            _render_longitudinal_marking(
+                fallback_lane_edge_geometry,
+                role="lane_edge_mark",
+                road_key="fallback",
+                node_name="lane_edge",
+            )
+        else:
+            suppressed_lane_edge_count += 2
         _render_bus_bay_regular_edge_markings(
-            road_coords=_road_reference_coords(placement_ctx),
+            road_coords=fallback_coords,
             road_length_m=float(road_length_m),
             road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
             edge_offsets_m=_regular_lane_edge_offsets(
                 list(getattr(placement_ctx, "detailed_strip_profiles", []) or ()),
-                float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+                fallback_width_m,
             ),
             lane_count=(len(fallback_lane_separator_offsets) + 1 if fallback_lane_separator_offsets else None),
             highway_type="",
             base_lane_width_m=None,
             node_name_prefix="surface_annotation_bus_bay_marking",
         )
+
+    marking_junction_intrusion_area_m2 = 0.0
+    duplicate_marking_area_m2 = 0.0
+    duplicate_marking_pairs: List[Dict[str, Any]] = []
+    seen_marking_geometry_by_role: Dict[str, Any] = {}
+    from shapely.ops import unary_union
+
+    marking_exclusion_union = unary_union(marking_exclusion_geometries) if marking_exclusion_geometries else None
+    for record in marking_geometry_records:
+        geometry = record["geometry"]
+        if marking_exclusion_union is not None and not getattr(marking_exclusion_union, "is_empty", True):
+            marking_junction_intrusion_area_m2 += float(geometry.intersection(marking_exclusion_union).area)
+        role = str(record["role"])
+        prior = seen_marking_geometry_by_role.get(role)
+        if prior is not None and not getattr(prior, "is_empty", True):
+            overlap_area_m2 = float(geometry.intersection(prior).area)
+            duplicate_marking_area_m2 += overlap_area_m2
+            if overlap_area_m2 > 1e-8:
+                duplicate_marking_pairs.append(
+                    {
+                        "road_key": str(record["road_key"]),
+                        "role": role,
+                        "area_m2": round(overlap_area_m2, 6),
+                    }
+                )
+            seen_marking_geometry_by_role[role] = unary_union([prior, geometry])
+        else:
+            seen_marking_geometry_by_role[role] = geometry
+    marking_geometry_qa = {
+        "ok": marking_junction_intrusion_area_m2 <= 1e-4 and duplicate_marking_area_m2 <= 1e-4,
+        "policy": "continuous_ribbon_v1",
+        "urban_lane_edge_mode": lane_edge_mode,
+        "junction_marking_setback_m": round(marking_setback_m, 6),
+        "marking_junction_intrusion_area_m2": round(marking_junction_intrusion_area_m2, 6),
+        "duplicate_marking_area_m2": round(duplicate_marking_area_m2, 6),
+        "duplicate_marking_pairs": duplicate_marking_pairs,
+        "deduplicated_marking_area_m2": round(deduplicated_marking_area_m2, 6),
+        "unexpected_lane_edge_count": 0,
+        "suppressed_lane_edge_count": int(suppressed_lane_edge_count),
+        "rendered_centerline_ribbon_count": sum(
+            1 for record in marking_geometry_records if record["role"] == "centerline_mark"
+        ),
+        "rendered_lane_edge_ribbon_count": sum(
+            1 for record in marking_geometry_records if record["role"] == "lane_edge_mark"
+        ),
+    }
+    if not marking_geometry_qa["ok"]:
+        raise ValueError(
+            "Road marking geometry QA failed: "
+            f"junction_intrusion={marking_junction_intrusion_area_m2:.6f}m2, "
+            f"duplicate={duplicate_marking_area_m2:.6f}m2, "
+            f"pairs={duplicate_marking_pairs[:5]}"
+        )
+    setattr(placement_ctx, "marking_geometry_qa", marking_geometry_qa)
+    scene.metadata["marking_geometry_qa"] = marking_geometry_qa
+
+    def _mesh_minimum_triangle_angle_deg(mesh: Any) -> float | None:
+        faces = np.asarray(getattr(mesh, "faces", ()), dtype=int)
+        vertices = np.asarray(getattr(mesh, "vertices", ()), dtype=float)
+        if faces.size == 0 or vertices.size == 0:
+            return None
+        normals = np.asarray(getattr(mesh, "face_normals", ()), dtype=float)
+        if normals.ndim == 2 and normals.shape[0] == faces.shape[0]:
+            faces = faces[normals[:, 1] > 0.5]
+        if faces.size == 0:
+            return None
+        triangles = vertices[faces]
+        edge_vectors = (
+            triangles[:, 1] - triangles[:, 0],
+            triangles[:, 2] - triangles[:, 1],
+            triangles[:, 0] - triangles[:, 2],
+        )
+        lengths = [np.linalg.norm(vector, axis=1) for vector in edge_vectors]
+        valid = np.logical_and.reduce([length > 1e-10 for length in lengths])
+        if not bool(valid.any()):
+            return None
+        a, b, c = (length[valid] for length in lengths)
+        cosines = (
+            np.clip((a * a + c * c - b * b) / (2.0 * a * c), -1.0, 1.0),
+            np.clip((a * a + b * b - c * c) / (2.0 * a * b), -1.0, 1.0),
+            np.clip((b * b + c * c - a * a) / (2.0 * b * c), -1.0, 1.0),
+        )
+        return float(min(np.degrees(np.arccos(cosine)).min() for cosine in cosines))
+
+    def _maximum_boundary_turn_deg(geometry: Any) -> float:
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+        cleaned = _clean_scene_polygonal_geometry(geometry)
+        polygons = [cleaned] if isinstance(cleaned, ShapelyPolygon) else list(cleaned.geoms) if isinstance(cleaned, MultiPolygon) else []
+        maximum_turn = 0.0
+        for polygon in polygons:
+            for ring in [polygon.exterior, *polygon.interiors]:
+                coords = [(float(x), float(y)) for x, y in ring.coords]
+                for index in range(1, len(coords) - 1):
+                    incoming = np.asarray(coords[index], dtype=float) - np.asarray(coords[index - 1], dtype=float)
+                    outgoing = np.asarray(coords[index + 1], dtype=float) - np.asarray(coords[index], dtype=float)
+                    incoming_norm = float(np.linalg.norm(incoming))
+                    outgoing_norm = float(np.linalg.norm(outgoing))
+                    if incoming_norm <= 1e-10 or outgoing_norm <= 1e-10:
+                        continue
+                    cosine = float(np.clip(np.dot(incoming, outgoing) / (incoming_norm * outgoing_norm), -1.0, 1.0))
+                    maximum_turn = max(maximum_turn, float(math.degrees(math.acos(cosine))))
+        return maximum_turn
+
+    degenerate_top_face_count = 0
+    minimum_top_triangle_angle_deg: float | None = None
+    qa_node_prefixes = (
+        "carriageway",
+        "sidewalk",
+        "curb",
+        "junction_",
+        "centerline_mark_",
+        "lane_edge_",
+    )
+    for node_name in scene.graph.nodes_geometry:
+        if not str(node_name).startswith(qa_node_prefixes):
+            continue
+        geometry_name = scene.graph[node_name][1]
+        mesh = scene.geometry[geometry_name]
+        face_areas = np.asarray(getattr(mesh, "area_faces", ()), dtype=float)
+        face_normals = np.asarray(getattr(mesh, "face_normals", ()), dtype=float)
+        if face_areas.size and face_normals.ndim == 2 and face_normals.shape[0] == face_areas.shape[0]:
+            top_mask = face_normals[:, 1] > 0.5
+            degenerate_top_face_count += int(np.count_nonzero(np.logical_and(top_mask, face_areas <= 1e-10)))
+        minimum_angle = _mesh_minimum_triangle_angle_deg(mesh)
+        if minimum_angle is not None:
+            minimum_top_triangle_angle_deg = (
+                minimum_angle
+                if minimum_top_triangle_angle_deg is None
+                else min(minimum_top_triangle_angle_deg, minimum_angle)
+            )
+    surface_geometry_qa.update(
+        {
+            "degenerate_top_face_count": int(degenerate_top_face_count),
+            "minimum_top_triangle_angle_deg": round(float(minimum_top_triangle_angle_deg or 0.0), 6),
+            "maximum_boundary_turn_deg": round(
+                _maximum_boundary_turn_deg(
+                    _union_scene_polygonal_geometries([sidewalk_render_zone, curb_zone])
+                ),
+                6,
+            ),
+        }
+    )
+    if degenerate_top_face_count:
+        surface_geometry_qa["ok"] = False
+        raise ValueError(
+            "Final road mesh QA failed: "
+            f"degenerate_top_face_count={degenerate_top_face_count}"
+        )
+    setattr(placement_ctx, "surface_geometry_qa", surface_geometry_qa)
+    scene.metadata["surface_geometry_qa"] = surface_geometry_qa
 
     for zone in getattr(placement_ctx, "functional_zones", []) or []:
         _inject_functional_zone(zone)
@@ -7941,6 +8628,12 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
         return record
 
     result: dict = {}
+    surface_geometry_qa = getattr(placement_ctx, "surface_geometry_qa", None)
+    if isinstance(surface_geometry_qa, Mapping):
+        result["surface_geometry_qa"] = dict(surface_geometry_qa)
+    marking_geometry_qa = getattr(placement_ctx, "marking_geometry_qa", None)
+    if isinstance(marking_geometry_qa, Mapping):
+        result["marking_geometry_qa"] = dict(marking_geometry_qa)
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
     if not carriageway.is_empty:
@@ -8164,6 +8857,7 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     for patch in item.get("normalized_surface_patches", []) or ()
                 ],
                 "surface_normalization_debug": dict(item.get("surface_normalization_debug", {}) or {}),
+                "geometry_qa": dict(item.get("geometry_qa", {}) or {}),
             }
             if str(item.get("kind", "") or "") == "cross_junction":
                 junction_item["quadrant_corner_kernels"] = [
@@ -13153,6 +13847,7 @@ def compose_street_scene(
     if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None:
         scene = _build_osm_base_scene(
             placement_ctx,
+            config=config,
             palette=palette,
             roughness=rough,
             texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),

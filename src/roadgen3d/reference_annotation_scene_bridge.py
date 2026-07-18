@@ -453,6 +453,7 @@ def build_reference_annotation_scene_bridge(
         list(getattr(placement_context, "junction_geometries", []) or []),
         road_segment_graph=road_segment_graph,
         roads=synthetic_roads,
+        compose_config=resolved_config,
     )
     _refresh_road_surfaces_for_junction_geometries(
         placement_context,
@@ -849,6 +850,7 @@ def _try_build_cross_fusion_for_junction(
     junction_geom: Dict[str, Any],
     road_segment_graph: Any | None,
     roads: Sequence[OsmRoad] = (),
+    compose_config: StreetComposeConfig | None = None,
 ) -> Dict[str, Any] | None:
     """Try to build cross fusion geometry for a junction.
 
@@ -863,7 +865,7 @@ def _try_build_cross_fusion_for_junction(
 
     # Try to get arms data from road_segment_graph
     arms = _extract_junction_arms_from_graph(road_segment_graph, junction_id, anchor_xy, roads=roads)
-    if arms is None or len(arms) < 4:
+    if arms is None or len(arms) < 3:
         return None
 
     try:
@@ -872,12 +874,20 @@ def _try_build_cross_fusion_for_junction(
             anchor_xy=(float(anchor_xy[0]), float(anchor_xy[1])),
             arms=arms,
             crosswalk_depth_m=3.0,
+            corner_radius_mode=str(getattr(compose_config, "junction_corner_radius_mode", "auto") or "auto"),
+            fixed_corner_radius_m=getattr(compose_config, "junction_corner_radius_m", None),
+            min_corner_radius_m=float(getattr(compose_config, "junction_corner_min_radius_m", 3.0) or 3.0),
+            max_corner_radius_m=float(getattr(compose_config, "junction_corner_max_radius_m", 8.0) or 8.0),
+            precision_grid_m=float(getattr(compose_config, "junction_precision_grid_m", 0.001) or 0.001),
+            seam_extension_m=float(getattr(compose_config, "junction_seam_extension_m", 0.02) or 0.02),
+            max_curve_angle_deg=float(getattr(compose_config, "junction_curve_max_angle_deg", 2.0) or 2.0),
+            max_curve_chord_m=float(getattr(compose_config, "junction_curve_max_chord_m", 0.25) or 0.25),
         )
         geometry = cross_strip_fusion_to_junction_geometry(fusion_result)
         # Preserve the original junction_id and kind
         geometry["junction_id"] = junction_id
-        geometry["kind"] = "cross_junction"
-        geometry["generation_mode"] = "cross_strip_fusion_auto"
+        geometry["kind"] = "cross_junction" if len(arms) == 4 else "t_junction"
+        geometry["generation_mode"] = "continuous_junction_fusion_auto"
         # Preserve arm count from original
         geometry["arm_count"] = len(arms)
         return geometry
@@ -910,7 +920,7 @@ def _extract_junction_arms_from_graph(
         candidates = [
             j
             for j in junctions
-            if str(getattr(j, "kind", "") or "") == "cross_junction"
+            if str(getattr(j, "kind", "") or "") in {"cross_junction", "t_junction"}
             and math.hypot(
                 anchor[0] - float(tuple(getattr(j, "anchor_xy", (0.0, 0.0)) or (0.0, 0.0))[0]),
                 anchor[1] - float(tuple(getattr(j, "anchor_xy", (0.0, 0.0)) or (0.0, 0.0))[1]),
@@ -972,6 +982,13 @@ def _extract_junction_arms_from_graph(
             (float(neighbor[1]) - anchor[1]) / length_m,
         )
         profile = road_profiles.get(road_id, {})
+        available_length_m = sum(
+            math.hypot(
+                float(end[0]) - float(start[0]),
+                float(end[1]) - float(start[1]),
+            )
+            for start, end in zip(points[:-1], points[1:])
+        )
 
         arms.append({
             "road_id": road_id,
@@ -985,10 +1002,11 @@ def _extract_junction_arms_from_graph(
             "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
             "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
             "center_strip_layouts": list(profile.get("center_strip_layouts", []) or ()),
+            "available_length_m": max(float(available_length_m), float(length_m)),
         })
         seen_road_ids.add(road_id)
 
-    return arms if len(arms) >= 4 else None
+    return arms if len(arms) >= 3 else None
 
 
 def _apply_manual_junction_compositions(
@@ -997,6 +1015,7 @@ def _apply_manual_junction_compositions(
     *,
     road_segment_graph: Any | None = None,
     roads: Sequence[OsmRoad] = (),
+    compose_config: StreetComposeConfig | None = None,
 ) -> List[Dict[str, Any]]:
     manual_by_junction_id = {comp.junction_id: comp for comp in annotation.junction_compositions} if annotation.junction_compositions else {}
 
@@ -1019,10 +1038,11 @@ def _apply_manual_junction_compositions(
             merged = {**geom, **manual_geom}
             result.append(merged)
             seen_junction_ids.add(junction_id)
-        elif kind == "cross_junction" and junction_id not in manual_by_junction_id:
-            # Try to generate geometry using cross strip fusion
+        elif kind in {"cross_junction", "t_junction"} and junction_id not in manual_by_junction_id:
+            # Generate both three- and four-arm junctions from the same
+            # continuous corner-ribbon algorithm.
             fusion_geom = _try_build_cross_fusion_for_junction(
-                annotation, geom, road_segment_graph, roads
+                annotation, geom, road_segment_graph, roads, compose_config
             )
             if fusion_geom is not None:
                 result.append({**geom, **fusion_geom})

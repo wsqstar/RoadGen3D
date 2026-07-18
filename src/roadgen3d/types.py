@@ -95,6 +95,21 @@ class StreetComposeConfig:
     asset_scale_mode: str = "canonical_v1"  # "canonical_v1" | "native_raw"
     curated_street_assets_profile: str = "fixed_hq_v1"  # "fixed_hq_v1" | "disabled"
 
+    # -- Deterministic street-surface geometry policy --
+    junction_corner_radius_mode: str = "auto"  # "auto" | "fixed"
+    junction_corner_radius_m: Optional[float] = None
+    junction_corner_min_radius_m: float = 3.0
+    junction_corner_max_radius_m: float = 8.0
+    junction_precision_grid_m: float = 0.001
+    junction_seam_extension_m: float = 0.02
+    junction_curve_max_angle_deg: float = 2.0
+    junction_curve_max_chord_m: float = 0.25
+    junction_marking_setback_m: float = 0.5
+    urban_lane_edge_mode: str = "explicit_only"  # "explicit_only" | "always"
+    curb_width_m: float = 0.12
+    curb_reveal_m: float = 0.15
+    curb_top_mode: str = "flush_with_sidewalk"
+
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"
     design_rule_profile: str = "balanced_complete_street_v1"

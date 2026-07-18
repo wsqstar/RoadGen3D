@@ -2798,6 +2798,57 @@ def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
     assert max(float(mesh.bounds[1][0]) for mesh in curb_meshes) > 1.8
 
 
+def test_osm_curb_and_sidewalk_own_disjoint_top_surfaces():
+    trimesh = pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    shapely_ops = pytest.importorskip("shapely.ops")
+
+    carriageway = shapely_geometry.box(-10.0, -2.0, 10.0, 2.0)
+    sidewalk_zone = shapely_geometry.box(-10.0, 2.0, 10.0, 5.0).union(
+        shapely_geometry.box(-10.0, -5.0, 10.0, -2.0)
+    )
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        sidewalk_zone=sidewalk_zone,
+        road_arm_geometries=[carriageway],
+        junction_geometries=[],
+        strip_zones={},
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+
+    def projected_top(prefix):
+        polygons = []
+        for node_name in scene.graph.nodes_geometry:
+            if not str(node_name).startswith(prefix):
+                continue
+            transform, geometry_name = scene.graph[node_name]
+            mesh = scene.geometry[geometry_name].copy()
+            mesh.apply_transform(transform)
+            top_y = float(mesh.vertices[:, 1].max())
+            for face in mesh.faces:
+                vertices = mesh.vertices[face]
+                if float(np.max(np.abs(vertices[:, 1] - top_y))) > 1e-6:
+                    continue
+                polygon = shapely_geometry.Polygon([(float(x), float(z)) for x, _y, z in vertices])
+                if polygon.is_valid and polygon.area > 1e-10:
+                    polygons.append(polygon)
+        return shapely_ops.unary_union(polygons)
+
+    curb_top = projected_top("curb_")
+    sidewalk_top = projected_top("sidewalk_")
+    assert curb_top.area > 0.0
+    assert sidewalk_top.area > 0.0
+    assert curb_top.intersection(sidewalk_top).area <= 1e-4
+    assert placement_ctx.surface_geometry_qa["curb_sidewalk_overlap_area_m2"] <= 1e-4
+    assert placement_ctx.surface_geometry_qa["mesh_boundary_clearance_m"] == pytest.approx(0.002)
+    assert max(float(mesh.bounds[1][1]) for mesh in [
+        scene.geometry[scene.graph[node_name][1]]
+        for node_name in scene.graph.nodes_geometry
+        if str(node_name).startswith("curb_")
+    ]) == pytest.approx(street_layout.DEFAULT_CURB_REVEAL_M)
+
+
 def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
@@ -2855,6 +2906,7 @@ def test_osm_base_scene_renders_bus_bay_surface_and_markings():
     tracker = create_scene_texture_tracker("solid_color_legacy")
     scene = street_layout._build_osm_base_scene(
         placement_ctx,
+        config=SimpleNamespace(urban_lane_edge_mode="always"),
         texture_mode="solid_color_legacy",
         texture_tracker=tracker,
     )

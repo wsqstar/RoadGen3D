@@ -133,12 +133,18 @@ Schema：`data/schemas/template_patch.schema.json`
 | 分组 | 字段 |
 | --- | --- |
 | 基础几何 | `length_m`、`road_width_m`、`sidewalk_width_m`、`lane_count`、`density` |
+| 路口与路缘几何 | `junction_corner_radius_mode`、`junction_corner_radius_m`、`junction_corner_min_radius_m`、`junction_corner_max_radius_m`、`junction_precision_grid_m`、`junction_seam_extension_m`、`junction_curve_max_angle_deg`、`junction_curve_max_chord_m`、`curb_width_m`、`curb_reveal_m`、`curb_top_mode` |
+| 道路标线 | `urban_lane_edge_mode`、`junction_marking_setback_m` |
 | 运行模式 | `layout_mode`、`road_selection`、`aoi_bbox`、`osm_cache_dir` |
 | 规则与求解 | `design_rule_profile`、`layout_solver`、`constraint_mode`、`allow_solver_fallback` |
 | 目标与需求 | `objective_profile`、`ped_demand_level`、`bike_demand_level`、`transit_demand_level`、`vehicle_demand_level` |
 | 表现与资产 | `style_preset`、`beauty_mode`、`render_preset`、`scene_texture_mode`、`asset_curation_mode`、`asset_scale_mode` |
 | 建筑/地块 | `building_density`、`building_max_per_100m`、`zoning_granularity`、`streetwall_continuity` |
 | 可解释日志 | `placement_logging_mode` |
+
+路口默认采用 `auto` 圆角：目标半径取相邻道路最大半宽的 `0.75` 倍，并限制在 `3–8m` 及可用道路臂长度内；曲线采样同时限制为每段不超过 `2°` 和 `0.25m`。路缘默认宽 `0.12m`、高差 `0.15m`，帽面与人行道齐平；生成器会在 1mm 精度网格上进行布尔归一化，并在导出网格中保留 2mm 的水平数值安全间隙，避免 GLTF float32 量化重新产生共面三角形。普通有路缘城市道路的 `urban_lane_edge_mode` 默认为 `explicit_only`，只有明确的路肩、专用车道或快速路语义才生成边缘标线；中心标线和边缘标线均在路口前 `0.5m` 截断。
+
+`osm_geometry.surface_geometry_qa` 记录最终路缘/人行道重叠、残片和退化顶面；`osm_geometry.marking_geometry_qa` 记录路口侵入、重复标线、被抑制的自动边缘线和实际 ribbon 数量。超过容差的结果不会导出 GLB。
 
 ### 3.2 `StreetProgram`
 

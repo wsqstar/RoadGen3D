@@ -17,6 +17,9 @@ PLANAR_SURFACE_ROLE_PRIORITY: Sequence[str] = (
     "context_ground",
 )
 OVERLAY_SURFACE_ROLES = {"crossing"}
+MAX_PLANAR_OVERLAP_AREA_M2 = 1e-4
+MIN_SURFACE_COMPONENT_AREA_M2 = 1e-2
+DEFAULT_GAP_CLOSE_TOLERANCE_M = 0.02
 
 
 def normalize_junction_surface_geometries(junction_geometries: Iterable[Mapping[str, Any]]) -> List[Dict[str, Any]]:
@@ -26,7 +29,19 @@ def normalize_junction_surface_geometries(junction_geometries: Iterable[Mapping[
     should render ``normalized_surface_patches`` when it is available.
     """
 
-    return [normalize_junction_surface_geometry(junction) for junction in junction_geometries]
+    normalized = [normalize_junction_surface_geometry(junction) for junction in junction_geometries]
+    for junction in normalized:
+        generation_mode = str(junction.get("generation_mode", "") or junction.get("debug_info", {}).get("generation_mode", ""))
+        quality = junction.get("geometry_qa", {})
+        if "continuous_junction_fusion" in generation_mode and not bool(quality.get("ok", False)):
+            raise ValueError(
+                f"Junction surface QA failed for {junction.get('junction_id', 'junction')}: "
+                f"overlap={quality.get('coplanar_overlap_area_m2', 0.0)}m2, "
+                f"uncovered={quality.get('junction_uncovered_area_m2', 0.0)}m2, "
+                f"invalid={quality.get('invalid_polygon_count', 0)}, "
+                f"slivers={quality.get('sliver_component_count', 0)}"
+            )
+    return normalized
 
 
 def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str, Any]:
@@ -35,6 +50,10 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
 
     normalized_junction: Dict[str, Any] = dict(junction)
     junction_id = str(junction.get("junction_id", "") or "junction")
+    precision_grid_m = max(
+        float(junction.get("debug_info", {}).get("precision_grid_m", 0.001) or 0.001),
+        0.0001,
+    )
     input_counts: Dict[str, int] = defaultdict(int)
     skipped_geometries: List[Dict[str, Any]] = []
     planar_by_role: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
@@ -51,6 +70,13 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         input_counts[source_kind] += 1
         raw_geometry = geometry if geometry is not None else source.get("geometry")
         cleaned = _clean_polygonal_geometry(raw_geometry)
+        if cleaned is not None and not getattr(cleaned, "is_empty", True):
+            try:
+                from shapely import set_precision
+
+                cleaned = _clean_polygonal_geometry(set_precision(cleaned, grid_size=precision_grid_m))
+            except Exception:
+                pass
         resolved_source_id = source_id or _source_identifier(source_kind, source)
         if cleaned is None or getattr(cleaned, "is_empty", True):
             skipped_geometries.append(
@@ -138,10 +164,29 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         role_union = _clean_polygonal_geometry(unary_union([source["geometry"] for source in sources]))
         if role_union is None or getattr(role_union, "is_empty", True):
             continue
+        try:
+            from shapely import set_precision
+
+            role_union = _clean_polygonal_geometry(
+                set_precision(role_union, grid_size=precision_grid_m)
+            )
+        except Exception:
+            pass
         same_role_overlap_removed += max(0.0, role_source_area - float(role_union.area))
         visible_geometry = role_union
         if not getattr(occupied_geometry, "is_empty", True):
-            visible_geometry = _clean_polygonal_geometry(role_union.difference(occupied_geometry))
+            try:
+                from shapely import difference, set_precision
+
+                visible_geometry = _clean_polygonal_geometry(
+                    difference(
+                        role_union,
+                        set_precision(occupied_geometry, grid_size=precision_grid_m),
+                        grid_size=precision_grid_m,
+                    )
+                )
+            except Exception:
+                visible_geometry = _clean_polygonal_geometry(role_union.difference(occupied_geometry))
             if visible_geometry is None:
                 priority_overlap_removed += float(role_union.area)
                 continue
@@ -160,6 +205,140 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
             )
         if components:
             occupied_geometry = _clean_polygonal_geometry(unary_union([occupied_geometry, visible_geometry])) or occupied_geometry
+            try:
+                from shapely import set_precision
+
+                occupied_geometry = _clean_polygonal_geometry(
+                    set_precision(occupied_geometry, grid_size=precision_grid_m)
+                ) or occupied_geometry
+            except Exception:
+                pass
+
+    # Boolean partitioning can leave millimetre-scale residuals where several
+    # priority boundaries meet. Assign those remnants to the lowest planar
+    # layer before triangulation so the exported surface remains a partition.
+    normalization_residual_area_m2 = 0.0
+    if planar_union is not None and not getattr(planar_union, "is_empty", True):
+        residual = _clean_polygonal_geometry(planar_union.difference(occupied_geometry))
+        if residual is not None and not getattr(residual, "is_empty", True):
+            residual_components = _polygon_components(residual)
+            normalization_residual_area_m2 = float(sum(component.area for component in residual_components))
+            context_records = [
+                patch for patch in normalized_patches if patch.get("surface_role") == "context_ground"
+            ]
+            normalized_patches = [
+                patch for patch in normalized_patches if patch.get("surface_role") != "context_ground"
+            ]
+            context_union = _clean_polygonal_geometry(
+                unary_union([
+                    *(patch["geometry"] for patch in context_records),
+                    *residual_components,
+                ])
+            )
+            for component_index, component in enumerate(_polygon_components(context_union)):
+                normalized_patches.append(
+                    {
+                        "surface_id": f"{junction_id}_normalized_context_ground_{component_index:02d}",
+                        "surface_kind": "normalized",
+                        "surface_role": "context_ground",
+                        "geometry": component,
+                        "component_index": int(component_index),
+                        "source_ids": sorted({
+                            "normalization_residual",
+                            *(source_id for patch in context_records for source_id in patch.get("source_ids", []) or ()),
+                        }),
+                        "source_kinds": sorted({
+                            "normalization_residual",
+                            *(source_kind for patch in context_records for source_kind in patch.get("source_kinds", []) or ()),
+                        }),
+                        "is_overlay": False,
+                        "area_m2": float(component.area),
+                    }
+                )
+            occupied_geometry = _clean_polygonal_geometry(unary_union([occupied_geometry, residual])) or occupied_geometry
+
+    sliver_reassigned_count = 0
+    sliver_records = [
+        patch
+        for patch in normalized_patches
+        if not patch.get("is_overlay", False)
+        and float(getattr(patch.get("geometry"), "area", 0.0) or 0.0) < MIN_SURFACE_COMPONENT_AREA_M2
+    ]
+    for sliver in sliver_records:
+        geometry = sliver.get("geometry")
+        candidates = [
+            patch
+            for patch in normalized_patches
+            if patch is not sliver
+            and not patch.get("is_overlay", False)
+            and patch.get("geometry") is not None
+            and not getattr(patch.get("geometry"), "is_empty", True)
+            and float(patch["geometry"].distance(geometry)) <= precision_grid_m * 2.0
+        ]
+        if not candidates:
+            continue
+        candidates.sort(
+            key=lambda patch: (
+                patch.get("surface_role") == sliver.get("surface_role"),
+                float(patch["geometry"].boundary.intersection(geometry.boundary).length),
+                float(patch["geometry"].area),
+            ),
+            reverse=True,
+        )
+        target = candidates[0]
+        merged_geometry = _clean_polygonal_geometry(unary_union([target["geometry"], geometry]))
+        if merged_geometry is None or getattr(merged_geometry, "is_empty", True):
+            continue
+        target["geometry"] = merged_geometry
+        target["area_m2"] = float(merged_geometry.area)
+        target["source_ids"] = sorted({
+            *(target.get("source_ids", []) or ()),
+            *(sliver.get("source_ids", []) or ()),
+        })
+        target["source_kinds"] = sorted({
+            *(target.get("source_kinds", []) or ()),
+            *(sliver.get("source_kinds", []) or ()),
+            "sliver_reassignment",
+        })
+        normalized_patches.remove(sliver)
+        sliver_reassigned_count += 1
+
+    # Sliver reassignment and GEOS validity repair can re-introduce a tiny
+    # overlap along shared boundaries. Repartition once more on the configured
+    # metric grid so the records consumed by GLB export are strictly disjoint.
+    repartitioned_planar_patches: List[Dict[str, Any]] = []
+    repartition_occupied = GeometryCollection()
+    for role in PLANAR_SURFACE_ROLE_PRIORITY:
+        for patch in [item for item in normalized_patches if item.get("surface_role") == role]:
+            geometry = patch.get("geometry")
+            if geometry is None or getattr(geometry, "is_empty", True):
+                continue
+            try:
+                from shapely import difference, set_precision
+
+                geometry = set_precision(geometry, grid_size=precision_grid_m)
+                if not getattr(repartition_occupied, "is_empty", True):
+                    geometry = difference(
+                        geometry,
+                        set_precision(repartition_occupied, grid_size=precision_grid_m),
+                        grid_size=precision_grid_m,
+                    )
+            except Exception:
+                if not getattr(repartition_occupied, "is_empty", True):
+                    geometry = geometry.difference(repartition_occupied)
+            visible_components = _polygon_components(_clean_polygonal_geometry(geometry))
+            for component_index, component in enumerate(visible_components):
+                record = dict(patch)
+                record["geometry"] = component
+                record["area_m2"] = float(component.area)
+                record["component_index"] = int(component_index)
+                record["surface_id"] = f"{junction_id}_normalized_{role}_{len(repartitioned_planar_patches):02d}"
+                repartitioned_planar_patches.append(record)
+            if visible_components:
+                repartition_occupied = _clean_polygonal_geometry(
+                    unary_union([repartition_occupied, *visible_components])
+                ) or repartition_occupied
+    normalized_patches = repartitioned_planar_patches
 
     for role in sorted(overlays_by_role):
         sources = overlays_by_role[role]
@@ -195,7 +374,7 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
             )
 
     normalized_junction["normalized_surface_patches"] = normalized_patches
-    normalized_junction["surface_normalization_debug"] = {
+    normalization_debug = {
         "generation_mode": "junction_surface_normalization_v1",
         "input_counts": dict(sorted(input_counts.items())),
         "normalized_surface_count": int(len(normalized_patches)),
@@ -215,8 +394,93 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         "same_role_overlap_removed_area_m2": round(float(same_role_overlap_removed), 3),
         "priority_overlap_removed_area_m2": round(float(priority_overlap_removed), 3),
         "overlap_removed_area_m2": round(float(same_role_overlap_removed + priority_overlap_removed), 3),
+        "normalization_residual_area_m2": round(normalization_residual_area_m2, 6),
+        "sliver_reassigned_count": int(sliver_reassigned_count),
     }
+    normalized_junction["surface_normalization_debug"] = normalization_debug
+    geometry_qa = audit_junction_surface_geometry(
+        normalized_junction,
+        gap_close_tolerance_m=float(
+            junction.get("debug_info", {}).get("precision_grid_m", 0.001)
+            or 0.001
+        ),
+    )
+    normalized_junction["geometry_qa"] = geometry_qa
+    normalization_debug["geometry_qa"] = geometry_qa
     return normalized_junction
+
+
+def audit_junction_surface_geometry(
+    junction: Mapping[str, Any],
+    *,
+    gap_close_tolerance_m: float = DEFAULT_GAP_CLOSE_TOLERANCE_M,
+) -> Dict[str, Any]:
+    """Measure final planar overlap, tiny gaps, invalid polygons and slivers."""
+    from shapely.geometry import GeometryCollection
+    from shapely.ops import unary_union
+
+    planar_records = [
+        patch
+        for patch in junction.get("normalized_surface_patches", []) or ()
+        if isinstance(patch, Mapping) and not bool(patch.get("is_overlay", False))
+    ]
+    geometries = [
+        patch.get("geometry")
+        for patch in planar_records
+        if patch.get("geometry") is not None and not getattr(patch.get("geometry"), "is_empty", True)
+    ]
+    invalid_polygon_count = sum(1 for geometry in geometries if not bool(getattr(geometry, "is_valid", False)))
+    components = [component for geometry in geometries for component in _polygon_components(geometry)]
+    sliver_component_count = sum(
+        1 for component in components if float(getattr(component, "area", 0.0) or 0.0) < MIN_SURFACE_COMPONENT_AREA_M2
+    )
+
+    coplanar_overlap_area_m2 = 0.0
+    occupied = GeometryCollection()
+    for geometry in geometries:
+        if not getattr(occupied, "is_empty", True):
+            coplanar_overlap_area_m2 += float(geometry.intersection(occupied).area)
+        occupied = unary_union([occupied, geometry])
+
+    planar_union = unary_union(geometries) if geometries else GeometryCollection()
+    tolerance = max(float(gap_close_tolerance_m), 0.0)
+    canonical_geometries = [
+        patch.get("geometry")
+        for patch in junction.get("canonical_surface_patches", []) or ()
+        if isinstance(patch, Mapping)
+        and patch.get("geometry") is not None
+        and not getattr(patch.get("geometry"), "is_empty", True)
+    ]
+    try:
+        from shapely import set_precision
+
+        planar_union = set_precision(planar_union, grid_size=max(tolerance, 0.0001))
+        canonical_geometries = [
+            set_precision(geometry, grid_size=max(tolerance, 0.0001))
+            for geometry in canonical_geometries
+        ]
+    except Exception:
+        pass
+    canonical_envelope = unary_union(canonical_geometries) if canonical_geometries else planar_union
+    uncovered_area_m2 = float(canonical_envelope.difference(planar_union).area)
+    envelope_area_m2 = float(getattr(canonical_envelope, "area", 0.0) or 0.0)
+    uncovered_limit_m2 = max(1e-3, envelope_area_m2 * 1e-6)
+    ok = bool(
+        invalid_polygon_count == 0
+        and sliver_component_count == 0
+        and coplanar_overlap_area_m2 <= MAX_PLANAR_OVERLAP_AREA_M2
+        and uncovered_area_m2 <= uncovered_limit_m2
+    )
+    return {
+        "ok": ok,
+        "coplanar_overlap_area_m2": round(coplanar_overlap_area_m2, 6),
+        "junction_uncovered_area_m2": round(uncovered_area_m2, 6),
+        "junction_uncovered_limit_m2": round(uncovered_limit_m2, 6),
+        "invalid_polygon_count": int(invalid_polygon_count),
+        "sliver_component_count": int(sliver_component_count),
+        "gap_close_tolerance_m": round(tolerance, 6),
+        "planar_envelope_area_m2": round(envelope_area_m2, 6),
+    }
 
 
 def _normalized_patch_record(

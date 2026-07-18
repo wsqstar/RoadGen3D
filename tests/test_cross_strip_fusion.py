@@ -375,7 +375,10 @@ class TestBuildCrossStripFusion:
             arms=arms,
         )
 
-        assert result.debug_info["generation_mode"] == "roadpen_style_junction_fusion_v1"
+        assert result.debug_info["generation_mode"] == "roadgen3d_continuous_junction_fusion_v2"
+        assert result.debug_info["corner_radius_mode"] == "auto"
+        assert result.debug_info["precision_grid_m"] == pytest.approx(0.001)
+        assert result.debug_info["seam_extension_m"] == pytest.approx(0.02)
         assert result.fused_corner_patch_records
         sidewalk_records = [
             record for record in result.fused_corner_patch_records
@@ -452,7 +455,49 @@ class TestBuildCrossStripFusion:
             patch for patch in geometry["canonical_surface_patches"]
             if patch.get("source_kind") == "roadpen_style_endpoint_fill"
         ]
-        assert len(endpoint_sources) == 24
+        assert endpoint_sources == []
+        continuous_sources = [
+            patch for patch in geometry["canonical_surface_patches"]
+            if patch.get("source_kind") == "continuous_corner_ribbon"
+        ]
+        assert len(continuous_sources) == 12
+        assert all(fill["seam_extension_m"] == pytest.approx(0.02) for fill in result.endpoint_fill_patch_records)
+
+    def test_three_arm_junction_uses_same_continuous_corner_generator(self):
+        arms = self._standard_cross_arms()[:3]
+        result = build_cross_strip_fusion(
+            junction_id="test_t",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        assert result.kind == "t_junction"
+        assert result.debug_info["generation_mode"] == "roadgen3d_continuous_junction_fusion_v2"
+        assert result.carriageway_core_polygon.is_valid
+        assert result.fused_corner_patch_records
+
+    def test_corner_curve_sampling_respects_angle_and_chord_limits(self):
+        import math
+
+        result = build_cross_strip_fusion(
+            junction_id="test_sampling_limits",
+            anchor_xy=(0.0, 0.0),
+            arms=self._standard_cross_arms(),
+            max_curve_angle_deg=2.0,
+            max_curve_chord_m=0.25,
+        )
+
+        assert result.debug_info["curve_max_angle_deg"] == pytest.approx(2.0)
+        assert result.debug_info["curve_max_chord_m"] == pytest.approx(0.25)
+        for record in result.fused_corner_patch_records:
+            points = [tuple(map(float, point)) for point in record["centerline_points_xy"]]
+            assert len(points) >= 4
+            chord_lengths = [
+                math.dist(start, end)
+                for start, end in zip(points, points[1:])
+            ]
+            # Coordinates are serialized at millimetre precision.
+            assert max(chord_lengths) <= 0.252
 
     def test_roadpen_style_sidewalk_connectors_do_not_cover_junction_anchor(self):
         """Sidewalk corner surfaces should stay outside the carriageway center."""
