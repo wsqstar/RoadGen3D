@@ -365,6 +365,21 @@ def test_scene_edit_command_protocol_supports_full_student_edit_set() -> None:
     assert inverse[-1]["command"]["op"] == "add_instance"
 
 
+def test_scene_edit_scale_and_height_constraints_match_shared_editor() -> None:
+    with pytest.raises(Exception, match="0.25..4.0"):
+        _normalize_commands([
+            {"command_id": "too-small", "op": "scale_instance", "instance_id": "tree-1", "scale": 0.1}
+        ])
+    with pytest.raises(Exception, match="0..10"):
+        _normalize_commands([{
+            "command_id": "too-high",
+            "op": "move_instance",
+            "instance_id": "tree-1",
+            "position_xyz": [0, 0, 0],
+            "height_offset_m": 12,
+        }])
+
+
 def test_scene_edit_rotates_and_scales_glb_and_publishes_revision(tmp_path: Path) -> None:
     editable_root = tmp_path / "artifacts"
     layout_path, _ = _write_editable_scene(editable_root)

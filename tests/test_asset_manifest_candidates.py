@@ -79,6 +79,49 @@ def test_candidate_snapshot_validates_names_and_fingerprints(tmp_path: Path, mon
             registry.resolve_registered_manifest(invalid)
 
 
+def test_scene_asset_reference_search_and_combined_rebuild_manifest(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    manifest = tmp_path / "fixture.jsonl"
+    _write_manifest(manifest)
+    monkeypatch.setattr(registry, "_registered_manifests", lambda: {"fixture.jsonl": manifest})
+    summary = registry.summarize_manifest("fixture.jsonl")
+
+    search = registry.search_registered_assets(query="bench", category="bench")
+    assert search["total"] == 1
+    asset = search["assets"][0]
+    assert asset["assetId"] == "bench-ready"
+    assert asset["fingerprint"] == summary["fingerprint"]
+    assert not any("path" in key.lower() for key in asset)
+
+    destination = tmp_path / "combined" / "assets.jsonl"
+    result = registry.build_scene_edit_manifest(
+        [{
+            "asset_id": "bench-ready",
+            "asset_ref": {
+                "manifestName": "fixture.jsonl",
+                "assetId": "bench-ready",
+                "fingerprint": summary["fingerprint"],
+                "category": "bench",
+                "label": "Bench",
+            },
+        }],
+        destination=destination,
+    )
+    row = json.loads(destination.read_text(encoding="utf-8").strip())
+    assert Path(row["mesh_path"]).is_absolute()
+    assert result["assets"] == [{
+        "manifest_name": "fixture.jsonl",
+        "fingerprint": summary["fingerprint"],
+        "asset_id": "bench-ready",
+    }]
+
+    with pytest.raises(AssetManifestConflictError):
+        registry.resolve_registered_asset(
+            "fixture.jsonl",
+            "bench-ready",
+            expected_fingerprint="0" * 64,
+        )
+
+
 class _JobService:
     def __init__(self) -> None:
         self.generation_options = None

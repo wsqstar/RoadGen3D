@@ -25,6 +25,7 @@ def edit_scene_layout(request: SceneLayoutEditRequestModel) -> Dict[str, Any]:
             base_revision=request.base.revision,
             base_sha256=request.base.sha256,
             commands=commands,
+            transform_policy=request.transform_policy,
         )
     except SceneLayoutEditError as exc:
         raise HTTPException(status_code=exc.status_code, detail=exc.detail()) from exc

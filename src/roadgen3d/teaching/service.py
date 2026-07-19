@@ -1038,6 +1038,7 @@ class TeachingPlatformService:
             base_revision=int(base["revision"]),
             base_sha256=str(base["sha256"]),
             commands=commands,
+            transform_policy="course_grounded",
         )
         next_layout_path = Path(edited["revision"]["layout_path"])
         next_glb_path = Path(edited["revision"]["scene_glb_path"])

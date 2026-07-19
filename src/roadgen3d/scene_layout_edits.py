@@ -86,6 +86,7 @@ def apply_scene_layout_edits(
     commands: Sequence[Mapping[str, Any]],
     editable_root: Path = DEFAULT_EDITABLE_ROOT,
     revision_root: Path = DEFAULT_REVISION_ROOT,
+    transform_policy: str = "expert_grounded",
 ) -> Dict[str, Any]:
     source_path = _resolve_editable_layout(layout_path, editable_root)
     source_bytes = source_path.read_bytes()
@@ -115,6 +116,12 @@ def apply_scene_layout_edits(
             )
 
         normalized_commands = _normalize_commands(commands)
+        normalized_commands, support_validation = _ground_and_validate_commands(
+            source_path,
+            source_payload,
+            normalized_commands,
+            transform_policy=transform_policy,
+        )
         candidate, applied, inverse = _apply_commands(copy.deepcopy(source_payload), normalized_commands)
         next_revision = current.revision + 1
         final_dir = revision_root / lineage_id / f"rev-{next_revision:06d}"
@@ -139,6 +146,8 @@ def apply_scene_layout_edits(
                 "parent_layout_sha256": current.sha256,
                 "applied_at": datetime.now(timezone.utc).isoformat(),
                 "commands": normalized_commands,
+                "transform_policy": transform_policy,
+                "support_validation": support_validation,
             }
             summary = dict(candidate.get("summary") or {})
             summary.update({
@@ -304,6 +313,8 @@ def _normalize_commands(commands: Sequence[Mapping[str, Any]]) -> list[Dict[str,
                 "category": "tree",
                 "instance_prefix": str(command.get("instance_prefix") or f"auto-tree-{command_id}"),
             })
+            if command.get("asset_ref") is not None:
+                item["asset_ref"] = _normalize_asset_ref(command.get("asset_ref"), f"commands[{index}].asset_ref")
             normalized.append(item)
             continue
         instance_id = str(command.get("instance_id", "") or "").strip()
@@ -312,35 +323,234 @@ def _normalize_commands(commands: Sequence[Mapping[str, Any]]) -> list[Dict[str,
         item["instance_id"] = instance_id
         if op in {"move_instance", "add_instance"}:
             item["position_xyz"] = _finite_vector(command.get("position_xyz"), 3, f"commands[{index}].position_xyz")
+        if op == "move_instance":
+            item["height_offset_m"] = _finite_number(command.get("height_offset_m", 0), f"commands[{index}].height_offset_m")
+            if not 0.0 <= item["height_offset_m"] <= 10.0:
+                raise SceneLayoutEditError(f"commands[{index}].height_offset_m must be within 0..10.")
         if op == "rotate_instance":
             item["yaw_deg"] = _finite_number(command.get("yaw_deg"), f"commands[{index}].yaw_deg") % 360.0
         if op == "scale_instance":
             scale = _finite_number(command.get("scale"), f"commands[{index}].scale")
-            if not 0.01 <= scale <= 100:
-                raise SceneLayoutEditError(f"commands[{index}].scale must be within 0.01..100.")
+            if not 0.25 <= scale <= 4.0:
+                raise SceneLayoutEditError(f"commands[{index}].scale must be within 0.25..4.0.")
             item["scale"] = scale
         if op in {"add_instance", "replace_asset"}:
             item["asset_id"] = str(command.get("asset_id", "") or "").strip()
             if not item["asset_id"]:
                 raise SceneLayoutEditError(f"commands[{index}].asset_id is required.")
             item["category"] = str(command.get("category") or "street_furniture")
+            if command.get("asset_ref") is not None:
+                item["asset_ref"] = _normalize_asset_ref(command.get("asset_ref"), f"commands[{index}].asset_ref")
+                if item["asset_ref"]["assetId"] != item["asset_id"]:
+                    raise SceneLayoutEditError(f"commands[{index}].asset_ref.assetId must match asset_id.")
+                item["category"] = item["asset_ref"]["category"]
         if op == "add_instance":
             item["yaw_deg"] = _finite_number(command.get("yaw_deg", 0), f"commands[{index}].yaw_deg") % 360.0
             item["scale"] = _finite_number(command.get("scale", 1), f"commands[{index}].scale")
-            if not 0.01 <= item["scale"] <= 100:
-                raise SceneLayoutEditError(f"commands[{index}].scale must be within 0.01..100.")
+            if not 0.25 <= item["scale"] <= 4.0:
+                raise SceneLayoutEditError(f"commands[{index}].scale must be within 0.25..4.0.")
+            item["height_offset_m"] = _finite_number(command.get("height_offset_m", 0), f"commands[{index}].height_offset_m")
+            if not 0.0 <= item["height_offset_m"] <= 10.0:
+                raise SceneLayoutEditError(f"commands[{index}].height_offset_m must be within 0..10.")
         if op == "duplicate_instance":
             item["new_instance_id"] = str(command.get("new_instance_id") or "").strip()
             if not item["new_instance_id"]:
                 raise SceneLayoutEditError(f"commands[{index}].new_instance_id is required.")
             if command.get("position_xyz") is not None:
                 item["position_xyz"] = _finite_vector(command.get("position_xyz"), 3, f"commands[{index}].position_xyz")
+                item["height_offset_m"] = _finite_number(command.get("height_offset_m", 0), f"commands[{index}].height_offset_m")
+                if not 0.0 <= item["height_offset_m"] <= 10.0:
+                    raise SceneLayoutEditError(f"commands[{index}].height_offset_m must be within 0..10.")
         if op == "set_building_style":
             item["style_id"] = str(command.get("style_id") or "").strip()
             if not item["style_id"]:
                 raise SceneLayoutEditError(f"commands[{index}].style_id is required.")
         normalized.append(item)
     return normalized
+
+
+def _normalize_asset_ref(value: Any, label: str) -> Dict[str, str]:
+    if not isinstance(value, Mapping):
+        raise SceneLayoutEditError(f"{label} must be an object.")
+    result = {
+        "manifestName": str(value.get("manifestName") or value.get("manifest_name") or "").strip(),
+        "assetId": str(value.get("assetId") or value.get("asset_id") or "").strip(),
+        "fingerprint": str(value.get("fingerprint") or "").strip(),
+        "category": str(value.get("category") or "").strip().lower(),
+        "label": str(value.get("label") or value.get("assetId") or value.get("asset_id") or "Asset").strip(),
+    }
+    missing = [key for key in ("manifestName", "assetId", "fingerprint", "category") if not result[key]]
+    if missing:
+        raise SceneLayoutEditError(f"{label} is missing: {', '.join(missing)}.")
+    try:
+        from .services.asset_manifest_registry import (
+            AssetManifestConflictError,
+            AssetReferenceError,
+            resolve_registered_asset,
+        )
+
+        resolved = resolve_registered_asset(
+            result["manifestName"],
+            result["assetId"],
+            expected_fingerprint=result["fingerprint"],
+            require_ready=True,
+        )
+    except (AssetManifestConflictError, AssetReferenceError, ValueError) as exc:
+        raise SceneLayoutEditError(str(exc)) from exc
+    public = resolved["public"]
+    result.update({
+        "fingerprint": str(public["fingerprint"]),
+        "category": str(public["category"]),
+        "label": str(public["label"]),
+    })
+    return result
+
+
+def _ground_and_validate_commands(
+    source_layout_path: Path,
+    source_payload: Mapping[str, Any],
+    commands: Sequence[Mapping[str, Any]],
+    *,
+    transform_policy: str,
+) -> tuple[list[Dict[str, Any]], Dict[str, Any]]:
+    policy = str(transform_policy or "").strip().lower()
+    if policy not in {"expert_grounded", "course_grounded"}:
+        raise SceneLayoutEditError("transform_policy must be expert_grounded or course_grounded.")
+    placements = {
+        str(item.get("instance_id") or ""): item
+        for item in (source_payload.get("placements") or [])
+        if isinstance(item, Mapping)
+    }
+    positional: list[tuple[int, str, str, float, float]] = []
+    normalized = [copy.deepcopy(dict(item)) for item in commands]
+    for index, item in enumerate(normalized):
+        op = str(item.get("op") or "")
+        if op not in {"move_instance", "add_instance", "duplicate_instance", "auto_plant_trees"}:
+            continue
+        if op == "auto_plant_trees":
+            for point_index, point in enumerate(item.get("points_xyz") or []):
+                positional.append((index, f"{item['instance_prefix']}-{point_index + 1:03d}", "tree", float(point[0]), float(point[2])))
+                point[1] = 0.0
+            continue
+        if op == "add_instance":
+            category = str(item.get("category") or "street_furniture")
+        else:
+            source = placements.get(str(item.get("instance_id") or ""))
+            category = str((source or {}).get("category") or "street_furniture")
+        point = item.get("position_xyz")
+        if not isinstance(point, list):
+            continue
+        height_offset = 0.0 if policy == "course_grounded" else float(item.get("height_offset_m", 0.0) or 0.0)
+        point[1] = height_offset
+        positional.append((index, str(item.get("instance_id") or ""), category, float(point[0]), float(point[2])))
+    if not positional:
+        return normalized, {"status": "not_required", "checked": []}
+
+    node_roles = dict(((source_payload.get("surface_diagnostic") or {}).get("node_roles") or {}))
+    if not node_roles:
+        # Legacy layouts predate surface roles. Keep them editable, but make
+        # the missing server-side support proof explicit in provenance.
+        return normalized, {
+            "status": "legacy_surface_roles_unavailable",
+            "checked": [],
+            "warning": "No surface_diagnostic.node_roles were available; positions were grounded to the legacy scene datum.",
+        }
+    glb_path = _layout_glb_path(source_layout_path, source_payload)
+    hits = _surface_roles_at_points(glb_path, node_roles, [(item[3], item[4]) for item in positional])
+    checked: list[Dict[str, Any]] = []
+    for (_, instance_id, category, x, z), role in zip(positional, hits):
+        allowed = {"planting", "furnishing", "frontage"} if category.strip().lower() == "tree" else {"sidewalk", "furnishing", "frontage"}
+        if role is None:
+            raise SceneLayoutEditError(
+                f"Placement '{instance_id}' has no valid support surface at ({x:.3f}, {z:.3f})."
+            )
+        if role not in allowed:
+            raise SceneLayoutEditError(
+                f"Placement '{instance_id}' cannot use support surface '{role}' for category '{category}'."
+            )
+        checked.append({"instance_id": instance_id, "category": category, "position_xz": [x, z], "support_role": role})
+    return normalized, {"status": "validated", "checked": checked}
+
+
+def _surface_roles_at_points(
+    glb_path: Path,
+    node_roles: Mapping[str, Any],
+    points_xz: Sequence[tuple[float, float]],
+) -> list[str | None]:
+    try:
+        import numpy as np
+        import trimesh
+    except ImportError as exc:
+        raise SceneRebuildFailed("trimesh and numpy are required for support-surface validation.") from exc
+    if not glb_path.is_file():
+        raise SceneRebuildFailed("Support-surface validation requires the source GLB.")
+    scene = trimesh.load(glb_path, force="scene", process=False)
+    candidates: list[tuple[str, Any]] = []
+    for node_name in scene.graph.nodes_geometry:
+        transform, geometry_name = scene.graph.get(node_name)
+        mesh = scene.geometry.get(geometry_name)
+        if mesh is None or not hasattr(mesh, "triangles"):
+            continue
+        role = _normalized_surface_role(
+            node_roles.get(str(node_name), node_roles.get(str(geometry_name), "")),
+            str(node_name),
+        )
+        if role not in {"carriageway", "curb", "sidewalk", "furnishing", "frontage", "planting", "crossing", "context_ground", "building"}:
+            continue
+        vertices = trimesh.transform_points(np.asarray(mesh.vertices, dtype=float), np.asarray(transform, dtype=float))
+        faces = np.asarray(mesh.faces, dtype=int)
+        if faces.size == 0:
+            continue
+        candidates.append((role, vertices[faces]))
+    result: list[str | None] = []
+    for x, z in points_xz:
+        best: tuple[float, str] | None = None
+        point = np.asarray([float(x), float(z)], dtype=float)
+        for role, triangles in candidates:
+            projected = triangles[:, :, (0, 2)]
+            v0 = projected[:, 1] - projected[:, 0]
+            v1 = projected[:, 2] - projected[:, 0]
+            v2 = point - projected[:, 0]
+            denominator = v0[:, 0] * v1[:, 1] - v1[:, 0] * v0[:, 1]
+            usable = np.abs(denominator) > 1e-10
+            if not np.any(usable):
+                continue
+            a = np.zeros(len(triangles), dtype=float)
+            b = np.zeros(len(triangles), dtype=float)
+            a[usable] = (v2[usable, 0] * v1[usable, 1] - v1[usable, 0] * v2[usable, 1]) / denominator[usable]
+            b[usable] = (v0[usable, 0] * v2[usable, 1] - v2[usable, 0] * v0[usable, 1]) / denominator[usable]
+            inside = usable & (a >= -1e-7) & (b >= -1e-7) & (a + b <= 1.0 + 1e-7)
+            for triangle_index in np.flatnonzero(inside):
+                y = float(
+                    triangles[triangle_index, 0, 1]
+                    + a[triangle_index] * (triangles[triangle_index, 1, 1] - triangles[triangle_index, 0, 1])
+                    + b[triangle_index] * (triangles[triangle_index, 2, 1] - triangles[triangle_index, 0, 1])
+                )
+                if best is None or y > best[0]:
+                    best = (y, role)
+        result.append(best[1] if best else None)
+    return result
+
+
+def _normalized_surface_role(value: Any, node_name: str) -> str:
+    role = str(value or "").strip().lower()
+    if role == "plaza" or role == "building_buffer":
+        return "frontage"
+    if role == "tree_pit" or role in {"planting", "planting_area"}:
+        return "planting"
+    if role:
+        return role
+    name = str(node_name).strip().lower()
+    for prefix, fallback in (
+        ("sidewalk", "sidewalk"), ("furnishing", "furnishing"),
+        ("frontage", "frontage"), ("tree_pit", "planting"),
+        ("planting", "planting"), ("curb", "curb"),
+        ("carriageway", "carriageway"), ("crossing", "crossing"),
+        ("context_ground", "context_ground"), ("building", "building"),
+    ):
+        if name.startswith(prefix):
+            return fallback
+    return ""
 
 
 def _apply_commands(payload: Dict[str, Any], commands: Sequence[Mapping[str, Any]]) -> Tuple[Dict[str, Any], list[Dict[str, Any]], list[Dict[str, Any]]]:
@@ -366,7 +576,10 @@ def _apply_commands(payload: Dict[str, Any], commands: Sequence[Mapping[str, Any
                 instance_id = f"{command['instance_prefix']}-{point_index + 1:03d}"
                 if instance_id in by_id:
                     raise SceneLayoutEditError(f"Duplicate generated tree instance_id: {instance_id}")
-                placement = _new_placement(instance_id, str(command["asset_id"]), "tree", point, 0.0, 1.0)
+                placement = _new_placement(
+                    instance_id, str(command["asset_id"]), "tree", point, 0.0, 1.0,
+                    asset_ref=command.get("asset_ref"),
+                )
                 placements.append(placement)
                 by_id[instance_id] = placement
                 applied.append({"command_id": str(command["command_id"]), "op": "add_instance", "instance_id": instance_id, "position_xyz": list(point)})
@@ -376,7 +589,15 @@ def _apply_commands(payload: Dict[str, Any], commands: Sequence[Mapping[str, Any
         if op == "add_instance":
             if instance_id in by_id:
                 raise SceneLayoutEditError(f"Duplicate placement instance_id: {instance_id}")
-            placement = _new_placement(instance_id, str(command["asset_id"]), str(command["category"]), command["position_xyz"], float(command["yaw_deg"]), float(command["scale"]))
+            placement = _new_placement(
+                instance_id,
+                str(command["asset_id"]),
+                str(command["category"]),
+                command["position_xyz"],
+                float(command["yaw_deg"]),
+                float(command["scale"]),
+                asset_ref=command.get("asset_ref"),
+            )
             placements.append(placement)
             by_id[instance_id] = placement
             applied.append({"command_id": command["command_id"], "op": op, "instance_id": instance_id})
@@ -428,10 +649,17 @@ def _apply_commands(payload: Dict[str, Any], commands: Sequence[Mapping[str, Any
             undo = {"op": "delete_instance", "instance_id": new_id}
         elif op == "replace_asset":
             old_asset, old_category = str(placement.get("asset_id", "")), str(placement.get("category", ""))
+            old_asset_ref = copy.deepcopy(placement.get("asset_ref")) if isinstance(placement.get("asset_ref"), Mapping) else None
             placement["asset_id"] = str(command["asset_id"])
             placement["category"] = str(command["category"])
-            before = {"asset_id": old_asset, "category": old_category}
+            if isinstance(command.get("asset_ref"), Mapping):
+                placement["asset_ref"] = copy.deepcopy(dict(command["asset_ref"]))
+            else:
+                placement.pop("asset_ref", None)
+            before = {"asset_id": old_asset, "category": old_category, "asset_ref": old_asset_ref}
             undo = {"op": op, "instance_id": instance_id, "asset_id": old_asset, "category": old_category}
+            if old_asset_ref:
+                undo["asset_ref"] = old_asset_ref
         elif op == "set_building_style":
             old_style = str(placement.get("style_id") or placement.get("theme_id") or "")
             placement["style_id"] = str(command["style_id"])
@@ -472,14 +700,29 @@ def _require_editable(placement: Mapping[str, Any], instance_id: str) -> None:
         raise SceneLayoutEditError(f"Placement '{instance_id}' is immutable context massing.")
 
 
-def _new_placement(instance_id: str, asset_id: str, category: str, position: Sequence[float], yaw_deg: float, scale: float) -> Dict[str, Any]:
+def _new_placement(
+    instance_id: str,
+    asset_id: str,
+    category: str,
+    position: Sequence[float],
+    yaw_deg: float,
+    scale: float,
+    *,
+    asset_ref: Mapping[str, Any] | None = None,
+) -> Dict[str, Any]:
     x, y, z = [float(item) for item in position]
     half = max(0.25, 0.5 * float(scale))
-    return {"instance_id": instance_id, "asset_id": asset_id, "category": category, "position_xyz": [x, y, z], "yaw_deg": yaw_deg, "scale": scale, "bbox_xz": [x - half, x + half, z - half, z + half], "selection_source": "manual_scene_edit", "placement_group": "street_furniture", "placement_status": "edited_unvalidated", "editable": True}
+    placement = {"instance_id": instance_id, "asset_id": asset_id, "category": category, "position_xyz": [x, y, z], "yaw_deg": yaw_deg, "scale": scale, "bbox_xz": [x - half, x + half, z - half, z + half], "selection_source": "manual_scene_edit", "placement_group": "street_furniture", "placement_status": "edited_unvalidated", "editable": True}
+    if isinstance(asset_ref, Mapping):
+        placement["asset_ref"] = copy.deepcopy(dict(asset_ref))
+    return placement
 
 
 def _placement_to_add(placement: Mapping[str, Any]) -> Dict[str, Any]:
-    return {"op": "add_instance", "instance_id": str(placement.get("instance_id")), "asset_id": str(placement.get("asset_id") or "restored_asset"), "category": str(placement.get("category") or "street_furniture"), "position_xyz": list(placement.get("position_xyz") or [0, 0, 0]), "yaw_deg": float(placement.get("yaw_deg", 0) or 0), "scale": float(placement.get("scale", 1) or 1)}
+    command = {"op": "add_instance", "instance_id": str(placement.get("instance_id")), "asset_id": str(placement.get("asset_id") or "restored_asset"), "category": str(placement.get("category") or "street_furniture"), "position_xyz": list(placement.get("position_xyz") or [0, 0, 0]), "yaw_deg": float(placement.get("yaw_deg", 0) or 0), "scale": float(placement.get("scale", 1) or 1)}
+    if isinstance(placement.get("asset_ref"), Mapping):
+        command["asset_ref"] = copy.deepcopy(dict(placement["asset_ref"]))
+    return command
 
 
 def _sync_building_rows(building_rows: Sequence[Any], instance_id: str, *, position: Sequence[float], delta: Sequence[float]) -> None:
@@ -626,11 +869,22 @@ def _restore_glb_instance_metadata(
 
 def _rebuild_glb_for_structural_edits(layout_path: Path, destination: Path) -> None:
     from .street_layout import rebuild_glb_from_layout
+    from .services.asset_manifest_registry import build_scene_edit_manifest
 
-    manifest_path = ROOT / "data" / "street_furniture" / "street_furniture_manifest.jsonl"
-    if not manifest_path.is_file():
-        raise SceneRebuildFailed("Structural scene edits require the street-furniture manifest.")
     try:
+        payload = json.loads(layout_path.read_text(encoding="utf-8"))
+        manifest_result = build_scene_edit_manifest(
+            [
+                *[item for item in (payload.get("placements") or []) if isinstance(item, Mapping)],
+                *[item for item in (payload.get("environment_placements") or []) if isinstance(item, Mapping)],
+            ],
+            destination=layout_path.parent / "rebuild" / "scene_edit_assets.jsonl",
+        )
+        manifest_path = Path(str(manifest_result["manifest_path"]))
+        scene_edit = dict(payload.get("scene_edit") or {})
+        scene_edit["asset_provenance"] = list(manifest_result.get("assets") or [])
+        payload["scene_edit"] = scene_edit
+        layout_path.write_bytes(_json_bytes(payload))
         result = rebuild_glb_from_layout(layout_path=layout_path, manifest_path=manifest_path, out_dir=layout_path.parent / "rebuild")
         rebuilt = Path(str(result.get("scene_glb", ""))).resolve()
         if not rebuilt.is_file():

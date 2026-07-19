@@ -8,7 +8,7 @@ import shutil
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Sequence
+from typing import Any, Dict, Iterable, List, Mapping, Sequence
 from uuid import uuid4
 
 from ..street_priors import DEFAULT_CATEGORIES
@@ -19,6 +19,10 @@ DEFAULT_SNAPSHOT_ROOT = ROOT / "artifacts" / "web_viewer_asset_snapshots"
 
 class AssetManifestConflictError(ValueError):
     """Raised when a client submits a stale manifest fingerprint."""
+
+
+class AssetReferenceError(ValueError):
+    """Raised when a scene asset reference cannot be resolved safely."""
 
 
 def _registered_manifests() -> Dict[str, Path]:
@@ -201,6 +205,194 @@ def summarize_manifest(name: str, path: Path | None = None) -> Dict[str, Any]:
 
 def list_manifest_summaries() -> List[Dict[str, Any]]:
     return [summarize_manifest(name, path) for name, path in _registered_manifests().items()]
+
+
+def _public_asset_row(
+    manifest_name: str,
+    manifest_fingerprint: str,
+    row: Mapping[str, Any],
+    *,
+    ready: bool,
+) -> Dict[str, Any]:
+    """Return catalog metadata without exposing server-side file paths."""
+
+    return {
+        "manifestName": manifest_name,
+        "assetId": str(row.get("asset_id") or "").strip(),
+        "fingerprint": manifest_fingerprint,
+        "category": str(row.get("category") or "unknown").strip().lower(),
+        "label": str(row.get("label") or row.get("name") or row.get("text_desc") or row.get("asset_id") or "Asset").strip(),
+        "description": str(row.get("text_desc") or row.get("description") or "").strip(),
+        "tags": [str(item) for item in (row.get("tags") or []) if str(item).strip()],
+        "sizeClass": str(row.get("size_class") or "").strip(),
+        "scaleHint": row.get("scale_hint", 1.0),
+        "source": str(row.get("source") or "").strip(),
+        "qualityTier": row.get("quality_tier", 1),
+        "sceneEligible": bool(_is_enabled(row)),
+        "ready": bool(ready),
+    }
+
+
+def resolve_registered_asset(
+    manifest_name: str,
+    asset_id: str,
+    *,
+    expected_fingerprint: str = "",
+    require_ready: bool = True,
+) -> Dict[str, Any]:
+    """Resolve a frozen asset reference against the trusted manifest registry.
+
+    The returned ``row`` may contain absolute paths and is therefore intended
+    for server-side scene rebuilding only. API responses should use ``public``.
+    """
+
+    name = str(manifest_name or "").strip()
+    wanted_id = str(asset_id or "").strip()
+    if not wanted_id:
+        raise AssetReferenceError("asset_id is required.")
+    path = resolve_registered_manifest(name)
+    summary = summarize_manifest(name, path)
+    expected = str(expected_fingerprint or "").strip()
+    if expected and expected != summary["fingerprint"]:
+        raise AssetManifestConflictError(
+            f"Asset manifest changed since it was reviewed: {name}. Refresh the asset palette and confirm again."
+        )
+    rows, malformed = _read_rows(path)
+    if malformed:
+        raise AssetReferenceError(f"Registered asset manifest contains malformed rows: {name}")
+    matches = [row for row in rows if str(row.get("asset_id") or "").strip() == wanted_id]
+    if not matches:
+        raise AssetReferenceError(f"Unknown asset '{wanted_id}' in registered manifest: {name}")
+    row = dict(matches[0])
+    ready = wanted_id in _ready_asset_ids(path, rows)
+    if require_ready and not ready:
+        raise AssetReferenceError(f"Asset '{wanted_id}' is not eligible for scene generation.")
+    resolved_row = dict(row)
+    for field in ("mesh_path", "latent_path", "parent_mesh_path", "split_output_dir", "preview_path"):
+        if resolved_row.get(field) not in (None, ""):
+            resolved_row[field] = _resolved_resource_value(path, resolved_row[field])
+    return {
+        "manifest_name": name,
+        "manifest_path": path,
+        "manifest_fingerprint": summary["fingerprint"],
+        "row": resolved_row,
+        "public": _public_asset_row(name, summary["fingerprint"], row, ready=ready),
+        "ready": ready,
+    }
+
+
+def search_registered_assets(
+    *,
+    query: str = "",
+    manifest_names: Sequence[str] | None = None,
+    category: str = "",
+    offset: int = 0,
+    limit: int = 50,
+) -> Dict[str, Any]:
+    """Search ready assets across one or more registered manifests."""
+
+    registered = _registered_manifests()
+    names = [str(item).strip() for item in (manifest_names or registered.keys()) if str(item).strip()]
+    query_terms = [term for term in str(query or "").strip().lower().split() if term]
+    wanted_category = str(category or "").strip().lower()
+    results: List[Dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for name in names:
+        path = resolve_registered_manifest(name)
+        rows, _ = _read_rows(path)
+        fingerprint = hashlib.sha256(path.read_bytes()).hexdigest()
+        ready_ids = _ready_asset_ids(path, rows)
+        for row in rows:
+            asset_id = str(row.get("asset_id") or "").strip()
+            if not asset_id or asset_id not in ready_ids or (name, asset_id) in seen:
+                continue
+            row_category = str(row.get("category") or "unknown").strip().lower()
+            if wanted_category and row_category != wanted_category:
+                continue
+            haystack = " ".join(
+                str(value or "")
+                for value in (
+                    asset_id,
+                    row_category,
+                    row.get("label"),
+                    row.get("name"),
+                    row.get("text_desc"),
+                    " ".join(str(item) for item in (row.get("tags") or [])),
+                )
+            ).lower()
+            if query_terms and not all(term in haystack for term in query_terms):
+                continue
+            seen.add((name, asset_id))
+            results.append(_public_asset_row(name, fingerprint, row, ready=True))
+    results.sort(key=lambda item: (str(item["category"]), str(item["label"]).lower(), str(item["assetId"])))
+    start = max(0, int(offset))
+    page_size = max(1, min(200, int(limit)))
+    return {
+        "assets": results[start:start + page_size],
+        "total": len(results),
+        "offset": start,
+        "limit": page_size,
+        "hasMore": start + page_size < len(results),
+    }
+
+
+def build_scene_edit_manifest(
+    placements: Iterable[Mapping[str, Any]],
+    *,
+    destination: Path,
+) -> Dict[str, Any]:
+    """Freeze only the referenced assets into a combined rebuild manifest."""
+
+    resolved_rows: List[Dict[str, Any]] = []
+    provenance: List[Dict[str, str]] = []
+    seen_asset_ids: set[str] = set()
+    registered = _registered_manifests()
+    legacy_preference = [
+        name for name in (
+            "street_furniture/street_furniture_manifest.jsonl",
+            "real_assets_manifest.jsonl",
+        ) if name in registered
+    ] + [name for name in registered if name not in {
+        "street_furniture/street_furniture_manifest.jsonl", "real_assets_manifest.jsonl"
+    }]
+    for placement in placements:
+        asset_id = str(placement.get("asset_id") or "").strip()
+        if not asset_id or asset_id in seen_asset_ids:
+            continue
+        asset_ref = placement.get("asset_ref") if isinstance(placement.get("asset_ref"), Mapping) else None
+        resolved: Dict[str, Any] | None = None
+        if asset_ref:
+            resolved = resolve_registered_asset(
+                str(asset_ref.get("manifestName") or asset_ref.get("manifest_name") or ""),
+                str(asset_ref.get("assetId") or asset_ref.get("asset_id") or asset_id),
+                expected_fingerprint=str(asset_ref.get("fingerprint") or ""),
+                require_ready=True,
+            )
+        else:
+            for name in legacy_preference:
+                try:
+                    resolved = resolve_registered_asset(name, asset_id, require_ready=False)
+                except AssetReferenceError:
+                    continue
+                if resolved:
+                    break
+        if resolved is None:
+            # The rebuild path intentionally keeps legacy placeholder support.
+            continue
+        row = dict(resolved["row"])
+        row["asset_id"] = asset_id
+        resolved_rows.append(row)
+        seen_asset_ids.add(asset_id)
+        provenance.append({
+            "manifest_name": str(resolved["manifest_name"]),
+            "fingerprint": str(resolved["manifest_fingerprint"]),
+            "asset_id": asset_id,
+        })
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with destination.open("w", encoding="utf-8") as handle:
+        for row in resolved_rows:
+            handle.write(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n")
+    return {"manifest_path": str(destination), "assets": provenance}
 
 
 def read_manifest_page(

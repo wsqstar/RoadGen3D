@@ -261,6 +261,7 @@ class SceneLayoutEditRequestModel(BaseModel):
     layout_path: str = Field(min_length=1)
     base: SceneEditBaseModel
     commands: List[Dict[str, Any]] = Field(min_length=1, max_length=100)
+    transform_policy: Literal["expert_grounded", "course_grounded"] = "expert_grounded"
 
 
 class RebuildLayoutGlbRequestModel(BaseModel):
