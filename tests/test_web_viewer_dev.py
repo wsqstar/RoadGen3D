@@ -268,6 +268,13 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
                     "furniture_balance_policy": "street_focus",
                 },
                 "visual_style": {"style": "test"},
+                "surface_diagnostic": {
+                    "schema_version": "roadgen3d.surface-diagnostic.v1",
+                    "coordinate_space": "local_xz_m",
+                    "source": "final_glb_top_faces",
+                    "node_roles": {"carriageway_final": "carriageway"},
+                    "patch_provenance": [{"patch_id": "junction_1_q1", "quadrant_id": "q1"}],
+                },
                 "config": {"length_m": 60, "query": "test prompt", "density": 0.8, "road_width_m": 6.4, "lane_count": 2, "seed": 99, "style_preset": "test_style"},
                 "production_steps": [{"step_id": "road_base", "title": "Road Base", "glb_path": str(step_glb)}],
                 "street_program": {
@@ -305,6 +312,9 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
 
     assert manifest["summary"]["length_m"] == 60
     assert manifest["visual_style"]["style"] == "test"
+    assert manifest["surface_diagnostic"]["source"] == "final_glb_top_faces"
+    assert manifest["surface_diagnostic"]["node_roles"] == {"carriageway_final": "carriageway"}
+    assert manifest["surface_diagnostic"]["patch_provenance"][0]["quadrant_id"] == "q1"
     assert manifest["scene_bounds"]["center"]
     assert manifest["instances"]["inst_tree"]["category"] == "tree"
     overlay = manifest["layout_overlay"]

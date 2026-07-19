@@ -572,6 +572,9 @@ def build_layout_manifest_payload(
     manifest = {
         "summary": make_json_safe(payload.get("summary") or {}),
         "visual_style": make_json_safe(payload.get("visual_style") or {}),
+        # Classification/provenance only. The Viewer still extracts every
+        # diagnostic triangle from the loaded final GLB at runtime.
+        "surface_diagnostic": make_json_safe(payload.get("surface_diagnostic") or {}),
         "final_scene": make_json_safe(dict(final_scene)),
         "production_steps": make_json_safe([dict(item) for item in production_steps]),
         "default_selection": "final_scene",
