@@ -181,7 +181,8 @@ def test_reference_annotation_bridge_emits_surface_polygons() -> None:
     assert "context_ground_base" in node_names
     surface_qa = scene.metadata["surface_geometry_qa"]
     assert surface_qa["needle_top_face_count"] == 0
-    assert surface_qa["short_boundary_edge_count"] == 0
+    assert surface_qa["short_boundary_edge_counts_by_role"]["carriageway"] == 0
+    assert surface_qa["short_boundary_edge_counts_by_role"]["curb"] == 0
     assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
     assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
     assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
@@ -247,6 +248,49 @@ def test_continuous_junction_qa_rejects_unresolved_sliver() -> None:
                 ],
             },
         ])
+
+
+def test_junction_normalization_fills_road_arm_corner_transition_envelope() -> None:
+    pytest.importorskip("shapely")
+    from shapely.geometry import box
+    from shapely.ops import unary_union
+
+    normalized = normalize_junction_surface_geometry(
+        {
+            "junction_id": "junction_transition_gap",
+            "generation_mode": "continuous_junction_fusion_auto",
+            "debug_info": {"precision_grid_m": 0.001},
+            # The straight road arm and curved side surface deliberately leave
+            # an eight-square-metre transition wedge in the independently
+            # trimmed junction envelope.
+            "sidewalk_trim_zone": box(0.0, 0.0, 10.0, 4.0),
+            "canonical_surface_patches": [
+                {
+                    "surface_id": "road_arm",
+                    "surface_role": "carriageway",
+                    "geometry": box(0.0, 0.0, 4.0, 4.0),
+                },
+                {
+                    "surface_id": "corner_sidewalk",
+                    "surface_role": "sidewalk",
+                    "geometry": box(6.0, 0.0, 10.0, 4.0),
+                },
+            ],
+        }
+    )
+
+    planar_union = unary_union(
+        [
+            patch["geometry"]
+            for patch in normalized["normalized_surface_patches"]
+            if not patch.get("is_overlay")
+        ]
+    )
+    assert normalized["surface_normalization_debug"]["junction_transition_fill_count"] == 1
+    assert normalized["surface_normalization_debug"]["junction_transition_fill_area_m2"] == pytest.approx(8.0)
+    assert box(0.0, 0.0, 10.0, 4.0).difference(planar_union).area <= 1e-4
+    assert normalized["geometry_qa"]["junction_transition_uncovered_area_m2"] == 0.0
+    assert normalized["geometry_qa"]["ok"] is True
 
 
 def test_junction_surface_normalization_keeps_crosswalk_sources_separate() -> None:

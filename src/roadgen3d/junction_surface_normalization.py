@@ -108,6 +108,69 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         for patch in (junction.get("canonical_surface_patches", []) or ())
         if isinstance(patch, Mapping)
     ]
+    junction_transition_fill_area_m2 = 0.0
+    junction_transition_fill_count = 0
+    if canonical_surface_patches:
+        # ``sidewalk_trim_zone`` is the independent junction envelope removed
+        # from the straight road-arm surfaces before the curved corner ribbons
+        # are installed.  Every part of that envelope must therefore be owned
+        # by a canonical junction surface.  The continuous turn connector can
+        # otherwise leave a long, open wedge between the road-arm cut line and
+        # its curved curb boundary.  Because that wedge is absent from the
+        # canonical patch union, auditing the union against itself cannot see
+        # the missing pavement and the context-ground slab becomes visible.
+        trim_zone = _clean_polygonal_geometry(junction.get("sidewalk_trim_zone"))
+        canonical_geometries = [
+            patch.get("geometry")
+            for patch in canonical_surface_patches
+            if patch.get("geometry") is not None
+            and not getattr(patch.get("geometry"), "is_empty", True)
+        ]
+        if trim_zone is not None and not getattr(trim_zone, "is_empty", True) and canonical_geometries:
+            canonical_union = _clean_polygonal_geometry(unary_union(canonical_geometries))
+            try:
+                from shapely import difference, set_precision
+
+                trim_zone = _clean_polygonal_geometry(
+                    set_precision(trim_zone, grid_size=precision_grid_m)
+                )
+                canonical_union = _clean_polygonal_geometry(
+                    set_precision(canonical_union, grid_size=precision_grid_m)
+                )
+                transition_gap = _clean_polygonal_geometry(
+                    difference(
+                        trim_zone,
+                        canonical_union,
+                        grid_size=precision_grid_m,
+                    )
+                )
+            except Exception:
+                transition_gap = (
+                    _clean_polygonal_geometry(trim_zone.difference(canonical_union))
+                    if canonical_union is not None
+                    else None
+                )
+            if canonical_union is not None and not getattr(canonical_union, "is_empty", True):
+                transition_components = [
+                    component
+                    for component in _polygon_components(transition_gap)
+                    if float(component.area) > max(precision_grid_m * precision_grid_m, 1e-8)
+                ]
+                for component_index, component in enumerate(transition_components):
+                    canonical_surface_patches.append(
+                        {
+                            "surface_id": f"{junction_id}_junction_transition_fill_{component_index:02d}",
+                            "surface_role": "carriageway",
+                            "surface_kind": "canonical",
+                            "geometry": component,
+                            "source_kind": "road_arm_corner_transition_fill",
+                        }
+                    )
+                junction_transition_fill_area_m2 = float(
+                    sum(component.area for component in transition_components)
+                )
+                junction_transition_fill_count = len(transition_components)
+                normalized_junction["canonical_surface_patches"] = canonical_surface_patches
     if canonical_surface_patches:
         for patch in canonical_surface_patches:
             add_source("canonical_surface_patch", patch, default_role=str(patch.get("surface_role", "carriageway") or "carriageway"))
@@ -338,6 +401,49 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
                 repartition_occupied = _clean_polygonal_geometry(
                     unary_union([repartition_occupied, *visible_components])
                 ) or repartition_occupied
+    # Grid repartitioning can drop a one-cell residual at a three-role corner.
+    # Reinsert only the still-unowned part of the independent trim envelope;
+    # unlike the historical endpoint-fill rectangles, these patches cannot
+    # overlap any existing role and remain part of the canonical partition.
+    sidewalk_trim_zone = _clean_polygonal_geometry(junction.get("sidewalk_trim_zone"))
+    final_envelope_residual_area_m2 = 0.0
+    if sidewalk_trim_zone is not None and not getattr(sidewalk_trim_zone, "is_empty", True):
+        try:
+            from shapely import difference, set_precision
+
+            final_residual = _clean_polygonal_geometry(
+                difference(
+                    set_precision(sidewalk_trim_zone, grid_size=precision_grid_m),
+                    set_precision(repartition_occupied, grid_size=precision_grid_m),
+                    grid_size=precision_grid_m,
+                )
+            )
+        except Exception:
+            final_residual = _clean_polygonal_geometry(
+                sidewalk_trim_zone.difference(repartition_occupied)
+            )
+        residual_components = [
+            component
+            for component in _polygon_components(final_residual)
+            if float(component.area) >= MIN_SURFACE_COMPONENT_AREA_M2
+        ]
+        final_envelope_residual_area_m2 = float(
+            sum(component.area for component in residual_components)
+        )
+        for component_index, component in enumerate(residual_components):
+            repartitioned_planar_patches.append(
+                {
+                    "surface_id": f"{junction_id}_normalized_transition_residual_{component_index:02d}",
+                    "surface_kind": "normalized",
+                    "surface_role": "carriageway",
+                    "geometry": component,
+                    "component_index": int(component_index),
+                    "source_ids": [f"{junction_id}_junction_transition_residual"],
+                    "source_kinds": ["canonical_surface_patch"],
+                    "is_overlay": False,
+                    "area_m2": float(component.area),
+                }
+            )
     normalized_patches = repartitioned_planar_patches
 
     for role in sorted(overlays_by_role):
@@ -396,6 +502,9 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         "overlap_removed_area_m2": round(float(same_role_overlap_removed + priority_overlap_removed), 3),
         "normalization_residual_area_m2": round(normalization_residual_area_m2, 6),
         "sliver_reassigned_count": int(sliver_reassigned_count),
+        "junction_transition_fill_count": int(junction_transition_fill_count),
+        "junction_transition_fill_area_m2": round(junction_transition_fill_area_m2, 6),
+        "final_envelope_residual_area_m2": round(final_envelope_residual_area_m2, 6),
     }
     normalized_junction["surface_normalization_debug"] = normalization_debug
     geometry_qa = audit_junction_surface_geometry(
@@ -461,21 +570,64 @@ def audit_junction_surface_geometry(
         ]
     except Exception:
         pass
-    canonical_envelope = unary_union(canonical_geometries) if canonical_geometries else planar_union
+    envelope_geometries = list(canonical_geometries)
+    sidewalk_trim_zone = _clean_polygonal_geometry(junction.get("sidewalk_trim_zone"))
+    if sidewalk_trim_zone is not None and not getattr(sidewalk_trim_zone, "is_empty", True):
+        envelope_geometries.append(sidewalk_trim_zone)
+    canonical_envelope = unary_union(envelope_geometries) if envelope_geometries else planar_union
+    try:
+        from shapely import set_precision
+
+        # Snap once more after union.  Snapping each source independently can
+        # leave sub-cell seams in GEOS even when the final metric-grid union is
+        # complete.
+        canonical_envelope = set_precision(
+            canonical_envelope,
+            grid_size=max(tolerance, 0.0001),
+        )
+    except Exception:
+        pass
     uncovered_area_m2 = float(canonical_envelope.difference(planar_union).area)
     envelope_area_m2 = float(getattr(canonical_envelope, "area", 0.0) or 0.0)
+    # The full canonical envelope can retain a sub-millimetre GEOS seam along
+    # an outer connector edge.  Keep the legacy numerical tolerance there,
+    # while the independently meaningful road-arm transition envelope below is
+    # enforced at the stricter visible-surface threshold.
     uncovered_limit_m2 = max(1e-3, envelope_area_m2 * 1e-6)
+    junction_transition_uncovered_area_m2 = 0.0
+    if sidewalk_trim_zone is not None and not getattr(sidewalk_trim_zone, "is_empty", True):
+        try:
+            from shapely import set_precision
+
+            transition_envelope = set_precision(
+                sidewalk_trim_zone,
+                grid_size=max(tolerance, 0.0001),
+            )
+        except Exception:
+            transition_envelope = sidewalk_trim_zone
+        # GEOS may retain sub-grid seams where several curved role boundaries
+        # meet.  Audit coverage with one precision-cell tolerance so those
+        # numerical seams are not mistaken for a visible road-arm wedge.
+        transition_cover = planar_union.buffer(max(tolerance, 0.001))
+        junction_transition_uncovered_area_m2 = float(
+            transition_envelope.difference(transition_cover).area
+        )
     ok = bool(
         invalid_polygon_count == 0
         and sliver_component_count == 0
         and coplanar_overlap_area_m2 <= MAX_PLANAR_OVERLAP_AREA_M2
         and uncovered_area_m2 <= uncovered_limit_m2
+        and junction_transition_uncovered_area_m2 <= 1e-4
     )
     return {
         "ok": ok,
         "coplanar_overlap_area_m2": round(coplanar_overlap_area_m2, 6),
         "junction_uncovered_area_m2": round(uncovered_area_m2, 6),
         "junction_uncovered_limit_m2": round(uncovered_limit_m2, 6),
+        "junction_transition_uncovered_area_m2": round(
+            junction_transition_uncovered_area_m2,
+            6,
+        ),
         "invalid_polygon_count": int(invalid_polygon_count),
         "sliver_component_count": int(sliver_component_count),
         "gap_close_tolerance_m": round(tolerance, 6),

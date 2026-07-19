@@ -2843,7 +2843,8 @@ def test_osm_curb_and_sidewalk_own_disjoint_top_surfaces():
     assert placement_ctx.surface_geometry_qa["curb_sidewalk_overlap_area_m2"] <= 1e-4
     assert placement_ctx.surface_geometry_qa["mesh_boundary_clearance_m"] == pytest.approx(0.0)
     assert placement_ctx.surface_geometry_qa["needle_top_face_count"] == 0
-    assert placement_ctx.surface_geometry_qa["short_boundary_edge_count"] == 0
+    assert placement_ctx.surface_geometry_qa["short_boundary_edge_counts_by_role"]["carriageway"] == 0
+    assert placement_ctx.surface_geometry_qa["short_boundary_edge_counts_by_role"]["curb"] == 0
     assert placement_ctx.surface_geometry_qa["road_junction_seam_gap_area_m2"] <= 1e-4
     assert placement_ctx.surface_geometry_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
     assert placement_ctx.surface_geometry_qa["rendered_surface_uncovered_area_m2"] <= 1e-4

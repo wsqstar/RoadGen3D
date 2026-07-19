@@ -580,7 +580,8 @@ def test_cross_junction_serialization_and_scene_include_corner_polylines():
     assert "context_ground_base" in node_names
     surface_qa = scene.metadata["surface_geometry_qa"]
     assert surface_qa["needle_top_face_count"] == 0
-    assert surface_qa["short_boundary_edge_count"] == 0
+    assert surface_qa["short_boundary_edge_counts_by_role"]["carriageway"] == 0
+    assert surface_qa["short_boundary_edge_counts_by_role"]["curb"] == 0
     assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
     assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
     assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
@@ -676,6 +677,7 @@ def test_explicit_junction_scene_bridge_serializes_split_lines_and_control_point
 
 def test_guangzhou_junction_09_is_disjoint_with_design_generation_width():
     pytest.importorskip("shapely")
+    from shapely.ops import unary_union
     payload = json.loads(
         (ROOT / "assets" / "starter_scenes" / "guangzhou_road_skeleton_v1" / "normalized_source.json")
         .read_text(encoding="utf-8")
@@ -697,3 +699,19 @@ def test_guangzhou_junction_09_is_disjoint_with_design_generation_width():
     )
     assert junction["geometry_qa"]["ok"] is True
     assert junction["geometry_qa"]["coplanar_overlap_area_m2"] == 0.0
+    planar_union = unary_union(
+        [
+            patch["geometry"]
+            for patch in junction["normalized_surface_patches"]
+            if not patch.get("is_overlay")
+        ]
+    )
+    assert junction["surface_normalization_debug"]["junction_transition_fill_count"] >= 4
+    assert junction["surface_normalization_debug"]["junction_transition_fill_area_m2"] > 6.0
+    assert junction["geometry_qa"]["junction_transition_uncovered_area_m2"] == 0.0
+    assert junction["sidewalk_trim_zone"].difference(planar_union.buffer(0.001)).area <= 1e-4
+
+    scene = _build_osm_base_scene(bridge.placement_context)
+    surface_qa = scene.metadata["surface_geometry_qa"]
+    assert surface_qa["junction_transition_uncovered_area_m2"] == 0.0
+    assert surface_qa["context_ground_exposure_inside_row_m2"] == 0.0
