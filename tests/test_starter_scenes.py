@@ -107,12 +107,16 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert surface_qa["final_surface_sliver_count"] == 0
     assert surface_qa["degenerate_top_face_count"] == 0
     assert surface_qa["needle_top_face_count"] == 0
-    assert surface_qa["short_boundary_edge_count"] == 0
+    assert surface_qa["short_boundary_edge_counts_by_role"]["carriageway"] == 0
+    assert surface_qa["short_boundary_edge_counts_by_role"]["curb"] == 0
     assert surface_qa["minimum_top_triangle_angle_deg"] >= 0.05
     assert surface_qa["maximum_top_triangle_aspect_ratio"] <= 1000.0
     assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
     assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
     assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
+    assert surface_qa["junction_transition_uncovered_area_m2"] <= 1e-4
+    assert surface_qa["junction_surface_qa_inset_m"] == 0.0
+    assert surface_qa["rendered_surface_qa_tolerance_m"] == 0.005
     assert surface_qa["surface_mesh_violations"] == []
     marking_qa = osm_geometry["marking_geometry_qa"]
     assert marking_qa["ok"] is True
@@ -129,6 +133,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert junction_qa
     assert all(item["ok"] for item in junction_qa)
     assert all(item["coplanar_overlap_area_m2"] <= 1e-4 for item in junction_qa)
+    assert all(item["junction_transition_uncovered_area_m2"] <= 1e-4 for item in junction_qa)
     assert all(
         item["junction_uncovered_area_m2"] <= item["junction_uncovered_limit_m2"]
         for item in junction_qa

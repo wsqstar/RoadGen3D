@@ -10,8 +10,8 @@
     "overlap_rate": 0.001574101574101574,
     "retrieval_top3_category_hit": 0.9652509652509652,
     "policy_used": "rule",
-    "latency_ms_total": 5654.642708017491,
-    "latency_ms_per_instance": 21.748625800067273,
+    "latency_ms_total": 5316.4593749679625,
+    "latency_ms_per_instance": 20.447920672953703,
     "per_category_unique": {
       "bench": 3,
       "bollard": 1,
@@ -733,8 +733,8 @@
       }
     },
     "objective_score_breakdown": {
-      "unused_row_budget_m": 0.0,
       "slot_mix_bias": 141.0,
+      "unused_row_budget_m": 0.0,
       "total_width_score": 66.86000000000001
     },
     "band_solution_count": 20,
@@ -1667,22 +1667,89 @@
     "osm_geometry": {
       "surface_geometry_qa": {
         "ok": true,
-        "curb_sidewalk_overlap_area_m2": 3e-05,
+        "curb_sidewalk_overlap_area_m2": 0.0,
         "curb_width_m": 0.12,
         "curb_reveal_m": 0.15,
         "curb_top_mode": "flush_with_sidewalk",
         "mesh_boundary_clearance_m": 0.0,
         "final_surface_sliver_count": 0,
-        "removed_surface_sliver_count": 18,
+        "removed_surface_sliver_count": 20,
         "degenerate_top_face_count": 0,
         "minimum_top_triangle_angle_deg": 0.071175,
         "maximum_top_triangle_aspect_ratio": 805.391,
         "needle_top_face_count": 0,
-        "short_boundary_edge_count": 0,
+        "short_boundary_edge_count": 6,
+        "short_boundary_edge_counts_by_role": {
+          "carriageway": 0,
+          "sidewalk": 6,
+          "curb": 0
+        },
+        "short_boundary_edge_samples_by_role": {
+          "sidewalk": [
+            {
+              "length_m": 0.001414,
+              "start_xz": [
+                197.346,
+                -178.226
+              ],
+              "end_xz": [
+                197.347,
+                -178.225
+              ]
+            },
+            {
+              "length_m": 0.001,
+              "start_xz": [
+                203.452,
+                -170.957
+              ],
+              "end_xz": [
+                203.452,
+                -170.956
+              ]
+            },
+            {
+              "length_m": 0.001414,
+              "start_xz": [
+                185.121,
+                -101.076
+              ],
+              "end_xz": [
+                185.12,
+                -101.075
+              ]
+            },
+            {
+              "length_m": 0.001414,
+              "start_xz": [
+                184.985,
+                -100.85
+              ],
+              "end_xz": [
+                184.984,
+                -100.849
+              ]
+            },
+            {
+              "length_m": 0.001414,
+              "start_xz": [
+                169.308,
+                -92.33
+              ],
+              "end_xz": [
+                169.309,
+                -92.331
+              ]
+            }
+          ]
+        },
         "maximum_boundary_turn_deg": 173.918259,
         "road_junction_seam_gap_area_m2": 0.0,
         "context_ground_exposure_inside_row_m2": 0.0,
         "rendered_surface_uncovered_area_m2": 0.0,
+        "junction_transition_uncovered_area_m2": 0.0,
+        "junction_surface_qa_inset_m": 0.0,
+        "rendered_surface_qa_tolerance_m": 0.005,
         "surface_mesh_violations": []
       },
       "marking_geometry_qa": {
@@ -3855,6 +3922,189 @@
                   ]
                 ]
               ]
+            },
+            {
+              "surface_id": "junction_09_junction_transition_fill_00",
+              "surface_kind": "canonical",
+              "surface_role": "carriageway",
+              "strip_kind": "",
+              "source_kind": "road_arm_corner_transition_fill",
+              "paired_connector_id": "",
+              "endpoint_role": "",
+              "chamfer_depth_m": 0.0,
+              "effective_chamfer_depth_m": 0.0,
+              "fillet_radius_m": 0.0,
+              "tangent_setback_m": 0.0,
+              "reference_q_m": 0.0,
+              "center_q_m": 0.0,
+              "rings": [
+                [
+                  [
+                    163.23,
+                    -90.74
+                  ],
+                  [
+                    162.96,
+                    -90.28
+                  ],
+                  [
+                    169.05,
+                    -88.99
+                  ],
+                  [
+                    163.23,
+                    -90.74
+                  ]
+                ]
+              ]
+            },
+            {
+              "surface_id": "junction_09_junction_transition_fill_01",
+              "surface_kind": "canonical",
+              "surface_role": "carriageway",
+              "strip_kind": "",
+              "source_kind": "road_arm_corner_transition_fill",
+              "paired_connector_id": "",
+              "endpoint_role": "",
+              "chamfer_depth_m": 0.0,
+              "effective_chamfer_depth_m": 0.0,
+              "fillet_radius_m": 0.0,
+              "tangent_setback_m": 0.0,
+              "reference_q_m": 0.0,
+              "center_q_m": 0.0,
+              "rings": [
+                [
+                  [
+                    177.96,
+                    -86.62
+                  ],
+                  [
+                    183.8,
+                    -84.85
+                  ],
+                  [
+                    184.04,
+                    -85.3
+                  ],
+                  [
+                    183.84,
+                    -85.36
+                  ],
+                  [
+                    177.96,
+                    -86.62
+                  ]
+                ]
+              ]
+            },
+            {
+              "surface_id": "junction_09_junction_transition_fill_02",
+              "surface_kind": "canonical",
+              "surface_role": "carriageway",
+              "strip_kind": "",
+              "source_kind": "road_arm_corner_transition_fill",
+              "paired_connector_id": "",
+              "endpoint_role": "",
+              "chamfer_depth_m": 0.0,
+              "effective_chamfer_depth_m": 0.0,
+              "fillet_radius_m": 0.0,
+              "tangent_setback_m": 0.0,
+              "reference_q_m": 0.0,
+              "center_q_m": 0.0,
+              "rings": [
+                [
+                  [
+                    166.3,
+                    -82.42
+                  ],
+                  [
+                    160.38,
+                    -83.68
+                  ],
+                  [
+                    160.21,
+                    -83.2
+                  ],
+                  [
+                    160.38,
+                    -83.17
+                  ],
+                  [
+                    166.3,
+                    -82.42
+                  ]
+                ]
+              ]
+            },
+            {
+              "surface_id": "junction_09_junction_transition_fill_03",
+              "surface_kind": "canonical",
+              "surface_role": "carriageway",
+              "strip_kind": "",
+              "source_kind": "road_arm_corner_transition_fill",
+              "paired_connector_id": "",
+              "endpoint_role": "",
+              "chamfer_depth_m": 0.0,
+              "effective_chamfer_depth_m": 0.0,
+              "fillet_radius_m": 0.0,
+              "tangent_setback_m": 0.0,
+              "reference_q_m": 0.0,
+              "center_q_m": 0.0,
+              "rings": [
+                [
+                  [
+                    180.54,
+                    -78.0
+                  ],
+                  [
+                    180.81,
+                    -78.44
+                  ],
+                  [
+                    175.07,
+                    -80.19
+                  ],
+                  [
+                    180.54,
+                    -78.0
+                  ]
+                ]
+              ]
+            },
+            {
+              "surface_id": "junction_09_junction_transition_fill_04",
+              "surface_kind": "canonical",
+              "surface_role": "carriageway",
+              "strip_kind": "",
+              "source_kind": "road_arm_corner_transition_fill",
+              "paired_connector_id": "",
+              "endpoint_role": "",
+              "chamfer_depth_m": 0.0,
+              "effective_chamfer_depth_m": 0.0,
+              "fillet_radius_m": 0.0,
+              "tangent_setback_m": 0.0,
+              "reference_q_m": 0.0,
+              "center_q_m": 0.0,
+              "rings": [
+                [
+                  [
+                    179.94,
+                    -76.61
+                  ],
+                  [
+                    180.09,
+                    -76.57
+                  ],
+                  [
+                    180.09,
+                    -76.57
+                  ],
+                  [
+                    179.94,
+                    -76.61
+                  ]
+                ]
+              ]
             }
           ],
           "normalized_surface_patches": [
@@ -3868,30 +4118,26 @@
                 "junction_09_carriageway_apron_00",
                 "junction_09_carriageway_apron_01",
                 "junction_09_carriageway_apron_02",
-                "junction_09_carriageway_apron_03"
+                "junction_09_carriageway_apron_03",
+                "junction_09_junction_transition_fill_00",
+                "junction_09_junction_transition_fill_01",
+                "junction_09_junction_transition_fill_02",
+                "junction_09_junction_transition_fill_03"
               ],
               "source_kinds": [
                 "canonical_surface_patch"
               ],
               "is_overlay": false,
-              "area_m2": 403.339,
+              "area_m2": 409.561,
               "rings": [
                 [
                   [
-                    171.34,
-                    -93.53
+                    170.6,
+                    -92.97
                   ],
                   [
-                    167.09,
-                    -91.22
-                  ],
-                  [
-                    163.23,
-                    -90.74
-                  ],
-                  [
-                    169.05,
-                    -88.99
+                    162.96,
+                    -90.28
                   ],
                   [
                     160.13,
@@ -3902,20 +4148,16 @@
                     -84.04
                   ],
                   [
-                    166.3,
-                    -82.42
+                    162.92,
+                    -82.11
                   ],
                   [
-                    160.38,
-                    -83.17
+                    164.6,
+                    -79.99
                   ],
                   [
-                    163.22,
-                    -81.88
-                  ],
-                  [
-                    164.76,
-                    -79.47
+                    164.9,
+                    -78.53
                   ],
                   [
                     162.91,
@@ -3926,20 +4168,16 @@
                     -69.93
                   ],
                   [
-                    174.07,
-                    -76.46
+                    173.53,
+                    -75.93
                   ],
                   [
-                    177.13,
-                    -78.05
+                    174.81,
+                    -77.02
                   ],
                   [
-                    180.54,
-                    -78.0
-                  ],
-                  [
-                    175.07,
-                    -80.19
+                    178.27,
+                    -78.24
                   ],
                   [
                     183.2,
@@ -3950,20 +4188,16 @@
                     -84.41
                   ],
                   [
-                    177.96,
-                    -86.62
+                    181.31,
+                    -86.67
                   ],
                   [
-                    183.85,
-                    -85.36
+                    179.95,
+                    -88.8
                   ],
                   [
-                    181.04,
-                    -86.92
-                  ],
-                  [
-                    179.86,
-                    -89.3
+                    179.84,
+                    -90.23
                   ],
                   [
                     182.47,
@@ -3974,8 +4208,8 @@
                     -99.45
                   ],
                   [
-                    171.34,
-                    -93.53
+                    170.6,
+                    -92.97
                   ]
                 ]
               ]
@@ -4152,22 +4386,28 @@
               "surface_role": "sidewalk",
               "component_index": 0,
               "source_ids": [
-                "junction_09_clear_sidewalk_00_connector"
+                "junction_09_clear_sidewalk_00_connector",
+                "junction_09_junction_transition_fill_04"
               ],
               "source_kinds": [
-                "canonical_surface_patch"
+                "canonical_surface_patch",
+                "sliver_reassignment"
               ],
               "is_overlay": false,
               "area_m2": 33.951,
               "rings": [
                 [
                   [
-                    178.89,
-                    -76.76
+                    179.76,
+                    -76.65
                   ],
                   [
-                    174.69,
-                    -74.97
+                    177.29,
+                    -76.54
+                  ],
+                  [
+                    174.94,
+                    -75.22
                   ],
                   [
                     172.37,
@@ -4194,8 +4434,8 @@
                     -75.46
                   ],
                   [
-                    178.89,
-                    -76.76
+                    179.76,
+                    -76.65
                   ]
                 ]
               ]
@@ -4212,7 +4452,7 @@
                 "canonical_surface_patch"
               ],
               "is_overlay": false,
-              "area_m2": 26.404,
+              "area_m2": 26.405,
               "rings": [
                 [
                   [
@@ -4328,7 +4568,7 @@
                 "canonical_surface_patch"
               ],
               "is_overlay": false,
-              "area_m2": 19.775,
+              "area_m2": 19.774,
               "rings": [
                 [
                   [
@@ -4844,42 +5084,47 @@
           "surface_normalization_debug": {
             "generation_mode": "junction_surface_normalization_v1",
             "input_counts": {
-              "canonical_surface_patch": 17,
+              "canonical_surface_patch": 22,
               "crosswalk_patch": 4
             },
             "normalized_surface_count": 17,
             "skipped_geometry_count": 0,
             "skipped_geometries": [],
-            "planar_source_area_m2": 714.58,
-            "planar_union_area_m2": 700.364,
+            "planar_source_area_m2": 720.805,
+            "planar_union_area_m2": 706.587,
             "overlay_source_area_m2": 95.997,
-            "normalized_planar_area_m2": 700.362,
+            "normalized_planar_area_m2": 706.585,
             "normalized_overlay_area_m2": 95.997,
-            "same_role_overlap_removed_area_m2": 3.67,
-            "priority_overlap_removed_area_m2": 10.545,
-            "overlap_removed_area_m2": 14.215,
+            "same_role_overlap_removed_area_m2": 3.674,
+            "priority_overlap_removed_area_m2": 10.546,
+            "overlap_removed_area_m2": 14.219,
             "normalization_residual_area_m2": 0.0,
-            "sliver_reassigned_count": 0,
+            "sliver_reassigned_count": 1,
+            "junction_transition_fill_count": 5,
+            "junction_transition_fill_area_m2": 6.225158,
+            "final_envelope_residual_area_m2": 0.0,
             "geometry_qa": {
               "ok": true,
               "coplanar_overlap_area_m2": 0.0,
-              "junction_uncovered_area_m2": 0.000761,
+              "junction_uncovered_area_m2": 0.000428,
               "junction_uncovered_limit_m2": 0.001,
+              "junction_transition_uncovered_area_m2": 0.0,
               "invalid_polygon_count": 0,
               "sliver_component_count": 0,
               "gap_close_tolerance_m": 0.001,
-              "planar_envelope_area_m2": 700.364148
+              "planar_envelope_area_m2": 706.587165
             }
           },
           "geometry_qa": {
             "ok": true,
             "coplanar_overlap_area_m2": 0.0,
-            "junction_uncovered_area_m2": 0.000761,
+            "junction_uncovered_area_m2": 0.000428,
             "junction_uncovered_limit_m2": 0.001,
+            "junction_transition_uncovered_area_m2": 0.0,
             "invalid_polygon_count": 0,
             "sliver_component_count": 0,
             "gap_close_tolerance_m": 0.001,
-            "planar_envelope_area_m2": 700.364148
+            "planar_envelope_area_m2": 706.587165
           },
           "quadrant_corner_kernels": [
             {
