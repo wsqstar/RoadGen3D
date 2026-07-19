@@ -20,6 +20,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services import starter_scenes
+import roadgen3d.street_layout as street_layout
 from web.api.main import create_app
 
 
@@ -198,6 +199,30 @@ def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
         ]
     )
     assert int(np.count_nonzero(face_areas <= 1e-10)) == 0
+
+
+def test_v5_fixture_identifies_known_road5_transverse_curb_cap() -> None:
+    """Keep the reported Guangzhou bad case as an immutable regression input."""
+    directory = starter_scenes.STARTER_ROOT / SCENE_ID
+    layout = json.loads((directory / "scene_layout.json").read_text(encoding="utf-8"))
+    junctions = layout["summary"]["osm_geometry"]["junction_geometries"]
+    masks, records = street_layout._build_road_mouth_open_masks(
+        junctions,
+        curb_width_m=0.12,
+        precision_grid_m=0.001,
+    )
+    assert masks.area > 0.0
+    scene = trimesh.load(directory / "complete_scene.glb", force="scene", process=False)
+    curb = _glb_top_projection(scene, "curb_")
+    intrusion_by_road = {
+        record["road_id"]: float(curb.intersection(record["geometry"]).area)
+        for record in records
+    }
+
+    assert intrusion_by_road[5] > 0.75
+    assert intrusion_by_road[6] <= 1e-4
+    assert intrusion_by_road[1] <= 1e-4
+    assert intrusion_by_road[3] <= 1e-4
 
 
 def test_starter_materialization_is_idempotent_and_never_mutates_bundle(tmp_path, monkeypatch) -> None:

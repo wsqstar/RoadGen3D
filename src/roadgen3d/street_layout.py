@@ -4000,6 +4000,165 @@ def _build_curb_boundary_zone(carriageway: Any, elevated_side_zone: Any, curb_wi
         return MultiPolygon()
 
 
+def _build_road_mouth_open_masks(
+    junction_geometries: Sequence[Mapping[str, Any]],
+    *,
+    curb_width_m: float,
+    precision_grid_m: float,
+) -> tuple[Any, List[Dict[str, Any]]]:
+    """Build flat-ended carriageway ownership masks at junction road mouths.
+
+    ``split_start_xy`` and ``split_end_xy`` describe the carriageway cross
+    section at the arm/junction seam.  The segment is inset by one curb width
+    at both ends so the two longitudinal curb runs remain untouched.  The
+    interior segment is then extended along ``tangent_xy`` on both sides of
+    the seam.  Anything inside this mask is carriageway, never a transverse
+    curb cap.
+    """
+    from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+    from shapely.ops import unary_union
+
+    curb_width = max(float(curb_width_m), 0.0)
+    precision_grid = max(float(precision_grid_m), 1e-9)
+    end_inset_m = max(curb_width, precision_grid * 2.0)
+    half_depth_m = max(0.75, curb_width * 6.0)
+    masks: List[Any] = []
+    records: List[Dict[str, Any]] = []
+
+    def _xy(value: Any, *, field: str, junction_id: str, road_id: int) -> tuple[float, float]:
+        if not isinstance(value, (list, tuple)) or len(value) < 2:
+            raise ValueError(
+                f"Invalid road-mouth skeleton for {junction_id}/road_id={road_id}: "
+                f"{field} must contain two coordinates"
+            )
+        try:
+            point = (float(value[0]), float(value[1]))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(
+                f"Invalid road-mouth skeleton for {junction_id}/road_id={road_id}: "
+                f"{field} is not numeric"
+            ) from exc
+        if not all(math.isfinite(component) for component in point):
+            raise ValueError(
+                f"Invalid road-mouth skeleton for {junction_id}/road_id={road_id}: "
+                f"{field} contains non-finite coordinates"
+            )
+        return point
+
+    for junction in junction_geometries:
+        if not isinstance(junction, Mapping):
+            continue
+        junction_id = str(junction.get("junction_id", "") or "unknown_junction")
+        for arm_index, arm in enumerate(junction.get("arm_skeletons", []) or ()):
+            if not isinstance(arm, Mapping):
+                continue
+            road_id = int(arm.get("road_id", 0) or 0)
+            split_start = _xy(
+                arm.get("split_start_xy"),
+                field="split_start_xy",
+                junction_id=junction_id,
+                road_id=road_id,
+            )
+            split_end = _xy(
+                arm.get("split_end_xy"),
+                field="split_end_xy",
+                junction_id=junction_id,
+                road_id=road_id,
+            )
+            tangent = _xy(
+                arm.get("tangent_xy"),
+                field="tangent_xy",
+                junction_id=junction_id,
+                road_id=road_id,
+            )
+            cross_dx = split_end[0] - split_start[0]
+            cross_dy = split_end[1] - split_start[1]
+            cross_length = math.hypot(cross_dx, cross_dy)
+            tangent_length = math.hypot(tangent[0], tangent[1])
+            if cross_length <= end_inset_m * 2.0 + precision_grid or tangent_length <= precision_grid:
+                raise ValueError(
+                    f"Invalid road-mouth skeleton for {junction_id}/road_id={road_id}: "
+                    f"degenerate split or tangent"
+                )
+            cross_unit = (cross_dx / cross_length, cross_dy / cross_length)
+            tangent_unit = (tangent[0] / tangent_length, tangent[1] / tangent_length)
+            absolute_dot = min(
+                1.0,
+                abs(cross_unit[0] * tangent_unit[0] + cross_unit[1] * tangent_unit[1]),
+            )
+            orthogonality_error_deg = 90.0 - math.degrees(math.acos(absolute_dot))
+            if orthogonality_error_deg > 2.0:
+                raise ValueError(
+                    f"Invalid road-mouth skeleton for {junction_id}/road_id={road_id}: "
+                    f"split/tangent orthogonality error={orthogonality_error_deg:.6f}deg"
+                )
+
+            inner_start = (
+                split_start[0] + cross_unit[0] * end_inset_m,
+                split_start[1] + cross_unit[1] * end_inset_m,
+            )
+            inner_end = (
+                split_end[0] - cross_unit[0] * end_inset_m,
+                split_end[1] - cross_unit[1] * end_inset_m,
+            )
+            corners = [
+                (
+                    inner_start[0] - tangent_unit[0] * half_depth_m,
+                    inner_start[1] - tangent_unit[1] * half_depth_m,
+                ),
+                (
+                    inner_end[0] - tangent_unit[0] * half_depth_m,
+                    inner_end[1] - tangent_unit[1] * half_depth_m,
+                ),
+                (
+                    inner_end[0] + tangent_unit[0] * half_depth_m,
+                    inner_end[1] + tangent_unit[1] * half_depth_m,
+                ),
+                (
+                    inner_start[0] + tangent_unit[0] * half_depth_m,
+                    inner_start[1] + tangent_unit[1] * half_depth_m,
+                ),
+            ]
+            mask = ShapelyPolygon(corners)
+            if not mask.is_valid:
+                mask = mask.buffer(0)
+            if getattr(mask, "is_empty", True) or float(mask.area) <= precision_grid**2:
+                raise ValueError(
+                    f"Invalid road-mouth skeleton for {junction_id}/road_id={road_id}: "
+                    f"open mask is empty"
+                )
+            mask_id = str(
+                arm.get("arm_skeleton_id")
+                or f"{junction_id}_arm_{int(arm.get('arm_index', arm_index) or arm_index):02d}"
+            )
+            masks.append(mask)
+            records.append(
+                {
+                    "mask_id": f"{mask_id}_road_mouth",
+                    "junction_id": junction_id,
+                    "arm_index": int(arm.get("arm_index", arm_index) or arm_index),
+                    "road_id": road_id,
+                    "centerline_id": str(arm.get("centerline_id", "") or ""),
+                    "split_start_xy": [round(split_start[0], 6), round(split_start[1], 6)],
+                    "split_end_xy": [round(split_end[0], 6), round(split_end[1], 6)],
+                    "tangent_xy": [round(tangent_unit[0], 6), round(tangent_unit[1], 6)],
+                    "end_inset_m": round(end_inset_m, 6),
+                    "half_depth_m": round(half_depth_m, 6),
+                    "orthogonality_error_deg": round(orthogonality_error_deg, 6),
+                    "corners_xy": [
+                        [round(float(x), 6), round(float(y), 6)]
+                        for x, y in corners
+                    ],
+                    "area_m2": round(float(mask.area), 6),
+                    "geometry": mask,
+                }
+            )
+
+    if not masks:
+        return MultiPolygon(), records
+    return unary_union(masks), records
+
+
 def _apply_pbr_material(mesh, rgba, roughness=0.9):
     """Apply a PBR material to a mesh instead of plain face colors."""
     trimesh = _require_trimesh()
@@ -6818,6 +6977,24 @@ def _build_osm_base_scene(
     ]
     bus_bay_vehicle_zone = _union_scene_polygonal_geometries(bus_bay_vehicle_surfaces)
     has_bus_bay_vehicle_zone = not getattr(bus_bay_vehicle_zone, "is_empty", True)
+    road_mouth_open_zone, road_mouth_mask_records = _build_road_mouth_open_masks(
+        junction_geometries,
+        curb_width_m=curb_width,
+        precision_grid_m=surface_precision_grid_m,
+    )
+    road_mouth_ownership_margin_m = max(surface_precision_grid_m * 10.0, 0.01)
+    road_mouth_vehicle_ownership_zone = road_mouth_open_zone
+    if not getattr(road_mouth_open_zone, "is_empty", True):
+        try:
+            road_mouth_vehicle_ownership_zone = _clean_scene_polygonal_geometry(
+                road_mouth_open_zone.buffer(
+                    road_mouth_ownership_margin_m,
+                    join_style=2,
+                    cap_style=2,
+                )
+            )
+        except Exception:
+            logger.debug("Failed to add road-mouth carriageway ownership margin", exc_info=True)
     bus_bay_marking_exclusion_surfaces: List[Any] = []
     for surface in bus_bay_vehicle_surfaces:
         try:
@@ -6853,7 +7030,40 @@ def _build_osm_base_scene(
         list(road_arm_geometries) if road_arm_geometries else [carriageway]
     )
     base_vehicle_surface = _union_scene_polygonal_geometries([*rendered_vehicle_surfaces, *junction_vehicle_surfaces])
-    vehicle_surface_zone = _union_scene_polygonal_geometries([base_vehicle_surface, bus_bay_vehicle_zone])
+    vehicle_surface_zone_before_road_mouths = _union_scene_polygonal_geometries(
+        [base_vehicle_surface, bus_bay_vehicle_zone]
+    )
+    road_mouth_added_carriageway_zone = _clean_scene_polygonal_geometry(
+        road_mouth_vehicle_ownership_zone.difference(vehicle_surface_zone_before_road_mouths)
+        if not getattr(road_mouth_vehicle_ownership_zone, "is_empty", True)
+        else None
+    )
+    if (
+        not getattr(road_mouth_added_carriageway_zone, "is_empty", True)
+        and not getattr(junction_surface_envelope, "is_empty", True)
+    ):
+        # Only claim missing surface on the junction side of the seam.  The
+        # opposite half already belongs to its road arm; clipping prevents the
+        # numerical ownership margin from expanding the global ROW.
+        road_mouth_added_carriageway_zone = _clean_scene_polygonal_geometry(
+            road_mouth_added_carriageway_zone.intersection(
+                junction_surface_envelope.buffer(
+                    road_mouth_ownership_margin_m,
+                    join_style=2,
+                )
+            )
+        )
+    road_mouth_added_carriageway_area_m2 = float(
+        road_mouth_added_carriageway_zone.area
+        if not getattr(road_mouth_added_carriageway_zone, "is_empty", True)
+        else 0.0
+    )
+    # The interior of every split cross-section belongs to the carriageway.
+    # Claim it before deriving sidewalk and curb partitions so removing an
+    # erroneous transverse cap can never reveal the background slab.
+    vehicle_surface_zone = _union_scene_polygonal_geometries(
+        [vehicle_surface_zone_before_road_mouths, road_mouth_added_carriageway_zone]
+    )
     if has_bus_bay_vehicle_zone:
         vehicle_surface_zone = _close_scene_polygonal_gaps(
             vehicle_surface_zone,
@@ -6872,6 +7082,41 @@ def _build_osm_base_scene(
         *elevated_surface_annotation_surfaces,
     ])
     curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
+    curb_zone_before_road_mouths = curb_zone
+    curb_road_mouth_intrusion_by_arm: List[Dict[str, Any]] = []
+    for record in road_mouth_mask_records:
+        mask = record["geometry"]
+        curb_road_mouth_intrusion_by_arm.append(
+            {
+                key: value
+                for key, value in record.items()
+                if key != "geometry"
+            }
+            | {
+                "pre_trim_intrusion_area_m2": round(
+                    float(curb_zone_before_road_mouths.intersection(mask).area),
+                    6,
+                ),
+            }
+        )
+    road_mouth_trimmed_curb_area_m2 = float(
+        curb_zone_before_road_mouths.intersection(road_mouth_open_zone).area
+        if not getattr(road_mouth_open_zone, "is_empty", True)
+        else 0.0
+    )
+    if not getattr(curb_zone, "is_empty", True) and not getattr(road_mouth_open_zone, "is_empty", True):
+        try:
+            from shapely import difference, set_precision
+
+            curb_zone = _clean_scene_polygonal_geometry(
+                difference(
+                    set_precision(curb_zone, grid_size=surface_precision_grid_m),
+                    set_precision(road_mouth_open_zone, grid_size=surface_precision_grid_m),
+                    grid_size=surface_precision_grid_m,
+                )
+            )
+        except Exception:
+            curb_zone = _clean_scene_polygonal_geometry(curb_zone.difference(road_mouth_open_zone))
     # Curb and sidewalk are a true planar partition.  Their shared boundary is
     # snapped once and reused by both meshes; leaving a horizontal clearance
     # exposes the context-ground underlay and becomes visible as a wedge at
@@ -7000,6 +7245,45 @@ def _build_osm_base_scene(
         if not getattr(curb_zone, "is_empty", True) and not getattr(sidewalk_render_zone, "is_empty", True)
         else 0.0
     )
+    curb_road_mouth_intrusion_area_m2 = float(
+        curb_zone.intersection(road_mouth_open_zone).area
+        if not getattr(curb_zone, "is_empty", True) and not getattr(road_mouth_open_zone, "is_empty", True)
+        else 0.0
+    )
+    road_mouth_carriageway_gap_area_m2 = float(
+        road_mouth_open_zone.difference(vehicle_surface_zone).area
+        if not getattr(road_mouth_open_zone, "is_empty", True)
+        else 0.0
+    )
+    for record, source in zip(curb_road_mouth_intrusion_by_arm, road_mouth_mask_records):
+        mask = source["geometry"]
+        record["post_trim_intrusion_area_m2"] = round(
+            float(curb_zone.intersection(mask).area),
+            6,
+        )
+        record["carriageway_gap_area_m2"] = round(
+            float(mask.difference(vehicle_surface_zone).area),
+            6,
+        )
+    if curb_road_mouth_intrusion_area_m2 > 1e-4 or road_mouth_carriageway_gap_area_m2 > 1e-4:
+        offenders = [
+            {
+                "junction_id": record["junction_id"],
+                "road_id": record["road_id"],
+                "mask_id": record["mask_id"],
+                "intrusion_area_m2": record["post_trim_intrusion_area_m2"],
+                "uncovered_area_m2": record["carriageway_gap_area_m2"],
+            }
+            for record in curb_road_mouth_intrusion_by_arm
+            if record["post_trim_intrusion_area_m2"] > 1e-4
+            or record["carriageway_gap_area_m2"] > 1e-4
+        ]
+        raise ValueError(
+            "Road-mouth surface QA failed: "
+            f"curb_intrusion={curb_road_mouth_intrusion_area_m2:.6f}m2, "
+            f"carriageway_gap={road_mouth_carriageway_gap_area_m2:.6f}m2, "
+            f"offenders={offenders}"
+        )
     if curb_sidewalk_overlap_area_m2 > 1e-4:
         raise ValueError(
             f"Curb/sidewalk surface QA failed: overlap={curb_sidewalk_overlap_area_m2:.6f}m2"
@@ -7016,6 +7300,16 @@ def _build_osm_base_scene(
     surface_geometry_qa = {
         "ok": True,
         "curb_sidewalk_overlap_area_m2": round(curb_sidewalk_overlap_area_m2, 6),
+        "curb_road_mouth_intrusion_area_m2": round(curb_road_mouth_intrusion_area_m2, 6),
+        "road_mouth_carriageway_gap_area_m2": round(road_mouth_carriageway_gap_area_m2, 6),
+        "curb_road_mouth_intrusion_by_arm": curb_road_mouth_intrusion_by_arm,
+        "road_mouth_masks": [
+            {key: value for key, value in record.items() if key != "geometry"}
+            for record in road_mouth_mask_records
+        ],
+        "road_mouth_trimmed_curb_area_m2": round(road_mouth_trimmed_curb_area_m2, 6),
+        "road_mouth_added_carriageway_area_m2": round(road_mouth_added_carriageway_area_m2, 6),
+        "road_mouth_ownership_margin_m": round(road_mouth_ownership_margin_m, 6),
         "curb_width_m": round(curb_width, 6),
         "curb_reveal_m": round(sidewalk_top_y_m, 6),
         "curb_top_mode": "flush_with_sidewalk",
@@ -8687,8 +8981,14 @@ def _build_osm_base_scene(
         ]
     )
     rendered_vehicle_surface = _rendered_top_surface_union(("carriageway",))
+    rendered_curb_surface = _rendered_top_surface_union(("curb",))
     rendered_surface = _rendered_top_surface_union(("carriageway", "sidewalk", "curb"))
-    rendered_surface_qa_tolerance_m = max(surface_precision_grid_m * 4.0, 0.005)
+    # The exported top polygons can pass through two topology-preserving
+    # five-millimetre simplification passes before triangulation.  Audit their
+    # generic ROW coverage with the resulting ten-millimetre numerical
+    # allowance; semantic road-mouth ownership is checked separately against
+    # the exact, unbuffered mask below and therefore is never relaxed here.
+    rendered_surface_qa_tolerance_m = max(surface_precision_grid_m * 10.0, 0.01)
     if not getattr(rendered_surface, "is_empty", True):
         try:
             rendered_surface_qa_cover = _clean_scene_polygonal_geometry(
@@ -8711,20 +9011,43 @@ def _build_osm_base_scene(
         if not getattr(intended_vehicle_surface, "is_empty", True)
         else 0.0
     )
-    rendered_surface_uncovered_area_m2 = float(
-        intended_rendered_surface.difference(rendered_surface_qa_cover).area
+    rendered_surface_uncovered_geometry = (
+        intended_rendered_surface.difference(rendered_surface_qa_cover)
         if not getattr(intended_rendered_surface, "is_empty", True)
-        else 0.0
+        else _clean_scene_polygonal_geometry(None)
     )
-    junction_transition_uncovered_area_m2 = float(
-        junction_surface_qa_envelope.difference(rendered_surface_qa_cover).area
+    rendered_surface_uncovered_area_m2 = float(rendered_surface_uncovered_geometry.area)
+    junction_transition_uncovered_geometry = (
+        junction_surface_qa_envelope.difference(rendered_surface_qa_cover)
         if not getattr(junction_surface_qa_envelope, "is_empty", True)
-        else 0.0
+        else _clean_scene_polygonal_geometry(None)
     )
+    junction_transition_uncovered_area_m2 = float(junction_transition_uncovered_geometry.area)
     # The context-ground slab covers the complete design bounds.  Any part of
     # the intended ROW not covered by a rendered top surface would therefore
     # expose that slab to the picking ray.
     context_ground_exposure_inside_row_m2 = rendered_surface_uncovered_area_m2
+    curb_road_mouth_intrusion_area_m2 = float(
+        rendered_curb_surface.intersection(road_mouth_open_zone).area
+        if not getattr(rendered_curb_surface, "is_empty", True)
+        and not getattr(road_mouth_open_zone, "is_empty", True)
+        else 0.0
+    )
+    road_mouth_carriageway_gap_area_m2 = float(
+        road_mouth_open_zone.difference(rendered_vehicle_surface).area
+        if not getattr(road_mouth_open_zone, "is_empty", True)
+        else 0.0
+    )
+    for record, source in zip(curb_road_mouth_intrusion_by_arm, road_mouth_mask_records):
+        mask = source["geometry"]
+        record["final_glb_intrusion_area_m2"] = round(
+            float(rendered_curb_surface.intersection(mask).area),
+            6,
+        )
+        record["final_glb_carriageway_gap_area_m2"] = round(
+            float(mask.difference(rendered_vehicle_surface).area),
+            6,
+        )
     short_boundary_edges_by_role = {
         "carriageway": _short_boundary_edges(intended_vehicle_surface),
         "sidewalk": _short_boundary_edges(sidewalk_render_zone),
@@ -8753,10 +9076,29 @@ def _build_osm_base_scene(
             "road_junction_seam_gap_area_m2": round(road_junction_seam_gap_area_m2, 6),
             "context_ground_exposure_inside_row_m2": round(context_ground_exposure_inside_row_m2, 6),
             "rendered_surface_uncovered_area_m2": round(rendered_surface_uncovered_area_m2, 6),
+            "rendered_surface_uncovered_bounds_xz": (
+                [round(float(value), 6) for value in rendered_surface_uncovered_geometry.bounds]
+                if not getattr(rendered_surface_uncovered_geometry, "is_empty", True)
+                else []
+            ),
             "junction_transition_uncovered_area_m2": round(
                 junction_transition_uncovered_area_m2,
                 6,
             ),
+            "junction_transition_uncovered_bounds_xz": (
+                [round(float(value), 6) for value in junction_transition_uncovered_geometry.bounds]
+                if not getattr(junction_transition_uncovered_geometry, "is_empty", True)
+                else []
+            ),
+            "curb_road_mouth_intrusion_area_m2": round(
+                curb_road_mouth_intrusion_area_m2,
+                6,
+            ),
+            "road_mouth_carriageway_gap_area_m2": round(
+                road_mouth_carriageway_gap_area_m2,
+                6,
+            ),
+            "curb_road_mouth_intrusion_by_arm": curb_road_mouth_intrusion_by_arm,
             "junction_surface_qa_inset_m": round(junction_surface_qa_inset_m, 6),
             "rendered_surface_qa_tolerance_m": round(
                 rendered_surface_qa_tolerance_m,
@@ -8775,6 +9117,8 @@ def _build_osm_base_scene(
         and context_ground_exposure_inside_row_m2 <= 1e-4
         and rendered_surface_uncovered_area_m2 <= 1e-4
         and junction_transition_uncovered_area_m2 <= 1e-4
+        and curb_road_mouth_intrusion_area_m2 <= 1e-4
+        and road_mouth_carriageway_gap_area_m2 <= 1e-4
     )
     if not surface_geometry_qa["ok"]:
         surface_geometry_qa["ok"] = False
@@ -8788,7 +9132,13 @@ def _build_osm_base_scene(
             f"maximum_boundary_turn_deg={maximum_boundary_turn_deg:.6f}, "
             f"road_junction_seam_gap_area_m2={road_junction_seam_gap_area_m2:.6f}, "
             f"context_ground_exposure_inside_row_m2={context_ground_exposure_inside_row_m2:.6f}, "
+            f"rendered_surface_uncovered_bounds_xz={surface_geometry_qa.get('rendered_surface_uncovered_bounds_xz')}, "
             f"junction_transition_uncovered_area_m2={junction_transition_uncovered_area_m2:.6f}, "
+            f"junction_transition_uncovered_bounds_xz={surface_geometry_qa.get('junction_transition_uncovered_bounds_xz')}, "
+            f"curb_road_mouth_intrusion_area_m2={curb_road_mouth_intrusion_area_m2:.6f}, "
+            f"road_mouth_carriageway_gap_area_m2={road_mouth_carriageway_gap_area_m2:.6f}, "
+            f"road_mouth_added_carriageway_area_m2={road_mouth_added_carriageway_area_m2:.6f}, "
+            f"road_mouth_arms={curb_road_mouth_intrusion_by_arm}, "
             f"violations={surface_mesh_violations[:8]}"
         )
     setattr(placement_ctx, "surface_geometry_qa", surface_geometry_qa)
@@ -8849,6 +9199,13 @@ def _build_osm_base_scene(
         "node_roles": dict(sorted(surface_node_roles.items())),
         "patch_provenance": diagnostic_patches,
         "junction_arm_profiles": diagnostic_arm_profiles,
+        "road_mouth_masks": [
+            {
+                **{key: value for key, value in record.items() if key != "geometry"},
+                "rings_xz": _diagnostic_rings(record["geometry"]),
+            }
+            for record in road_mouth_mask_records
+        ],
         "geometry_qa": dict(surface_geometry_qa),
     }
     setattr(placement_ctx, "surface_diagnostic_manifest", surface_diagnostic_manifest)

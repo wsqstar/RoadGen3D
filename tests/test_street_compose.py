@@ -2764,6 +2764,114 @@ def test_osm_curb_zone_excludes_road_endpoint_caps():
     assert curb_zone.intersection(shapely_geometry.box(-5.22, -0.9, -5.01, 0.9)).area == pytest.approx(0.0)
 
 
+def test_road_mouth_open_mask_preserves_side_curbs_and_rejects_transverse_caps():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    tangent = np.asarray([2.0, -1.0], dtype=float)
+    tangent /= np.linalg.norm(tangent)
+    cross = np.asarray([-tangent[1], tangent[0]], dtype=float)
+    center = np.asarray([8.0, -3.0], dtype=float)
+    split_start = center - cross * 4.5
+    split_end = center + cross * 4.5
+    junctions = [{
+        "junction_id": "junction_rotated",
+        "arm_skeletons": [{
+            "arm_skeleton_id": "junction_rotated_arm_00",
+            "arm_index": 0,
+            "road_id": 5,
+            "centerline_id": "road_5",
+            "split_start_xy": split_start.tolist(),
+            "split_end_xy": split_end.tolist(),
+            "tangent_xy": tangent.tolist(),
+        }],
+    }]
+
+    mask, records = street_layout._build_road_mouth_open_masks(
+        junctions,
+        curb_width_m=0.12,
+        precision_grid_m=0.001,
+    )
+
+    assert len(records) == 1
+    assert records[0]["road_id"] == 5
+    assert records[0]["end_inset_m"] == pytest.approx(0.12)
+    assert records[0]["half_depth_m"] == pytest.approx(0.75)
+    assert records[0]["orthogonality_error_deg"] <= 1e-6
+    transverse_cap = shapely_geometry.LineString([split_start, split_end]).buffer(0.12, cap_style=2)
+    side_curb_a = shapely_geometry.LineString([
+        split_start - tangent * 2.0,
+        split_start + tangent * 2.0,
+    ]).buffer(0.06, cap_style=2)
+    side_curb_b = shapely_geometry.LineString([
+        split_end - tangent * 2.0,
+        split_end + tangent * 2.0,
+    ]).buffer(0.06, cap_style=2)
+
+    assert mask.intersection(transverse_cap).area > 1.0
+    assert mask.intersection(side_curb_a).area == pytest.approx(0.0, abs=1e-8)
+    assert mask.intersection(side_curb_b).area == pytest.approx(0.0, abs=1e-8)
+
+
+def test_road_mouth_open_mask_rejects_non_orthogonal_skeleton():
+    with pytest.raises(ValueError, match="orthogonality error"):
+        street_layout._build_road_mouth_open_masks(
+            [{
+                "junction_id": "junction_bad",
+                "arm_skeletons": [{
+                    "road_id": 9,
+                    "split_start_xy": [0.0, -2.0],
+                    "split_end_xy": [0.0, 2.0],
+                    "tangent_xy": [0.5, 1.0],
+                }],
+            }],
+            curb_width_m=0.12,
+            precision_grid_m=0.001,
+        )
+
+
+def test_osm_road_mouth_mask_assigns_gap_to_carriageway_not_curb():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    road_arm = shapely_geometry.box(-5.0, -1.0, -0.2, 1.0)
+    junction_carriageway = shapely_geometry.box(0.2, -1.0, 2.0, 1.0)
+    upper_sidewalk = shapely_geometry.box(-5.0, 1.0, 2.0, 3.0)
+    lower_sidewalk = shapely_geometry.box(-5.0, -3.0, 2.0, -1.0)
+    transverse_sidewalk = shapely_geometry.box(-0.2, -1.0, 0.2, 1.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=road_arm,
+        sidewalk_zone=upper_sidewalk.union(lower_sidewalk).union(transverse_sidewalk),
+        road_arm_geometries=[road_arm],
+        junction_geometries=[{
+            "junction_id": "junction_gap",
+            "normalized_surface_patches": [
+                {"surface_role": "carriageway", "geometry": junction_carriageway},
+                {"surface_role": "sidewalk", "geometry": upper_sidewalk.union(lower_sidewalk)},
+            ],
+            "arm_skeletons": [{
+                "arm_skeleton_id": "junction_gap_arm_00",
+                "arm_index": 0,
+                "road_id": 5,
+                "centerline_id": "road_5",
+                "split_start_xy": [0.0, -1.0],
+                "split_end_xy": [0.0, 1.0],
+                "tangent_xy": [-1.0, 0.0],
+            }],
+        }],
+        strip_zones={},
+    )
+
+    street_layout._build_osm_base_scene(placement_ctx)
+    qa = placement_ctx.surface_geometry_qa
+
+    assert qa["road_mouth_added_carriageway_area_m2"] > 0.5
+    assert qa["road_mouth_trimmed_curb_area_m2"] >= 0.0
+    assert qa["curb_road_mouth_intrusion_area_m2"] <= 1e-4
+    assert qa["road_mouth_carriageway_gap_area_m2"] <= 1e-4
+    assert qa["curb_road_mouth_intrusion_by_arm"][0]["road_id"] == 5
+    assert qa["curb_road_mouth_intrusion_by_arm"][0]["final_glb_intrusion_area_m2"] <= 1e-4
+    assert qa["curb_road_mouth_intrusion_by_arm"][0]["final_glb_carriageway_gap_area_m2"] <= 1e-4
+
+
 def test_osm_curb_uses_normalized_junction_vehicle_surfaces():
     trimesh = pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
