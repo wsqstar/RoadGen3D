@@ -724,6 +724,68 @@ def test_durable_job_recovery_and_cancellation_are_terminal(client: TestClient):
     assert after_late_completion["result"] == {}
 
 
+def test_scene_generation_failure_is_public_retryable_once_and_preserves_progress(client: TestClient, monkeypatch):
+    _teacher_token, student_token, course = _bootstrap_course_and_student(client)
+    project = client.post("/api/v1/projects", headers=_auth(student_token), json={
+        "course_id": course["id"],
+        "name": "Failure contract studio",
+        "aoi_bbox": [113.54, 22.79, 113.55, 22.80],
+    }).json()
+    imported = client.post(f"/api/v1/projects/{project['id']}/sources/geojson", headers=_auth(student_token), json={
+        "geojson": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "properties": {"highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.541, 22.791], [113.548, 22.798]]},
+            }],
+        },
+    }).json()
+    normalized = client.get(
+        f"/api/v1/artifacts/{imported['normalized_artifact_id']}",
+        headers=_auth(student_token),
+    ).json()
+    reviewed = client.post(
+        f"/api/v1/projects/{project['id']}/sources/{imported['id']}/review",
+        headers=_auth(student_token),
+        json={"geojson": normalized, "actions": [], "notes": "approved"},
+    ).json()
+
+    def fail_after_layout(*_args, **kwargs):
+        progress_callback = kwargs.get("progress_callback")
+        assert progress_callback is not None
+        progress_callback({"stage": "layout_generation", "progress": 44, "message": "Layout ready."})
+        raise NameError("name '_private_internal_symbol' is not defined")
+
+    monkeypatch.setattr(client.app.state.design_service, "generate_scene", fail_after_layout)
+    first = client.post(
+        f"/api/v1/projects/{project['id']}/generate",
+        headers=_auth(student_token),
+        json={"source_id": reviewed["id"], "generation_mode": "baseline"},
+    )
+    assert first.status_code == 202
+    failed = first.json()
+    assert failed["status"] == "failed"
+    assert failed["stage"] == "failed"
+    assert failed["progress"] == 41
+    assert failed["message"] == "3D场景生成失败。你的地图和2D标注已经保存，可以重试或返回检查标注。"
+    assert failed["error"] == failed["message"]
+    assert "_private_internal_symbol" not in json.dumps(failed, ensure_ascii=False)
+    assert failed["detail"]["last_successful_stage"] == "layout_generation"
+    assert failed["detail"]["failure"]["code"] == "scene_generation_failed"
+    assert failed["detail"]["failure"]["retryable"] is True
+    assert failed["detail"]["failure"]["debug_reference"].startswith("RG3D-")
+
+    retried = client.post(f"/api/v1/jobs/{failed['id']}/retry", headers=_auth(student_token))
+    assert retried.status_code == 202
+    retried_failure = retried.json()
+    assert retried_failure["status"] == "failed"
+    assert retried_failure["progress"] == 41
+    assert retried_failure["detail"]["failure"]["retryable"] is False
+    blocked = client.post(f"/api/v1/jobs/{retried_failure['id']}/retry", headers=_auth(student_token))
+    assert blocked.status_code == 409
+
+
 def test_local_generation_returns_immediately_and_project_job_list_recovers_status(client: TestClient, monkeypatch):
     monkeypatch.setenv("ROADGEN_JOB_MODE", "local")
     _teacher_token, student_token, course = _bootstrap_course_and_student(client)

@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import logging
 import os
 import platform
 import tempfile
@@ -53,6 +54,14 @@ from .models import (
 )
 
 
+logger = logging.getLogger(__name__)
+
+
+PUBLIC_SCENE_GENERATION_FAILURE_MESSAGE = (
+    "3D场景生成失败。你的地图和2D标注已经保存，可以重试或返回检查标注。"
+)
+
+
 class TeachingError(RuntimeError):
     status_code = 400
     code = "teaching_error"
@@ -74,6 +83,38 @@ class Forbidden(TeachingError):
 class Conflict(TeachingError):
     status_code = 409
     code = "conflict"
+
+
+def public_job_failure(
+    exc: Exception,
+    *,
+    job_id: str,
+    kind: str,
+    attempt: int,
+) -> dict[str, Any]:
+    """Map an internal exception to the stable student-facing failure contract."""
+
+    debug_reference = f"RG3D-{str(job_id)[:8].upper()}-{max(1, int(attempt)):02d}"
+    if isinstance(exc, (TimeoutError, ConnectionError)):
+        return {
+            "code": "service_unavailable",
+            "user_message": "服务暂时不可用。你的已有工作已经保存，请稍后重试。",
+            "retryable": True,
+            "debug_reference": debug_reference,
+        }
+    if isinstance(exc, TeachingError) or (kind == "scene_generate" and isinstance(exc, ValueError)):
+        return {
+            "code": "invalid_scene_source",
+            "user_message": "地图或2D标注未通过数据检查。请返回检查标注后再生成。",
+            "retryable": False,
+            "debug_reference": debug_reference,
+        }
+    return {
+        "code": "scene_generation_failed",
+        "user_message": PUBLIC_SCENE_GENERATION_FAILURE_MESSAGE,
+        "retryable": int(attempt) <= 1,
+        "debug_reference": debug_reference,
+    }
 
 
 def _iso(value: Any) -> str | None:
@@ -1335,6 +1376,7 @@ class TeachingPlatformService:
             job.message = "Starting teaching workflow."
             job.detail = {}
             job.attempts += 1
+            attempt = int(job.attempts)
             owner_id = job.owner_id
             project_id = job.project_id
             kind = job.kind
@@ -1378,13 +1420,19 @@ class TeachingPlatformService:
             else:
                 raise ValueError(f"Unsupported teaching job kind: {kind}")
         except Exception as exc:
-            self.update_job_progress(job_id, {
-                "stage": "failed",
-                "progress": 100,
-                "message": str(exc) or "The task failed.",
-                "detail": {"error": str(exc)},
-            })
-            return self.update_job(job_id, status="failed", progress=100, error=str(exc))
+            failure = public_job_failure(
+                exc,
+                job_id=job_id,
+                kind=kind,
+                attempt=attempt + int(payload.get("_retry_count", 0) or 0),
+            )
+            logger.exception(
+                "Teaching job %s failed (debug_reference=%s, kind=%s)",
+                job_id,
+                failure["debug_reference"],
+                kind,
+            )
+            return self.fail_job(job_id, failure=failure)
         self.update_job_progress(job_id, {
             "stage": "succeeded",
             "progress": 100,
@@ -1455,7 +1503,11 @@ class TeachingPlatformService:
                 raise Forbidden("This job belongs to another user.")
             if job.status not in {"failed", "cancelled"}:
                 raise Conflict("Only failed or cancelled jobs can be retried.")
+            failure = dict(job.detail.get("failure") or {}) if isinstance(job.detail, Mapping) else {}
+            if job.status == "failed" and failure and not bool(failure.get("retryable")):
+                raise Conflict("This task cannot be retried until its input is corrected.")
             project_id, kind, payload = job.project_id, job.kind, dict(job.payload)
+            payload["_retry_count"] = int(payload.get("_retry_count", 0) or 0) + 1
         return self.create_job(actor_id, project_id, kind=kind, payload=payload)
 
     def get_job(self, actor_id: str, job_id: str) -> dict[str, Any]:
@@ -1481,6 +1533,41 @@ class TeachingPlatformService:
             job.result = dict(result or job.result)
             job.error = str(error)
             job.attempts += 1 if status == "running" else 0
+            return self._job(job)
+
+    def fail_job(self, job_id: str, *, failure: Mapping[str, Any]) -> dict[str, Any]:
+        """Persist a terminal public failure without exposing internal exceptions."""
+
+        with self.database.session() as db:
+            job = db.get(Job, job_id)
+            if job is None:
+                raise NotFound("Job not found.")
+            if job.status == "cancelled":
+                return self._job(job)
+            last_stage = str(job.stage or "starting")
+            last_detail = dict(job.detail or {})
+            progress = min(max(0, int(job.progress)), 99)
+            public_failure = dict(failure)
+            message = str(public_failure.get("user_message") or PUBLIC_SCENE_GENERATION_FAILURE_MESSAGE)
+            detail = {
+                "last_successful_stage": last_stage,
+                "last_successful_detail": last_detail,
+                "failure": public_failure,
+            }
+            operation = {
+                "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "stage": "failed",
+                "progress": progress,
+                "message": message,
+                "detail": {"failure": public_failure},
+            }
+            job.status = "failed"
+            job.stage = "failed"
+            job.progress = progress
+            job.message = message
+            job.detail = detail
+            job.error = message
+            job.operations = [*list(job.operations or []), operation][-50:]
             return self._job(job)
 
     # ---- authorization and serialization ----------------------------------------------
