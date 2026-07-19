@@ -36,7 +36,7 @@ from roadgen3d.services.design_types import DesignDraft, SceneContext  # noqa: E
 from roadgen3d.web_viewer_dev import build_layout_manifest  # noqa: E402
 
 
-SCENE_ID = "guangzhou_complete_intersection_v5"
+SCENE_ID = "guangzhou_complete_intersection_v6"
 SOURCE_SCENE_ID = "guangzhou_road_skeleton_v2"
 SOURCE_DIR = ROOT / "assets" / "starter_scenes" / SOURCE_SCENE_ID
 BUNDLED_DIR = ROOT / "assets" / "starter_scenes" / SCENE_ID
@@ -64,7 +64,14 @@ def _sha(path: Path) -> str:
 
 def _write_json(path: Path, payload: Any) -> None:
     path.write_text(
-        json.dumps(make_json_safe(payload), ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+        json.dumps(
+            make_json_safe(payload),
+            ensure_ascii=False,
+            indent=2,
+            allow_nan=False,
+            sort_keys=True,
+        )
+        + "\n",
         encoding="utf-8",
     )
 
@@ -76,6 +83,19 @@ def _strip_machine_paths(value: Any) -> Any:
         return [_strip_machine_paths(item) for item in value]
     if isinstance(value, str) and (value.startswith("/") or value.startswith("artifacts/")):
         return ""
+    return value
+
+
+def _strip_runtime_noise(value: Any) -> Any:
+    """Remove measured wall-clock fields from the immutable starter package."""
+    if isinstance(value, dict):
+        return {
+            str(key): _strip_runtime_noise(item)
+            for key, item in value.items()
+            if str(key) not in {"latency_ms_total", "latency_ms_per_instance"}
+        }
+    if isinstance(value, list):
+        return [_strip_runtime_noise(item) for item in value]
     return value
 
 
@@ -281,7 +301,7 @@ def main() -> int:
     })
     config = dict(runtime_layout.get("config") or {})
     config.update({"building_representation": "transparent_massing", "seed": 42})
-    layout = _strip_machine_paths({
+    layout = _strip_runtime_noise(_strip_machine_paths({
         **runtime_layout,
         "query": "Bundled Guangzhou complete OSM intersection starter demo.",
         "config": config,
@@ -290,7 +310,7 @@ def main() -> int:
         "scene_graph": _filter_scene_graph(runtime_layout.get("scene_graph") or {}, selected_ids),
         "production_steps": [{"step_id": "complete_scene", "title": "Complete Intersection / 完整十字路口", "glb_path": scene_file, "companion_path": ""}],
         "outputs": {"scene_glb": scene_file, "scene_layout": "scene_layout.json"},
-    })
+    }))
     _write_json(output / "scene_layout.json", layout)
     _write_json(output / "normalized_source.json", _strip_machine_paths(source))
     shutil.copyfile(SOURCE_DIR / "osm_snapshot.json", output / "osm_snapshot.json")
@@ -317,7 +337,7 @@ def main() -> int:
 
     package = {
         "id": SCENE_ID,
-        "version": "5.0.0",
+        "version": "6.0.0",
         "label": "广州完整十字路口",
         "scene_file": scene_file,
         "retrieval_bbox": list(source.get("source_alignment", {}).get("source_frame", {}).get("bbox_wgs84") or []),
@@ -334,8 +354,9 @@ def main() -> int:
             "source_starter_scene_id": SOURCE_SCENE_ID,
             "building_representation": "transparent_massing",
             "asset_selection": "deterministic_representative_subset_v1",
-            "surface_partition": "role_aware_continuous_partition_v5",
+            "surface_partition": "road_mouth_open_partition_v6",
             "surface_diagnostic": "final_glb_top_faces_with_patch_provenance_v1",
+            "road_mouth_policy": "flat_mask_from_arm_skeleton_v1",
         },
     }
     _write_json(output / "package.json", package)

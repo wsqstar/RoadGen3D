@@ -24,7 +24,8 @@ import roadgen3d.street_layout as street_layout
 from web.api.main import create_app
 
 
-SCENE_ID = "guangzhou_complete_intersection_v5"
+SCENE_ID = "guangzhou_complete_intersection_v6"
+LEGACY_ROAD_MOUTH_FIXTURE_ID = "guangzhou_complete_intersection_v5"
 GEOMETRY_SCENE_ID = "guangzhou_road_skeleton_v2"
 
 
@@ -117,7 +118,19 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
     assert surface_qa["junction_transition_uncovered_area_m2"] <= 1e-4
     assert surface_qa["junction_surface_qa_inset_m"] == 0.0
-    assert surface_qa["rendered_surface_qa_tolerance_m"] == 0.005
+    assert surface_qa["rendered_surface_qa_tolerance_m"] == 0.01
+    assert surface_qa["curb_road_mouth_intrusion_area_m2"] <= 1e-4
+    assert surface_qa["road_mouth_carriageway_gap_area_m2"] <= 1e-4
+    assert surface_qa["road_mouth_trimmed_curb_area_m2"] >= 0.0
+    assert surface_qa["road_mouth_added_carriageway_area_m2"] > 0.0
+    assert len(surface_qa["road_mouth_masks"]) == 4
+    road_mouth_qa = {
+        item["road_id"]: item
+        for item in surface_qa["curb_road_mouth_intrusion_by_arm"]
+    }
+    assert set(road_mouth_qa) == {1, 3, 5, 6}
+    assert all(item["final_glb_intrusion_area_m2"] <= 1e-4 for item in road_mouth_qa.values())
+    assert all(item["final_glb_carriageway_gap_area_m2"] <= 1e-4 for item in road_mouth_qa.values())
     assert surface_qa["surface_mesh_violations"] == []
     surface_diagnostic = scene_layout["surface_diagnostic"]
     assert surface_diagnostic["schema_version"] == "roadgen3d.surface-diagnostic.v1"
@@ -126,6 +139,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert surface_diagnostic["patch_provenance"]
     assert all(item.get("quadrant_id") for item in surface_diagnostic["patch_provenance"] if item.get("from_road_id"))
     assert surface_diagnostic["junction_arm_profiles"]
+    assert len(surface_diagnostic["road_mouth_masks"]) == 4
     marking_qa = osm_geometry["marking_geometry_qa"]
     assert marking_qa["ok"] is True
     assert marking_qa["urban_lane_edge_mode"] == "explicit_only"
@@ -175,6 +189,7 @@ def test_retired_starters_remain_addressable_for_existing_links() -> None:
     assert starter_scenes.load_starter_scene(GEOMETRY_SCENE_ID)["id"] == GEOMETRY_SCENE_ID
     assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v3")["id"] == "guangzhou_complete_intersection_v3"
     assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v4")["id"] == "guangzhou_complete_intersection_v4"
+    assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v5")["id"] == "guangzhou_complete_intersection_v5"
 
 
 def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
@@ -203,7 +218,7 @@ def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
 
 def test_v5_fixture_identifies_known_road5_transverse_curb_cap() -> None:
     """Keep the reported Guangzhou bad case as an immutable regression input."""
-    directory = starter_scenes.STARTER_ROOT / SCENE_ID
+    directory = starter_scenes.STARTER_ROOT / LEGACY_ROAD_MOUTH_FIXTURE_ID
     layout = json.loads((directory / "scene_layout.json").read_text(encoding="utf-8"))
     junctions = layout["summary"]["osm_geometry"]["junction_geometries"]
     masks, records = street_layout._build_road_mouth_open_masks(
