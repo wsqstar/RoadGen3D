@@ -114,6 +114,7 @@ class TestBuildCrossStripFusion:
                 "centerline_id": "road_north",
                 "angle_deg": 0.0,
                 "carriageway_width_m": 8.0,
+                "split_distance_m": 10.0,
                 "side_strip_layouts": {
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
@@ -132,6 +133,7 @@ class TestBuildCrossStripFusion:
                 "centerline_id": "road_east",
                 "angle_deg": 90.0,
                 "carriageway_width_m": 8.0,
+                "split_distance_m": 10.0,
                 "side_strip_layouts": {
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
@@ -150,6 +152,7 @@ class TestBuildCrossStripFusion:
                 "centerline_id": "road_south",
                 "angle_deg": 180.0,
                 "carriageway_width_m": 8.0,
+                "split_distance_m": 10.0,
                 "side_strip_layouts": {
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
@@ -168,6 +171,7 @@ class TestBuildCrossStripFusion:
                 "centerline_id": "road_west",
                 "angle_deg": 270.0,
                 "carriageway_width_m": 8.0,
+                "split_distance_m": 10.0,
                 "side_strip_layouts": {
                     "left": [
                         {"kind": "nearroad_furnishing", "width_m": 1.5},
@@ -215,8 +219,7 @@ class TestBuildCrossStripFusion:
         assert polygon.geom_type == "Polygon", "Should be a Polygon"
         assert len(list(polygon.exterior.coords)) >= 12, "Core should be a merged straight-through throat surface"
         for arm in result.arms:
-            profile_offset = arm.carriageway_half_width_m + sum(max(float(value), 0.0) for value in arm.strip_widths_by_kind.values())
-            depth = max(3.0 + arm.carriageway_half_width_m, arm.carriageway_half_width_m * 2.4, profile_offset * 1.35, 4.0)
+            depth = arm.split_distance_m
             mouth_center = (
                 arm.tangent[0] * depth,
                 arm.tangent[1] * depth,
@@ -256,7 +259,7 @@ class TestBuildCrossStripFusion:
             area = float(polygon.area)
             assert area > 0, f"{kind} should have non-zero area"
 
-    def test_carriageway_aprons_fill_road_side_corner_pockets(self):
+    def test_continuous_carriageway_corners_fill_road_side_partition(self):
         """Road surface should continue to the inner curb curve at each corner."""
         from roadgen3d.junction_surface_normalization import normalize_junction_surface_geometry
 
@@ -271,11 +274,11 @@ class TestBuildCrossStripFusion:
         assert all(patch["geometry"].area > 1.0 for patch in result.carriageway_apron_patch_records)
 
         geometry = cross_strip_fusion_to_junction_geometry(result)
-        apron_sources = [
+        corner_sources = [
             patch for patch in geometry["canonical_surface_patches"]
-            if patch.get("source_kind") == "roadpen_style_carriageway_apron"
+            if patch.get("source_kind") == "role_aware_continuous_carriageway_corner"
         ]
-        assert len(apron_sources) == 4
+        assert len(corner_sources) == 4
 
         normalized = normalize_junction_surface_geometry(geometry)
         carriageway = [
@@ -375,10 +378,13 @@ class TestBuildCrossStripFusion:
             arms=arms,
         )
 
-        assert result.debug_info["generation_mode"] == "roadgen3d_continuous_junction_fusion_v2"
+        assert result.debug_info["generation_mode"] == "roadgen3d_role_aware_junction_partition_v3"
         assert result.debug_info["corner_radius_mode"] == "auto"
         assert result.debug_info["precision_grid_m"] == pytest.approx(0.001)
         assert result.debug_info["seam_extension_m"] == pytest.approx(0.02)
+        assert result.debug_info["junction_transition_fill_count"] == 0
+        assert result.debug_info["max_semantic_seam_width_error_m"] <= 0.02
+        assert result.debug_info["max_semantic_seam_tangent_error_deg"] <= 2.0
         assert result.fused_corner_patch_records
         sidewalk_records = [
             record for record in result.fused_corner_patch_records
@@ -386,7 +392,7 @@ class TestBuildCrossStripFusion:
         ]
         assert len(sidewalk_records) == 4
         for record in sidewalk_records:
-            assert record["generation_mode"] == "roadpen_style_lane_connector"
+            assert record["generation_mode"] == "role_aware_split_boundary_ribbon"
             assert record["from_centerline_id"]
             assert record["to_centerline_id"]
             assert record["from_strip_id"].startswith("left_")
@@ -422,8 +428,8 @@ class TestBuildCrossStripFusion:
         assert next(iter(radius_values)) >= 1.0 / (math.sqrt(2.0) - 1.0)
         assert all(record["effective_chamfer_depth_m"] >= record["chamfer_depth_m"] for record in first_quadrant)
 
-    def test_endpoint_fill_patches_connect_chamfers_to_straight_strips(self):
-        """Each side connector should have from/to endpoint fill surfaces."""
+    def test_connectors_end_on_real_split_cross_sections_without_fillers(self):
+        """Every semantic ribbon meets the real road-arm split section."""
         arms = self._standard_cross_arms()
         result = build_cross_strip_fusion(
             junction_id="test_cross",
@@ -431,24 +437,19 @@ class TestBuildCrossStripFusion:
             arms=arms,
         )
 
-        assert result.debug_info["endpoint_fill_patch_count"] == 24
+        assert result.debug_info["endpoint_fill_patch_count"] == 0
         assert len(result.fused_corner_patch_records) == 12
-        assert len(result.endpoint_fill_patch_records) == 24
-        connectors = {
-            record["patch_id"]: record["geometry"]
-            for record in result.fused_corner_patch_records
-        }
-        for fill in result.endpoint_fill_patch_records:
-            assert fill["generation_mode"] == "roadpen_style_endpoint_fill"
-            assert fill["endpoint_role"] in {"from", "to"}
-            assert fill["paired_connector_id"] in connectors
-            assert fill["geometry"].area > 0
-            contact = fill["geometry"].intersection(connectors[fill["paired_connector_id"]])
-            assert contact.area > 0 or contact.length > 0
-            assert fill["fill_length_m"] == pytest.approx(
-                max(fill["tangent_setback_m"], fill["chamfer_depth_m"] * 2.0) + 0.25,
-                abs=1e-3,
-            )
+        assert result.endpoint_fill_patch_records == []
+        assert len(result.carriageway_apron_patch_records) == 4
+        for record in result.fused_corner_patch_records:
+            assert record["from_split_distance_m"] == pytest.approx(10.0)
+            assert record["to_split_distance_m"] == pytest.approx(10.0)
+            assert record["seam_extension_m"] == pytest.approx(0.0)
+        for record in result.carriageway_apron_patch_records:
+            assert record["generation_mode"] == "role_aware_continuous_carriageway_corner"
+            assert record["from_split_distance_m"] == pytest.approx(10.0)
+            assert record["to_split_distance_m"] == pytest.approx(10.0)
+            assert record["geometry"].area > 0
 
         geometry = cross_strip_fusion_to_junction_geometry(result)
         endpoint_sources = [
@@ -458,10 +459,35 @@ class TestBuildCrossStripFusion:
         assert endpoint_sources == []
         continuous_sources = [
             patch for patch in geometry["canonical_surface_patches"]
-            if patch.get("source_kind") == "continuous_corner_ribbon"
+            if patch.get("source_kind") == "role_aware_split_boundary_ribbon"
         ]
         assert len(continuous_sources) == 12
-        assert all(fill["seam_extension_m"] == pytest.approx(0.02) for fill in result.endpoint_fill_patch_records)
+
+    def test_unequal_road_widths_keep_true_offsets_at_corner_seams(self):
+        arms = self._standard_cross_arms()
+        arms[0]["carriageway_width_m"] = 12.0
+        arms[0]["split_distance_m"] = 14.0
+        arms[1]["carriageway_width_m"] = 7.0
+        arms[1]["split_distance_m"] = 8.0
+
+        result = build_cross_strip_fusion(
+            junction_id="test_unequal_widths",
+            anchor_xy=(0.0, 0.0),
+            arms=arms,
+        )
+
+        corner = next(
+            record
+            for record in result.carriageway_apron_patch_records
+            if record["quadrant_id"] == "test_unequal_widths_quadrant_00"
+        )
+        assert corner["from_split_distance_m"] == pytest.approx(14.0)
+        assert corner["to_split_distance_m"] == pytest.approx(8.0)
+        assert corner["from_offset_m"] == pytest.approx(6.0)
+        assert corner["to_offset_m"] == pytest.approx(-3.5)
+        boundary = corner["boundary_points_xy"]
+        assert boundary[0] == pytest.approx([14.0, 6.0], abs=1e-3)
+        assert boundary[-1] == pytest.approx([3.5, 8.0], abs=1e-3)
 
     def test_three_arm_junction_uses_same_continuous_corner_generator(self):
         arms = self._standard_cross_arms()[:3]
@@ -472,7 +498,7 @@ class TestBuildCrossStripFusion:
         )
 
         assert result.kind == "t_junction"
-        assert result.debug_info["generation_mode"] == "roadgen3d_continuous_junction_fusion_v2"
+        assert result.debug_info["generation_mode"] == "roadgen3d_role_aware_junction_partition_v3"
         assert result.carriageway_core_polygon.is_valid
         assert result.fused_corner_patch_records
 

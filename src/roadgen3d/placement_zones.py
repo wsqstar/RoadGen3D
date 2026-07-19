@@ -2150,7 +2150,7 @@ def _build_explicit_graph_junction_geometries(
     road_segment_graph: Any,
     aoi_polygon: Any | None = None,
 ) -> List[Dict[str, Any]]:
-    from shapely.geometry import LineString
+    from shapely.geometry import LineString, Polygon
 
     road_profiles = _road_profile_widths_from_graph(road_segment_graph)
     roads_by_id = {
@@ -2351,24 +2351,56 @@ def _build_explicit_graph_junction_geometries(
                     "geometry": patch,
                 }
             )
-            side_total_width_m = (
+            fallback_side_total_width_m = (
                 float(arm["nearroad_buffer_width_m"])
                 + float(arm["nearroad_furnishing_width_m"])
                 + float(arm["clear_sidewalk_width_m"])
                 + float(arm["farfromroad_buffer_width_m"])
                 + float(arm["frontage_reserve_width_m"])
             )
-            trim_half_width = max(half_width + side_total_width_m, half_width)
+            side_layouts = dict(arm.get("side_strip_layouts", {}) or {})
+
+            def _side_outer_extent(zone: str) -> float:
+                values = [
+                    abs(float(strip.get("outer_offset_m", 0.0) or 0.0))
+                    for strip in side_layouts.get(zone, ()) or ()
+                    if float(strip.get("width_m", 0.0) or 0.0) > 0.0
+                ]
+                return max(values or [half_width + fallback_side_total_width_m, half_width])
+
+            left_extent_m = _side_outer_extent("left")
+            right_extent_m = _side_outer_extent("right")
             trim_extent_m = max(float(split_distance_m), float(local_crosswalk_depth_m))
-            trim_polygon = LineString(
+            tangent = tuple(float(value) for value in arm["tangent"])
+            # Profile offsets use positive=left, while the legacy ``normal``
+            # field on these arm dictionaries points right. Build this
+            # independent envelope from the tangent so asymmetric real-world
+            # cross-sections are not widened to an averaged rectangle.
+            left_normal = (-tangent[1], tangent[0])
+            split_anchor = (
+                anchor[0] + tangent[0] * trim_extent_m,
+                anchor[1] + tangent[1] * trim_extent_m,
+            )
+            trim_polygon = Polygon(
                 [
-                    anchor,
                     (
-                        anchor[0] + float(arm["tangent"][0]) * trim_extent_m,
-                        anchor[1] + float(arm["tangent"][1]) * trim_extent_m,
+                        anchor[0] + left_normal[0] * left_extent_m,
+                        anchor[1] + left_normal[1] * left_extent_m,
+                    ),
+                    (
+                        split_anchor[0] + left_normal[0] * left_extent_m,
+                        split_anchor[1] + left_normal[1] * left_extent_m,
+                    ),
+                    (
+                        split_anchor[0] - left_normal[0] * right_extent_m,
+                        split_anchor[1] - left_normal[1] * right_extent_m,
+                    ),
+                    (
+                        anchor[0] - left_normal[0] * right_extent_m,
+                        anchor[1] - left_normal[1] * right_extent_m,
                     ),
                 ]
-            ).buffer(trim_half_width, cap_style="flat")
+            )
             sidewalk_trim_polygons.append(trim_polygon)
             arm["core_exit_distance_m"] = float(core_exit_distance_m)
             arm["split_distance_m"] = float(split_distance_m)

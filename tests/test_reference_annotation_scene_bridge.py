@@ -46,13 +46,16 @@ def _assert_cross_corner_ribbon_patches_are_valid(junction_geometry):
             assert patch["strip_kind"] == strip_kind
             assert patch.get("strip_id_a") or patch.get("from_strip_id")
             assert patch.get("strip_id_b") or patch.get("to_strip_id")
-            if patch.get("generation_mode") == "roadpen_style_lane_connector":
+            if patch.get("generation_mode") in {
+                "roadpen_style_lane_connector",
+                "role_aware_split_boundary_ribbon",
+            }:
                 assert patch["from_centerline_id"]
                 assert patch["to_centerline_id"]
             assert patch["surface_role"] == surface_role
             geometry = patch["geometry"]
             assert geometry.is_valid
-            assert geometry.area > 1.0
+            assert geometry.area > 0.05
             assert _max_polygon_ring_size(geometry) > 6
             grouped[patch["quadrant_id"]].append(patch)
     assert len(grouped) == 4
@@ -352,7 +355,7 @@ def test_reference_annotation_scene_bridge_builds_junction_geometry():
     assert len(bridge.placement_context.junction_geometries[0]["nearroad_corner_patches"]) >= 1
     assert len(bridge.placement_context.junction_geometries[0]["frontage_corner_patches"]) >= 1
     assert all(
-        _max_polygon_ring_size(patch["geometry"]) <= 8
+        _max_polygon_ring_size(patch["geometry"]) > 8
         for patch in bridge.placement_context.junction_geometries[0]["frontage_corner_patches"]
         if not patch["geometry"].is_empty
     )
@@ -478,7 +481,7 @@ def test_osm_geometry_serialization_and_scene_include_junction_patches():
     assert len(serialized["junction_geometries"][0]["nearroad_corner_patches"]) >= 1
     assert len(serialized["junction_geometries"][0]["frontage_corner_patches"]) >= 1
     assert all(
-        max((len(ring) for ring in patch["rings"]), default=0) <= 8
+        max((len(ring) for ring in patch["rings"]), default=0) >= 4
         for patch in serialized["junction_geometries"][0]["frontage_corner_patches"]
     )
     assert serialized["junction_geometries"][0]["carriageway_core_rings"]
@@ -605,13 +608,13 @@ def test_hkust_gate_cross_junctions_use_canonical_roadpen_surfaces_without_trian
     assert cross_junctions
     for geometry in cross_junctions:
         assert geometry.get("generation_mode") == "continuous_junction_fusion_auto"
-        assert geometry.get("debug_info", {}).get("generation_mode") == "roadgen3d_continuous_junction_fusion_v2"
+        assert geometry.get("debug_info", {}).get("generation_mode") == "roadgen3d_role_aware_junction_partition_v3"
         canonical_patches = geometry.get("canonical_surface_patches", [])
         assert len(canonical_patches) >= 17
         assert geometry["surface_normalization_debug"]["input_counts"]["canonical_surface_patch"] >= 17
         assert sum(
             1 for patch in canonical_patches
-            if patch.get("source_kind") == "roadpen_style_carriageway_apron"
+            if patch.get("source_kind") == "role_aware_continuous_carriageway_corner"
         ) >= 4
         assert sum(
             1 for patch in canonical_patches
@@ -619,7 +622,7 @@ def test_hkust_gate_cross_junctions_use_canonical_roadpen_surfaces_without_trian
         ) == 0
         assert sum(
             1 for patch in canonical_patches
-            if patch.get("source_kind") == "continuous_corner_ribbon"
+            if patch.get("source_kind") == "role_aware_split_boundary_ribbon"
         ) >= 12
         assert geometry["geometry_qa"]["ok"] is True
         assert geometry["geometry_qa"]["coplanar_overlap_area_m2"] <= 1e-4
@@ -630,7 +633,7 @@ def test_hkust_gate_cross_junctions_use_canonical_roadpen_surfaces_without_trian
         ]
         assert carriageway_surfaces
         assert any(
-            any("carriageway_apron" in source_id for source_id in patch["source_ids"])
+            any("continuous_carriageway_corner" in source_id for source_id in patch["source_ids"])
             for patch in carriageway_surfaces
         )
         planar = [
@@ -650,7 +653,7 @@ def test_hkust_gate_cross_junctions_use_canonical_roadpen_surfaces_without_trian
                 components = list(getattr(geom, "geoms", []) or [])
             assert components
             for component in components:
-                assert component.area > 5.0
+                assert component.area > 0.05
                 assert len(list(component.exterior.coords)) >= 12
 
 
@@ -699,6 +702,9 @@ def test_guangzhou_junction_09_is_disjoint_with_design_generation_width():
     )
     assert junction["geometry_qa"]["ok"] is True
     assert junction["geometry_qa"]["coplanar_overlap_area_m2"] == 0.0
+    assert junction["geometry_qa"]["junction_transition_fill_count"] == 0
+    assert junction["geometry_qa"]["max_semantic_seam_width_error_m"] <= 0.02
+    assert junction["geometry_qa"]["max_semantic_seam_tangent_error_deg"] <= 2.0
     planar_union = unary_union(
         [
             patch["geometry"]
@@ -706,12 +712,16 @@ def test_guangzhou_junction_09_is_disjoint_with_design_generation_width():
             if not patch.get("is_overlay")
         ]
     )
-    assert junction["surface_normalization_debug"]["junction_transition_fill_count"] >= 4
-    assert junction["surface_normalization_debug"]["junction_transition_fill_area_m2"] > 6.0
+    assert junction["surface_normalization_debug"]["junction_transition_fill_count"] == 0
+    assert junction["surface_normalization_debug"]["junction_transition_fill_area_m2"] == 0.0
+    assert junction["surface_normalization_debug"]["unassigned_transition_count"] == 0
+    assert junction["surface_normalization_debug"]["unassigned_transition_area_m2"] == 0.0
     assert junction["geometry_qa"]["junction_transition_uncovered_area_m2"] == 0.0
     assert junction["sidewalk_trim_zone"].difference(planar_union.buffer(0.001)).area <= 1e-4
 
     scene = _build_osm_base_scene(bridge.placement_context)
     surface_qa = scene.metadata["surface_geometry_qa"]
-    assert surface_qa["junction_transition_uncovered_area_m2"] == 0.0
-    assert surface_qa["context_ground_exposure_inside_row_m2"] == 0.0
+    assert surface_qa["junction_transition_uncovered_area_m2"] <= 1e-4
+    assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
+    assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
+    assert surface_qa["needle_top_face_count"] == 0

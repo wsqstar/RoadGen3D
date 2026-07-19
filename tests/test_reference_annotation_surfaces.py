@@ -250,7 +250,7 @@ def test_continuous_junction_qa_rejects_unresolved_sliver() -> None:
         ])
 
 
-def test_junction_normalization_fills_road_arm_corner_transition_envelope() -> None:
+def test_junction_normalization_rejects_unassigned_transition_envelope() -> None:
     pytest.importorskip("shapely")
     from shapely.geometry import box
     from shapely.ops import unary_union
@@ -286,11 +286,13 @@ def test_junction_normalization_fills_road_arm_corner_transition_envelope() -> N
             if not patch.get("is_overlay")
         ]
     )
-    assert normalized["surface_normalization_debug"]["junction_transition_fill_count"] == 1
-    assert normalized["surface_normalization_debug"]["junction_transition_fill_area_m2"] == pytest.approx(8.0)
-    assert box(0.0, 0.0, 10.0, 4.0).difference(planar_union).area <= 1e-4
-    assert normalized["geometry_qa"]["junction_transition_uncovered_area_m2"] == 0.0
-    assert normalized["geometry_qa"]["ok"] is True
+    assert normalized["surface_normalization_debug"]["junction_transition_fill_count"] == 0
+    assert normalized["surface_normalization_debug"]["junction_transition_fill_area_m2"] == 0.0
+    assert normalized["surface_normalization_debug"]["unassigned_transition_count"] == 1
+    assert normalized["surface_normalization_debug"]["unassigned_transition_area_m2"] == pytest.approx(8.0)
+    assert box(0.0, 0.0, 10.0, 4.0).difference(planar_union).area == pytest.approx(8.0)
+    assert normalized["geometry_qa"]["unassigned_transition_area_m2"] == pytest.approx(8.0)
+    assert normalized["geometry_qa"]["ok"] is False
 
 
 def test_junction_surface_normalization_keeps_crosswalk_sources_separate() -> None:

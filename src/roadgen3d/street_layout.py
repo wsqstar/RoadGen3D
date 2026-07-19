@@ -4405,6 +4405,7 @@ def _marking_segment_supported_by_surface(
 
 def _clean_marking_polygonal_geometry(geometry: Any) -> Any:
     """Return valid polygonal marking geometry without numerical fragments."""
+    from shapely import remove_repeated_points, set_precision
     from shapely.geometry import GeometryCollection, MultiPolygon, Polygon
     from shapely.ops import unary_union
 
@@ -4433,7 +4434,56 @@ def _clean_marking_polygonal_geometry(geometry: Any) -> Any:
         for part in (list(component.geoms) if isinstance(component, MultiPolygon) else [component])
         if float(getattr(part, "area", 0.0) or 0.0) > 1e-6
     ]
-    return unary_union(flattened) if flattened else MultiPolygon()
+    if not flattened:
+        return MultiPolygon()
+    cleaned = unary_union(flattened)
+    try:
+        cleaned = set_precision(cleaned, grid_size=0.001)
+        cleaned = remove_repeated_points(cleaned, tolerance=0.005)
+        # Clipping a 12 cm ribbon against a junction exclusion can leave a
+        # several-metre edge with a millimetre-high triangular tail.  It is a
+        # real GLB needle, not a useful marking, so remove the kink before the
+        # top face is triangulated.
+        cleaned = cleaned.simplify(0.005, preserve_topology=True)
+        opened = cleaned.buffer(-0.02, join_style=2).buffer(0.02, join_style=2)
+        if not getattr(opened, "is_empty", True):
+            cleaned = opened.intersection(cleaned)
+            cleaned = set_precision(cleaned, grid_size=0.001)
+    except Exception:
+        logger.debug("Failed to normalize marking ribbon", exc_info=True)
+    if not getattr(cleaned, "is_valid", True):
+        try:
+            cleaned = cleaned.buffer(0)
+        except Exception:
+            return MultiPolygon()
+    components = (
+        list(cleaned.geoms)
+        if isinstance(cleaned, MultiPolygon)
+        else [cleaned]
+        if isinstance(cleaned, Polygon)
+        else []
+    )
+    retained = []
+    for component in components:
+        try:
+            rectangle = component.minimum_rotated_rectangle
+            coords = list(rectangle.exterior.coords)
+            side_lengths = [
+                math.hypot(
+                    float(end[0]) - float(start[0]),
+                    float(end[1]) - float(start[1]),
+                )
+                for start, end in zip(coords[:-1], coords[1:])
+            ]
+            minimum_span_m = min((value for value in side_lengths if value > 1e-9), default=0.0)
+        except Exception:
+            minimum_span_m = 0.0
+        # A clipped longitudinal marking narrower than 2 cm cannot represent
+        # the configured ribbon; it is the acute triangular tail produced at
+        # an oblique arm/exclusion intersection.
+        if minimum_span_m >= 0.02:
+            retained.append(component)
+    return unary_union(retained) if retained else MultiPolygon()
 
 
 def _iter_marking_lines(geometry: Any) -> Iterable[Any]:
@@ -6731,13 +6781,20 @@ def _build_osm_base_scene(
 
     junction_surface_envelope = _union_scene_polygonal_geometries(
         [
-            patch.get("geometry")
+            (
+                junction.get("expected_transition_envelope")
+                if junction.get("expected_transition_envelope") is not None
+                else junction.get("semantic_partition_envelope")
+                if junction.get("semantic_partition_envelope") is not None
+                else junction.get("sidewalk_trim_zone")
+            )
             for junction in junction_geometries
             if isinstance(junction, Mapping)
-            for patch in junction.get("canonical_surface_patches", []) or ()
-            if isinstance(patch, Mapping)
-            and str(patch.get("source_kind", "") or "") == "road_arm_corner_transition_fill"
-            and patch.get("geometry") is not None
+            and (
+                junction.get("expected_transition_envelope") is not None
+                or junction.get("semantic_partition_envelope") is not None
+                or junction.get("sidewalk_trim_zone") is not None
+            )
         ]
     )
     junction_surface_qa_envelope = junction_surface_envelope
@@ -6894,6 +6951,28 @@ def _build_osm_base_scene(
         )
         try:
             sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                remove_repeated_points(
+                    sidewalk_render_zone,
+                    tolerance=max(surface_precision_grid_m * 2.0, 0.002),
+                )
+            )
+        except Exception:
+            logger.debug("Failed to clean exported sidewalk boundary", exc_info=True)
+        try:
+            # The final exact difference can itself insert one-grid-cell
+            # vertices where a curved curb crosses an existing sidewalk edge.
+            # Remove those vertices after the last boolean operation as well;
+            # this is the geometry that is triangulated and audited below.
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                remove_repeated_points(
+                    sidewalk_render_zone,
+                    tolerance=max(surface_precision_grid_m * 2.0, 0.002),
+                )
+            )
+        except Exception:
+            logger.debug("Failed to clean final post-partition sidewalk boundary", exc_info=True)
+        try:
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
                 sidewalk_render_zone.simplify(
                     max(surface_precision_grid_m * 2.0, 0.005),
                     preserve_topology=True,
@@ -6906,6 +6985,15 @@ def _build_osm_base_scene(
         sidewalk_render_zone = _clean_scene_polygonal_geometry(
             sidewalk_render_zone.difference(curb_zone)
         )
+        try:
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                remove_repeated_points(
+                    sidewalk_render_zone,
+                    tolerance=max(surface_precision_grid_m * 2.0, 0.002),
+                )
+            )
+        except Exception:
+            logger.debug("Failed to clean final exported sidewalk boundary", exc_info=True)
     curb_sidewalk_overlap_area_m2 = float(
         curb_zone.intersection(sidewalk_render_zone).area
         if not getattr(curb_zone, "is_empty", True) and not getattr(sidewalk_render_zone, "is_empty", True)
@@ -7046,7 +7134,7 @@ def _build_osm_base_scene(
                 cleaned_poly, _removed = _clean_final_surface_geometry(
                     poly,
                     minimum_component_area_m2=1e-6,
-                    simplify_tolerance_m=0.0,
+                    simplify_tolerance_m=max(surface_precision_grid_m * 5.0, 0.005),
                 )
                 if isinstance(cleaned_poly, MultiPolygon):
                     cleaned_parts = list(cleaned_poly.geoms)
@@ -7069,6 +7157,18 @@ def _build_osm_base_scene(
                     poly = cleaned_poly
                 else:
                     continue
+                try:
+                    from shapely import segmentize
+
+                    # Constrained Delaunay can otherwise span an entire long,
+                    # 12-cm curb strip with two triangles.  The polygon is
+                    # valid, but those faces exceed the exported-mesh aspect
+                    # ratio contract.  Densifying only straight boundary
+                    # segments preserves the exact surface while providing
+                    # stable vertices for a locally bounded triangulation.
+                    poly = segmentize(poly, max_segment_length=5.0)
+                except (AttributeError, ImportError, TypeError, ValueError):
+                    pass
                 mesh = _extrude_with_constrained_triangulation(poly)
                 # Swap Y<->Z so road lies flat on XZ ground plane (Y-up)
                 verts = mesh.vertices.copy()
@@ -8399,8 +8499,8 @@ def _build_osm_base_scene(
         minimum_angles = angles.min(axis=1)
         needle_mask = np.logical_or.reduce(
             [
-                aspect > 1000.0,
-                minimum_angles < 0.05,
+                aspect > 250.0,
+                minimum_angles < 0.1,
                 np.logical_and(longest > 0.25, altitude < 0.002),
             ]
         )
@@ -8592,8 +8692,16 @@ def _build_osm_base_scene(
             rendered_surface_qa_cover = rendered_surface
     else:
         rendered_surface_qa_cover = rendered_surface
+    rendered_vehicle_qa_cover = rendered_vehicle_surface
+    if not getattr(rendered_vehicle_surface, "is_empty", True):
+        try:
+            rendered_vehicle_qa_cover = _clean_scene_polygonal_geometry(
+                rendered_vehicle_surface.buffer(rendered_surface_qa_tolerance_m)
+            )
+        except Exception:
+            rendered_vehicle_qa_cover = rendered_vehicle_surface
     road_junction_seam_gap_area_m2 = float(
-        intended_vehicle_surface.difference(rendered_vehicle_surface).area
+        intended_vehicle_surface.difference(rendered_vehicle_qa_cover).area
         if not getattr(intended_vehicle_surface, "is_empty", True)
         else 0.0
     )
@@ -8655,9 +8763,7 @@ def _build_osm_base_scene(
         surface_geometry_qa.get("ok", True)
         and degenerate_top_face_count == 0
         and needle_top_face_count == 0
-        # Millimetre endpoint edges on an open sidewalk boundary are retained
-        # as diagnostics.  They are export blockers only when they produce a
-        # needle face; carriageway/curb counts remain covered by regression QA.
+        and short_boundary_edge_count == 0
         and maximum_boundary_turn_deg <= 175.0
         and road_junction_seam_gap_area_m2 <= 1e-4
         and context_ground_exposure_inside_row_m2 <= 1e-4
@@ -8671,7 +8777,8 @@ def _build_osm_base_scene(
             f"degenerate_top_face_count={degenerate_top_face_count}, "
             f"needle_top_face_count={needle_top_face_count}, "
             f"short_boundary_edge_count={short_boundary_edge_count} "
-            f"({short_boundary_edge_counts_by_role}), "
+            f"({short_boundary_edge_counts_by_role}; "
+            f"samples={surface_geometry_qa.get('short_boundary_edge_samples_by_role', {})}), "
             f"maximum_boundary_turn_deg={maximum_boundary_turn_deg:.6f}, "
             f"road_junction_seam_gap_area_m2={road_junction_seam_gap_area_m2:.6f}, "
             f"context_ground_exposure_inside_row_m2={context_ground_exposure_inside_row_m2:.6f}, "

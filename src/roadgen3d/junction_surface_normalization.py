@@ -38,6 +38,11 @@ def normalize_junction_surface_geometries(junction_geometries: Iterable[Mapping[
                 f"Junction surface QA failed for {junction.get('junction_id', 'junction')}: "
                 f"overlap={quality.get('coplanar_overlap_area_m2', 0.0)}m2, "
                 f"uncovered={quality.get('junction_uncovered_area_m2', 0.0)}m2, "
+                f"unassigned={quality.get('unassigned_transition_area_m2', 0.0)}m2, "
+                f"transition_uncovered={quality.get('junction_transition_uncovered_area_m2', 0.0)}m2, "
+                f"transition_fills={quality.get('junction_transition_fill_count', 0)}, "
+                f"seam_width={quality.get('max_semantic_seam_width_error_m', 0.0)}m, "
+                f"seam_tangent={quality.get('max_semantic_seam_tangent_error_deg', 0.0)}deg, "
                 f"invalid={quality.get('invalid_polygon_count', 0)}, "
                 f"slivers={quality.get('sliver_component_count', 0)}"
             )
@@ -110,6 +115,8 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
     ]
     junction_transition_fill_area_m2 = 0.0
     junction_transition_fill_count = 0
+    unassigned_transition_area_m2 = 0.0
+    unassigned_transition_count = 0
     if canonical_surface_patches:
         # ``sidewalk_trim_zone`` is the independent junction envelope removed
         # from the straight road-arm surfaces before the curved corner ribbons
@@ -156,21 +163,10 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
                     for component in _polygon_components(transition_gap)
                     if float(component.area) > max(precision_grid_m * precision_grid_m, 1e-8)
                 ]
-                for component_index, component in enumerate(transition_components):
-                    canonical_surface_patches.append(
-                        {
-                            "surface_id": f"{junction_id}_junction_transition_fill_{component_index:02d}",
-                            "surface_role": "carriageway",
-                            "surface_kind": "canonical",
-                            "geometry": component,
-                            "source_kind": "road_arm_corner_transition_fill",
-                        }
-                    )
-                junction_transition_fill_area_m2 = float(
+                unassigned_transition_area_m2 = float(
                     sum(component.area for component in transition_components)
                 )
-                junction_transition_fill_count = len(transition_components)
-                normalized_junction["canonical_surface_patches"] = canonical_surface_patches
+                unassigned_transition_count = len(transition_components)
     if canonical_surface_patches:
         for patch in canonical_surface_patches:
             add_source("canonical_surface_patch", patch, default_role=str(patch.get("surface_role", "carriageway") or "carriageway"))
@@ -401,10 +397,8 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
                 repartition_occupied = _clean_polygonal_geometry(
                     unary_union([repartition_occupied, *visible_components])
                 ) or repartition_occupied
-    # Grid repartitioning can drop a one-cell residual at a three-role corner.
-    # Reinsert only the still-unowned part of the independent trim envelope;
-    # unlike the historical endpoint-fill rectangles, these patches cannot
-    # overlap any existing role and remain part of the canonical partition.
+    # Audit a final grid residual, but never assign an unknown region a semantic
+    # role. A real residual must fail QA instead of silently becoming road.
     sidewalk_trim_zone = _clean_polygonal_geometry(junction.get("sidewalk_trim_zone"))
     final_envelope_residual_area_m2 = 0.0
     if sidewalk_trim_zone is not None and not getattr(sidewalk_trim_zone, "is_empty", True):
@@ -430,21 +424,62 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         final_envelope_residual_area_m2 = float(
             sum(component.area for component in residual_components)
         )
-        for component_index, component in enumerate(residual_components):
-            repartitioned_planar_patches.append(
-                {
-                    "surface_id": f"{junction_id}_normalized_transition_residual_{component_index:02d}",
-                    "surface_kind": "normalized",
-                    "surface_role": "carriageway",
-                    "geometry": component,
-                    "component_index": int(component_index),
-                    "source_ids": [f"{junction_id}_junction_transition_residual"],
-                    "source_kinds": ["canonical_surface_patch"],
-                    "is_overlay": False,
-                    "area_m2": float(component.area),
-                }
-            )
     normalized_patches = repartitioned_planar_patches
+
+    # Repartitioning itself can create a sub-centimetre role fragment at a
+    # three-way grid vertex. Merge only such already-classified numerical
+    # fragments into a touching surface; never create a new semantic patch.
+    final_slivers = [
+        patch
+        for patch in list(normalized_patches)
+        if float(getattr(patch.get("geometry"), "area", 0.0) or 0.0)
+        < MIN_SURFACE_COMPONENT_AREA_M2
+    ]
+    for sliver in final_slivers:
+        geometry = sliver.get("geometry")
+        candidates = []
+        for candidate in normalized_patches:
+            if candidate is sliver:
+                continue
+            candidate_geometry = candidate.get("geometry")
+            if candidate_geometry is None or getattr(candidate_geometry, "is_empty", True):
+                continue
+            shared_length = float(
+                candidate_geometry.boundary.intersection(geometry.boundary).length
+            )
+            distance = float(candidate_geometry.distance(geometry))
+            if shared_length <= 1e-9 and distance > precision_grid_m:
+                continue
+            candidates.append(
+                (
+                    candidate.get("surface_role") == sliver.get("surface_role"),
+                    shared_length,
+                    -distance,
+                    float(candidate_geometry.area),
+                    candidate,
+                )
+            )
+        if not candidates:
+            continue
+        candidates.sort(key=lambda item: item[:4], reverse=True)
+        target = candidates[0][4]
+        merged = _clean_polygonal_geometry(unary_union([target["geometry"], geometry]))
+        if merged is None or getattr(merged, "is_empty", True):
+            continue
+        target["geometry"] = merged
+        target["area_m2"] = float(merged.area)
+        target["source_ids"] = sorted(
+            {*(target.get("source_ids", []) or ()), *(sliver.get("source_ids", []) or ())}
+        )
+        target["source_kinds"] = sorted(
+            {
+                *(target.get("source_kinds", []) or ()),
+                *(sliver.get("source_kinds", []) or ()),
+                "precision_grid_sliver_merge",
+            }
+        )
+        normalized_patches.remove(sliver)
+        sliver_reassigned_count += 1
 
     for role in sorted(overlays_by_role):
         sources = overlays_by_role[role]
@@ -504,6 +539,8 @@ def normalize_junction_surface_geometry(junction: Mapping[str, Any]) -> Dict[str
         "sliver_reassigned_count": int(sliver_reassigned_count),
         "junction_transition_fill_count": int(junction_transition_fill_count),
         "junction_transition_fill_area_m2": round(junction_transition_fill_area_m2, 6),
+        "unassigned_transition_count": int(unassigned_transition_count),
+        "unassigned_transition_area_m2": round(unassigned_transition_area_m2, 6),
         "final_envelope_residual_area_m2": round(final_envelope_residual_area_m2, 6),
     }
     normalized_junction["surface_normalization_debug"] = normalization_debug
@@ -542,6 +579,23 @@ def audit_junction_surface_geometry(
     components = [component for geometry in geometries for component in _polygon_components(geometry)]
     sliver_component_count = sum(
         1 for component in components if float(getattr(component, "area", 0.0) or 0.0) < MIN_SURFACE_COMPONENT_AREA_M2
+    )
+    normalization_debug = junction.get("surface_normalization_debug", {}) or {}
+    generation_debug = junction.get("debug_info", {}) or {}
+    unassigned_transition_area_m2 = float(
+        normalization_debug.get("unassigned_transition_area_m2", 0.0) or 0.0
+    )
+    final_envelope_residual_area_m2 = float(
+        normalization_debug.get("final_envelope_residual_area_m2", 0.0) or 0.0
+    )
+    junction_transition_fill_count = int(
+        generation_debug.get("junction_transition_fill_count", 0) or 0
+    )
+    max_semantic_seam_width_error_m = float(
+        generation_debug.get("max_semantic_seam_width_error_m", 0.0) or 0.0
+    )
+    max_semantic_seam_tangent_error_deg = float(
+        generation_debug.get("max_semantic_seam_tangent_error_deg", 0.0) or 0.0
     )
 
     coplanar_overlap_area_m2 = 0.0
@@ -618,6 +672,11 @@ def audit_junction_surface_geometry(
         and coplanar_overlap_area_m2 <= MAX_PLANAR_OVERLAP_AREA_M2
         and uncovered_area_m2 <= uncovered_limit_m2
         and junction_transition_uncovered_area_m2 <= 1e-4
+        and unassigned_transition_area_m2 <= 1e-4
+        and final_envelope_residual_area_m2 <= 1e-4
+        and junction_transition_fill_count == 0
+        and max_semantic_seam_width_error_m <= 0.02
+        and max_semantic_seam_tangent_error_deg <= 2.0
     )
     return {
         "ok": ok,
@@ -626,6 +685,14 @@ def audit_junction_surface_geometry(
         "junction_uncovered_limit_m2": round(uncovered_limit_m2, 6),
         "junction_transition_uncovered_area_m2": round(
             junction_transition_uncovered_area_m2,
+            6,
+        ),
+        "unassigned_transition_area_m2": round(unassigned_transition_area_m2, 6),
+        "final_envelope_residual_area_m2": round(final_envelope_residual_area_m2, 6),
+        "junction_transition_fill_count": int(junction_transition_fill_count),
+        "max_semantic_seam_width_error_m": round(max_semantic_seam_width_error_m, 6),
+        "max_semantic_seam_tangent_error_deg": round(
+            max_semantic_seam_tangent_error_deg,
             6,
         ),
         "invalid_polygon_count": int(invalid_polygon_count),

@@ -614,13 +614,76 @@ def _refresh_road_surfaces_for_junction_geometries(
         + float(getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0),
     )
     if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
-        left_sidewalk, right_sidewalk, sidewalk = build_sidewalk_zones_from_roads(
-            list(roads),
-            carriageway_width_m=carriageway_width_m,
-            left_sidewalk_width_m=left_sidewalk_width_m,
-            right_sidewalk_width_m=right_sidewalk_width_m,
-            aoi_polygon=aoi_polygon,
-        )
+        # Rebuild each straight approach from its own real cross-section.  A
+        # global half-width shifts the sidewalk's inner edge on narrower arms;
+        # a global 3.4 m sidewalk also truncates a 6 m furnishing/sidewalk/
+        # frontage profile before it reaches the junction curve.  Both errors
+        # appear in the final GLB as a triangular background-ground patch.
+        side_widths_by_road: Dict[int, Dict[str, float]] = {}
+        for junction in junction_geometries:
+            for profile in junction.get("junction_arm_profiles", []) or ():
+                road_id = int(profile.get("road_id", 0) or 0)
+                if road_id <= 0:
+                    continue
+                resolved = side_widths_by_road.setdefault(
+                    road_id,
+                    {"left": left_sidewalk_width_m, "right": right_sidewalk_width_m},
+                )
+                half_width = max(
+                    float(profile.get("carriageway_width_m", 0.0) or 0.0) * 0.5,
+                    0.5,
+                )
+                for strip in profile.get("side_strips", []) or ():
+                    zone = str(strip.get("zone", "") or "").strip().lower()
+                    if zone not in {"left", "right"}:
+                        continue
+                    outer_extent = max(
+                        abs(float(strip.get("inner_offset_m", 0.0) or 0.0)),
+                        abs(float(strip.get("outer_offset_m", 0.0) or 0.0)),
+                    )
+                    resolved[zone] = max(float(resolved[zone]), outer_extent - half_width)
+
+        left_polygons: List[Any] = []
+        right_polygons: List[Any] = []
+        road_side_profile_debug: List[Dict[str, Any]] = []
+        for road in roads:
+            coords = list(getattr(road, "coords", ()) or ())
+            if len(coords) < 2:
+                continue
+            road_id = int(getattr(road, "osm_id", 0) or 0)
+            half_width = max(float(getattr(road, "width_m", 0.0) or 0.0) * 0.5, 0.5)
+            side_widths = side_widths_by_road.get(
+                road_id,
+                {"left": left_sidewalk_width_m, "right": right_sidewalk_width_m},
+            )
+            line = LineString(coords)
+            for zone, direction in (("left", 1.0), ("right", -1.0)):
+                side_width = max(float(side_widths.get(zone, 0.0) or 0.0), 0.0)
+                if side_width <= 0.0:
+                    continue
+                outer = line.buffer(
+                    direction * (half_width + side_width),
+                    cap_style="flat",
+                    single_sided=True,
+                )
+                inner = line.buffer(
+                    direction * half_width,
+                    cap_style="flat",
+                    single_sided=True,
+                )
+                band = clean(outer.difference(inner).intersection(aoi_polygon))
+                if not getattr(band, "is_empty", True):
+                    (left_polygons if zone == "left" else right_polygons).append(band)
+            road_side_profile_debug.append({
+                "road_id": road_id,
+                "carriageway_width_m": half_width * 2.0,
+                "left_width_m": float(side_widths.get("left", 0.0) or 0.0),
+                "right_width_m": float(side_widths.get("right", 0.0) or 0.0),
+            })
+
+        left_sidewalk = clean(unary_union(left_polygons)) if left_polygons else MultiPolygon()
+        right_sidewalk = clean(unary_union(right_polygons)) if right_polygons else MultiPolygon()
+        sidewalk = clean(unary_union([left_sidewalk, right_sidewalk]))
         sidewalk_trim_sources = [
             junction.get("sidewalk_trim_zone")
             for junction in junction_geometries
@@ -634,6 +697,7 @@ def _refresh_road_surfaces_for_junction_geometries(
         placement_context.left_sidewalk_zone = left_sidewalk
         placement_context.right_sidewalk_zone = right_sidewalk
         placement_context.sidewalk_zone = sidewalk
+        placement_context.road_side_profile_debug = road_side_profile_debug
 
 
 def _sample_bezier_points(curve: BezierCurve3, steps: int = 16) -> Sequence[Tuple[float, float]]:
@@ -864,9 +928,38 @@ def _try_build_cross_fusion_for_junction(
         return None
 
     # Try to get arms data from road_segment_graph
-    arms = _extract_junction_arms_from_graph(road_segment_graph, junction_id, anchor_xy, roads=roads)
+    arms = _extract_junction_arms_from_graph(
+        road_segment_graph,
+        junction_id,
+        anchor_xy,
+        roads=roads,
+        approach_boundaries=junction_geom.get("approach_boundaries", ()) or (),
+    )
     if arms is None or len(arms) < 3:
         return None
+
+    # The placement pass has already solved the exact arm cut stations. Keep
+    # them when rebuilding the role-aware corner partition; recomputing a
+    # shorter fillet station here was the source of the rectangular gaps that
+    # later normalization mislabeled as carriageway.
+    skeletons_by_road_id = {
+        int(item.get("road_id", 0) or 0): item
+        for item in junction_geom.get("arm_skeletons", []) or ()
+        if int(item.get("road_id", 0) or 0) > 0
+    }
+    for arm in arms:
+        if float(arm.get("split_distance_m", 0.0) or 0.0) > 0.0:
+            continue
+        skeleton = skeletons_by_road_id.get(int(arm.get("road_id", 0) or 0))
+        if not skeleton:
+            continue
+        arm["split_distance_m"] = float(
+            skeleton.get("split_distance_m", skeleton.get("core_exit_distance_m", 0.0))
+            or 0.0
+        )
+        arm["core_exit_distance_m"] = float(
+            skeleton.get("core_exit_distance_m", 0.0) or 0.0
+        )
 
     try:
         fusion_result = build_cross_strip_fusion(
@@ -901,6 +994,7 @@ def _extract_junction_arms_from_graph(
     anchor_xy: List[float],
     *,
     roads: Sequence[OsmRoad] = (),
+    approach_boundaries: Sequence[Mapping[str, Any]] = (),
 ) -> List[Dict[str, Any]] | None:
     """Extract arms data from road_segment_graph for a specific junction."""
     if road_segment_graph is None:
@@ -951,14 +1045,93 @@ def _extract_junction_arms_from_graph(
         return value + 360.0 if value < 0.0 else value
 
     arms: List[Dict[str, Any]] = []
-    seen_road_ids: set[int] = set()
+    seen_branch_ids: set[str] = set()
+
+    centerline_ids_by_road_id: Dict[int, str] = {
+        int(road_id): str(centerline_id)
+        for road_id, centerline_id in zip(
+            tuple(getattr(junction_obj, "connected_road_ids", ()) or ()),
+            tuple(getattr(junction_obj, "connected_centerline_ids", ()) or ()),
+        )
+    }
+
+    def append_arm(
+        *,
+        road_id: int,
+        centerline_id: str,
+        branch_id: str,
+        neighbor: Tuple[float, float],
+        split_distance_m: float = 0.0,
+    ) -> None:
+        if road_id <= 0 or branch_id in seen_branch_ids:
+            return
+        road = roads_by_id.get(road_id)
+        if road is None:
+            return
+        points = list(getattr(road, "coords", ()) or ())
+        if len(points) < 2:
+            return
+        length_m = math.hypot(float(neighbor[0]) - anchor[0], float(neighbor[1]) - anchor[1])
+        if length_m <= 1e-6:
+            return
+        tangent = (
+            (float(neighbor[0]) - anchor[0]) / length_m,
+            (float(neighbor[1]) - anchor[1]) / length_m,
+        )
+        profile = road_profiles.get(road_id, {})
+        available_length_m = sum(
+            math.hypot(
+                float(end[0]) - float(start[0]),
+                float(end[1]) - float(start[1]),
+            )
+            for start, end in zip(points[:-1], points[1:])
+        )
+        arms.append({
+            "road_id": road_id,
+            "centerline_id": branch_id or centerline_id,
+            "angle_deg": angle_deg(anchor, neighbor),
+            "tangent": tangent,
+            "normal": (float(tangent[1]), float(-tangent[0])),
+            "carriageway_width_m": max(float(profile.get("carriageway_width_m", 8.0) or 8.0), 1.0),
+            "nearroad_buffer_width_m": float(profile.get("nearroad_buffer_width_m", 0.0) or 0.0),
+            "nearroad_furnishing_width_m": float(profile.get("nearroad_furnishing_width_m", 0.0) or 0.0),
+            "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
+            "farfromroad_buffer_width_m": float(profile.get("farfromroad_buffer_width_m", 0.0) or 0.0),
+            "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
+            "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
+            "center_strip_layouts": list(profile.get("center_strip_layouts", []) or ()),
+            "available_length_m": max(float(available_length_m), float(length_m)),
+            "split_distance_m": max(float(split_distance_m), 0.0),
+        })
+        seen_branch_ids.add(branch_id)
+
+    # The placement pass already solved the actual approach cut lines.  Use
+    # one arm per boundary rather than one arm per OSM way: a through road has
+    # two opposing approaches with the same road_id, and collapsing those into
+    # one record was why T junctions silently fell back to rectangular patches.
+    for boundary_index, boundary in enumerate(approach_boundaries):
+        road_id = int(boundary.get("road_id", 0) or 0)
+        center = tuple(boundary.get("center_xy", ()) or ())
+        if road_id <= 0 or len(center) < 2:
+            continue
+        centerline_id = centerline_ids_by_road_id.get(road_id, f"road_{road_id}")
+        boundary_id = str(boundary.get("boundary_id", "") or f"approach_{boundary_index:02d}")
+        append_arm(
+            road_id=road_id,
+            centerline_id=centerline_id,
+            branch_id=f"{centerline_id}:{boundary_id}",
+            neighbor=(float(center[0]), float(center[1])),
+            split_distance_m=float(boundary.get("exit_distance_m", 0.0) or 0.0),
+        )
+    if len(arms) >= 3:
+        return arms
 
     connected_road_ids = tuple(getattr(junction_obj, "connected_road_ids", ()) or ())
     connected_centerline_ids = tuple(getattr(junction_obj, "connected_centerline_ids", ()) or ())
 
     for road_id, centerline_id in zip(connected_road_ids, connected_centerline_ids):
         road_id = int(road_id)
-        if road_id <= 0 or road_id in seen_road_ids:
+        if road_id <= 0:
             continue
         road = roads_by_id.get(road_id)
         if road is None:
@@ -973,38 +1146,12 @@ def _extract_junction_arms_from_graph(
         else:
             neighbor = points[-2] if len(points) > 1 else points[0]
 
-        length_m = math.hypot(float(neighbor[0]) - anchor[0], float(neighbor[1]) - anchor[1])
-        if length_m <= 1e-6:
-            continue
-
-        tangent = (
-            (float(neighbor[0]) - anchor[0]) / length_m,
-            (float(neighbor[1]) - anchor[1]) / length_m,
+        append_arm(
+            road_id=road_id,
+            centerline_id=str(centerline_id),
+            branch_id=str(centerline_id),
+            neighbor=(float(neighbor[0]), float(neighbor[1])),
         )
-        profile = road_profiles.get(road_id, {})
-        available_length_m = sum(
-            math.hypot(
-                float(end[0]) - float(start[0]),
-                float(end[1]) - float(start[1]),
-            )
-            for start, end in zip(points[:-1], points[1:])
-        )
-
-        arms.append({
-            "road_id": road_id,
-            "centerline_id": str(centerline_id),
-            "angle_deg": angle_deg(anchor, neighbor),
-            "tangent": tangent,
-            "normal": (float(tangent[1]), float(-tangent[0])),
-            "carriageway_width_m": max(float(profile.get("carriageway_width_m", 8.0) or 8.0), 1.0),
-            "nearroad_furnishing_width_m": float(profile.get("nearroad_furnishing_width_m", 0.0) or 0.0),
-            "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
-            "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
-            "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
-            "center_strip_layouts": list(profile.get("center_strip_layouts", []) or ()),
-            "available_length_m": max(float(available_length_m), float(length_m)),
-        })
-        seen_road_ids.add(road_id)
 
     return arms if len(arms) >= 3 else None
 
@@ -1045,7 +1192,16 @@ def _apply_manual_junction_compositions(
                 annotation, geom, road_segment_graph, roads, compose_config
             )
             if fusion_geom is not None:
-                result.append({**geom, **fusion_geom})
+                merged = {**geom, **fusion_geom}
+                # Keep the placement solver's full transition envelope as an
+                # independent render-level target.  The fusion partition uses
+                # its own exact semantic union internally, but auditing that
+                # union against itself cannot reveal a missing connector at a
+                # road-arm seam (the historical 2.73/4.17 m2 red patches).
+                merged["expected_transition_envelope"] = geom.get(
+                    "sidewalk_trim_zone"
+                )
+                result.append(merged)
             else:
                 result.append(geom)
         else:

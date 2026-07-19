@@ -29,8 +29,10 @@ CARRIAGEWAY_STRIP_KINDS: frozenset = frozenset({
 
 # Strip kinds that bend along angle bisectors
 CORNER_FUSION_STRIP_KIND_ORDER: Tuple[str, ...] = (
+    "nearroad_buffer",
     "nearroad_furnishing",
     "clear_sidewalk",
+    "farfromroad_buffer",
     "frontage_reserve",
 )
 CORNER_FUSION_STRIP_KINDS: frozenset = frozenset(CORNER_FUSION_STRIP_KIND_ORDER)
@@ -172,6 +174,7 @@ class JunctionArm:
     strip_widths_by_kind: Dict[str, float]  # Width of each strip kind on this arm
     side_strips: List[JunctionArmSideStrip]
     available_length_m: float
+    split_distance_m: float
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "JunctionArm":
@@ -259,6 +262,16 @@ class JunctionArm:
             strip_widths_by_kind=strip_widths,
             side_strips=side_strips,
             available_length_m=max(float(data.get("available_length_m", 1000.0) or 1000.0), 0.5),
+            split_distance_m=max(
+                float(
+                    data.get(
+                        "split_distance_m",
+                        data.get("core_exit_distance_m", 0.0),
+                    )
+                    or 0.0
+                ),
+                0.0,
+            ),
         )
 
     def outer_edge_offset_m(self, strip_kind: str) -> float | None:
@@ -336,11 +349,15 @@ def _carriageway_surface_from_arm_throats(
     for arm in arms:
         half_width = max(float(arm.carriageway_half_width_m), 0.5)
         profile_offset = half_width + sum(max(float(value), 0.0) for value in arm.strip_widths_by_kind.values())
-        depth = max(
-            float(crosswalk_depth_m) + half_width,
-            half_width * 2.4,
-            profile_offset * 1.35,
-            4.0,
+        depth = (
+            float(arm.split_distance_m)
+            if float(arm.split_distance_m) > 0.0
+            else max(
+                float(crosswalk_depth_m) + half_width,
+                half_width * 2.4,
+                profile_offset * 1.35,
+                4.0,
+            )
         )
         centerline = LineString(
             [
@@ -408,6 +425,19 @@ def _dot(a: Tuple[float, float], b: Tuple[float, float]) -> float:
 
 def _cross_vec(a: Tuple[float, float], b: Tuple[float, float]) -> float:
     return float(a[0]) * float(b[1]) - float(a[1]) * float(b[0])
+
+
+def _vector_angle_diff_deg(
+    vector_a: Tuple[float, float],
+    vector_b: Tuple[float, float],
+) -> float:
+    normalized_a = _normalize_vector(vector_a)
+    normalized_b = _normalize_vector(vector_b)
+    if normalized_a is None or normalized_b is None:
+        return 180.0
+    return math.degrees(
+        math.acos(_clamp(_dot(normalized_a, normalized_b), -1.0, 1.0))
+    )
 
 
 def _clamp(value: float, minimum: float, maximum: float) -> float:
@@ -652,6 +682,89 @@ def _sample_offset_diagonal_depth_turn_curve(
     return points
 
 
+def _sample_split_boundary_curve(
+    *,
+    anchor_xy: Tuple[float, float],
+    arm_a: JunctionArm,
+    arm_b: JunctionArm,
+    offset_a_m: float,
+    offset_b_m: float,
+    reference_turn: Mapping[str, Any],
+    max_angle_deg: float,
+    max_chord_m: float,
+) -> Tuple[List[Tuple[float, float]], Dict[str, float]]:
+    """Connect two real arm cross-section points with one G1 cubic curve.
+
+    Older code first averaged the two signed offsets into a virtual ``q`` and
+    later stretched the resulting curve to each road arm with rectangular end
+    fills.  When the approaches had different widths, that approximation made
+    the visible curb jump laterally at the seam.  This curve starts and ends on
+    the actual split cross-sections instead, so all semantic bands meet the
+    straight road geometry at one shared station.
+    """
+
+    fallback_a = _dot(
+        _sub_points(tuple(reference_turn["a"]), anchor_xy),
+        arm_a.tangent,
+    )
+    fallback_b = _dot(
+        _sub_points(tuple(reference_turn["b"]), anchor_xy),
+        arm_b.tangent,
+    )
+    split_a = max(float(arm_a.split_distance_m or fallback_a), 0.5)
+    split_b = max(float(arm_b.split_distance_m or fallback_b), 0.5)
+    start = _add_points(
+        _add_points(anchor_xy, _scale_point(arm_a.tangent, split_a)),
+        _scale_point(arm_a.normal, float(offset_a_m)),
+    )
+    end = _add_points(
+        _add_points(anchor_xy, _scale_point(arm_b.tangent, split_b)),
+        _scale_point(arm_b.normal, float(offset_b_m)),
+    )
+    chord = max(_distance(start, end), 1e-6)
+    reference_radius = max(float(reference_turn.get("radius", 0.0) or 0.0), 1e-6)
+    delta = max(abs(float(reference_turn.get("delta", math.pi / 2.0) or math.pi / 2.0)), 1e-6)
+    arc_handle = (4.0 / 3.0) * reference_radius * math.tan(delta / 4.0)
+    # A quarter of the endpoint chord prevents cubic loops when an asymmetric
+    # cross-section moves one band endpoint substantially farther than its
+    # neighbour. It remains long enough to preserve the required G1 seam.
+    handle = min(max(arc_handle, 0.05), chord * 0.25)
+    incoming = _scale_point(arm_a.tangent, -1.0)
+    outgoing = arm_b.tangent
+    control_1 = _add_points(start, _scale_point(incoming, handle))
+    control_2 = _sub_points(end, _scale_point(outgoing, handle))
+    angle_segments = int(math.ceil(math.degrees(delta) / max(float(max_angle_deg), 0.25)))
+    chord_segments = int(math.ceil(chord / max(float(max_chord_m), 0.02)))
+    base_sample_count = max(4, angle_segments + 1, chord_segments + 1)
+    # Cubic curvature is strongest at the split seams. Uniformly refine the
+    # angle/chord estimate so the first rendered chord also stays within the
+    # 2-degree G1 acceptance threshold, not only the analytic derivative.
+    sample_count = min(1 + (base_sample_count - 1) * 4, 640)
+    points: List[Tuple[float, float]] = []
+    for index in range(sample_count):
+        t = 0.0 if sample_count <= 1 else index / float(sample_count - 1)
+        mt = 1.0 - t
+        points.append(
+            (
+                mt * mt * mt * start[0]
+                + 3.0 * mt * mt * t * control_1[0]
+                + 3.0 * mt * t * t * control_2[0]
+                + t * t * t * end[0],
+                mt * mt * mt * start[1]
+                + 3.0 * mt * mt * t * control_1[1]
+                + 3.0 * mt * t * t * control_2[1]
+                + t * t * t * end[1],
+            )
+        )
+    return points, {
+        "from_split_distance_m": float(split_a),
+        "to_split_distance_m": float(split_b),
+        "from_offset_m": float(offset_a_m),
+        "to_offset_m": float(offset_b_m),
+        "handle_length_m": float(handle),
+    }
+
+
 def _build_lane_connector_polygon(
     anchor_xy: Tuple[float, float],
     arm_a: JunctionArm,
@@ -674,26 +787,37 @@ def _build_lane_connector_polygon(
     List[Tuple[float, float]],
     Dict[str, float],
 ] | None:
-    a_inner, a_outer = _signed_band_bounds(strip_a)
-    b_inner, b_outer = _signed_band_bounds(strip_b)
-    outer_q = _virtual_lane_boundary_q(a_outer, b_inner)
-    inner_q = _virtual_lane_boundary_q(a_inner, b_outer)
-    center_q = _virtual_lane_boundary_q(
-        (float(strip_a.inner_offset_m) + float(strip_a.outer_offset_m)) * 0.5,
-        (float(strip_b.inner_offset_m) + float(strip_b.outer_offset_m)) * 0.5,
+    center_a = (float(strip_a.inner_offset_m) + float(strip_a.outer_offset_m)) * 0.5
+    center_b = (float(strip_b.inner_offset_m) + float(strip_b.outer_offset_m)) * 0.5
+    center_curve, split_metrics = _sample_split_boundary_curve(
+        anchor_xy=anchor_xy,
+        arm_a=arm_a,
+        arm_b=arm_b,
+        offset_a_m=center_a,
+        offset_b_m=center_b,
+        reference_turn=reference_turn,
+        max_angle_deg=max_curve_angle_deg,
+        max_chord_m=max_curve_chord_m,
     )
-    curve_options = {
-        "max_angle_deg": float(max_curve_angle_deg),
-        "max_chord_m": float(max_curve_chord_m),
-    }
-    center_curve = _sample_offset_diagonal_depth_turn_curve(
-        reference_turn, center_q - float(reference_q_m), 18, **curve_options
+    outer_curve, _ = _sample_split_boundary_curve(
+        anchor_xy=anchor_xy,
+        arm_a=arm_a,
+        arm_b=arm_b,
+        offset_a_m=float(strip_a.outer_offset_m),
+        offset_b_m=float(strip_b.outer_offset_m),
+        reference_turn=reference_turn,
+        max_angle_deg=max_curve_angle_deg,
+        max_chord_m=max_curve_chord_m,
     )
-    outer_curve = _sample_offset_diagonal_depth_turn_curve(
-        reference_turn, outer_q - float(reference_q_m), 18, **curve_options
-    )
-    inner_curve = _sample_offset_diagonal_depth_turn_curve(
-        reference_turn, inner_q - float(reference_q_m), 18, **curve_options
+    inner_curve, _ = _sample_split_boundary_curve(
+        anchor_xy=anchor_xy,
+        arm_a=arm_a,
+        arm_b=arm_b,
+        offset_a_m=float(strip_a.inner_offset_m),
+        offset_b_m=float(strip_b.inner_offset_m),
+        reference_turn=reference_turn,
+        max_angle_deg=max_curve_angle_deg,
+        max_chord_m=max_curve_chord_m,
     )
     if len(outer_curve) < 4 or len(inner_curve) < 4:
         return None
@@ -707,10 +831,9 @@ def _build_lane_connector_polygon(
         "fillet_radius_m": float(reference_turn["radius"]),
         "tangent_setback_m": float(reference_turn["tangent_setback"]),
         "reference_q_m": float(reference_q_m),
-        "center_q_m": float(center_q),
-        "outer_q_m": float(outer_q),
-        "inner_q_m": float(inner_q),
+        "center_q_m": float(reference_q_m),
         "radius_floor_m": float(reference_turn.get("radius_floor", 0.0) or 0.0),
+        **split_metrics,
     }
     return (
         polygon,
@@ -759,83 +882,26 @@ def _set_polygon_precision(geometry: Any, precision_grid_m: float) -> Any:
     return geometry
 
 
-def _build_endpoint_fill_polygon(
-    edge: Tuple[Tuple[float, float], Tuple[float, float]],
-    direction: Tuple[float, float],
-    fill_length_m: float,
-    lateral_overlap_m: float = 0.0,
-    longitudinal_overlap_m: float = DEFAULT_SEAM_EXTENSION_M,
-) -> Any | None:
-    outer_point, inner_point = edge
-    tangent = _normalize_vector(direction)
-    if tangent is None:
-        return None
-    longitudinal_overlap = max(float(longitudinal_overlap_m), 0.0)
-    seam_backstep = _scale_point(tangent, -longitudinal_overlap)
-    outer_point = _add_points(outer_point, seam_backstep)
-    inner_point = _add_points(inner_point, seam_backstep)
-    extension = _scale_point(tangent, max(float(fill_length_m), 0.05) + longitudinal_overlap)
-    if lateral_overlap_m > 1e-6:
-        edge_width_m = _distance(outer_point, inner_point)
-        if edge_width_m <= 1e-6:
-            return None
-        midpoint = (
-            (float(outer_point[0]) + float(inner_point[0])) * 0.5,
-            (float(outer_point[1]) + float(inner_point[1])) * 0.5,
-        )
-        edge_vector = _sub_points(inner_point, outer_point)
-        width_axis = (-float(tangent[1]), float(tangent[0]))
-        if _dot(edge_vector, width_axis) < 0.0:
-            width_axis = _scale_point(width_axis, -1.0)
-        half_width = edge_width_m * 0.5 + max(float(lateral_overlap_m), 0.0)
-        outer_point = _sub_points(midpoint, _scale_point(width_axis, half_width))
-        inner_point = _add_points(midpoint, _scale_point(width_axis, half_width))
-    return _polygon_from_points(
-        [
-            outer_point,
-            _add_points(outer_point, extension),
-            _add_points(inner_point, extension),
-            inner_point,
-            outer_point,
-        ]
-    )
+def _drop_numeric_polygon_fragments(geometry: Any, *, minimum_area_m2: float = 0.01) -> Any:
+    """Remove detached numeric loops produced by extreme cubic offsets."""
 
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return geometry
+    components = list(getattr(geometry, "geoms", ()))
+    if not components:
+        return geometry
+    retained = [
+        component
+        for component in components
+        if float(getattr(component, "area", 0.0) or 0.0) >= float(minimum_area_m2)
+    ]
+    if not retained:
+        retained = [max(components, key=lambda component: float(component.area))]
+    if len(retained) == 1:
+        return retained[0]
+    from shapely.ops import unary_union
 
-def _endpoint_fill_patch_record(
-    *,
-    connector_record: Mapping[str, Any],
-    endpoint_role: str,
-    geometry: Any,
-    fill_length_m: float,
-    seam_extension_m: float,
-) -> Dict[str, Any]:
-    patch_id = str(connector_record.get("patch_id", "") or "connector")
-    return {
-        "patch_id": f"{patch_id}_{endpoint_role}_fill",
-        "paired_connector_id": patch_id,
-        "endpoint_role": endpoint_role,
-        "strip_kind": str(connector_record.get("strip_kind", "") or ""),
-        "geometry": geometry,
-        "generation_mode": "roadpen_style_endpoint_fill",
-        "quadrant_id": str(connector_record.get("quadrant_id", "") or ""),
-        "from_road_id": int(connector_record.get("from_road_id", 0) or 0),
-        "from_centerline_id": str(connector_record.get("from_centerline_id", "") or ""),
-        "from_strip_id": str(connector_record.get("from_strip_id", "") or ""),
-        "from_strip_zone": str(connector_record.get("from_strip_zone", "") or ""),
-        "to_road_id": int(connector_record.get("to_road_id", 0) or 0),
-        "to_centerline_id": str(connector_record.get("to_centerline_id", "") or ""),
-        "to_strip_id": str(connector_record.get("to_strip_id", "") or ""),
-        "to_strip_zone": str(connector_record.get("to_strip_zone", "") or ""),
-        "chamfer_depth_m": float(connector_record.get("chamfer_depth_m", 0.0) or 0.0),
-        "effective_chamfer_depth_m": float(connector_record.get("effective_chamfer_depth_m", 0.0) or 0.0),
-        "fillet_radius_m": float(connector_record.get("fillet_radius_m", 0.0) or 0.0),
-        "tangent_setback_m": float(connector_record.get("tangent_setback_m", 0.0) or 0.0),
-        "reference_q_m": float(connector_record.get("reference_q_m", 0.0) or 0.0),
-        "center_q_m": float(connector_record.get("center_q_m", 0.0) or 0.0),
-        "fill_length_m": round(float(fill_length_m), 3),
-        "lateral_overlap_m": 0.0,
-        "seam_extension_m": round(float(seam_extension_m), 3),
-    }
+    return unary_union(retained)
 
 
 def _build_carriageway_apron_polygon(
@@ -845,37 +911,21 @@ def _build_carriageway_apron_polygon(
     next_arm: JunctionArm,
     road_edge_curve: Sequence[Tuple[float, float]],
 ) -> Any | None:
-    """Fill the road-side pocket between an L-shaped throat and a curb arc.
+    """Build one continuous carriageway corner from its real curb boundary.
 
-    The side-strip connector's inner curve is the curved curb-side boundary. The
-    carriageway core remains a straight RoadPen-style throat union, so each corner
-    has a small pocket between that L edge and the curved curb boundary. That
-    pocket should be road, not context ground.
+    ``road_edge_curve`` already terminates on both arm split cross-sections.
+    Closing it through the junction anchor creates the road-owned side of the
+    semantic partition; the straight throat union removes the two internal
+    radial edges.  Unlike the historical ``core_corner`` apron this does not
+    invent an averaged-width point or require a later transition fill.
     """
 
     if len(road_edge_curve) < 2:
         return None
 
-    incoming_boundary_origin = _add_points(
-        anchor_xy,
-        _scale_point(arm.normal, float(arm.carriageway_half_width_m)),
-    )
-    outgoing_boundary_origin = _add_points(
-        anchor_xy,
-        _scale_point(next_arm.normal, -float(next_arm.carriageway_half_width_m)),
-    )
-    core_corner = _line_intersection(
-        incoming_boundary_origin,
-        arm.tangent,
-        outgoing_boundary_origin,
-        next_arm.tangent,
-    )
-    if core_corner is None:
-        return None
-
     points = [
         *(tuple(float(value) for value in point) for point in road_edge_curve),
-        core_corner,
+        tuple(float(value) for value in anchor_xy),
         tuple(float(value) for value in road_edge_curve[0]),
     ]
     return _polygon_from_points(points)
@@ -909,10 +959,6 @@ def _build_corner_connector_patch_records(
             continue
         if not _can_build_collision_corner(arm, next_arm):
             continue
-        reference_a = arm.outer_reference_strip("left")
-        reference_b = next_arm.outer_reference_strip("right")
-        if reference_a is None or reference_b is None:
-            continue
         gap_radians = _ccw_gap_radians(arm, next_arm)
         quadrant_id = f"{junction_id}_quadrant_{arm_index:02d}"
         strip_pairs: List[Tuple[str, JunctionArmSideStrip, JunctionArmSideStrip, float, float, float]] = []
@@ -932,10 +978,17 @@ def _build_corner_connector_patch_records(
             )
             quadrant_q_values.extend([inner_q, center_q, outer_q])
             strip_pairs.append((strip_kind, strip_a, strip_b, inner_q, center_q, outer_q))
-        if not strip_pairs or not quadrant_q_values:
-            continue
-        reference_q_m = (min(quadrant_q_values) + max(quadrant_q_values)) * 0.5
-        max_relative_q_m = max(abs(float(value) - reference_q_m) for value in quadrant_q_values)
+        # The turn skeleton controls sampling and handle length only. Every
+        # visible boundary below uses the arm's actual signed offset, so there
+        # is no averaged virtual cross-section to reconcile afterwards.
+        reference_q_m = 0.0
+        max_relative_q_m = max(
+            [
+                float(arm.carriageway_half_width_m),
+                float(next_arm.carriageway_half_width_m),
+                *(abs(float(value)) for value in quadrant_q_values),
+            ]
+        )
         auto_radius_m = 0.75 * max(
             float(arm.carriageway_half_width_m),
             float(next_arm.carriageway_half_width_m),
@@ -965,7 +1018,16 @@ def _build_corner_connector_patch_records(
         )
         if reference_turn is None:
             continue
-        apron_candidate: Tuple[int, List[Tuple[float, float]], Dict[str, Any]] | None = None
+        road_edge_curve, road_split_metrics = _sample_split_boundary_curve(
+            anchor_xy=anchor_xy,
+            arm_a=arm,
+            arm_b=next_arm,
+            offset_a_m=float(arm.carriageway_half_width_m),
+            offset_b_m=-float(next_arm.carriageway_half_width_m),
+            reference_turn=reference_turn,
+            max_angle_deg=max_curve_angle_deg,
+            max_chord_m=max_curve_chord_m,
+        )
         for strip_kind, strip_a, strip_b, _inner_q, _center_q, _outer_q in strip_pairs:
             connector = _build_lane_connector_polygon(
                 anchor_xy,
@@ -988,7 +1050,7 @@ def _build_corner_connector_patch_records(
                 from_edge,
                 to_edge,
                 _outer_curve,
-                inner_curve,
+                _inner_curve,
                 metrics,
             ) = connector
             polygon = _polygon_from_points(polygon_points)
@@ -1020,78 +1082,69 @@ def _build_corner_connector_patch_records(
                 "reference_q_m": round(float(metrics["reference_q_m"]), 3),
                 "center_q_m": round(float(metrics["center_q_m"]), 3),
                 "radius_floor_m": round(float(metrics["radius_floor_m"]), 3),
+                "from_split_distance_m": round(float(metrics["from_split_distance_m"]), 3),
+                "to_split_distance_m": round(float(metrics["to_split_distance_m"]), 3),
+                "from_offset_m": round(float(metrics["from_offset_m"]), 3),
+                "to_offset_m": round(float(metrics["to_offset_m"]), 3),
+                "from_seam_width_error_m": round(
+                    abs(_distance(from_edge[0], from_edge[1]) - float(strip_a.width_m)),
+                    6,
+                ),
+                "to_seam_width_error_m": round(
+                    abs(_distance(to_edge[0], to_edge[1]) - float(strip_b.width_m)),
+                    6,
+                ),
+                "from_tangent_error_deg": round(
+                    _vector_angle_diff_deg(
+                        _sub_points(center_curve[1], center_curve[0]),
+                        _scale_point(arm.tangent, -1.0),
+                    ),
+                    6,
+                ),
+                "to_tangent_error_deg": round(
+                    _vector_angle_diff_deg(
+                        _sub_points(center_curve[-1], center_curve[-2]),
+                        next_arm.tangent,
+                    ),
+                    6,
+                ),
             }
-            apron_priority = {
-                "nearroad_furnishing": 0,
-                "clear_sidewalk": 1,
-                "frontage_reserve": 2,
-            }.get(strip_kind, 9)
-            if apron_priority < 9 and (apron_candidate is None or apron_priority < apron_candidate[0]):
-                apron_candidate = (apron_priority, inner_curve, record)
-            fill_length_m = max(float(metrics["tangent_setback_m"]), float(metrics["chamfer_depth_m"]) * 2.0) + 0.25
-            connector_fills: List[Any] = []
-            for endpoint_role, edge, direction in (
-                ("from", from_edge, arm.tangent),
-                ("to", to_edge, next_arm.tangent),
-            ):
-                fill_polygon = _build_endpoint_fill_polygon(
-                    edge,
-                    direction,
-                    fill_length_m,
-                    lateral_overlap_m=0.0,
-                    longitudinal_overlap_m=seam_extension_m,
-                )
-                if fill_polygon is None:
-                    continue
-                fill_polygon = _set_polygon_precision(fill_polygon, precision_grid_m)
-                connector_fills.append(fill_polygon)
-                endpoint_fill_records.append(
-                    _endpoint_fill_patch_record(
-                        connector_record=record,
-                        endpoint_role=endpoint_role,
-                        geometry=fill_polygon,
-                        fill_length_m=fill_length_m,
-                        seam_extension_m=seam_extension_m,
-                    )
-                )
-            if connector_fills:
-                from shapely.ops import unary_union
-
-                polygon = unary_union([polygon, *connector_fills])
-            record["geometry"] = _set_polygon_precision(polygon, precision_grid_m)
-            record["source_kind"] = "continuous_corner_ribbon"
-            record["seam_extension_m"] = round(float(seam_extension_m), 3)
-            patch_records.append(record)
-        if apron_candidate is not None:
-            _priority, road_edge_curve, connector_record = apron_candidate
-            apron_polygon = _build_carriageway_apron_polygon(
-                anchor_xy=anchor_xy,
-                arm=arm,
-                next_arm=next_arm,
-                road_edge_curve=road_edge_curve,
+            record["geometry"] = _drop_numeric_polygon_fragments(
+                _set_polygon_precision(polygon, precision_grid_m)
             )
-            if apron_polygon is not None:
-                carriageway_apron_records.append(
-                    {
-                        "patch_id": f"{junction_id}_carriageway_apron_{arm_index:02d}",
-                        "strip_kind": "drive_lane",
-                        "surface_role": "carriageway",
-                        "geometry": apron_polygon,
-                        "generation_mode": "roadpen_style_carriageway_apron",
-                        "paired_connector_id": str(connector_record.get("patch_id", "") or ""),
-                        "quadrant_id": quadrant_id,
-                        "from_road_id": int(arm.road_id),
-                        "from_centerline_id": arm.centerline_id,
-                        "to_road_id": int(next_arm.road_id),
-                        "to_centerline_id": next_arm.centerline_id,
-                        "chamfer_depth_m": float(connector_record.get("chamfer_depth_m", 0.0) or 0.0),
-                        "effective_chamfer_depth_m": float(connector_record.get("effective_chamfer_depth_m", 0.0) or 0.0),
-                        "fillet_radius_m": float(connector_record.get("fillet_radius_m", 0.0) or 0.0),
-                        "tangent_setback_m": float(connector_record.get("tangent_setback_m", 0.0) or 0.0),
-                        "reference_q_m": float(connector_record.get("reference_q_m", 0.0) or 0.0),
-                        "center_q_m": float(connector_record.get("center_q_m", 0.0) or 0.0),
-                    }
-                )
+            record["generation_mode"] = "role_aware_split_boundary_ribbon"
+            record["source_kind"] = "role_aware_split_boundary_ribbon"
+            record["seam_extension_m"] = 0.0
+            patch_records.append(record)
+        apron_polygon = _build_carriageway_apron_polygon(
+            anchor_xy=anchor_xy,
+            arm=arm,
+            next_arm=next_arm,
+            road_edge_curve=road_edge_curve,
+        )
+        if apron_polygon is not None:
+            carriageway_apron_records.append(
+                {
+                    "patch_id": f"{junction_id}_continuous_carriageway_corner_{arm_index:02d}",
+                    "strip_kind": "drive_lane",
+                    "surface_role": "carriageway",
+                    "geometry": _set_polygon_precision(apron_polygon, precision_grid_m),
+                    "generation_mode": "role_aware_continuous_carriageway_corner",
+                    "quadrant_id": quadrant_id,
+                    "from_road_id": int(arm.road_id),
+                    "from_centerline_id": arm.centerline_id,
+                    "to_road_id": int(next_arm.road_id),
+                    "to_centerline_id": next_arm.centerline_id,
+                    "from_split_distance_m": round(float(road_split_metrics["from_split_distance_m"]), 3),
+                    "to_split_distance_m": round(float(road_split_metrics["to_split_distance_m"]), 3),
+                    "from_offset_m": round(float(road_split_metrics["from_offset_m"]), 3),
+                    "to_offset_m": round(float(road_split_metrics["to_offset_m"]), 3),
+                    "boundary_points_xy": [
+                        [round(float(x), 3), round(float(y), 3)]
+                        for x, y in road_edge_curve
+                    ],
+                }
+            )
     return patch_records, endpoint_fill_records, carriageway_apron_records
 
 
@@ -1110,7 +1163,7 @@ def build_cross_strip_fusion(
     max_curve_angle_deg: float = DEFAULT_CURVE_MAX_ANGLE_DEG,
     max_curve_chord_m: float = DEFAULT_CURVE_MAX_CHORD_M,
     corner_chamfer_depth_m: float = ROADPEN_STYLE_CORNER_CHAMFER_DEPTH_M,
-    strip_kinds: Tuple[str, ...] = ("nearroad_furnishing", "clear_sidewalk", "frontage_reserve"),
+    strip_kinds: Tuple[str, ...] = CORNER_FUSION_STRIP_KIND_ORDER,
 ) -> CrossStripFusionResult:
     """Generate unified cross junction geometry with angle bisector corner fusion.
 
@@ -1255,6 +1308,23 @@ def build_cross_strip_fusion(
         "corner_connector_patch_count": len(fused_corner_patch_records),
         "endpoint_fill_patch_count": len(endpoint_fill_patch_records),
         "carriageway_apron_patch_count": len(carriageway_apron_patch_records),
+        "junction_transition_fill_count": 0,
+        "max_semantic_seam_width_error_m": max(
+            [
+                float(record.get(key, 0.0) or 0.0)
+                for record in fused_corner_patch_records
+                for key in ("from_seam_width_error_m", "to_seam_width_error_m")
+            ]
+            or [0.0]
+        ),
+        "max_semantic_seam_tangent_error_deg": max(
+            [
+                float(record.get(key, 0.0) or 0.0)
+                for record in fused_corner_patch_records
+                for key in ("from_tangent_error_deg", "to_tangent_error_deg")
+            ]
+            or [0.0]
+        ),
         "corner_chamfer_depth_m": max(float(corner_chamfer_depth_m), 0.05),
         "corner_chamfer_mode": "diagonal_depth",
         "corner_radius_mode": str(corner_radius_mode),
@@ -1265,7 +1335,7 @@ def build_cross_strip_fusion(
         "curve_max_angle_deg": float(max_curve_angle_deg),
         "curve_max_chord_m": float(max_curve_chord_m),
         "carriageway_core_area_m2": float(carriageway_core.area),
-        "generation_mode": "roadgen3d_continuous_junction_fusion_v2",
+        "generation_mode": "roadgen3d_role_aware_junction_partition_v3",
     }
 
     return CrossStripFusionResult(
@@ -1311,12 +1381,39 @@ def cross_strip_fusion_to_junction_geometry(
         "nearroad_corner_patches": [],
         "frontage_corner_patches": [],
         "debug_info": fusion_result.debug_info,
+        # Preserve the real approach cross-sections for the renderer.  The
+        # reference bridge rebuilds straight road-arm surfaces after junction
+        # fusion; using one global carriageway/sidewalk width there made a
+        # 7 m arm inherit the 9 m arm's offset and exposed triangular seams.
+        "junction_arm_profiles": [
+            {
+                "road_id": int(arm.road_id),
+                "centerline_id": str(arm.centerline_id),
+                "angle_deg": float(arm.angle_deg),
+                "carriageway_width_m": float(arm.carriageway_half_width_m) * 2.0,
+                "split_distance_m": float(arm.split_distance_m),
+                "side_strips": [
+                    {
+                        "strip_id": str(strip.strip_id),
+                        "strip_kind": str(strip.strip_kind),
+                        "zone": str(strip.zone),
+                        "width_m": float(strip.width_m),
+                        "inner_offset_m": float(strip.inner_offset_m),
+                        "outer_offset_m": float(strip.outer_offset_m),
+                    }
+                    for strip in arm.side_strips
+                ],
+            }
+            for arm in fusion_result.arms
+        ],
     }
 
     # Map strip kinds to bucket names
     strip_to_bucket = {
+        "nearroad_buffer": "nearroad_corner_patches",
         "clear_sidewalk": "sidewalk_corner_patches",
         "nearroad_furnishing": "nearroad_corner_patches",
+        "farfromroad_buffer": "nearroad_corner_patches",
         "frontage_reserve": "frontage_corner_patches",
     }
 
@@ -1331,8 +1428,11 @@ def cross_strip_fusion_to_junction_geometry(
                 "surface_kind": "canonical",
                 "strip_kind": "drive_lane",
                 "geometry": polygon,
-                "source_kind": "roadpen_style_carriageway_apron",
-                "paired_connector_id": str(patch.get("paired_connector_id", "") or ""),
+                "source_kind": "role_aware_continuous_carriageway_corner",
+                "quadrant_id": str(patch.get("quadrant_id", "") or ""),
+                "from_road_id": int(patch.get("from_road_id", 0) or 0),
+                "to_road_id": int(patch.get("to_road_id", 0) or 0),
+                "quadrant_id": str(patch.get("quadrant_id", "") or ""),
                 "chamfer_depth_m": float(patch.get("chamfer_depth_m", 0.0) or 0.0),
                 "effective_chamfer_depth_m": float(patch.get("effective_chamfer_depth_m", 0.0) or 0.0),
                 "fillet_radius_m": float(patch.get("fillet_radius_m", 0.0) or 0.0),
@@ -1351,7 +1451,9 @@ def cross_strip_fusion_to_junction_geometry(
         record = dict(patch)
         record["surface_role"] = {
             "clear_sidewalk": "sidewalk",
+            "nearroad_buffer": "furnishing",
             "nearroad_furnishing": "furnishing",
+            "farfromroad_buffer": "furnishing",
             "frontage_reserve": "context_ground",
         }.get(strip_kind, "sidewalk")
         result[bucket_name].append(record)
@@ -1362,13 +1464,22 @@ def cross_strip_fusion_to_junction_geometry(
                 "surface_kind": "canonical",
                 "strip_kind": strip_kind,
                 "geometry": polygon,
-                "source_kind": "continuous_corner_ribbon",
+                "source_kind": "role_aware_split_boundary_ribbon",
+                "quadrant_id": str(record.get("quadrant_id", "") or ""),
                 "chamfer_depth_m": float(record.get("chamfer_depth_m", 0.0) or 0.0),
                 "effective_chamfer_depth_m": float(record.get("effective_chamfer_depth_m", 0.0) or 0.0),
                 "fillet_radius_m": float(record.get("fillet_radius_m", 0.0) or 0.0),
                 "tangent_setback_m": float(record.get("tangent_setback_m", 0.0) or 0.0),
                 "reference_q_m": float(record.get("reference_q_m", 0.0) or 0.0),
                 "center_q_m": float(record.get("center_q_m", 0.0) or 0.0),
+                "from_road_id": int(record.get("from_road_id", 0) or 0),
+                "to_road_id": int(record.get("to_road_id", 0) or 0),
+                "from_split_distance_m": float(record.get("from_split_distance_m", 0.0) or 0.0),
+                "to_split_distance_m": float(record.get("to_split_distance_m", 0.0) or 0.0),
+                "from_offset_m": float(record.get("from_offset_m", 0.0) or 0.0),
+                "to_offset_m": float(record.get("to_offset_m", 0.0) or 0.0),
+                "from_stop_xy": list(record.get("from_stop_xy", []) or []),
+                "to_stop_xy": list(record.get("to_stop_xy", []) or []),
             }
         )
 
@@ -1399,6 +1510,29 @@ def cross_strip_fusion_to_junction_geometry(
                             })
                 except Exception:
                     pass
+
+    # The exact outermost turn ribbons, not a symmetric buffered arm rectangle,
+    # define the junction trim envelope. This prevents asymmetric cross-sections
+    # from creating exterior L-shaped pockets that normalization could only
+    # hide by calling them carriageway.
+    try:
+        from shapely.ops import unary_union
+
+        partition_geometries = [
+            patch.get("geometry")
+            for patch in result["canonical_surface_patches"]
+            if patch.get("geometry") is not None
+            and not getattr(patch.get("geometry"), "is_empty", True)
+        ]
+        if partition_geometries:
+            semantic_envelope = _set_polygon_precision(
+                unary_union(partition_geometries),
+                float(fusion_result.debug_info.get("precision_grid_m", 0.001) or 0.001),
+            )
+            result["semantic_partition_envelope"] = semantic_envelope
+            result["sidewalk_trim_zone"] = semantic_envelope
+    except Exception:
+        pass
 
     return result
 
