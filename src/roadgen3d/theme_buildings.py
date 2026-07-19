@@ -608,6 +608,45 @@ def oriented_rectangle_points(
     return tuple(rotated)
 
 
+def polygon_area_m2(
+    polygon_xz: Sequence[Tuple[float, float]],
+    *,
+    geometry: object | None = None,
+) -> float:
+    """Return a validated polygon area for closed or open XZ rings.
+
+    Normalized Shapely geometry is authoritative when available.  The
+    shoelace calculation keeps the class-only building-height policy usable in
+    lightweight environments where Shapely is not installed.
+    """
+
+    points = tuple((float(point[0]), float(point[1])) for point in polygon_xz)
+    if points and points[0] == points[-1]:
+        points = points[:-1]
+    if len(points) < 3 or len(set(points)) < 3:
+        raise ValueError("Building polygon must contain at least three distinct points.")
+    if any(not math.isfinite(value) for point in points for value in point):
+        raise ValueError("Building polygon coordinates must be finite.")
+
+    if geometry is not None:
+        if bool(getattr(geometry, "is_empty", True)):
+            raise ValueError("Building polygon geometry is empty.")
+        if not bool(getattr(geometry, "is_valid", False)):
+            raise ValueError("Building polygon geometry is invalid.")
+        area_m2 = float(getattr(geometry, "area", 0.0))
+    else:
+        area_m2 = abs(
+            sum(
+                x0 * z1 - x1 * z0
+                for (x0, z0), (x1, z1) in zip(points, points[1:] + points[:1])
+            )
+        ) / 2.0
+
+    if not math.isfinite(area_m2) or area_m2 <= 1e-8:
+        raise ValueError("Building polygon area must be finite and greater than zero.")
+    return float(area_m2)
+
+
 def _normalized_building_region_records(
     placement_context: object | None,
 ) -> List[Dict[str, Any]]:
@@ -626,7 +665,7 @@ def _normalized_building_region_records(
             for point in (region.get("polygon_xz", ()) if isinstance(region, Mapping) else ())
             if len(point) >= 2
         )
-        if len(polygon_xz) < 4:
+        if len(polygon_xz) < 3:
             center_xz = tuple(region.get("center_xz", (0.0, 0.0))) if isinstance(region, Mapping) else (0.0, 0.0)
             width_m = float(region.get("width_m", 0.0) if isinstance(region, Mapping) else 0.0)
             height_m = float(region.get("height_m", 0.0) if isinstance(region, Mapping) else 0.0)
@@ -638,8 +677,12 @@ def _normalized_building_region_records(
                 length_m=max(float(width_m), 0.0),
                 depth_m=max(float(height_m), 0.0),
             )
-        if len(polygon_xz) < 4:
-            continue
+        geometry = ShapelyPolygon(polygon_xz) if ShapelyPolygon is not None else None
+        try:
+            area_m2 = polygon_area_m2(polygon_xz, geometry=geometry)
+        except ValueError as exc:
+            region_id = str(region.get("region_id", "") if isinstance(region, Mapping) else "") or str(order_index)
+            raise ValueError(f"Building region {region_id} has an invalid or degenerate footprint: {exc}") from exc
         regions.append(
             {
                 "region_id": str(region.get("region_id", "") if isinstance(region, Mapping) else ""),
@@ -659,12 +702,9 @@ def _normalized_building_region_records(
                 "target_height_m": float(region.get("target_height_m", 0.0) if isinstance(region, Mapping) else 0.0),
                 "height_source": str(region.get("height_source", "") if isinstance(region, Mapping) else ""),
                 "polygon_xz": polygon_xz,
+                "area_m2": area_m2,
                 "bbox": _polygon_bbox(polygon_xz),
-                "geom": (
-                    ShapelyPolygon(polygon_xz)
-                    if ShapelyPolygon is not None
-                    else None
-                ),
+                "geom": geometry,
             }
         )
     regions.sort(key=lambda item: int(item.get("order_index", 0)))
@@ -821,7 +861,8 @@ def _building_region_footprints(
             height_class = height_class_from_height_m(target_height_m)
         else:
             target_height_m = 0.0
-            area_m2 = abs(_polygon_signed_area(polygon_xz))
+            area_value = region.get("area_m2")
+            area_m2 = float(area_value) if area_value is not None else polygon_area_m2(polygon_xz)
             height_class = _height_class_from_area(area_m2)
         footprints.append(
             BuildingFootprint(

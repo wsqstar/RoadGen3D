@@ -21,6 +21,7 @@ from roadgen3d.theme_buildings import (
     generate_grid_growth_lots,
     height_class_from_height_m,
     infer_theme_segments,
+    polygon_area_m2,
     sample_building_target_height,
 )
 from roadgen3d.types import (
@@ -874,6 +875,111 @@ def test_height_class_from_height_m_thresholds():
     assert height_class_from_height_m(24.9) == "midrise"
     assert height_class_from_height_m(25.0) == "highrise"
     assert height_class_from_height_m(100.0) == "highrise"
+
+
+@pytest.mark.parametrize(
+    ("polygon_xz", "expected_area_m2"),
+    [
+        (((0.0, 0.0), (10.0, 0.0), (10.0, 10.0), (0.0, 10.0)), 100.0),
+        (((0.0, 0.0), (10.0, 0.0), (10.0, 10.0), (0.0, 10.0), (0.0, 0.0)), 100.0),
+    ],
+)
+def test_polygon_area_m2_accepts_open_and_closed_rings(polygon_xz, expected_area_m2):
+    assert polygon_area_m2(polygon_xz) == pytest.approx(expected_area_m2)
+
+
+@pytest.mark.parametrize(
+    "polygon_xz",
+    [
+        (),
+        ((0.0, 0.0), (1.0, 1.0), (2.0, 2.0)),
+        ((0.0, 0.0), (float("nan"), 1.0), (1.0, 0.0)),
+        ((0.0, 0.0), (float("inf"), 1.0), (1.0, 0.0)),
+    ],
+)
+def test_polygon_area_m2_rejects_empty_degenerate_and_non_finite_rings(polygon_xz):
+    with pytest.raises(ValueError, match="Building polygon"):
+        polygon_area_m2(polygon_xz)
+
+
+@pytest.mark.parametrize(
+    ("area_m2", "expected_height_class"),
+    [
+        (119.0, "lowrise"),
+        (120.0, "midrise"),
+        (259.0, "midrise"),
+        (260.0, "highrise"),
+    ],
+)
+def test_class_only_building_regions_use_validated_polygon_area(area_m2, expected_height_class):
+    width_m = area_m2 / 10.0
+    polygon_xz = ((0.0, 0.0), (width_m, 0.0), (width_m, 10.0), (0.0, 10.0))
+    placement_context = SimpleNamespace(
+        building_regions=[
+            {
+                "region_id": f"building-{area_m2}",
+                "polygon_xz": polygon_xz,
+            }
+        ]
+    )
+
+    footprints = collect_building_footprints(
+        None,
+        placement_context=placement_context,
+        theme_segments=_single_theme_segment(),
+        road_segment_graph=None,
+        height_mode="class_only",
+        seed=42,
+    )
+
+    assert len(footprints) == 1
+    assert footprints[0].height_class == expected_height_class
+    assert footprints[0].target_height_m == 0.0
+
+
+def test_class_only_building_region_explicit_height_has_priority():
+    placement_context = SimpleNamespace(
+        building_regions=[
+            {
+                "region_id": "explicit-height",
+                "polygon_xz": ((0.0, 0.0), (8.0, 0.0), (8.0, 8.0), (0.0, 8.0)),
+                "target_height_m": 30.0,
+            }
+        ]
+    )
+
+    footprint = collect_building_footprints(
+        None,
+        placement_context=placement_context,
+        theme_segments=_single_theme_segment(),
+        road_segment_graph=None,
+        height_mode="class_only",
+        seed=42,
+    )[0]
+
+    assert footprint.target_height_m == pytest.approx(30.0)
+    assert footprint.height_class == "highrise"
+
+
+def test_class_only_building_region_rejects_degenerate_polygon():
+    placement_context = SimpleNamespace(
+        building_regions=[
+            {
+                "region_id": "degenerate-building",
+                "polygon_xz": ((0.0, 0.0), (1.0, 1.0), (2.0, 2.0)),
+            }
+        ]
+    )
+
+    with pytest.raises(ValueError, match="degenerate-building"):
+        collect_building_footprints(
+            None,
+            placement_context=placement_context,
+            theme_segments=_single_theme_segment(),
+            road_segment_graph=None,
+            height_mode="class_only",
+            seed=42,
+        )
 
 
 def test_sample_building_target_height_deterministic():
