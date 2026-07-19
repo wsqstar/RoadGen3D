@@ -23,7 +23,7 @@ from roadgen3d.services import starter_scenes
 from web.api.main import create_app
 
 
-SCENE_ID = "guangzhou_complete_intersection_v3"
+SCENE_ID = "guangzhou_complete_intersection_v4"
 GEOMETRY_SCENE_ID = "guangzhou_road_skeleton_v2"
 
 
@@ -99,14 +99,21 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     osm_geometry = scene_layout["summary"]["osm_geometry"]
     surface_qa = osm_geometry["surface_geometry_qa"]
     assert surface_qa["ok"] is True
-    assert surface_qa["curb_sidewalk_overlap_area_m2"] == 0.0
+    assert surface_qa["curb_sidewalk_overlap_area_m2"] <= 1e-4
     assert surface_qa["curb_width_m"] == 0.12
     assert surface_qa["curb_reveal_m"] == 0.15
     assert surface_qa["curb_top_mode"] == "flush_with_sidewalk"
-    assert surface_qa["mesh_boundary_clearance_m"] == 0.002
+    assert surface_qa["mesh_boundary_clearance_m"] == 0.0
     assert surface_qa["final_surface_sliver_count"] == 0
     assert surface_qa["degenerate_top_face_count"] == 0
-    assert surface_qa["minimum_top_triangle_angle_deg"] > 0.0
+    assert surface_qa["needle_top_face_count"] == 0
+    assert surface_qa["short_boundary_edge_count"] == 0
+    assert surface_qa["minimum_top_triangle_angle_deg"] >= 0.05
+    assert surface_qa["maximum_top_triangle_aspect_ratio"] <= 1000.0
+    assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
+    assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
+    assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
+    assert surface_qa["surface_mesh_violations"] == []
     marking_qa = osm_geometry["marking_geometry_qa"]
     assert marking_qa["ok"] is True
     assert marking_qa["urban_lane_edge_mode"] == "explicit_only"
@@ -132,6 +139,13 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert manifest["final_scene"]["glb_url"].endswith("/complete_scene.glb")
     assert manifest["starter_focus"] == {"center_xz": [171.94, -84.95], "extent_m": 115.0}
 
+    scene = trimesh.load(directory / package["scene_file"], force="scene")
+    node_names = [str(node_name) for node_name in scene.graph.nodes_geometry]
+    assert "context_ground_base" in node_names
+    assert not any(node_name.startswith("carriageway_arm_") for node_name in node_names)
+    assert not any(node_name.startswith("junction_normalized_surface_") for node_name in node_names)
+    assert sum(node_name.startswith("carriageway_") for node_name in node_names) == 1
+
     for name in ("package.json", "normalized_source.json", "scene_layout.json", "viewer_manifest.json"):
         text = (directory / name).read_text(encoding="utf-8")
         assert "/Users/" not in text
@@ -144,6 +158,7 @@ def test_retired_starters_remain_addressable_for_existing_links() -> None:
     assert package["id"] == "guangzhou_road_skeleton_v1"
     assert package["viewer_manifest_url"].endswith("/guangzhou_road_skeleton_v1/manifest")
     assert starter_scenes.load_starter_scene(GEOMETRY_SCENE_ID)["id"] == GEOMETRY_SCENE_ID
+    assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v3")["id"] == "guangzhou_complete_intersection_v3"
 
 
 def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:

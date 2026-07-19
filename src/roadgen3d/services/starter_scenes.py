@@ -14,11 +14,12 @@ from roadgen3d.scene_layout_edits import scene_revision_for_layout
 ROOT = Path(__file__).resolve().parents[3]
 STARTER_ROOT = (ROOT / "assets" / "starter_scenes").resolve()
 MATERIALIZED_ROOT = (ROOT / "artifacts" / "starter_scenes").resolve()
-DEFAULT_STARTER_SCENE_ID = "guangzhou_complete_intersection_v3"
+DEFAULT_STARTER_SCENE_ID = "guangzhou_complete_intersection_v4"
 REGISTERED_STARTER_SCENE_IDS = frozenset({
     "guangzhou_road_skeleton_v1",
     "guangzhou_road_skeleton_v2",
     "guangzhou_complete_intersection_v3",
+    "guangzhou_complete_intersection_v4",
 })
 
 
