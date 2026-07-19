@@ -6648,6 +6648,23 @@ def _build_osm_base_scene(
             )
         except Exception:
             logger.debug("Failed to precision-snap final road surface", exc_info=True)
+        try:
+            from shapely import remove_repeated_points
+
+            # Boolean differences can leave pairs of vertices one precision
+            # cell apart.  They are harmless in 2-D, but constrained
+            # triangulation may connect the pair to a point several metres
+            # away and create a needle-shaped top face.  Collapse those short
+            # boundary edges before triangulation instead of hiding them with
+            # a renderer depth offset.
+            cleaned = _clean_scene_polygonal_geometry(
+                remove_repeated_points(
+                    cleaned,
+                    tolerance=max(surface_precision_grid_m * 10.0, 0.01),
+                )
+            )
+        except Exception:
+            logger.debug("Failed to remove repeated final-surface points", exc_info=True)
         if isinstance(cleaned, ShapelyPolygon):
             components = [cleaned]
         elif isinstance(cleaned, MultiPolygon):
@@ -6783,9 +6800,11 @@ def _build_osm_base_scene(
         *elevated_surface_annotation_surfaces,
     ])
     curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
-    # Two precision cells are still only 2 mm at the default scale, but are
-    # wide enough to survive GLTF float32 quantization on 100 m-scale scenes.
-    mesh_boundary_clearance_m = max(surface_precision_grid_m * 2.0, 0.002)
+    # Curb and sidewalk are a true planar partition.  Their shared boundary is
+    # snapped once and reused by both meshes; leaving a horizontal clearance
+    # exposes the context-ground underlay and becomes visible as a wedge at
+    # oblique junctions.
+    mesh_boundary_clearance_m = 0.0
     if not getattr(curb_zone, "is_empty", True):
         try:
             from shapely import difference, set_precision
@@ -6799,13 +6818,6 @@ def _build_osm_base_scene(
                     curb_zone,
                     grid_size=surface_precision_grid_m,
                 )
-            )
-            # GLTF stores positions as float32. A sub-grid clearance on the
-            # sidewalk side prevents independently triangulated shared edges
-            # from becoming hairline coplanar triangles after serialization.
-            # This is horizontal geometry clearance, not a depth/render offset.
-            sidewalk_render_zone = _clean_scene_polygonal_geometry(
-                sidewalk_render_zone.difference(curb_zone.buffer(mesh_boundary_clearance_m))
             )
         except Exception:
             sidewalk_render_zone = _clean_scene_polygonal_geometry(sidewalk_render_zone.difference(curb_zone))
@@ -6825,7 +6837,7 @@ def _build_osm_base_scene(
                 difference(
                     set_precision(sidewalk_render_zone, grid_size=surface_precision_grid_m),
                     set_precision(
-                        curb_zone.buffer(mesh_boundary_clearance_m),
+                        curb_zone,
                         grid_size=surface_precision_grid_m,
                     ),
                     grid_size=surface_precision_grid_m,
@@ -6833,8 +6845,18 @@ def _build_osm_base_scene(
             )
         except Exception:
             sidewalk_render_zone = _clean_scene_polygonal_geometry(
-                sidewalk_render_zone.difference(curb_zone.buffer(mesh_boundary_clearance_m))
+                sidewalk_render_zone.difference(curb_zone)
             )
+    # The final curb subtraction is itself a boolean operation and can create
+    # new one-cell edges.  Clean once more after every subtraction has
+    # completed so the geometry passed to triangulation is the geometry that
+    # was actually audited.
+    sidewalk_render_zone, final_removed_sidewalk_sliver_count = _clean_final_surface_geometry(
+        sidewalk_render_zone,
+        minimum_component_area_m2=0.01,
+        simplify_tolerance_m=0.0,
+    )
+    removed_sidewalk_sliver_count += final_removed_sidewalk_sliver_count
     curb_sidewalk_overlap_area_m2 = float(
         curb_zone.intersection(sidewalk_render_zone).area
         if not getattr(curb_zone, "is_empty", True) and not getattr(sidewalk_render_zone, "is_empty", True)
@@ -6901,7 +6923,7 @@ def _build_osm_base_scene(
             texture_tracker=texture_tracker,
             texture_overrides=texture_overrides,
         )
-        scene.add_geometry(ground, node_name="context_ground")
+        scene.add_geometry(ground, node_name="context_ground_base")
 
     def _extrude_polygon(
         geom,
@@ -7029,7 +7051,12 @@ def _build_osm_base_scene(
                     horizontal_axes=horizontal_axes,
                 )
                 scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
-            except (ValueError, RuntimeError, IndexError):
+            except (ValueError, RuntimeError, IndexError) as exc:
+                if (surface_role or roughness_key) in {"carriageway", "sidewalk", "curb"}:
+                    raise ValueError(
+                        "Failed to triangulate required road surface "
+                        f"{name_prefix}_{idx} (role={surface_role or roughness_key})"
+                    ) from exc
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
@@ -7288,37 +7315,15 @@ def _build_osm_base_scene(
                 placeholder.visual.face_colors = (160, 160, 160, 255)
             _place_zone_furniture_mesh(placeholder, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
 
-    if has_bus_bay_vehicle_zone:
-        if not getattr(vehicle_surface_zone, "is_empty", True):
-            _extrude_polygon(
-                vehicle_surface_zone,
-                0.06,
-                list(colors.get("carriageway", (65, 68, 72, 255))),
-                "carriageway",
-                roughness_key="carriageway",
-                surface_role="carriageway",
-                top_only=True,
-            )
-    elif road_arm_geometries:
-        for arm_idx, arm_geom in enumerate(road_arm_geometries):
-            if getattr(arm_geom, "is_empty", True):
-                continue
-            _extrude_polygon(
-                arm_geom,
-                0.06,
-                list(colors.get("carriageway", (65, 68, 72, 255))),
-                f"carriageway_arm_{arm_idx}",
-                roughness_key="carriageway",
-                surface_role="carriageway",
-            )
-    elif not carriageway.is_empty:
+    if not getattr(vehicle_surface_zone, "is_empty", True):
         _extrude_polygon(
-            carriageway,
+            vehicle_surface_zone,
             0.06,
             list(colors.get("carriageway", (65, 68, 72, 255))),
             "carriageway",
             roughness_key="carriageway",
             surface_role="carriageway",
+            top_only=has_bus_bay_vehicle_zone,
         )
     if not sidewalk_render_zone.is_empty:
         _extrude_polygon(
@@ -7859,7 +7864,12 @@ def _build_osm_base_scene(
                     if geometry is None or getattr(geometry, "is_empty", True):
                         continue
                     role = str(patch.get("surface_role", "") or "carriageway").strip().lower()
-                    if role in junction_sidewalk_surface_roles:
+                    # Every planar junction role already participates in the
+                    # canonical vehicle/sidewalk partition rendered above.
+                    # Rendering it again would reintroduce independently
+                    # triangulated seams and internal side walls.  Crossings
+                    # remain visual overlays and are emitted separately.
+                    if role in junction_sidewalk_surface_roles or role in junction_vehicle_surface_roles:
                         continue
                     if role == "crossing":
                         _render_crosswalk_zebra_patch(
@@ -8277,16 +8287,26 @@ def _build_osm_base_scene(
     setattr(placement_ctx, "marking_geometry_qa", marking_geometry_qa)
     scene.metadata["marking_geometry_qa"] = marking_geometry_qa
 
-    def _mesh_minimum_triangle_angle_deg(mesh: Any) -> float | None:
+    def _mesh_top_triangle_quality(mesh: Any) -> Dict[str, Any]:
         faces = np.asarray(getattr(mesh, "faces", ()), dtype=int)
         vertices = np.asarray(getattr(mesh, "vertices", ()), dtype=float)
         if faces.size == 0 or vertices.size == 0:
-            return None
+            return {
+                "minimum_angle_deg": None,
+                "maximum_aspect_ratio": 0.0,
+                "needle_face_count": 0,
+                "needle_faces": [],
+            }
         normals = np.asarray(getattr(mesh, "face_normals", ()), dtype=float)
         if normals.ndim == 2 and normals.shape[0] == faces.shape[0]:
             faces = faces[normals[:, 1] > 0.5]
         if faces.size == 0:
-            return None
+            return {
+                "minimum_angle_deg": None,
+                "maximum_aspect_ratio": 0.0,
+                "needle_face_count": 0,
+                "needle_faces": [],
+            }
         triangles = vertices[faces]
         edge_vectors = (
             triangles[:, 1] - triangles[:, 0],
@@ -8296,14 +8316,123 @@ def _build_osm_base_scene(
         lengths = [np.linalg.norm(vector, axis=1) for vector in edge_vectors]
         valid = np.logical_and.reduce([length > 1e-10 for length in lengths])
         if not bool(valid.any()):
-            return None
+            return {
+                "minimum_angle_deg": None,
+                "maximum_aspect_ratio": 0.0,
+                "needle_face_count": 0,
+                "needle_faces": [],
+            }
         a, b, c = (length[valid] for length in lengths)
         cosines = (
             np.clip((a * a + c * c - b * b) / (2.0 * a * c), -1.0, 1.0),
             np.clip((a * a + b * b - c * c) / (2.0 * a * b), -1.0, 1.0),
             np.clip((b * b + c * c - a * a) / (2.0 * b * c), -1.0, 1.0),
         )
-        return float(min(np.degrees(np.arccos(cosine)).min() for cosine in cosines))
+        angles = np.stack([np.degrees(np.arccos(cosine)) for cosine in cosines], axis=1)
+        triangle_cross = np.cross(
+            triangles[valid, 1] - triangles[valid, 0],
+            triangles[valid, 2] - triangles[valid, 0],
+        )
+        areas = np.linalg.norm(triangle_cross, axis=1) * 0.5
+        longest = np.maximum.reduce([a, b, c])
+        altitude = np.divide(
+            2.0 * areas,
+            longest,
+            out=np.zeros_like(areas),
+            where=longest > 1e-10,
+        )
+        aspect = np.divide(
+            longest,
+            altitude,
+            out=np.full_like(longest, np.inf),
+            where=altitude > 1e-10,
+        )
+        minimum_angles = angles.min(axis=1)
+        needle_mask = np.logical_or.reduce(
+            [
+                aspect > 1000.0,
+                minimum_angles < 0.05,
+                np.logical_and(longest > 0.25, altitude < 0.002),
+            ]
+        )
+        return {
+            "minimum_angle_deg": float(minimum_angles.min()),
+            "maximum_aspect_ratio": float(aspect.max()),
+            "needle_face_count": int(np.count_nonzero(needle_mask)),
+            "needle_faces": [
+                {
+                    "coordinates_xz": [
+                        [round(float(vertex[0]), 6), round(float(vertex[2]), 6)]
+                        for vertex in triangle
+                    ],
+                    "minimum_angle_deg": round(float(angle), 6),
+                    "aspect_ratio": round(float(face_aspect), 3),
+                    "longest_edge_m": round(float(face_longest), 6),
+                    "minimum_altitude_m": round(float(face_altitude), 6),
+                }
+                for triangle, angle, face_aspect, face_longest, face_altitude in zip(
+                    triangles[valid][needle_mask],
+                    minimum_angles[needle_mask],
+                    aspect[needle_mask],
+                    longest[needle_mask],
+                    altitude[needle_mask],
+                )
+            ][:5],
+        }
+
+    def _short_boundary_edge_count(geometry: Any) -> int:
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+        cleaned = _clean_scene_polygonal_geometry(geometry)
+        polygons = [cleaned] if isinstance(cleaned, ShapelyPolygon) else list(cleaned.geoms) if isinstance(cleaned, MultiPolygon) else []
+        count = 0
+        threshold = max(surface_precision_grid_m * 2.0, 0.002)
+        for polygon in polygons:
+            for ring in [polygon.exterior, *polygon.interiors]:
+                coords = list(ring.coords)
+                count += sum(
+                    1
+                    for start, end in zip(coords[:-1], coords[1:])
+                    if 1e-10 < math.hypot(float(end[0]) - float(start[0]), float(end[1]) - float(start[1])) < threshold - 1e-10
+                )
+        return count
+
+    def _rendered_top_surface_union(node_prefixes: Sequence[str]) -> Any:
+        from shapely import set_precision
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+        from shapely.ops import unary_union
+
+        triangles: List[Any] = []
+        for node_name in scene.graph.nodes_geometry:
+            if not str(node_name).startswith(tuple(node_prefixes)):
+                continue
+            geometry_name = scene.graph[node_name][1]
+            mesh = scene.geometry[geometry_name].copy()
+            transform, _ = scene.graph.get(node_name)
+            mesh.apply_transform(transform)
+            faces = np.asarray(getattr(mesh, "faces", ()), dtype=int)
+            vertices = np.asarray(getattr(mesh, "vertices", ()), dtype=float)
+            normals = np.asarray(getattr(mesh, "face_normals", ()), dtype=float)
+            if not faces.size or not vertices.size or normals.shape[0] != faces.shape[0]:
+                continue
+            for face in faces[normals[:, 1] > 0.5]:
+                coordinates = [
+                    (float(np.float32(vertices[index, 0])), float(np.float32(vertices[index, 2])))
+                    for index in face
+                ]
+                polygon = ShapelyPolygon(coordinates)
+                if polygon.is_valid and float(polygon.area) > 1e-10:
+                    triangles.append(polygon)
+        if not triangles:
+            return MultiPolygon()
+        rendered = _clean_scene_polygonal_geometry(unary_union(triangles))
+        try:
+            rendered = _clean_scene_polygonal_geometry(
+                set_precision(rendered, grid_size=surface_precision_grid_m)
+            )
+        except Exception:
+            pass
+        return rendered
 
     def _maximum_boundary_turn_deg(geometry: Any) -> float:
         from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
@@ -8311,6 +8440,7 @@ def _build_osm_base_scene(
         cleaned = _clean_scene_polygonal_geometry(geometry)
         polygons = [cleaned] if isinstance(cleaned, ShapelyPolygon) else list(cleaned.geoms) if isinstance(cleaned, MultiPolygon) else []
         maximum_turn = 0.0
+        numerical_edge_limit_m = max(surface_precision_grid_m * 10.0, 0.01)
         for polygon in polygons:
             for ring in [polygon.exterior, *polygon.interiors]:
                 coords = [(float(x), float(y)) for x, y in ring.coords]
@@ -8321,12 +8451,22 @@ def _build_osm_base_scene(
                     outgoing_norm = float(np.linalg.norm(outgoing))
                     if incoming_norm <= 1e-10 or outgoing_norm <= 1e-10:
                         continue
+                    # A near reversal is a numerical spike only when one of
+                    # its incident edges is also close to the precision scale.
+                    # Long, deliberately acute parcel/ROW corners are valid
+                    # geometry and should not be treated as triangulation
+                    # debris.
+                    if min(incoming_norm, outgoing_norm) > numerical_edge_limit_m:
+                        continue
                     cosine = float(np.clip(np.dot(incoming, outgoing) / (incoming_norm * outgoing_norm), -1.0, 1.0))
                     maximum_turn = max(maximum_turn, float(math.degrees(math.acos(cosine))))
         return maximum_turn
 
     degenerate_top_face_count = 0
     minimum_top_triangle_angle_deg: float | None = None
+    maximum_top_triangle_aspect_ratio = 0.0
+    needle_top_face_count = 0
+    surface_mesh_violations: List[Dict[str, Any]] = []
     qa_node_prefixes = (
         "carriageway",
         "sidewalk",
@@ -8345,30 +8485,95 @@ def _build_osm_base_scene(
         if face_areas.size and face_normals.ndim == 2 and face_normals.shape[0] == face_areas.shape[0]:
             top_mask = face_normals[:, 1] > 0.5
             degenerate_top_face_count += int(np.count_nonzero(np.logical_and(top_mask, face_areas <= 1e-10)))
-        minimum_angle = _mesh_minimum_triangle_angle_deg(mesh)
+        quality = _mesh_top_triangle_quality(mesh)
+        minimum_angle = quality["minimum_angle_deg"]
         if minimum_angle is not None:
             minimum_top_triangle_angle_deg = (
                 minimum_angle
                 if minimum_top_triangle_angle_deg is None
                 else min(minimum_top_triangle_angle_deg, minimum_angle)
             )
+        maximum_top_triangle_aspect_ratio = max(
+            maximum_top_triangle_aspect_ratio,
+            float(quality["maximum_aspect_ratio"]),
+        )
+        needle_count = int(quality["needle_face_count"])
+        needle_top_face_count += needle_count
+        if needle_count:
+            surface_mesh_violations.append(
+                {
+                    "node_name": str(node_name),
+                    "needle_top_face_count": needle_count,
+                    "minimum_top_triangle_angle_deg": round(float(minimum_angle or 0.0), 6),
+                    "maximum_top_triangle_aspect_ratio": round(float(quality["maximum_aspect_ratio"]), 3),
+                    "needle_faces": quality["needle_faces"],
+                }
+            )
+
+    intended_vehicle_surface = _clean_final_surface_geometry(
+        vehicle_surface_zone,
+        minimum_component_area_m2=1e-6,
+        simplify_tolerance_m=0.0,
+    )[0]
+    intended_rendered_surface = _union_scene_polygonal_geometries(
+        [intended_vehicle_surface, sidewalk_render_zone, curb_zone]
+    )
+    rendered_vehicle_surface = _rendered_top_surface_union(("carriageway",))
+    rendered_surface = _rendered_top_surface_union(("carriageway", "sidewalk", "curb"))
+    road_junction_seam_gap_area_m2 = float(
+        intended_vehicle_surface.difference(rendered_vehicle_surface).area
+        if not getattr(intended_vehicle_surface, "is_empty", True)
+        else 0.0
+    )
+    rendered_surface_uncovered_area_m2 = float(
+        intended_rendered_surface.difference(rendered_surface).area
+        if not getattr(intended_rendered_surface, "is_empty", True)
+        else 0.0
+    )
+    # The context-ground slab covers the complete design bounds.  Any part of
+    # the intended ROW not covered by a rendered top surface would therefore
+    # expose that slab to the picking ray.
+    context_ground_exposure_inside_row_m2 = rendered_surface_uncovered_area_m2
+    short_boundary_edge_count = sum(
+        _short_boundary_edge_count(geometry)
+        for geometry in (intended_vehicle_surface, sidewalk_render_zone, curb_zone)
+    )
+    maximum_boundary_turn_deg = _maximum_boundary_turn_deg(intended_rendered_surface)
     surface_geometry_qa.update(
         {
             "degenerate_top_face_count": int(degenerate_top_face_count),
             "minimum_top_triangle_angle_deg": round(float(minimum_top_triangle_angle_deg or 0.0), 6),
-            "maximum_boundary_turn_deg": round(
-                _maximum_boundary_turn_deg(
-                    _union_scene_polygonal_geometries([sidewalk_render_zone, curb_zone])
-                ),
-                6,
-            ),
+            "maximum_top_triangle_aspect_ratio": round(maximum_top_triangle_aspect_ratio, 3),
+            "needle_top_face_count": int(needle_top_face_count),
+            "short_boundary_edge_count": int(short_boundary_edge_count),
+            "maximum_boundary_turn_deg": round(maximum_boundary_turn_deg, 6),
+            "road_junction_seam_gap_area_m2": round(road_junction_seam_gap_area_m2, 6),
+            "context_ground_exposure_inside_row_m2": round(context_ground_exposure_inside_row_m2, 6),
+            "rendered_surface_uncovered_area_m2": round(rendered_surface_uncovered_area_m2, 6),
+            "surface_mesh_violations": surface_mesh_violations,
         }
     )
-    if degenerate_top_face_count:
+    surface_geometry_qa["ok"] = bool(
+        surface_geometry_qa.get("ok", True)
+        and degenerate_top_face_count == 0
+        and needle_top_face_count == 0
+        and short_boundary_edge_count == 0
+        and maximum_boundary_turn_deg <= 175.0
+        and road_junction_seam_gap_area_m2 <= 1e-4
+        and context_ground_exposure_inside_row_m2 <= 1e-4
+        and rendered_surface_uncovered_area_m2 <= 1e-4
+    )
+    if not surface_geometry_qa["ok"]:
         surface_geometry_qa["ok"] = False
         raise ValueError(
             "Final road mesh QA failed: "
-            f"degenerate_top_face_count={degenerate_top_face_count}"
+            f"degenerate_top_face_count={degenerate_top_face_count}, "
+            f"needle_top_face_count={needle_top_face_count}, "
+            f"short_boundary_edge_count={short_boundary_edge_count}, "
+            f"maximum_boundary_turn_deg={maximum_boundary_turn_deg:.6f}, "
+            f"road_junction_seam_gap_area_m2={road_junction_seam_gap_area_m2:.6f}, "
+            f"context_ground_exposure_inside_row_m2={context_ground_exposure_inside_row_m2:.6f}, "
+            f"violations={surface_mesh_violations[:8]}"
         )
     setattr(placement_ctx, "surface_geometry_qa", surface_geometry_qa)
     scene.metadata["surface_geometry_qa"] = surface_geometry_qa

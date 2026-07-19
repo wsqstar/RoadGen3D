@@ -490,7 +490,9 @@ def test_osm_geometry_serialization_and_scene_include_junction_patches():
 
     scene = _build_osm_base_scene(bridge.placement_context)
     node_names = set(scene.graph.nodes_geometry)
-    assert any(name.startswith("junction_normalized_surface_") for name in node_names)
+    assert any(name.startswith("carriageway_") for name in node_names)
+    assert not any(name.startswith("carriageway_arm_") for name in node_names)
+    assert not any(name.startswith("junction_normalized_surface_") for name in node_names)
     assert not any(name.startswith("junction_crosswalk_") for name in node_names)
     assert not any(name.startswith("junction_turn_lane_") for name in node_names)
 
@@ -568,12 +570,20 @@ def test_cross_junction_serialization_and_scene_include_corner_polylines():
 
     scene = _build_osm_base_scene(bridge.placement_context)
     node_names = set(scene.graph.nodes_geometry)
-    assert any(name.startswith("junction_normalized_surface_") for name in node_names)
+    assert any(name.startswith("carriageway_") for name in node_names)
+    assert not any(name.startswith("junction_normalized_surface_") for name in node_names)
     assert not any(name.startswith("junction_turn_lane_") for name in node_names)
     assert not any(name.startswith("junction_sidewalk_corner_") for name in node_names)
     assert not any(name.startswith("junction_nearroad_corner_") for name in node_names)
     assert not any(name.startswith("junction_frontage_corner_") for name in node_names)
     assert not any(name.startswith("junction_sidewalk_corner_apron_") for name in node_names)
+    assert "context_ground_base" in node_names
+    surface_qa = scene.metadata["surface_geometry_qa"]
+    assert surface_qa["needle_top_face_count"] == 0
+    assert surface_qa["short_boundary_edge_count"] == 0
+    assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
+    assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
+    assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
 
 
 def test_hkust_gate_cross_junctions_use_canonical_roadpen_surfaces_without_triangular_slivers():
