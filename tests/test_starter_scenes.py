@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 import sys
 
@@ -22,7 +23,8 @@ from roadgen3d.services import starter_scenes
 from web.api.main import create_app
 
 
-SCENE_ID = "guangzhou_road_skeleton_v2"
+SCENE_ID = "guangzhou_complete_intersection_v3"
+GEOMETRY_SCENE_ID = "guangzhou_road_skeleton_v2"
 
 
 def _sha256(path: Path) -> str:
@@ -64,17 +66,28 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert len(annotation["regions"]) == 21
     assert normalized["source"]["producer"] == "osm"
     assert normalized["source"]["starter_scene"] is True
-    assert normalized["summary"]["street_furniture_instance_count"] == 0
+    assert package["focus_xz"] == [171.94, -84.95]
+    assert package["focus_extent_m"] == 115.0
+    assert package["category_counts"] == {
+        "bench": 1,
+        "bollard": 8,
+        "building": 21,
+        "lamp": 8,
+        "trash": 2,
+        "tree": 8,
+    }
     assert normalized["osm_study"]["selection"]["hop_count"] == 1
     assert normalized["osm_study"]["selection"]["context_buffer_m"] == 100.0
 
     directory = starter_scenes.STARTER_ROOT / SCENE_ID
     scene_layout = json.loads((directory / "scene_layout.json").read_text(encoding="utf-8"))
     manifest = starter_scenes.starter_scene_manifest(SCENE_ID)
-    assert scene_layout["placements"] == []
-    assert scene_layout["building_placements"] == []
-    assert scene_layout["config"]["street_furniture_profile"] == "none"
-    assert scene_layout["config"]["amenity_coverage_mode"] == "off"
+    placement_counts = Counter(
+        str(item.get("category") or "unknown")
+        for item in scene_layout["placements"]
+    )
+    assert dict(sorted(placement_counts.items())) == package["category_counts"]
+    assert scene_layout["config"]["building_representation"] == "transparent_massing"
     assert scene_layout["config"]["junction_corner_radius_mode"] == "auto"
     assert scene_layout["config"]["junction_precision_grid_m"] == 0.001
     assert scene_layout["config"]["junction_curve_max_angle_deg"] == 2.0
@@ -114,9 +127,10 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
         for item in junction_qa
     )
     assert all(item["sliver_component_count"] == 0 for item in junction_qa)
-    assert manifest["instances"] == {}
+    assert len(manifest["instances"]) == sum(package["category_counts"].values())
     assert manifest["layout_overlay"]["road_centerlines"]
-    assert manifest["final_scene"]["glb_url"].endswith("/road_base.glb")
+    assert manifest["final_scene"]["glb_url"].endswith("/complete_scene.glb")
+    assert manifest["starter_focus"] == {"center_xz": [171.94, -84.95], "extent_m": 115.0}
 
     for name in ("package.json", "normalized_source.json", "scene_layout.json", "viewer_manifest.json"):
         text = (directory / name).read_text(encoding="utf-8")
@@ -124,16 +138,17 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
         assert "artifacts/" not in text
 
 
-def test_retired_v1_starter_remains_addressable_for_existing_links() -> None:
+def test_retired_starters_remain_addressable_for_existing_links() -> None:
     package = starter_scenes.load_starter_scene("guangzhou_road_skeleton_v1")
 
     assert package["id"] == "guangzhou_road_skeleton_v1"
     assert package["viewer_manifest_url"].endswith("/guangzhou_road_skeleton_v1/manifest")
+    assert starter_scenes.load_starter_scene(GEOMETRY_SCENE_ID)["id"] == GEOMETRY_SCENE_ID
 
 
 def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
     scene = trimesh.load(
-        starter_scenes.STARTER_ROOT / SCENE_ID / "road_base.glb",
+        starter_scenes.STARTER_ROOT / GEOMETRY_SCENE_ID / "road_base.glb",
         force="scene",
     )
     curb = _glb_top_projection(scene, "curb_")
@@ -156,7 +171,8 @@ def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
 
 
 def test_starter_materialization_is_idempotent_and_never_mutates_bundle(tmp_path, monkeypatch) -> None:
-    source_glb = starter_scenes.STARTER_ROOT / SCENE_ID / "road_base.glb"
+    package = starter_scenes.load_starter_scene(SCENE_ID)
+    source_glb = starter_scenes.STARTER_ROOT / SCENE_ID / package["scene_file"]
     bundled_before = _sha256(source_glb)
     monkeypatch.setattr(starter_scenes, "MATERIALIZED_ROOT", tmp_path.resolve())
 
@@ -189,8 +205,8 @@ def test_starter_scene_api_serves_contract_manifest_and_glb() -> None:
     manifest_response = client.get(contract["viewer_manifest_url"])
     assert manifest_response.status_code == 200
     manifest = manifest_response.json()
-    assert manifest["instances"] == {}
-    assert manifest["final_scene"]["glb_url"] == f"/api/starter-scenes/{SCENE_ID}/files/road_base.glb"
+    assert len(manifest["instances"]) == 48
+    assert manifest["final_scene"]["glb_url"] == f"/api/starter-scenes/{SCENE_ID}/files/complete_scene.glb"
 
     glb_response = client.get(manifest["final_scene"]["glb_url"])
     assert glb_response.status_code == 200

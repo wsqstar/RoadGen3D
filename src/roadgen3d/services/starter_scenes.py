@@ -14,10 +14,11 @@ from roadgen3d.scene_layout_edits import scene_revision_for_layout
 ROOT = Path(__file__).resolve().parents[3]
 STARTER_ROOT = (ROOT / "assets" / "starter_scenes").resolve()
 MATERIALIZED_ROOT = (ROOT / "artifacts" / "starter_scenes").resolve()
-DEFAULT_STARTER_SCENE_ID = "guangzhou_road_skeleton_v2"
+DEFAULT_STARTER_SCENE_ID = "guangzhou_complete_intersection_v3"
 REGISTERED_STARTER_SCENE_IDS = frozenset({
     "guangzhou_road_skeleton_v1",
     "guangzhou_road_skeleton_v2",
+    "guangzhou_complete_intersection_v3",
 })
 
 
@@ -59,10 +60,11 @@ def load_starter_scene(scene_id: str = DEFAULT_STARTER_SCENE_ID) -> dict[str, An
     directory = _registered_dir(scene_id)
     package = _json(directory / "package.json")
     normalized = _json(directory / "normalized_source.json")
-    scene_path = directory / "road_base.glb"
+    scene_file = str(package.get("scene_file") or "road_base.glb")
+    scene_path = directory / scene_file
     source_path = directory / "normalized_source.json"
     if not scene_path.is_file() or scene_path.stat().st_size <= 0:
-        raise StarterSceneError("Starter road_base.glb is missing or empty.")
+        raise StarterSceneError(f"Starter scene asset is missing or empty: {scene_file}")
     source_fingerprint = _sha256(source_path)
     scene_fingerprint = _sha256(scene_path)
     expected_source = str(package.get("source_fingerprint") or "")
@@ -75,9 +77,13 @@ def load_starter_scene(scene_id: str = DEFAULT_STARTER_SCENE_ID) -> dict[str, An
         "id": scene_id,
         "version": str(package.get("version") or "1"),
         "label": str(package.get("label") or "广州道路骨架"),
+        "scene_file": scene_file,
         "source_fingerprint": source_fingerprint,
         "scene_fingerprint": scene_fingerprint,
         "retrieval_bbox": list(package.get("retrieval_bbox") or []),
+        "focus_xz": list(package.get("focus_xz") or []),
+        "focus_extent_m": float(package.get("focus_extent_m") or 0.0),
+        "category_counts": dict(package.get("category_counts") or {}),
         "normalized_source": normalized,
         "viewer_manifest_url": f"/api/starter-scenes/{scene_id}/manifest",
     }
@@ -85,19 +91,25 @@ def load_starter_scene(scene_id: str = DEFAULT_STARTER_SCENE_ID) -> dict[str, An
 
 def starter_scene_manifest(scene_id: str) -> dict[str, Any]:
     directory = _registered_dir(scene_id)
+    package = _json(directory / "package.json")
+    scene_file = str(package.get("scene_file") or "road_base.glb")
+    label = str(package.get("label") or "广州道路骨架")
     manifest = _json(directory / "viewer_manifest.json")
     manifest["layout_path"] = f"/api/starter-scenes/{scene_id}/manifest"
     manifest["final_scene"] = {
-        "label": "广州道路骨架",
-        "glb_url": f"/api/starter-scenes/{scene_id}/files/road_base.glb",
+        "label": label,
+        "glb_url": f"/api/starter-scenes/{scene_id}/files/{scene_file}",
     }
     manifest["production_steps"] = [{
-        "step_id": "road_base",
-        "title": "Road Base / 道路骨架",
-        "glb_url": f"/api/starter-scenes/{scene_id}/files/road_base.glb",
+        "step_id": "complete_scene" if scene_id == DEFAULT_STARTER_SCENE_ID else "road_base",
+        "title": "Complete Intersection / 完整十字路口" if scene_id == DEFAULT_STARTER_SCENE_ID else "Road Base / 道路骨架",
+        "glb_url": f"/api/starter-scenes/{scene_id}/files/{scene_file}",
     }]
     manifest["default_selection"] = "final_scene"
-    manifest["instances"] = {}
+    manifest["starter_focus"] = {
+        "center_xz": list(package.get("focus_xz") or []),
+        "extent_m": float(package.get("focus_extent_m") or 0.0),
+    }
     return make_json_safe(manifest)
 
 
@@ -105,6 +117,7 @@ def starter_scene_file(scene_id: str, filename: str) -> Path:
     directory = _registered_dir(scene_id)
     allowed = {
         "road_base.glb",
+        "complete_scene.glb",
         "osm_snapshot.json",
         "osm_snapshot.geojson",
         "normalized_source.json",
@@ -132,14 +145,14 @@ def materialize_starter_scene(scene_id: str) -> dict[str, Any]:
     target_glb = target_dir / "scene.glb"
     target_layout = target_dir / "scene_layout.json"
     if not target_glb.is_file() or _sha256(target_glb) != package["scene_fingerprint"]:
-        shutil.copyfile(source_dir / "road_base.glb", target_glb)
+        shutil.copyfile(source_dir / str(package.get("scene_file") or "road_base.glb"), target_glb)
     template = _json(source_dir / "scene_layout.json")
     outputs = dict(template.get("outputs") or {})
     outputs.update({"scene_glb": str(target_glb), "scene_layout": str(target_layout)})
     template["outputs"] = outputs
     steps = []
     for step in template.get("production_steps") or []:
-        if isinstance(step, Mapping) and str(step.get("step_id") or "") == "road_base":
+        if isinstance(step, Mapping) and str(step.get("step_id") or "") in {"road_base", "complete_scene"}:
             steps.append({**dict(step), "glb_path": str(target_glb), "companion_path": ""})
     template["production_steps"] = steps
     template["scene_edit"] = {

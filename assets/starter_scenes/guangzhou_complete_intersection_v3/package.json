@@ -1,0 +1,36 @@
+{
+  "id": "guangzhou_complete_intersection_v3",
+  "version": "3.0.0",
+  "label": "广州完整十字路口",
+  "scene_file": "complete_scene.glb",
+  "retrieval_bbox": [
+    113.26616931271059,
+    23.13367933500995,
+    113.27325598728942,
+    23.13728296499005
+  ],
+  "focus_xz": [
+    171.94,
+    -84.95
+  ],
+  "focus_extent_m": 115.0,
+  "random_seed": 42,
+  "source_fingerprint": "e816bed3647aa85ed2fcfeadf1f8fc80c7b5ceee35b6d1aca0a51c5215a29721",
+  "scene_fingerprint": "a246532ae7e55b4798d51bcf6fbba8ec3a2b4a9cd68c058c537beacf1d85a8b2",
+  "category_counts": {
+    "bench": 1,
+    "bollard": 8,
+    "building": 21,
+    "lamp": 8,
+    "trash": 2,
+    "tree": 8
+  },
+  "provenance": {
+    "provider": "OpenStreetMap/Overpass",
+    "attribution": "© OpenStreetMap contributors",
+    "network_required": false,
+    "source_starter_scene_id": "guangzhou_road_skeleton_v2",
+    "building_representation": "transparent_massing",
+    "asset_selection": "deterministic_representative_subset_v1"
+  }
+}
