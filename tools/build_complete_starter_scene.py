@@ -36,7 +36,7 @@ from roadgen3d.services.design_types import DesignDraft, SceneContext  # noqa: E
 from roadgen3d.web_viewer_dev import build_layout_manifest  # noqa: E402
 
 
-SCENE_ID = "guangzhou_complete_intersection_v4"
+SCENE_ID = "guangzhou_complete_intersection_v5"
 SOURCE_SCENE_ID = "guangzhou_road_skeleton_v2"
 SOURCE_DIR = ROOT / "assets" / "starter_scenes" / SOURCE_SCENE_ID
 BUNDLED_DIR = ROOT / "assets" / "starter_scenes" / SCENE_ID
@@ -317,7 +317,7 @@ def main() -> int:
 
     package = {
         "id": SCENE_ID,
-        "version": "4.0.0",
+        "version": "5.0.0",
         "label": "广州完整十字路口",
         "scene_file": scene_file,
         "retrieval_bbox": list(source.get("source_alignment", {}).get("source_frame", {}).get("bbox_wgs84") or []),
@@ -334,7 +334,8 @@ def main() -> int:
             "source_starter_scene_id": SOURCE_SCENE_ID,
             "building_representation": "transparent_massing",
             "asset_selection": "deterministic_representative_subset_v1",
-            "surface_partition": "unified_render_partition_v4",
+            "surface_partition": "role_aware_continuous_partition_v5",
+            "surface_diagnostic": "final_glb_top_faces_with_patch_provenance_v1",
         },
     }
     _write_json(output / "package.json", package)

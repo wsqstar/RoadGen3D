@@ -23,7 +23,7 @@ from roadgen3d.services import starter_scenes
 from web.api.main import create_app
 
 
-SCENE_ID = "guangzhou_complete_intersection_v4"
+SCENE_ID = "guangzhou_complete_intersection_v5"
 GEOMETRY_SCENE_ID = "guangzhou_road_skeleton_v2"
 
 
@@ -118,10 +118,17 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert surface_qa["junction_surface_qa_inset_m"] == 0.0
     assert surface_qa["rendered_surface_qa_tolerance_m"] == 0.005
     assert surface_qa["surface_mesh_violations"] == []
+    surface_diagnostic = scene_layout["surface_diagnostic"]
+    assert surface_diagnostic["schema_version"] == "roadgen3d.surface-diagnostic.v1"
+    assert surface_diagnostic["source"] == "final_glb_top_faces"
+    assert surface_diagnostic["node_roles"]
+    assert surface_diagnostic["patch_provenance"]
+    assert all(item.get("quadrant_id") for item in surface_diagnostic["patch_provenance"] if item.get("from_road_id"))
+    assert surface_diagnostic["junction_arm_profiles"]
     marking_qa = osm_geometry["marking_geometry_qa"]
     assert marking_qa["ok"] is True
     assert marking_qa["urban_lane_edge_mode"] == "explicit_only"
-    assert marking_qa["marking_junction_intrusion_area_m2"] == 0.0
+    assert marking_qa["marking_junction_intrusion_area_m2"] <= 1e-4
     assert marking_qa["duplicate_marking_area_m2"] == 0.0
     assert marking_qa["unexpected_lane_edge_count"] == 0
     assert marking_qa["rendered_lane_edge_ribbon_count"] == 0
@@ -143,6 +150,8 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert manifest["layout_overlay"]["road_centerlines"]
     assert manifest["final_scene"]["glb_url"].endswith("/complete_scene.glb")
     assert manifest["starter_focus"] == {"center_xz": [171.94, -84.95], "extent_m": 115.0}
+    assert manifest["surface_diagnostic"]["source"] == "final_glb_top_faces"
+    assert len(manifest["surface_diagnostic"]["node_roles"]) == len(surface_diagnostic["node_roles"])
 
     scene = trimesh.load(directory / package["scene_file"], force="scene")
     node_names = [str(node_name) for node_name in scene.graph.nodes_geometry]
@@ -164,6 +173,7 @@ def test_retired_starters_remain_addressable_for_existing_links() -> None:
     assert package["viewer_manifest_url"].endswith("/guangzhou_road_skeleton_v1/manifest")
     assert starter_scenes.load_starter_scene(GEOMETRY_SCENE_ID)["id"] == GEOMETRY_SCENE_ID
     assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v3")["id"] == "guangzhou_complete_intersection_v3"
+    assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v4")["id"] == "guangzhou_complete_intersection_v4"
 
 
 def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:

@@ -14,12 +14,13 @@ from roadgen3d.scene_layout_edits import scene_revision_for_layout
 ROOT = Path(__file__).resolve().parents[3]
 STARTER_ROOT = (ROOT / "assets" / "starter_scenes").resolve()
 MATERIALIZED_ROOT = (ROOT / "artifacts" / "starter_scenes").resolve()
-DEFAULT_STARTER_SCENE_ID = "guangzhou_complete_intersection_v4"
+DEFAULT_STARTER_SCENE_ID = "guangzhou_complete_intersection_v5"
 REGISTERED_STARTER_SCENE_IDS = frozenset({
     "guangzhou_road_skeleton_v1",
     "guangzhou_road_skeleton_v2",
     "guangzhou_complete_intersection_v3",
     "guangzhou_complete_intersection_v4",
+    "guangzhou_complete_intersection_v5",
 })
 
 
@@ -101,9 +102,10 @@ def starter_scene_manifest(scene_id: str) -> dict[str, Any]:
         "label": label,
         "glb_url": f"/api/starter-scenes/{scene_id}/files/{scene_file}",
     }
+    is_complete_scene = scene_file == "complete_scene.glb"
     manifest["production_steps"] = [{
-        "step_id": "complete_scene" if scene_id == DEFAULT_STARTER_SCENE_ID else "road_base",
-        "title": "Complete Intersection / 完整十字路口" if scene_id == DEFAULT_STARTER_SCENE_ID else "Road Base / 道路骨架",
+        "step_id": "complete_scene" if is_complete_scene else "road_base",
+        "title": "Complete Intersection / 完整十字路口" if is_complete_scene else "Road Base / 道路骨架",
         "glb_url": f"/api/starter-scenes/{scene_id}/files/{scene_file}",
     }]
     manifest["default_selection"] = "final_scene"
