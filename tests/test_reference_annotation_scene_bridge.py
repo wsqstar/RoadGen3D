@@ -725,3 +725,12 @@ def test_guangzhou_junction_09_is_disjoint_with_design_generation_width():
     assert surface_qa["context_ground_exposure_inside_row_m2"] <= 1e-4
     assert surface_qa["road_junction_seam_gap_area_m2"] <= 1e-4
     assert surface_qa["needle_top_face_count"] == 0
+    diagnostic = scene.metadata["surface_diagnostic_manifest"]
+    assert diagnostic["source"] == "final_glb_top_faces"
+    assert diagnostic["node_roles"]["context_ground_base"] == "context_ground"
+    assert diagnostic["node_roles"]["carriageway_0"] == "carriageway"
+    assert any(
+        patch["quadrant_id"].startswith("junction_09_quadrant_")
+        for patch in diagnostic["patch_provenance"]
+    )
+    assert {profile["road_id"] for profile in diagnostic["junction_arm_profiles"]} >= {1, 3, 5, 6}

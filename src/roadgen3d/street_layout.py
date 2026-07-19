@@ -6626,6 +6626,7 @@ def _build_osm_base_scene(
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
+    surface_node_roles: Dict[str, str] = {}
     curb_width = max(float(getattr(config, "curb_width_m", DEFAULT_CURB_WIDTH_M) or DEFAULT_CURB_WIDTH_M), 0.05)
     sidewalk_top_y_m = max(float(getattr(config, "curb_reveal_m", DEFAULT_CURB_REVEAL_M) or DEFAULT_CURB_REVEAL_M), 0.05)
     surface_precision_grid_m = max(
@@ -7061,6 +7062,7 @@ def _build_osm_base_scene(
             texture_overrides=texture_overrides,
         )
         scene.add_geometry(ground, node_name="context_ground_base")
+        surface_node_roles["context_ground_base"] = "context_ground"
 
     def _extrude_polygon(
         geom,
@@ -7199,7 +7201,11 @@ def _build_osm_base_scene(
                     texture_overrides=texture_overrides,
                     horizontal_axes=horizontal_axes,
                 )
-                scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
+                node_name = f"{name_prefix}_{idx}"
+                scene.add_geometry(mesh, node_name=node_name)
+                surface_node_roles[node_name] = str(
+                    surface_role or roughness_key or "sidewalk"
+                )
             except (ValueError, RuntimeError, IndexError) as exc:
                 if (surface_role or roughness_key) in {"carriageway", "sidewalk", "curb"}:
                     raise ValueError(
@@ -8787,6 +8793,66 @@ def _build_osm_base_scene(
         )
     setattr(placement_ctx, "surface_geometry_qa", surface_geometry_qa)
     scene.metadata["surface_geometry_qa"] = surface_geometry_qa
+
+    diagnostic_patches: List[Dict[str, Any]] = []
+    diagnostic_arm_profiles: List[Dict[str, Any]] = []
+
+    def _diagnostic_rings(geometry: Any) -> List[List[List[float]]]:
+        from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+        cleaned = _clean_scene_polygonal_geometry(geometry)
+        polygons = (
+            [cleaned]
+            if isinstance(cleaned, ShapelyPolygon)
+            else list(cleaned.geoms)
+            if isinstance(cleaned, MultiPolygon)
+            else []
+        )
+        return [
+            [
+                [round(float(x), 6), round(float(z), 6)]
+                for x, z in ring.coords
+            ]
+            for polygon in polygons
+            for ring in [polygon.exterior, *polygon.interiors]
+        ]
+
+    for junction in junction_geometries:
+        junction_id = str(junction.get("junction_id", "") or "")
+        for profile in junction.get("junction_arm_profiles", []) or ():
+            diagnostic_arm_profiles.append({
+                "junction_id": junction_id,
+                **dict(profile),
+            })
+        for patch_index, patch in enumerate(junction.get("canonical_surface_patches", []) or ()):
+            geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
+            if geometry is None or getattr(geometry, "is_empty", True):
+                continue
+            diagnostic_patches.append({
+                "patch_id": str(
+                    patch.get("surface_id")
+                    or patch.get("patch_id")
+                    or f"{junction_id}_patch_{patch_index:02d}"
+                ),
+                "junction_id": junction_id,
+                "surface_role": str(patch.get("surface_role", "carriageway") or "carriageway"),
+                "strip_kind": str(patch.get("strip_kind", "") or ""),
+                "quadrant_id": str(patch.get("quadrant_id", "") or ""),
+                "from_road_id": int(patch.get("from_road_id", 0) or 0),
+                "to_road_id": int(patch.get("to_road_id", 0) or 0),
+                "rings_xz": _diagnostic_rings(geometry),
+            })
+    surface_diagnostic_manifest = {
+        "schema_version": "roadgen3d.surface-diagnostic.v1",
+        "coordinate_space": "local_xz_m",
+        "source": "final_glb_top_faces",
+        "node_roles": dict(sorted(surface_node_roles.items())),
+        "patch_provenance": diagnostic_patches,
+        "junction_arm_profiles": diagnostic_arm_profiles,
+        "geometry_qa": dict(surface_geometry_qa),
+    }
+    setattr(placement_ctx, "surface_diagnostic_manifest", surface_diagnostic_manifest)
+    scene.metadata["surface_diagnostic_manifest"] = surface_diagnostic_manifest
 
     for zone in getattr(placement_ctx, "functional_zones", []) or []:
         _inject_functional_zone(zone)

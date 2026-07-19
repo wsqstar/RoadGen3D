@@ -338,6 +338,9 @@ def build_scene_layout_payload(
         "region_derivation_summary": dict(getattr(placement_context, "region_derivation_summary", {}) or {}),
         "functional_zones": list(getattr(placement_context, "functional_zones", []) or []),
         "surface_annotations": _strip_geometry_records(getattr(placement_context, "surface_annotations", []) or []),
+        "surface_diagnostic": dict(
+            getattr(placement_context, "surface_diagnostic_manifest", {}) or {}
+        ),
         "production_steps": _serialized_list(production_steps),
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "placement_decision_log": {
