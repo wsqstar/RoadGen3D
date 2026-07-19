@@ -629,6 +629,67 @@ def test_student_cannot_read_another_students_project(client: TestClient):
     assert forbidden.json()["detail"]["code"] == "forbidden"
 
 
+def test_project_asset_palette_is_tenant_scoped_and_fingerprint_pinned(client: TestClient, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    from roadgen3d.services import asset_manifest_registry as registry
+
+    manifest = tmp_path / "palette.jsonl"
+    mesh = tmp_path / "tree.glb"
+    mesh.write_bytes(b"glTF fixture")
+    manifest.write_text(json.dumps({
+        "asset_id": "tree-ready",
+        "category": "tree",
+        "text_desc": "Teaching tree",
+        "mesh_path": mesh.name,
+        "latent_path": "tree.pt",
+        "scene_eligible": True,
+    }) + "\n", encoding="utf-8")
+    monkeypatch.setattr(registry, "_registered_manifests", lambda: {"palette.jsonl": manifest})
+    summary = registry.summarize_manifest("palette.jsonl")
+
+    _teacher_token, student_token, course = _bootstrap_course_and_student(client)
+    project = client.post("/api/v1/projects", headers=_auth(student_token), json={
+        "course_id": course["id"], "name": "Palette owner",
+    }).json()
+    palette = {
+        "schemaVersion": "roadgen3d.asset-palette.v1",
+        "assets": [{
+            "manifestName": "palette.jsonl",
+            "assetId": "tree-ready",
+            "fingerprint": summary["fingerprint"],
+            "category": "tree",
+            "label": "My tree",
+        }],
+    }
+    saved = client.put(
+        f"/api/v1/projects/{project['id']}/asset-palette",
+        headers=_auth(student_token),
+        json=palette,
+    )
+    assert saved.status_code == 200, saved.text
+    assert saved.json()["assets"][0]["assetId"] == "tree-ready"
+    assert client.get(
+        f"/api/v1/projects/{project['id']}/asset-palette",
+        headers=_auth(student_token),
+    ).json() == saved.json()
+
+    second_register = client.post("/api/v1/auth/register", json={
+        "email": "palette2@example.edu",
+        "password": "palette2-pass-123",
+        "display_name": "Palette Two",
+        "course_code": course["code"],
+        "invite_code": course["invite_code"],
+    })
+    assert second_register.status_code == 201
+    second_token = client.post("/api/v1/auth/login", json={
+        "email": "palette2@example.edu", "password": "palette2-pass-123",
+    }).json()["access_token"]
+    forbidden = client.get(
+        f"/api/v1/projects/{project['id']}/asset-palette",
+        headers=_auth(second_token),
+    )
+    assert forbidden.status_code == 403
+
+
 def test_durable_job_recovery_and_cancellation_are_terminal(client: TestClient):
     response = client.post("/api/v1/auth/bootstrap", json={
         "email": "jobs@example.edu",

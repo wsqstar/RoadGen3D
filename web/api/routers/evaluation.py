@@ -38,6 +38,7 @@ def evaluate_scene_unified(request_body: EvaluateRequestModel, request: Request)
                 for view in request_body.rendered_views
             ],
             evaluation_profile=request_body.evaluation_profile,
+            evaluation_mode=request_body.evaluation_mode,
             evaluation_config=(
                 request_body.evaluation_config.model_dump(exclude_none=True)
                 if request_body.evaluation_config is not None
@@ -90,4 +91,3 @@ def propose_improvement(request_body: ImproveRequestModel, request: Request) -> 
     except RuntimeError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     return make_json_safe(result)
-

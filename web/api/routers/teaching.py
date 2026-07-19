@@ -29,6 +29,7 @@ from web.api.teaching_schemas import (
     RevisionCreateRequest,
     RevisionEditRequest,
     SceneGenerateRequest,
+    SceneAssetPaletteModel,
     WorkflowStepRequest,
 )
 
@@ -84,6 +85,7 @@ def _auto_evaluate_revision(
     auto_evaluate: bool,
     profile_id: str | None,
     weights: dict[str, float] | None,
+    evaluation_mode: str = "structured",
 ) -> dict[str, Any]:
     if not auto_evaluate:
         return {**revision, "auto_evaluation": None, "evaluation_job": None}
@@ -92,7 +94,7 @@ def _auto_evaluate_revision(
     selected = next((item for item in profiles if item["id"] == profile_id), None) if profile_id else next((item for item in profiles if item["is_default"]), profiles[0] if profiles else None)
     if selected is None:
         return {**revision, "auto_evaluation": None, "evaluation_job": None}
-    evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=revision["id"], profile_id=selected["id"], weights=weights)
+    evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=revision["id"], profile_id=selected["id"], weights=weights, evaluation_mode=evaluation_mode)
     job = service.create_job(actor["id"], project_id, kind="evaluation", payload={"run_id": evaluation["id"]})
     if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() in {"rq", "local"}:
         _dispatch_job(request, job)
@@ -165,6 +167,17 @@ def get_project(project_id: str, request: Request, actor: dict[str, Any] = Depen
 @router.patch("/projects/{project_id}/workflow")
 def update_workflow(project_id: str, body: WorkflowStepRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     return _call(lambda: _service(request).update_project_step(actor["id"], project_id, body.workflow_step))
+
+
+@router.get("/projects/{project_id}/asset-palette")
+def get_asset_palette(project_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).get_asset_palette(actor["id"], project_id))
+
+
+@router.put("/projects/{project_id}/asset-palette")
+def update_asset_palette(project_id: str, body: SceneAssetPaletteModel, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    payload = body.model_dump() if hasattr(body, "model_dump") else body.dict()
+    return _call(lambda: _service(request).update_asset_palette(actor["id"], project_id, payload))
 
 
 @router.post("/projects/{project_id}/sources/geojson", status_code=201)
@@ -275,7 +288,7 @@ def create_revision(project_id: str, body: RevisionCreateRequest, request: Reque
     def run():
         glb = base64.b64decode(body.glb_base64, validate=True) if body.glb_base64 else None
         revision = _service(request).create_revision(actor["id"], project_id, layout=body.layout, glb=glb, source_id=body.source_id, parent_id=body.parent_id, branch_kind=body.branch_kind, label=body.label, commands=body.commands, provenance=body.provenance)
-        return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights)
+        return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights, evaluation_mode=body.auto_evaluate_mode)
     return _call(run)
 
 
@@ -284,7 +297,7 @@ def edit_revision(project_id: str, revision_id: str, body: RevisionEditRequest, 
     def run():
         service = _service(request)
         revision = service.edit_revision(actor["id"], project_id, revision_id, commands=body.commands, branch_kind=body.branch_kind, label=body.label, provenance=body.provenance)
-        return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights)
+        return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights, evaluation_mode=body.auto_evaluate_mode)
     return _call(run)
 
 
@@ -330,7 +343,7 @@ def create_profile(course_id: str, body: EvaluationProfileCreateRequest, request
 def create_evaluation(project_id: str, body: EvaluationCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     def run():
         service = _service(request)
-        evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=body.revision_id, profile_id=body.profile_id, weights=body.weights, seed=body.seed)
+        evaluation = service.create_evaluation_run(actor["id"], project_id, revision_id=body.revision_id, profile_id=body.profile_id, weights=body.weights, seed=body.seed, evaluation_mode=body.evaluation_mode)
         if not body.auto_run:
             return {"evaluation": evaluation, "job": None}
         job = service.create_job(actor["id"], project_id, kind="evaluation", payload={"run_id": evaluation["id"]})

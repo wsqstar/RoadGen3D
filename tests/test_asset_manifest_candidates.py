@@ -153,6 +153,35 @@ def test_scene_job_freezes_registered_candidate_repository(tmp_path: Path, monke
     assert eligible_page.status_code == 200
     assert eligible_page.json()["total"] == 2
 
+    search = client.get(
+        "/api/asset-catalog/search",
+        params={"q": "bench", "manifest": "fixture.jsonl", "category": "bench"},
+    )
+    assert search.status_code == 200
+    catalog_asset = search.json()["assets"][0]
+    assert catalog_asset["assetId"] == "bench-ready"
+    assert not any("path" in key.lower() for key in catalog_asset)
+    model = client.get(
+        "/api/asset-catalog/model",
+        params={
+            "manifest_name": "fixture.jsonl",
+            "asset_id": "bench-ready",
+            "fingerprint": summary["fingerprint"],
+        },
+    )
+    assert model.status_code == 200
+    assert model.headers["content-type"] == "model/gltf-binary"
+    assert model.content == b"glTF fixture"
+    stale_model = client.get(
+        "/api/asset-catalog/model",
+        params={
+            "manifest_name": "fixture.jsonl",
+            "asset_id": "bench-ready",
+            "fingerprint": "0" * 64,
+        },
+    )
+    assert stale_model.status_code == 409
+
     response = client.post("/api/scene/jobs", json={
         "draft": {
             "normalized_scene_query": "fixture street",

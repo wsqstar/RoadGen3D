@@ -10,9 +10,17 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 from fastapi import APIRouter, HTTPException, Query
+from fastapi.responses import FileResponse
 
 from roadgen3d.json_safe import make_json_safe
-from roadgen3d.services.asset_manifest_registry import list_manifest_summaries, read_manifest_page
+from roadgen3d.services.asset_manifest_registry import (
+    AssetManifestConflictError,
+    AssetReferenceError,
+    list_manifest_summaries,
+    read_manifest_page,
+    resolve_registered_asset,
+    search_registered_assets,
+)
 from web.api.schemas import AssetManifestSplitRequestModel
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -24,6 +32,58 @@ catalog_router = APIRouter(tags=["assets"])
 @catalog_router.get("/api/asset-manifests")
 def list_asset_manifests() -> Dict[str, Any]:
     return make_json_safe({"manifests": list_manifest_summaries()})
+
+
+@catalog_router.get("/api/asset-catalog/search")
+def search_asset_catalog(
+    q: str = Query(default="", max_length=160),
+    manifest: List[str] | None = Query(default=None),
+    category: str = Query(default="", max_length=80),
+    offset: int = Query(default=0, ge=0),
+    limit: int = Query(default=50, ge=1, le=200),
+) -> Dict[str, Any]:
+    try:
+        return make_json_safe(search_registered_assets(
+            query=q,
+            manifest_names=manifest,
+            category=category,
+            offset=offset,
+            limit=limit,
+        ))
+    except ValueError as exc:
+        message = str(exc)
+        status = 404 if message.startswith("Unknown registered") else 400
+        raise HTTPException(status_code=status, detail=message) from exc
+
+
+@catalog_router.get("/api/asset-catalog/model")
+def read_asset_catalog_model(
+    manifest_name: str = Query(min_length=1),
+    asset_id: str = Query(min_length=1),
+    fingerprint: str = Query(min_length=64, max_length=64, pattern=r"^[0-9a-f]{64}$"),
+) -> FileResponse:
+    try:
+        resolved = resolve_registered_asset(
+            manifest_name,
+            asset_id,
+            expected_fingerprint=fingerprint,
+            require_ready=True,
+        )
+    except AssetManifestConflictError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except (AssetReferenceError, ValueError) as exc:
+        message = str(exc)
+        status = 404 if message.startswith(("Unknown asset", "Unknown registered")) else 422
+        raise HTTPException(status_code=status, detail=message) from exc
+    mesh_path = Path(str(resolved["row"].get("mesh_path") or "")).resolve()
+    if not mesh_path.is_file():
+        raise HTTPException(status_code=404, detail="Registered asset model is unavailable.")
+    return FileResponse(
+        mesh_path,
+        media_type="model/gltf-binary",
+        filename=f"{asset_id}.glb",
+        headers={"Cache-Control": "private, max-age=300", "X-Content-Type-Options": "nosniff"},
+    )
 
 
 @router.get("")

@@ -312,6 +312,31 @@ def test_unified_api_forwards_evaluation_config_and_returns_service_payload() ->
     }
 
 
+def test_structured_evaluation_skips_visual_inputs_and_labels_proxy_score(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps(_minimal_layout_payload()), encoding="utf-8")
+
+    def _visual_call_forbidden(*_args, **_kwargs):
+        raise AssertionError("structured evaluation must not call a visual evaluator")
+
+    monkeypatch.setattr(eval_engine_module, "evaluate_safety", _visual_call_forbidden)
+    monkeypatch.setattr(eval_engine_module, "evaluate_beauty", _visual_call_forbidden)
+    result = DesignAssistantService().evaluate_scene_unified(
+        layout_path=str(layout_path),
+        rendered_views=[{"view_id": "overview", "image_data_url": "data:image/png;base64,AAAA"}],
+        evaluation_mode="structured",
+    )
+
+    assert result["evaluation_mode"] == "structured"
+    assert result["safety"] is None
+    assert result["beauty"] is None
+    assert result["overall"] is None
+    assert isinstance(result["structured_safety"], int)
+    assert isinstance(result["structured_beauty_proxy"], int)
+    assert isinstance(result["structured_composite_score"], int)
+    assert result["visual_metrics_status"] == "pending_full_evaluation"
+
+
 def test_unified_api_returns_400_for_all_zero_weights(tmp_path: Path) -> None:
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text(json.dumps(_minimal_layout_payload()), encoding="utf-8")

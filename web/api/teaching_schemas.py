@@ -44,6 +44,19 @@ class WorkflowStepRequest(BaseModel):
     workflow_step: Literal["area", "data", "annotation", "design", "evaluation", "compare_export"]
 
 
+class SceneAssetRefModel(BaseModel):
+    manifestName: str = Field(min_length=1, max_length=240)
+    assetId: str = Field(min_length=1, max_length=256)
+    fingerprint: str = Field(min_length=64, max_length=64, pattern=r"^[0-9a-f]{64}$")
+    category: str = Field(min_length=1, max_length=80)
+    label: str = Field(min_length=1, max_length=240)
+
+
+class SceneAssetPaletteModel(BaseModel):
+    schemaVersion: Literal["roadgen3d.asset-palette.v1"] = "roadgen3d.asset-palette.v1"
+    assets: List[SceneAssetRefModel] = Field(default_factory=list, max_length=200)
+
+
 class GeoJsonImportRequest(BaseModel):
     geojson: Dict[str, Any]
 
@@ -85,6 +98,7 @@ class RevisionCreateRequest(BaseModel):
     commands: List[Dict[str, Any]] = Field(default_factory=list, max_length=100)
     provenance: Dict[str, Any] = Field(default_factory=dict)
     auto_evaluate: bool = True
+    auto_evaluate_mode: Literal["structured", "full"] = "structured"
     evaluation_profile_id: str | None = None
     evaluation_weights: Dict[str, float] | None = None
 
@@ -95,6 +109,7 @@ class RevisionEditRequest(BaseModel):
     label: str = Field(default="Edited scene", max_length=180)
     provenance: Dict[str, Any] = Field(default_factory=dict)
     auto_evaluate: bool = True
+    auto_evaluate_mode: Literal["structured", "full"] = "structured"
     evaluation_profile_id: str | None = None
     evaluation_weights: Dict[str, float] | None = None
 
@@ -110,6 +125,7 @@ class EvaluationCreateRequest(BaseModel):
     weights: Dict[str, float] | None = None
     seed: int = 20260713
     auto_run: bool = True
+    evaluation_mode: Literal["structured", "full"] = "full"
 
 
 class RevisionCompareRequest(BaseModel):

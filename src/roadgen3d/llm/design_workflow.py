@@ -592,6 +592,7 @@ class DesignAssistantService:
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
         evaluation_profile: str = "auto",
         evaluation_config: Mapping[str, Any] | None = None,
+        evaluation_mode: str = "full",
     ) -> Dict[str, Any]:
         """Evaluate scene with unified 3-dimension scores using road-metrics EvalEngine.
 
@@ -609,10 +610,13 @@ class DesignAssistantService:
         if not layout.exists():
             raise RuntimeError(f"Layout file not found: {layout}")
         
+        mode = str(evaluation_mode or "full").strip().lower()
+        if mode not in {"structured", "full"}:
+            raise ValueError("evaluation_mode must be structured or full.")
         payload = json.loads(layout.read_text(encoding="utf-8"))
         profile = self._normalize_evaluation_profile(evaluation_profile, payload=payload)
-        effective_rendered_views = list(rendered_views or [])
-        if not effective_rendered_views:
+        effective_rendered_views = [] if mode == "structured" else list(rendered_views or [])
+        if mode == "full" and not effective_rendered_views:
             effective_rendered_views = rendered_views_for_evaluation_from_payload(
                 payload,
                 limit=DEFAULT_EVALUATION_RENDER_VIEW_LIMIT,
@@ -631,22 +635,32 @@ class DesignAssistantService:
         engine = self._eval_engine_for_profile(
             profile,
             evaluation_config=evaluation_config,
+            enable_llm_eval=mode == "full",
         )
         result = engine.evaluate(
             payload,
             rendered_views=visual_rendered_views,
-            image_path=image_path,
+            image_path=image_path if mode == "full" else None,
         )
         safety_available = self._llm_report_available(result.safety)
         beauty_available = self._llm_report_available(result.beauty)
         visual_scores_available = safety_available and beauty_available
         
         # Convert to Web API format (0-100 scale)
+        structured_safety = int(float(getattr(result.safety, "structural_score", result.safety.final_score)) * 100)
+        structured_beauty = int(float(getattr(result.beauty, "structural_score", result.beauty.final_score)) * 100)
+        structured_composite = int(float(result.evaluation_score) * 100)
         return {
+            "evaluation_mode": mode,
             "walkability": int(result.walkability.walkability_index * 100),
-            "safety": int(result.safety.final_score * 100) if safety_available else None,
-            "beauty": int(result.beauty.final_score * 100) if beauty_available else None,
-            "overall": int(result.evaluation_score * 100) if visual_scores_available else None,
+            "safety": int(result.safety.final_score * 100) if mode == "full" and safety_available else None,
+            "beauty": int(result.beauty.final_score * 100) if mode == "full" and beauty_available else None,
+            "overall": int(result.evaluation_score * 100) if mode == "full" and visual_scores_available else None,
+            "structured_safety": structured_safety,
+            "structured_beauty_proxy": structured_beauty,
+            "structured_composite_score": structured_composite if mode == "structured" else None,
+            "structured_composite_label": "structured_proxy_not_visual_overall" if mode == "structured" else None,
+            "visual_metrics_status": "pending_full_evaluation" if mode == "structured" else ("available" if visual_scores_available else "n/a"),
             "score_weights": self._score_weights_payload(engine),
             "score_formula": self._score_formula_text(engine),
             "evaluation_profile": profile,
@@ -771,6 +785,7 @@ class DesignAssistantService:
         profile: str,
         *,
         evaluation_config: Mapping[str, Any] | None = None,
+        enable_llm_eval: bool = True,
     ):
         engine = self.eval_engine
         overrides = dict(evaluation_config or {})
@@ -788,16 +803,17 @@ class DesignAssistantService:
             return engine
         active_config = getattr(engine, "config", None)
         active_profile = str(getattr(active_config, "evaluation_profile", "") or "")
+        active_llm = bool(getattr(active_config, "enable_llm_eval", False))
         if not overrides and (
             active_config is None
-            or profile == active_profile
+            or (profile == active_profile and active_llm == bool(enable_llm_eval))
             or not hasattr(self, "_EvalEngine")
         ):
             return engine
         try:
             profile_config = self._EvalConfig.for_profile(
                 profile,
-                enable_llm_eval=True,
+                enable_llm_eval=bool(enable_llm_eval),
             )
             effective_config = self._EvalConfig.from_dict(
                 overrides,

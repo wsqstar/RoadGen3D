@@ -17,6 +17,11 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from roadgen3d.services.osm_scene_source import fetch_normalized_osm_scene_source, osm_scene_source_response
+from roadgen3d.services.asset_manifest_registry import (
+    AssetManifestConflictError,
+    AssetReferenceError,
+    resolve_registered_asset,
+)
 from roadgen3d.services.osm_road_study import (
     build_osm_road_preview,
     preview_bundle_from_raw,
@@ -97,6 +102,36 @@ def _normalized_weights(value: Mapping[str, Any] | None) -> dict[str, float]:
     if total <= 0:
         raise ValueError("At least one evaluation weight must be positive.")
     return {key: round(number / total, 8) for key, number in weights.items()}
+
+
+def _normalized_asset_palette(value: Mapping[str, Any] | None) -> dict[str, Any]:
+    source = dict(value or {})
+    version = str(source.get("schemaVersion") or "roadgen3d.asset-palette.v1")
+    if version != "roadgen3d.asset-palette.v1":
+        raise ValueError("Unsupported asset palette schemaVersion.")
+    raw_assets = source.get("assets") or []
+    if not isinstance(raw_assets, list) or len(raw_assets) > 200:
+        raise ValueError("Asset palette may contain at most 200 assets.")
+    assets: list[dict[str, str]] = []
+    seen: set[tuple[str, str]] = set()
+    for index, raw in enumerate(raw_assets):
+        if not isinstance(raw, Mapping):
+            raise ValueError(f"asset_palette.assets[{index}] must be an object.")
+        item = {
+            "manifestName": str(raw.get("manifestName") or "").strip(),
+            "assetId": str(raw.get("assetId") or "").strip(),
+            "fingerprint": str(raw.get("fingerprint") or "").strip().lower(),
+            "category": str(raw.get("category") or "").strip().lower(),
+            "label": str(raw.get("label") or raw.get("assetId") or "Asset").strip()[:240],
+        }
+        if not all(item.values()) or len(item["fingerprint"]) != 64 or any(ch not in "0123456789abcdef" for ch in item["fingerprint"]):
+            raise ValueError(f"asset_palette.assets[{index}] is incomplete or has an invalid fingerprint.")
+        identity = (item["manifestName"], item["assetId"])
+        if identity in seen:
+            continue
+        seen.add(identity)
+        assets.append(item)
+    return {"schemaVersion": "roadgen3d.asset-palette.v1", "assets": assets}
 
 
 def _parameter_patch_for_design_goals(
@@ -264,6 +299,50 @@ class TeachingPlatformService:
             project.workflow_step = workflow_step
             self._audit(db, actor_id, project.id, "project.workflow_step", {"workflow_step": workflow_step})
             return self._project(project, "owner" if project.owner_id == actor_id else "teacher")
+
+    def get_asset_palette(self, actor_id: str, project_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id)
+            return _normalized_asset_palette(project.asset_palette)
+
+    def update_asset_palette(
+        self,
+        actor_id: str,
+        project_id: str,
+        palette: Mapping[str, Any],
+    ) -> dict[str, Any]:
+        normalized = _normalized_asset_palette(palette)
+        verified_assets: list[dict[str, str]] = []
+        for item in normalized["assets"]:
+            try:
+                resolved = resolve_registered_asset(
+                    item["manifestName"],
+                    item["assetId"],
+                    expected_fingerprint=item["fingerprint"],
+                    require_ready=True,
+                )
+            except AssetManifestConflictError as exc:
+                raise Conflict(str(exc)) from exc
+            except (AssetReferenceError, ValueError) as exc:
+                raise ValueError(str(exc)) from exc
+            public = resolved["public"]
+            verified_assets.append({
+                "manifestName": str(public["manifestName"]),
+                "assetId": str(public["assetId"]),
+                "fingerprint": str(public["fingerprint"]),
+                "category": str(public["category"]),
+                "label": str(item.get("label") or public["label"]),
+            })
+        verified = {"schemaVersion": "roadgen3d.asset-palette.v1", "assets": verified_assets}
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            project.asset_palette = verified
+            self._audit(db, actor_id, project.id, "project.asset_palette.update", {
+                "asset_count": len(verified_assets),
+                "asset_ids": [item["assetId"] for item in verified_assets],
+            })
+            db.flush()
+            return verified
 
     # ---- sources and artifacts ---------------------------------------------------------
     def import_geojson(self, actor_id: str, project_id: str, payload: Mapping[str, Any], *, kind: str = "geojson", provenance: Mapping[str, Any] | None = None) -> dict[str, Any]:
@@ -1072,7 +1151,10 @@ class TeachingPlatformService:
             project, _ = self._require_project(db, actor_id, project_id)
             return [self._profile(item) for item in db.scalars(select(EvaluationProfile).where(EvaluationProfile.course_id == project.course_id).order_by(EvaluationProfile.is_default.desc(), EvaluationProfile.created_at)).all()]
 
-    def create_evaluation_run(self, actor_id: str, project_id: str, *, revision_id: str, profile_id: str, weights: Mapping[str, Any] | None = None, seed: int = 20260713) -> dict[str, Any]:
+    def create_evaluation_run(self, actor_id: str, project_id: str, *, revision_id: str, profile_id: str, weights: Mapping[str, Any] | None = None, seed: int = 20260713, evaluation_mode: str = "full") -> dict[str, Any]:
+        mode = str(evaluation_mode or "full").strip().lower()
+        if mode not in {"structured", "full"}:
+            raise ValueError("evaluation_mode must be structured or full.")
         with self.database.session() as db:
             project, _ = self._require_project(db, actor_id, project_id, write=True)
             revision = db.get(SceneRevisionRecord, revision_id)
@@ -1082,7 +1164,7 @@ class TeachingPlatformService:
             if profile is None or profile.course_id != project.course_id:
                 raise NotFound("Evaluation profile not found in this course.")
             normalized = _normalized_weights(weights or profile.dimensions)
-            run = EvaluationRun(project_id=project.id, revision_id=revision.id, profile_id=profile.id, requested_by=actor_id, weights=normalized, seed=int(seed), provenance={"profile_version": profile.version, "metric_contract": "road-metrics", "python": platform.python_version()})
+            run = EvaluationRun(project_id=project.id, revision_id=revision.id, profile_id=profile.id, requested_by=actor_id, weights=normalized, seed=int(seed), provenance={"profile_version": profile.version, "metric_contract": "road-metrics", "metric_implementation_version": "structured-v1" if mode == "structured" else "full-v1", "evaluation_mode": mode, "python": platform.python_version()})
             db.add(run)
             revision.evaluation_status = "queued"
             project.workflow_step = "evaluation"
@@ -1102,6 +1184,7 @@ class TeachingPlatformService:
             run.status = "running"
             revision.evaluation_status = "running"
             weights = dict(run.weights)
+            evaluation_mode = str((run.provenance or {}).get("evaluation_mode") or "full")
         with self.artifacts.open(artifact.object_key) as handle, tempfile.TemporaryDirectory(prefix="roadgen3d-eval-") as tmp:
             layout_path = Path(tmp) / "scene_layout.json"
             layout_path.write_bytes(handle.read())
@@ -1110,6 +1193,7 @@ class TeachingPlatformService:
                     layout_path=str(layout_path),
                     evaluation_profile="auto",
                     evaluation_config={"aggregation": {"dimension_weights": weights}},
+                    evaluation_mode=evaluation_mode,
                 ))
                 error = ""
                 status = "succeeded"
@@ -1146,8 +1230,14 @@ class TeachingPlatformService:
                 revision = db.get(SceneRevisionRecord, revision_id)
                 if revision is None or revision.project_id != project_id:
                     raise NotFound("A comparison revision was not found in this project.")
-                latest = db.scalar(select(EvaluationRun).where(EvaluationRun.revision_id == revision.id, EvaluationRun.status == "succeeded").order_by(EvaluationRun.created_at.desc()))
-                items.append({"revision": self._revision(revision), "evaluation": self._evaluation(latest) if latest else None})
+                succeeded = db.scalars(select(EvaluationRun).where(EvaluationRun.revision_id == revision.id, EvaluationRun.status == "succeeded").order_by(EvaluationRun.created_at.desc())).all()
+                latest_by_mode: dict[str, EvaluationRun] = {}
+                for run in succeeded:
+                    mode = str((run.provenance or {}).get("evaluation_mode") or "full")
+                    latest_by_mode.setdefault(mode, run)
+                evaluations = {mode: self._evaluation(run) for mode, run in latest_by_mode.items()}
+                preferred = evaluations.get("full") or evaluations.get("structured")
+                items.append({"revision": self._revision(revision), "evaluation": preferred, "evaluations": evaluations})
             baseline_scores = (items[0]["evaluation"] or {}).get("result", {})
             for item in items:
                 scores = (item["evaluation"] or {}).get("result", {})
@@ -1454,7 +1544,7 @@ class TeachingPlatformService:
 
     @staticmethod
     def _project(item: Project, role: str) -> dict[str, Any]:
-        return {"id": item.id, "course_id": item.course_id, "owner_id": item.owner_id, "name": item.name, "city": item.city, "design_goal": item.design_goal, "aoi_bbox": item.aoi_bbox, "workflow_step": item.workflow_step, "role": role, "archived": item.archived, "created_at": _iso(item.created_at), "updated_at": _iso(item.updated_at)}
+        return {"id": item.id, "course_id": item.course_id, "owner_id": item.owner_id, "name": item.name, "city": item.city, "design_goal": item.design_goal, "aoi_bbox": item.aoi_bbox, "workflow_step": item.workflow_step, "asset_palette": _normalized_asset_palette(item.asset_palette), "role": role, "archived": item.archived, "created_at": _iso(item.created_at), "updated_at": _iso(item.updated_at)}
 
     @staticmethod
     def _source(item: SceneSourceRecord, normalized: Mapping[str, Any] | None = None) -> dict[str, Any]:

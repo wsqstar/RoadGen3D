@@ -79,6 +79,11 @@ class Project(Base, TimestampMixin):
     design_goal: Mapped[str] = mapped_column(String(240), default="balanced_street", nullable=False)
     aoi_bbox: Mapped[list[Any] | None] = mapped_column(JSON, nullable=True)
     workflow_step: Mapped[str] = mapped_column(String(32), default="area", nullable=False)
+    asset_palette: Mapped[dict[str, Any]] = mapped_column(
+        JSON,
+        default=lambda: {"schemaVersion": "roadgen3d.asset-palette.v1", "assets": []},
+        nullable=False,
+    )
     archived: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
 
 
