@@ -24,13 +24,17 @@ from web.api.teaching_schemas import (
     OsmImportRequest,
     OsmRoadStudySelectionRequest,
     ProjectCreateRequest,
+    PersonalRegisterRequest,
     RegisterRequest,
+    RegistrationInviteCreateRequest,
     RevisionCompareRequest,
     RevisionCreateRequest,
     RevisionEditRequest,
     SceneGenerateRequest,
     SceneAssetPaletteModel,
+    UserStatusUpdateRequest,
     WorkflowStepRequest,
+    WorkspaceProjectCreateRequest,
 )
 
 
@@ -109,9 +113,19 @@ def bootstrap(body: BootstrapRequest, request: Request):
     return _call(lambda: _service(request).bootstrap_admin(email=body.email, password=body.password, display_name=body.display_name, token=body.bootstrap_token))
 
 
+@router.get("/auth/bootstrap-status")
+def bootstrap_status(request: Request):
+    return _call(lambda: _service(request).bootstrap_status())
+
+
 @router.post("/auth/login")
 def login(body: LoginRequest, request: Request):
     return _call(lambda: _service(request).login(email=body.email, password=body.password))
+
+
+@router.post("/auth/logout", status_code=204)
+def logout(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)):
+    _call(lambda: _service(request).logout(credentials.credentials if credentials else ""))
 
 
 @router.post("/auth/register", status_code=201)
@@ -119,9 +133,86 @@ def register(body: RegisterRequest, request: Request):
     return _call(lambda: _service(request).register_student(email=body.email, password=body.password, display_name=body.display_name, course_code=body.course_code, invite_code=body.invite_code))
 
 
+@router.post("/auth/register-personal", status_code=201)
+def register_personal(body: PersonalRegisterRequest, request: Request):
+    return _call(lambda: _service(request).register_personal(
+        email=body.email,
+        password=body.password,
+        display_name=body.display_name,
+        invite_code=body.invite_code,
+    ))
+
+
 @router.get("/me")
 def me(actor: dict[str, Any] = Depends(_actor)):
     return actor
+
+
+@router.get("/workspace")
+def workspace(request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).workspace(actor["id"]))
+
+
+@router.get("/workspace/projects")
+def workspace_projects(request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_workspace_projects(actor["id"]))}
+
+
+@router.post("/workspace/projects", status_code=201)
+def create_workspace_project(body: WorkspaceProjectCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).create_workspace_project(
+        actor["id"],
+        name=body.name,
+        city=body.city,
+        design_goal=body.design_goal,
+        aoi_bbox=body.aoi_bbox,
+    ))
+
+
+@router.get("/admin/overview")
+def admin_overview(request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).admin_overview(actor["id"]))
+
+
+@router.get("/admin/users")
+def admin_users(
+    request: Request,
+    query: str = Query(default="", max_length=160),
+    active: bool | None = Query(default=None),
+    limit: int = Query(default=50, ge=1, le=200),
+    actor: dict[str, Any] = Depends(_actor),
+):
+    return {"items": _call(lambda: _service(request).admin_users(actor["id"], query=query, active=active, limit=limit))}
+
+
+@router.get("/admin/users/{user_id}")
+def admin_user(user_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).admin_user(actor["id"], user_id))
+
+
+@router.post("/admin/users/{user_id}/status")
+def admin_user_status(user_id: str, body: UserStatusUpdateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).set_user_active(actor["id"], user_id, is_active=body.is_active))
+
+
+@router.get("/admin/registration-invites")
+def admin_registration_invites(request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return {"items": _call(lambda: _service(request).list_registration_invites(actor["id"]))}
+
+
+@router.post("/admin/registration-invites", status_code=201)
+def create_registration_invite(body: RegistrationInviteCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).create_registration_invite(
+        actor["id"],
+        expires_in_hours=body.expires_in_hours,
+        max_uses=body.max_uses,
+        note=body.note,
+    ))
+
+
+@router.post("/admin/registration-invites/{invite_id}/revoke")
+def revoke_registration_invite(invite_id: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).revoke_registration_invite(actor["id"], invite_id))
 
 
 @router.get("/capabilities")

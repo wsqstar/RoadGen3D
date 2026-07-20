@@ -27,6 +27,13 @@ class RegisterRequest(BaseModel):
     invite_code: str = Field(min_length=1, max_length=128)
 
 
+class PersonalRegisterRequest(BaseModel):
+    email: str
+    password: str = Field(min_length=8, max_length=256)
+    display_name: str = Field(min_length=1, max_length=120)
+    invite_code: str = Field(min_length=1, max_length=128)
+
+
 class CourseCreateRequest(BaseModel):
     name: str = Field(min_length=1, max_length=160)
     code: str = Field(min_length=1, max_length=64)
@@ -38,6 +45,23 @@ class ProjectCreateRequest(BaseModel):
     city: str = Field(default="广州", max_length=120)
     design_goal: str = Field(default="balanced_street", max_length=240)
     aoi_bbox: List[float] | None = Field(default=None, min_length=4, max_length=4)
+
+
+class WorkspaceProjectCreateRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=180)
+    city: str = Field(default="广州", max_length=120)
+    design_goal: str = Field(default="balanced_street", max_length=240)
+    aoi_bbox: List[float] | None = Field(default=None, min_length=4, max_length=4)
+
+
+class RegistrationInviteCreateRequest(BaseModel):
+    expires_in_hours: int = Field(default=72, ge=1, le=720)
+    max_uses: int = Field(default=1, ge=1, le=1000)
+    note: str = Field(default="", max_length=240)
+
+
+class UserStatusUpdateRequest(BaseModel):
+    is_active: bool
 
 
 class WorkflowStepRequest(BaseModel):

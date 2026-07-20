@@ -10,7 +10,7 @@ import os
 import platform
 import tempfile
 import zipfile
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
@@ -46,6 +46,7 @@ from .models import (
     Job,
     Membership,
     Project,
+    RegistrationInvite,
     SceneRevisionRecord,
     SceneSourceRecord,
     User,
@@ -231,7 +232,14 @@ class TeachingPlatformService:
             )
             db.add(user)
             db.flush()
+            self._audit(db, user.id, None, "auth.bootstrap", {})
             return self._user(user)
+
+    def bootstrap_status(self) -> dict[str, bool]:
+        """Safe deployment probe; it deliberately exposes no account details."""
+
+        with self.database.session() as db:
+            return {"initialized": bool(db.scalar(select(func.count(User.id))))}
 
     def login(self, *, email: str, password: str) -> dict[str, Any]:
         with self.database.session() as db:
@@ -240,7 +248,18 @@ class TeachingPlatformService:
                 raise Forbidden("Invalid email or password.")
             token, token_hash, expires_at = issue_session_token()
             db.add(AuthSession(user_id=user.id, token_hash=token_hash, expires_at=expires_at))
+            self._audit(db, user.id, None, "auth.login", {})
             return {"access_token": token, "token_type": "bearer", "expires_at": _iso(expires_at), "user": self._user(user)}
+
+    def logout(self, token: str) -> None:
+        if not token:
+            return
+        with self.database.session() as db:
+            auth = db.scalar(select(AuthSession).where(AuthSession.token_hash == digest_secret(token)))
+            if auth is None:
+                return
+            self._audit(db, auth.user_id, None, "auth.logout", {})
+            db.delete(auth)
 
     def authenticate(self, token: str) -> dict[str, Any]:
         if not token:
@@ -266,7 +285,199 @@ class TeachingPlatformService:
             db.add(user)
             db.flush()
             db.add(Membership(course_id=course.id, user_id=user.id, role="student"))
+            self._audit(db, user.id, None, "auth.course_register", {"course_id": course.id})
             return self._user(user)
+
+    def register_personal(
+        self,
+        *,
+        email: str,
+        password: str,
+        display_name: str,
+        invite_code: str,
+    ) -> dict[str, Any]:
+        """Consume a bounded invite and create an isolated professional workspace."""
+
+        with self.database.session() as db:
+            invite = db.scalar(select(RegistrationInvite).where(
+                RegistrationInvite.code_hash == digest_secret(invite_code.strip()),
+                RegistrationInvite.is_active.is_(True),
+            ))
+            if (
+                invite is None
+                or invite.expires_at.replace(tzinfo=invite.expires_at.tzinfo or timezone.utc) <= now_utc()
+                or invite.used_count >= invite.max_uses
+            ):
+                raise Forbidden("The registration invitation is invalid, expired, or has already been used.")
+            normalized_email = normalize_email(email)
+            if db.scalar(select(User).where(User.email == normalized_email)) is not None:
+                raise Conflict("An account already exists for this email address.")
+            user = User(
+                email=normalized_email,
+                display_name=display_name.strip()[:120],
+                password_hash=hash_password(password),
+                system_role="student",
+            )
+            db.add(user)
+            db.flush()
+            workspace = self._create_personal_workspace(db, user)
+            invite.used_count += 1
+            if invite.used_count >= invite.max_uses:
+                invite.is_active = False
+            token, token_hash, expires_at = issue_session_token()
+            db.add(AuthSession(user_id=user.id, token_hash=token_hash, expires_at=expires_at))
+            self._audit(db, user.id, None, "auth.personal_register", {"invite_id": invite.id, "workspace_id": workspace.id})
+            return {
+                "access_token": token,
+                "token_type": "bearer",
+                "expires_at": _iso(expires_at),
+                "user": self._user(user),
+                "workspace": self._course(workspace, "owner"),
+            }
+
+    def workspace(self, actor_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            actor = self._require_user(db, actor_id)
+            workspace = self._personal_workspace(db, actor.id, create=True)
+            projects = self._list_workspace_projects(db, actor.id, workspace.id)
+            return {"workspace": self._course(workspace, "owner"), "projects": projects}
+
+    def create_workspace_project(
+        self,
+        actor_id: str,
+        *,
+        name: str,
+        city: str,
+        design_goal: str,
+        aoi_bbox: Sequence[float] | None,
+    ) -> dict[str, Any]:
+        with self.database.session() as db:
+            actor = self._require_user(db, actor_id)
+            workspace = self._personal_workspace(db, actor.id, create=True)
+            bbox = self._bbox(aoi_bbox) if aoi_bbox else None
+            project = Project(
+                course_id=workspace.id,
+                owner_id=actor.id,
+                name=name.strip()[:180],
+                city=(city.strip() or "广州")[:120],
+                design_goal=(design_goal.strip() or "balanced_street")[:240],
+                aoi_bbox=bbox,
+            )
+            db.add(project)
+            db.flush()
+            self._audit(db, actor.id, project.id, "workspace.project.create", {"workspace_id": workspace.id, "city": project.city})
+            return self._project(project, role="owner")
+
+    def list_workspace_projects(self, actor_id: str) -> list[dict[str, Any]]:
+        with self.database.session() as db:
+            actor = self._require_user(db, actor_id)
+            workspace = self._personal_workspace(db, actor.id, create=True)
+            return self._list_workspace_projects(db, actor.id, workspace.id)
+
+    # ---- administrator operations (metadata only) -------------------------------------
+    def admin_overview(self, actor_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            self._require_admin(db, actor_id)
+            users = db.scalars(select(User)).all()
+            projects = db.scalars(select(Project).where(Project.archived.is_(False))).all()
+            jobs = db.scalars(select(Job)).all()
+            artifacts = db.scalars(select(Artifact)).all()
+            status_counts: dict[str, int] = {}
+            for job in jobs:
+                status_counts[job.status] = status_counts.get(job.status, 0) + 1
+            return {
+                "users": {"total": len(users), "active": sum(1 for item in users if item.is_active)},
+                "projects": {"total": len(projects), "personal": sum(1 for item in projects if self._project_scope(db, item) == "personal")},
+                "jobs": {"total": len(jobs), "by_status": status_counts, "failed": status_counts.get("failed", 0)},
+                "storage_bytes": sum(int(item.byte_size or 0) for item in artifacts),
+                "recent_activity": [_iso(item.created_at) for item in db.scalars(select(AuditLog).order_by(AuditLog.created_at.desc()).limit(10)).all()],
+            }
+
+    def admin_users(self, actor_id: str, *, query: str = "", active: bool | None = None, limit: int = 50) -> list[dict[str, Any]]:
+        with self.database.session() as db:
+            self._require_admin(db, actor_id)
+            rows = db.scalars(select(User).order_by(User.created_at.desc())).all()
+            term = query.strip().lower()
+            results = []
+            for user in rows:
+                if term and term not in user.email.lower() and term not in user.display_name.lower():
+                    continue
+                if active is not None and user.is_active is not active:
+                    continue
+                results.append(self._admin_user_summary(db, user))
+            return results[:limit]
+
+    def admin_user(self, actor_id: str, user_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            self._require_admin(db, actor_id)
+            user = db.get(User, user_id)
+            if user is None:
+                raise NotFound("User not found.")
+            summary = self._admin_user_summary(db, user)
+            projects = db.scalars(select(Project).where(Project.owner_id == user.id).order_by(Project.updated_at.desc())).all()
+            summary["projects"] = [
+                {
+                    "id": item.id,
+                    "name": item.name,
+                    "scope": self._project_scope(db, item),
+                    "workflow_step": item.workflow_step,
+                    "updated_at": _iso(item.updated_at),
+                    "revision_count": int(db.scalar(select(func.count(SceneRevisionRecord.id)).where(SceneRevisionRecord.project_id == item.id)) or 0),
+                    "latest_job_status": db.scalar(select(Job.status).where(Job.project_id == item.id).order_by(Job.updated_at.desc()).limit(1)),
+                }
+                for item in projects
+            ]
+            return summary
+
+    def set_user_active(self, actor_id: str, user_id: str, *, is_active: bool) -> dict[str, Any]:
+        with self.database.session() as db:
+            actor = self._require_admin(db, actor_id)
+            if actor.id == user_id and not is_active:
+                raise ValueError("Administrators cannot suspend their own active account.")
+            user = db.get(User, user_id)
+            if user is None:
+                raise NotFound("User not found.")
+            user.is_active = bool(is_active)
+            if not user.is_active:
+                for session in db.scalars(select(AuthSession).where(AuthSession.user_id == user.id)).all():
+                    db.delete(session)
+            self._audit(db, actor.id, None, "admin.user.status", {"user_id": user.id, "is_active": user.is_active})
+            return self._admin_user_summary(db, user)
+
+    def create_registration_invite(self, actor_id: str, *, expires_in_hours: int = 72, max_uses: int = 1, note: str = "") -> dict[str, Any]:
+        if not 1 <= int(expires_in_hours) <= 24 * 30:
+            raise ValueError("expires_in_hours must be between 1 and 720.")
+        if not 1 <= int(max_uses) <= 1000:
+            raise ValueError("max_uses must be between 1 and 1000.")
+        invite_code, code_hash = issue_invite_code()
+        with self.database.session() as db:
+            self._require_admin(db, actor_id)
+            invite = RegistrationInvite(
+                code_hash=code_hash,
+                created_by=actor_id,
+                expires_at=now_utc() + timedelta(hours=int(expires_in_hours)),
+                max_uses=int(max_uses),
+                note=note.strip()[:240],
+            )
+            db.add(invite)
+            db.flush()
+            self._audit(db, actor_id, None, "admin.registration_invite.create", {"invite_id": invite.id, "max_uses": invite.max_uses})
+            return {**self._registration_invite(invite), "invite_code": invite_code}
+
+    def list_registration_invites(self, actor_id: str) -> list[dict[str, Any]]:
+        with self.database.session() as db:
+            self._require_admin(db, actor_id)
+            return [self._registration_invite(item) for item in db.scalars(select(RegistrationInvite).order_by(RegistrationInvite.created_at.desc())).all()]
+
+    def revoke_registration_invite(self, actor_id: str, invite_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            self._require_admin(db, actor_id)
+            invite = db.get(RegistrationInvite, invite_id)
+            if invite is None:
+                raise NotFound("Registration invitation not found.")
+            invite.is_active = False
+            self._audit(db, actor_id, None, "admin.registration_invite.revoke", {"invite_id": invite.id})
+            return self._registration_invite(invite)
 
     def create_course(self, actor_id: str, *, name: str, code: str) -> dict[str, Any]:
         invite_code, invite_hash = issue_invite_code()
@@ -298,7 +509,7 @@ class TeachingPlatformService:
             rows = []
             for membership in memberships:
                 course = db.get(Course, membership.course_id)
-                if course is not None:
+                if course is not None and course.scope == "course":
                     rows.append(self._course(course, membership.role))
             return rows
 
@@ -1593,12 +1804,88 @@ class TeachingPlatformService:
             raise Forbidden("User account not found or inactive.")
         return user
 
+    def _require_admin(self, db: Session, user_id: str) -> User:
+        user = self._require_user(db, user_id)
+        if user.system_role != "admin":
+            raise Forbidden("Administrator access is required.")
+        return user
+
+    @staticmethod
+    def _create_personal_workspace(db: Session, user: User) -> Course:
+        # The unique code is an internal database requirement only. It is never
+        # returned through course endpoints or shown to a professional user.
+        workspace = Course(
+            name=f"{user.display_name} 的专业工作区",
+            code=f"PW-{new_id().upper()[:24]}",
+            invite_hash=digest_secret(new_id()),
+            owner_id=user.id,
+            scope="personal",
+        )
+        db.add(workspace)
+        db.flush()
+        db.add(Membership(course_id=workspace.id, user_id=user.id, role="student"))
+        db.add(EvaluationProfile(
+            course_id=workspace.id,
+            created_by=user.id,
+            name="个人项目结构化评价",
+            dimensions=_normalized_weights(None),
+            is_default=True,
+        ))
+        return workspace
+
+    def _personal_workspace(self, db: Session, user_id: str, *, create: bool) -> Course:
+        workspace = db.scalar(select(Course).where(
+            Course.owner_id == user_id,
+            Course.scope == "personal",
+            Course.archived.is_(False),
+        ))
+        if workspace is not None:
+            return workspace
+        if not create:
+            raise NotFound("Personal workspace not found.")
+        user = self._require_user(db, user_id)
+        return self._create_personal_workspace(db, user)
+
+    @staticmethod
+    def _list_workspace_projects(db: Session, user_id: str, workspace_id: str) -> list[dict[str, Any]]:
+        rows = db.scalars(select(Project).where(
+            Project.course_id == workspace_id,
+            Project.owner_id == user_id,
+            Project.archived.is_(False),
+        ).order_by(Project.updated_at.desc())).all()
+        return [TeachingPlatformService._project(item, "owner") for item in rows]
+
+    @staticmethod
+    def _project_scope(db: Session, project: Project) -> str:
+        course = db.get(Course, project.course_id)
+        return course.scope if course is not None else "course"
+
+    def _admin_user_summary(self, db: Session, user: User) -> dict[str, Any]:
+        projects = db.scalars(select(Project).where(Project.owner_id == user.id, Project.archived.is_(False))).all()
+        project_ids = [item.id for item in projects]
+        jobs = db.scalars(select(Job).where(Job.owner_id == user.id)).all()
+        job_statuses: dict[str, int] = {}
+        for job in jobs:
+            job_statuses[job.status] = job_statuses.get(job.status, 0) + 1
+        storage_bytes = int(db.scalar(select(func.coalesce(func.sum(Artifact.byte_size), 0)).where(Artifact.owner_id == user.id)) or 0)
+        last_activity = db.scalar(select(func.max(AuditLog.created_at)).where(AuditLog.user_id == user.id))
+        return {
+            **self._user(user),
+            "is_active": user.is_active,
+            "project_count": len(project_ids),
+            "personal_project_count": sum(1 for item in projects if self._project_scope(db, item) == "personal"),
+            "revision_count": int(db.scalar(select(func.count(SceneRevisionRecord.id)).where(SceneRevisionRecord.project_id.in_(project_ids))) or 0) if project_ids else 0,
+            "storage_bytes": storage_bytes,
+            "jobs_by_status": job_statuses,
+            "last_activity_at": _iso(last_activity),
+        }
+
     def _require_membership(self, db: Session, user_id: str, course_id: str) -> Membership:
         user = self._require_user(db, user_id)
         membership = db.scalar(select(Membership).where(Membership.user_id == user.id, Membership.course_id == course_id))
-        if membership is None and user.system_role != "admin":
+        if membership is None:
             raise Forbidden("You are not a member of this course.")
-        return membership or Membership(course_id=course_id, user_id=user.id, role="admin")
+        return membership
 
     def _require_project(self, db: Session, user_id: str, project_id: str, *, write: bool = False) -> tuple[Project, str]:
         project = db.get(Project, project_id)
@@ -1631,7 +1918,19 @@ class TeachingPlatformService:
 
     @staticmethod
     def _course(item: Course, role: str) -> dict[str, Any]:
-        return {"id": item.id, "name": item.name, "code": item.code, "role": role, "archived": item.archived, "created_at": _iso(item.created_at)}
+        return {"id": item.id, "name": item.name, "code": item.code, "scope": item.scope, "role": role, "archived": item.archived, "created_at": _iso(item.created_at)}
+
+    @staticmethod
+    def _registration_invite(item: RegistrationInvite) -> dict[str, Any]:
+        return {
+            "id": item.id,
+            "expires_at": _iso(item.expires_at),
+            "max_uses": item.max_uses,
+            "used_count": item.used_count,
+            "is_active": item.is_active,
+            "note": item.note,
+            "created_at": _iso(item.created_at),
+        }
 
     @staticmethod
     def _project(item: Project, role: str) -> dict[str, Any]:

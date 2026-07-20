@@ -55,7 +55,25 @@ class Course(Base, TimestampMixin):
     code: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
     invite_hash: Mapped[str] = mapped_column(String(64), nullable=False)
     owner_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    # Personal workspaces intentionally reuse the course/project schema while
+    # remaining hidden from every course-oriented endpoint and UI.
+    scope: Mapped[str] = mapped_column(String(16), default="course", nullable=False, index=True)
     archived: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+
+
+class RegistrationInvite(Base, TimestampMixin):
+    """One-time (or bounded-use) invite for professional personal workspaces."""
+
+    __tablename__ = "registration_invites"
+
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=new_id)
+    code_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
+    created_by: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True, nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    max_uses: Mapped[int] = mapped_column(Integer, default=1, nullable=False)
+    used_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    note: Mapped[str] = mapped_column(String(240), default="", nullable=False)
 
 
 class Membership(Base, TimestampMixin):

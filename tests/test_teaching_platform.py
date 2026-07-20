@@ -139,6 +139,72 @@ def test_geojson_crs_transform_stable_ids_and_intersection_annotation():
     assert first["quality_report"]["conversion_ok"] is True
 
 
+def test_personal_workspace_invites_isolate_projects_and_admin_metadata(client: TestClient):
+    """Professional users share deployment infrastructure, never project content."""
+
+    boot = client.post("/api/v1/auth/bootstrap", json={
+        "email": "admin@example.edu",
+        "password": "admin-pass-123",
+        "display_name": "Administrator",
+    })
+    assert boot.status_code == 201, boot.text
+    admin_token = client.post("/api/v1/auth/login", json={
+        "email": "admin@example.edu", "password": "admin-pass-123",
+    }).json()["access_token"]
+
+    def invite() -> str:
+        response = client.post(
+            "/api/v1/admin/registration-invites",
+            headers=_auth(admin_token),
+            json={"max_uses": 1, "expires_in_hours": 24, "note": "tenant isolation test"},
+        )
+        assert response.status_code == 201, response.text
+        return response.json()["invite_code"]
+
+    first = client.post("/api/v1/auth/register-personal", json={
+        "email": "first@example.edu", "password": "personal-pass-123", "display_name": "First", "invite_code": invite(),
+    })
+    second = client.post("/api/v1/auth/register-personal", json={
+        "email": "second@example.edu", "password": "personal-pass-123", "display_name": "Second", "invite_code": invite(),
+    })
+    assert first.status_code == 201, first.text
+    assert second.status_code == 201, second.text
+    first_token, second_token = first.json()["access_token"], second.json()["access_token"]
+
+    first_workspace = client.get("/api/v1/workspace", headers=_auth(first_token))
+    assert first_workspace.status_code == 200, first_workspace.text
+    assert first_workspace.json()["workspace"]["scope"] == "personal"
+    assert client.get("/api/v1/courses", headers=_auth(first_token)).json()["items"] == []
+
+    first_project = client.post("/api/v1/workspace/projects", headers=_auth(first_token), json={
+        "name": "First private street", "city": "广州", "design_goal": "walkable street",
+    })
+    second_project = client.post("/api/v1/workspace/projects", headers=_auth(second_token), json={
+        "name": "Second private street", "city": "深圳", "design_goal": "safe street",
+    })
+    assert first_project.status_code == 201, first_project.text
+    assert second_project.status_code == 201, second_project.text
+    assert client.get(f"/api/v1/projects/{second_project.json()['id']}", headers=_auth(first_token)).status_code == 403
+    assert client.get(f"/api/v1/projects/{first_project.json()['id']}", headers=_auth(second_token)).status_code == 403
+    # An administrator receives operational metadata only, not a membership bypass.
+    assert client.get(f"/api/v1/projects/{first_project.json()['id']}", headers=_auth(admin_token)).status_code == 403
+
+    overview = client.get("/api/v1/admin/overview", headers=_auth(admin_token))
+    users = client.get("/api/v1/admin/users", headers=_auth(admin_token))
+    assert overview.status_code == 200 and overview.json()["users"]["total"] == 3
+    assert users.status_code == 200
+    first_summary = next(item for item in users.json()["items"] if item["email"] == "first@example.edu")
+    assert first_summary["project_count"] == 1
+    assert "layout" not in json.dumps(first_summary)
+    assert client.get("/api/v1/admin/overview", headers=_auth(first_token)).status_code == 403
+
+    # Suspending removes active sessions immediately; a later administrator login can reactivate.
+    suspended = client.post(f"/api/v1/admin/users/{first.json()['user']['id']}/status", headers=_auth(admin_token), json={"is_active": False})
+    assert suspended.status_code == 200, suspended.text
+    assert client.get("/api/v1/workspace", headers=_auth(first_token)).status_code == 403
+    assert client.post(f"/api/v1/admin/users/{first.json()['user']['id']}/status", headers=_auth(admin_token), json={"is_active": True}).status_code == 200
+
+
 def test_shared_workflow_source_annotation_review_and_project_viewer_manifest(client: TestClient):
     _teacher_token, student_token, course = _bootstrap_course_and_student(client)
     project = client.post("/api/v1/projects", headers=_auth(student_token), json={
