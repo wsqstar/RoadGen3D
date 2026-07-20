@@ -491,10 +491,12 @@ def compile_street_design_parameter_spec(
         "lush_natural": "lush_walkable_v1",
         "transit_modern": "transit_modern_v1",
     }[furniture["style"]]
+    lane_carriageway_width = skeleton["laneCount"] * skeleton["laneWidthM"]
+    median_width = skeleton["median"]["widthM"] if skeleton["median"]["enabled"] else 0.0
     patch: Dict[str, Any] = {
         "lane_count": skeleton["laneCount"],
         "base_lane_width_m": skeleton["laneWidthM"],
-        "road_width_m": skeleton["laneCount"] * skeleton["laneWidthM"],
+        "road_width_m": lane_carriageway_width + median_width,
         "sidewalk_width_m": skeleton["sidewalkWidthM"],
         "furnishing_width_m": skeleton["furnishingWidthM"],
         "curb_width_m": skeleton["curbWidthM"],
@@ -503,6 +505,11 @@ def compile_street_design_parameter_spec(
         "median_width_m": skeleton["median"]["widthM"],
         "bus_stop_enabled": skeleton["busStop"]["enabled"],
         "bus_stop_placement": skeleton["busStop"]["placement"],
+        "max_bus_stops_per_scene": (
+            max(1, int(math.ceil(float(furniture["categories"]["bus_stop"]["targetCountPer100M"]))))
+            if skeleton["busStop"]["enabled"]
+            else 0
+        ),
         "density": furniture["globalDensity"],
         "furniture_style": furniture["style"],
         "style_preset": style_preset,

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import sys
 from collections import defaultdict
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -139,6 +140,33 @@ def _sample_annotation_payload():
             },
         ],
     }
+
+
+def test_v2_parameters_materialize_median_and_bus_bay_surfaces():
+    config = replace(
+        build_reference_annotation_compose_config(),
+        median_enabled=True,
+        median_kind="planted",
+        median_width_m=2.0,
+        bus_stop_enabled=True,
+        bus_stop_placement="bay",
+        furnishing_width_m=1.2,
+    )
+    bridge = build_reference_annotation_scene_bridge(_sample_annotation_payload(), compose_config=config)
+
+    assert bridge.summary_metadata["parametric_median"]["enabled"] is True
+    assert bridge.summary_metadata["parametric_median"]["width_m"] == pytest.approx(2.0)
+    assert bridge.placement_context.strip_zones["center_median_green"].area > 1.0
+    surfaces = {
+        item["surface_id"]: item
+        for item in bridge.placement_context.surface_annotations
+        if item.get("generated_from_parameters")
+    }
+    assert surfaces["parametric_bus_bay_0"]["surface_role"] == "bus_lane"
+    assert surfaces["parametric_transit_pad_0"]["surface_role"] == "transit_pad"
+    assert surfaces["parametric_bus_bay_0"]["geometry"].intersection(
+        surfaces["parametric_transit_pad_0"]["geometry"]
+    ).area < 1e-4
 
 
 def _detailed_cross_strips():

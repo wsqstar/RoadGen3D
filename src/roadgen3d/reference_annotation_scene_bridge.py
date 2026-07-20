@@ -325,6 +325,175 @@ def _annotation_surface_records(
     return records
 
 
+def _parametric_bus_stop_surface_records(
+    *,
+    config: StreetComposeConfig,
+    local_centerlines: Sequence[Tuple[int, Any, Sequence[Tuple[float, float]]]],
+    existing_records: Sequence[Mapping[str, Any]],
+) -> List[Dict[str, Any]]:
+    """Create one deterministic, geometry-owned bus bay for v2 parameters.
+
+    The bay and its waiting pad enter the same semantic surface partition as
+    authored reference surfaces.  Curbside stops need no extra road geometry
+    and are handled by the explicit transit-edge placement band.
+    """
+
+    if not bool(getattr(config, "bus_stop_enabled", False)):
+        return []
+    if str(getattr(config, "bus_stop_placement", "curbside") or "curbside").strip().lower() != "bay":
+        return []
+    if any(
+        str(record.get("surface_role", "") or "").strip().lower() in {"bus_lane", "transit_pad"}
+        for record in existing_records
+    ):
+        return []
+
+    candidates: List[Tuple[float, int, Any, Sequence[Tuple[float, float]]]] = []
+    for road_id, centerline, points in local_centerlines:
+        length_m = sum(
+            math.hypot(float(b[0]) - float(a[0]), float(b[1]) - float(a[1]))
+            for a, b in zip(points, points[1:])
+        )
+        if length_m >= 18.0:
+            candidates.append((float(length_m), int(road_id), centerline, points))
+    if not candidates:
+        return []
+    length_m, road_id, centerline, points = max(candidates, key=lambda item: (item[0], -item[1]))
+    bay_length_m = min(30.0, max(18.0, length_m * 0.28))
+    station_start_m = max(1.0, (length_m - bay_length_m) * 0.5)
+    station_end_m = min(length_m - 1.0, station_start_m + bay_length_m)
+    road_half_width_m = max(float(centerline.carriageway_width_m()) * 0.5, 1.0)
+    bay_depth_m = max(2.5, float(getattr(config, "furnishing_width_m", 0.0) or 0.0))
+    pad_depth_m = max(1.8, float(getattr(config, "sidewalk_width_m", 1.8) or 1.8))
+    bay_inner = -road_half_width_m
+    bay_outer = -(road_half_width_m + bay_depth_m)
+    pad_inner = bay_outer
+    pad_outer = bay_outer - pad_depth_m
+    bay_geometry = _reference_surface_annotation_polygon(
+        points,
+        station_start_m=station_start_m,
+        station_end_m=station_end_m,
+        lateral_start_m=bay_inner,
+        lateral_end_m=bay_outer,
+        surface_kind="bus_lane_widening",
+        road_half_width_m=road_half_width_m,
+    )
+    pad_geometry = _reference_surface_annotation_polygon(
+        points,
+        station_start_m=station_start_m,
+        station_end_m=station_end_m,
+        lateral_start_m=pad_inner,
+        lateral_end_m=pad_outer,
+        surface_kind="transit_pad",
+        road_half_width_m=road_half_width_m,
+    )
+    if any(geometry is None or getattr(geometry, "is_empty", True) for geometry in (bay_geometry, pad_geometry)):
+        return []
+
+    base = {
+        "centerline_id": str(centerline.feature_id),
+        "station_start_m": float(station_start_m),
+        "station_end_m": float(station_end_m),
+        "skeleton_design_profile": "",
+        "skeleton_design_profile_source": "manual",
+        "skeleton_design_profile_confidence": 1.0,
+        "skeleton_design_profile_reasons": ["street_design_parameters_v2"],
+        "derived_shape": "tapered_bus_bay_v1",
+        "taper_length_m": float(min(8.0, bay_length_m * 0.25)),
+        "road_half_width_m": float(road_half_width_m),
+        "generated_from_parameters": True,
+        "road_id": int(road_id),
+    }
+    return [
+        {
+            **base,
+            "surface_id": "parametric_bus_bay_0",
+            "annotation_id": "parametric_bus_bay_0",
+            "label": "Parametric bus bay",
+            "kind": "bus_lane_widening",
+            "surface_kind": "bus_lane_widening",
+            "surface_role": "bus_lane",
+            "lateral_start_m": float(bay_inner),
+            "lateral_end_m": float(bay_outer),
+            "material": {},
+            "geometry": bay_geometry,
+            "area_m2": float(bay_geometry.area),
+            "order_index": int(len(existing_records)),
+        },
+        {
+            **base,
+            "surface_id": "parametric_transit_pad_0",
+            "annotation_id": "parametric_transit_pad_0",
+            "label": "Parametric transit pad",
+            "kind": "transit_pad",
+            "surface_kind": "transit_pad",
+            "surface_role": "transit_pad",
+            "lateral_start_m": float(pad_inner),
+            "lateral_end_m": float(pad_outer),
+            "material": {},
+            "geometry": pad_geometry,
+            "area_m2": float(pad_geometry.area),
+            "order_index": int(len(existing_records) + 1),
+        },
+    ]
+
+
+def _apply_parametric_median_zone(
+    *,
+    config: StreetComposeConfig,
+    placement_context: PlacementContext,
+    local_centerlines: Sequence[Tuple[int, Any, Sequence[Tuple[float, float]]]],
+) -> Dict[str, Any]:
+    """Materialize a v2 center median into the existing 3D strip renderer."""
+
+    if not bool(getattr(config, "median_enabled", False)):
+        return {"enabled": False, "area_m2": 0.0}
+    width_m = max(float(getattr(config, "median_width_m", 0.0) or 0.0), 0.0)
+    if width_m <= 0.0:
+        return {"enabled": False, "area_m2": 0.0}
+    try:
+        from shapely.geometry import LineString
+        from shapely.ops import unary_union
+    except ImportError:
+        return {"enabled": False, "area_m2": 0.0, "warning": "shapely_unavailable"}
+    polygons = []
+    for _road_id, _centerline, points in local_centerlines:
+        if len(points) < 2:
+            continue
+        polygon = LineString(points).buffer(width_m * 0.5, cap_style="flat", join_style="round")
+        if not getattr(polygon, "is_empty", True):
+            polygons.append(polygon)
+    if not polygons:
+        return {"enabled": False, "area_m2": 0.0, "warning": "no_centerline_geometry"}
+    zone = unary_union(polygons)
+    carriageway = getattr(placement_context, "carriageway", None)
+    if carriageway is not None and not getattr(carriageway, "is_empty", True):
+        zone = zone.intersection(carriageway)
+    junction_cores = [
+        item.get("carriageway_core") or item.get("junction_core_rect")
+        for item in list(getattr(placement_context, "junction_geometries", []) or [])
+        if isinstance(item, Mapping)
+    ]
+    junction_cores = [item for item in junction_cores if item is not None and not getattr(item, "is_empty", True)]
+    if junction_cores:
+        zone = zone.difference(unary_union(junction_cores))
+    if not getattr(zone, "is_valid", True):
+        zone = zone.buffer(0)
+    if getattr(zone, "is_empty", True):
+        return {"enabled": False, "area_m2": 0.0, "warning": "median_clipped_empty"}
+    strip_zones = dict(getattr(placement_context, "strip_zones", {}) or {})
+    kind = "center_median_green" if str(getattr(config, "median_kind", "raised")) == "planted" else "center_median"
+    strip_zones[kind] = zone
+    placement_context.strip_zones = strip_zones
+    return {
+        "enabled": True,
+        "kind": str(getattr(config, "median_kind", "raised")),
+        "width_m": float(width_m),
+        "surface_key": kind,
+        "area_m2": float(zone.area),
+    }
+
+
 def _aligned_building_records(
     values: Sequence[Mapping[str, Any]] | None,
     source_alignment: Mapping[str, Any] | None,
@@ -467,6 +636,11 @@ def build_reference_annotation_scene_bridge(
         placement_context,
         list(getattr(placement_context, "junction_geometries", []) or []),
     )
+    parametric_median_summary = _apply_parametric_median_zone(
+        config=resolved_config,
+        placement_context=placement_context,
+        local_centerlines=local_centerlines,
+    )
     derived_region_payload = derive_regions_from_annotation(annotation)
     explicit_region_building_records = explicit_building_region_records_from_regions(annotation)
     if explicit_region_building_records:
@@ -479,6 +653,13 @@ def build_reference_annotation_scene_bridge(
     placement_context.derived_regions = list(derived_region_payload.get("derived_regions", []) or [])
     placement_context.region_derivation_summary = dict(derived_region_payload.get("summary", {}) or {})
     placement_context.surface_annotations = _annotation_surface_records(annotation, local_centerlines)
+    placement_context.surface_annotations.extend(
+        _parametric_bus_stop_surface_records(
+            config=resolved_config,
+            local_centerlines=local_centerlines,
+            existing_records=placement_context.surface_annotations,
+        )
+    )
     center_x = float(annotation.image_width_px) * 0.5
     center_y = float(annotation.image_height_px) * 0.5
     ppm = max(float(annotation.pixels_per_meter), 1e-6)
@@ -513,6 +694,7 @@ def build_reference_annotation_scene_bridge(
         "synthetic_road_count": int(len(projected_features.roads)),
         "junction_geometry_count": int(len(getattr(placement_context, "junction_geometries", []) or [])),
         "surface_annotation_count": int(len(getattr(placement_context, "surface_annotations", []) or [])),
+        "parametric_median": parametric_median_summary,
         "region_count": int(len(getattr(placement_context, "regions", []) or [])),
         "derived_region_count": int(len(getattr(placement_context, "derived_regions", []) or [])),
         "derived_building_region_count": int(len(derived_region_payload.get("building_regions", []) or [])),

@@ -204,6 +204,7 @@ def _apply_observed_poi_bindings(
     merged_goals: Tuple[str, ...],
     bands: Sequence[StreetBand],
     profile_name: str,
+    bus_stop_enabled: bool = False,
 ) -> Tuple[Dict[str, str], Tuple[str, ...]]:
     asset_counts = asset_backed_category_counts(
         extract_poi_points_by_type(poi_context, suffix="xz") if poi_context is not None else {}
@@ -241,7 +242,7 @@ def _apply_observed_poi_bindings(
         )
         if right_bus_band:
             reserved_band_categories[right_bus_band] = "bus_stop"
-    elif profile_name == "transit_priority_v1":
+    elif profile_name == "transit_priority_v1" or bus_stop_enabled:
         reserved_band_categories["right_transit_edge"] = "bus_stop"
     return reserved_band_categories, merged_goals
 
@@ -254,17 +255,66 @@ def _build_cross_section_bands(
     left_furnishing_width_m: float,
     right_edge_width_m: float,
     profile_name: str,
+    median_enabled: bool = False,
+    median_kind: str = "raised",
+    median_width_m: float = 0.0,
+    bus_stop_enabled: bool = False,
 ) -> Tuple[StreetBand, ...]:
     left_edge = float(left_furnishing_width_m)
     right_edge = float(right_edge_width_m)
     left_clear_width = float(left_clear_path_width_m)
     right_clear_width = float(right_clear_path_width_m)
+    median_width = float(median_width_m) if median_enabled else 0.0
+    lane_surface_width = max(0.0, float(road_width_m) - median_width)
     road_half = float(road_width_m) / 2.0
 
     left_edge_kind = "furnishing"
-    right_edge_kind = "transit_edge" if profile_name == "transit_priority_v1" else "furnishing"
+    right_edge_kind = "transit_edge" if profile_name == "transit_priority_v1" or bus_stop_enabled else "furnishing"
     furnishing_categories = ("bench", "lamp", "trash", "tree", "mailbox", "hydrant", "bollard", "bus_stop")
     transit_categories = ("bus_stop", "lamp", "bollard", "trash", "bench")
+
+    center_bands: Tuple[StreetBand, ...]
+    if median_enabled:
+        half_lane_surface = lane_surface_width / 2.0
+        center_kind = "median_green" if median_kind == "planted" else "median"
+        center_name = "center_median_green" if median_kind == "planted" else "center_median"
+        center_bands = (
+            StreetBand(
+                name="left_carriageway",
+                kind="carriageway",
+                side="center",
+                width_m=half_lane_surface,
+                z_center_m=median_width / 2.0 + half_lane_surface / 2.0,
+                allowed_categories=(),
+            ),
+            StreetBand(
+                name=center_name,
+                kind=center_kind,
+                side="center",
+                width_m=median_width,
+                z_center_m=0.0,
+                allowed_categories=(),
+            ),
+            StreetBand(
+                name="right_carriageway",
+                kind="carriageway",
+                side="center",
+                width_m=half_lane_surface,
+                z_center_m=-(median_width / 2.0 + half_lane_surface / 2.0),
+                allowed_categories=(),
+            ),
+        )
+    else:
+        center_bands = (
+            StreetBand(
+                name="carriageway",
+                kind="carriageway",
+                side="center",
+                width_m=float(road_width_m),
+                z_center_m=0.0,
+                allowed_categories=(),
+            ),
+        )
 
     return (
         StreetBand(
@@ -283,14 +333,7 @@ def _build_cross_section_bands(
             z_center_m=road_half + left_edge + left_clear_width / 2.0,
             allowed_categories=(),
         ),
-        StreetBand(
-            name="carriageway",
-            kind="carriageway",
-            side="center",
-            width_m=float(road_width_m),
-            z_center_m=0.0,
-            allowed_categories=(),
-        ),
+        *center_bands,
         StreetBand(
             name="right_clear_path",
             kind="clear_path",
@@ -442,7 +485,10 @@ def _estimate_furniture_requirements(
             continue
         target_per_100m = category_config.get("targetCountPer100M")
         if target_per_100m is not None:
-            requirements[category] = max(0, int(round(float(length_m) * float(target_per_100m) / 100.0)))
+            requirements[category] = max(
+                0,
+                int(round(float(length_m) * float(target_per_100m) * density_value / 100.0)),
+            )
             continue
         base_spacing = float(DEFAULT_SPACING_M[category])
         preferred_spacing = category_config.get("preferredSpacingM")
@@ -598,12 +644,17 @@ def _default_band_bounds(
     throughput_requirements: Dict[str, float],
 ) -> Dict[str, Dict[str, float]]:
     bounds: Dict[str, Dict[str, float]] = {}
+    total_carriageway_width = sum(float(item.width_m) for item in bands if item.kind == "carriageway")
     for band in bands:
         min_width = 0.5
         max_width = max(float(band.width_m), 0.5)
         if band.kind == "carriageway":
-            min_width = float(throughput_requirements.get("vehicle_carriageway", max(float(band.width_m), 3.0)))
-            max_width = max(float(band.width_m), float(max(1, int(config.lane_count))) * 3.8)
+            total_required = float(
+                throughput_requirements.get("vehicle_carriageway", max(total_carriageway_width, 3.0))
+            )
+            share = float(band.width_m) / max(total_carriageway_width, 1e-6)
+            min_width = max(1.25, total_required * share)
+            max_width = max(float(band.width_m), float(max(1, int(config.lane_count))) * 3.8 * share)
         elif band.kind == "clear_path":
             min_width = float(max(float(band.width_m), throughput_requirements.get("ped_clear_path", 1.8)))
             max_width = max(float(band.width_m), 4.5)
@@ -621,7 +672,6 @@ def _default_band_bounds(
 
 
 def _topology_requirements(profile_name: str, bands: Sequence[StreetBand]) -> Dict[str, object]:
-    band_names = {band.name for band in bands}
     adjacency: List[Dict[str, str]] = []
     separation: List[Dict[str, str]] = []
     left_furnishing_name = next(
@@ -660,10 +710,13 @@ def _topology_requirements(profile_name: str, bands: Sequence[StreetBand]) -> Di
         adjacency.append({"band_name": left_clear_name, "adjacent_to": left_furnishing_name})
     if right_edge_name and right_clear_name:
         adjacency.append({"band_name": right_clear_name, "adjacent_to": right_edge_name})
-    if left_furnishing_name and left_clear_name and "carriageway" in band_names:
-        separation.append({"left": left_furnishing_name, "right": "carriageway", "separator": left_clear_name})
-    if "carriageway" in band_names and right_edge_name and right_clear_name:
-        separation.append({"left": "carriageway", "right": right_edge_name, "separator": right_clear_name})
+    carriageway_bands = [band for band in bands if band.kind == "carriageway"]
+    left_carriageway_name = max(carriageway_bands, key=lambda band: float(band.z_center_m)).name if carriageway_bands else ""
+    right_carriageway_name = min(carriageway_bands, key=lambda band: float(band.z_center_m)).name if carriageway_bands else ""
+    if left_furnishing_name and left_clear_name and left_carriageway_name:
+        separation.append({"left": left_furnishing_name, "right": left_carriageway_name, "separator": left_clear_name})
+    if right_carriageway_name and right_edge_name and right_clear_name:
+        separation.append({"left": right_carriageway_name, "right": right_edge_name, "separator": right_clear_name})
     return {
         "profile_name": str(profile_name),
         "adjacency_required": adjacency,
@@ -682,7 +735,12 @@ def infer_street_program(
     profile_name = str(config.design_rule_profile).strip().lower() or "balanced_complete_street_v1"
     defaults = _profile_defaults(profile_name)
     road_type = _infer_road_type(config.query, config.target_street_type)
-    clear_width = max(float(config.sidewalk_width_m), float(defaults["min_clear_path_width_m"]))
+    has_explicit_parameters = bool(dict(getattr(config, "furniture_category_parameters", {}) or {}))
+    clear_width = (
+        float(config.sidewalk_width_m)
+        if has_explicit_parameters
+        else max(float(config.sidewalk_width_m), float(defaults["min_clear_path_width_m"]))
+    )
     furnishing_width = float(getattr(config, "furnishing_width_m", None) or defaults["furnishing_width_m"])
     right_edge_width = float(defaults.get("right_edge_width_m", furnishing_width))
     carriageway_width = float(getattr(placement_context, "carriageway_width_m", config.road_width_m))
@@ -702,7 +760,7 @@ def infer_street_program(
     poi_fit_feasible = bool(getattr(placement_context, "poi_fit_feasible", True))
     poi_fit_report = dict(getattr(placement_context, "poi_fit_report", {}) or {})
 
-    if has_detailed_strip_profiles(placement_context):
+    if has_detailed_strip_profiles(placement_context) and not bool(getattr(config, "median_enabled", False)):
         bands = _build_detailed_cross_section_bands(
             road_width_m=carriageway_width,
             placement_context=placement_context,
@@ -716,6 +774,10 @@ def infer_street_program(
             left_furnishing_width_m=left_furnishing_width,
             right_edge_width_m=right_furnishing_width,
             profile_name=profile_name,
+            median_enabled=bool(getattr(config, "median_enabled", False)),
+            median_kind=str(getattr(config, "median_kind", "raised")),
+            median_width_m=float(getattr(config, "median_width_m", 0.0)),
+            bus_stop_enabled=bool(getattr(config, "bus_stop_enabled", False)),
         )
     bands = _apply_furniture_allowed_zones(
         bands,
@@ -763,6 +825,7 @@ def infer_street_program(
             merged_goals=merged_goals,
             bands=bands,
             profile_name=profile_name,
+            bus_stop_enabled=bool(getattr(config, "bus_stop_enabled", False)),
         )
     throughput_requirements = _throughput_requirements(config, profile_name, max(1, int(config.lane_count)))
     band_bounds = _default_band_bounds(

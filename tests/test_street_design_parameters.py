@@ -154,6 +154,44 @@ def test_compiled_category_targets_reach_existing_street_program():
     assert config.furniture_category_parameters["bench"]["allowedZones"]
 
 
+def test_v2_median_and_bus_stop_compile_into_explicit_cross_section_bands():
+    spec = build_default_street_design_parameter_spec_v2(
+        source_revision=8,
+        source_fingerprint="source-median",
+    )
+    spec["skeleton"]["median"] = {"enabled": True, "kind": "planted", "widthM": 2.0}
+    spec["skeleton"]["busStop"] = {"enabled": True, "placement": "bay"}
+    spec["furniture"]["categories"]["bus_stop"]["targetCountPer100M"] = 1.0
+    compiled = compile_street_design_parameter_spec(spec)
+    config = build_compose_config_from_draft(_draft(), patch_overrides=compiled.compose_config_patch)
+
+    program = infer_street_program(config, DEFAULT_CATEGORIES)
+    bands = {band.name: band for band in program.bands}
+
+    assert compiled.compose_config_patch["road_width_m"] == pytest.approx(15.0)
+    assert config.bus_stop_placement == "bay"
+    assert bands["center_median_green"].width_m == pytest.approx(2.0)
+    assert bands["right_transit_edge"].kind == "transit_edge"
+    assert program.furniture_requirements["bus_stop"] == 1
+    assert program.reserved_band_categories["right_transit_edge"] == "bus_stop"
+
+
+def test_v2_global_density_scales_explicit_per_100m_targets():
+    spec = build_default_street_design_parameter_spec_v2(
+        source_revision=9,
+        source_fingerprint="source-density",
+    )
+    spec["furniture"]["globalDensity"] = 1.4
+    spec["furniture"]["categories"]["tree"].update(enabled=True, targetCountPer100M=5.0)
+    compiled = compile_street_design_parameter_spec(spec)
+    config = build_compose_config_from_draft(_draft(), patch_overrides=compiled.compose_config_patch)
+
+    program = infer_street_program(config, DEFAULT_CATEGORIES)
+
+    assert program.furniture_requirements["tree"] == 6  # 80m * 5/100m * 1.4
+    assert program.furniture_requirements["bench"] == 0
+
+
 def test_scene_job_request_compiles_parameter_spec_before_generation():
     spec = build_street_design_parameter_spec(
         "road_skeleton_none",
