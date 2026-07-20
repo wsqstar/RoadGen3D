@@ -1196,8 +1196,8 @@ class TeachingPlatformService:
             project, _ = self._require_project(db, actor_id, project_id)
             return [self._profile(item) for item in db.scalars(select(EvaluationProfile).where(EvaluationProfile.course_id == project.course_id).order_by(EvaluationProfile.is_default.desc(), EvaluationProfile.created_at)).all()]
 
-    def create_evaluation_run(self, actor_id: str, project_id: str, *, revision_id: str, profile_id: str, weights: Mapping[str, Any] | None = None, seed: int = 20260713, evaluation_mode: str = "full") -> dict[str, Any]:
-        mode = str(evaluation_mode or "full").strip().lower()
+    def create_evaluation_run(self, actor_id: str, project_id: str, *, revision_id: str, profile_id: str, weights: Mapping[str, Any] | None = None, seed: int = 20260713, evaluation_mode: str = "structured") -> dict[str, Any]:
+        mode = str(evaluation_mode or "structured").strip().lower()
         if mode not in {"structured", "full"}:
             raise ValueError("evaluation_mode must be structured or full.")
         with self.database.session() as db:

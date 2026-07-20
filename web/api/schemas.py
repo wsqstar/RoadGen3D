@@ -192,7 +192,7 @@ class EvaluateRequestModel(BaseModel):
     persist_to_benchmark: bool = False
     evaluation_profile: str = "auto"
     evaluation_config: EvaluationConfigModel | None = None
-    evaluation_mode: Literal["structured", "full"] = "full"
+    evaluation_mode: Literal["structured", "full"] = "structured"
 
 
 class EvaluateCompareRequestModel(BaseModel):

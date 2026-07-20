@@ -113,7 +113,9 @@ def test_design_assistant_returns_na_for_missing_llm_subscores(tmp_path: Path, m
     assert result["llm_status"]["beauty"]["visual_input"] == "missing"
     assert result["safety"] is None
     assert result["beauty"] is None
-    assert result["overall"] is None
+    assert result["overall"] == result["structured_composite_score"]
+    assert result["structured_composite"]["included_visual_llm"] is False
+    assert result["visual_llm_assessment"]["status"] == "n/a"
     assert result["indicators"]["safety_lighting"] is None
     assert result["indicators"]["beauty_coherence"] is None
     assert result["evaluation_profile"] == "local_segment_v1"
@@ -134,6 +136,74 @@ def test_design_assistant_returns_na_for_missing_llm_subscores(tmp_path: Path, m
     assert "experimental_evidence" not in result
     assert result["child_friendly"]["score"] is None
     assert result["child_friendly"]["status"] == "missing_child_view"
+
+
+def test_default_structured_evaluation_never_calls_visual_llm(tmp_path: Path, monkeypatch):
+    payload = _minimal_layout_payload()
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps(payload), encoding="utf-8")
+    calls = {"count": 0}
+
+    def _unexpected(*args, **kwargs):
+        calls["count"] += 1
+        raise AssertionError("structured evaluation must not call visual LLM")
+
+    monkeypatch.setattr(eval_engine_module, "evaluate_safety", _unexpected)
+    monkeypatch.setattr(eval_engine_module, "evaluate_beauty", _unexpected)
+
+    result = DesignAssistantService().evaluate_scene_unified(layout_path=str(layout_path))
+
+    assert calls["count"] == 0
+    assert result["evaluation_mode"] == "structured"
+    assert result["structured_composite_score"] == result["overall"]
+
+
+def test_visual_llm_scores_are_independent_from_structured_composite(tmp_path: Path, monkeypatch):
+    payload = _minimal_layout_payload()
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps(payload), encoding="utf-8")
+    rendered_views = [{
+        "view_id": "pedestrian_forward",
+        "image_data_url": "data:image/png;base64,ZmFrZQ==",
+    }]
+
+    def _visual(score: float):
+        return {
+            "available": True,
+            "source": "llm",
+            "cached": False,
+            "visual_input": "provided",
+            "lighting": score,
+            "visibility": score,
+            "protection": score,
+            "activation": score,
+            "coherence": score,
+            "human_scale": score,
+            "material_contrast": score,
+            "visual_interest": score,
+            "overall": score,
+            "reasoning": "fixed visual rubric",
+        }
+
+    monkeypatch.setattr(eval_engine_module, "evaluate_safety", lambda *args, **kwargs: _visual(0.2))
+    monkeypatch.setattr(eval_engine_module, "evaluate_beauty", lambda *args, **kwargs: _visual(0.2))
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_safety", lambda *args, **kwargs: _visual(0.2))
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_beauty", lambda *args, **kwargs: _visual(0.2))
+    low = DesignAssistantService().evaluate_scene_unified(
+        layout_path=str(layout_path), rendered_views=rendered_views, evaluation_mode="full"
+    )
+    monkeypatch.setattr(eval_engine_module, "evaluate_safety", lambda *args, **kwargs: _visual(0.9))
+    monkeypatch.setattr(eval_engine_module, "evaluate_beauty", lambda *args, **kwargs: _visual(0.9))
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_safety", lambda *args, **kwargs: _visual(0.9))
+    monkeypatch.setattr(standalone_eval_engine_module, "evaluate_beauty", lambda *args, **kwargs: _visual(0.9))
+    high = DesignAssistantService().evaluate_scene_unified(
+        layout_path=str(layout_path), rendered_views=rendered_views, evaluation_mode="full"
+    )
+
+    assert low["structured_composite_score"] == high["structured_composite_score"]
+    assert low["visual_llm_assessment"]["safety"]["score"] == 20
+    assert high["visual_llm_assessment"]["safety"]["score"] == 90
+    assert high["visual_llm_assessment"]["included_in_structured_composite"] is False
 
 
 def test_design_assistant_auto_selects_network_profile_for_graph_layout(tmp_path: Path):
@@ -191,7 +261,7 @@ def test_design_assistant_rejects_cached_layout_only_scores(tmp_path: Path, monk
     monkeypatch.setattr(standalone_eval_engine_module, "evaluate_beauty", lambda *args, **kwargs: _cached_without_visual_input("beauty"))
 
     service = DesignAssistantService()
-    result = service.evaluate_scene_unified(layout_path=str(layout_path))
+    result = service.evaluate_scene_unified(layout_path=str(layout_path), evaluation_mode="full")
 
     assert result["llm_status"]["safety"]["source"] == "cache"
     assert result["llm_status"]["safety"]["visual_input"] == "missing"
@@ -199,7 +269,8 @@ def test_design_assistant_rejects_cached_layout_only_scores(tmp_path: Path, monk
     assert result["llm_status"]["beauty"]["visual_input"] == "missing"
     assert result["safety"] is None
     assert result["beauty"] is None
-    assert result["overall"] is None
+    assert result["overall"] == result["structured_composite_score"]
+    assert result["visual_llm_assessment"]["status"] == "n/a"
 
 
 def test_eval_engine_passes_rendered_views_to_visual_evaluators(monkeypatch):
@@ -435,7 +506,7 @@ def test_design_assistant_auto_selects_representative_captured_views(tmp_path: P
     fake_engine = _FakeEngine()
     service.eval_engine = fake_engine
 
-    result = service.evaluate_scene_unified(layout_path=str(layout_path))
+    result = service.evaluate_scene_unified(layout_path=str(layout_path), evaluation_mode="full")
 
     assert result["llm_status"]["safety"]["visual_input"] == "provided"
     assert len(fake_engine.rendered_views) == 8
@@ -535,7 +606,7 @@ def test_unified_api_returns_child_friendly_na_without_child_view(tmp_path: Path
 
     response = client.post(
         "/api/design/evaluate/unified",
-        json={"layout_path": str(layout_path), "rendered_views": rendered_views},
+        json={"layout_path": str(layout_path), "rendered_views": rendered_views, "evaluation_mode": "full"},
     )
 
     assert response.status_code == 200
@@ -591,7 +662,11 @@ def test_unified_api_scores_child_friendly_with_child_view(tmp_path: Path, monke
 
     response = client.post(
         "/api/design/evaluate/unified",
-        json={"layout_path": str(layout_path), "rendered_views": rendered_views},
+        json={
+            "layout_path": str(layout_path),
+            "rendered_views": rendered_views,
+            "evaluation_mode": "full",
+        },
     )
 
     assert response.status_code == 200

@@ -621,7 +621,7 @@ class DesignAssistantService:
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
         evaluation_profile: str = "auto",
         evaluation_config: Mapping[str, Any] | None = None,
-        evaluation_mode: str = "full",
+        evaluation_mode: str = "structured",
     ) -> Dict[str, Any]:
         """Evaluate scene with unified 3-dimension scores using road-metrics EvalEngine.
 
@@ -639,7 +639,7 @@ class DesignAssistantService:
         if not layout.exists():
             raise RuntimeError(f"Layout file not found: {layout}")
         
-        mode = str(evaluation_mode or "full").strip().lower()
+        mode = str(evaluation_mode or "structured").strip().lower()
         if mode not in {"structured", "full"}:
             raise ValueError("evaluation_mode must be structured or full.")
         payload = json.loads(layout.read_text(encoding="utf-8"))
@@ -679,16 +679,33 @@ class DesignAssistantService:
         structured_safety = int(float(getattr(result.safety, "structural_score", result.safety.final_score)) * 100)
         structured_beauty = int(float(getattr(result.beauty, "structural_score", result.beauty.final_score)) * 100)
         structured_composite = int(float(result.evaluation_score) * 100)
+        visual_llm_assessment = self._visual_llm_assessment_payload(result)
         return {
             "evaluation_mode": mode,
             "walkability": int(result.walkability.walkability_index * 100),
-            "safety": int(result.safety.final_score * 100) if mode == "full" and safety_available else None,
-            "beauty": int(result.beauty.final_score * 100) if mode == "full" and beauty_available else None,
-            "overall": int(result.evaluation_score * 100) if mode == "full" and visual_scores_available else None,
+            "safety": visual_llm_assessment["safety"]["score"] if mode == "full" and safety_available else None,
+            "beauty": visual_llm_assessment["beauty"]["score"] if mode == "full" and beauty_available else None,
+            "overall": structured_composite,
             "structured_safety": structured_safety,
             "structured_beauty_proxy": structured_beauty,
-            "structured_composite_score": structured_composite if mode == "structured" else None,
-            "structured_composite_label": "structured_proxy_not_visual_overall" if mode == "structured" else None,
+            "structured_metrics": {
+                "walkability": int(result.walkability.walkability_index * 100),
+                "structural_safety": structured_safety,
+                "structural_beauty_proxy": structured_beauty,
+                "generation_quality": (
+                    int(float(getattr(result, "generation_quality_score")) * 100)
+                    if getattr(result, "generation_quality_score", None) is not None
+                    else None
+                ),
+            },
+            "structured_composite": {
+                "score": structured_composite,
+                "label": "formal_structured_composite",
+                "included_visual_llm": False,
+            },
+            "structured_composite_score": structured_composite,
+            "structured_composite_label": "formal_structured_composite",
+            "visual_llm_assessment": visual_llm_assessment,
             "visual_metrics_status": "pending_full_evaluation" if mode == "structured" else ("available" if visual_scores_available else "n/a"),
             "score_weights": self._score_weights_payload(engine),
             "score_formula": self._score_formula_text(engine),
@@ -711,6 +728,45 @@ class DesignAssistantService:
                 if getattr(result, "generation_quality_score", None) is not None
                 else None
             ),
+        }
+
+    @staticmethod
+    def _visual_llm_assessment_payload(result: Any) -> Dict[str, Any]:
+        def _dimension(report: Any) -> Dict[str, Any]:
+            status = dict(getattr(report, "llm_status", {}) or {})
+            scores = dict(getattr(report, "llm_scores", {}) or {})
+            available = (
+                bool(status.get("available"))
+                and str(status.get("visual_input") or "").lower() == "provided"
+                and bool(scores)
+            )
+            raw_score = scores.get("overall") if available else None
+            try:
+                score = int(round(float(raw_score) * 100)) if raw_score is not None else None
+            except (TypeError, ValueError):
+                score = None
+            return {
+                "status": "available" if available and score is not None else "n/a",
+                "score": score,
+                "rubric_scores": {
+                    key: value
+                    for key, value in scores.items()
+                    if key not in {"available", "source", "cached", "reasoning", "error", "model", "evidence"}
+                },
+                "reasoning": str(status.get("reasoning") or scores.get("reasoning") or "N/A"),
+                "confidence": scores.get("confidence"),
+                "model": status.get("model") or scores.get("model"),
+                "source": status.get("source") or scores.get("source") or "unavailable",
+                "included_in_structured_composite": False,
+            }
+
+        safety = _dimension(result.safety)
+        beauty = _dimension(result.beauty)
+        return {
+            "status": "available" if safety["status"] == beauty["status"] == "available" else "n/a",
+            "safety": safety,
+            "beauty": beauty,
+            "included_in_structured_composite": False,
         }
 
     def generate_initial_config_from_graph(

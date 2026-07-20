@@ -125,7 +125,7 @@ class EvaluationCreateRequest(BaseModel):
     weights: Dict[str, float] | None = None
     seed: int = 20260713
     auto_run: bool = True
-    evaluation_mode: Literal["structured", "full"] = "full"
+    evaluation_mode: Literal["structured", "full"] = "structured"
 
 
 class RevisionCompareRequest(BaseModel):
