@@ -98,6 +98,26 @@ def test_parameter_compile_api_rejects_unlocked_source_geometry():
     assert "locked" in response.json()["detail"]
 
 
+def test_parameter_proposal_api_is_explicit_and_side_effect_free():
+    client = TestClient(create_app(design_service=_FakeService()))
+    response = client.post(
+        "/api/design/parameter-proposals",
+        json={
+            "current_spec": {"schemaVersion": "roadgen3d.street-design-parameters.v1"},
+            "design_goals": ["walkability"],
+            "structured_weaknesses": {"clear_width": 40},
+            "scene_summary": {"road_count": 2},
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["proposalId"] == "proposal_test"
+    assert payload["generationMode"] == "parametric"
+    assert payload["knowledgeSource"] == "none"
+    assert payload["sideEffectFree"] is True
+
+
 def test_osm_semantic_preview_endpoint_returns_preview(monkeypatch):
     captured: dict[str, object] = {}
 
@@ -134,6 +154,18 @@ class _FakeService:
     def __init__(self):
         self.last_scene_context = None
         self.last_knowledge_source = None
+
+    def propose_street_design_parameters(self, **kwargs):
+        return {
+            "proposalId": "proposal_test",
+            "baseFingerprint": "base",
+            "patch": {"skeleton": {"sidewalkWidthM": 4.0}},
+            "changedFields": [],
+            "warnings": [],
+            "generationMode": "parametric",
+            "knowledgeSource": "none",
+            "sideEffectFree": True,
+        }
 
     def draft_design(self, **kwargs):
         self.last_knowledge_source = kwargs.get("knowledge_source")

@@ -48,6 +48,7 @@ from ..services.design_types import (
     sanitize_scene_context,
 )
 from ..services.scene_context_service import list_china_cities_payload
+from ..services.parameter_proposals import create_parameter_proposal
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -309,6 +310,23 @@ class DesignAssistantService:
             bundle=result,
         )
         return result
+
+    def propose_street_design_parameters(
+        self,
+        *,
+        current_spec: Mapping[str, Any],
+        design_goals: Sequence[str],
+        structured_weaknesses: Mapping[str, Any] | None = None,
+        scene_summary: Mapping[str, Any] | None = None,
+    ) -> Dict[str, Any]:
+        """Explicitly ask the LLM for a validated, side-effect-free parameter patch."""
+        return create_parameter_proposal(
+            llm_client=self._get_llm_client(),
+            current_spec=current_spec,
+            design_goals=design_goals,
+            structured_weaknesses=structured_weaknesses,
+            scene_summary=scene_summary,
+        )
 
     def list_knowledge_sources(self) -> List[Dict[str, Any]]:
         none_status = {

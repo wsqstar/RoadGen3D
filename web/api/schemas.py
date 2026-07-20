@@ -42,6 +42,13 @@ class StreetDesignParameterCompileRequestModel(BaseModel):
     field_sources: Dict[str, str] = Field(default_factory=dict)
 
 
+class StreetDesignParameterProposalRequestModel(BaseModel):
+    current_spec: Dict[str, Any]
+    design_goals: List[str] = Field(default_factory=list)
+    structured_weaknesses: Dict[str, Any] = Field(default_factory=dict)
+    scene_summary: Dict[str, Any] = Field(default_factory=dict)
+
+
 class DesignMatrixInventoryRequestModel(BaseModel):
     graph_template_id: str = "hkust_gz_gate"
     custom_structure: Optional[Dict[str, Any]] = None

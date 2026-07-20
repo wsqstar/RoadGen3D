@@ -14,6 +14,7 @@ from roadgen3d.services.street_design_parameters import (
     compile_street_design_parameter_spec,
     list_parameter_profiles,
 )
+from roadgen3d.services.parameter_proposals import ParameterProposalError
 from web.api.route_utils import dump_model, model_payload, prepare_scene_generation_request
 from web.api.schemas import (
     DesignMatrixGenerateRequestModel,
@@ -22,6 +23,7 @@ from web.api.schemas import (
     GenerateRequestModel,
     SceneJobCreateRequestModel,
     StreetDesignParameterCompileRequestModel,
+    StreetDesignParameterProposalRequestModel,
 )
 
 router = APIRouter(tags=["design"])
@@ -48,6 +50,25 @@ def compile_design_parameter_spec(
     except ParameterSpecError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     return make_json_safe(result.to_dict())
+
+
+@router.post("/api/design/parameter-proposals")
+def propose_design_parameters(
+    request_body: StreetDesignParameterProposalRequestModel,
+    request: Request,
+) -> Dict[str, Any]:
+    try:
+        result = request.app.state.design_service.propose_street_design_parameters(
+            current_spec=request_body.current_spec,
+            design_goals=request_body.design_goals,
+            structured_weaknesses=request_body.structured_weaknesses,
+            scene_summary=request_body.scene_summary,
+        )
+    except (LLMConfigurationError, LLMResponseError) as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except (ParameterProposalError, ParameterSpecError, ValueError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return make_json_safe(result)
 
 
 @router.post("/api/design/draft")
