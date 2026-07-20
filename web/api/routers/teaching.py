@@ -133,8 +133,14 @@ def capabilities(actor: dict[str, Any] = Depends(_actor)):
         "llm": llm,
         "design_generation": {
             "baseline": "parametric",
-            "redesign_default": "llm" if llm.get("configured") else "parametric",
+            "redesign_default": "parametric",
             "parametric_fallback": True,
+            "llm_parameter_proposals": bool(llm.get("configured")),
+        },
+        "rag": {
+            "mode": "disabled",
+            "product_available": False,
+            "experimental_api_available": False,
         },
     }
 

@@ -399,7 +399,8 @@ class _FakeBranchRunService:
         return [self.get_run("branch-demo")][:limit]
 
 
-def test_design_api_endpoints_return_expected_shapes():
+def test_design_api_endpoints_return_expected_shapes(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setenv("ROADGEN_RAG_MODE", "experimental")
     service = _FakeService()
     client = TestClient(create_app(design_service=service))
 
@@ -499,7 +500,11 @@ def test_design_api_endpoints_return_expected_shapes():
 
     source_response = client.get("/api/knowledge/sources")
     assert source_response.status_code == 200
+    # The fake service returns its legacy experimental inventory; the router
+    # still reports that these sources are not product features.
     assert source_response.json()["items"][0]["key"] == "hybrid"
+    assert source_response.json()["product_available"] is False
+    assert source_response.json()["experimental_api_available"] is True
     assert any(item["key"] == "scenario_parameters" for item in source_response.json()["items"])
 
     search_response = client.post(
@@ -515,8 +520,8 @@ def test_design_api_endpoints_return_expected_shapes():
         json={"query": "default knowledge source", "topk": 1},
     )
     assert default_search_response.status_code == 200
-    assert default_search_response.json()["knowledge_source"] == "graph_rag"
-    assert service.last_knowledge_source == "graph_rag"
+    assert default_search_response.json()["knowledge_source"] == "none"
+    assert service.last_knowledge_source == "none"
 
     scenario_search_response = client.post(
         "/api/knowledge/search",
@@ -1074,7 +1079,7 @@ def test_design_api_supports_clarification_stage():
     assert payload["intent"]["follow_up_questions"] == ["Which city should this street fit into?"]
 
 
-def test_design_api_defaults_draft_requests_to_graph_rag():
+def test_design_api_defaults_draft_requests_to_zero_retrieval():
     service = _FakeService()
     client = TestClient(create_app(design_service=service))
 
@@ -1088,7 +1093,26 @@ def test_design_api_defaults_draft_requests_to_graph_rag():
     )
 
     assert response.status_code == 200
-    assert service.last_knowledge_source == "graph_rag"
+    assert service.last_knowledge_source == "none"
+
+
+def test_knowledge_api_is_disabled_by_default():
+    service = _FakeService()
+    client = TestClient(create_app(design_service=service))
+
+    sources = client.get("/api/knowledge/sources")
+    assert sources.status_code == 200
+    assert sources.json() == {
+        "mode": "disabled",
+        "product_available": False,
+        "experimental_api_available": False,
+        "items": service.list_knowledge_sources(),
+    }
+    search = client.post(
+        "/api/knowledge/search",
+        json={"query": "sidewalk width", "knowledge_source": "graph_rag"},
+    )
+    assert search.status_code == 503
 
 
 def test_rebuild_layout_glb_reexports_and_updates_layout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):

@@ -22,6 +22,9 @@ import roadgen3d.services.design_runtime as runtime
 def test_course_skip_llm_flag_prevents_parameter_derivation():
     assert runtime._wants_llm_parameter_derivation({"skip_llm": True}) is False
     assert runtime._wants_llm_parameter_derivation({"preset_id": "skip_llm"}) is False
+    assert runtime._wants_llm_parameter_derivation({"preset_id": "custom"}) is False
+    assert runtime._wants_llm_parameter_derivation({"preset_id": "pedestrian_friendly"}) is False
+    assert runtime._wants_llm_parameter_derivation({"derive_parameters_with_llm": True}) is True
     assert runtime._wants_llm_parameter_derivation({"preset_id": "llm"}) is True
 
 
@@ -450,7 +453,11 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     result = generate_scene_from_draft(
         draft,
         scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
-        generation_options={"preset_id": "custom"},
+        generation_options={
+            "preset_id": "custom",
+            "derive_parameters_with_llm": True,
+            "knowledge_source": "graph_rag",
+        },
         progress_callback=received_events.append,
     )
 
@@ -576,7 +583,11 @@ def test_generate_scene_from_draft_uses_preset_rag_queries(tmp_path: Path, monke
     result = generate_scene_from_draft(
         draft,
         scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
-        generation_options={"preset_id": "pedestrian_friendly"},
+        generation_options={
+            "preset_id": "pedestrian_friendly",
+            "derive_parameters_with_llm": True,
+            "knowledge_source": "graph_rag",
+        },
     )
 
     assert captured["knowledge_source"] == "graph_rag"
@@ -657,7 +668,7 @@ def test_generate_scene_from_draft_custom_preset_keeps_explicit_patch_over_llm(t
     result = generate_scene_from_draft(
         draft,
         scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
-        generation_options={"preset_id": "custom"},
+        generation_options={"preset_id": "custom", "derive_parameters_with_llm": True},
         progress_callback=received_events.append,
     )
 
@@ -759,7 +770,7 @@ def test_generate_scene_from_draft_style_blend_preserves_base_and_promotes_targe
     result = generate_scene_from_draft(
         draft,
         scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
-        generation_options={"preset_id": "pedestrian_friendly"},
+        generation_options={"preset_id": "pedestrian_friendly", "derive_parameters_with_llm": True},
         progress_callback=received_events.append,
     )
 
@@ -875,7 +886,7 @@ def test_generate_scene_from_draft_style_transfer_target_overrides_old_explicit_
     result = generate_scene_from_draft(
         draft,
         scene_context={"layout_mode": "graph_template", "graph_template_id": "demo_template"},
-        generation_options={"preset_id": "pedestrian_friendly"},
+        generation_options={"preset_id": "pedestrian_friendly", "derive_parameters_with_llm": True},
         progress_callback=received_events.append,
     )
 
@@ -925,7 +936,7 @@ def test_generate_scene_from_draft_custom_preset_fails_when_llm_fails(monkeypatc
         generate_scene_from_draft(
             draft,
             scene_context={"layout_mode": "graph_template", "graph_template_id": "hkust_gz_gate"},
-            generation_options={"preset_id": "custom"},
+            generation_options={"preset_id": "custom", "derive_parameters_with_llm": True},
             progress_callback=received_events.append,
         )
     except RuntimeError as exc:

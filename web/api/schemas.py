@@ -19,7 +19,7 @@ class DraftRequestModel(BaseModel):
     user_input: str
     current_patch: Dict[str, Any] = Field(default_factory=dict)
     topk: int = 6
-    knowledge_source: str = "graph_rag"
+    knowledge_source: str = "none"
     force: bool = False
 
 
@@ -64,7 +64,7 @@ class ScenarioDesignDraftVariantRequestModel(BaseModel):
     graph_template_id: str = "hkust_gz_gate"
     base_scenario_id: Optional[str] = None
     semantic_payload: Optional[Dict[str, Any]] = None
-    use_llm: bool = True
+    use_llm: bool = False
 
 
 class KnowledgeRebuildRequestModel(BaseModel):
@@ -75,7 +75,7 @@ class KnowledgeRebuildRequestModel(BaseModel):
 class KnowledgeSearchRequestModel(BaseModel):
     query: str
     topk: int = 6
-    knowledge_source: str = "graph_rag"
+    knowledge_source: str = "none"
 
 
 class ReferenceAnnotationConvertRequestModel(BaseModel):
@@ -221,7 +221,7 @@ class BranchRunCreateRequestModel(BaseModel):
     retain_topk_artifacts: Optional[int] = Field(default=None, ge=1, le=20)
     score_with_rendered_views: bool = False
     graph_template_id: str = "hkust_gz_gate"
-    knowledge_source: str = "graph_rag"
+    knowledge_source: str = "none"
     scene_context: Dict[str, Any] = Field(default_factory=dict)
     generation_options: Dict[str, Any] = Field(default_factory=dict)
     preset_id: str = ""
@@ -240,7 +240,7 @@ class BenchmarkBatchCreateRequestModel(BaseModel):
     preset_ids: List[str] = Field(default_factory=lambda: [str(item.get("id")) for item in SCENE_PRESETS])
     target_samples: int = Field(default=100, ge=1, le=100)
     graph_template_id: str = "hkust_gz_gate"
-    knowledge_source: str = "graph_rag"
+    knowledge_source: str = "none"
     early_stop_patience: int = Field(default=20, ge=1, le=100)
     retain_topk_artifacts: int = Field(default=10, ge=1, le=20)
     score_with_rendered_views: bool = True

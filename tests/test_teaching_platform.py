@@ -608,8 +608,8 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     assert llm_job.status_code == 202, llm_job.text
     llm_revision = llm_job.json()["result"]["revision"]
     assert llm_revision["parent_id"] == redesign["id"]
-    assert llm_revision["provenance"]["resolved_generation_mode"] == "llm"
-    assert llm_revision["provenance"]["generation_method"] == "llm_assisted"
+    assert llm_revision["provenance"]["resolved_generation_mode"] == "parametric"
+    assert llm_revision["provenance"]["generation_method"] == "parametric"
 
 
 def test_student_cannot_read_another_students_project(client: TestClient):

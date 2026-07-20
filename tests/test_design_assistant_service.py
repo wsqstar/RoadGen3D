@@ -170,7 +170,8 @@ class _FakeGraphRetriever:
         ][:topk]
 
 
-def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
+def test_design_assistant_service_builds_draft_bundle(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("ROADGEN_RAG_MODE", "experimental")
     llm = _FakeLLM()
     service = DesignAssistantService(
         llm_client=llm,
@@ -188,9 +189,9 @@ def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
 
     assert bundle.stage == "draft_ready"
     assert bundle.intent.safety_priorities == ("pedestrian safety",)
-    assert len(bundle.evidence) >= 4
-    assert any(item.knowledge_source == "scenario_parameters" for item in bundle.evidence)
-    assert any(
+    assert bundle.evidence
+    assert all(item.knowledge_source == "pdf_rag" for item in bundle.evidence)
+    assert not any(
         item.get("knowledge_source") == "scenario_parameters"
         for item in llm.draft_payloads[-1].get("evidence", [])
     )
@@ -199,7 +200,7 @@ def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
     assert bundle.draft.compose_config_patch["sidewalk_width_m"] == 4.2
     assert bundle.draft.compose_config_patch["style_preset"] == "civic_clean_v1"
     assert bundle.draft.compose_config_patch["beauty_mode"] == "presentation_v1"
-    assert bundle.draft.citations_by_field["sidewalk_width_m"][0].startswith("scenario_parameters::")
+    assert bundle.draft.citations_by_field["sidewalk_width_m"] == ("complete_streets_0001",)
     assert bundle.draft.citations_by_field["road_width_m"] == ("complete_streets_0003",)
     assert bundle.draft.parameter_sources_by_field["sidewalk_width_m"] == "rag"
     assert bundle.draft.parameter_sources_by_field["city_context"] == "llm_inferred"
@@ -208,7 +209,8 @@ def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
     assert service.llm_client.calls == 5
 
 
-def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search(tmp_path: Path):
+def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("ROADGEN_RAG_MODE", "experimental")
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
         knowledge_retriever=_FakeRetriever(),
@@ -236,7 +238,7 @@ def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search(tmp
     )
 
 
-def test_design_assistant_service_defaults_to_graph_rag(tmp_path: Path):
+def test_design_assistant_service_defaults_to_zero_retrieval(tmp_path: Path):
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
         knowledge_retriever=_FakeRetriever(),
@@ -249,12 +251,11 @@ def test_design_assistant_service_defaults_to_graph_rag(tmp_path: Path):
         topk=2,
     )
 
-    assert len(results) == 1
-    assert results[0].knowledge_source == "graph_rag"
-    assert results[0].chunk_id == "graph_0001"
+    assert results == []
 
 
-def test_design_assistant_service_exposes_scenario_parameter_source(tmp_path: Path):
+def test_design_assistant_service_exposes_scenario_parameter_source(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("ROADGEN_RAG_MODE", "experimental")
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
         knowledge_retriever=_FakeRetriever(),
@@ -338,7 +339,8 @@ def test_design_assistant_service_returns_clarification_stage_before_rag(tmp_pat
     assert service.llm_client.calls == 1
 
 
-def test_design_assistant_service_reuses_cached_bundle_for_identical_prompt(tmp_path: Path):
+def test_design_assistant_service_reuses_cached_bundle_for_identical_prompt(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("ROADGEN_RAG_MODE", "experimental")
     retriever = _FakeRetriever()
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
@@ -372,7 +374,8 @@ def test_design_assistant_service_reuses_cached_bundle_for_identical_prompt(tmp_
     assert retriever.calls == retriever_call_count
 
 
-def test_design_assistant_service_loads_cached_bundle_from_disk(tmp_path: Path):
+def test_design_assistant_service_loads_cached_bundle_from_disk(tmp_path: Path, monkeypatch):
+    monkeypatch.setenv("ROADGEN_RAG_MODE", "experimental")
     cache_dir = tmp_path / "draft_cache"
     prompt = "步行安全，全龄友好"
     producer = DesignAssistantService(

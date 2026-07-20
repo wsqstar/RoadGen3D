@@ -14,6 +14,7 @@ from fastapi import (
 )
 
 from roadgen3d.json_safe import make_json_safe
+from roadgen3d.llm.design_workflow import rag_mode, rag_product_available
 from roadgen3d.knowledge.pdf_rag import PdfKnowledgeBaseBuilder
 from roadgen3d.knowledge.source_registry import (
     KnowledgeSourceRecord,
@@ -26,8 +27,17 @@ from web.api.schemas import KnowledgeRebuildRequestModel, KnowledgeSearchRequest
 router = APIRouter(prefix="/api/knowledge", tags=["knowledge"])
 
 
+def _require_experimental_rag() -> None:
+    if not rag_product_available():
+        raise HTTPException(
+            status_code=503,
+            detail="Knowledge retrieval is disabled; this endpoint is available only in ROADGEN_RAG_MODE=experimental.",
+        )
+
+
 @router.post("/rebuild")
 def rebuild_knowledge(request_body: KnowledgeRebuildRequestModel, request: Request) -> Dict[str, Any]:
+    _require_experimental_rag()
     service = request.app.state.design_service
     try:
         return make_json_safe(service.rebuild_knowledge(
@@ -42,8 +52,13 @@ def rebuild_knowledge(request_body: KnowledgeRebuildRequestModel, request: Reque
 def list_knowledge_sources(request: Request) -> Dict[str, Any]:
     service = request.app.state.design_service
     built_ins = service.list_knowledge_sources()
-    customs = [s.to_dict() for s in list_sources()]
-    return make_json_safe({"items": built_ins + customs})
+    customs = [s.to_dict() for s in list_sources()] if rag_product_available() else []
+    return make_json_safe({
+        "mode": rag_mode(),
+        "product_available": False,
+        "experimental_api_available": rag_product_available(),
+        "items": built_ins + customs,
+    })
 
 
 @router.post("/upload")
@@ -51,6 +66,7 @@ def upload_knowledge(
     label: str = Query(..., min_length=1, max_length=200),
     file: UploadFile = FastAPIFile(...),
 ) -> Dict[str, Any]:
+    _require_experimental_rag()
     if not str(file.content_type or "").lower().endswith(("pdf", "octet-stream")):
         raise HTTPException(status_code=400, detail="Only PDF files are supported.")
     source_id, pdf_path, artifact_dir = allocate_upload_paths(label)
@@ -77,6 +93,8 @@ def upload_knowledge(
 
 @router.post("/search")
 def search_knowledge(request_body: KnowledgeSearchRequestModel, request: Request) -> Dict[str, Any]:
+    if request_body.knowledge_source != "none":
+        _require_experimental_rag()
     service = request.app.state.design_service
     try:
         items = service.search_knowledge(

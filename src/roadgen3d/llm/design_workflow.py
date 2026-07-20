@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 from typing import Any, Callable, Dict, Iterable, List, Mapping, Sequence, Tuple
@@ -60,8 +61,9 @@ _CJK_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 _RAG_SOURCE = "rag"
 _LLM_INFERRED_SOURCE = "llm_inferred"
 _SYSTEM_DEFAULT_SOURCE = "system_default"
-_DEFAULT_KNOWLEDGE_SOURCE = "graph_rag"
-_ALLOWED_KNOWLEDGE_SOURCES = frozenset({"hybrid", "pdf_rag", "graph_rag", "scenario_parameters"})
+_DEFAULT_KNOWLEDGE_SOURCE = "none"
+_ALLOWED_KNOWLEDGE_SOURCES = frozenset({"none", "hybrid", "pdf_rag", "graph_rag", "scenario_parameters"})
+_ALLOWED_RAG_MODES = frozenset({"disabled", "experimental"})
 _DRAFT_CACHE_VERSION = "roadgen3d_design_draft_cache_v1"
 _DRAFT_CACHE_HIT_WARNING = "Loaded cached design analysis for the exact same prompt; skipped new LLM and GraphRAG work."
 
@@ -186,26 +188,37 @@ class DesignAssistantService:
                 bundle=result,
             )
             return result
-        retrieval_queries = self._prepare_retrieval_queries(
-            llm=llm,
-            intent=intent,
-            user_input=user_input,
-        )
-        evidence = tuple(
-            self._retrieve_evidence(
-                retrieval_queries,
-                topk=topk,
-                knowledge_source=resolved_knowledge_source,
+        if resolved_knowledge_source == "none":
+            # ``none`` is a real zero-retrieval mode.  Do not translate search
+            # queries and, importantly, do not append the scenario triple store
+            # as an implicit second knowledge source.
+            retrieval_queries = tuple(
+                item for item in (intent.normalized_scene_query, user_input) if str(item or "").strip()
+            )[:1]
+            evidence: Tuple[RagEvidence, ...] = ()
+        else:
+            require_experimental_rag(resolved_knowledge_source)
+            retrieval_queries = self._prepare_retrieval_queries(
+                llm=llm,
+                intent=intent,
+                user_input=user_input,
             )
-        )
-        scenario_evidence = tuple(
-            self._retrieve_scenario_parameter_evidence(
-                queries=retrieval_queries,
-                topk=24,
+            evidence = tuple(
+                self._retrieve_evidence(
+                    retrieval_queries,
+                    topk=topk,
+                    knowledge_source=resolved_knowledge_source,
+                )
             )
-        )
-        if scenario_evidence:
-            evidence = tuple(merge_evidence_collections(evidence, scenario_evidence))
+            if resolved_knowledge_source in {"hybrid", "scenario_parameters"}:
+                scenario_evidence = tuple(
+                    self._retrieve_scenario_parameter_evidence(
+                        queries=retrieval_queries,
+                        topk=24,
+                    )
+                )
+                if scenario_evidence:
+                    evidence = tuple(merge_evidence_collections(evidence, scenario_evidence))
         draft = self._generate_design_draft(
             llm=llm,
             chat_messages=chat_messages,
@@ -215,7 +228,7 @@ class DesignAssistantService:
             fallback_query=user_input,
         )
         missing_fields = identify_missing_compose_fields(draft.compose_config_patch)
-        if missing_fields:
+        if missing_fields and resolved_knowledge_source != "none":
             followup_queries = self._plan_missing_parameter_queries(
                 llm=llm,
                 intent=intent,
@@ -231,17 +244,19 @@ class DesignAssistantService:
                         knowledge_source=resolved_knowledge_source,
                     )
                 )
-                structured_followup_evidence = tuple(
-                    self._retrieve_scenario_parameter_evidence(
-                        queries=_scenario_parameter_followup_queries(
-                            intent=intent,
-                            missing_fields=missing_fields,
-                            followup_queries=followup_queries,
-                        ),
-                        topk=24,
-                        parameter_names=missing_fields,
+                structured_followup_evidence: Tuple[RagEvidence, ...] = ()
+                if resolved_knowledge_source in {"hybrid", "scenario_parameters"}:
+                    structured_followup_evidence = tuple(
+                        self._retrieve_scenario_parameter_evidence(
+                            queries=_scenario_parameter_followup_queries(
+                                intent=intent,
+                                missing_fields=missing_fields,
+                                followup_queries=followup_queries,
+                            ),
+                            topk=24,
+                            parameter_names=missing_fields,
+                        )
                     )
-                )
                 if structured_followup_evidence:
                     extra_evidence = tuple(
                         merge_evidence_collections(extra_evidence, structured_followup_evidence)
@@ -296,6 +311,17 @@ class DesignAssistantService:
         return result
 
     def list_knowledge_sources(self) -> List[Dict[str, Any]]:
+        none_status = {
+            "key": "none",
+            "label": "No retrieval",
+            "available": True,
+            "product_available": True,
+            "description": "Generate parameter suggestions without loading or querying a knowledge index.",
+            "artifact_count": 0,
+            "item_count": 0,
+        }
+        if rag_mode() == "disabled":
+            return [none_status]
         pdf_status = self._build_pdf_knowledge_status()
         graph_status = self._build_graph_knowledge_status()
         scenario_status = self._build_scenario_parameter_status()
@@ -320,7 +346,10 @@ class DesignAssistantService:
                 + int(scenario_status.get("item_count", 0))
             ),
         }
-        return [hybrid_status, pdf_status, graph_status, scenario_status]
+        for item in (hybrid_status, pdf_status, graph_status, scenario_status):
+            item["product_available"] = False
+            item["experimental"] = True
+        return [none_status, hybrid_status, pdf_status, graph_status, scenario_status]
 
     def search_knowledge(
         self,
@@ -1538,6 +1567,9 @@ class DesignAssistantService:
 
     def _resolve_retrievers_for_source(self, knowledge_source: str) -> Tuple[Tuple[str, Any], ...]:
         resolved = normalize_knowledge_source(knowledge_source)
+        if resolved == "none":
+            return ()
+        require_experimental_rag(resolved)
         if resolved == "scenario_parameters":
             return ()
         if resolved == "pdf_rag":
@@ -1577,6 +1609,9 @@ class DesignAssistantService:
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> List[RagEvidence]:
         resolved_source = normalize_knowledge_source(knowledge_source)
+        if resolved_source == "none":
+            return []
+        require_experimental_rag(resolved_source)
         if resolved_source == "scenario_parameters":
             return self._retrieve_scenario_parameter_evidence(queries, topk=topk)
         try:
@@ -2194,3 +2229,25 @@ def normalize_knowledge_source(value: object) -> str:
         return normalized
     # Allow custom source IDs (e.g., uploaded PDFs) to pass through
     return str(value or _DEFAULT_KNOWLEDGE_SOURCE).strip()
+
+
+def rag_mode() -> str:
+    """Return the explicit product mode for retrieval-backed features."""
+
+    value = str(os.getenv("ROADGEN_RAG_MODE", "disabled") or "disabled").strip().lower()
+    return value if value in _ALLOWED_RAG_MODES else "disabled"
+
+
+def rag_product_available() -> bool:
+    """Whether RAG may be called through the expert experimental API."""
+
+    return rag_mode() == "experimental"
+
+
+def require_experimental_rag(knowledge_source: str) -> None:
+    resolved = normalize_knowledge_source(knowledge_source)
+    if resolved != "none" and not rag_product_available():
+        raise RuntimeError(
+            "Knowledge retrieval is disabled in this RoadGen3D deployment. "
+            "Set ROADGEN_RAG_MODE=experimental to use the expert retrieval API."
+        )

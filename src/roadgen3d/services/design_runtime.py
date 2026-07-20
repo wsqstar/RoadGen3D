@@ -583,10 +583,11 @@ def _build_scene_backends(options: SceneGenerationOptions):
 def _wants_llm_parameter_derivation(
     generation_options: Mapping[str, Any] | SceneGenerationOptions | None,
 ) -> bool:
-    """Check whether the draft should be enriched by the LLM before generation.
+    """Return true only for an explicit legacy LLM-parameter request.
 
-    Both custom and preset modes benefit from RAG + LLM adjustment.
-    Presets provide base parameters, while LLM fine-tunes based on prompt.
+    Scene generation is deterministic and parametric by default, even when an
+    LLM happens to be configured on the server.  The public proposal workflow
+    produces a reviewed parameter spec before this function is reached.
     """
     if not isinstance(generation_options, Mapping):
         return False
@@ -596,9 +597,15 @@ def _wants_llm_parameter_derivation(
     # LLM parameter-derivation path.
     if bool(generation_options.get("skip_llm")):
         return False
+    if bool(generation_options.get("derive_parameters_with_llm")):
+        return True
+    generation_mode = str(generation_options.get("generation_mode", "") or "").strip().lower()
+    if generation_mode in {"llm_parameter_assist", "legacy_llm_parameter_assist"}:
+        return True
+    # Backward compatibility for saved expert requests.  New clients must use
+    # ``derive_parameters_with_llm`` or the proposal endpoint instead.
     preset_id = str(generation_options.get("preset_id", "") or "").strip().lower()
-    # Always enable LLM derivation for both custom and presets
-    return preset_id not in {"none", "disabled", "skip_llm"}
+    return preset_id in {"llm", "llm-driven"}
 
 
 def _load_preset_rag_config(preset_id: str) -> Dict[str, Any]:
@@ -1197,9 +1204,11 @@ def _derive_draft_with_llm(
         )
         assistant = DesignAssistantService()
 
-        # Load preset RAG configuration
-        preset_rag_config = _load_preset_rag_config(preset_id)
-        knowledge_source = preset_rag_config.get("knowledge_source", "graph_rag")
+        # Retrieval is opt-in and independent from using the LLM.  A legacy
+        # preset must not silently initialize GraphRAG or the scenario store.
+        generation_payload = dict(generation_options_payload or {})
+        knowledge_source = str(generation_payload.get("knowledge_source") or "none").strip().lower()
+        preset_rag_config = _load_preset_rag_config(preset_id) if knowledge_source != "none" else {}
         rag_queries = preset_rag_config.get("rag_queries", [draft.normalized_scene_query or "walkable complete street"])
 
         # For presets, also use preset-specific RAG queries
@@ -1208,30 +1217,33 @@ def _derive_draft_with_llm(
 
         # RAG evidence retrieval
         evidence = []
-        try:
-            evidence = assistant._retrieve_evidence(
-                queries=rag_queries,
-                topk=5,
-                knowledge_source=knowledge_source,
-            )
-            retrieve_scenario_parameters = getattr(assistant, "_retrieve_scenario_parameter_evidence", None)
-            if callable(retrieve_scenario_parameters):
-                structured_evidence = retrieve_scenario_parameters(
-                    queries=rag_queries,
-                    topk=24,
-                )
-                if structured_evidence:
-                    merged_evidence = {item.chunk_id: item for item in [*evidence, *structured_evidence]}
-                    evidence = list(merged_evidence.values())
-            citations_by_field = {
-                f"{preset_id}_design": tuple(e.chunk_id for e in evidence[:2]),
-                "general": tuple(e.chunk_id for e in evidence[2:4]),
-            }
-        except Exception as rag_exc:
-            import logging
-            logging.getLogger(__name__).warning("RAG retrieval failed: %s", rag_exc)
+        if knowledge_source == "none":
             citations_by_field = {}
-            evidence = []
+        else:
+            try:
+                evidence = assistant._retrieve_evidence(
+                    queries=rag_queries,
+                    topk=5,
+                    knowledge_source=knowledge_source,
+                )
+                retrieve_scenario_parameters = getattr(assistant, "_retrieve_scenario_parameter_evidence", None)
+                if callable(retrieve_scenario_parameters) and knowledge_source in {"hybrid", "scenario_parameters"}:
+                    structured_evidence = retrieve_scenario_parameters(
+                        queries=rag_queries,
+                        topk=24,
+                    )
+                    if structured_evidence:
+                        merged_evidence = {item.chunk_id: item for item in [*evidence, *structured_evidence]}
+                        evidence = list(merged_evidence.values())
+                citations_by_field = {
+                    f"{preset_id}_design": tuple(e.chunk_id for e in evidence[:2]),
+                    "general": tuple(e.chunk_id for e in evidence[2:4]),
+                }
+            except Exception as rag_exc:
+                import logging
+                logging.getLogger(__name__).warning("RAG retrieval failed: %s", rag_exc)
+                citations_by_field = {}
+                evidence = []
 
         messages = build_graph_aware_design_messages(
             graph_summary=graph_summary,

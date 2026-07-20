@@ -837,7 +837,9 @@ class TeachingPlatformService:
         is_baseline = requested_mode == "baseline" or (not parent_revision_id and existing_baseline is None)
         resolved_mode = "parametric" if is_baseline else requested_mode
         if resolved_mode == "auto":
-            resolved_mode = "llm" if llm_configured else "parametric"
+            # Auto means the stable product default, not "use whatever remote
+            # service is configured".  LLM use must be an explicit action.
+            resolved_mode = "parametric"
         fallback_reason = ""
         if resolved_mode == "llm" and not llm_configured:
             resolved_mode = "parametric"
@@ -922,6 +924,8 @@ class TeachingPlatformService:
                 "course_project_id": project_id,
                 "preset_id": "llm" if resolved_mode == "llm" else "skip_llm",
                 "skip_llm": resolved_mode != "llm",
+                "derive_parameters_with_llm": resolved_mode == "llm",
+                "knowledge_source": "none",
                 "random_seed": 42,
                 # Course revisions must keep their editable model.  The generic
                 # capture pipeline defaults to deleting non-selected GLBs after
