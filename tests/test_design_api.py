@@ -60,7 +60,20 @@ def test_parameter_profile_registry_and_compile_api_are_parametric_only():
     assert registry_response.status_code == 200
     registry = registry_response.json()
     assert registry["generation_mode"] == "parametric"
+    assert registry["deprecated"] is True
     assert len(registry["profiles"]) == 7
+
+    controls_response = client.get("/api/design/parameter-controls")
+    assert controls_response.status_code == 200
+    controls = controls_response.json()
+    assert controls["parameter_schema_version"] == "roadgen3d.street-design-parameters.v2"
+    assert controls["skeleton"]["sidewalkWidthM"]["values"] == {
+        "low": 1.8,
+        "medium": 3.0,
+        "high": 4.5,
+    }
+    assert controls["furniture"]["categories"]["bench"]["values"]["medium"] == 4.0
+    assert "profiles" not in controls
 
     profile = registry["profiles"][1]
     spec = {

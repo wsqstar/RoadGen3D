@@ -13,6 +13,7 @@ from roadgen3d.services.street_design_parameters import (
     ParameterSpecError,
     compile_street_design_parameter_spec,
     list_parameter_profiles,
+    parameter_control_registry,
 )
 from roadgen3d.services.parameter_proposals import ParameterProposalError
 from web.api.route_utils import dump_model, model_payload, prepare_scene_generation_request
@@ -34,8 +35,15 @@ def design_parameter_profiles() -> Dict[str, Any]:
     return {
         "schema_version": "roadgen3d.street-design-parameter-registry.v1",
         "generation_mode": "parametric",
+        "deprecated": True,
+        "replacement": "/api/design/parameter-controls",
         "profiles": list_parameter_profiles(),
     }
+
+
+@router.get("/api/design/parameter-controls")
+def design_parameter_controls() -> Dict[str, Any]:
+    return parameter_control_registry()
 
 
 @router.post("/api/design/parameter-specs/compile")

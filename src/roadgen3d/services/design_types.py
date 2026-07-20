@@ -74,6 +74,12 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "minimum_category_presence",
     "optional_category_presence",
     "furniture_category_parameters",
+    "median_enabled",
+    "median_kind",
+    "median_width_m",
+    "bus_stop_enabled",
+    "bus_stop_placement",
+    "furniture_style",
 )
 VALID_DESIGN_RULE_PROFILES: Tuple[str, ...] = (
     "balanced_complete_street_v1",
@@ -88,9 +94,9 @@ VALID_STYLE_PRESETS: Tuple[str, ...] = (
     "transit_modern_v1",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
-_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "base_lane_width_m", "sidewalk_width_m", "furnishing_width_m", "curb_width_m", "junction_corner_radius_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m", "skeleton_design_profile_confidence", "street_furniture_profile_confidence"})
+_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "base_lane_width_m", "sidewalk_width_m", "furnishing_width_m", "curb_width_m", "junction_corner_radius_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m", "skeleton_design_profile_confidence", "street_furniture_profile_confidence", "median_width_m"})
 _INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads", "max_bus_stops_per_scene"})
-_BOOL_FIELDS = frozenset({"allow_solver_fallback", "allow_demo_bus_stop_when_osm_absent"})
+_BOOL_FIELDS = frozenset({"allow_solver_fallback", "allow_demo_bus_stop_when_osm_absent", "median_enabled", "bus_stop_enabled"})
 _LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence", "bus_stop_eligible_road_names", "skeleton_design_profile_reasons", "street_furniture_profile_reasons"})
 _MAPPING_FIELDS = frozenset({"furniture_category_parameters"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS - _MAPPING_FIELDS
@@ -130,6 +136,9 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "infill_policy": frozenset({"off", "large_gap_only", "balanced", "aggressive"}),
     "building_height_mode": frozenset({"class_only", "theme_random"}),
     "junction_corner_radius_mode": frozenset({"auto", "fixed"}),
+    "median_kind": frozenset({"raised", "planted"}),
+    "bus_stop_placement": frozenset({"curbside", "bay"}),
+    "furniture_style": frozenset({"civic_clean", "lush_natural", "transit_modern"}),
 }
 
 DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
@@ -190,6 +199,12 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "minimum_category_presence": ("trash", "bench", "lamp"),
     "optional_category_presence": ("mailbox", "hydrant"),
     "furniture_category_parameters": {},
+    "median_enabled": False,
+    "median_kind": "raised",
+    "median_width_m": 2.0,
+    "bus_stop_enabled": False,
+    "bus_stop_placement": "curbside",
+    "furniture_style": "civic_clean",
 }
 
 

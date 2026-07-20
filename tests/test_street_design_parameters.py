@@ -17,9 +17,11 @@ from roadgen3d.services.design_runtime import build_compose_config_from_draft
 from roadgen3d.services.design_types import DesignDraft
 from roadgen3d.services.street_design_parameters import (
     ParameterSpecError,
+    build_default_street_design_parameter_spec_v2,
     build_street_design_parameter_spec,
     compile_street_design_parameter_spec,
     list_parameter_profiles,
+    parameter_control_registry,
 )
 from roadgen3d.street_priors import DEFAULT_CATEGORIES
 from roadgen3d.street_program import infer_street_program
@@ -51,6 +53,37 @@ def test_registry_exposes_seven_versioned_parametric_profiles():
     assert all(item["buildings"]["footprintLocked"] is True for item in profiles)
 
 
+def test_public_control_registry_exposes_values_without_named_profiles():
+    controls = parameter_control_registry()
+
+    assert controls["parameter_schema_version"] == "roadgen3d.street-design-parameters.v2"
+    assert controls["skeleton"]["laneCount"]["values"] == {"low": 2, "medium": 4, "high": 6}
+    assert controls["skeleton"]["junctionCornerRadiusM"]["values"]["high"] == pytest.approx(8.0)
+    assert controls["furniture"]["categories"]["tree"]["values"] == {
+        "low": 5.0,
+        "medium": 8.0,
+        "high": 12.0,
+    }
+    assert "profiles" not in controls
+
+
+def test_v2_default_has_no_profile_ids_and_disables_optional_generation():
+    spec = build_default_street_design_parameter_spec_v2(
+        source_revision=4,
+        source_fingerprint="source-v2",
+    )
+    compiled = compile_street_design_parameter_spec(spec)
+
+    assert spec["schemaVersion"] == "roadgen3d.street-design-parameters.v2"
+    assert "profileId" not in spec["skeleton"]
+    assert "profileId" not in spec["furniture"]
+    assert spec["skeleton"]["median"]["enabled"] is False
+    assert spec["skeleton"]["busStop"]["enabled"] is False
+    assert all(item["enabled"] is False for item in spec["furniture"]["categories"].values())
+    assert "skeleton_design_profile" not in compiled.compose_config_patch
+    assert "street_furniture_profile" not in compiled.compose_config_patch
+
+
 def test_parameter_compiler_is_deterministic_and_forces_zero_retrieval_generation():
     spec = build_street_design_parameter_spec(
         "pedestrian_friendly",
@@ -70,6 +103,8 @@ def test_parameter_compiler_is_deterministic_and_forces_zero_retrieval_generatio
     assert first.generation_options["skip_llm"] is True
     assert first.generation_options["derive_parameters_with_llm"] is False
     assert first.generation_options["knowledge_source"] == "none"
+    assert first.spec["schemaVersion"] == "roadgen3d.street-design-parameters.v2"
+    assert "profileId" not in first.spec["skeleton"]
 
 
 def test_parameter_compiler_rejects_geometry_edits_unknown_categories_and_paths():
@@ -136,7 +171,9 @@ def test_scene_job_request_compiles_parameter_spec_before_generation():
     )
 
     assert draft.normalized_scene_query == "walkable complete street"
-    assert patch["street_furniture_profile"] == "none"
+    assert "street_furniture_profile" not in patch
+    assert patch["amenity_coverage_mode"] == "off"
+    assert all(item["enabled"] is False for item in patch["furniture_category_parameters"].values())
     assert patch["building_representation"] == "transparent_massing"
     assert options["generation_mode"] == "parametric"
     assert options["knowledge_source"] == "none"

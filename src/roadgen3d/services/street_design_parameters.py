@@ -17,9 +17,40 @@ from typing import Any, Dict, Mapping
 from ..street_priors import DEFAULT_CATEGORIES
 
 
-SCHEMA_VERSION = "roadgen3d.street-design-parameters.v1"
-PARAMETER_SOURCES = frozenset({"source", "preset", "manual", "llm_suggestion", "system_default"})
+SCHEMA_VERSION_V1 = "roadgen3d.street-design-parameters.v1"
+SCHEMA_VERSION = "roadgen3d.street-design-parameters.v2"
+CONTROL_SCHEMA_VERSION = "roadgen3d.street-design-parameter-controls.v1"
+PARAMETER_SOURCES = frozenset({"source", "manual", "system_default"})
 ALLOWED_ZONES = frozenset({"sidewalk", "furnishing", "frontage", "planting", "transit_edge"})
+FURNITURE_STYLES = frozenset({"civic_clean", "lush_natural", "transit_modern"})
+LEVELS = ("low", "medium", "high")
+
+
+SKELETON_PARAMETER_CONTROLS: Dict[str, Dict[str, Any]] = {
+    "laneCount": {"values": {"low": 2, "medium": 4, "high": 6}, "minimum": 1, "maximum": 8, "unit": "count"},
+    "laneWidthM": {"values": {"low": 2.75, "medium": 3.25, "high": 3.75}, "minimum": 2.5, "maximum": 4.5, "unit": "m"},
+    "sidewalkWidthM": {"values": {"low": 1.8, "medium": 3.0, "high": 4.5}, "minimum": 1.0, "maximum": 12.0, "unit": "m"},
+    "furnishingWidthM": {"values": {"low": 0.6, "medium": 1.2, "high": 1.8}, "minimum": 0.0, "maximum": 5.0, "unit": "m"},
+    "junctionCornerRadiusM": {"values": {"low": 3.0, "medium": 5.5, "high": 8.0}, "minimum": 1.0, "maximum": 20.0, "unit": "m"},
+    "medianWidthM": {"values": {"low": 1.2, "medium": 2.0, "high": 3.0}, "minimum": 0.8, "maximum": 8.0, "unit": "m"},
+}
+
+GLOBAL_DENSITY_CONTROL: Dict[str, Any] = {
+    "values": {"low": 0.6, "medium": 1.0, "high": 1.4},
+    "minimum": 0.0,
+    "maximum": 2.0,
+}
+
+FURNITURE_CATEGORY_CONTROLS: Dict[str, Dict[str, Any]] = {
+    "bench": {"values": {"low": 2.0, "medium": 4.0, "high": 6.0}, "minimumSpacingM": 8.0, "roadSetbackM": 0.3, "allowedZones": ["sidewalk", "furnishing", "frontage"]},
+    "lamp": {"values": {"low": 4.0, "medium": 6.0, "high": 8.0}, "minimumSpacingM": 10.0, "roadSetbackM": 0.3, "allowedZones": ["furnishing", "sidewalk"]},
+    "trash": {"values": {"low": 2.0, "medium": 3.0, "high": 5.0}, "minimumSpacingM": 10.0, "roadSetbackM": 0.3, "allowedZones": ["furnishing", "sidewalk", "frontage"]},
+    "tree": {"values": {"low": 5.0, "medium": 8.0, "high": 12.0}, "minimumSpacingM": 6.0, "roadSetbackM": 0.6, "allowedZones": ["planting", "furnishing", "frontage"]},
+    "bus_stop": {"values": {"low": 0.5, "medium": 1.0, "high": 2.0}, "minimumSpacingM": 35.0, "roadSetbackM": 0.5, "allowedZones": ["transit_edge", "sidewalk"]},
+    "mailbox": {"values": {"low": 0.5, "medium": 1.0, "high": 2.0}, "minimumSpacingM": 30.0, "roadSetbackM": 0.3, "allowedZones": ["frontage", "sidewalk"]},
+    "hydrant": {"values": {"low": 1.0, "medium": 2.0, "high": 3.0}, "minimumSpacingM": 20.0, "roadSetbackM": 0.3, "allowedZones": ["furnishing", "sidewalk"]},
+    "bollard": {"values": {"low": 4.0, "medium": 8.0, "high": 12.0}, "minimumSpacingM": 2.0, "roadSetbackM": 0.2, "allowedZones": ["furnishing", "sidewalk"]},
+}
 
 
 class ParameterSpecError(ValueError):
@@ -145,6 +176,102 @@ def list_parameter_profiles() -> list[Dict[str, Any]]:
     return [copy.deepcopy(PARAMETER_PROFILE_REGISTRY[key]) for key in _PROFILE_ROWS]
 
 
+def _preferred_spacing_for_target(target: float) -> float:
+    return round(min(240.0, max(2.0, 100.0 / max(float(target), 1e-6))), 3)
+
+
+def _default_v2_categories() -> Dict[str, Dict[str, Any]]:
+    categories: Dict[str, Dict[str, Any]] = {}
+    for category, control in FURNITURE_CATEGORY_CONTROLS.items():
+        target = float(control["values"]["medium"])
+        categories[category] = {
+            "enabled": False,
+            "targetCountPer100M": target,
+            "preferredSpacingM": _preferred_spacing_for_target(target),
+            "minimumSpacingM": float(control["minimumSpacingM"]),
+            "roadSetbackM": float(control["roadSetbackM"]),
+            "allowedZones": list(control["allowedZones"]),
+        }
+    return categories
+
+
+def build_default_street_design_parameter_spec_v2(
+    *,
+    source_revision: int,
+    source_fingerprint: str,
+    source_values: Mapping[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """Build the explicit no-preset product default.
+
+    ``source_values`` may contain exact normalized annotation values.  Missing
+    fields use the public medium control value, while every furniture category
+    remains disabled until the user explicitly enables it.
+    """
+
+    supplied = dict(source_values or {})
+    medium = lambda field: SKELETON_PARAMETER_CONTROLS[field]["values"]["medium"]
+    skeleton = {
+        "laneCount": supplied.get("laneCount", medium("laneCount")),
+        "laneWidthM": supplied.get("laneWidthM", medium("laneWidthM")),
+        "sidewalkWidthM": supplied.get("sidewalkWidthM", medium("sidewalkWidthM")),
+        "furnishingWidthM": supplied.get("furnishingWidthM", medium("furnishingWidthM")),
+        "curbWidthM": supplied.get("curbWidthM", 0.12),
+        "junctionCornerPolicy": supplied.get("junctionCornerPolicy", "source"),
+        "median": {"enabled": False, "kind": "raised", "widthM": medium("medianWidthM")},
+        "busStop": {"enabled": False, "placement": "curbside"},
+    }
+    if skeleton["junctionCornerPolicy"] == "fixed":
+        skeleton["junctionCornerRadiusM"] = supplied.get(
+            "junctionCornerRadiusM", medium("junctionCornerRadiusM")
+        )
+    return validate_street_design_parameter_spec({
+        "schemaVersion": SCHEMA_VERSION,
+        "source": {
+            "sourceRevision": int(source_revision),
+            "sourceFingerprint": str(source_fingerprint).strip(),
+            "geometryLocked": True,
+        },
+        "skeleton": skeleton,
+        "furniture": {
+            "globalDensity": GLOBAL_DENSITY_CONTROL["values"]["medium"],
+            "style": "civic_clean",
+            "categories": _default_v2_categories(),
+        },
+        "buildings": {"representation": "transparent_massing", "footprintLocked": True},
+        "seed": 42,
+    })
+
+
+def parameter_control_registry() -> Dict[str, Any]:
+    """Return the authoritative level-to-value mapping consumed by both UIs."""
+
+    categories = copy.deepcopy(FURNITURE_CATEGORY_CONTROLS)
+    for value in categories.values():
+        value["unit"] = "count_per_100m"
+        value["preferredSpacingByLevelM"] = {
+            level: _preferred_spacing_for_target(float(target))
+            for level, target in value["values"].items()
+        }
+    return {
+        "schema_version": CONTROL_SCHEMA_VERSION,
+        "parameter_schema_version": SCHEMA_VERSION,
+        "generation_mode": "parametric",
+        "levels": list(LEVELS),
+        "source_option": "keep_annotation",
+        "skeleton": copy.deepcopy(SKELETON_PARAMETER_CONTROLS),
+        "median": {"kinds": ["raised", "planted"], "default_enabled": False},
+        "bus_stop": {"placements": ["curbside", "bay"], "default_enabled": False},
+        "furniture": {
+            "globalDensity": copy.deepcopy(GLOBAL_DENSITY_CONTROL),
+            "styles": sorted(FURNITURE_STYLES),
+            "categories": categories,
+            "default_enabled": False,
+        },
+        "buildings": {"default_representation": "transparent_massing", "footprint_locked": True},
+        "default_seed": 42,
+    }
+
+
 def _deep_merge(base: Dict[str, Any], patch: Mapping[str, Any]) -> Dict[str, Any]:
     result = copy.deepcopy(base)
     for key, value in patch.items():
@@ -166,7 +293,7 @@ def build_street_design_parameter_spec(
         raise ParameterSpecError(f"Unknown parameter profile: {profile_id}")
     profile = PARAMETER_PROFILE_REGISTRY[profile_id]
     spec = {
-        "schemaVersion": SCHEMA_VERSION,
+        "schemaVersion": SCHEMA_VERSION_V1,
         "source": {
             "sourceRevision": int(source_revision),
             "sourceFingerprint": str(source_fingerprint).strip(),
@@ -192,8 +319,59 @@ def _finite_number(value: Any, field: str, lower: float, upper: float) -> float:
     return number
 
 
+def migrate_street_design_parameter_spec_v1(payload: Mapping[str, Any]) -> Dict[str, Any]:
+    """Expand a historical named profile into the explicit v2 contract."""
+
+    legacy = copy.deepcopy(dict(payload))
+    if legacy.get("schemaVersion") != SCHEMA_VERSION_V1:
+        raise ParameterSpecError(f"schemaVersion must be {SCHEMA_VERSION_V1} for migration.")
+    skeleton = dict(legacy.get("skeleton") or {})
+    furniture = dict(legacy.get("furniture") or {})
+    legacy_categories = dict(furniture.get("categories") or {})
+    categories = _default_v2_categories()
+    for category, config in legacy_categories.items():
+        if category in categories:
+            categories[category] = _deep_merge(categories[category], dict(config or {}))
+    profile_id = str(furniture.get("profileId") or "")
+    if profile_id in {"park_landscape", "pedestrian_friendly", "quiet_residential"}:
+        style = "lush_natural"
+    elif profile_id == "transit_priority":
+        style = "transit_modern"
+    else:
+        style = "civic_clean"
+    migrated_skeleton: Dict[str, Any] = {
+        "laneCount": skeleton.get("laneCount", SKELETON_PARAMETER_CONTROLS["laneCount"]["values"]["medium"]),
+        "laneWidthM": skeleton.get("laneWidthM", SKELETON_PARAMETER_CONTROLS["laneWidthM"]["values"]["medium"]),
+        "sidewalkWidthM": skeleton.get("sidewalkWidthM", SKELETON_PARAMETER_CONTROLS["sidewalkWidthM"]["values"]["medium"]),
+        "furnishingWidthM": skeleton.get("furnishingWidthM", SKELETON_PARAMETER_CONTROLS["furnishingWidthM"]["values"]["medium"]),
+        "curbWidthM": skeleton.get("curbWidthM", 0.12),
+        "junctionCornerPolicy": skeleton.get("junctionCornerPolicy", "source"),
+        "median": {"enabled": False, "kind": "raised", "widthM": SKELETON_PARAMETER_CONTROLS["medianWidthM"]["values"]["medium"]},
+        "busStop": {
+            "enabled": bool(categories.get("bus_stop", {}).get("enabled", False)),
+            "placement": "curbside",
+        },
+    }
+    if "junctionCornerRadiusM" in skeleton:
+        migrated_skeleton["junctionCornerRadiusM"] = skeleton["junctionCornerRadiusM"]
+    return {
+        "schemaVersion": SCHEMA_VERSION,
+        "source": copy.deepcopy(dict(legacy.get("source") or {})),
+        "skeleton": migrated_skeleton,
+        "furniture": {
+            "globalDensity": furniture.get("globalDensity", 1.0),
+            "style": style,
+            "categories": categories,
+        },
+        "buildings": copy.deepcopy(dict(legacy.get("buildings") or {})),
+        "seed": legacy.get("seed", 42),
+    }
+
+
 def validate_street_design_parameter_spec(payload: Mapping[str, Any]) -> Dict[str, Any]:
     spec = copy.deepcopy(dict(payload))
+    if spec.get("schemaVersion") == SCHEMA_VERSION_V1:
+        spec = migrate_street_design_parameter_spec_v1(spec)
     if spec.get("schemaVersion") != SCHEMA_VERSION:
         raise ParameterSpecError(f"schemaVersion must be {SCHEMA_VERSION}.")
     source = dict(spec.get("source") or {})
@@ -218,10 +396,29 @@ def validate_street_design_parameter_spec(payload: Mapping[str, Any]) -> Dict[st
         skeleton["junctionCornerRadiusM"] = _finite_number(
             skeleton.get("junctionCornerRadiusM"), "skeleton.junctionCornerRadiusM", 1.0, 20.0
         )
+    elif "junctionCornerRadiusM" in skeleton:
+        skeleton.pop("junctionCornerRadiusM", None)
+    median = dict(skeleton.get("median") or {})
+    if not isinstance(median.get("enabled"), bool):
+        raise ParameterSpecError("skeleton.median.enabled must be boolean.")
+    if median.get("kind") not in {"raised", "planted"}:
+        raise ParameterSpecError("skeleton.median.kind must be raised or planted.")
+    median["widthM"] = _finite_number(median.get("widthM"), "skeleton.median.widthM", 0.8, 8.0)
+    skeleton["median"] = median
+    bus_stop = dict(skeleton.get("busStop") or {})
+    if not isinstance(bus_stop.get("enabled"), bool):
+        raise ParameterSpecError("skeleton.busStop.enabled must be boolean.")
+    if bus_stop.get("placement") not in {"curbside", "bay"}:
+        raise ParameterSpecError("skeleton.busStop.placement must be curbside or bay.")
+    skeleton["busStop"] = bus_stop
 
     furniture = dict(spec.get("furniture") or {})
     furniture["globalDensity"] = _finite_number(furniture.get("globalDensity"), "furniture.globalDensity", 0.0, 2.0)
-    categories = dict(furniture.get("categories") or {})
+    style = str(furniture.get("style") or "").strip()
+    if style not in FURNITURE_STYLES:
+        raise ParameterSpecError("furniture.style must be civic_clean, lush_natural, or transit_modern.")
+    furniture["style"] = style
+    categories = _deep_merge(_default_v2_categories(), dict(furniture.get("categories") or {}))
     unknown = sorted(set(categories) - set(DEFAULT_CATEGORIES))
     if unknown:
         raise ParameterSpecError(f"Unknown furniture categories: {', '.join(unknown)}")
@@ -232,8 +429,8 @@ def validate_street_design_parameter_spec(payload: Mapping[str, Any]) -> Dict[st
             raise ParameterSpecError(f"furniture.categories.{category}.enabled must be boolean.")
         for key, bounds in {
             "targetCountPer100M": (0.0, 20.0),
-            "preferredSpacingM": (2.0, 100.0),
-            "minimumSpacingM": (2.0, 100.0),
+            "preferredSpacingM": (2.0, 240.0),
+            "minimumSpacingM": (2.0, 240.0),
             "roadSetbackM": (0.0, 10.0),
         }.items():
             if key in config:
@@ -254,6 +451,8 @@ def validate_street_design_parameter_spec(payload: Mapping[str, Any]) -> Dict[st
         if normalized_refs:
             config["assetRefs"] = normalized_refs
         normalized_categories[category] = config
+    if skeleton["busStop"]["enabled"]:
+        normalized_categories["bus_stop"]["enabled"] = True
     furniture["categories"] = normalized_categories
 
     buildings = dict(spec.get("buildings") or {})
@@ -287,18 +486,29 @@ def compile_street_design_parameter_spec(
     furniture = spec["furniture"]
     buildings = spec["buildings"]
     policy = skeleton["junctionCornerPolicy"]
+    style_preset = {
+        "civic_clean": "civic_clean_v1",
+        "lush_natural": "lush_walkable_v1",
+        "transit_modern": "transit_modern_v1",
+    }[furniture["style"]]
     patch: Dict[str, Any] = {
-        "skeleton_design_profile": skeleton["profileId"],
-        "skeleton_design_profile_source": "manual",
         "lane_count": skeleton["laneCount"],
         "base_lane_width_m": skeleton["laneWidthM"],
         "road_width_m": skeleton["laneCount"] * skeleton["laneWidthM"],
         "sidewalk_width_m": skeleton["sidewalkWidthM"],
         "furnishing_width_m": skeleton["furnishingWidthM"],
         "curb_width_m": skeleton["curbWidthM"],
-        "street_furniture_profile": furniture["profileId"],
-        "street_furniture_profile_source": "manual",
+        "median_enabled": skeleton["median"]["enabled"],
+        "median_kind": skeleton["median"]["kind"],
+        "median_width_m": skeleton["median"]["widthM"],
+        "bus_stop_enabled": skeleton["busStop"]["enabled"],
+        "bus_stop_placement": skeleton["busStop"]["placement"],
         "density": furniture["globalDensity"],
+        "furniture_style": furniture["style"],
+        "style_preset": style_preset,
+        "amenity_coverage_mode": "off",
+        "minimum_category_presence": (),
+        "optional_category_presence": (),
         "furniture_category_parameters": furniture["categories"],
         "building_representation": buildings["representation"],
         "seed": spec["seed"],
@@ -314,7 +524,7 @@ def compile_street_design_parameter_spec(
         if source not in PARAMETER_SOURCES:
             raise ParameterSpecError(f"Unsupported parameter source for {field}: {source}")
     sources = {
-        path: supplied_sources.get(path, "preset")
+        path: supplied_sources.get(path, "system_default")
         for path in _flatten_paths(spec)
         if not path.startswith("source.")
     }

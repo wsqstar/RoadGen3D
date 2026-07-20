@@ -110,6 +110,12 @@ class StreetComposeConfig:
     curb_width_m: float = 0.12
     curb_reveal_m: float = 0.15
     curb_top_mode: str = "flush_with_sidewalk"
+    median_enabled: bool = False
+    median_kind: str = "raised"  # "raised" | "planted"
+    median_width_m: float = 2.0
+    bus_stop_enabled: bool = False
+    bus_stop_placement: str = "curbside"  # "curbside" | "bay"
+    furniture_style: str = "civic_clean"
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"
