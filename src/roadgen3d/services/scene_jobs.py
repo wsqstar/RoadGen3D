@@ -353,11 +353,6 @@ class SceneJobService:
                 or context_detail.get("citationsByField")
                 or state.draft.citations_by_field
             ),
-            "parameter_sources_by_field": dict(
-                context_detail.get("parameter_sources_by_field")
-                or context_detail.get("parameterSourcesByField")
-                or state.draft.parameter_sources_by_field
-            ),
             "parameter_decisions_by_field": dict(
                 context_detail.get("parameter_decisions_by_field")
                 or context_detail.get("parameterDecisionsByField")
@@ -382,6 +377,16 @@ class SceneJobService:
             "evidence_count": int(context_detail.get("evidence_count") or 0),
             "candidate_asset_manifests": list(state.generation_options.get("candidate_asset_manifests") or []),
             "candidate_asset_count": int(state.generation_options.get("candidate_asset_count") or 0),
+            "street_design_parameter_spec": dict(state.generation_options.get("street_design_parameter_spec") or {}),
+            "street_design_parameter_fingerprint": str(state.generation_options.get("street_design_parameter_fingerprint") or ""),
+            "parameter_sources_by_field": {
+                **dict(state.generation_options.get("parameter_sources_by_field") or {}),
+                **dict(
+                    context_detail.get("parameter_sources_by_field")
+                    or context_detail.get("parameterSourcesByField")
+                    or state.draft.parameter_sources_by_field
+                ),
+            },
         }
         if not provenance["evidence_count"]:
             provenance["evidence_count"] = len(provenance["rag_evidence"])

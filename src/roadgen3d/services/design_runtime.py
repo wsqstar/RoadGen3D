@@ -208,7 +208,9 @@ def build_compose_config_from_draft(
         query=normalized_query,
         length_m=float(patch.get("length_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["length_m"])),
         road_width_m=float(patch.get("road_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["road_width_m"])),
+        base_lane_width_m=(float(patch["base_lane_width_m"]) if patch.get("base_lane_width_m") is not None else None),
         sidewalk_width_m=float(patch.get("sidewalk_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["sidewalk_width_m"])),
+        furnishing_width_m=(float(patch["furnishing_width_m"]) if patch.get("furnishing_width_m") is not None else None),
         lane_count=int(patch.get("lane_count", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["lane_count"])),
         density=float(patch.get("density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["density"])),
         building_density=float(patch.get("building_density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["building_density"])),
@@ -218,6 +220,9 @@ def build_compose_config_from_draft(
         auto_land_use_mode=str(patch.get("auto_land_use_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["auto_land_use_mode"])),
         infill_policy=str(patch.get("infill_policy", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["infill_policy"])),
         building_height_mode=str(patch.get("building_height_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["building_height_mode"])),
+        junction_corner_radius_mode=str(patch.get("junction_corner_radius_mode", "auto")),
+        junction_corner_radius_m=(float(patch["junction_corner_radius_m"]) if patch.get("junction_corner_radius_m") is not None else None),
+        curb_width_m=float(patch.get("curb_width_m", 0.12)),
         seed=int(patch.get("seed", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.get("seed", 42))),
         topk_per_category=20,
         max_trials_per_slot=30,
@@ -264,6 +269,7 @@ def build_compose_config_from_draft(
         amenity_coverage_mode=str(patch.get("amenity_coverage_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["amenity_coverage_mode"])),
         minimum_category_presence=tuple(patch.get("minimum_category_presence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["minimum_category_presence"])),
         optional_category_presence=tuple(patch.get("optional_category_presence", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["optional_category_presence"])),
+        furniture_category_parameters=dict(patch.get("furniture_category_parameters", {})),
     )
 
 

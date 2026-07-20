@@ -85,6 +85,7 @@ class StreetComposeConfig:
     sidewalk_distribution: str = "per_side"
     poi_fit_mode: str = "hard_containment"
     base_lane_width_m: Optional[float] = None
+    furnishing_width_m: Optional[float] = None
     beauty_mode: str = "presentation_v1"
     style_preset: str = "civic_clean_v1"
     render_preset: str = "axonometric_board_v1"
@@ -158,6 +159,7 @@ class StreetComposeConfig:
     amenity_coverage_mode: str = "try"  # "off" | "try"
     minimum_category_presence: Tuple[str, ...] = ("trash", "bench", "lamp")
     optional_category_presence: Tuple[str, ...] = ("mailbox", "hydrant")
+    furniture_category_parameters: Dict[str, Dict[str, Any]] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+from dataclasses import replace
 from typing import Dict, Iterable, List, Sequence, Tuple
 
 from .poi_taxonomy import (
@@ -419,6 +420,7 @@ def _estimate_furniture_requirements(
     available_categories: Iterable[str],
     profile_scales: Dict[str, float],
     required_categories: Sequence[str],
+    category_parameters: Dict[str, Dict[str, object]] | None = None,
 ) -> Dict[str, int]:
     available = set(available_categories)
     density_value = max(float(density), 0.1)
@@ -430,10 +432,22 @@ def _estimate_furniture_requirements(
                 query_scales[category] = query_scales.get(category, 1.0) * float(scale)
 
     requirements: Dict[str, int] = {}
+    explicit = dict(category_parameters or {})
     for category in DEFAULT_CATEGORIES:
         if category not in available:
             continue
+        category_config = dict(explicit.get(category) or {})
+        if category_config.get("enabled") is False:
+            requirements[category] = 0
+            continue
+        target_per_100m = category_config.get("targetCountPer100M")
+        if target_per_100m is not None:
+            requirements[category] = max(0, int(round(float(length_m) * float(target_per_100m) / 100.0)))
+            continue
         base_spacing = float(DEFAULT_SPACING_M[category])
+        preferred_spacing = category_config.get("preferredSpacingM")
+        if preferred_spacing is not None:
+            base_spacing = max(float(preferred_spacing), float(category_config.get("minimumSpacingM") or 0.0), 2.0)
         profile_scale = float(profile_scales.get(category, 1.0))
         query_scale = float(query_scales.get(category, 1.0))
         effective_scale = max(0.0, density_value * profile_scale * query_scale)
@@ -451,6 +465,47 @@ def _estimate_furniture_requirements(
             count = max(1, count)
         requirements[category] = max(0, count)
     return requirements
+
+
+def _apply_furniture_allowed_zones(
+    bands: Sequence[StreetBand],
+    category_parameters: Dict[str, Dict[str, object]] | None,
+) -> Tuple[StreetBand, ...]:
+    """Narrow existing placement bands using the versioned parameter contract.
+
+    This never makes a normally forbidden band eligible.  It only removes a
+    category from a band when the explicit contract excludes that semantic
+    zone, preserving the solver's existing safety constraints.
+    """
+
+    parameters = dict(category_parameters or {})
+    if not parameters:
+        return tuple(bands)
+
+    def _zone_for_band(band: StreetBand) -> str:
+        kind = str(band.kind or "").strip().lower()
+        name = str(band.name or "").strip().lower()
+        if kind == "clear_path":
+            return "sidewalk"
+        if kind == "transit_edge":
+            return "transit_edge"
+        if "plant" in kind or "green" in kind or "plant" in name or "green" in name:
+            return "planting"
+        if "frontage" in kind or "frontage" in name:
+            return "frontage"
+        return "furnishing"
+
+    filtered: List[StreetBand] = []
+    for band in bands:
+        zone = _zone_for_band(band)
+        allowed = tuple(
+            category
+            for category in band.allowed_categories
+            if not parameters.get(category)
+            or zone in {str(item) for item in parameters[category].get("allowedZones", ())}
+        )
+        filtered.append(replace(band, allowed_categories=allowed))
+    return tuple(filtered)
 
 
 def _rhythm_min_count(category: str, length_m: float) -> int:
@@ -475,8 +530,15 @@ def _apply_furniture_design_quantity_rules(
         for category, count in dict(requirements).items()
         if str(category) in available
     }
+    explicit_parameters = dict(getattr(config, "furniture_category_parameters", {}) or {})
     for category in FURNITURE_RHYTHM_CATEGORIES:
         if category not in available:
+            continue
+        category_parameters = dict(explicit_parameters.get(category) or {})
+        if category_parameters.get("enabled") is False:
+            normalized[category] = 0
+            continue
+        if category_parameters.get("targetCountPer100M") is not None:
             continue
         minimum = _rhythm_min_count(category, float(config.length_m))
         if minimum > 0:
@@ -495,7 +557,12 @@ def _apply_furniture_design_quantity_rules(
         if len(rhythm_counts) >= 2:
             rhythm_target = max(rhythm_counts)
             for category in FURNITURE_RHYTHM_CATEGORIES:
-                if category in available and int(normalized.get(category, 0)) > 0:
+                category_parameters = dict(explicit_parameters.get(category) or {})
+                if (
+                    category in available
+                    and int(normalized.get(category, 0)) > 0
+                    and category_parameters.get("targetCountPer100M") is None
+                ):
                     normalized[category] = rhythm_target
     for category, cap in FURNITURE_SCENE_MAX_COUNTS.items():
         if category not in normalized:
@@ -616,7 +683,7 @@ def infer_street_program(
     defaults = _profile_defaults(profile_name)
     road_type = _infer_road_type(config.query, config.target_street_type)
     clear_width = max(float(config.sidewalk_width_m), float(defaults["min_clear_path_width_m"]))
-    furnishing_width = float(defaults["furnishing_width_m"])
+    furnishing_width = float(getattr(config, "furnishing_width_m", None) or defaults["furnishing_width_m"])
     right_edge_width = float(defaults.get("right_edge_width_m", furnishing_width))
     carriageway_width = float(getattr(placement_context, "carriageway_width_m", config.road_width_m))
     left_clear_width = float(getattr(placement_context, "left_clear_path_width_m", clear_width))
@@ -650,6 +717,10 @@ def infer_street_program(
             right_edge_width_m=right_furnishing_width,
             profile_name=profile_name,
         )
+    bands = _apply_furniture_allowed_zones(
+        bands,
+        dict(getattr(config, "furniture_category_parameters", {}) or {}),
+    )
     furniture_disabled = _street_furniture_disabled(config)
     if furniture_disabled:
         requirements = {
@@ -665,6 +736,7 @@ def infer_street_program(
             available_categories=available_categories,
             profile_scales=dict(defaults["density_scales"]),
             required_categories=tuple(defaults["required_categories"]),
+            category_parameters=dict(getattr(config, "furniture_category_parameters", {}) or {}),
         )
     if not furniture_disabled and str(getattr(config, "amenity_coverage_mode", "try") or "try").strip().lower() == "try":
         available_set = {str(category).strip().lower() for category in available_categories}

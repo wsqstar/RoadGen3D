@@ -30,7 +30,12 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "layout_solver",
     "length_m",
     "road_width_m",
+    "base_lane_width_m",
     "sidewalk_width_m",
+    "furnishing_width_m",
+    "curb_width_m",
+    "junction_corner_radius_mode",
+    "junction_corner_radius_m",
     "lane_count",
     "segment_length_m",
     "seed",
@@ -68,6 +73,7 @@ ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "amenity_coverage_mode",
     "minimum_category_presence",
     "optional_category_presence",
+    "furniture_category_parameters",
 )
 VALID_DESIGN_RULE_PROFILES: Tuple[str, ...] = (
     "balanced_complete_street_v1",
@@ -82,11 +88,12 @@ VALID_STYLE_PRESETS: Tuple[str, ...] = (
     "transit_modern_v1",
 )
 _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
-_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m", "skeleton_design_profile_confidence", "street_furniture_profile_confidence"})
+_FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "base_lane_width_m", "sidewalk_width_m", "furnishing_width_m", "curb_width_m", "junction_corner_radius_m", "density", "building_density", "building_max_per_100m", "segment_length_m", "osm_multiblock_max_extent_m", "osm_short_road_min_length_m", "skeleton_design_profile_confidence", "street_furniture_profile_confidence"})
 _INT_FIELDS = frozenset({"lane_count", "seed", "max_styles_per_category", "osm_multiblock_max_roads", "max_bus_stops_per_scene"})
 _BOOL_FIELDS = frozenset({"allow_solver_fallback", "allow_demo_bus_stop_when_osm_absent"})
 _LIST_FIELDS = frozenset({"minimum_category_presence", "optional_category_presence", "bus_stop_eligible_road_names", "skeleton_design_profile_reasons", "street_furniture_profile_reasons"})
-_STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS
+_MAPPING_FIELDS = frozenset({"furniture_category_parameters"})
+_STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS - _BOOL_FIELDS - _LIST_FIELDS - _MAPPING_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
 
 # Enum fields: value (lowercased) must be one of these sets, otherwise dropped.
@@ -122,6 +129,7 @@ _ENUM_VALID_VALUES: Dict[str, frozenset] = {
     "auto_land_use_mode": frozenset({"road_buffer", "off"}),
     "infill_policy": frozenset({"off", "large_gap_only", "balanced", "aggressive"}),
     "building_height_mode": frozenset({"class_only", "theme_random"}),
+    "junction_corner_radius_mode": frozenset({"auto", "fixed"}),
 }
 
 DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
@@ -181,6 +189,7 @@ DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "amenity_coverage_mode": "try",
     "minimum_category_presence": ("trash", "bench", "lamp"),
     "optional_category_presence": ("mailbox", "hydrant"),
+    "furniture_category_parameters": {},
 }
 
 
@@ -231,6 +240,13 @@ def sanitize_compose_config_patch(payload: Mapping[str, Any] | None) -> Dict[str
             else:
                 items = []
             patch[key] = tuple(dict.fromkeys(item for item in items if item))
+        elif key in _MAPPING_FIELDS:
+            if isinstance(value, Mapping):
+                patch[key] = {
+                    str(item_key): dict(item_value)
+                    for item_key, item_value in value.items()
+                    if isinstance(item_value, Mapping)
+                }
         elif key in _STRING_FIELDS:
             if key in _ENUM_VALID_VALUES:
                 text = str(value or "").strip().lower()

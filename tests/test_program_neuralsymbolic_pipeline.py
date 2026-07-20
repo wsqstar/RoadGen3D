@@ -148,7 +148,9 @@ def test_rule_profiles_change_cross_section_and_layout(tmp_path: Path, monkeypat
     assert pedestrian.street_program is not None
     assert balanced.street_program.cross_section_type != pedestrian.street_program.cross_section_type
     assert pedestrian.street_program.sidewalk_width_m > balanced.street_program.sidewalk_width_m
-    assert len(pedestrian.solver_result.slot_plans) != len(balanced.solver_result.slot_plans)
+    assert [slot.z_center_m for slot in pedestrian.solver_result.slot_plans] != [
+        slot.z_center_m for slot in balanced.solver_result.slot_plans
+    ]
 
 
 def test_solver_reports_replace_edit_for_missing_required_category():

@@ -11,6 +11,7 @@ from pydantic import BaseModel
 
 from roadgen3d.llm.design_workflow import parse_design_draft
 from roadgen3d.services.design_types import sanitize_compose_config_patch, sanitize_scene_context
+from roadgen3d.services.street_design_parameters import compile_street_design_parameter_spec
 from web.api.schemas import GenerateRequestModel, SceneJobCreateRequestModel
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -69,6 +70,14 @@ def prepare_scene_generation_request(
     scene_context_payload = dict(request_body.scene_context or {})
     patch_overrides = dict(request_body.patch_overrides or {})
     generation_options = dict(request_body.generation_options or {})
+    parameter_spec = generation_options.get("street_design_parameter_spec") or generation_options.get("parameter_spec")
+    if isinstance(parameter_spec, dict):
+        compiled = compile_street_design_parameter_spec(
+            parameter_spec,
+            field_sources=generation_options.get("parameter_sources_by_field") or {},
+        )
+        patch_overrides.update(compiled.compose_config_patch)
+        generation_options.update(compiled.generation_options)
     scenario_id = str(
         scene_context_payload.get("scenario_id")
         or generation_options.get("scenario_id")

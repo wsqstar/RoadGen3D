@@ -37,6 +37,11 @@ class SceneJobCreateRequestModel(BaseModel):
     generation_options: Dict[str, Any] = Field(default_factory=dict)
 
 
+class StreetDesignParameterCompileRequestModel(BaseModel):
+    spec: Dict[str, Any]
+    field_sources: Dict[str, str] = Field(default_factory=dict)
+
+
 class DesignMatrixInventoryRequestModel(BaseModel):
     graph_template_id: str = "hkust_gz_gate"
     custom_structure: Optional[Dict[str, Any]] = None

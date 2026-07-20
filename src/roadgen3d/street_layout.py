@@ -1605,6 +1605,10 @@ def _resolve_semantic_design_layers_for_compose(
     if not str(getattr(config, "street_furniture_profile", "") or "").strip():
         furniture_profile = str(semantic_layers.get("street_furniture_profile") or "balanced_complete")
         furniture_patch = street_furniture_profile_config_patch(furniture_profile)
+        # Furniture inference may fill furniture-specific defaults, but it must
+        # not silently replace an explicitly constructed rule/objective profile.
+        furniture_patch.pop("design_rule_profile", None)
+        furniture_patch.pop("objective_profile", None)
         current_style_preset = str(getattr(config, "style_preset", "") or "").strip().lower()
         if current_style_preset and current_style_preset != "civic_clean_v1":
             furniture_patch.pop("style_preset", None)

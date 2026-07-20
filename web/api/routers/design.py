@@ -9,6 +9,11 @@ from fastapi import APIRouter, HTTPException, Request
 from roadgen3d.json_safe import make_json_safe
 from roadgen3d.llm import LLMConfigurationError, LLMResponseError
 from roadgen3d.template_patch import TemplatePatchError
+from roadgen3d.services.street_design_parameters import (
+    ParameterSpecError,
+    compile_street_design_parameter_spec,
+    list_parameter_profiles,
+)
 from web.api.route_utils import dump_model, model_payload, prepare_scene_generation_request
 from web.api.schemas import (
     DesignMatrixGenerateRequestModel,
@@ -16,9 +21,33 @@ from web.api.schemas import (
     DraftRequestModel,
     GenerateRequestModel,
     SceneJobCreateRequestModel,
+    StreetDesignParameterCompileRequestModel,
 )
 
 router = APIRouter(tags=["design"])
+
+
+@router.get("/api/design/parameter-profiles")
+def design_parameter_profiles() -> Dict[str, Any]:
+    return {
+        "schema_version": "roadgen3d.street-design-parameter-registry.v1",
+        "generation_mode": "parametric",
+        "profiles": list_parameter_profiles(),
+    }
+
+
+@router.post("/api/design/parameter-specs/compile")
+def compile_design_parameter_spec(
+    request_body: StreetDesignParameterCompileRequestModel,
+) -> Dict[str, Any]:
+    try:
+        result = compile_street_design_parameter_spec(
+            request_body.spec,
+            field_sources=request_body.field_sources,
+        )
+    except ParameterSpecError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+    return make_json_safe(result.to_dict())
 
 
 @router.post("/api/design/draft")
@@ -90,4 +119,3 @@ def generate_design_matrix_cell(request_body: DesignMatrixGenerateRequestModel, 
     payload.pop("scene_job_request", None)
     payload.update(result.to_dict())
     return make_json_safe(payload)
-

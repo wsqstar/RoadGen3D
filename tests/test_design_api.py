@@ -53,6 +53,51 @@ def test_health_exposes_only_active_model_capabilities():
     assert set(capabilities) == {"llm"}
 
 
+def test_parameter_profile_registry_and_compile_api_are_parametric_only():
+    client = TestClient(create_app(design_service=_FakeService()))
+
+    registry_response = client.get("/api/design/parameter-profiles")
+    assert registry_response.status_code == 200
+    registry = registry_response.json()
+    assert registry["generation_mode"] == "parametric"
+    assert len(registry["profiles"]) == 7
+
+    profile = registry["profiles"][1]
+    spec = {
+        "schemaVersion": "roadgen3d.street-design-parameters.v1",
+        "source": {"sourceRevision": 2, "sourceFingerprint": "source", "geometryLocked": True},
+        "skeleton": profile["skeleton"],
+        "furniture": profile["furniture"],
+        "buildings": profile["buildings"],
+        "seed": 42,
+    }
+    compile_response = client.post(
+        "/api/design/parameter-specs/compile",
+        json={"spec": spec, "field_sources": {"skeleton.laneWidthM": "manual"}},
+    )
+    assert compile_response.status_code == 200
+    compiled = compile_response.json()
+    assert compiled["generation_options"]["skip_llm"] is True
+    assert compiled["generation_options"]["knowledge_source"] == "none"
+    assert compiled["parameter_sources_by_field"]["skeleton.laneWidthM"] == "manual"
+
+
+def test_parameter_compile_api_rejects_unlocked_source_geometry():
+    client = TestClient(create_app(design_service=_FakeService()))
+    response = client.post(
+        "/api/design/parameter-specs/compile",
+        json={
+            "spec": {
+                "schemaVersion": "roadgen3d.street-design-parameters.v1",
+                "source": {"sourceRevision": 1, "sourceFingerprint": "source", "geometryLocked": False},
+            }
+        },
+    )
+
+    assert response.status_code == 422
+    assert "locked" in response.json()["detail"]
+
+
 def test_osm_semantic_preview_endpoint_returns_preview(monkeypatch):
     captured: dict[str, object] = {}
 

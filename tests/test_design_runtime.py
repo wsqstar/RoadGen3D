@@ -470,21 +470,18 @@ def test_generate_scene_from_draft_custom_preset_uses_llm_graph_context(tmp_path
     assert user_payload["rag_queries"]
     assert user_payload["rag_evidence"][0]["chunk_id"] == "guide-001"
     assert user_payload["rag_evidence"][0]["parameter_hints"]["sidewalk_width_m"]
-    assert any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
+    assert not any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
     assert result.compose_config["road_width_m"] == 9.0
-    assert result.compose_config["sidewalk_width_m"] == 3.658
+    assert result.compose_config["sidewalk_width_m"] == 4.2
     llm_event = next(event for event in received_events if event["stage"] == "context_resolving" and event["progress"] == 18)
     detail = llm_event["detail"]
     assert detail["graph_summary"]["road_count"] == 7
-    assert detail["evidence_count"] == 2
+    assert detail["evidence_count"] == 1
     assert detail["rag_evidence"][0]["chunk_id"] == "guide-001"
-    assert any(item["knowledge_source"] == "scenario_parameters" for item in detail["rag_evidence"])
+    assert not any(item["knowledge_source"] == "scenario_parameters" for item in detail["rag_evidence"])
     assert detail["parameter_sources_by_field"]["query"] == "prompt_input"
     assert detail["parameter_sources_by_field"]["road_width_m"] == "llm_derived"
-    assert detail["parameter_sources_by_field"]["sidewalk_width_m"] == "parameter_triple"
-    assert detail["parameter_decisions_by_field"]["sidewalk_width_m"]["citations"] == [
-        "scenario_parameters::matrix::street_type_walkable_commercial_corridor::sidewalk_width_m"
-    ]
+    assert detail["parameter_sources_by_field"]["sidewalk_width_m"] == "llm_derived"
     assert detail["parameter_sources_by_field"]["target_street_type"] == "default_after_llm"
     assert "target_street_type" in detail["defaulted_fields"]
     assert "target_street_type" not in detail["llm_raw_fields"]
@@ -593,11 +590,11 @@ def test_generate_scene_from_draft_uses_preset_rag_queries(tmp_path: Path, monke
     assert captured["knowledge_source"] == "graph_rag"
     assert captured["rag_queries"][0] == "make it safer"
     assert "pedestrian priority street design safety" in captured["rag_queries"]
-    assert captured["structured_rag_queries"] == captured["rag_queries"]
+    assert "structured_rag_queries" not in captured
     user_payload = captured["llm_payload"]
     assert user_payload["knowledge_source"] == "graph_rag"
     assert "pedestrian priority street design safety" in user_payload["rag_queries"]
-    assert any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
+    assert not any(item["knowledge_source"] == "scenario_parameters" for item in user_payload["rag_evidence"])
     assert result.compose_config["sidewalk_width_m"] == 3.2
 
 
