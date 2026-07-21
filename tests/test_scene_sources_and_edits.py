@@ -365,6 +365,57 @@ def test_scene_edit_command_protocol_supports_full_student_edit_set() -> None:
     assert inverse[-1]["command"]["op"] == "add_instance"
 
 
+def test_scene_edit_replaces_asset_in_guangzhou_starter_scene(tmp_path: Path) -> None:
+    layout_path = (
+        ROOT
+        / "artifacts"
+        / "starter_scenes"
+        / "guangzhou_complete_intersection_v6"
+        / "f3d59bf4f942e8f2"
+        / "scene_layout.json"
+    )
+    source_sha = hashlib.sha256(layout_path.read_bytes()).hexdigest()
+
+    result = apply_scene_layout_edits(
+        layout_path=layout_path,
+        base_revision=0,
+        base_sha256=source_sha,
+        commands=[{
+            "command_id": "replace-inst-0209",
+            "op": "replace_asset",
+            "instance_id": "inst_0209",
+            "asset_id": "cde9760513104984a87edfe939772243",
+            "category": "tree",
+        }],
+        editable_root=ROOT / "artifacts",
+        revision_root=tmp_path / "revisions",
+    )
+
+    published_layout = json.loads(
+        Path(result["revision"]["layout_path"]).read_text(encoding="utf-8")
+    )
+    replacement = next(
+        item for item in published_layout["placements"]
+        if item["instance_id"] == "inst_0209"
+    )
+    assert replacement["asset_id"] == "cde9760513104984a87edfe939772243"
+
+    glb_bytes = Path(result["revision"]["scene_glb_path"]).read_bytes()
+    json_length, _ = struct.unpack_from("<II", glb_bytes, 12)
+    glb_document = json.loads(
+        glb_bytes[20:20 + json_length].decode("utf-8").rstrip("\x00 ")
+    )
+    replacement_nodes = [
+        item for item in glb_document["nodes"]
+        if str(item.get("name", "")).startswith("inst_0209")
+    ]
+    assert len(replacement_nodes) == 2
+    assert {
+        (item.get("extras") or {}).get("asset_id")
+        for item in replacement_nodes
+    } == {"cde9760513104984a87edfe939772243"}
+
+
 def test_scene_edit_scale_and_height_constraints_match_shared_editor() -> None:
     with pytest.raises(Exception, match="0.25..4.0"):
         _normalize_commands([
@@ -405,6 +456,72 @@ def test_scene_edit_rotates_and_scales_glb_and_publishes_revision(tmp_path: Path
     node = next(name for name in scene.graph.nodes if str(name).startswith("inst_0001"))
     transform, _ = scene.graph.get(node)
     assert np.linalg.norm(transform[:3, 0]) == pytest.approx(2.0)
+
+
+def test_scene_edit_scales_all_multipart_asset_nodes_around_instance_anchor(tmp_path: Path) -> None:
+    editable_root = tmp_path / "artifacts"
+    scene_dir = editable_root / "source"
+    scene_dir.mkdir(parents=True)
+    scene = trimesh.Scene()
+    trunk_transform = np.eye(4)
+    trunk_transform[:3, 3] = [1.0, 0.25, 2.0]
+    crown_transform = np.eye(4)
+    crown_transform[:3, 3] = [1.5, 1.25, 2.0]
+    scene.add_geometry(
+        trimesh.creation.box(extents=[0.4, 0.5, 0.4]),
+        node_name="inst_0001_trunk",
+        geom_name="trunk",
+        transform=trunk_transform,
+    )
+    scene.add_geometry(
+        trimesh.creation.icosphere(radius=0.5),
+        node_name="inst_0001_crown",
+        geom_name="crown",
+        transform=crown_transform,
+    )
+    glb_path = scene_dir / "scene.glb"
+    glb_path.write_bytes(scene.export(file_type="glb"))
+    layout = {
+        "version": "roadgen3d.scene_layout.v1",
+        "placements": [{
+            "instance_id": "inst_0001",
+            "asset_id": "tree-multipart",
+            "category": "tree",
+            "position_xyz": [1.0, 0.0, 2.0],
+            "bbox_xz": [0.5, 1.5, 1.5, 2.5],
+            "yaw_deg": 0,
+            "scale": 1,
+        }],
+        "outputs": {"scene_glb": str(glb_path)},
+    }
+    layout_path = scene_dir / "scene_layout.json"
+    layout_path.write_text(json.dumps(layout), encoding="utf-8")
+
+    result = apply_scene_layout_edits(
+        layout_path=layout_path,
+        base_revision=0,
+        base_sha256=hashlib.sha256(layout_path.read_bytes()).hexdigest(),
+        commands=[{
+            "command_id": "scale-tree",
+            "op": "scale_instance",
+            "instance_id": "inst_0001",
+            "scale": 2,
+        }],
+        editable_root=editable_root,
+        revision_root=editable_root / "scene_layout_edits",
+    )
+
+    scaled_scene = trimesh.load(result["revision"]["scene_glb_path"], force="scene", process=False)
+    transforms = {
+        str(node): scaled_scene.graph.get(node)[0]
+        for node in scaled_scene.graph.nodes
+        if str(node).startswith("inst_0001")
+    }
+    assert set(transforms) == {"inst_0001_trunk", "inst_0001_crown"}
+    assert transforms["inst_0001_trunk"][:3, 3].tolist() == pytest.approx([1.0, 0.5, 2.0])
+    assert transforms["inst_0001_crown"][:3, 3].tolist() == pytest.approx([2.0, 2.5, 2.0])
+    for transform in transforms.values():
+        assert np.linalg.norm(transform[:3, 0]) == pytest.approx(2.0)
 
 
 

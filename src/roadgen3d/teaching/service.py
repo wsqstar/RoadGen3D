@@ -271,7 +271,37 @@ class TeachingPlatformService:
             user = db.get(User, auth.user_id)
             if user is None or not user.is_active:
                 raise Forbidden("The user account is inactive.")
+            if user.system_role == "guest":
+                # Guest ownership is browser-local. Keep an actively used guest
+                # identity alive without turning it into a password account.
+                auth.expires_at = now_utc() + timedelta(days=365)
             return self._user(user)
+
+    def create_guest_session(self) -> dict[str, Any]:
+        """Create a browser-owned identity whose projects are publicly readable."""
+
+        guest_id = new_id()
+        with self.database.session() as db:
+            user = User(
+                id=guest_id,
+                email=f"guest-{guest_id}@public.roadgen3d.invalid",
+                display_name=f"访客 {guest_id[:6].upper()}",
+                password_hash=hash_password(f"{new_id()}{new_id()}"),
+                system_role="guest",
+            )
+            db.add(user)
+            db.flush()
+            workspace = self._create_workspace(db, user, scope="public")
+            token, token_hash, expires_at = issue_session_token(lifetime_hours=24 * 365)
+            db.add(AuthSession(user_id=user.id, token_hash=token_hash, expires_at=expires_at))
+            self._audit(db, user.id, None, "auth.guest", {"workspace_id": workspace.id})
+            return {
+                "access_token": token,
+                "token_type": "bearer",
+                "expires_at": _iso(expires_at),
+                "user": self._user(user),
+                "workspace": self._course(workspace, "owner"),
+            }
 
     def register_student(self, *, email: str, password: str, display_name: str, course_code: str, invite_code: str) -> dict[str, Any]:
         with self.database.session() as db:
@@ -338,7 +368,7 @@ class TeachingPlatformService:
     def workspace(self, actor_id: str) -> dict[str, Any]:
         with self.database.session() as db:
             actor = self._require_user(db, actor_id)
-            workspace = self._personal_workspace(db, actor.id, create=True)
+            workspace = self._workspace_for_actor(db, actor, create=True)
             projects = self._list_workspace_projects(db, actor.id, workspace.id)
             return {"workspace": self._course(workspace, "owner"), "projects": projects}
 
@@ -353,7 +383,7 @@ class TeachingPlatformService:
     ) -> dict[str, Any]:
         with self.database.session() as db:
             actor = self._require_user(db, actor_id)
-            workspace = self._personal_workspace(db, actor.id, create=True)
+            workspace = self._workspace_for_actor(db, actor, create=True)
             bbox = self._bbox(aoi_bbox) if aoi_bbox else None
             project = Project(
                 course_id=workspace.id,
@@ -371,8 +401,49 @@ class TeachingPlatformService:
     def list_workspace_projects(self, actor_id: str) -> list[dict[str, Any]]:
         with self.database.session() as db:
             actor = self._require_user(db, actor_id)
-            workspace = self._personal_workspace(db, actor.id, create=True)
+            workspace = self._workspace_for_actor(db, actor, create=True)
             return self._list_workspace_projects(db, actor.id, workspace.id)
+
+    def list_public_projects(self) -> list[dict[str, Any]]:
+        with self.database.session() as db:
+            workspace_ids = list(db.scalars(select(Course.id).where(
+                Course.scope == "public",
+                Course.archived.is_(False),
+            )).all())
+            if not workspace_ids:
+                return []
+            projects = db.scalars(select(Project).where(
+                Project.course_id.in_(workspace_ids),
+                Project.archived.is_(False),
+            ).order_by(Project.updated_at.desc())).all()
+            return [self._public_project_summary(db, project) for project in projects]
+
+    def public_project(self, project_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            project = self._require_public_project(db, project_id)
+            return self._public_project_summary(db, project)
+
+    def public_revisions(self, project_id: str) -> list[dict[str, Any]]:
+        with self.database.session() as db:
+            project = self._require_public_project(db, project_id)
+            return [self._revision(item) for item in db.scalars(select(SceneRevisionRecord).where(
+                SceneRevisionRecord.project_id == project.id,
+            ).order_by(SceneRevisionRecord.revision_number.desc())).all()]
+
+    def public_viewer_manifest(self, project_id: str, revision_id: str) -> dict[str, Any]:
+        with self.database.session() as db:
+            project = self._require_public_project(db, project_id)
+            owner_id = project.owner_id
+        return self.viewer_manifest(owner_id, project_id, revision_id)
+
+    def public_artifact(self, artifact_id: str) -> tuple[Artifact, Any]:
+        with self.database.session() as db:
+            artifact = db.get(Artifact, artifact_id)
+            if artifact is None:
+                raise NotFound("Artifact not found.")
+            self._require_public_project(db, artifact.project_id)
+            db.expunge(artifact)
+        return artifact, self.artifacts.open(artifact.object_key)
 
     # ---- administrator operations (metadata only) -------------------------------------
     def admin_overview(self, actor_id: str) -> dict[str, Any]:
@@ -1220,6 +1291,62 @@ class TeachingPlatformService:
             self._require_project(db, actor_id, project_id)
             return [self._source(item) for item in db.scalars(select(SceneSourceRecord).where(SceneSourceRecord.project_id == project_id).order_by(SceneSourceRecord.created_at.desc())).all()]
 
+    def adopt_generated_scene(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        source_id: str | None,
+        job_id: str,
+        result: Mapping[str, Any],
+    ) -> dict[str, Any]:
+        """Copy a completed professional scene job into durable project storage."""
+
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            if source_id:
+                source = db.get(SceneSourceRecord, source_id)
+                if source is None or source.project_id != project.id:
+                    raise NotFound("Scene source not found in this project.")
+        layout_path = Path(str(result.get("scene_layout_path") or "")).expanduser().resolve()
+        glb_path = Path(str(result.get("scene_glb_path") or "")).expanduser().resolve()
+        if not layout_path.is_file() or not glb_path.is_file():
+            raise NotFound("The completed scene job artifacts are no longer available.")
+        layout_payload = json.loads(layout_path.read_text(encoding="utf-8"))
+        production_steps: list[dict[str, Any]] = []
+        for index, step in enumerate(layout_payload.get("production_steps") or []):
+            if not isinstance(step, Mapping):
+                continue
+            step_path_text = str(step.get("glb_path") or "").strip()
+            if not step_path_text:
+                continue
+            step_path = Path(step_path_text).expanduser()
+            if not step_path.is_absolute():
+                step_path = (layout_path.parent / step_path).resolve()
+            if step_path.is_file():
+                production_steps.append({
+                    "step_id": str(step.get("step_id") or f"step-{index + 1}"),
+                    "title": str(step.get("title") or step.get("step_id") or f"Production step {index + 1}"),
+                    "data": step_path.read_bytes(),
+                })
+        revision = self.create_revision(
+            actor_id,
+            project_id,
+            layout=layout_payload,
+            glb=glb_path.read_bytes(),
+            source_id=source_id,
+            parent_id=None,
+            branch_kind="baseline",
+            label="Professional public generation",
+            provenance={
+                "generation_method": "professional_scene_job",
+                "professional_job_id": job_id,
+                "generator_summary": dict(result.get("summary") or {}),
+            },
+            production_steps=production_steps,
+        )
+        return revision
+
     def artifact(self, actor_id: str, artifact_id: str) -> tuple[Artifact, Any]:
         with self.database.session() as db:
             artifact = db.get(Artifact, artifact_id)
@@ -1230,6 +1357,65 @@ class TeachingPlatformService:
         return artifact, self.artifacts.open(artifact.object_key)
 
     # ---- scene revisions ---------------------------------------------------------------
+    def import_layout_revision(self, actor_id: str, project_id: str, *, layout_path: str, label: str) -> dict[str, Any]:
+        """Copy an existing local artifact scene into an owned project revision.
+
+        This is the lazy bridge used when a professional user starts editing a
+        scene opened through ``?layout=...``.  Both files must stay under the
+        configured RoadGen3D artifact root; server paths are never copied into
+        the revision provenance or public project metadata.
+        """
+
+        with self.database.session() as db:
+            self._require_project(db, actor_id, project_id, write=True)
+
+        repository_root = Path(__file__).resolve().parents[3]
+        artifact_root = Path(
+            os.getenv("ROADGEN_IMPORTABLE_SCENE_ROOT") or repository_root / "artifacts"
+        ).expanduser().resolve()
+        candidate = Path(str(layout_path or "").strip()).expanduser()
+        if not candidate.is_absolute():
+            candidate = repository_root / candidate
+        candidate = candidate.resolve()
+        try:
+            candidate.relative_to(artifact_root)
+        except ValueError as exc:
+            raise Forbidden("Only RoadGen3D artifact scenes can be imported into a project.") from exc
+        if not candidate.is_file() or candidate.name != "scene_layout.json":
+            raise NotFound("Importable scene_layout.json was not found.")
+        try:
+            layout = json.loads(candidate.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise Conflict("The selected scene layout is not valid JSON.") from exc
+        if not isinstance(layout, dict):
+            raise Conflict("The selected scene layout must contain an object.")
+
+        outputs = layout.get("outputs") if isinstance(layout.get("outputs"), Mapping) else {}
+        raw_glb = str(outputs.get("scene_glb") or "").strip()
+        glb_path = Path(raw_glb).expanduser() if raw_glb else candidate.with_name("scene.glb")
+        if not glb_path.is_absolute():
+            glb_path = candidate.parent / glb_path
+        glb_path = glb_path.resolve()
+        try:
+            glb_path.relative_to(artifact_root)
+        except ValueError as exc:
+            raise Forbidden("The scene GLB must remain inside the RoadGen3D artifact root.") from exc
+        if not glb_path.is_file() or glb_path.stat().st_size <= 0:
+            raise NotFound("The selected scene does not contain a usable scene.glb.")
+
+        return self.create_revision(
+            actor_id,
+            project_id,
+            layout=layout,
+            glb=glb_path.read_bytes(),
+            source_id=None,
+            parent_id=None,
+            branch_kind="baseline",
+            label=label or "Imported professional scene",
+            commands=[],
+            provenance={"import_method": "professional_local_artifact"},
+        )
+
     def create_revision(self, actor_id: str, project_id: str, *, layout: Mapping[str, Any], glb: bytes | None, source_id: str | None, parent_id: str | None, branch_kind: str, label: str, commands: Sequence[Mapping[str, Any]] | None = None, provenance: Mapping[str, Any] | None = None, production_steps: Sequence[Mapping[str, Any]] | None = None) -> dict[str, Any]:
         if branch_kind not in {"baseline", "human_edit", "ai_edit"}:
             raise ValueError("branch_kind must be baseline, human_edit, or ai_edit.")
@@ -1811,15 +1997,16 @@ class TeachingPlatformService:
         return user
 
     @staticmethod
-    def _create_personal_workspace(db: Session, user: User) -> Course:
+    def _create_workspace(db: Session, user: User, *, scope: str) -> Course:
         # The unique code is an internal database requirement only. It is never
         # returned through course endpoints or shown to a professional user.
+        public = scope == "public"
         workspace = Course(
-            name=f"{user.display_name} 的专业工作区",
-            code=f"PW-{new_id().upper()[:24]}",
+            name=f"{user.display_name} 的{'公共空间' if public else '专业工作区'}",
+            code=f"{'PUB' if public else 'PW'}-{new_id().upper()[:24]}",
             invite_hash=digest_secret(new_id()),
             owner_id=user.id,
-            scope="personal",
+            scope=scope,
         )
         db.add(workspace)
         db.flush()
@@ -1827,11 +2014,15 @@ class TeachingPlatformService:
         db.add(EvaluationProfile(
             course_id=workspace.id,
             created_by=user.id,
-            name="个人项目结构化评价",
+            name="公共项目结构化评价" if public else "个人项目结构化评价",
             dimensions=_normalized_weights(None),
             is_default=True,
         ))
         return workspace
+
+    @staticmethod
+    def _create_personal_workspace(db: Session, user: User) -> Course:
+        return TeachingPlatformService._create_workspace(db, user, scope="personal")
 
     def _personal_workspace(self, db: Session, user_id: str, *, create: bool) -> Course:
         workspace = db.scalar(select(Course).where(
@@ -1845,6 +2036,19 @@ class TeachingPlatformService:
             raise NotFound("Personal workspace not found.")
         user = self._require_user(db, user_id)
         return self._create_personal_workspace(db, user)
+
+    def _workspace_for_actor(self, db: Session, user: User, *, create: bool) -> Course:
+        scope = "public" if user.system_role == "guest" else "personal"
+        workspace = db.scalar(select(Course).where(
+            Course.owner_id == user.id,
+            Course.scope == scope,
+            Course.archived.is_(False),
+        ))
+        if workspace is not None:
+            return workspace
+        if not create:
+            raise NotFound("Workspace not found.")
+        return self._create_workspace(db, user, scope=scope)
 
     @staticmethod
     def _list_workspace_projects(db: Session, user_id: str, workspace_id: str) -> list[dict[str, Any]]:
@@ -1891,12 +2095,62 @@ class TeachingPlatformService:
         project = db.get(Project, project_id)
         if project is None:
             raise NotFound("Project not found.")
+        scope = self._project_scope(db, project)
+        if scope == "public" and project.owner_id != user_id:
+            if write:
+                raise Forbidden("Only the guest who created this public project can modify it.")
+            self._require_user(db, user_id)
+            return project, "public_viewer"
         membership = self._require_membership(db, user_id, project.course_id)
         if project.owner_id == user_id:
             return project, "owner"
         if membership.role in {"teacher", "admin"}:
             return project, membership.role
         raise Forbidden("Students can only access their own projects.")
+
+    @staticmethod
+    def _require_public_project(db: Session, project_id: str) -> Project:
+        project = db.get(Project, project_id)
+        if project is None:
+            raise NotFound("Public project not found.")
+        workspace = db.get(Course, project.course_id)
+        if workspace is None or workspace.scope != "public" or workspace.archived or project.archived:
+            raise NotFound("Public project not found.")
+        return project
+
+    def _public_project_summary(self, db: Session, project: Project) -> dict[str, Any]:
+        owner = db.get(User, project.owner_id)
+        latest_revision = db.scalar(select(SceneRevisionRecord).where(
+            SceneRevisionRecord.project_id == project.id,
+        ).order_by(SceneRevisionRecord.revision_number.desc()).limit(1))
+        latest_evaluation = None
+        if latest_revision is not None:
+            latest_evaluation = db.scalar(select(EvaluationRun).where(
+                EvaluationRun.revision_id == latest_revision.id,
+                EvaluationRun.status == "succeeded",
+            ).order_by(EvaluationRun.created_at.desc()).limit(1))
+        latest_bundle = db.scalar(select(Artifact).where(
+            Artifact.project_id == project.id,
+            Artifact.kind == "project_bundle",
+        ).order_by(Artifact.created_at.desc()).limit(1))
+        public_bundle = None
+        if latest_bundle is not None:
+            public_bundle = {
+                **self._artifact(latest_bundle),
+                "download_url": f"/api/v1/public/artifacts/{latest_bundle.id}",
+            }
+        return {
+            "id": project.id,
+            "name": project.name,
+            "city": project.city,
+            "design_goal": project.design_goal,
+            "workflow_step": project.workflow_step,
+            "author": owner.display_name if owner is not None else "RoadGen3D Guest",
+            "updated_at": _iso(project.updated_at),
+            "latest_revision": self._revision(latest_revision) if latest_revision is not None else None,
+            "latest_evaluation": self._evaluation(latest_evaluation) if latest_evaluation is not None else None,
+            "latest_bundle": public_bundle,
+        }
 
     def _store_artifact(self, db: Session, owner_id: str, project_id: str, kind: str, filename: str, data: bytes | None, media_type: str) -> Artifact:
         if data is None:

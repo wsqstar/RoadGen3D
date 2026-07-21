@@ -6,6 +6,7 @@ import sys
 import time
 import zipfile
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 from fastapi.testclient import TestClient
@@ -27,6 +28,10 @@ class FakeDesignService:
     def __init__(self, output_dir: Path):
         self.output_dir = output_dir
         self.generation_calls: list[dict] = []
+        self.scene_jobs: dict[str, object] = {}
+
+    def get_scene_job(self, job_id: str):
+        return self.scene_jobs.get(job_id)
 
     def generate_scene(self, draft, *, scene_context: dict, generation_options: dict, **kwargs):
         progress_callback = kwargs.get("progress_callback")
@@ -203,6 +208,172 @@ def test_personal_workspace_invites_isolate_projects_and_admin_metadata(client: 
     assert suspended.status_code == 200, suspended.text
     assert client.get("/api/v1/workspace", headers=_auth(first_token)).status_code == 403
     assert client.post(f"/api/v1/admin/users/{first.json()['user']['id']}/status", headers=_auth(admin_token), json={"is_active": True}).status_code == 200
+
+
+def test_guest_public_workspace_is_publicly_readable_and_owner_writable(client: TestClient):
+    first = client.post("/api/v1/auth/guest")
+    second = client.post("/api/v1/auth/guest")
+    assert first.status_code == 201, first.text
+    assert second.status_code == 201, second.text
+    assert first.json()["user"]["system_role"] == "guest"
+    assert first.json()["workspace"]["scope"] == "public"
+    first_token = first.json()["access_token"]
+    second_token = second.json()["access_token"]
+
+    project_response = client.post("/api/v1/workspace/projects", headers=_auth(first_token), json={
+        "name": "Guest public street",
+        "city": "广州",
+        "design_goal": "walkable public street",
+    })
+    assert project_response.status_code == 201, project_response.text
+    project = project_response.json()
+
+    imported_response = client.post(
+        f"/api/v1/projects/{project['id']}/sources/geojson",
+        headers=_auth(first_token),
+        json={"geojson": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "id": "guest-road-1",
+                "properties": {"highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.541, 22.791], [113.548, 22.798]]},
+            }],
+        }},
+    )
+    assert imported_response.status_code == 201, imported_response.text
+    imported = imported_response.json()
+
+    adopt_dir = client.app.state.design_service.output_dir / "professional-adopt"
+    adopt_dir.mkdir(parents=True, exist_ok=True)
+    adopt_glb = adopt_dir / "scene.glb"
+    adopt_step = adopt_dir / "road-base.glb"
+    adopt_layout = adopt_dir / "scene_layout.json"
+    adopt_glb.write_bytes(b"fixture-glb")
+    adopt_step.write_bytes(b"fixture-road-base-glb")
+    adopt_layout.write_text(json.dumps({
+        "version": "roadgen3d.scene_layout.v1",
+        "placements": [{"instance_id": "guest-tree", "category": "tree"}],
+        "summary": {"walkability": 74},
+        "production_steps": [{"step_id": "road_base", "title": "Road Base", "glb_path": str(adopt_step)}],
+    }), encoding="utf-8")
+    client.app.state.design_service.scene_jobs["fixture-professional-job"] = SimpleNamespace(
+        status="succeeded",
+        result=SimpleNamespace(to_dict=lambda: {
+            "scene_layout_path": str(adopt_layout),
+            "scene_glb_path": str(adopt_glb),
+            "summary": {"generator": "professional"},
+        }),
+    )
+    adopted = client.post(
+        f"/api/v1/projects/{project['id']}/adopt-scene-job",
+        headers=_auth(first_token),
+        json={"job_id": "fixture-professional-job", "source_id": imported["id"]},
+    )
+    assert adopted.status_code == 201, adopted.text
+    revision = adopted.json()
+    assert revision["provenance"]["professional_job_id"] == "fixture-professional-job"
+    assert revision["auto_evaluation"]["status"] == "succeeded"
+
+    public_list = client.get("/api/v1/public/projects")
+    assert public_list.status_code == 200, public_list.text
+    summary = next(item for item in public_list.json()["items"] if item["id"] == project["id"])
+    assert summary["name"] == "Guest public street"
+    assert summary["latest_revision"]["id"] == revision["id"]
+    assert summary["latest_evaluation"]["status"] == "succeeded"
+    assert "email" not in summary
+
+    assert client.get(f"/api/v1/projects/{project['id']}", headers=_auth(second_token)).status_code == 200
+    assert client.patch(
+        f"/api/v1/projects/{project['id']}/workflow",
+        headers=_auth(second_token),
+        json={"workflow_step": "evaluation"},
+    ).status_code == 403
+    assert client.patch(
+        f"/api/v1/projects/{project['id']}/workflow",
+        headers=_auth(first_token),
+        json={"workflow_step": "evaluation"},
+    ).status_code == 200
+
+    manifest_response = client.get(
+        f"/api/v1/public/projects/{project['id']}/revisions/{revision['id']}/viewer-manifest",
+    )
+    assert manifest_response.status_code == 200, manifest_response.text
+    artifact_id = manifest_response.json()["final_scene"]["artifact_id"]
+    public_artifact = client.get(f"/api/v1/public/artifacts/{artifact_id}")
+    assert public_artifact.status_code == 200
+    assert public_artifact.content == b"fixture-glb"
+    assert client.post(f"/api/v1/projects/{project['id']}/exports", headers=_auth(second_token)).status_code == 403
+    exported = client.post(f"/api/v1/projects/{project['id']}/exports", headers=_auth(first_token))
+    assert exported.status_code == 202, exported.text
+    assert exported.json()["status"] == "succeeded"
+    refreshed = client.get(f"/api/v1/public/projects/{project['id']}").json()
+    assert refreshed["latest_bundle"]["download_url"].startswith("/api/v1/public/artifacts/")
+    assert client.get(refreshed["latest_bundle"]["download_url"]).status_code == 200
+    assert client.get("/api/v1/admin/overview", headers=_auth(first_token)).status_code == 403
+
+
+def test_guest_lazily_imports_local_layout_before_first_3d_edit(client: TestClient, monkeypatch, tmp_path: Path):
+    artifact_root = tmp_path / "importable-artifacts"
+    scene_dir = artifact_root / "starter_scenes" / "guangzhou-v6"
+    scene_dir.mkdir(parents=True)
+    glb_path = scene_dir / "scene.glb"
+    glb_path.write_bytes(b"imported-scene-glb")
+    layout_path = scene_dir / "scene_layout.json"
+    layout_path.write_text(json.dumps({
+        "version": "roadgen3d.scene_layout.v1",
+        "placements": [{
+            "instance_id": "tree-1",
+            "asset_id": "tree-original",
+            "category": "tree",
+            "position_xyz": [1.0, 0.0, 2.0],
+            "bbox_xz": [0.5, 1.5, 1.5, 2.5],
+        }],
+        "outputs": {"scene_glb": str(glb_path)},
+    }), encoding="utf-8")
+    monkeypatch.setenv("ROADGEN_IMPORTABLE_SCENE_ROOT", str(artifact_root))
+
+    owner = client.post("/api/v1/auth/guest").json()
+    visitor = client.post("/api/v1/auth/guest").json()
+    project = client.post("/api/v1/workspace/projects", headers=_auth(owner["access_token"]), json={
+        "name": "Lazy imported public scene",
+        "city": "广州",
+    }).json()
+
+    imported = client.post(
+        f"/api/v1/projects/{project['id']}/revisions/import-layout",
+        headers=_auth(owner["access_token"]),
+        json={"layout_path": str(layout_path), "label": "Imported before replace"},
+    )
+    assert imported.status_code == 201, imported.text
+    revision = imported.json()
+    assert revision["branch_kind"] == "baseline"
+    assert revision["provenance"]["import_method"] == "professional_local_artifact"
+    assert "layout_path" not in json.dumps(revision["provenance"])
+
+    manifest = client.get(
+        f"/api/v1/public/projects/{project['id']}/revisions/{revision['id']}/viewer-manifest",
+    )
+    assert manifest.status_code == 200, manifest.text
+    artifact_id = manifest.json()["final_scene"]["artifact_id"]
+    assert client.get(f"/api/v1/public/artifacts/{artifact_id}").content == b"imported-scene-glb"
+
+    forbidden = client.post(
+        f"/api/v1/projects/{project['id']}/revisions/import-layout",
+        headers=_auth(visitor["access_token"]),
+        json={"layout_path": str(layout_path)},
+    )
+    assert forbidden.status_code == 403
+
+    outside = tmp_path / "outside" / "scene_layout.json"
+    outside.parent.mkdir()
+    outside.write_text("{}", encoding="utf-8")
+    rejected = client.post(
+        f"/api/v1/projects/{project['id']}/revisions/import-layout",
+        headers=_auth(owner["access_token"]),
+        json={"layout_path": str(outside)},
+    )
+    assert rejected.status_code == 403
 
 
 def test_shared_workflow_source_annotation_review_and_project_viewer_manifest(client: TestClient):

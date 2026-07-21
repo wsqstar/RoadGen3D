@@ -122,6 +122,39 @@ def test_scene_asset_reference_search_and_combined_rebuild_manifest(tmp_path: Pa
         )
 
 
+def test_scene_edit_rebuild_manifest_accepts_frozen_asset_without_latent(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from roadgen3d.street_layout import _load_real_manifest
+
+    mesh = tmp_path / "sky.glb"
+    mesh.write_bytes(b"glTF fixture")
+    manifest = tmp_path / "sky.jsonl"
+    manifest.write_text(json.dumps({
+        "asset_id": "sky-ready",
+        "category": "sky_dome",
+        "text_desc": "Frozen scene sky",
+        "mesh_path": mesh.name,
+        "scene_eligible": True,
+    }) + "\n", encoding="utf-8")
+    monkeypatch.setattr(registry, "_registered_manifests", lambda: {"sky.jsonl": manifest})
+
+    summary = registry.summarize_manifest("sky.jsonl")
+    assert summary["fingerprint"]
+    destination = tmp_path / "rebuild" / "assets.jsonl"
+    registry.build_scene_edit_manifest(
+        [{"asset_id": "sky-ready", "category": "sky_dome"}],
+        destination=destination,
+    )
+
+    with pytest.raises(ValueError, match="latent_path"):
+        _load_real_manifest(destination)
+    rows = _load_real_manifest(destination, require_latent=False)
+    assert rows[0]["asset_id"] == "sky-ready"
+    assert rows[0]["latent_path"] == ""
+
+
 class _JobService:
     def __init__(self) -> None:
         self.generation_options = None

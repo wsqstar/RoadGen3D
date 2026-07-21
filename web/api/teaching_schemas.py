@@ -112,6 +112,16 @@ class SceneGenerateRequest(BaseModel):
     goal_weights: Dict[str, float] | None = None
 
 
+class SceneJobAdoptRequest(BaseModel):
+    job_id: str = Field(min_length=1, max_length=64)
+    source_id: str | None = Field(default=None, max_length=64)
+
+
+class RevisionImportLayoutRequest(BaseModel):
+    layout_path: str = Field(min_length=1, max_length=4_096)
+    label: str = Field(default="Imported professional scene", max_length=180)
+
+
 class RevisionCreateRequest(BaseModel):
     layout: Dict[str, Any]
     glb_base64: str | None = Field(default=None, max_length=140_000_000)

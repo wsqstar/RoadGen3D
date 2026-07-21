@@ -1637,10 +1637,16 @@ def _validate_export_format(export_format: str) -> str:
     return value
 
 
-def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
+def _load_real_manifest(
+    manifest_path: Path,
+    *,
+    require_latent: bool = True,
+) -> List[Dict[str, object]]:
     if not manifest_path.exists():
         raise FileNotFoundError(f"real manifest not found: {manifest_path}")
-    required = ("asset_id", "category", "text_desc", "mesh_path", "latent_path")
+    required = ("asset_id", "category", "text_desc", "mesh_path")
+    if require_latent:
+        required = (*required, "latent_path")
     rows: List[Dict[str, object]] = []
     base_dir = manifest_path.parent.resolve()
     for line_no, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), start=1):
@@ -1657,7 +1663,11 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "category": str(payload["category"]).strip().lower(),
             "text_desc": str(payload["text_desc"]).strip(),
             "mesh_path": _resolve_manifest_mesh_path(payload, base_dir),
-            "latent_path": _resolve_path(payload["latent_path"], base_dir),
+            "latent_path": (
+                _resolve_path(payload["latent_path"], base_dir)
+                if str(payload.get("latent_path") or "").strip()
+                else ""
+            ),
         }
         if not Path(str(row["mesh_path"])).is_file():
             logger.warning(
@@ -5626,7 +5636,12 @@ def rebuild_glb_from_layout(
     ]
     referenced_asset_ids = {str(p.get("asset_id", "")) for p in placements_data}
 
-    rows = _ensure_default_sky_dome_row(_load_real_manifest(Path(manifest_path)))
+    # A structural edit rebuilds a frozen scene and only needs the referenced
+    # meshes. Environment and building assets can legitimately omit the latent
+    # vectors required while selecting/generating new assets.
+    rows = _ensure_default_sky_dome_row(
+        _load_real_manifest(Path(manifest_path), require_latent=False)
+    )
     filtered_rows = [r for r in rows if str(r["asset_id"]) in referenced_asset_ids]
 
     # --- 4. Build lazy mesh cache for referenced assets ---

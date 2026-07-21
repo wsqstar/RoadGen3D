@@ -772,9 +772,14 @@ def _rewrite_glb_transforms(
                 delta_rad = math.radians(float(command["yaw_deg"]) - old_yaw)
                 rotation = np.array([[math.cos(delta_rad), 0, math.sin(delta_rad)], [0, 1, 0], [-math.sin(delta_rad), 0, math.cos(delta_rad)]], dtype=float)
                 updated[:3, :3] = updated[:3, :3] @ rotation
+                anchor = np.array(_position(placement.get("position_xyz"), f"placement '{instance_id}'"), dtype=float)
+                updated[:3, 3] = anchor + rotation @ (updated[:3, 3] - anchor)
             elif op == "scale_instance":
                 old_scale = float(placement.get("scale", 1) or 1)
-                updated[:3, :3] *= float(command["scale"]) / old_scale
+                factor = float(command["scale"]) / old_scale
+                anchor = np.array(_position(placement.get("position_xyz"), f"placement '{instance_id}'"), dtype=float)
+                updated[:3, :3] *= factor
+                updated[:3, 3] = anchor + (updated[:3, 3] - anchor) * factor
             scene.graph.update(frame_to=node_name, matrix=updated, geometry=geometry)
             matched = True
         if not matched:

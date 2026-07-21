@@ -30,7 +30,9 @@ from web.api.teaching_schemas import (
     RevisionCompareRequest,
     RevisionCreateRequest,
     RevisionEditRequest,
+    RevisionImportLayoutRequest,
     SceneGenerateRequest,
+    SceneJobAdoptRequest,
     SceneAssetPaletteModel,
     UserStatusUpdateRequest,
     WorkflowStepRequest,
@@ -123,6 +125,11 @@ def login(body: LoginRequest, request: Request):
     return _call(lambda: _service(request).login(email=body.email, password=body.password))
 
 
+@router.post("/auth/guest", status_code=201)
+def guest(request: Request):
+    return _call(lambda: _service(request).create_guest_session())
+
+
 @router.post("/auth/logout", status_code=204)
 def logout(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)):
     _call(lambda: _service(request).logout(credentials.credentials if credentials else ""))
@@ -167,6 +174,37 @@ def create_workspace_project(body: WorkspaceProjectCreateRequest, request: Reque
         design_goal=body.design_goal,
         aoi_bbox=body.aoi_bbox,
     ))
+
+
+@router.get("/public/projects")
+def public_projects(request: Request):
+    return {"items": _call(lambda: _service(request).list_public_projects())}
+
+
+@router.get("/public/projects/{project_id}")
+def public_project(project_id: str, request: Request):
+    return _call(lambda: _service(request).public_project(project_id))
+
+
+@router.get("/public/projects/{project_id}/revisions")
+def public_project_revisions(project_id: str, request: Request):
+    return {"items": _call(lambda: _service(request).public_revisions(project_id))}
+
+
+@router.get("/public/projects/{project_id}/revisions/{revision_id}/viewer-manifest")
+def public_revision_viewer_manifest(project_id: str, revision_id: str, request: Request):
+    return _call(lambda: _service(request).public_viewer_manifest(project_id, revision_id))
+
+
+@router.get("/public/artifacts/{artifact_id}")
+def download_public_artifact(artifact_id: str, request: Request):
+    artifact, handle = _call(lambda: _service(request).public_artifact(artifact_id))
+    filename = artifact.object_key.rsplit("/", 1)[-1]
+    return StreamingResponse(handle, media_type=artifact.media_type, headers={
+        "Content-Disposition": f'attachment; filename="{filename}"',
+        "X-Content-SHA256": artifact.sha256,
+        "Cache-Control": "public, max-age=300",
+    })
 
 
 @router.get("/admin/overview")
@@ -380,6 +418,34 @@ def generate_scene(project_id: str, body: SceneGenerateRequest, request: Request
     return _call(run)
 
 
+@router.post("/projects/{project_id}/adopt-scene-job", status_code=201)
+def adopt_scene_job(project_id: str, body: SceneJobAdoptRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    def run():
+        scene_job = request.app.state.design_service.get_scene_job(body.job_id)
+        if scene_job is None:
+            raise TeachingError(f"Scene job not found: {body.job_id}")
+        if scene_job.status != "succeeded" or scene_job.result is None:
+            raise TeachingError("Only a completed scene job can be saved to a project.")
+        revision = _service(request).adopt_generated_scene(
+            actor["id"],
+            project_id,
+            source_id=body.source_id,
+            job_id=body.job_id,
+            result=scene_job.result.to_dict(),
+        )
+        return _auto_evaluate_revision(
+            request,
+            actor,
+            project_id,
+            revision,
+            auto_evaluate=True,
+            profile_id=None,
+            weights=None,
+            evaluation_mode="structured",
+        )
+    return _call(run)
+
+
 @router.post("/projects/{project_id}/revisions", status_code=201)
 def create_revision(project_id: str, body: RevisionCreateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     def run():
@@ -387,6 +453,16 @@ def create_revision(project_id: str, body: RevisionCreateRequest, request: Reque
         revision = _service(request).create_revision(actor["id"], project_id, layout=body.layout, glb=glb, source_id=body.source_id, parent_id=body.parent_id, branch_kind=body.branch_kind, label=body.label, commands=body.commands, provenance=body.provenance)
         return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights, evaluation_mode=body.auto_evaluate_mode)
     return _call(run)
+
+
+@router.post("/projects/{project_id}/revisions/import-layout", status_code=201)
+def import_layout_revision(project_id: str, body: RevisionImportLayoutRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).import_layout_revision(
+        actor["id"],
+        project_id,
+        layout_path=body.layout_path,
+        label=body.label,
+    ))
 
 
 @router.post("/projects/{project_id}/revisions/{revision_id}/edits", status_code=201)
