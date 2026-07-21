@@ -716,6 +716,7 @@ class AnnotatedCenterline:
     skeleton_design_profile_source: str = ""
     skeleton_design_profile_confidence: float = 0.0
     skeleton_design_profile_reasons: Tuple[str, ...] = ()
+    source_refs: Mapping[str, Any] = field(default_factory=dict)
 
     def resolved_cross_section_mode(self) -> str:
         if self.cross_section_strips:
@@ -780,6 +781,7 @@ class AnnotatedCenterline:
             "skeleton_design_profile_source": self.skeleton_design_profile_source,
             "skeleton_design_profile_confidence": float(self.skeleton_design_profile_confidence),
             "skeleton_design_profile_reasons": list(self.skeleton_design_profile_reasons),
+            "source_refs": dict(self.source_refs),
             "points": [point.to_dict() for point in self.points],
         }
 
@@ -1567,6 +1569,10 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
         skeleton_design_profile_source=skeleton_source,
         skeleton_design_profile_confidence=skeleton_confidence,
         skeleton_design_profile_reasons=skeleton_reasons,
+        source_refs={
+            str(key): item
+            for key, item in dict(value.get("source_refs") or {}).items()
+        } if _is_record(value.get("source_refs")) else {},
     )
     if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and centerline.carriageway_width_m() <= 0.0:
         raise ValueError(f"centerlines[{index}] detailed cross section must include at least one center strip.")

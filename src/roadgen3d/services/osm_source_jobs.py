@@ -111,6 +111,7 @@ class OsmSourceJobService:
             },
         })
         payload["osm_study"] = selected["study"]
+        payload["osm_annotation_context"] = selected["osm_annotation_context"]
         payload["warnings"] = list(selected["study"]["warnings"])
         return payload
 

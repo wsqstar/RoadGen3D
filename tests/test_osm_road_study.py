@@ -83,6 +83,11 @@ def test_selection_filters_roads_and_buildings_with_full_footprint():
     assert selected["study"]["selection"]["hop_count"] == 1
     assert selected["study"]["included_feature_counts"]["buildings"] == 1
     assert selected["study"]["included_feature_counts"]["trees"] == 1
+    context = selected["osm_annotation_context"]
+    assert context["schema_version"] == "roadgen3d.osm_annotation_context.v1"
+    assert context["raw_feature_collection"] == selected["filtered_geojson"]
+    assert context["projection"]["crs"] == "EPSG:4326"
+    assert context["selected_way_ids"] == [101, 102, 201, 301]
 
 
 def test_selection_reports_retrieval_boundary_warning():

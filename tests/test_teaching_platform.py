@@ -137,11 +137,69 @@ def test_geojson_crs_transform_stable_ids_and_intersection_annotation():
     geojson = first["geojson"]
     assert geojson["roadgen3d"]["crs"] == "EPSG:4326"
     assert geojson["roadgen3d"]["source_crs"] == "EPSG:3857"
-    assert first["role_counts"] == {"centerline": 2, "road_intersection": 1}
-    assert geojson["features"][2]["geometry"]["coordinates"] == pytest.approx([0.0, 0.0])
+    # Each road is split at the shared crossing so editable centerlines end
+    # at the explicit junction instead of merely passing through it.
+    assert first["role_counts"] == {"centerline": 4, "road_intersection": 1}
+    intersection = next(item for item in geojson["features"] if item["properties"]["role"] == "road_intersection")
+    assert intersection["geometry"]["coordinates"] == pytest.approx([0.0, 0.0])
     assert [item["id"] for item in geojson["features"]] == [item["id"] for item in second["geojson"]["features"]]
-    assert reviewed["role_counts"] == {"centerline": 2, "road_intersection": 1}
+    assert reviewed["role_counts"] == {"centerline": 4, "road_intersection": 1}
     assert first["quality_report"]["conversion_ok"] is True
+
+
+def test_osm_crossing_roads_become_editable_segments_with_source_provenance():
+    payload = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "id": "osm-road-101",
+                "properties": {
+                    "highway": "residential",
+                    "osm_way_id": 101,
+                    "osm_node_ids": [1, 2],
+                    "tags": {"lanes": "4", "cycleway:left": "lane"},
+                },
+                "geometry": {"type": "LineString", "coordinates": [[113.0, 23.0], [113.002, 23.0]]},
+            },
+            {
+                "type": "Feature",
+                "id": "osm-road-202",
+                "properties": {
+                    "highway": "residential",
+                    "osm_way_id": 202,
+                    "osm_node_ids": [3, 4],
+                    "tags": {"lanes": "3", "oneway": "yes"},
+                },
+                "geometry": {"type": "LineString", "coordinates": [[113.001, 22.999], [113.001, 23.001]]},
+            },
+        ],
+    }
+
+    normalized = normalize_teaching_geojson(payload, source_id="osm-overlay-test")
+    annotation = normalized["annotation"]
+    assert len(annotation["centerlines"]) == 4
+    junction = annotation["junctions"][0]
+    assert junction["source_mode"] == "explicit"
+    assert len(junction["connected_centerline_ids"]) == 4
+    assert all(
+        item["source_refs"]["kind"] == "osm_road"
+        and item["source_refs"]["edit_state"] == "base"
+        and item["source_refs"]["osm_way_ids"]
+        for item in annotation["centerlines"]
+    )
+    for segment in annotation["centerlines"]:
+        assert junction["id"] in {segment.get("start_junction_id"), segment.get("end_junction_id")}
+    profiles = {
+        item["source_refs"]["osm_way_ids"][0]: (
+            item["forward_drive_lane_count"],
+            item["reverse_drive_lane_count"],
+            item["bike_lane_count"],
+        )
+        for item in annotation["centerlines"]
+    }
+    assert profiles["101"] == (2, 2, 1)
+    assert profiles["202"] == (3, 0, 0)
 
 
 def test_personal_workspace_invites_isolate_projects_and_admin_metadata(client: TestClient):

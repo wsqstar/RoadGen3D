@@ -341,16 +341,29 @@ def _geojson_to_annotation(
             points = [pair_to_pixel(pair) for pair in coords]
             if len({(round(p[0], 9), round(p[1], 9)) for p in points}) < 2:
                 raise ValueError(f"Centerline feature '{feature_id}' is degenerate.")
+            raw_way_id = properties.get("osm_way_id") or properties.get("osm_id")
+            lane_defaults = _osm_lane_defaults(properties) if raw_way_id is not None else {}
+            source_refs: Dict[str, Any] = {}
+            if raw_way_id is not None:
+                source_refs = {
+                    "kind": "osm_road",
+                    "edit_state": "base",
+                    "osm_way_ids": [str(raw_way_id)],
+                    "osm_node_ids": [str(item) for item in (properties.get("osm_node_ids") or [])],
+                    "logical_road_id": str(properties.get("logical_road_id") or ""),
+                    "original_points": [{"x": point[0], "y": point[1]} for point in points],
+                }
             centerlines.append({
                 "id": feature_id,
                 "label": str(properties.get("label") or properties.get("name") or feature_id),
                 "road_width_m": _optional_positive(properties.get("road_width_m") or properties.get("width_m"), 8.0),
-                "forward_drive_lane_count": _nonnegative_int(properties.get("forward_drive_lane_count"), 1),
-                "reverse_drive_lane_count": _nonnegative_int(properties.get("reverse_drive_lane_count"), 1),
-                "bike_lane_count": _nonnegative_int(properties.get("bike_lane_count"), 0),
-                "bus_lane_count": _nonnegative_int(properties.get("bus_lane_count"), 0),
-                "parking_lane_count": _nonnegative_int(properties.get("parking_lane_count"), 0),
+                "forward_drive_lane_count": _nonnegative_int(properties.get("forward_drive_lane_count"), lane_defaults.get("forward_drive_lane_count", 1)),
+                "reverse_drive_lane_count": _nonnegative_int(properties.get("reverse_drive_lane_count"), lane_defaults.get("reverse_drive_lane_count", 1)),
+                "bike_lane_count": _nonnegative_int(properties.get("bike_lane_count"), lane_defaults.get("bike_lane_count", 0)),
+                "bus_lane_count": _nonnegative_int(properties.get("bus_lane_count"), lane_defaults.get("bus_lane_count", 0)),
+                "parking_lane_count": _nonnegative_int(properties.get("parking_lane_count"), lane_defaults.get("parking_lane_count", 0)),
                 "highway_type": str(properties.get("highway_type") or properties.get("highway") or "residential"),
+                "source_refs": source_refs,
                 "points": [{"x": point[0], "y": point[1]} for point in points],
             })
         elif role == "junction":
@@ -400,6 +413,30 @@ def _geojson_to_annotation(
                     "land_use_type": str(properties.get("land_use_type") or ""),
                     "points": [{"x": p[0], "y": p[1]} for p in pixel_ring[:-1]],
                 })
+
+    # Imported OSM roads are segmented at crossings above.  Bind those segment
+    # endpoints to the derived explicit junctions in the same pixel frame so
+    # the annotation can be edited and generated without topology ambiguity.
+    endpoint_tolerance_px = 1e-5
+    for junction in junctions:
+        connected: List[str] = []
+        junction_x = float(junction["x"])
+        junction_y = float(junction["y"])
+        for centerline in centerlines:
+            points = centerline["points"]
+            if not points:
+                continue
+            start = points[0]
+            end = points[-1]
+            if math.hypot(float(start["x"]) - junction_x, float(start["y"]) - junction_y) <= endpoint_tolerance_px:
+                centerline["start_junction_id"] = str(junction["id"])
+                connected.append(str(centerline["id"]))
+            if math.hypot(float(end["x"]) - junction_x, float(end["y"]) - junction_y) <= endpoint_tolerance_px:
+                centerline["end_junction_id"] = str(junction["id"])
+                connected.append(str(centerline["id"]))
+        if connected:
+            junction["connected_centerline_ids"] = list(dict.fromkeys(connected))
+            junction["source_mode"] = "explicit"
 
     annotation = {
         "version": ANNOTATION_SCHEMA_VERSION,
@@ -597,6 +634,50 @@ def _nonnegative_int(value: Any, default: int) -> int:
     if result < 0 or result > 32:
         raise ValueError("lane counts must be between 0 and 32.")
     return result
+
+
+def _osm_lane_defaults(properties: Mapping[str, Any]) -> Dict[str, int]:
+    """Translate common OSM lane tags into RoadGen3D's directional profile."""
+
+    tags = properties.get("tags")
+    tags = tags if isinstance(tags, Mapping) else {}
+
+    def value(name: str) -> Any:
+        return properties.get(name) if properties.get(name) not in {None, ""} else tags.get(name)
+
+    def count(raw: Any) -> int | None:
+        if raw in {None, ""}:
+            return None
+        match = re.search(r"\d+", str(raw))
+        return int(match.group(0)) if match else None
+
+    total = count(value("lanes"))
+    forward = count(value("lanes:forward"))
+    reverse = count(value("lanes:backward"))
+    oneway = str(value("oneway") or "").strip().lower() in {"yes", "1", "true"}
+    if forward is None and reverse is None:
+        if oneway:
+            forward, reverse = total or 1, 0
+        elif total:
+            forward, reverse = max(1, (total + 1) // 2), total // 2
+        else:
+            forward, reverse = 1, 1
+    else:
+        forward = forward if forward is not None else max(0, (total or 0) - (reverse or 0))
+        reverse = reverse if reverse is not None else max(0, (total or 0) - (forward or 0))
+        if not oneway and forward == 0 and reverse == 0:
+            forward, reverse = 1, 1
+
+    cycleway = " ".join(str(value(name) or "") for name in ("cycleway", "cycleway:left", "cycleway:right"))
+    bus_lanes = value("bus:lanes") or value("busway")
+    parking = value("parking:lane") or value("parking:lane:left") or value("parking:lane:right")
+    return {
+        "forward_drive_lane_count": int(forward),
+        "reverse_drive_lane_count": int(reverse),
+        "bike_lane_count": 1 if cycleway.strip() and cycleway.strip().lower() not in {"no", "none"} else 0,
+        "bus_lane_count": 1 if bus_lanes and str(bus_lanes).lower() not in {"no", "none"} else 0,
+        "parking_lane_count": 1 if parking and str(parking).lower() not in {"no", "none"} else 0,
+    }
 
 
 def _bbox(value: Any) -> Tuple[float, float, float, float]:

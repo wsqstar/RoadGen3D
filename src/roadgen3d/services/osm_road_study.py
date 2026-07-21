@@ -339,6 +339,11 @@ def select_osm_road_study_area(
     logical_by_id = {road.logical_road_id: road for road in bundle.logical_roads}
     selected_logical = [logical_by_id[road_id] for road_id in layers]
     selected_way_ids = {way_id for road in selected_logical for way_id in road.way_ids}
+    logical_road_by_way_id = {
+        int(way_id): road.logical_road_id
+        for road in selected_logical
+        for way_id in road.way_ids
+    }
 
     west, south, east, north = bundle.bbox
     epsg = auto_detect_utm_epsg((west + east) * 0.5, (south + north) * 0.5)
@@ -379,6 +384,12 @@ def select_osm_road_study_area(
                 else "poi"
             )
         if keep:
+            if role == "roads":
+                try:
+                    way_id = int(feature_id.rsplit("-", 1)[-1])
+                except ValueError:
+                    way_id = 0
+                properties["logical_road_id"] = logical_road_by_way_id.get(way_id, "")
             if role == "land_use":
                 properties["context_intersection"] = True
             filtered_features.append({**feature, "properties": properties})
@@ -429,7 +440,24 @@ def select_osm_road_study_area(
         "preview_fingerprint": str(bundle.preview.get("fingerprint") or ""),
         "warnings": warnings,
     }
-    return {"normalized": normalized, "study": study, "filtered_geojson": filtered_geojson}
+    return {
+        "normalized": normalized,
+        "study": study,
+        "filtered_geojson": filtered_geojson,
+        "osm_annotation_context": {
+            "schema_version": "roadgen3d.osm_annotation_context.v1",
+            "raw_feature_collection": filtered_geojson,
+            "retrieval_bbox": list(bundle.bbox),
+            "annotation_bbox": annotation_bbox,
+            "selected_way_ids": sorted(selected_way_ids),
+            "selection": dict(study["selection"]),
+            "projection": {
+                "crs": "EPSG:4326",
+                "utm_epsg": int(epsg),
+                "origin_wgs84": [(west + east) * 0.5, (south + north) * 0.5],
+            },
+        },
+    }
 
 
 def preview_bundle_from_raw(

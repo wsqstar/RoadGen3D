@@ -892,6 +892,21 @@ def _street_furniture_disabled(config: StreetComposeConfig | None) -> bool:
     }
 
 
+def _has_explicit_annotation_furniture(
+    road_segment_graph: object | None,
+    placement_context: object | None,
+) -> bool:
+    """Explicit 2D furniture is an authored requirement, never a style hint."""
+
+    for node in getattr(road_segment_graph, "nodes", ()) or ():
+        if getattr(node, "street_furniture_instances", ()):
+            return True
+    for zone in getattr(placement_context, "functional_zones", ()) or ():
+        if isinstance(zone, Mapping) and zone.get("furniture_instances"):
+            return True
+    return False
+
+
 def _normalize_curated_street_assets_profile(value: object) -> str:
     key = str(value or "fixed_hq_v1").strip().lower()
     return key if key in _CURATED_STREET_ASSET_PROFILES else "fixed_hq_v1"
@@ -13045,7 +13060,13 @@ def compose_street_scene(
         road_segment_graph,
         placement_ctx,
     )
-    furniture_disabled = _street_furniture_disabled(config)
+    explicit_annotation_furniture = _has_explicit_annotation_furniture(
+        road_segment_graph,
+        placement_ctx,
+    )
+    # A `none` profile disables procedural decoration only. User-authored 2D
+    # points remain required 3D furniture placements and must not disappear.
+    furniture_disabled = _street_furniture_disabled(config) and not explicit_annotation_furniture
     spatial_ctx = build_spatial_context(config, road_segment_graph, poi_ctx)
     theme_segments = infer_theme_segments(
         road_segment_graph,

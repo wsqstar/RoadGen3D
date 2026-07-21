@@ -163,14 +163,20 @@ def _append_road_intersections(features: list[dict[str, Any]]) -> None:
         if item["geometry"]["type"] == "Point" and item["properties"].get("role") == "road_intersection"
     }
     additions: list[dict[str, Any]] = []
+    split_points: dict[int, list[Point]] = {id(road): [] for road in roads}
     for left_index, left in enumerate(roads):
         left_line = LineString(left["geometry"]["coordinates"])
         for right in roads[left_index + 1:]:
-            intersection = left_line.intersection(LineString(right["geometry"]["coordinates"]))
+            right_line = LineString(right["geometry"]["coordinates"])
+            intersection = left_line.intersection(right_line)
             points = [intersection] if isinstance(intersection, Point) else list(getattr(intersection, "geoms", []))
             for point in points:
                 if not isinstance(point, Point):
                     continue
+                if 1e-9 < left_line.project(point) < left_line.length - 1e-9:
+                    split_points[id(left)].append(point)
+                if 1e-9 < right_line.project(point) < right_line.length - 1e-9:
+                    split_points[id(right)].append(point)
                 key = (round(float(point.x), 9), round(float(point.y), 9))
                 if key in seen:
                     continue
@@ -187,6 +193,60 @@ def _append_road_intersections(features: list[dict[str, Any]]) -> None:
                     },
                     "geometry": {"type": "Point", "coordinates": [float(point.x), float(point.y)]},
                 })
+    # ReferenceAnnotation requires a road to end at each explicit junction.
+    # Keep the imported OSM geometry immutable in properties, but replace each
+    # crossing road with topology-safe editable segments in the overlay.
+    replacements: dict[int, list[dict[str, Any]]] = {}
+    for road in roads:
+        points = split_points[id(road)]
+        if not points:
+            continue
+        line = LineString(road["geometry"]["coordinates"])
+        ordered: list[Point] = []
+        seen_points: set[tuple[float, float]] = set()
+        for point in sorted(points, key=line.project):
+            key = (round(float(point.x), 9), round(float(point.y), 9))
+            if key not in seen_points:
+                seen_points.add(key)
+                ordered.append(point)
+        cuts = [0.0, *(line.project(point) for point in ordered), line.length]
+        segments: list[LineString] = []
+        for start, end in zip(cuts, cuts[1:]):
+            if end - start <= 1e-9:
+                continue
+            segment = LineString([
+                line.interpolate(start).coords[0],
+                *[
+                    coordinate for coordinate in line.coords
+                    if start + 1e-9 < line.project(Point(coordinate)) < end - 1e-9
+                ],
+                line.interpolate(end).coords[0],
+            ])
+            if segment.length > 1e-9:
+                segments.append(segment)
+        if len(segments) < 2:
+            continue
+        original_id = str(road["id"])
+        generated: list[dict[str, Any]] = []
+        for index, segment in enumerate(segments, start=1):
+            properties = copy.deepcopy(road["properties"])
+            properties.update({
+                "source_osm_feature_id": original_id,
+                "source_segment_index": index,
+                "source_segment_count": len(segments),
+            })
+            generated.append({
+                "type": "Feature",
+                "id": f"{original_id}-segment-{index:02d}",
+                "properties": properties,
+                "geometry": {"type": "LineString", "coordinates": [[float(x), float(y)] for x, y in segment.coords]},
+            })
+        replacements[id(road)] = generated
+    if replacements:
+        rebuilt: list[dict[str, Any]] = []
+        for feature in features:
+            rebuilt.extend(replacements.get(id(feature), [feature]))
+        features[:] = rebuilt
     features.extend(additions)
 
 
@@ -317,7 +377,19 @@ def round_trip_report(before: Mapping[str, Any], after: Mapping[str, Any]) -> di
 def osm_features_to_geojson(features: OsmFeatures) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     for road in features.roads:
-        rows.append({"type": "Feature", "id": f"osm-road-{road.osm_id}", "properties": {"tags": road.tags, "highway": road.highway_type, "road_width_m": road.width_m}, "geometry": {"type": "LineString", "coordinates": [list(point) for point in road.coords]}})
+        rows.append({
+            "type": "Feature",
+            "id": f"osm-road-{road.osm_id}",
+            "properties": {
+                "tags": road.tags,
+                "highway": road.highway_type,
+                "road_width_m": road.width_m,
+                "osm_id": int(road.osm_id),
+                "osm_way_id": int(road.osm_id),
+                "osm_node_ids": [int(node_id) for node_id in road.node_ids],
+            },
+            "geometry": {"type": "LineString", "coordinates": [list(point) for point in road.coords]},
+        })
     for building in features.buildings:
         rows.append({"type": "Feature", "id": f"osm-building-{building.osm_id}", "properties": {"tags": building.tags}, "geometry": {"type": "Polygon", "coordinates": [[list(point) for point in building.coords]]}})
     for polygon in features.land_use_polygons:

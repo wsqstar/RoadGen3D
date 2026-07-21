@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -14,6 +15,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.program_generator import PROGRAM_FEATURE_DIM, ProgramGeneratorMLP, ProgramGeneratorRuntime
 from roadgen3d.street_program import infer_street_program
+from roadgen3d.street_layout import _has_explicit_annotation_furniture
 from roadgen3d.types import InventorySummary, ProgramGenerationInput, StreetComposeConfig
 
 
@@ -85,6 +87,18 @@ def test_none_street_furniture_profile_keeps_structure_but_zeroes_requirements()
     assert set(program.furniture_requirements) == {"bench", "lamp", "tree", "trash", "bollard"}
     assert all(count == 0 for count in program.furniture_requirements.values())
     assert "street_furniture_disabled" in program.notes
+
+
+def test_explicit_annotation_furniture_is_detected_as_a_generation_requirement():
+    road_graph = SimpleNamespace(nodes=(SimpleNamespace(street_furniture_instances=({"kind": "bench"},)),))
+    zones = SimpleNamespace(functional_zones=())
+
+    assert _has_explicit_annotation_furniture(road_graph, zones) is True
+    assert _has_explicit_annotation_furniture(SimpleNamespace(nodes=()), zones) is False
+    assert _has_explicit_annotation_furniture(
+        SimpleNamespace(nodes=()),
+        SimpleNamespace(functional_zones=({"furniture_instances": [{"kind": "tree"}]},)),
+    ) is True
 
 
 def test_furniture_quantity_rules_cap_low_frequency_and_raise_rhythm_categories():

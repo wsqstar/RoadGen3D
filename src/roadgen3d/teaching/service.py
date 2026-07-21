@@ -1011,9 +1011,17 @@ class TeachingPlatformService:
                 "attribution": "© OpenStreetMap contributors",
                 "road_study": selected["study"],
                 "retrieval_bbox": list(bbox),
+                # This is a RoadGen3D-owned immutable snapshot, never an OSM
+                # writeback payload. It lets later 2D edits and regenerated
+                # 3D revisions recover the same source frame and selection.
+                "osm_annotation_context": selected["osm_annotation_context"],
             },
         )
-        return {**result, "osm_study": selected["study"]}
+        return {
+            **result,
+            "osm_study": selected["study"],
+            "osm_annotation_context": selected["osm_annotation_context"],
+        }
 
     def preview_osm_selection(
         self,
@@ -1035,6 +1043,7 @@ class TeachingPlatformService:
             },
         })
         payload["osm_study"] = selected["study"]
+        payload["osm_annotation_context"] = selected["osm_annotation_context"]
         payload["warnings"] = list(selected["study"]["warnings"])
         return payload
 
