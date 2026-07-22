@@ -1,8 +1,8 @@
 # RoadGen3D 部署与任务边界
 
-> Status: current draft  
-> Last verified: 2026-05-03  
-> Scope: 当前本地开发部署、Viewer dev middleware、FastAPI 后端和任务系统边界。
+> Status: current draft
+> Last verified: 2026-07-22
+> Scope: 本地研究开发、共享服务器多用户平台、Viewer middleware、FastAPI 和任务系统边界。
 
 ## 1. 当前运行组件
 
@@ -14,6 +14,11 @@
 | Viewer Vite | `http://127.0.0.1:4173` | Viewer 前端 + 本地开发文件 API |
 
 `web/workbench` 已归档，不属于默认主流程。
+
+共享服务器的推荐入口不同：使用 `docker-compose.teaching.yml` 的
+`frontend → /api/v1 → api/worker/postgres/redis/minio` 路径。完整操作步骤见
+[teaching-platform.md](teaching-platform.md)。它提供持久化身份、项目级权限、
+任务和工件存储；不是把 `make dev` 暴露到公网。
 
 ## 2. FastAPI 主后端
 
@@ -103,6 +108,21 @@
 - 它是设计探索服务，不是通用优化器。
 - 当前 ranking 受 LLM/visual eval 可用性影响，应在 UI 中暴露评价缺失状态。
 
+### 4.3 共享服务器的多用户任务系统
+
+教学/个人工作区 API（`/api/v1`）已具备可部署的多用户基础：
+
+- PostgreSQL 持久化用户、会话哈希、课程/个人工作区、项目、版本、任务和审计日志；
+- Bearer 会话、课程成员角色和项目级鉴权；私有项目默认仅创建者可访问，教师/管理员
+  按课程权限访问；
+- Redis + RQ 执行队列，PostgreSQL 保留任务状态并在 worker 重启时重新排队未完成任务；
+- MinIO（S3-compatible）按 `projects/<project_id>/artifacts/...` 保存工件；
+- `ROADGEN_MAX_ACTIVE_JOBS_PER_USER` 限制每位用户的 queued/running 任务数。
+
+这意味着系统可以支持多个用户同时登录、创建隔离项目并排队执行任务；它不意味着
+可以不经容量测试地任意横向扩展。当前 RQ worker 数量、GPU/CPU/LLM 配额、对象存储
+生命周期和访客公共模式仍需由部署方明确治理。
+
 ## 5. Artifact 边界
 
 主要 artifact：
@@ -152,6 +172,18 @@
 - signed URLs / access policy。
 - generated artifact index。
 - old artifact cleanup。
+
+### P4：服务器硬化与运维（部署前必须确认）
+
+- 只向外暴露 HTTPS reverse proxy；禁止直接发布 FastAPI、PostgreSQL、Redis、MinIO
+  S3 或 MinIO console 端口。
+- 生产 frontend 只代理 `/api/v1` 与健康检查；旧 `/api/*` 研究端点在生产代理中返回
+  `404`，因为它们没有多用户鉴权及工件隔离契约。
+- 使用准确的 `ROADGEN_CORS_ORIGINS`，强随机的数据库/MinIO/bootstrap 密码，并将
+  `.env.teaching` 设为仅部署账户可读。
+- 以 PostgreSQL 与 MinIO 的一致性备份为恢复单元，并定期演练恢复。
+- 上线前用两个测试账户验证跨项目读取、下载工件和创建任务均被拒绝；用一条真实生成
+  任务验证 worker、对象存储、超时与失败可观测性。
 
 ## 7. 当前推荐开发模式
 

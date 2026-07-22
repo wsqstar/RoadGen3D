@@ -1,0 +1,118 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "06"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: "A/B 语义设计层：解耦空间与风格"
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: a-label
+    elementType: text
+    bounds: [60, 150, 400, 36]
+    content:
+      fontSize: 22
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "A 层：骨架功能设计"
+  - elementId: a-body
+    elementType: text
+    bounds: [60, 195, 400, 120]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.6
+      align: [left, top]
+      text: |
+        <p>决定道路的空间结构与功能：</p>
+        <ul>
+          <li>道路骨架与横断面</li>
+          <li>功能区划分（步行/公交/车辆）</li>
+          <li>路面标注与优先级</li>
+        </ul>
+  - elementId: a-source
+    elementType: text
+    bounds: [60, 320, 400, 30]
+    content:
+      fontSize: 13
+      color: "$muted"
+      align: [left, middle]
+      text: "来源：OSM/POI 推断、Viewer 标注、LLM 推理"
+  - elementId: v-divider
+    elementType: line
+    bounds: [480, 150, 1, 220]
+    viewBox: [1, 220]
+    points: "0,0 0,220"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: b-label
+    elementType: text
+    bounds: [520, 150, 400, 36]
+    content:
+      fontSize: 22
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "B 层：街道家具主题"
+  - elementId: b-body
+    elementType: text
+    bounds: [520, 195, 380, 120]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.6
+      align: [left, top]
+      text: |
+        <p>决定场景的视觉与设施风格：</p>
+        <ul>
+          <li>家具密度与资产组合</li>
+          <li>建筑/家具生成偏好</li>
+          <li>材质与渲染风格</li>
+        </ul>
+  - elementId: b-source
+    elementType: text
+    bounds: [520, 320, 380, 30]
+    content:
+      fontSize: 13
+      color: "$muted"
+      align: [left, middle]
+      text: "来源：设计目标、LLM 推理、A 层回退推荐"
+  - elementId: priority-bg
+    elementType: shape
+    bounds: [60, 380, 840, 50]
+    shapeName: rect
+    fill: {type: solid, color: "$light"}
+  - elementId: priority
+    elementType: text
+    bounds: [80, 380, 800, 50]
+    content:
+      fontSize: 15
+      color: "$text"
+      align: [left, middle]
+      text: |
+        <p>冲突解决优先级：<strong>人工标注 > LLM > OSM/POI 自动推断</strong></p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "07"

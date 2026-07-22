@@ -1,0 +1,114 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "07"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: "生成引擎：从规则到 3D 场景"
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: p1-bg
+    elementType: shape
+    bounds: [60, 160, 260, 120]
+    shapeName: rect
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: p1
+    elementType: text
+    bounds: [75, 170, 230, 100]
+    content:
+      align: [left, top]
+      text: |
+        <p><span style="font-size:18px; color:$primary;"><strong>StreetProgram</strong></span></p>
+        <p style="margin-top:6px"><span style="font-size:14px; color:$text;">声明式街道描述</span></p>
+        <p><span style="font-size:13px; color:$muted;">道路类型、横断面、功能带、家具需求</span></p>
+  - elementId: a1
+    elementType: line
+    bounds: [320, 215, 40, 2]
+    viewBox: [40, 2]
+    points: "0,0 35,0"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: p2-bg
+    elementType: shape
+    bounds: [360, 160, 260, 120]
+    shapeName: rect
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: p2
+    elementType: text
+    bounds: [375, 170, 230, 100]
+    content:
+      align: [left, top]
+      text: |
+        <p><span style="font-size:18px; color:$primary;"><strong>ConstraintSet</strong></span></p>
+        <p style="margin-top:6px"><span style="font-size:14px; color:$text;">硬/软设计规则</span></p>
+        <p><span style="font-size:13px; color:$muted;">最小间距、POI 绑定、同比例缩放</span></p>
+  - elementId: a2
+    elementType: line
+    bounds: [620, 215, 40, 2]
+    viewBox: [40, 2]
+    points: "0,0 35,0"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: p3-bg
+    elementType: shape
+    bounds: [660, 160, 240, 120]
+    shapeName: rect
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: p3
+    elementType: text
+    bounds: [675, 170, 210, 100]
+    content:
+      align: [left, top]
+      text: |
+        <p><span style="font-size:18px; color:$primary;"><strong>LayoutSolver</strong></span></p>
+        <p style="margin-top:6px"><span style="font-size:14px; color:$text;">布局优化 + 碰撞检测</span></p>
+        <p><span style="font-size:13px; color:$muted;">输出 slot_plans、conflicts、rule_eval</span></p>
+  - elementId: algo-title
+    elementType: text
+    bounds: [60, 320, 400, 30]
+    content:
+      fontSize: 16
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "核心算法特性"
+  - elementId: algo-body
+    elementType: text
+    bounds: [60, 355, 840, 120]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.7
+      align: [left, top]
+      text: |
+        <p><strong>多矩形碰撞检测</strong> — 复杂 3D 网格分解为多个紧密边界框，粗检测+精检测两阶段，L 形长椅、带顶棚公交站可"咬合"排列</p>
+        <p><strong>动态间距算法</strong> — 树/路灯用均匀分布求解器，长椅/垃圾桶用紧凑装箱求解器，保持原始长宽比不拉伸</p>
+        <p><strong>资产检索</strong> — CLIP 文本编码 + FAISS 向量检索，按语义匹配放置 3D 资产</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "08"

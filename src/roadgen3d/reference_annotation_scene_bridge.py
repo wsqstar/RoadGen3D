@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
 from .osm_ingest import OsmBuilding, OsmRoad, ProjectedFeatures
@@ -16,6 +16,7 @@ from .placement_zones import (
 )
 from .junction_surface_normalization import normalize_junction_surface_geometries
 from .reference_annotation import (
+    AnnotatedCrossSectionStrip,
     BezierCurve3,
     JunctionComposition,
     JunctionLaneSurface,
@@ -38,6 +39,75 @@ from .reference_regions import (
 from .types import RoadSegmentGraph, StreetComposeConfig
 
 ANNOTATION_SCENE_BBOX_PADDING_M = 36.0
+
+
+def _apply_parametric_cross_section_overrides(
+    annotation: ReferenceAnnotation,
+    config: StreetComposeConfig,
+) -> ReferenceAnnotation:
+    """Apply a generation-only parameter spec without mutating the saved 2D source.
+
+    Detailed annotation strips are normally authoritative.  When the user has
+    supplied ``base_lane_width_m`` through the parameterized 3D generator,
+    however, retaining those strips silently discards the requested lane count.
+    Build an ephemeral cross-section copy for the generated revision instead.
+    """
+    if config.base_lane_width_m is None:
+        return annotation
+    lane_count = max(1, int(config.lane_count))
+    lane_width_m = max(0.5, float(config.base_lane_width_m))
+    sidewalk_width_m = max(0.5, float(config.sidewalk_width_m))
+    furnishing_width_m = max(0.0, float(config.furnishing_width_m or 0.0))
+    updated = []
+    for centerline in annotation.centerlines:
+        source_profile = centerline.lane_profile()
+        forward_count = lane_count if int(source_profile.get("reverse_drive_lane_count", 0)) == 0 else int(math.ceil(lane_count / 2))
+        reverse_count = 0 if forward_count == lane_count else lane_count - forward_count
+        source_strips = tuple(centerline.cross_section_strips)
+        left = [strip for strip in source_strips if strip.zone == "left"]
+        right = [strip for strip in source_strips if strip.zone == "right"]
+        center_auxiliary = [
+            strip for strip in source_strips
+            if strip.zone == "center" and strip.kind != "drive_lane"
+        ]
+
+        def resize_side(strips: list[AnnotatedCrossSectionStrip], kind: str, target: float) -> list[AnnotatedCrossSectionStrip]:
+            matches = [strip for strip in strips if strip.kind == kind]
+            if not matches:
+                strips.append(AnnotatedCrossSectionStrip(
+                    strip_id=f"param_{centerline.feature_id}_{kind}_{len(strips)}",
+                    zone="left" if strips is left else "right",
+                    kind=kind,
+                    width_m=target,
+                    order_index=len(strips),
+                ))
+                return strips
+            width = target / len(matches)
+            return [replace(strip, width_m=width) if strip.kind == kind else strip for strip in strips]
+
+        left = resize_side(left, "sidewalk", sidewalk_width_m)
+        right = resize_side(right, "sidewalk", sidewalk_width_m)
+        if furnishing_width_m > 0:
+            left = resize_side(left, "furnishing", furnishing_width_m)
+            right = resize_side(right, "furnishing", furnishing_width_m)
+
+        drives = [
+            *[AnnotatedCrossSectionStrip(f"param_{centerline.feature_id}_forward_{index + 1}", "center", "drive_lane", lane_width_m, "forward", index) for index in range(forward_count)],
+            *[AnnotatedCrossSectionStrip(f"param_{centerline.feature_id}_reverse_{index + 1}", "center", "drive_lane", lane_width_m, "reverse", forward_count + index) for index in range(reverse_count)],
+        ]
+        strips = tuple(
+            replace(strip, order_index=index)
+            for index, strip in enumerate([*left, *drives, *center_auxiliary, *right])
+        )
+        updated.append(replace(
+            centerline,
+            road_width_m=sum(float(strip.width_m) for strip in strips),
+            forward_drive_lane_count=forward_count,
+            reverse_drive_lane_count=reverse_count,
+            cross_section_mode="detailed",
+            cross_section_strips=strips,
+        ))
+    return replace(annotation, centerlines=tuple(updated))
 
 
 @dataclass(frozen=True)
@@ -578,6 +648,7 @@ def build_reference_annotation_scene_bridge(
         if isinstance(compose_config, StreetComposeConfig)
         else build_reference_annotation_compose_config(compose_config or {})
     )
+    annotation = _apply_parametric_cross_section_overrides(annotation, resolved_config)
     road_segment_graph = build_segment_graph_from_annotation(annotation, config=resolved_config)
     local_centerlines = _collect_local_centerlines(annotation)
     scene_region_polygon = scene_region_polygon_from_annotation(annotation)

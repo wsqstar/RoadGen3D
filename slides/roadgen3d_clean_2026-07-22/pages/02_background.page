@@ -1,0 +1,120 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "01"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: 街道场景设计：不只是画一条路
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: body-text
+    elementType: text
+    bounds: [60, 140, 440, 280]
+    content:
+      style: "$body"
+      align: [left, top]
+      text: |
+        <p><strong>街道 ≠ 道路</strong></p>
+        <p style="margin-top:8px">街道是城市公共空间的核心，包含：</p>
+        <ul>
+          <li>车行道、人行道、绿化带</li>
+          <li>街道家具：长椅、路灯、垃圾桶、公交站</li>
+          <li>建筑界面与临街活动</li>
+        </ul>
+        <p style="margin-top:12px"><strong>好的街道设计关乎三个维度：</strong></p>
+        <ul>
+          <li>步行性 — 行人是否舒适、安全</li>
+          <li>安全性 — 交通隔离、照明覆盖</li>
+          <li>美观性 — 植物配置、家具协调</li>
+        </ul>
+  - elementId: diagram-label
+    elementType: text
+    bounds: [560, 140, 340, 24]
+    content:
+      fontSize: 13
+      color: "$muted"
+      align: [center, middle]
+      text: 典型街道横断面
+  - elementId: bldg-left
+    elementType: shape
+    bounds: [560, 170, 60, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#D1D5DB"}
+  - elementId: sw-left
+    elementType: shape
+    bounds: [620, 170, 50, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#E5E7EB"}
+  - elementId: grass-left
+    elementType: shape
+    bounds: [670, 170, 20, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#A7F3D0"}
+  - elementId: road
+    elementType: shape
+    bounds: [690, 170, 80, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#4B5563"}
+  - elementId: median
+    elementType: shape
+    bounds: [770, 170, 12, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#6EE7B7"}
+  - elementId: road-right
+    elementType: shape
+    bounds: [782, 170, 80, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#4B5563"}
+  - elementId: grass-right
+    elementType: shape
+    bounds: [862, 170, 20, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#A7F3D0"}
+  - elementId: sw-right
+    elementType: shape
+    bounds: [882, 170, 50, 160]
+    shapeName: rect
+    fill: {type: solid, color: "#E5E7EB"}
+  - elementId: labels
+    elementType: text
+    bounds: [560, 340, 380, 80]
+    content:
+      fontSize: 11
+      color: "$muted"
+      align: [center, top]
+      text: |
+        <p>建筑 | 人行道 | 绿化带 | 车行道 | 中分带 | 车行道 | 绿化带 | 人行道</p>
+  - elementId: note
+    elementType: text
+    bounds: [60, 420, 840, 40]
+    content:
+      fontSize: 14
+      color: "$muted"
+      align: [left, top]
+      text: |
+        <p>传统流程：CAD 平面图 → 3D 建模 → 人工评估，单一场景耗时数周。</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "02"

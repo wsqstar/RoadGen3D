@@ -1,0 +1,92 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "10"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: "OSM 真实数据：从现实世界出发"
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: osm-pipe
+    elementType: text
+    bounds: [60, 150, 840, 110]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.7
+      align: [left, top]
+      text: |
+        <p><strong>OSM Ingest</strong> — Overpass API 获取道路、建筑、POI 数据</p>
+        <p><strong>Road Discovery</strong> — 按 POI 密度、长度、相关性评分候选道路</p>
+        <p><strong>POI-Driven Cross-Section</strong> — 根据附近 POI 动态调整人行道宽度</p>
+        <p><strong>Semantic Classification</strong> — 自动标注学校/商业/住宅/公交等语义类型</p>
+  - elementId: mode-title
+    elementType: text
+    bounds: [60, 280, 400, 30]
+    content:
+      fontSize: 16
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "两种生成模式"
+  - elementId: mode1
+    elementType: text
+    bounds: [60, 320, 420, 70]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.6
+      align: [left, top]
+      text: |
+        <p><strong>osm</strong> — 单道路聚焦模式</p>
+        <p><span style="font-size:13px; color:$muted;">从 AOI 中选一条 POI 丰富的道路生成场景</span></p>
+  - elementId: mode2
+    elementType: text
+    bounds: [500, 320, 400, 70]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.6
+      align: [left, top]
+      text: |
+        <p><strong>osm_multiblock</strong> — 多道路语义模式</p>
+        <p><span style="font-size:13px; color:$muted;">保持 AOI 为连通路网，逐段分配语义 profile</span></p>
+  - elementId: fit-bg
+    elementType: shape
+    bounds: [60, 410, 840, 50]
+    shapeName: rect
+    fill: {type: solid, color: "$light"}
+  - elementId: fit
+    elementType: text
+    bounds: [80, 410, 800, 50]
+    content:
+      fontSize: 14
+      color: "$text"
+      align: [left, middle]
+      text: |
+        <p><strong>社会经济匹配</strong>：从 OSM landuse/amenity 推断周边社会经济状况，标记供给不足路段并自动推荐设计升级方案</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "11"

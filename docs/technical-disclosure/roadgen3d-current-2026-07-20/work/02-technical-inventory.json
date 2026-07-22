@@ -1,0 +1,53 @@
+{
+  "terminology_ledger": [
+    {"concept": "二维参考标注", "canonical_zh": "二维参考标注", "source_terms": ["ReferenceAnnotation", "approved annotation"], "forbidden_aliases": ["二维图片"]},
+    {"concept": "场景修订版本", "canonical_zh": "场景修订版本", "source_terms": ["scene revision", "revision"], "forbidden_aliases": ["覆盖保存"]},
+    {"concept": "参数建议", "canonical_zh": "LLM 参数建议", "source_terms": ["parameter proposal", "llm_suggestion"], "forbidden_aliases": ["LLM 直接生成三维模型"]},
+    {"concept": "确定性参数化生成", "canonical_zh": "确定性参数化生成", "source_terms": ["parametric", "skip_llm"], "forbidden_aliases": ["纯 LLM 生成"]},
+    {"concept": "结构化评价", "canonical_zh": "结构化评价", "source_terms": ["structured evaluation"], "forbidden_aliases": ["视觉大模型评分"]},
+    {"concept": "场景布局事实文件", "canonical_zh": "场景布局文件", "source_terms": ["scene_layout.json"], "forbidden_aliases": ["渲染截图"]}
+  ],
+  "input_operation_output": [
+    {"stage": "S1", "input": "AOI、OSM/GeoJSON、道路选择参数", "operation": "检索、筛选并标准化道路与周边要素", "output": "待审核二维参考标注"},
+    {"stage": "S2", "input": "二维参考标注与人工审核动作", "operation": "保存新的不可变二维 source version", "output": "approved source_id、annotation_sha256、review_actions"},
+    {"stage": "S3", "input": "设计目标与 walkability/safety/beauty 权重", "operation": "归一化权重并计算确定性 compose patch", "output": "规则 profile、风格、人行道宽度、密度、需求等级等参数"},
+    {"stage": "S4", "input": "generation_mode 与 LLM capability", "operation": "解析为 parametric 或显式 llm；auto 固定解析为 parametric", "output": "resolved_generation_mode、fallback_reason"},
+    {"stage": "S5", "input": "已批准二维几何、compose patch、课程固定建筑参数", "operation": "构建 StreetProgram/ConstraintSet，求解槽位并放置资产", "output": "scene_layout.json、scene.glb、production_steps"},
+    {"stage": "S6", "input": "场景布局与 3D 编辑命令", "operation": "支撑面校验、编辑并创建子 revision", "output": "新的 scene_layout/GLB 和命令记录"},
+    {"stage": "S7", "input": "scene_layout、评价权重、可选渲染视图", "operation": "结构化评价或 full 视觉评价，并比较版本差异", "output": "指标、建议、score_delta 和非因果比较声明"}
+  ],
+  "current_default_trace": {
+    "ui_input": {"walkability": 45, "safety": 35, "beauty": 20},
+    "normalized": {"walkability": 0.45, "safety": 0.35, "beauty": 0.2},
+    "derived_patch": {
+      "design_rule_profile": "pedestrian_priority_v1",
+      "objective_profile": "balanced",
+      "style_preset": "lush_walkable_v1",
+      "sidewalk_width_m": 3.22,
+      "density": 0.96,
+      "ped_demand_level": "high",
+      "bike_demand_level": "medium",
+      "street_furniture_profile": "pedestrian_friendly",
+      "street_furniture_profile_source": "manual",
+      "skeleton_design_profile": "walkable_commercial",
+      "skeleton_design_profile_source": "manual",
+      "seed": 42
+    },
+    "runtime_fixed_overrides": {
+      "building_representation": "transparent_massing",
+      "surrounding_building_mode": "footprint_based",
+      "auto_land_use_mode": "off",
+      "infill_policy": "off",
+      "building_height_mode": "class_only",
+      "knowledge_source": "none",
+      "retain_glb_policy": "always"
+    }
+  },
+  "implementation_gaps": [
+    "课程按钮文案按 llm_configured 显示 LLM，但请求使用 auto，后端解析为 parametric。",
+    "课程重设计使用 parent_revision_id 建立谱系，但当前生成函数重新读取批准的二维 source，并未加载父 3D layout 作为增量生成输入。",
+    "三维编辑不会自动反写二维标注；返回二维属于人工反馈环。",
+    "课程主路径 knowledge_source=none，RAG 产品能力为 disabled。",
+    "默认 structured 评价不调用视觉 LLM；安全/美观视觉分数保持 N/A，且不进入结构化综合分。"
+  ]
+}

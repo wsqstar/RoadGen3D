@@ -1,0 +1,124 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "02"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: 传统方法的四个瓶颈
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: item1-num
+    elementType: text
+    bounds: [60, 150, 50, 36]
+    content:
+      fontSize: 28
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "01"
+  - elementId: item1
+    elementType: text
+    bounds: [120, 150, 780, 70]
+    content:
+      style: "$body"
+      align: [left, top]
+      text: |
+        <p><strong>建模效率低</strong></p>
+        <p><span style="font-size:14px; color:$muted;">手工 3D 建模一座街区需要数周，难以快速迭代多种方案。</span></p>
+  - elementId: divider1
+    elementType: line
+    bounds: [60, 230, 840, 1]
+    viewBox: [840, 1]
+    points: "0,0 840,0"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: item2-num
+    elementType: text
+    bounds: [60, 250, 50, 36]
+    content:
+      fontSize: 28
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "02"
+  - elementId: item2
+    elementType: text
+    bounds: [120, 250, 780, 70]
+    content:
+      style: "$body"
+      align: [left, top]
+      text: |
+        <p><strong>方案探索受限</strong></p>
+        <p><span style="font-size:14px; color:$muted;">设计师只能尝试少数几种布局，无法系统性地覆盖参数空间。</span></p>
+  - elementId: divider2
+    elementType: line
+    bounds: [60, 330, 840, 1]
+    viewBox: [840, 1]
+    points: "0,0 840,0"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: item3-num
+    elementType: text
+    bounds: [60, 350, 50, 36]
+    content:
+      fontSize: 28
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "03"
+  - elementId: item3
+    elementType: text
+    bounds: [120, 350, 780, 70]
+    content:
+      style: "$body"
+      align: [left, top]
+      text: |
+        <p><strong>评价缺乏量化标准</strong></p>
+        <p><span style="font-size:14px; color:$muted;">"好看"、"舒服"难以度量，不同评审标准不一。</span></p>
+  - elementId: divider3
+    elementType: line
+    bounds: [60, 430, 840, 1]
+    viewBox: [840, 1]
+    points: "0,0 840,0"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: item4-num
+    elementType: text
+    bounds: [60, 450, 50, 36]
+    content:
+      fontSize: 28
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "04"
+  - elementId: item4
+    elementType: text
+    bounds: [120, 450, 780, 60]
+    content:
+      style: "$body"
+      align: [left, top]
+      text: |
+        <p><strong>2D 到 3D 断层</strong></p>
+        <p><span style="font-size:14px; color:$muted;">平面图与三维场景脱节，设计意图难以保真落地。</span></p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "03"

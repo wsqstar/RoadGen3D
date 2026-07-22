@@ -21,7 +21,8 @@ services:
       context: .
       dockerfile: ops/docker/viewer.Dockerfile
     ports:
-      - "8080:80"
+      # Production traffic should enter through the host HTTPS reverse proxy.
+      - "127.0.0.1:8080:80"
     depends_on:
       api:
         condition: service_healthy
@@ -101,7 +102,9 @@ services:
     volumes:
       - minio_data:/data
     ports:
-      - "9001:9001"
+      # Keep the storage console private to the server. Use an SSH tunnel for
+      # maintenance, or put it behind a separately authenticated admin proxy.
+      - "127.0.0.1:9001:9001"
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
       interval: 5s

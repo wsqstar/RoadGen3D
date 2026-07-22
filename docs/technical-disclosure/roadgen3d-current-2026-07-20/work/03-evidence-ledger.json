@@ -1,0 +1,60 @@
+{
+  "evidence_ledger": [
+    {
+      "id": "F001",
+      "feature": "将经人工审核的二维参考标注保存为不可变源版本，并以 source_id 和指纹关联后续三维版本",
+      "source_ids": ["C007", "C006", "C008"],
+      "technical_role": "建立二维事实输入与三维输出的可追踪边界",
+      "effect": "避免三维编辑覆盖原始地理事实，并支持版本回溯",
+      "support_status": "explicit"
+    },
+    {
+      "id": "F002",
+      "feature": "将用户目标权重归一化并通过显式公式映射为可执行场景参数",
+      "source_ids": ["C004", "C005", "E001", "E002", "E003"],
+      "technical_role": "把主观目标转换为可复现参数 patch",
+      "effect": "同一输入和 seed 可重复得到一致的参数决策",
+      "support_status": "explicit"
+    },
+    {
+      "id": "F003",
+      "feature": "LLM 只生成参数建议，建议经过字段白名单、数值边界与用户逐项接受后才进入参数规范",
+      "source_ids": ["C010", "C011", "C012"],
+      "technical_role": "限制 LLM 的副作用和可修改范围",
+      "effect": "使 AI 参与点可审计、可拒绝、可回放",
+      "support_status": "explicit"
+    },
+    {
+      "id": "F004",
+      "feature": "参数化生成接收二维几何、参数 patch 与运行时固定约束，输出场景布局文件和 GLB",
+      "source_ids": ["C006", "C013", "P002"],
+      "technical_role": "将结构化意图编译为约束驱动的三维街道场景",
+      "effect": "保持生成过程可解释并保留机器可读中间结果",
+      "support_status": "explicit"
+    },
+    {
+      "id": "F005",
+      "feature": "三维资产编辑采用受限命令、支撑面校验和不可变子版本，不允许修改锁定背景建筑",
+      "source_ids": ["C008", "C009", "P001"],
+      "technical_role": "约束三维局部编辑并保留父子版本关系",
+      "effect": "减少无支撑摆放和对地理上下文的破坏",
+      "support_status": "explicit"
+    },
+    {
+      "id": "F006",
+      "feature": "结构化评价与可选视觉 LLM 评价分离，视觉结果不进入 formal structured composite",
+      "source_ids": ["C015", "C016", "P001"],
+      "technical_role": "区分可复现结构指标与依赖截图的视觉判断",
+      "effect": "避免用缺失或不稳定的视觉分数冒充正式综合评价",
+      "support_status": "explicit"
+    },
+    {
+      "id": "F007",
+      "feature": "当前课程 auto 模式固定解析为 parametric，而不是根据远程 LLM 是否配置动态切换",
+      "source_ids": ["C003", "C004", "C006"],
+      "technical_role": "确定当前产品默认生成模式",
+      "effect": "保证课程默认流程可复现，但当前界面文案与实际模式存在不一致",
+      "support_status": "explicit"
+    }
+  ]
+}

@@ -1534,7 +1534,15 @@ class TeachingPlatformService:
         return artifact, self.artifacts.open(artifact.object_key)
 
     # ---- scene revisions ---------------------------------------------------------------
-    def import_layout_revision(self, actor_id: str, project_id: str, *, layout_path: str, label: str) -> dict[str, Any]:
+    def import_layout_revision(
+        self,
+        actor_id: str,
+        project_id: str,
+        *,
+        layout_path: str,
+        label: str,
+        source_id: str | None = None,
+    ) -> dict[str, Any]:
         """Copy an existing local artifact scene into an owned project revision.
 
         This is the lazy bridge used when a professional user starts editing a
@@ -1585,12 +1593,15 @@ class TeachingPlatformService:
             project_id,
             layout=layout,
             glb=glb_path.read_bytes(),
-            source_id=None,
+            source_id=source_id,
             parent_id=None,
             branch_kind="baseline",
             label=label or "Imported professional scene",
             commands=[],
-            provenance={"import_method": "professional_local_artifact"},
+            provenance={
+                "import_method": "professional_local_artifact",
+                "source_linked": bool(source_id),
+            },
         )
 
     def create_revision(self, actor_id: str, project_id: str, *, layout: Mapping[str, Any], glb: bytes | None, source_id: str | None, parent_id: str | None, branch_kind: str, label: str, commands: Sequence[Mapping[str, Any]] | None = None, provenance: Mapping[str, Any] | None = None, production_steps: Sequence[Mapping[str, Any]] | None = None) -> dict[str, Any]:

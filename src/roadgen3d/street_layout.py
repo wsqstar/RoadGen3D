@@ -11068,6 +11068,44 @@ def _footprint_target_records(footprints: Sequence[BuildingFootprint]) -> List[D
     ]
 
 
+def _projected_building_footprint_geometry(projected_features: object | None) -> object | None:
+    """Return immutable OSM building footprints as obstacles for new buildings."""
+
+    try:
+        from shapely.geometry import Polygon
+        from shapely.ops import unary_union
+    except Exception:
+        return None
+    polygons = []
+    for building in getattr(projected_features, "buildings", ()) or ():
+        coords = tuple((float(x), float(z)) for x, z in getattr(building, "coords", ()) or ())
+        if len(coords) < 4:
+            continue
+        polygon = Polygon(coords)
+        if polygon.is_empty or not polygon.is_valid or float(polygon.area) <= 1e-4:
+            continue
+        polygons.append(polygon)
+    if not polygons:
+        return None
+    merged = unary_union(polygons).buffer(0)
+    return None if getattr(merged, "is_empty", True) else merged
+
+
+def _merge_building_obstacles(*geometries: object | None) -> object | None:
+    """Merge road and reference-building obstacles without importing Shapely globally."""
+
+    valid = [geometry for geometry in geometries if geometry is not None and not getattr(geometry, "is_empty", True)]
+    if not valid:
+        return None
+    try:
+        from shapely.ops import unary_union
+
+        merged = unary_union(valid).buffer(0)
+        return None if getattr(merged, "is_empty", True) else merged
+    except Exception:
+        return valid[0]
+
+
 def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]:
     return [
         {
@@ -11586,6 +11624,7 @@ def _place_building_targets(
     rng: random.Random,
     start_instance_index: int,
     road_type: str,
+    reference_building_geometry: object | None = None,
 ) -> Tuple[Tuple[StreetPlacement, ...], Tuple[BuildingPlacementPlan, ...], Tuple[Dict[str, object], ...], Dict[str, object], int]:
     theme_by_id = {segment.theme_id: segment for segment in theme_segments}
     placements: List[StreetPlacement] = []
@@ -11609,6 +11648,10 @@ def _place_building_targets(
     mesh_origin_centered_count = 0
     total_lane_guard_push_m = 0.0
     building_forbidden_geom = building_forbidden_geometry(placement_ctx)
+    generated_building_forbidden_geom = _merge_building_obstacles(
+        building_forbidden_geom,
+        reference_building_geometry,
+    )
     accepted_building_bboxes: List[Tuple[float, float, float, float]] = []
     skip_reason_counts: Dict[str, int] = {}
 
@@ -11634,10 +11677,12 @@ def _place_building_targets(
             str(getattr(config, "building_representation", "asset") or "asset").strip().lower()
             == "transparent_massing"
         )
-        white_context_massing = (
-            str(target.get("source", "") or "") == "osm_context_white_massing"
-            or transparent_massing
-        )
+        target_source = str(target.get("source", "") or "")
+        # Transparent rendering is a visual choice, not permission to bypass
+        # road/building collision checks.  Only an immutable OSM context
+        # footprint may retain its exact source geometry.
+        exact_osm_context_massing = target_source == "osm_context_white_massing"
+        use_transparent_massing = exact_osm_context_massing or transparent_massing
         force_analytical_procedural_building = (
             str(getattr(config, "style_preset", "") or "").strip().lower() == "analytical_diorama_v1"
         )
@@ -11647,7 +11692,7 @@ def _place_building_targets(
         )
         if force_analytical_procedural_building:
             theme_name = "analytical"
-        if white_context_massing:
+        if use_transparent_massing:
             theme_name = "context_white_massing"
         frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
         depth_m = float(target.get("depth_m", 10.0) or 10.0)
@@ -11657,7 +11702,7 @@ def _place_building_targets(
             float(target_center_xz_raw[0]),
             float(target_center_xz_raw[1]),
         )
-        if white_context_massing:
+        if use_transparent_massing:
             ranked_candidates = ()
             retrieval_payload = {
                 "query": "white OSM context massing",
@@ -11695,7 +11740,7 @@ def _place_building_targets(
             "course_transparent_massing"
             if transparent_massing
             else "osm_white_massing"
-            if white_context_massing
+            if exact_osm_context_massing
             else "procedural_fallback"
         )
         scale_decision: Dict[str, object] = {}
@@ -11765,7 +11810,7 @@ def _place_building_targets(
         else:
             asset_id = (
                 f"transparent_massing_{str(target.get('target_id', target_idx)).replace('/', '_')}"
-                if white_context_massing
+                if use_transparent_massing
                 else f"building_fallback_{str(target.get('target_kind', 'footprint'))}_{target_idx:03d}"
             )
             fallback_entry = _placeholder_building_entry(
@@ -11775,8 +11820,8 @@ def _place_building_targets(
                 height_class=str(target.get("height_class", "midrise") or "midrise"),
                 theme_name=theme_name,
                 target_height_m=_target_height_m,
-                polygon_xz=(target.get("polygon_xz") if white_context_massing else None),
-                center_xz=(target_center_xz if white_context_massing else None),
+                polygon_xz=(target.get("polygon_xz") if exact_osm_context_massing else None),
+                center_xz=(target_center_xz if exact_osm_context_massing else None),
             )
             # Store the fallback entry (includes full mesh)
             mesh_cache.set_full_entry(asset_id, fallback_entry)
@@ -11793,7 +11838,7 @@ def _place_building_targets(
             entry = mesh_cache.get_metadata(asset_id)
             scale_xyz = [1.0, 1.0, 1.0]
             fallback_count += 1
-            fallback_reason = "context_white_massing" if white_context_massing else "no_building_asset_match"
+            fallback_reason = "context_white_massing" if use_transparent_massing else "no_building_asset_match"
 
         street_edge_xz_raw = target.get("street_edge_xz", ()) or ()
         if len(street_edge_xz_raw) >= 2:
@@ -11813,7 +11858,7 @@ def _place_building_targets(
         )
         building_yaw_deg = (
             0.0
-            if white_context_massing
+            if exact_osm_context_massing
             else _final_asset_yaw_deg(
                 desired_front_yaw_deg=desired_building_front_yaw,
                 canonical_front=building_canonical_front,
@@ -11822,7 +11867,7 @@ def _place_building_targets(
         )
         placement_strategy = str(target.get("placement_strategy", "") or "")
         front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
-        if not white_context_massing and "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
+        if not exact_osm_context_massing and "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
             target_center_xz = _front_aligned_building_visual_center(
                 entry=entry,
                 yaw_deg=float(building_yaw_deg),
@@ -11841,9 +11886,13 @@ def _place_building_targets(
             center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
             center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
             scale=scale_xyz,
-            placement_ctx=None if white_context_massing else placement_ctx,
-            forbidden_geometry=None if white_context_massing else building_forbidden_geom,
-            config=None if white_context_massing else config,
+            placement_ctx=None if exact_osm_context_massing else placement_ctx,
+            forbidden_geometry=(
+                building_forbidden_geom
+                if exact_osm_context_massing
+                else generated_building_forbidden_geom
+            ),
+            config=None if exact_osm_context_massing else config,
             bbox_clearance_m=0.15,
             vehicle_clearance_m=0.40,
         )
@@ -11880,7 +11929,7 @@ def _place_building_targets(
             max_overlap_area = max(max_overlap_area, _bbox_overlap_area(bbox, existing_bbox))
             if max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
                 break
-        if not white_context_massing and max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
+        if not exact_osm_context_massing and max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
             building_overlap_rejected_count += 1
             add_skip_reason("building_bbox_overlap")
             if row is not None:
@@ -11922,11 +11971,11 @@ def _place_building_targets(
             }
         building_asset_scale_mode = (
             "osm_white_massing_exact_footprint_bounds"
-            if white_context_massing
+            if exact_osm_context_massing
             else ("building_real_preserve" if row is not None else "procedural_fallback_fit")
         )
         instance_id = f"inst_{instance_index:04d}"
-        should_attach_door = not white_context_massing and (
+        should_attach_door = not use_transparent_massing and (
             str(source).strip().lower() == "procedural_fallback"
             or str(asset_id).startswith("building_fallback_")
             or str(fallback_reason).strip() == "no_building_asset_match"

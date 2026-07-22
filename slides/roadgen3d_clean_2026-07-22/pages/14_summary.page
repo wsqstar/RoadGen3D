@@ -1,0 +1,88 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "13"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: 当前能力与边界
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: done-title
+    elementType: text
+    bounds: [60, 150, 400, 30]
+    content:
+      fontSize: 18
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "✓ 已实现"
+  - elementId: done
+    elementType: text
+    bounds: [60, 190, 420, 240]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.7
+      align: [left, top]
+      text: |
+        <p>• 规则驱动的场景生成管线</p>
+        <p>• StreetProgram / ConstraintSet / LayoutSolver 显式结构</p>
+        <p>• 多维度量化评估（walkability / safety / beauty）</p>
+        <p>• Pareto 批量搜索与相关性分析</p>
+        <p>• OSM 真实数据接入与语义分块</p>
+        <p>• Three.js 交互式 3D 查看器</p>
+        <p>• RAG 知识库 + LLM 可选辅助</p>
+  - elementId: limit-title
+    elementType: text
+    bounds: [520, 150, 400, 30]
+    content:
+      fontSize: 18
+      color: "#9CA3AF"
+      bold: true
+      align: [left, middle]
+      text: "○ 当前边界"
+  - elementId: limit
+    elementType: text
+    bounds: [520, 190, 380, 240]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.7
+      align: [left, top]
+      text: |
+        <p>• 非严格神经符号模型</p>
+        <p>• 未覆盖交通仿真与信号控制</p>
+        <p>• 未覆盖道路工程级规范库</p>
+        <p>• LLM 参数推导为可选增强，主路径 skip_llm</p>
+        <p>• 评价基于相关性分析，不声明严格因果</p>
+  - elementId: mid-divider
+    elementType: line
+    bounds: [480, 150, 1, 280]
+    viewBox: [1, 280]
+    points: "0,0 0,280"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "14"

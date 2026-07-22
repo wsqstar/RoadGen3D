@@ -464,6 +464,7 @@ def import_layout_revision(project_id: str, body: RevisionImportLayoutRequest, r
         project_id,
         layout_path=body.layout_path,
         label=body.label,
+        source_id=body.source_id,
     ))
 
 

@@ -1,0 +1,65 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "04"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: 四层架构
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: arch-table
+    elementType: table
+    bounds: [60, 150, 840, 280]
+    columnWidths: [0.22, 0.35, 0.43]
+    rowHeights: [0.18, 0.205, 0.205, 0.205, 0.205]
+    style: "$default"
+    rows:
+      - - text: "层级"
+        - text: "职责"
+        - text: "关键技术"
+      - - text: "Web 交互层"
+        - text: "用户交互、3D 可视化"
+        - text: "Three.js, Vite, TypeScript"
+      - - text: "API 层"
+        - text: "业务逻辑编排、任务队列"
+        - text: "FastAPI, Pydantic"
+      - - text: "引擎层"
+        - text: "场景生成、约束求解、布局优化"
+        - text: "Python, NumPy, CLIP, PuLP"
+      - - text: "评估层"
+        - text: "多维度质量评估"
+        - text: "road-metrics (Submodule)"
+  - elementId: note
+    elementType: text
+    bounds: [60, 450, 840, 40]
+    content:
+      fontSize: 14
+      color: "$muted"
+      align: [left, top]
+      text: |
+        <p>评估层 road-metrics 为独立 Git Submodule，可单独安装使用。</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "05"

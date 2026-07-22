@@ -1,0 +1,160 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "05"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: "核心工作流：三步生成一条街道"
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: s1-bg
+    elementType: shape
+    bounds: [60, 160, 240, 140]
+    shapeName: rect
+    fill: {type: solid, color: "$light"}
+  - elementId: s1-title
+    elementType: text
+    bounds: [80, 170, 200, 30]
+    content:
+      fontSize: 18
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "① 输入"
+  - elementId: s1-body
+    elementType: text
+    bounds: [80, 205, 200, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>OSM 地图数据</p>
+        <p>参考平面标注</p>
+        <p>场景目录 / 模板</p>
+        <p>自然语言描述（可选）</p>
+  - elementId: arrow1
+    elementType: line
+    bounds: [300, 225, 40, 2]
+    viewBox: [40, 2]
+    points: "0,0 35,0"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: s2-bg
+    elementType: shape
+    bounds: [340, 160, 240, 140]
+    shapeName: rect
+    fill: {type: solid, color: "$light"}
+  - elementId: s2-title
+    elementType: text
+    bounds: [360, 170, 200, 30]
+    content:
+      fontSize: 18
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "② 生成"
+  - elementId: s2-body
+    elementType: text
+    bounds: [360, 205, 200, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>道路骨架</p>
+        <p>布局求解</p>
+        <p>资产放置</p>
+        <p>建筑生成</p>
+  - elementId: arrow2
+    elementType: line
+    bounds: [580, 225, 40, 2]
+    viewBox: [40, 2]
+    points: "0,0 35,0"
+    arrow: [null, "arrow"]
+    border: {style: solid, width: 2, color: "$primary"}
+  - elementId: s3-bg
+    elementType: shape
+    bounds: [620, 160, 280, 140]
+    shapeName: rect
+    fill: {type: solid, color: "$light"}
+  - elementId: s3-title
+    elementType: text
+    bounds: [640, 170, 240, 30]
+    content:
+      fontSize: 18
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "③ 评估与预览"
+  - elementId: s3-body
+    elementType: text
+    bounds: [640, 205, 240, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>road-metrics 评分</p>
+        <p>步行性 / 安全性 / 美观性</p>
+        <p>3D Viewer 交互查看</p>
+        <p>对比与迭代优化</p>
+  - elementId: out-label
+    elementType: text
+    bounds: [60, 330, 840, 24]
+    content:
+      fontSize: 13
+      color: "$muted"
+      align: [center, middle]
+      text: "输出产物"
+  - elementId: out-box
+    elementType: shape
+    bounds: [260, 360, 440, 40]
+    shapeName: rect
+    fill: {type: solid, color: "#FFFFFF"}
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: out-text
+    elementType: text
+    bounds: [260, 360, 440, 40]
+    content:
+      fontSize: 14
+      color: "$text"
+      align: [center, middle]
+      text: "scene_layout.json  +  scene.glb  +  evaluation.json"
+  - elementId: loop-text
+    elementType: text
+    bounds: [60, 430, 840, 30]
+    content:
+      fontSize: 14
+      color: "$muted"
+      align: [center, middle]
+      text: |
+        <p>评分不满意 → 自动/人工调整参数 → 重新生成 → 再次评估（闭环迭代）</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "06"

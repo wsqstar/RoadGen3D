@@ -397,16 +397,30 @@ def test_guest_lazily_imports_local_layout_before_first_3d_edit(client: TestClie
         "name": "Lazy imported public scene",
         "city": "广州",
     }).json()
+    source = client.post(
+        f"/api/v1/projects/{project['id']}/sources/geojson",
+        headers=_auth(owner["access_token"]),
+        json={"geojson": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "properties": {"highway": "residential"},
+                "geometry": {"type": "LineString", "coordinates": [[113.54, 22.79], [113.55, 22.80]]},
+            }],
+        }},
+    ).json()
 
     imported = client.post(
         f"/api/v1/projects/{project['id']}/revisions/import-layout",
         headers=_auth(owner["access_token"]),
-        json={"layout_path": str(layout_path), "label": "Imported before replace"},
+        json={"layout_path": str(layout_path), "label": "Imported before replace", "source_id": source["id"]},
     )
     assert imported.status_code == 201, imported.text
     revision = imported.json()
     assert revision["branch_kind"] == "baseline"
+    assert revision["source_id"] == source["id"]
     assert revision["provenance"]["import_method"] == "professional_local_artifact"
+    assert revision["provenance"]["source_linked"] is True
     assert "layout_path" not in json.dumps(revision["provenance"])
 
     manifest = client.get(

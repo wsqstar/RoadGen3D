@@ -1,0 +1,30 @@
+{
+  "draft_status": "disclosure-analysis only; no formal claims drafted",
+  "invention_concept": {
+    "technical_problem": "自然语言或设计目标驱动的道路三维生成容易产生不可追踪参数变化、破坏二维地理事实或无法说明修改依据。",
+    "technical_means": "将审核后的二维参考标注作为不可变事实输入，把设计目标经归一化公式或受限 LLM 参数建议转换为版本化参数规范，再经白名单、优先级、运行时固定约束和规则求解生成场景布局及三维模型，并将编辑、评价和版本差异写入 provenance。",
+    "technical_effect": "形成从触发因素、修改依据、参数前后值到三维结果与评价反馈的可复现、可审计处理链。"
+  },
+  "principal_protected_object_candidate": "一种基于不可变二维参考标注和受限参数建议的可追踪道路三维场景生成与迭代方法",
+  "essential_feature_chain": [
+    "获取并审核二维道路参考标注，保存不可变源版本",
+    "接收设计目标和多维权重并形成参数修改候选",
+    "通过确定性公式或受限 LLM 参数建议得到参数 patch",
+    "依据字段白名单、来源优先级、数值边界和运行时固定约束确定有效参数",
+    "基于有效参数和二维几何执行规则/约束求解，输出 scene_layout.json 和 scene.glb",
+    "对三维编辑和评价结果创建子版本并记录参数、依据、结果和版本差异"
+  ],
+  "fallback_positions": [
+    "LLM 参数建议为 side-effect-free，须经用户逐项选择后应用",
+    "二维几何和建筑 footprint 锁定，三维局部对象编辑通过支撑面校验",
+    "目标权重通过明确公式映射到人行道宽度和家具密度",
+    "结构化评价与视觉 LLM 评价分离",
+    "参数来源记录为 preset、manual、llm_suggestion 或 system_default，并以 fingerprint 固化"
+  ],
+  "needs_confirmation": [
+    "是否将课程 Studio 的端到端工作流纳入核心保护范围。",
+    "是否存在证明可追踪链降低错误率、提高复现性或提升设计效率的测试数据。",
+    "是否将参数来源优先级和用户逐项接受机制视为核心发明点。",
+    "当前 UI/后端模式不一致是否属于待修复实现，而非拟保护技术特征。"
+  ]
+}

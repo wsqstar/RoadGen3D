@@ -1,0 +1,39 @@
+{
+  "task_mode": "disclosure-analysis",
+  "source_format": "mixed-project",
+  "invention_type": "algorithm-software",
+  "target_jurisdiction": "中国（待发明人及专利代理师确认）",
+  "requested_deliverable": "RoadGen3D 当前 LLM 模式、参数修改链、2D/3D 交互及修改依据的技术交底书 DOCX",
+  "repository_snapshot": {
+    "path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D",
+    "branch": "main",
+    "commit": "d6f57cf2984ae65095dd0d75f3c24b7688e7aaeb",
+    "commit_time": "2026-07-20T10:10:56+08:00",
+    "commit_subject": "feat: constrain AI to parameter proposals",
+    "verification_date": "2026-07-20"
+  },
+  "runtime_snapshot": {
+    "llm_configured": true,
+    "provider_label": "openai",
+    "protocol": "openai_chat_completions",
+    "text_model": "gpt-4o-mini",
+    "vision_model": "gpt-4o-mini",
+    "endpoint_fingerprint": "sha256:86884b7739450ce3007d989aeab8463eaa6b17e1e6635b0e4e5fe603f123f62d",
+    "credentials": "configured and redacted",
+    "rag_product_mode": "disabled",
+    "course_baseline_mode": "parametric",
+    "course_redesign_default": "parametric"
+  },
+  "risk_flags": [
+    "发明人、申请人、权属、公开日期和首次实施日期尚未提供。",
+    "未执行现有技术检索，不作新颖性、创造性或可专利性结论。",
+    "课程界面存在 LLM 文案与后端 auto->parametric 实际解析不一致，必须按代码现状披露。",
+    "当前交付为技术交底分析稿，不包含正式权利要求书。"
+  ],
+  "inventor_questions": [
+    "[TO CONFIRM: 拟保护的核心是参数建议受控生成、2D/3D 可追踪交互，还是完整教学工作流？]",
+    "[TO CONFIRM: 相关代码是否已公开、演示、投稿或对外部署；最早日期是什么？]",
+    "[TO CONFIRM: 参与提出核心方案的发明人名单及各自贡献是什么？]",
+    "[TO CONFIRM: 是否存在未提交仓库的设计说明、实验记录或效果数据？]"
+  ]
+}

@@ -1,0 +1,53 @@
+pageType: cover
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: accent-bar
+    elementType: shape
+    bounds: [0, 0, 6, 540]
+    shapeName: rect
+    fill: {type: solid, color: "$primary"}
+  - elementId: top-line
+    elementType: line
+    bounds: [60, 80, 840, 1]
+    viewBox: [840, 1]
+    points: "0,0 840,0"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: title
+    elementType: text
+    bounds: [60, 140, 600, 70]
+    content:
+      style: "$coverTitle"
+      align: [left, middle]
+      text: RoadGen3D
+  - elementId: subtitle
+    elementType: text
+    bounds: [60, 220, 700, 80]
+    content:
+      style: "$coverSubtitle"
+      align: [left, top]
+      text: |
+        <p>规则驱动的 3D 街道场景生成与评价系统</p>
+        <p><span style="font-size:16px; color:$muted;">Rule-based, AI-assisted Urban Street Scene Generation</span></p>
+  - elementId: yellow-line
+    elementType: line
+    bounds: [60, 320, 80, 3]
+    viewBox: [80, 3]
+    points: "0,0 80,0"
+    border: {style: solid, width: 3, color: "$accent"}
+  - elementId: bottom-info
+    elementType: text
+    bounds: [60, 460, 500, 50]
+    content:
+      style: "$caption"
+      align: [left, bottom]
+      text: |
+        <p>GIStudio  ·  2026.07</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "01"

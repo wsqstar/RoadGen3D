@@ -1,0 +1,54 @@
+pageType: final
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: accent-bar
+    elementType: shape
+    bounds: [0, 0, 6, 540]
+    shapeName: rect
+    fill: {type: solid, color: "$primary"}
+  - elementId: top-line
+    elementType: line
+    bounds: [60, 80, 840, 1]
+    viewBox: [840, 1]
+    points: "0,0 840,0"
+    border: {style: solid, width: 1, color: "$border"}
+  - elementId: title
+    elementType: text
+    bounds: [60, 180, 600, 60]
+    content:
+      style: "$coverTitle"
+      align: [left, middle]
+      text: RoadGen3D
+  - elementId: subtitle
+    elementType: text
+    bounds: [60, 250, 700, 60]
+    content:
+      style: "$coverSubtitle"
+      align: [left, top]
+      text: |
+        <p>github.com/GIStudio/RoadGen3D</p>
+  - elementId: yellow-line
+    elementType: line
+    bounds: [60, 330, 80, 3]
+    viewBox: [80, 3]
+    points: "0,0 80,0"
+    border: {style: solid, width: 3, color: "$accent"}
+  - elementId: contact
+    elementType: text
+    bounds: [60, 360, 500, 60]
+    content:
+      fontSize: 16
+      color: "$muted"
+      lineHeight: 1.5
+      align: [left, top]
+      text: |
+        <p>GIStudio  ·  城市空间设计与生成研究组</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "15"

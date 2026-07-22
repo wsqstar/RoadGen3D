@@ -1,0 +1,150 @@
+{
+  "source_map": [
+    {
+      "id": "C001",
+      "type": "source-code",
+      "locator": "src/roadgen3d/eval_engine_ext/road_metrics/evaluators/llm_client.py:36-220",
+      "summary": "LLM 配置解析优先级、默认模型、文本/视觉模型选择、请求超时、重试和 temperature 参数。",
+      "confidence": "high"
+    },
+    {
+      "id": "C002",
+      "type": "runtime-configuration",
+      "locator": ".env（仅核验非秘密字段；密钥未输出）",
+      "summary": "当前仅配置兼容端点与 API key；未显式设置 ROADGEN_LLM_MODEL，因此模型回落到 gpt-4o-mini。",
+      "confidence": "high"
+    },
+    {
+      "id": "C003",
+      "type": "source-code",
+      "locator": "web/api/routers/teaching.py:128-145",
+      "summary": "课程能力接口明确声明 baseline=parametric、redesign_default=parametric、RAG disabled，仅暴露 LLM 参数建议能力。",
+      "confidence": "high"
+    },
+    {
+      "id": "C004",
+      "type": "source-code",
+      "locator": "web/viewer/src/react/CourseStudio.tsx:395-490",
+      "summary": "课程界面默认权重 45/35/20；重设计按钮根据 LLM 配置显示 AI 文案，但实际提交 generation_mode=auto。",
+      "confidence": "high"
+    },
+    {
+      "id": "C005",
+      "type": "source-code",
+      "locator": "src/roadgen3d/teaching/service.py:128-209",
+      "summary": "权重归一化及其到设计规则、风格、人行道宽度、密度、需求等级、家具/骨架 profile 和 seed 的确定性映射。",
+      "confidence": "high"
+    },
+    {
+      "id": "C006",
+      "type": "source-code",
+      "locator": "src/roadgen3d/teaching/service.py:795-1005",
+      "summary": "课程生成模式解析、2D annotation 输入、LLM 显式开关、课程建筑固定参数、scene_layout/GLB 输出及 provenance 记录。",
+      "confidence": "high"
+    },
+    {
+      "id": "C007",
+      "type": "source-code",
+      "locator": "src/roadgen3d/teaching/service.py:451-537",
+      "summary": "2D 审核保存为新的不可变 source version，并记录 parent_source_id、review_actions、annotation_sha256。",
+      "confidence": "high"
+    },
+    {
+      "id": "C008",
+      "type": "source-code",
+      "locator": "src/roadgen3d/teaching/service.py:1021-1181",
+      "summary": "3D scene revision、父子版本、GLB/layout artifact、人工或 AI 编辑分支及 course_grounded 编辑协议。",
+      "confidence": "high"
+    },
+    {
+      "id": "C009",
+      "type": "source-code",
+      "locator": "src/roadgen3d/scene_layout_edits.py:285-475, 556-716",
+      "summary": "3D 编辑允许的命令、尺度和高度边界、支撑面校验、背景建筑不可编辑以及新 revision 的变换语义。",
+      "confidence": "high"
+    },
+    {
+      "id": "C010",
+      "type": "source-code",
+      "locator": "src/roadgen3d/services/parameter_proposals.py:16-187",
+      "summary": "LLM 参数建议是无副作用的最小 patch；禁止修改 geometry、中心线、拓扑、建筑 footprint、GeoJSON、GLB 和资产 ID。",
+      "confidence": "high"
+    },
+    {
+      "id": "C011",
+      "type": "source-code",
+      "locator": "web/viewer/src/viewer-parameter-design.ts:55-262",
+      "summary": "专家参数界面展示 before/after/reason/confidence，用户逐项勾选接受；最终生成仍设置 parametric、skip_llm=true。",
+      "confidence": "high"
+    },
+    {
+      "id": "C012",
+      "type": "source-code",
+      "locator": "src/roadgen3d/services/street_design_parameters.py:20-326",
+      "summary": "版本化 StreetDesignParameterSpec、参数边界、geometryLocked/footprintLocked、profile 默认值和编译后的参数来源。",
+      "confidence": "high"
+    },
+    {
+      "id": "C013",
+      "type": "source-code",
+      "locator": "src/roadgen3d/services/design_runtime.py:192-275, 590-616, 1069-1354",
+      "summary": "compose patch 合并、显式 LLM 推导开关、参数候选来源优先级和 LLM 失败处理。",
+      "confidence": "high"
+    },
+    {
+      "id": "C014",
+      "type": "source-code",
+      "locator": "src/roadgen3d/llm/prompts.py:593-700",
+      "summary": "图结构感知 LLM 参数推导的输入、白名单、JSON 输出约束和引用要求。",
+      "confidence": "high"
+    },
+    {
+      "id": "C015",
+      "type": "source-code",
+      "locator": "src/roadgen3d/llm/design_workflow.py:633-790",
+      "summary": "structured/full 两种评价模式；默认 structured 不调用视觉 LLM，视觉 LLM 不进入 formal structured composite。",
+      "confidence": "high"
+    },
+    {
+      "id": "C016",
+      "type": "source-code",
+      "locator": "src/roadgen3d/teaching/service.py:1199-1290",
+      "summary": "评价权重归一化、evaluation_mode 与版本对比只声明可追踪差异和相关，不声明因果效应。",
+      "confidence": "high"
+    },
+    {
+      "id": "P001",
+      "type": "technical-document",
+      "locator": "docs/teaching-platform.md",
+      "summary": "课程工作流和生产边界：2D 地理编辑、3D 锁定、不可变 revision、N/A 和非因果比较。",
+      "confidence": "high"
+    },
+    {
+      "id": "P002",
+      "type": "technical-document",
+      "locator": "docs/ROADGEN3D_3D_GENERATION_TALK.md",
+      "summary": "规则/约束驱动、AI 辅助的系统定位和显式中间表示。",
+      "confidence": "medium"
+    }
+  ],
+  "formula_inventory": [
+    {
+      "id": "E001",
+      "locator": "src/roadgen3d/teaching/service.py:128-145",
+      "expression": "w_i = u_i / sum_j(u_j)",
+      "technical_role": "将非负用户权重归一化为总和 1 的评价/设计目标权重。"
+    },
+    {
+      "id": "E002",
+      "locator": "src/roadgen3d/teaching/service.py:200",
+      "expression": "sidewalk_width_m = round(2.4 + 1.25*w_walk + 0.65*w_safe + 0.15*w_beauty, 2)",
+      "technical_role": "将目标权重映射为人行道宽度参数。"
+    },
+    {
+      "id": "E003",
+      "locator": "src/roadgen3d/teaching/service.py:201",
+      "expression": "density = round(0.82 + 0.12*w_walk + 0.05*w_safe + 0.34*w_beauty, 2)",
+      "technical_role": "将目标权重映射为街道家具全局密度参数。"
+    }
+  ]
+}

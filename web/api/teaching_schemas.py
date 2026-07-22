@@ -122,6 +122,7 @@ class SceneJobAdoptRequest(BaseModel):
 class RevisionImportLayoutRequest(BaseModel):
     layout_path: str = Field(min_length=1, max_length=4_096)
     label: str = Field(default="Imported professional scene", max_length=180)
+    source_id: str | None = Field(default=None, max_length=64)
 
 
 class RevisionCreateRequest(BaseModel):

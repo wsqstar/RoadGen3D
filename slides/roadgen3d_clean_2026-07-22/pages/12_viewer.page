@@ -1,0 +1,78 @@
+pageType: content
+background:
+  type: solid
+  color: "#FFFFFF"
+elements:
+  - elementId: sec-num
+    elementType: text
+    bounds: [60, 36, 60, 30]
+    content:
+      fontSize: 14
+      color: "$primary"
+      bold: true
+      align: [left, middle]
+      text: "11"
+  - elementId: title
+    elementType: text
+    bounds: [60, 70, 800, 44]
+    content:
+      style: "$title"
+      align: [left, middle]
+      text: "Viewer：交互式 3D 查看与分析"
+  - elementId: title-line
+    elementType: line
+    bounds: [60, 118, 60, 2]
+    viewBox: [60, 2]
+    points: "0,0 60,0"
+    border: {style: solid, width: 2, color: "$accent"}
+  - elementId: col1
+    elementType: text
+    bounds: [60, 150, 420, 260]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.7
+      align: [left, top]
+      text: |
+        <p><strong>3D 渲染</strong></p>
+        <p><span style="font-size:14px; color:$muted;">Three.js 实时渲染，支持轨道旋转、缩放、平移</span></p>
+        <p style="margin-top:10px"><strong>评分可视化</strong></p>
+        <p><span style="font-size:14px; color:$muted;">雷达图、柱状图、综合评分一目了然</span></p>
+        <p style="margin-top:10px"><strong>方案对比</strong></p>
+        <p><span style="font-size:14px; color:$muted;">多方案并列查看，历史记录回溯</span></p>
+  - elementId: col2
+    elementType: text
+    bounds: [500, 150, 400, 260]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.7
+      align: [left, top]
+      text: |
+        <p><strong>3D Pareto Scatter</strong></p>
+        <p><span style="font-size:14px; color:$muted;">X/Y/Z 对应 walkability / safety / beauty</span></p>
+        <p style="margin-top:10px"><strong>溯源矩阵</strong></p>
+        <p><span style="font-size:14px; color:$muted;">展示知识来源、参数、约束的激活状态</span></p>
+        <p style="margin-top:10px"><strong>Benchmark Explorer</strong></p>
+        <p><span style="font-size:14px; color:$muted;">按 preset 过滤、聚类对比、参数着色</span></p>
+  - elementId: glb-bg
+    elementType: shape
+    bounds: [60, 420, 840, 40]
+    shapeName: rect
+    fill: {type: solid, color: "$light"}
+  - elementId: glb
+    elementType: text
+    bounds: [80, 420, 800, 40]
+    content:
+      fontSize: 14
+      color: "$text"
+      align: [left, middle]
+      text: |
+        <p>GLB 恢复策略：保留 GLB → 保留 layout JSON 可重建 → 全部丢失则重新生成</p>
+  - elementId: page-num
+    elementType: text
+    bounds: [860, 500, 60, 24]
+    content:
+      style: "$caption"
+      align: [right, middle]
+      text: "12"
