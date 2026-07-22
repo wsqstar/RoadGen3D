@@ -375,6 +375,39 @@ def test_guest_public_workspace_is_publicly_readable_and_owner_writable(client: 
     public_artifact = client.get(f"/api/v1/public/artifacts/{artifact_id}")
     assert public_artifact.status_code == 200
     assert public_artifact.content == b"fixture-glb"
+
+    configuration_export = client.get("/api/v1/workspace/exports/configuration", headers=_auth(first_token))
+    assert configuration_export.status_code == 200, configuration_export.text
+    assert configuration_export.headers["content-type"].startswith("application/zip")
+    assert "roadgen3d-user-config-2d-history-" in configuration_export.headers["content-disposition"]
+    with zipfile.ZipFile(io.BytesIO(configuration_export.content)) as archive:
+        names = archive.namelist()
+        manifest = json.loads(archive.read("manifest.json"))
+        assert manifest["export_scope"] == "configuration_2d_history"
+        assert manifest["includes_3d_results"] is False
+        assert [item["id"] for item in manifest["projects"]] == [project["id"]]
+        assert manifest["sources"][0]["project_id"] == project["id"]
+        assert manifest["revisions"][0]["id"] == revision["id"]
+        assert "history/revisions.json" in names
+        assert any("/2d-and-inputs/" in name for name in names)
+        assert not any("/3d/" in name or name.endswith(".glb") for name in names)
+        serialized = json.dumps(manifest).lower()
+        assert "password_hash" not in serialized
+        assert "token_hash" not in serialized
+        assert second.json()["user"]["id"] not in serialized
+
+    full_export = client.get("/api/v1/workspace/exports/full", headers=_auth(first_token))
+    assert full_export.status_code == 200, full_export.text
+    assert "roadgen3d-user-full-" in full_export.headers["content-disposition"]
+    with zipfile.ZipFile(io.BytesIO(full_export.content)) as archive:
+        names = archive.namelist()
+        manifest = json.loads(archive.read("manifest.json"))
+        assert manifest["export_scope"] == "full"
+        assert manifest["includes_3d_results"] is True
+        assert any("/3d/" in name and name.endswith(".glb") for name in names)
+        assert any(item["kind"] == "scene_layout" for item in manifest["artifacts"])
+
+    assert client.get("/api/v1/workspace/exports/unknown", headers=_auth(first_token)).status_code == 422
     assert client.post(f"/api/v1/projects/{project['id']}/exports", headers=_auth(second_token)).status_code == 403
     exported = client.post(f"/api/v1/projects/{project['id']}/exports", headers=_auth(first_token))
     assert exported.status_code == 202, exported.text

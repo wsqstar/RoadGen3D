@@ -2075,6 +2075,96 @@ class TeachingPlatformService:
             return {"schema_version": "roadgen3d.revision_comparison.v1", "claim_scope": "traceable difference and correlation; not causal effect", "items": items}
 
     # ---- packages ----------------------------------------------------------------------
+    def export_user_data(self, actor_id: str, *, include_3d: bool) -> tuple[str, bytes]:
+        """Build a user-scoped archive without authentication secrets."""
+        with self.database.session() as db:
+            user = self._require_user(db, actor_id)
+            projects = db.scalars(
+                select(Project).where(Project.owner_id == actor_id).order_by(Project.created_at.asc(), Project.id.asc())
+            ).all()
+            project_ids = [item.id for item in projects]
+            memberships = db.scalars(
+                select(Membership).where(Membership.user_id == actor_id).order_by(Membership.created_at.asc())
+            ).all()
+            owned_courses = db.scalars(select(Course).where(Course.owner_id == actor_id).order_by(Course.created_at.asc())).all()
+            course_ids = sorted({item.course_id for item in memberships} | {item.id for item in owned_courses} | {item.course_id for item in projects})
+            courses = db.scalars(select(Course).where(Course.id.in_(course_ids)).order_by(Course.created_at.asc())).all() if course_ids else []
+            sources = db.scalars(
+                select(SceneSourceRecord).where(SceneSourceRecord.project_id.in_(project_ids)).order_by(SceneSourceRecord.created_at.asc())
+            ).all() if project_ids else []
+            revisions = db.scalars(
+                select(SceneRevisionRecord).where(SceneRevisionRecord.project_id.in_(project_ids)).order_by(SceneRevisionRecord.created_at.asc())
+            ).all() if project_ids else []
+            profiles = db.scalars(
+                select(EvaluationProfile).where(EvaluationProfile.course_id.in_(course_ids)).order_by(EvaluationProfile.created_at.asc())
+            ).all() if course_ids else []
+            evaluations = db.scalars(
+                select(EvaluationRun).where(EvaluationRun.project_id.in_(project_ids)).order_by(EvaluationRun.created_at.asc())
+            ).all() if project_ids else []
+            jobs = db.scalars(select(Job).where(Job.owner_id == actor_id).order_by(Job.created_at.asc())).all()
+            audits = db.scalars(select(AuditLog).where(AuditLog.user_id == actor_id).order_by(AuditLog.created_at.asc())).all()
+            artifacts = db.scalars(
+                select(Artifact).where(Artifact.owner_id == actor_id, Artifact.project_id.in_(project_ids)).order_by(Artifact.created_at.asc())
+            ).all() if project_ids else []
+
+            excluded_bundle_kinds = {"project_bundle", "user_data_bundle"}
+            three_d_kinds = {"scene_layout", "scene_glb", "scene_step_glb"}
+            selected_artifacts = [
+                item for item in artifacts
+                if item.kind not in excluded_bundle_kinds and (include_3d or item.kind not in three_d_kinds)
+            ]
+            artifact_index: list[dict[str, Any]] = []
+            buffer = io.BytesIO()
+            with zipfile.ZipFile(buffer, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+                for artifact in selected_artifacts:
+                    category = "3d" if artifact.kind in three_d_kinds else "2d-and-inputs"
+                    archive_path = f"projects/{artifact.project_id}/{category}/{artifact.id}-{Path(artifact.object_key).name}"
+                    with self.artifacts.open(artifact.object_key) as handle:
+                        archive.writestr(archive_path, handle.read())
+                    artifact_index.append({**self._artifact(artifact), "archive_path": archive_path})
+
+                manifest = {
+                    "schema_version": "roadgen3d.user_data_bundle.v1",
+                    "export_scope": "full" if include_3d else "configuration_2d_history",
+                    "includes_3d_results": include_3d,
+                    "exported_at": _iso(now_utc()),
+                    "user": self._user(user),
+                    "workspaces": [self._course(item, next((membership.role for membership in memberships if membership.course_id == item.id), "owner")) for item in courses],
+                    "memberships": [
+                        {"id": item.id, "course_id": item.course_id, "user_id": item.user_id, "role": item.role, "created_at": _iso(item.created_at)}
+                        for item in memberships
+                    ],
+                    "projects": [self._project(item, "owner") for item in projects],
+                    "sources": [self._source(item) for item in sources],
+                    "revisions": [self._revision(item) for item in revisions],
+                    "evaluation_profiles": [self._profile(item) for item in profiles],
+                    "evaluations": [self._evaluation(item) for item in evaluations],
+                    "jobs": [{**self._job(item), "payload": item.payload} for item in jobs],
+                    "audit_log": [
+                        {"id": item.id, "project_id": item.project_id, "action": item.action, "detail": item.detail, "created_at": _iso(item.created_at)}
+                        for item in audits
+                    ],
+                    "artifacts": artifact_index,
+                    "security_exclusions": ["password hashes", "authentication session tokens", "workspace invite hashes"],
+                    "attribution": "Contains OpenStreetMap-derived data where source provenance says osm; © OpenStreetMap contributors.",
+                }
+                archive.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True))
+                archive.writestr("account/profile.json", json.dumps(manifest["user"], ensure_ascii=False, indent=2, sort_keys=True))
+                archive.writestr("projects/projects.json", json.dumps(manifest["projects"], ensure_ascii=False, indent=2, sort_keys=True))
+                archive.writestr("history/revisions.json", json.dumps(manifest["revisions"], ensure_ascii=False, indent=2, sort_keys=True))
+                archive.writestr("history/evaluations.json", json.dumps(manifest["evaluations"], ensure_ascii=False, indent=2, sort_keys=True))
+                archive.writestr("history/jobs.json", json.dumps(manifest["jobs"], ensure_ascii=False, indent=2, sort_keys=True))
+                archive.writestr("history/audit-log.json", json.dumps(manifest["audit_log"], ensure_ascii=False, indent=2, sort_keys=True))
+
+            self._audit(db, actor_id, None, "user.export", {
+                "scope": manifest["export_scope"],
+                "project_count": len(projects),
+                "artifact_count": len(selected_artifacts),
+            })
+            timestamp = now_utc().strftime("%Y%m%d-%H%M%S")
+            label = "full" if include_3d else "config-2d-history"
+            return f"roadgen3d-user-{label}-{timestamp}.zip", buffer.getvalue()
+
     def export_project_package(self, actor_id: str, project_id: str) -> dict[str, Any]:
         with self.database.session() as db:
             project, _ = self._require_project(db, actor_id, project_id)

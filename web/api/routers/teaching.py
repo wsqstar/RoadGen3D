@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import io
 import os
 from typing import Any
 
@@ -573,6 +574,18 @@ def export_project(project_id: str, request: Request, actor: dict[str, Any] = De
         job = service.create_job(actor["id"], project_id, kind="project_export", payload={})
         return _dispatch_job(request, job)
     return _call(run)
+
+
+@router.get("/workspace/exports/{scope}")
+def export_user_data(scope: str, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    if scope not in {"configuration", "full"}:
+        raise HTTPException(status_code=422, detail={"code": "validation_error", "message": "Export scope must be configuration or full."})
+    filename, content = _call(lambda: _service(request).export_user_data(actor["id"], include_3d=scope == "full"))
+    return StreamingResponse(
+        io.BytesIO(content),
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @router.get("/jobs/{job_id}")
