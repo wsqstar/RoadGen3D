@@ -7,7 +7,8 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Iterator
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, text
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 
@@ -37,6 +38,29 @@ class TeachingDatabase:
             from . import models  # noqa: F401
 
             Base.metadata.create_all(self.engine)
+            self._ensure_compatibility_columns()
+
+    def _ensure_compatibility_columns(self) -> None:
+        """Apply the small additive migration needed by existing deployments."""
+
+        inspector = inspect(self.engine)
+        if "users" not in inspector.get_table_names():
+            return
+        columns = {item["name"] for item in inspector.get_columns("users")}
+        if "guest_recovery_key" not in columns:
+            try:
+                with self.engine.begin() as connection:
+                    connection.execute(text("ALTER TABLE users ADD COLUMN guest_recovery_key VARCHAR(96)"))
+            except OperationalError:
+                # Another API/worker process may have completed the migration.
+                refreshed = {item["name"] for item in inspect(self.engine).get_columns("users")}
+                if "guest_recovery_key" not in refreshed:
+                    raise
+        with self.engine.begin() as connection:
+            connection.execute(text(
+                "CREATE UNIQUE INDEX IF NOT EXISTS ix_users_guest_recovery_key "
+                "ON users (guest_recovery_key)"
+            ))
 
     @contextmanager
     def session(self) -> Iterator[Session]:
@@ -49,4 +73,3 @@ class TeachingDatabase:
             raise
         finally:
             db.close()
-

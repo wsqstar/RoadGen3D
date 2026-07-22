@@ -248,6 +248,11 @@ def test_personal_workspace_invites_isolate_projects_and_admin_metadata(client: 
     assert second.status_code == 201, second.text
     first_token, second_token = first.json()["access_token"], second.json()["access_token"]
 
+    public_guest = client.post("/api/v1/auth/guest")
+    assert public_guest.status_code == 201, public_guest.text
+    public_guest_key = public_guest.json()["recovery_key"]
+    assert public_guest_key.startswith("RG3D-GUEST-")
+
     first_workspace = client.get("/api/v1/workspace", headers=_auth(first_token))
     assert first_workspace.status_code == 200, first_workspace.text
     assert first_workspace.json()["workspace"]["scope"] == "personal"
@@ -268,11 +273,17 @@ def test_personal_workspace_invites_isolate_projects_and_admin_metadata(client: 
 
     overview = client.get("/api/v1/admin/overview", headers=_auth(admin_token))
     users = client.get("/api/v1/admin/users", headers=_auth(admin_token))
-    assert overview.status_code == 200 and overview.json()["users"]["total"] == 3
+    assert overview.status_code == 200 and overview.json()["users"]["total"] == 4
     assert users.status_code == 200
     first_summary = next(item for item in users.json()["items"] if item["email"] == "first@example.edu")
     assert first_summary["project_count"] == 1
     assert "layout" not in json.dumps(first_summary)
+    guest_summary = next(item for item in users.json()["items"] if item["id"] == public_guest.json()["user"]["id"])
+    assert guest_summary["guest_recovery_key"] == public_guest_key
+    guest_detail = client.get(f"/api/v1/admin/users/{guest_summary['id']}", headers=_auth(admin_token))
+    assert guest_detail.status_code == 200
+    assert guest_detail.json()["guest_recovery_key"] == public_guest_key
+    assert client.get("/api/v1/auth/guest-recovery-key", headers=_auth(first_token)).status_code == 403
     assert client.get("/api/v1/admin/overview", headers=_auth(first_token)).status_code == 403
 
     # Suspending removes active sessions immediately; a later administrator login can reactivate.
@@ -289,8 +300,16 @@ def test_guest_public_workspace_is_publicly_readable_and_owner_writable(client: 
     assert second.status_code == 201, second.text
     assert first.json()["user"]["system_role"] == "guest"
     assert first.json()["workspace"]["scope"] == "public"
+    first_key = first.json()["recovery_key"]
+    second_key = second.json()["recovery_key"]
+    assert first_key.startswith("RG3D-GUEST-") and len(first_key) == 43
+    assert second_key.startswith("RG3D-GUEST-") and second_key != first_key
+    assert "recovery_key" not in first.json()["user"]
     first_token = first.json()["access_token"]
     second_token = second.json()["access_token"]
+    own_key = client.get("/api/v1/auth/guest-recovery-key", headers=_auth(first_token))
+    assert own_key.status_code == 200 and own_key.json()["recovery_key"] == first_key
+    assert client.get("/api/v1/me", headers=_auth(first_token)).json().get("guest_recovery_key") is None
 
     project_response = client.post("/api/v1/workspace/projects", headers=_auth(first_token), json={
         "name": "Guest public street",
@@ -299,6 +318,18 @@ def test_guest_public_workspace_is_publicly_readable_and_owner_writable(client: 
     })
     assert project_response.status_code == 201, project_response.text
     project = project_response.json()
+
+    invalid_recovery = client.post("/api/v1/auth/guest/recover", json={"recovery_key": "RG3D-GUEST-NOT-VALID"})
+    assert invalid_recovery.status_code == 403
+    recovered = client.post("/api/v1/auth/guest/recover", json={"recovery_key": first_key})
+    assert recovered.status_code == 200, recovered.text
+    assert recovered.json()["user"]["id"] == first.json()["user"]["id"]
+    assert recovered.json()["recovery_key"] == first_key
+    # The recovery route refreshes the long-lived HttpOnly cookie, so the
+    # restored browser can continue without an Authorization header.
+    cookie_workspace = client.get("/api/v1/workspace")
+    assert cookie_workspace.status_code == 200
+    assert [item["id"] for item in cookie_workspace.json()["projects"]] == [project["id"]]
 
     imported_response = client.post(
         f"/api/v1/projects/{project['id']}/sources/geojson",
@@ -394,6 +425,7 @@ def test_guest_public_workspace_is_publicly_readable_and_owner_writable(client: 
         serialized = json.dumps(manifest).lower()
         assert "password_hash" not in serialized
         assert "token_hash" not in serialized
+        assert "recovery_key" not in serialized
         assert second.json()["user"]["id"] not in serialized
 
     full_export = client.get("/api/v1/workspace/exports/full", headers=_auth(first_token))
@@ -406,6 +438,40 @@ def test_guest_public_workspace_is_publicly_readable_and_owner_writable(client: 
         assert manifest["includes_3d_results"] is True
         assert any("/3d/" in name and name.endswith(".glb") for name in names)
         assert any(item["kind"] == "scene_layout" for item in manifest["artifacts"])
+
+    restored = client.post(
+        "/api/v1/workspace/imports/configuration",
+        headers=_auth(second_token),
+        files={"file": ("roadgen3d-backup.zip", configuration_export.content, "application/zip")},
+    )
+    assert restored.status_code == 201, restored.text
+    assert restored.json() == {
+        "schema_version": "roadgen3d.user_data_import.v1",
+        "project_count": 1,
+        "artifact_count": 3,
+        "source_count": 1,
+        "revision_count": 1,
+        "ignored_3d": True,
+    }
+    restored_workspace = client.get("/api/v1/workspace", headers=_auth(second_token)).json()
+    assert len(restored_workspace["projects"]) == 1
+    restored_project = restored_workspace["projects"][0]
+    assert restored_project["id"] != project["id"]
+    assert restored_project["name"] == project["name"]
+    restored_sources = client.get(f"/api/v1/projects/{restored_project['id']}/sources", headers=_auth(second_token))
+    restored_revisions = client.get(f"/api/v1/projects/{restored_project['id']}/revisions", headers=_auth(second_token))
+    assert restored_sources.status_code == 200 and len(restored_sources.json()["items"]) == 1
+    assert restored_revisions.status_code == 200 and len(restored_revisions.json()["items"]) == 1
+    assert restored_revisions.json()["items"][0]["layout_artifact_id"] is None
+    assert restored_revisions.json()["items"][0]["glb_artifact_id"] is None
+
+    invalid_import = client.post(
+        "/api/v1/workspace/imports/configuration",
+        headers=_auth(second_token),
+        files={"file": ("invalid.zip", b"not-a-zip", "application/zip")},
+    )
+    assert invalid_import.status_code == 422
+    assert "valid ZIP" in invalid_import.json()["detail"]["message"]
 
     assert client.get("/api/v1/workspace/exports/unknown", headers=_auth(first_token)).status_code == 422
     assert client.post(f"/api/v1/projects/{project['id']}/exports", headers=_auth(second_token)).status_code == 403

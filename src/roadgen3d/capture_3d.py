@@ -17,16 +17,20 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CAPTURE_PROFILE = "review_expanded"
 DEFAULT_CAPTURE_RESOLUTION = (1280, 720)
 CAPTURE_MANIFEST_VERSION = "capture_manifest_v1"
-VALID_CAPTURE_PROFILES = frozenset({"quick_12", "review_24", "review_expanded", "exhaustive_keypoints"})
+VALID_CAPTURE_PROFILES = frozenset({"feature_tri_view", "quick_12", "review_24", "review_expanded", "exhaustive_keypoints"})
 VALID_CAPTURE_FAILURE_POLICIES = frozenset({"warn", "fail"})
 VALID_RETAIN_GLB_POLICIES = frozenset({"top_k", "always", "debug_only"})
 CAPTURE_PROFILE_BUDGETS = {
+    "feature_tri_view": 3,
     "quick_12": 12,
     "review_24": 24,
     "review_expanded": 40,
     "exhaustive_keypoints": 10_000,
 }
 CAPTURE_PROFILE_KIND_QUOTAS = {
+    "feature_tri_view": (
+        ("feature_orthographic", 3),
+    ),
     "quick_12": (
         ("pedestrian", 1),
         ("overview", 2),
@@ -183,6 +187,8 @@ def plan_capture_targets(
         priority: int,
         fov: float = 58.0,
         source: str = "",
+        projection: str = "perspective",
+        orthographic_height_m: float | None = None,
     ) -> None:
         nonlocal seq
         seq += 1
@@ -195,8 +201,59 @@ def plan_capture_targets(
             "priority": int(priority),
             "fov": float(fov),
             "source": str(source),
+            "projection": str(projection),
+            "orthographic_height_m": (
+                _round_float(orthographic_height_m)
+                if orthographic_height_m is not None
+                else None
+            ),
             "_sequence": seq,
         })
+
+    # A stable engineering tri-view is deliberately separate from the more
+    # cinematic review gallery.  It makes small geometry changes comparable
+    # across iterations because camera projection and framing stay fixed.
+    tri_height = max(8.0, extent * 0.36)
+    top_height = max(20.0, extent * 0.85)
+    add_target(
+        "feature_top",
+        "feature_orthographic",
+        "Feature top view",
+        (center_x, top_height, center_z + 0.001),
+        (center_x, 0.0, center_z),
+        priority=120,
+        source="feature_quality_lab",
+        projection="orthographic",
+        orthographic_height_m=max(12.0, extent * 1.08),
+    )
+    if axis_is_x:
+        longitudinal_camera = (min_x - extent * 0.55, tri_height, center_z)
+        cross_section_camera = (center_x, tri_height, min_z - extent * 0.55)
+    else:
+        longitudinal_camera = (center_x, tri_height, min_z - extent * 0.55)
+        cross_section_camera = (min_x - extent * 0.55, tri_height, center_z)
+    add_target(
+        "feature_longitudinal",
+        "feature_orthographic",
+        "Feature longitudinal elevation",
+        longitudinal_camera,
+        (center_x, 1.0, center_z),
+        priority=119,
+        source="feature_quality_lab",
+        projection="orthographic",
+        orthographic_height_m=max(8.0, extent * 0.48),
+    )
+    add_target(
+        "feature_cross_section",
+        "feature_orthographic",
+        "Feature cross-section elevation",
+        cross_section_camera,
+        (center_x, 1.0, center_z),
+        priority=118,
+        source="feature_quality_lab",
+        projection="orthographic",
+        orthographic_height_m=max(8.0, extent * 0.48),
+    )
 
     overview_height = max(28.0, extent * 0.95)
     add_target(
@@ -787,6 +844,9 @@ def _normalize_captured_views(
             "height": int(raw.get("height", resolution[1]) or resolution[1]),
             "source": str(target.get("source") or raw.get("source") or "roadgen3d_capture_3d"),
             "projection": str(target.get("projection") or raw.get("projection") or "perspective"),
+            "orthographic_height_m": _float_or_none(
+                target.get("orthographic_height_m", raw.get("orthographic_height_m"))
+            ),
             "vertical_fov_deg": _float_or_none(target.get("fov", raw.get("fov"))),
             "content_origin": "roadgen3d_synthetic_render",
         })

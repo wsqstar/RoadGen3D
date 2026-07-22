@@ -2366,6 +2366,21 @@ def build_reference_annotation_compose_config(overrides: Mapping[str, Any] | Non
         min_corner_radius_m,
         _as_float(payload.get("junction_corner_max_radius_m"), "junction_corner_max_radius_m", default=8.0),
     )
+    curb_ramp_side = _as_string(payload.get("curb_ramp_side"), "right").strip().lower()
+    if curb_ramp_side not in {"left", "right"}:
+        raise ValueError("curb_ramp_side must be 'left' or 'right'.")
+    curb_ramp_position_ratio = _as_float(
+        payload.get("curb_ramp_position_ratio"),
+        "curb_ramp_position_ratio",
+        default=0.5,
+    )
+    if not 0.0 <= curb_ramp_position_ratio <= 1.0:
+        raise ValueError("curb_ramp_position_ratio must be between 0 and 1.")
+    curb_ramp_enabled_value = payload.get("curb_ramp_enabled", False)
+    if isinstance(curb_ramp_enabled_value, str):
+        curb_ramp_enabled = curb_ramp_enabled_value.strip().lower() in {"1", "true", "yes", "on"}
+    else:
+        curb_ramp_enabled = bool(curb_ramp_enabled_value)
     return StreetComposeConfig(
         query=_as_string(payload.get("query"), "reference annotation graph"),
         length_m=max(24.0, _as_float(payload.get("length_m"), "length_m", default=120.0)),
@@ -2393,6 +2408,9 @@ def build_reference_annotation_compose_config(overrides: Mapping[str, Any] | Non
         curb_width_m=max(0.05, _as_float(payload.get("curb_width_m"), "curb_width_m", default=0.12)),
         curb_reveal_m=max(0.05, _as_float(payload.get("curb_reveal_m"), "curb_reveal_m", default=0.15)),
         curb_top_mode="flush_with_sidewalk",
+        curb_ramp_enabled=curb_ramp_enabled,
+        curb_ramp_side=curb_ramp_side,
+        curb_ramp_position_ratio=curb_ramp_position_ratio,
     )
 
 

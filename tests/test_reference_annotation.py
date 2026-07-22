@@ -309,6 +309,9 @@ def test_reference_annotation_compose_config_keeps_geometry_policy_reproducible(
             "junction_seam_extension_m": 0.03,
             "curb_width_m": 0.14,
             "curb_reveal_m": 0.16,
+            "curb_ramp_enabled": True,
+            "curb_ramp_side": "left",
+            "curb_ramp_position_ratio": 0.3,
         }
     )
 
@@ -321,9 +324,14 @@ def test_reference_annotation_compose_config_keeps_geometry_policy_reproducible(
     assert config.curb_width_m == pytest.approx(0.14)
     assert config.curb_reveal_m == pytest.approx(0.16)
     assert config.curb_top_mode == "flush_with_sidewalk"
+    assert config.curb_ramp_enabled is True
+    assert config.curb_ramp_side == "left"
+    assert config.curb_ramp_position_ratio == pytest.approx(0.3)
 
     with pytest.raises(ValueError, match="junction_corner_radius_mode"):
         build_reference_annotation_compose_config({"junction_corner_radius_mode": "random"})
+    with pytest.raises(ValueError, match="curb_ramp_position_ratio"):
+        build_reference_annotation_compose_config({"curb_ramp_position_ratio": 1.2})
 
 
 def test_build_segment_graph_from_annotation_detects_shared_vertex_junction_without_explicit_marker():

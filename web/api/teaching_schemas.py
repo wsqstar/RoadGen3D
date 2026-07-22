@@ -19,6 +19,10 @@ class LoginRequest(BaseModel):
     password: str
 
 
+class GuestRecoverRequest(BaseModel):
+    recovery_key: str = Field(min_length=1, max_length=96)
+
+
 class RegisterRequest(BaseModel):
     email: str
     password: str = Field(min_length=8, max_length=256)

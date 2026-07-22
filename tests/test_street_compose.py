@@ -2918,6 +2918,126 @@ def test_tree_pit_proxy_is_compact_and_stays_outside_carriageway():
     assert float(vertices[:, 2].min()) < 4.15
 
 
+@pytest.mark.parametrize(
+    ("ramp_side", "high_edge_selector", "expected_joint_z"),
+    [
+        ("left", "max", 4.0),
+        ("right", "min", -4.0),
+    ],
+)
+def test_curb_ramp_is_generated_independently_from_bus_stop_and_bus_lane(
+    ramp_side,
+    high_edge_selector,
+    expected_joint_z,
+):
+    trimesh = pytest.importorskip("trimesh")
+    scene = trimesh.Scene()
+    placement_ctx = SimpleNamespace(road_reference=None)
+    street_program = SimpleNamespace(road_width_m=8.0, lane_count=2)
+    poi_ctx = PoiContext(
+        entrance_points_xz=(),
+        bus_stop_points_xz=(),
+        fire_points_xz=(),
+        poi_points_by_type_xz={},
+    )
+
+    street_layout._add_beauty_scene_proxies(
+        scene,
+        config=StreetComposeConfig(
+            query="street with bus stop",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=1,
+            max_trials_per_slot=5,
+            layout_mode="template",
+            curb_ramp_enabled=True,
+            curb_ramp_side=ramp_side,
+            curb_ramp_position_ratio=0.5,
+        ),
+        street_program=street_program,
+        placement_ctx=placement_ctx,
+        poi_ctx=poi_ctx,
+        placements=[],
+    )
+
+    ramp_mesh = scene.geometry[scene.graph["curb_access_ramp_0"][1]]
+    vertices = np.asarray(ramp_mesh.vertices)
+    high_edge_z = (
+        float(vertices[:, 2].max())
+        if high_edge_selector == "max"
+        else float(vertices[:, 2].min())
+    )
+    low_edge_z = (
+        float(vertices[:, 2].min())
+        if high_edge_selector == "max"
+        else float(vertices[:, 2].max())
+    )
+    low_edge_y = vertices[np.isclose(vertices[:, 2], low_edge_z), 1]
+    high_edge_y = vertices[np.isclose(vertices[:, 2], high_edge_z), 1]
+
+    assert "transit_pad_0" not in scene.graph.nodes_geometry
+    assert float(ramp_mesh.extents[0]) == pytest.approx(street_layout.CURB_ACCESS_RAMP_LENGTH_M)
+    assert float(ramp_mesh.extents[2]) == pytest.approx(street_layout.CURB_ACCESS_RAMP_RUN_M)
+    assert float(ramp_mesh.extents[1]) == pytest.approx(street_layout.SIDEWALK_ELEVATION_M)
+    assert ramp_mesh.is_watertight
+    assert float(low_edge_y.max()) == pytest.approx(0.0)
+    assert float(high_edge_y.max()) == pytest.approx(street_layout.SIDEWALK_ELEVATION_M)
+    assert high_edge_z == pytest.approx(expected_joint_z)
+
+
+def test_curb_ramp_follows_rotated_road_side_and_position():
+    trimesh = pytest.importorskip("trimesh")
+    scene = trimesh.Scene()
+    placement_ctx = SimpleNamespace(
+        road_reference=SimpleNamespace(coords=[(0.0, -30.0), (0.0, 30.0)])
+    )
+    street_program = SimpleNamespace(road_width_m=8.0, lane_count=2)
+    poi_ctx = PoiContext(
+        entrance_points_xz=(),
+        bus_stop_points_xz=(),
+        fire_points_xz=(),
+        poi_points_by_type_xz={},
+    )
+
+    street_layout._add_beauty_scene_proxies(
+        scene,
+        config=StreetComposeConfig(
+            query="standalone curb ramp",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=1,
+            max_trials_per_slot=5,
+            layout_mode="template",
+            curb_ramp_enabled=True,
+            curb_ramp_side="right",
+            curb_ramp_position_ratio=0.25,
+        ),
+        street_program=street_program,
+        placement_ctx=placement_ctx,
+        poi_ctx=poi_ctx,
+        placements=[],
+    )
+
+    ramp_mesh = scene.geometry[scene.graph["curb_access_ramp_0"][1]]
+    high_edge_vertices = np.asarray(ramp_mesh.vertices)[
+        np.isclose(np.asarray(ramp_mesh.vertices)[:, 0], ramp_mesh.bounds[1][0])
+    ]
+
+    assert float(ramp_mesh.extents[0]) == pytest.approx(street_layout.CURB_ACCESS_RAMP_RUN_M)
+    assert float(ramp_mesh.extents[2]) == pytest.approx(street_layout.CURB_ACCESS_RAMP_LENGTH_M)
+    assert float(ramp_mesh.bounds[1][0]) == pytest.approx(4.0)
+    assert float(ramp_mesh.centroid[2]) == pytest.approx(-15.0)
+    assert float(high_edge_vertices[:, 1].max()) == pytest.approx(street_layout.SIDEWALK_ELEVATION_M)
+
+
 def test_osm_curb_zone_excludes_road_endpoint_caps():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

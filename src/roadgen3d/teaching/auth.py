@@ -54,3 +54,8 @@ def issue_invite_code() -> tuple[str, str]:
     code = "RG3D-" + secrets.token_urlsafe(8).upper().replace("-", "X").replace("_", "Y")
     return code, digest_secret(code)
 
+
+def issue_guest_recovery_key() -> str:
+    """Create a human-copyable 128-bit credential for a public guest identity."""
+
+    return "RG3D-GUEST-" + secrets.token_hex(16).upper()

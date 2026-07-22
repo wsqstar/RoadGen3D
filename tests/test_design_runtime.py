@@ -210,6 +210,25 @@ def test_sanitize_compose_config_patch_preserves_no_furniture_profile():
     assert patch["street_furniture_profile"] == "none"
 
 
+def test_sanitize_compose_config_patch_accepts_independent_curb_ramp_fields():
+    patch = sanitize_compose_config_patch(
+        {
+            "curb_ramp_enabled": "true",
+            "curb_ramp_side": "left",
+            "curb_ramp_position_ratio": "0.35",
+        }
+    )
+
+    assert patch == {
+        "curb_ramp_enabled": True,
+        "curb_ramp_side": "left",
+        "curb_ramp_position_ratio": 0.35,
+    }
+    assert "curb_ramp_position_ratio" not in sanitize_compose_config_patch(
+        {"curb_ramp_position_ratio": 1.1}
+    )
+
+
 def test_sanitize_compose_config_patch_accepts_osm_multiblock_fields():
     patch = sanitize_compose_config_patch(
         {

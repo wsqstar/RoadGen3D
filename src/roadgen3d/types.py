@@ -115,6 +115,9 @@ class StreetComposeConfig:
     median_width_m: float = 2.0
     bus_stop_enabled: bool = False
     bus_stop_placement: str = "curbside"  # "curbside" | "bay"
+    curb_ramp_enabled: bool = False
+    curb_ramp_side: str = "right"  # "left" | "right"
+    curb_ramp_position_ratio: float = 0.5
     furniture_style: str = "civic_clean"
 
     # -- Neuralsymbolic v1 fields --

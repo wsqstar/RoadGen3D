@@ -589,6 +589,7 @@ class BranchRunService:
             evaluation = self.design_service.evaluate_scene_unified(
                 layout_path=node.scene_layout_path,
                 rendered_views=rendered_views,
+                evaluation_mode="full" if rendered_views else "structured",
             )
             branch_evaluation = _ensure_branch_evaluation_scores(evaluation, state.evaluation_weights)
             node.evaluation = dict(branch_evaluation)

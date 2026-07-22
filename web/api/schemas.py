@@ -248,6 +248,17 @@ class BranchRunCreateRequestModel(BaseModel):
     })
 
 
+class FeatureQualityRunCreateRequestModel(BaseModel):
+    target_id: Literal["curb_ramp", "bus_stop", "building", "surface_material"]
+    brief: str = Field(min_length=1, max_length=1000)
+    variant_count: int = Field(default=4, ge=3, le=6)
+    base_patch: Dict[str, Any] = Field(default_factory=dict)
+    graph_template_id: str = "hkust_gz_gate"
+    scene_context: Dict[str, Any] = Field(default_factory=dict)
+    generation_options: Dict[str, Any] = Field(default_factory=dict)
+    visual_review: bool = True
+
+
 class BenchmarkBatchCreateRequestModel(BaseModel):
     preset_ids: List[str] = Field(default_factory=lambda: [str(item.get("id")) for item in SCENE_PRESETS])
     target_samples: int = Field(default=100, ge=1, le=100)

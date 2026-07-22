@@ -32,6 +32,10 @@ class User(Base, TimestampMixin):
     email: Mapped[str] = mapped_column(String(320), unique=True, index=True, nullable=False)
     display_name: Mapped[str] = mapped_column(String(120), nullable=False)
     password_hash: Mapped[str] = mapped_column(Text, nullable=False)
+    # Early-stage public guest recovery credential. This is intentionally
+    # plaintext so an administrator can help recover/debug a guest identity;
+    # never include it in public project or ordinary /me serializers.
+    guest_recovery_key: Mapped[str | None] = mapped_column(String(96), unique=True, index=True, nullable=True)
     system_role: Mapped[str] = mapped_column(String(16), default="student", nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 

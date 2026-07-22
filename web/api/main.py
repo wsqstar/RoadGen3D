@@ -22,6 +22,7 @@ from roadgen3d.capture_3d import capture_views_for_layout  # noqa: E402
 from roadgen3d.services.branch_benchmarks import BranchBenchmarkBatchService, BranchBenchmarkStore  # noqa: E402
 from roadgen3d.services.branch_runs import BranchRunService  # noqa: E402
 from roadgen3d.services.design_matrix import DesignMatrixService  # noqa: E402
+from roadgen3d.services.feature_quality_runs import FeatureQualityRunService  # noqa: E402
 from roadgen3d.services.scene_context_service import build_osm_semantic_preview  # noqa: E402
 from roadgen3d.services.osm_source_jobs import OsmSourceJobService  # noqa: E402
 from roadgen3d.services.scenario_designs import ScenarioDesignService  # noqa: E402
@@ -35,6 +36,7 @@ from web.api.routers.assets import catalog_router as asset_catalog_router, route
 from web.api.routers.branch_benchmarks import router as branch_benchmarks_router  # noqa: E402
 from web.api.routers.design import router as design_router  # noqa: E402
 from web.api.routers.evaluation import router as evaluation_router  # noqa: E402
+from web.api.routers.feature_quality import router as feature_quality_router  # noqa: E402
 from web.api.routers.knowledge import router as knowledge_router  # noqa: E402
 from web.api.routers.scene_jobs import router as scene_jobs_router  # noqa: E402
 from web.api.routers.scene_layout_edits import router as scene_layout_edits_router  # noqa: E402
@@ -107,6 +109,9 @@ def create_app(
         branch_run_service=app.state.branch_run_service,
         benchmark_store=app.state.benchmark_store,
     )
+    app.state.feature_quality_run_service = FeatureQualityRunService(
+        design_service=app.state.design_service,
+    )
 
     # Preserve legacy monkeypatch seams on web.api.main while route handlers live in routers.
     catalog_routes.build_osm_semantic_preview = build_osm_semantic_preview
@@ -124,6 +129,7 @@ def create_app(
         branch_benchmarks_router,
         diff_capture_routes.router,
         evaluation_router,
+        feature_quality_router,
         assets_router,
         asset_catalog_router,
         knowledge_router,

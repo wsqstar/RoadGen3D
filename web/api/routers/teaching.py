@@ -7,7 +7,7 @@ import io
 import os
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, File, HTTPException, Query, Request, Response, UploadFile
 from fastapi.responses import StreamingResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
@@ -21,6 +21,7 @@ from web.api.teaching_schemas import (
     EvaluationCreateRequest,
     EvaluationProfileCreateRequest,
     GeoJsonImportRequest,
+    GuestRecoverRequest,
     LoginRequest,
     OsmImportRequest,
     OsmRoadStudySelectionRequest,
@@ -45,6 +46,8 @@ from web.api.teaching_schemas import (
 
 router = APIRouter(prefix="/api/v1", tags=["teaching-platform"])
 bearer = HTTPBearer(auto_error=False)
+GUEST_SESSION_COOKIE = "roadgen3d_guest_session"
+GUEST_SESSION_MAX_AGE = 365 * 24 * 60 * 60
 
 
 def _dispatch_job(request: Request, job: dict[str, Any]) -> dict[str, Any]:
@@ -71,7 +74,8 @@ def _service(request: Request) -> TeachingPlatformService:
 
 def _actor(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)) -> dict[str, Any]:
     try:
-        return _service(request).authenticate(credentials.credentials if credentials else "")
+        token = credentials.credentials if credentials else request.cookies.get(GUEST_SESSION_COOKIE, "")
+        return _service(request).authenticate(token)
     except TeachingError as exc:
         raise HTTPException(status_code=exc.status_code, detail=exc.detail()) from exc
 
@@ -128,14 +132,42 @@ def login(body: LoginRequest, request: Request):
     return _call(lambda: _service(request).login(email=body.email, password=body.password))
 
 
+def _set_guest_cookie(response: Response, request: Request, token: str) -> None:
+    response.set_cookie(
+        GUEST_SESSION_COOKIE,
+        token,
+        max_age=GUEST_SESSION_MAX_AGE,
+        httponly=True,
+        secure=request.url.scheme == "https",
+        samesite="lax",
+        path="/",
+    )
+
+
 @router.post("/auth/guest", status_code=201)
-def guest(request: Request):
-    return _call(lambda: _service(request).create_guest_session())
+def guest(request: Request, response: Response):
+    result = _call(lambda: _service(request).create_guest_session())
+    _set_guest_cookie(response, request, result["access_token"])
+    return result
+
+
+@router.post("/auth/guest/recover")
+def recover_guest(body: GuestRecoverRequest, request: Request, response: Response):
+    result = _call(lambda: _service(request).recover_guest_session(body.recovery_key))
+    _set_guest_cookie(response, request, result["access_token"])
+    return result
+
+
+@router.get("/auth/guest-recovery-key")
+def guest_recovery_key(request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).guest_recovery_key(actor["id"]))
 
 
 @router.post("/auth/logout", status_code=204)
-def logout(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)):
-    _call(lambda: _service(request).logout(credentials.credentials if credentials else ""))
+def logout(request: Request, response: Response, credentials: HTTPAuthorizationCredentials | None = Depends(bearer)):
+    token = credentials.credentials if credentials else request.cookies.get(GUEST_SESSION_COOKIE, "")
+    _call(lambda: _service(request).logout(token))
+    response.delete_cookie(GUEST_SESSION_COOKIE, path="/")
 
 
 @router.post("/auth/register", status_code=201)
@@ -586,6 +618,19 @@ def export_user_data(scope: str, request: Request, actor: dict[str, Any] = Depen
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+@router.post("/workspace/imports/configuration", status_code=201)
+def import_user_data(
+    request: Request,
+    file: UploadFile = File(...),
+    actor: dict[str, Any] = Depends(_actor),
+):
+    filename = str(file.filename or "").lower()
+    if not filename.endswith(".zip"):
+        raise HTTPException(status_code=422, detail={"code": "validation_error", "message": "Select a RoadGen3D ZIP export."})
+    content = file.file.read(256 * 1024 * 1024 + 1)
+    return _call(lambda: _service(request).import_user_data(actor["id"], content))
 
 
 @router.get("/jobs/{job_id}")

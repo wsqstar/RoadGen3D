@@ -159,6 +159,7 @@ def _profile_payload(profile_id: str) -> Dict[str, Any]:
             "furnishingWidthM": furnishing,
             "curbWidthM": 0.12,
             "junctionCornerPolicy": "source",
+            "curbRamp": {"enabled": False, "side": "right", "positionRatio": 0.5},
         },
         "furniture": {
             "profileId": furniture_profile,
@@ -222,6 +223,7 @@ def build_default_street_design_parameter_spec_v2(
         "junctionCornerPolicy": supplied.get("junctionCornerPolicy", "source"),
         "median": {"enabled": False, "kind": "raised", "widthM": medium("medianWidthM")},
         "busStop": {"enabled": False, "placement": "curbside"},
+        "curbRamp": {"enabled": False, "side": "right", "positionRatio": 0.5},
     }
     if skeleton["junctionCornerPolicy"] == "fixed":
         skeleton["junctionCornerRadiusM"] = supplied.get(
@@ -355,6 +357,7 @@ def migrate_street_design_parameter_spec_v1(payload: Mapping[str, Any]) -> Dict[
             "enabled": bool(categories.get("bus_stop", {}).get("enabled", False)),
             "placement": "curbside",
         },
+        "curbRamp": {"enabled": False, "side": "right", "positionRatio": 0.5},
     }
     if "junctionCornerRadiusM" in skeleton:
         migrated_skeleton["junctionCornerRadiusM"] = skeleton["junctionCornerRadiusM"]
@@ -415,6 +418,18 @@ def validate_street_design_parameter_spec(payload: Mapping[str, Any]) -> Dict[st
     if bus_stop.get("placement") not in {"curbside", "bay"}:
         raise ParameterSpecError("skeleton.busStop.placement must be curbside or bay.")
     skeleton["busStop"] = bus_stop
+    curb_ramp = dict(skeleton.get("curbRamp") or {})
+    curb_ramp.setdefault("enabled", False)
+    curb_ramp.setdefault("side", "right")
+    curb_ramp.setdefault("positionRatio", 0.5)
+    if not isinstance(curb_ramp.get("enabled"), bool):
+        raise ParameterSpecError("skeleton.curbRamp.enabled must be boolean.")
+    if curb_ramp.get("side") not in {"left", "right"}:
+        raise ParameterSpecError("skeleton.curbRamp.side must be left or right.")
+    curb_ramp["positionRatio"] = _finite_number(
+        curb_ramp.get("positionRatio"), "skeleton.curbRamp.positionRatio", 0.0, 1.0
+    )
+    skeleton["curbRamp"] = curb_ramp
 
     furniture = dict(spec.get("furniture") or {})
     furniture["globalDensity"] = _finite_number(furniture.get("globalDensity"), "furniture.globalDensity", 0.0, 2.0)
@@ -509,6 +524,9 @@ def compile_street_design_parameter_spec(
         "median_width_m": skeleton["median"]["widthM"],
         "bus_stop_enabled": skeleton["busStop"]["enabled"],
         "bus_stop_placement": skeleton["busStop"]["placement"],
+        "curb_ramp_enabled": skeleton["curbRamp"]["enabled"],
+        "curb_ramp_side": skeleton["curbRamp"]["side"],
+        "curb_ramp_position_ratio": skeleton["curbRamp"]["positionRatio"],
         "max_bus_stops_per_scene": (
             max(1, int(math.ceil(float(furniture["categories"]["bus_stop"]["targetCountPer100M"]))))
             if skeleton["busStop"]["enabled"]

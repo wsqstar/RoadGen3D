@@ -3947,6 +3947,8 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
 DEFAULT_CURB_REVEAL_M = 0.15
 DEFAULT_CURB_WIDTH_M = 0.12
 SIDEWALK_ELEVATION_M = DEFAULT_CURB_REVEAL_M
+CURB_ACCESS_RAMP_LENGTH_M = 1.5
+CURB_ACCESS_RAMP_RUN_M = 1.0
 BUILDING_GRASS_UNDERLAY_HEIGHT_M = 0.024
 BUILDING_GRASS_UNDERLAY_Y_MIN_M = -0.030
 BUILDING_GRASS_UNDERLAY_TOP_M = BUILDING_GRASS_UNDERLAY_Y_MIN_M + BUILDING_GRASS_UNDERLAY_HEIGHT_M
@@ -4430,6 +4432,73 @@ def _add_road_box(
         texture_tracker=texture_tracker,
         texture_overrides=texture_overrides,
         horizontal_axes=horizontal_axes,
+    )
+    scene.add_geometry(mesh, node_name=node_name)
+
+
+def _add_road_to_sidewalk_ramp(
+    scene,
+    *,
+    length_m: float,
+    run_m: float,
+    rise_m: float,
+    high_side_sign: float,
+    center_x_m: float,
+    center_z_m: float,
+    road_yaw_deg: float,
+    color: Sequence[int],
+    node_name: str,
+    roughness: float = 0.7,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
+) -> None:
+    """Add a closed triangular-prism ramp from carriageway to sidewalk height."""
+
+    trimesh = _require_trimesh()
+    half_length = max(float(length_m), 1e-6) / 2.0
+    half_run = max(float(run_m), 1e-6) / 2.0
+    rise = max(float(rise_m), 0.0)
+    sign = 1.0 if float(high_side_sign) >= 0.0 else -1.0
+    low_z = -sign * half_run
+    high_z = sign * half_run
+    vertices = np.asarray(
+        [
+            [-half_length, 0.0, low_z],
+            [half_length, 0.0, low_z],
+            [-half_length, 0.0, high_z],
+            [half_length, 0.0, high_z],
+            [-half_length, rise, high_z],
+            [half_length, rise, high_z],
+        ],
+        dtype=np.float64,
+    )
+    faces = np.asarray(
+        [
+            [0, 1, 3], [0, 3, 2],
+            [0, 4, 5], [0, 5, 1],
+            [2, 3, 5], [2, 5, 4],
+            [0, 2, 4], [1, 5, 3],
+        ],
+        dtype=np.int64,
+    )
+    mesh = trimesh.Trimesh(vertices=vertices, faces=faces, process=True)
+    mesh.fix_normals()
+    _apply_ground_pose(
+        mesh,
+        x_m=float(center_x_m),
+        z_m=float(center_z_m),
+        yaw_deg=_ground_pose_yaw_from_world_yaw_deg(road_yaw_deg),
+    )
+    mesh = _apply_surface_finish(
+        mesh,
+        surface_role="curb_access_ramp",
+        rgba=list(color),
+        roughness=float(roughness),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
+        horizontal_axes=_road_axes_from_yaw_deg(road_yaw_deg),
     )
     scene.add_geometry(mesh, node_name=node_name)
 
@@ -5336,6 +5405,45 @@ def _add_beauty_scene_proxies(
                 texture_overrides=texture_overrides,
                 horizontal_axes=_road_axes_from_yaw_deg(road_yaw_deg),
             )
+
+    if bool(getattr(config, "curb_ramp_enabled", False)):
+        ramp_side = str(getattr(config, "curb_ramp_side", "right") or "right").strip().lower()
+        side_sign = 1.0 if ramp_side == "left" else -1.0
+        position_ratio = min(
+            1.0,
+            max(0.0, float(getattr(config, "curb_ramp_position_ratio", 0.5) or 0.0)),
+        )
+        forward_axis, lateral_axis = _road_axes_from_yaw_deg(road_yaw_deg)
+        longitudinal_offset_m = (position_ratio - 0.5) * float(road_length_m)
+        lateral_offset_m = side_sign * (
+            float(road_width_m) / 2.0 - CURB_ACCESS_RAMP_RUN_M / 2.0
+        )
+        ramp_center_x_m = (
+            float(road_center_x_m)
+            + forward_axis[0] * longitudinal_offset_m
+            + lateral_axis[0] * lateral_offset_m
+        )
+        ramp_center_z_m = (
+            float(road_center_z_m)
+            + forward_axis[1] * longitudinal_offset_m
+            + lateral_axis[1] * lateral_offset_m
+        )
+        _add_road_to_sidewalk_ramp(
+            scene,
+            length_m=CURB_ACCESS_RAMP_LENGTH_M,
+            run_m=CURB_ACCESS_RAMP_RUN_M,
+            rise_m=SIDEWALK_ELEVATION_M,
+            high_side_sign=side_sign,
+            center_x_m=ramp_center_x_m,
+            center_z_m=ramp_center_z_m,
+            road_yaw_deg=road_yaw_deg,
+            color=colors.get("transit_pad", (118, 129, 145, 255)),
+            node_name="curb_access_ramp_0",
+            roughness=rough.get("sidewalk", 0.70),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
 
     for idx, placement in enumerate(placements):
         x_m = float(placement.position_xyz[0])

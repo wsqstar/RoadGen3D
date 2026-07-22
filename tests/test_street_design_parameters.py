@@ -93,9 +93,34 @@ def test_v2_default_has_no_profile_ids_and_disables_optional_generation():
     assert "profileId" not in spec["furniture"]
     assert spec["skeleton"]["median"]["enabled"] is False
     assert spec["skeleton"]["busStop"]["enabled"] is False
+    assert spec["skeleton"]["curbRamp"] == {
+        "enabled": False,
+        "side": "right",
+        "positionRatio": pytest.approx(0.5),
+    }
     assert all(item["enabled"] is False for item in spec["furniture"]["categories"].values())
     assert "skeleton_design_profile" not in compiled.compose_config_patch
     assert "street_furniture_profile" not in compiled.compose_config_patch
+
+
+def test_curb_ramp_compiles_independently_from_bus_stop():
+    spec = build_default_street_design_parameter_spec_v2(
+        source_revision=5,
+        source_fingerprint="source-curb-ramp",
+    )
+    spec["skeleton"]["curbRamp"] = {
+        "enabled": True,
+        "side": "left",
+        "positionRatio": 0.25,
+    }
+
+    compiled = compile_street_design_parameter_spec(spec)
+    config = build_compose_config_from_draft(_draft(), patch_overrides=compiled.compose_config_patch)
+
+    assert config.curb_ramp_enabled is True
+    assert config.curb_ramp_side == "left"
+    assert config.curb_ramp_position_ratio == pytest.approx(0.25)
+    assert config.bus_stop_enabled is False
 
 
 def test_parameter_compiler_is_deterministic_and_forces_zero_retrieval_generation():

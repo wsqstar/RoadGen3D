@@ -35,7 +35,7 @@ from roadgen3d.scene_layout_edits import apply_scene_layout_edits, scene_revisio
 from roadgen3d.web_viewer_dev import build_layout_manifest_payload
 
 from .artifacts import ArtifactStore, create_artifact_store, safe_object_key
-from .auth import digest_secret, hash_password, issue_invite_code, issue_session_token, normalize_email, verify_password
+from .auth import digest_secret, hash_password, issue_guest_recovery_key, issue_invite_code, issue_session_token, normalize_email, verify_password
 from .database import TeachingDatabase
 from .geojson_pipeline import normalize_teaching_geojson, round_trip_report
 from .models import (
@@ -362,11 +362,13 @@ class TeachingPlatformService:
 
         guest_id = new_id()
         with self.database.session() as db:
+            recovery_key = self._new_guest_recovery_key(db)
             user = User(
                 id=guest_id,
                 email=f"guest-{guest_id}@public.roadgen3d.invalid",
                 display_name=f"访客 {guest_id[:6].upper()}",
                 password_hash=hash_password(f"{new_id()}{new_id()}"),
+                guest_recovery_key=recovery_key,
                 system_role="guest",
             )
             db.add(user)
@@ -381,6 +383,46 @@ class TeachingPlatformService:
                 "expires_at": _iso(expires_at),
                 "user": self._user(user),
                 "workspace": self._course(workspace, "owner"),
+                "recovery_key": recovery_key,
+            }
+
+    def guest_recovery_key(self, actor_id: str) -> dict[str, str]:
+        """Return/provision the credential only to the owning guest session."""
+
+        with self.database.session() as db:
+            user = self._require_user(db, actor_id)
+            if user.system_role != "guest":
+                raise Forbidden("Guest recovery keys are only available for public guest identities.")
+            if not user.guest_recovery_key:
+                user.guest_recovery_key = self._new_guest_recovery_key(db)
+                self._audit(db, user.id, None, "auth.guest_recovery_key.issue", {})
+            return {"recovery_key": user.guest_recovery_key}
+
+    def recover_guest_session(self, recovery_key: str) -> dict[str, Any]:
+        """Issue a fresh long-lived session for the guest owning ``recovery_key``."""
+
+        normalized = str(recovery_key or "").strip()
+        if not normalized or len(normalized) > 96:
+            raise Forbidden("The public identity recovery Key is invalid.")
+        with self.database.session() as db:
+            user = db.scalar(select(User).where(
+                User.guest_recovery_key == normalized,
+                User.system_role == "guest",
+                User.is_active.is_(True),
+            ))
+            if user is None:
+                raise Forbidden("The public identity recovery Key is invalid.")
+            workspace = self._workspace_for_actor(db, user, create=True)
+            token, token_hash, expires_at = issue_session_token(lifetime_hours=24 * 365)
+            db.add(AuthSession(user_id=user.id, token_hash=token_hash, expires_at=expires_at))
+            self._audit(db, user.id, None, "auth.guest_recover", {"workspace_id": workspace.id})
+            return {
+                "access_token": token,
+                "token_type": "bearer",
+                "expires_at": _iso(expires_at),
+                "user": self._user(user),
+                "workspace": self._course(workspace, "owner"),
+                "recovery_key": user.guest_recovery_key,
             }
 
     def register_student(self, *, email: str, password: str, display_name: str, course_code: str, invite_code: str) -> dict[str, Any]:
@@ -2145,7 +2187,7 @@ class TeachingPlatformService:
                         for item in audits
                     ],
                     "artifacts": artifact_index,
-                    "security_exclusions": ["password hashes", "authentication session tokens", "workspace invite hashes"],
+                    "security_exclusions": ["password hashes", "authentication session tokens", "workspace invite hashes", "guest recovery keys"],
                     "attribution": "Contains OpenStreetMap-derived data where source provenance says osm; © OpenStreetMap contributors.",
                 }
                 archive.writestr("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True))
@@ -2164,6 +2206,243 @@ class TeachingPlatformService:
             timestamp = now_utc().strftime("%Y%m%d-%H%M%S")
             label = "full" if include_3d else "config-2d-history"
             return f"roadgen3d-user-{label}-{timestamp}.zip", buffer.getvalue()
+
+    def import_user_data(self, actor_id: str, content: bytes) -> dict[str, Any]:
+        """Restore configuration, 2D inputs, and history into new owned projects.
+
+        Imports are deliberately non-destructive: account identity is never
+        changed, existing projects are never overwritten, and 3D artifacts are
+        ignored even when the uploaded archive came from a full export.
+        """
+        if not content:
+            raise ValueError("The imported ZIP file is empty.")
+        if len(content) > 256 * 1024 * 1024:
+            raise ValueError("The imported ZIP file may not exceed 256 MB.")
+        try:
+            archive = zipfile.ZipFile(io.BytesIO(content))
+        except zipfile.BadZipFile as exc:
+            raise ValueError("The selected file is not a valid ZIP archive.") from exc
+        with archive:
+            entries = archive.infolist()
+            if len(entries) > 10_000 or sum(item.file_size for item in entries) > 512 * 1024 * 1024:
+                raise ValueError("The imported ZIP expands beyond the supported size limit.")
+            try:
+                manifest = json.loads(archive.read("manifest.json"))
+            except KeyError as exc:
+                raise ValueError("The ZIP does not contain manifest.json.") from exc
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise ValueError("manifest.json is not valid UTF-8 JSON.") from exc
+            if not isinstance(manifest, Mapping) or manifest.get("schema_version") != "roadgen3d.user_data_bundle.v1":
+                raise ValueError("Only RoadGen3D user data bundle v1 ZIP files can be imported.")
+
+            projects_data = manifest.get("projects") or []
+            artifacts_data = manifest.get("artifacts") or []
+            if not isinstance(projects_data, list) or not isinstance(artifacts_data, list):
+                raise ValueError("The user data bundle has an invalid project or artifact index.")
+            three_d_kinds = {"scene_layout", "scene_glb", "scene_step_glb"}
+            excluded_kinds = three_d_kinds | {"project_bundle", "user_data_bundle"}
+            stored_keys: list[str] = []
+            with self.database.session() as db:
+                actor = self._require_user(db, actor_id)
+                workspace = self._workspace_for_actor(db, actor, create=True)
+                project_map: dict[str, str] = {}
+                artifact_map: dict[str, str] = {}
+                source_map: dict[str, str] = {}
+                revision_map: dict[str, str] = {}
+                profile_map: dict[str, str] = {}
+
+                try:
+                    for raw in projects_data:
+                        if not isinstance(raw, Mapping) or not str(raw.get("id") or ""):
+                            raise ValueError("The bundle contains an invalid project record.")
+                        project = Project(
+                            course_id=workspace.id,
+                            owner_id=actor.id,
+                            name=(str(raw.get("name") or "Imported project").strip() or "Imported project")[:180],
+                            city=(str(raw.get("city") or "广州").strip() or "广州")[:120],
+                            design_goal=(str(raw.get("design_goal") or "balanced_street").strip() or "balanced_street")[:240],
+                            aoi_bbox=self._bbox(raw.get("aoi_bbox")) if raw.get("aoi_bbox") else None,
+                            workflow_step=str(raw.get("workflow_step") or "area")[:32],
+                            asset_palette=_normalized_asset_palette(raw.get("asset_palette")),
+                            archived=bool(raw.get("archived", False)),
+                        )
+                        db.add(project)
+                        db.flush()
+                        project_map[str(raw["id"])] = project.id
+
+                    for raw in artifacts_data:
+                        if not isinstance(raw, Mapping):
+                            raise ValueError("The bundle contains an invalid artifact record.")
+                        kind = str(raw.get("kind") or "")
+                        old_project_id = str(raw.get("project_id") or "")
+                        if kind in excluded_kinds or old_project_id not in project_map:
+                            continue
+                        archive_path = str(raw.get("archive_path") or "")
+                        if not archive_path or archive_path not in archive.namelist():
+                            raise ValueError("A referenced 2D artifact is missing from the ZIP.")
+                        data = archive.read(archive_path)
+                        expected_sha = str(raw.get("sha256") or "").lower()
+                        actual_sha = hashlib.sha256(data).hexdigest()
+                        if expected_sha and expected_sha != actual_sha:
+                            raise ValueError("A 2D artifact failed its SHA-256 integrity check.")
+                        artifact = self._store_artifact(
+                            db,
+                            actor.id,
+                            project_map[old_project_id],
+                            kind or "imported_2d_input",
+                            Path(archive_path).name,
+                            data,
+                            str(raw.get("media_type") or "application/octet-stream"),
+                        )
+                        stored_keys.append(artifact.object_key)
+                        artifact_map[str(raw.get("id") or "")] = artifact.id
+
+                    for raw in manifest.get("sources") or []:
+                        if not isinstance(raw, Mapping) or str(raw.get("project_id") or "") not in project_map:
+                            continue
+                        normalized_id = artifact_map.get(str(raw.get("normalized_artifact_id") or ""))
+                        if not normalized_id:
+                            raise ValueError("A scene source is missing its normalized 2D artifact.")
+                        source = SceneSourceRecord(
+                            project_id=project_map[str(raw["project_id"])],
+                            created_by=actor.id,
+                            kind=str(raw.get("kind") or "geojson")[:32],
+                            schema_version=str(raw.get("schema_version") or "roadgen3d.scene_source.v1")[:64],
+                            raw_artifact_id=artifact_map.get(str(raw.get("raw_artifact_id") or "")),
+                            normalized_artifact_id=normalized_id,
+                            annotation_artifact_id=artifact_map.get(str(raw.get("annotation_artifact_id") or "")),
+                            provenance=dict(raw.get("provenance") or {}),
+                            quality_report=dict(raw.get("quality_report") or {}),
+                        )
+                        db.add(source)
+                        db.flush()
+                        source_map[str(raw.get("id") or "")] = source.id
+
+                    for raw in manifest.get("evaluation_profiles") or []:
+                        if not isinstance(raw, Mapping):
+                            continue
+                        profile = EvaluationProfile(
+                            course_id=workspace.id,
+                            created_by=actor.id,
+                            name=(str(raw.get("name") or "Imported evaluation profile").strip() or "Imported evaluation profile")[:160],
+                            version=max(1, int(raw.get("version") or 1)),
+                            dimensions=_normalized_weights(raw.get("weights")),
+                            is_default=False,
+                        )
+                        db.add(profile)
+                        db.flush()
+                        profile_map[str(raw.get("id") or "")] = profile.id
+
+                    fallback_profile = db.scalar(select(EvaluationProfile).where(EvaluationProfile.course_id == workspace.id).order_by(EvaluationProfile.is_default.desc()))
+                    for raw in sorted(manifest.get("revisions") or [], key=lambda item: int(item.get("revision_number") or 0) if isinstance(item, Mapping) else 0):
+                        if not isinstance(raw, Mapping) or str(raw.get("project_id") or "") not in project_map:
+                            continue
+                        revision = SceneRevisionRecord(
+                            project_id=project_map[str(raw["project_id"])],
+                            source_id=source_map.get(str(raw.get("source_id") or "")),
+                            parent_id=revision_map.get(str(raw.get("parent_id") or "")),
+                            created_by=actor.id,
+                            revision_number=max(1, int(raw.get("revision_number") or 1)),
+                            branch_kind=str(raw.get("branch_kind") or "baseline")[:16],
+                            label=str(raw.get("label") or "Imported revision")[:180],
+                            layout_artifact_id=None,
+                            glb_artifact_id=None,
+                            commands=list(raw.get("commands") or []),
+                            provenance={**dict(raw.get("provenance") or {}), "imported_without_3d": True},
+                            evaluation_status=str(raw.get("evaluation_status") or "pending")[:24],
+                        )
+                        db.add(revision)
+                        db.flush()
+                        revision_map[str(raw.get("id") or "")] = revision.id
+
+                    for raw in manifest.get("evaluations") or []:
+                        if not isinstance(raw, Mapping):
+                            continue
+                        project_id = project_map.get(str(raw.get("project_id") or ""))
+                        revision_id = revision_map.get(str(raw.get("revision_id") or ""))
+                        profile_id = profile_map.get(str(raw.get("profile_id") or "")) or (fallback_profile.id if fallback_profile else None)
+                        if not project_id or not revision_id or not profile_id:
+                            continue
+                        db.add(EvaluationRun(
+                            project_id=project_id,
+                            revision_id=revision_id,
+                            profile_id=profile_id,
+                            requested_by=actor.id,
+                            status=str(raw.get("status") or "failed")[:24],
+                            seed=int(raw.get("seed") or 20260713),
+                            weights=dict(raw.get("weights") or {}),
+                            result=dict(raw.get("result") or {}),
+                            provenance={**dict(raw.get("provenance") or {}), "imported_history": True},
+                            error=str(raw.get("error") or ""),
+                        ))
+
+                    imported_jobs = 0
+                    for raw in manifest.get("jobs") or []:
+                        if not isinstance(raw, Mapping):
+                            continue
+                        project_id = project_map.get(str(raw.get("project_id") or ""))
+                        if raw.get("project_id") and not project_id:
+                            continue
+                        db.add(Job(
+                            project_id=project_id,
+                            owner_id=actor.id,
+                            kind=str(raw.get("kind") or "imported_history")[:40],
+                            status="canceled" if str(raw.get("status")) in {"queued", "running"} else str(raw.get("status") or "failed")[:24],
+                            progress=int(raw.get("progress") or 0),
+                            stage=str(raw.get("stage") or "imported")[:64],
+                            message=str(raw.get("message") or "Imported historical job."),
+                            detail={**dict(raw.get("detail") or {}), "imported_history": True},
+                            operations=list(raw.get("operations") or []),
+                            payload=dict(raw.get("payload") or {}),
+                            result=dict(raw.get("result") or {}),
+                            error=str(raw.get("error") or ""),
+                            attempts=int(raw.get("attempts") or 0),
+                        ))
+                        imported_jobs += 1
+
+                    imported_audits = 0
+                    for raw in manifest.get("audit_log") or []:
+                        if not isinstance(raw, Mapping):
+                            continue
+                        old_project_id = str(raw.get("project_id") or "")
+                        project_id = project_map.get(old_project_id) if old_project_id else None
+                        if old_project_id and not project_id:
+                            continue
+                        action = ("imported." + str(raw.get("action") or "history"))[:100]
+                        self._audit(db, actor.id, project_id, action, {
+                            "original_record_id": str(raw.get("id") or ""),
+                            "original_created_at": raw.get("created_at"),
+                            "original_detail": dict(raw.get("detail") or {}),
+                        })
+                        imported_audits += 1
+
+                    self._audit(db, actor.id, None, "user.import", {
+                        "schema_version": manifest["schema_version"],
+                        "project_count": len(project_map),
+                        "artifact_count": len(artifact_map),
+                        "source_count": len(source_map),
+                        "revision_count": len(revision_map),
+                        "evaluation_count": sum(1 for item in manifest.get("evaluations") or [] if isinstance(item, Mapping)),
+                        "job_count": imported_jobs,
+                        "audit_count": imported_audits,
+                        "ignored_3d": True,
+                    })
+                except Exception:
+                    for key in stored_keys:
+                        try:
+                            self.artifacts.delete(key)
+                        except Exception:
+                            logger.warning("Failed to remove artifact after user import rollback: %s", key)
+                    raise
+
+                return {
+                    "schema_version": "roadgen3d.user_data_import.v1",
+                    "project_count": len(project_map),
+                    "artifact_count": len(artifact_map),
+                    "source_count": len(source_map),
+                    "revision_count": len(revision_map),
+                    "ignored_3d": True,
+                }
 
     def export_project_package(self, actor_id: str, project_id: str) -> dict[str, Any]:
         with self.database.session() as db:
@@ -2577,6 +2856,7 @@ class TeachingPlatformService:
         last_activity = db.scalar(select(func.max(AuditLog.created_at)).where(AuditLog.user_id == user.id))
         return {
             **self._user(user),
+            "guest_recovery_key": user.guest_recovery_key if user.system_role == "guest" else None,
             "is_active": user.is_active,
             "project_count": len(project_ids),
             "personal_project_count": sum(1 for item in projects if self._project_scope(db, item) == "personal"),
@@ -2585,6 +2865,14 @@ class TeachingPlatformService:
             "jobs_by_status": job_statuses,
             "last_activity_at": _iso(last_activity),
         }
+
+    @staticmethod
+    def _new_guest_recovery_key(db: Session) -> str:
+        for _ in range(5):
+            candidate = issue_guest_recovery_key()
+            if db.scalar(select(User.id).where(User.guest_recovery_key == candidate)) is None:
+                return candidate
+        raise Conflict("A unique public identity recovery Key could not be allocated.")
 
     def _require_membership(self, db: Session, user_id: str, course_id: str) -> Membership:
         user = self._require_user(db, user_id)
