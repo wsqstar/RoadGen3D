@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
 import tempfile
@@ -46,9 +47,9 @@ ROOT = Path(__file__).resolve().parents[3]
 logger = logging.getLogger(__name__)
 
 DEFAULT_OSM_TILE_URLS = (
-    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
     "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
     "https://tile.openstreetmap.de/{z}/{x}/{y}.png",
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 )
 
 
@@ -96,7 +97,7 @@ def list_china_cities(request: Request) -> Dict[str, Any]:
 
 
 @router.get("/api/geo/osm-tiles/{zoom}/{tile_x}/{tile_y}.png")
-def get_osm_tile(zoom: int, tile_x: int, tile_y: int) -> Response:
+async def get_osm_tile(zoom: int, tile_x: int, tile_y: int) -> Response:
     """Proxy and cache OSM raster tiles so browsers do not depend on direct tile access."""
     if zoom < 0 or zoom > 19:
         raise HTTPException(status_code=400, detail="OSM tile zoom must be between 0 and 19.")
@@ -129,9 +130,14 @@ def get_osm_tile(zoom: int, tile_x: int, tile_y: int) -> Response:
             },
         )
         try:
-            with urlopen(request, timeout=12) as upstream:
-                content_type = str(upstream.headers.get("Content-Type") or "").lower()
-                candidate = upstream.read(2_000_001)
+            def fetch_tile() -> tuple[str, bytes]:
+                with urlopen(request, timeout=5) as upstream:
+                    return (
+                        str(upstream.headers.get("Content-Type") or "").lower(),
+                        upstream.read(2_000_001),
+                    )
+
+            content_type, candidate = await asyncio.to_thread(fetch_tile)
             if len(candidate) <= 2_000_000 and content_type.startswith("image/"):
                 payload = candidate
                 break
