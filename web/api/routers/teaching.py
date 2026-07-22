@@ -413,6 +413,8 @@ def generate_scene(project_id: str, body: SceneGenerateRequest, request: Request
             "generation_mode": body.generation_mode,
             "parent_revision_id": body.parent_revision_id,
             "goal_weights": body.goal_weights,
+            "candidate_count": body.candidate_count,
+            "minimum_scores": body.minimum_scores,
         })
         return _dispatch_job(request, job)
     return _call(run)

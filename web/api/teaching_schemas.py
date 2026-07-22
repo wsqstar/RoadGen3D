@@ -110,6 +110,8 @@ class SceneGenerateRequest(BaseModel):
     generation_mode: Literal["baseline", "auto", "llm", "parametric"] = "baseline"
     parent_revision_id: str | None = None
     goal_weights: Dict[str, float] | None = None
+    candidate_count: int = Field(default=1, ge=1, le=5)
+    minimum_scores: Dict[str, float] | None = None
 
 
 class SceneJobAdoptRequest(BaseModel):

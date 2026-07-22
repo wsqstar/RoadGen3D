@@ -210,6 +210,83 @@ def _parameter_patch_for_design_goals(
     }, normalized
 
 
+def _parameter_candidates_for_design_goals(
+    weights: Mapping[str, Any] | None,
+    *,
+    query: str,
+    candidate_count: int,
+) -> tuple[list[dict[str, Any]], dict[str, float]]:
+    """Create a small deterministic neighbourhood around the weighted design.
+
+    The variants are intentionally inspectable. They explore pedestrian space,
+    amenity/greening density, and a balanced midpoint; they are candidates for
+    evaluation rather than claims of an optimum.
+    """
+
+    base, normalized = _parameter_patch_for_design_goals(weights, query=query)
+    count = max(1, min(int(candidate_count), 5))
+    variants = [
+        ("weighted_anchor", 0.0, 0.0, None, 42),
+        ("pedestrian_capacity", 0.45, -0.06, "pedestrian_friendly", 31415),
+        ("amenity_greening", -0.15, 0.15, "park_landscape", 27182),
+        ("balanced_midpoint", 0.20, 0.06, "pedestrian_friendly", 16180),
+        ("lower_density_safety", 0.30, -0.12, "pedestrian_friendly", 14142),
+    ]
+    candidates: list[dict[str, Any]] = []
+    for index, (profile, sidewalk_delta, density_delta, furniture_profile, seed) in enumerate(variants[:count]):
+        patch = dict(base)
+        patch["sidewalk_width_m"] = round(max(1.5, float(base["sidewalk_width_m"]) + sidewalk_delta), 2)
+        patch["density"] = round(max(0.35, min(1.5, float(base["density"]) + density_delta)), 2)
+        patch["seed"] = seed
+        if furniture_profile:
+            patch["street_furniture_profile"] = furniture_profile
+        candidates.append({
+            "candidate_index": index,
+            "search_profile": profile,
+            "seed": seed,
+            "compose_config_patch": patch,
+        })
+    return candidates, normalized
+
+
+def _normalized_minimum_scores(value: Mapping[str, Any] | None) -> dict[str, float]:
+    allowed = {"walkability", "safety", "beauty"}
+    result: dict[str, float] = {}
+    for key, raw in dict(value or {}).items():
+        if key not in allowed:
+            raise ValueError(f"Unsupported minimum score: {key}.")
+        score = float(raw)
+        if not 0.0 <= score <= 100.0:
+            raise ValueError(f"Minimum score for {key} must be between 0 and 100.")
+        result[key] = score
+    return result
+
+
+def _candidate_selection_row(
+    evaluation: Mapping[str, Any] | None,
+    *,
+    weights: Mapping[str, float],
+    minimum_scores: Mapping[str, float],
+) -> dict[str, Any]:
+    result = dict((evaluation or {}).get("result") or {})
+    scores: dict[str, float] = {}
+    for key in {"walkability", "safety", "beauty"}:
+        try:
+            scores[key] = float(result.get(key, 0.0))
+        except (TypeError, ValueError):
+            scores[key] = 0.0
+    violation = round(sum(max(0.0, threshold - scores.get(key, 0.0)) for key, threshold in minimum_scores.items()), 8)
+    weighted_score = round(sum(scores.get(key, 0.0) * float(weight) for key, weight in weights.items()), 8)
+    succeeded = bool(evaluation and evaluation.get("status") == "succeeded")
+    return {
+        "scores": scores,
+        "weighted_score": weighted_score,
+        "constraint_violation": violation,
+        "feasible": succeeded and violation <= 1e-9,
+        "evaluation_status": str((evaluation or {}).get("status") or "not_configured"),
+    }
+
+
 class TeachingPlatformService:
     def __init__(self, database: TeachingDatabase | None = None, artifact_store: ArtifactStore | None = None) -> None:
         self.database = database or TeachingDatabase()
@@ -1093,6 +1170,8 @@ class TeachingPlatformService:
         generation_mode: str = "baseline",
         parent_revision_id: str | None = None,
         goal_weights: Mapping[str, Any] | None = None,
+        candidate_count: int = 1,
+        minimum_scores: Mapping[str, Any] | None = None,
         generator: Callable[..., Mapping[str, Any]],
         evaluator: Callable[..., Mapping[str, Any]] | None = None,
         progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
@@ -1143,20 +1222,15 @@ class TeachingPlatformService:
             normalized_for_prompt = _normalized_weights(goal_weights)
             targets = ", ".join(f"{key} {value:.0%}" for key, value in normalized_for_prompt.items())
             design_query = f"{query}. Redesign this approved street scene for these priorities: {targets}."
-        compose_patch, normalized_weights = _parameter_patch_for_design_goals(goal_weights, query=design_query)
+        requested_candidate_count = 1 if is_baseline else max(1, min(int(candidate_count), 5))
+        candidate_specs, normalized_weights = _parameter_candidates_for_design_goals(
+            goal_weights,
+            query=design_query,
+            candidate_count=requested_candidate_count,
+        )
+        normalized_minimum_scores = _normalized_minimum_scores(minimum_scores)
         with self.artifacts.open(annotation_key) as handle:
             annotation = json.loads(handle.read().decode("utf-8"))
-        draft = parse_design_draft(
-            {
-                "normalized_scene_query": design_query,
-                "compose_config_patch": compose_patch,
-                "design_summary": f"Course project {resolved_mode} generation for {design_query}",
-                "risk_notes": [],
-            },
-            evidence=(),
-            fallback_query=design_query,
-            current_patch=compose_patch,
-        )
         def emit(stage: str, progress: int, message: str, **detail: Any) -> None:
             if progress_callback is None:
                 return
@@ -1167,13 +1241,17 @@ class TeachingPlatformService:
                 "detail": detail,
             })
 
-        def forward_generation_progress(event: Mapping[str, Any] | str) -> None:
+        def forward_generation_progress(candidate_index: int, event: Mapping[str, Any] | str) -> None:
             payload = dict(event) if isinstance(event, Mapping) else {"message": str(event)}
             try:
                 raw_progress = float(payload.get("progress", 0))
             except (TypeError, ValueError):
                 raw_progress = 0.0
-            payload["progress"] = 8 + int(round(max(0.0, min(100.0, raw_progress)) * 0.74))
+            # Preserve the legacy 8..82 generation progress contract for a
+            # single revision, and divide that same range across a search run.
+            span = 74.0 / max(1, len(candidate_specs))
+            payload["progress"] = 8 + int(round(candidate_index * span + max(0.0, min(100.0, raw_progress)) * span / 100.0))
+            payload["detail"] = {**dict(payload.get("detail") or {}), "candidate_index": candidate_index + 1, "candidate_count": len(candidate_specs)}
             if progress_callback is not None:
                 progress_callback(payload)
 
@@ -1203,97 +1281,187 @@ class TeachingPlatformService:
             "building_height_mode": "class_only",
         }
         emit("annotation_resolving", 8, "Parsing the approved 2D annotation.", source_id=source_id)
-        result = dict(generator(
-            draft,
-            patch_overrides=course_building_patch,
-            scene_context={
-                "layout_mode": "reference_annotation",
-                "reference_annotation": annotation,
-                "source_context": source_context,
-            },
-            generation_options={
-                "course_project_id": project_id,
-                "preset_id": "llm" if resolved_mode == "llm" else "skip_llm",
-                "skip_llm": resolved_mode != "llm",
-                "derive_parameters_with_llm": resolved_mode == "llm",
-                "knowledge_source": "none",
-                "random_seed": 42,
-                # Course revisions must keep their editable model.  The generic
-                # capture pipeline defaults to deleting non-selected GLBs after
-                # screenshots, which otherwise leaves the UI at NO SCENE.
-                "retain_glb_policy": "always",
-            },
-            progress_callback=forward_generation_progress,
-        ))
-        emit("artifact_persisting", 84, "Saving the editable scene artifacts.")
-        layout_path = Path(str(result.get("scene_layout_path") or result.get("layout_path") or "")).expanduser().resolve()
-        glb_path = Path(str(result.get("scene_glb_path") or result.get("glb_path") or "")).expanduser().resolve()
-        if not layout_path.is_file() or not glb_path.is_file():
-            raise RuntimeError("Scene generation did not produce scene_layout.json and scene.glb.")
-        layout_payload = json.loads(layout_path.read_text(encoding="utf-8"))
-        production_step_payloads: list[dict[str, Any]] = []
-        for index, step in enumerate(layout_payload.get("production_steps") or []):
-            if not isinstance(step, Mapping):
-                continue
-            step_path_text = str(step.get("glb_path") or "").strip()
-            if not step_path_text:
-                continue
-            step_path = Path(step_path_text).expanduser()
-            if not step_path.is_absolute():
-                step_path = (layout_path.parent / step_path).resolve()
-            if not step_path.is_file():
-                continue
-            production_step_payloads.append({
-                "step_id": str(step.get("step_id") or f"step-{index + 1}"),
-                "title": str(step.get("title") or step.get("step_id") or f"Production step {index + 1}"),
-                "data": step_path.read_bytes(),
-            })
-        revision = self.create_revision(
-            actor_id,
-            project_id,
-            layout=layout_payload,
-            glb=glb_path.read_bytes(),
-            production_steps=production_step_payloads,
-            source_id=source_id,
-            parent_id=None if is_baseline else parent_revision_id,
-            branch_kind="baseline" if is_baseline else "ai_edit",
-            label="Generated baseline" if is_baseline else ("LLM design candidate" if resolved_mode == "llm" else "Parametric design candidate"),
-            provenance={
-                "generation_method": "llm_assisted" if resolved_mode == "llm" else "parametric",
-                "requested_generation_mode": requested_mode,
-                "resolved_generation_mode": resolved_mode,
-                "fallback_reason": fallback_reason,
-                "prompt": design_query,
-                "goal_weights": normalized_weights,
-                "compose_config_patch": compose_patch,
-                "llm_capabilities": capabilities,
-                "generator_result": result,
-                "building_representation": "transparent_massing",
-                "massing_material": {
-                    "base_color": "#F4F7F8",
-                    "opacity": 0.42,
-                    "roughness": 1.0,
-                    "metallic": 0.0,
-                    "alpha_mode": "BLEND",
+        profiles = self.list_evaluation_profiles(actor_id, project_id) if evaluator is not None else []
+        profile = next((item for item in profiles if item["is_default"]), profiles[0] if profiles else None)
+        generated_candidates: list[dict[str, Any]] = []
+
+        for candidate_index, candidate_spec in enumerate(candidate_specs):
+            compose_patch = dict(candidate_spec["compose_config_patch"])
+            draft = parse_design_draft(
+                {
+                    "normalized_scene_query": design_query,
+                    "compose_config_patch": compose_patch,
+                    "design_summary": f"Course project {resolved_mode} candidate {candidate_index + 1}/{len(candidate_specs)} for {design_query}",
+                    "risk_notes": [],
                 },
-                "source_building_ids": [item for item in source_building_ids if item],
-                "source_alignment": source_context.get("source_alignment"),
-            },
-        )
-        emit("baseline_evaluation", 90, "Scoring the saved scene revision.", revision_id=revision["id"])
-        evaluation = None
-        if evaluator is not None:
-            profiles = self.list_evaluation_profiles(actor_id, project_id)
-            profile = next((item for item in profiles if item["is_default"]), profiles[0] if profiles else None)
-            if profile:
-                evaluation = self.create_evaluation_run(actor_id, project_id, revision_id=revision["id"], profile_id=profile["id"])
+                evidence=(),
+                fallback_query=design_query,
+                current_patch=compose_patch,
+            )
+            result = dict(generator(
+                draft,
+                patch_overrides=course_building_patch,
+                scene_context={
+                    "layout_mode": "reference_annotation",
+                    "reference_annotation": annotation,
+                    "source_context": source_context,
+                },
+                generation_options={
+                    "course_project_id": project_id,
+                    "preset_id": "llm" if resolved_mode == "llm" else "skip_llm",
+                    "skip_llm": resolved_mode != "llm",
+                    "derive_parameters_with_llm": resolved_mode == "llm",
+                    "knowledge_source": "none",
+                    "random_seed": int(candidate_spec["seed"]),
+                    "retain_glb_policy": "always",
+                },
+                progress_callback=lambda event, index=candidate_index: forward_generation_progress(index, event),
+            ))
+            emit(
+                "artifact_persisting",
+                80 + int(round((candidate_index + 1) * 8 / len(candidate_specs))),
+                f"Saving candidate {candidate_index + 1}/{len(candidate_specs)}.",
+                candidate_index=candidate_index + 1,
+            )
+            layout_path = Path(str(result.get("scene_layout_path") or result.get("layout_path") or "")).expanduser().resolve()
+            glb_path = Path(str(result.get("scene_glb_path") or result.get("glb_path") or "")).expanduser().resolve()
+            if not layout_path.is_file() or not glb_path.is_file():
+                raise RuntimeError("Scene generation did not produce scene_layout.json and scene.glb.")
+            layout_payload = json.loads(layout_path.read_text(encoding="utf-8"))
+            production_step_payloads: list[dict[str, Any]] = []
+            for step_index, step in enumerate(layout_payload.get("production_steps") or []):
+                if not isinstance(step, Mapping):
+                    continue
+                step_path_text = str(step.get("glb_path") or "").strip()
+                if not step_path_text:
+                    continue
+                step_path = Path(step_path_text).expanduser()
+                if not step_path.is_absolute():
+                    step_path = (layout_path.parent / step_path).resolve()
+                if not step_path.is_file():
+                    continue
+                production_step_payloads.append({
+                    "step_id": str(step.get("step_id") or f"step-{step_index + 1}"),
+                    "title": str(step.get("title") or step.get("step_id") or f"Production step {step_index + 1}"),
+                    "data": step_path.read_bytes(),
+                })
+            revision = self.create_revision(
+                actor_id,
+                project_id,
+                layout=layout_payload,
+                glb=glb_path.read_bytes(),
+                production_steps=production_step_payloads,
+                source_id=source_id,
+                parent_id=None if is_baseline else parent_revision_id,
+                branch_kind="baseline" if is_baseline else "ai_edit",
+                label="Generated baseline" if is_baseline else f"C candidate {candidate_index + 1} · {candidate_spec['search_profile']}",
+                provenance={
+                    "generation_method": "llm_assisted" if resolved_mode == "llm" else ("parametric_search" if len(candidate_specs) > 1 else "parametric"),
+                    "requested_generation_mode": requested_mode,
+                    "resolved_generation_mode": resolved_mode,
+                    "fallback_reason": fallback_reason,
+                    "prompt": design_query,
+                    "goal_weights": normalized_weights,
+                    "minimum_scores": normalized_minimum_scores,
+                    "compose_config_patch": compose_patch,
+                    "search_strategy": "deterministic_local_neighbourhood_v1",
+                    "candidate_index": candidate_index,
+                    "candidate_count": len(candidate_specs),
+                    "search_profile": candidate_spec["search_profile"],
+                    "llm_capabilities": capabilities,
+                    "generator_result": result,
+                    "building_representation": "transparent_massing",
+                    "massing_material": {
+                        "base_color": "#F4F7F8", "opacity": 0.42,
+                        "roughness": 1.0, "metallic": 0.0, "alpha_mode": "BLEND",
+                    },
+                    "source_building_ids": [item for item in source_building_ids if item],
+                    "source_alignment": source_context.get("source_alignment"),
+                },
+            )
+            evaluation = None
+            if evaluator is not None and profile:
+                evaluation = self.create_evaluation_run(
+                    actor_id,
+                    project_id,
+                    revision_id=revision["id"],
+                    profile_id=profile["id"],
+                    weights=normalized_weights if not is_baseline else None,
+                )
                 evaluation = self.run_evaluation(actor_id, evaluation["id"], evaluator)
-                emit("baseline_evaluation", 98, "Baseline evaluation completed.", evaluation_status=evaluation["status"])
-            else:
-                emit("baseline_evaluation", 98, "Scene generated; no evaluation profile is configured.", evaluation_status="not_configured")
-        else:
-            emit("baseline_evaluation", 98, "Scene generated; no evaluator is configured.", evaluation_status="not_configured")
-        return {"revision": revision, "evaluation": evaluation}
+            selection = _candidate_selection_row(
+                evaluation,
+                weights=normalized_weights,
+                minimum_scores=normalized_minimum_scores,
+            )
+            generated_candidates.append({
+                "revision": revision,
+                "evaluation": evaluation,
+                "search_profile": candidate_spec["search_profile"],
+                **selection,
+            })
+
+        ranked = sorted(
+            generated_candidates,
+            key=lambda item: (
+                0 if item["feasible"] else 1,
+                float(item["constraint_violation"]),
+                -float(item["weighted_score"]),
+                int(item["revision"]["revision_number"]),
+            ),
+        )
+        selected = ranked[0]
+        has_scored_candidate = any(item["evaluation_status"] == "succeeded" for item in generated_candidates)
+        trace_rows = [{
+            "revision_id": item["revision"]["id"],
+            "search_profile": item["search_profile"],
+            "scores": item["scores"],
+            "weighted_score": item["weighted_score"],
+            "constraint_violation": item["constraint_violation"],
+            "feasible": item["feasible"],
+            "evaluation_status": item["evaluation_status"],
+            "selected": item is selected,
+        } for item in generated_candidates]
+        solver_trace = {
+            "strategy": "deterministic_local_neighbourhood_v1",
+            "selection_status": "evaluated_local_best" if has_scored_candidate else "unscored_fallback",
+            "claim_scope": (
+                "best evaluated local candidate; not a global optimum"
+                if has_scored_candidate
+                else "first generated fallback; no candidate evaluation was available"
+            ),
+            "goal_weights": normalized_weights,
+            "minimum_scores": normalized_minimum_scores,
+            "candidate_count": len(generated_candidates),
+            "selected_revision_id": selected["revision"]["id"],
+            "candidates": trace_rows,
+        }
+        with self.database.session() as db:
+            for item in generated_candidates:
+                record = db.get(SceneRevisionRecord, item["revision"]["id"])
+                if record is not None:
+                    record.provenance = {
+                        **dict(record.provenance),
+                        "solver_trace": solver_trace,
+                        "solver_selected": item is selected,
+                    }
+                    item["revision"] = self._revision(record)
+        emit(
+            "candidate_selection",
+            98,
+            (
+                f"Selected the best evaluated candidate from {len(generated_candidates)} local variants."
+                if has_scored_candidate
+                else f"Generated {len(generated_candidates)} local variants; opened the first because evaluation was unavailable."
+            ),
+            selected_revision_id=selected["revision"]["id"],
+        )
+        return {
+            "revision": selected["revision"],
+            "evaluation": selected["evaluation"],
+            "candidates": generated_candidates,
+            "solver_trace": solver_trace,
+        }
 
     def list_sources(self, actor_id: str, project_id: str) -> list[dict[str, Any]]:
         with self.database.session() as db:
@@ -1823,6 +1991,8 @@ class TeachingPlatformService:
                     generation_mode=str(payload.get("generation_mode") or "baseline"),
                     parent_revision_id=(str(payload.get("parent_revision_id")) if payload.get("parent_revision_id") else None),
                     goal_weights=(payload.get("goal_weights") if isinstance(payload.get("goal_weights"), Mapping) else None),
+                    candidate_count=int(payload.get("candidate_count") or 1),
+                    minimum_scores=(payload.get("minimum_scores") if isinstance(payload.get("minimum_scores"), Mapping) else None),
                     generator=generator,
                     evaluator=evaluator,
                     progress_callback=lambda event: self.update_job_progress(job_id, event),

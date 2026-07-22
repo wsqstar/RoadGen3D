@@ -883,6 +883,8 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
         "generation_mode": "auto",
         "prompt": "walkable campus edge",
         "goal_weights": {"walkability": 70, "safety": 20, "beauty": 10},
+        "candidate_count": 3,
+        "minimum_scores": {"walkability": 74},
     })
     assert redesign_job.status_code == 202, redesign_job.text
     redesign = redesign_job.json()["result"]["revision"]
@@ -891,6 +893,24 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     assert redesign["provenance"]["requested_generation_mode"] == "auto"
     assert redesign["provenance"]["resolved_generation_mode"] == "parametric"
     assert redesign["provenance"]["goal_weights"] == {"walkability": 0.7, "safety": 0.2, "beauty": 0.1}
+    redesign_result = redesign_job.json()["result"]
+    assert len(redesign_result["candidates"]) == 3
+    assert redesign_result["solver_trace"]["candidate_count"] == 3
+    assert redesign_result["solver_trace"]["selected_revision_id"] == redesign["id"]
+    assert redesign_result["solver_trace"]["selection_status"] == "evaluated_local_best"
+    assert redesign_result["solver_trace"]["claim_scope"] == "best evaluated local candidate; not a global optimum"
+    assert [item["feasible"] for item in redesign_result["solver_trace"]["candidates"]] == [False, False, True]
+    selected_trace = next(item for item in redesign_result["solver_trace"]["candidates"] if item["selected"])
+    assert selected_trace["scores"]["walkability"] == 74.0
+    assert redesign["provenance"]["solver_selected"] is True
+    assert redesign["provenance"]["generation_method"] == "parametric_search"
+    redesign_revisions = client.get(f"/api/v1/projects/{project['id']}/revisions", headers=_auth(student_token)).json()["items"]
+    c_revisions = [item for item in redesign_revisions if item["branch_kind"] == "ai_edit"]
+    assert len(c_revisions) == 3
+    assert sum(bool(item["provenance"].get("solver_selected")) for item in c_revisions) == 1
+    assert {item["provenance"]["search_profile"] for item in c_revisions} == {
+        "weighted_anchor", "pedestrian_capacity", "amenity_greening",
+    }
 
     monkeypatch.setenv("ROADGEN_LLM_API_KEY", "fixture-key")
     llm_job = client.post(f"/api/v1/projects/{project['id']}/generate", headers=_auth(student_token), json={
