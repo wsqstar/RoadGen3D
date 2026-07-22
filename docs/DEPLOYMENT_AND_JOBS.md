@@ -15,10 +15,21 @@
 
 `web/workbench` 已归档，不属于默认主流程。
 
-共享服务器的推荐入口不同：使用 `docker-compose.teaching.yml` 的
-`frontend → /api/v1 → api/worker/postgres/redis/minio` 路径。完整操作步骤见
-[teaching-platform.md](teaching-platform.md)。它提供持久化身份、项目级权限、
-任务和工件存储；不是把 `make dev` 暴露到公网。
+少于 5 名用户、允许生成任务排队的共享教学服务器，当前推荐
+[轻量裸机方案](TEACHING_SERVER_BARE_METAL.md)：Ubuntu 24.04、16 GB RAM、
+Nginx + 单 Uvicorn API + 单 RQ worker + PostgreSQL/Redis，本地工件存储；
+固定使用 `heuristic_v1 + rule + curated_rule_pool`，不安装 Torch/Transformers，
+也不部署 CLIP/Shap-E。它提供持久化身份、项目级权限、任务和工件存储，
+且不是把 `make dev` 暴露到公网。
+
+[teaching-platform.md](teaching-platform.md) 保留较重的容器化平台说明，适用于明确需要
+MinIO/S3 或容器编排的环境，不是本次轻量教学服务器的安装入口。
+
+2026-07-22 的实际教学部署已改为已有内网容器，使用 25 个 RQ worker（最多 5 名用户、
+每人最多 5 个 active jobs）、本地
+PostgreSQL/Redis 和仓库外用户数据目录；其 source of truth 是
+[TEACHING_CONTAINER_INTERNAL.md](TEACHING_CONTAINER_INTERNAL.md)。裸机文档继续作为
+独立服务器购买时的备选方案。
 
 ## 2. FastAPI 主后端
 

@@ -7,6 +7,7 @@ import hashlib
 import json
 import logging
 import math
+import os
 import random
 import time
 from collections import Counter
@@ -168,6 +169,7 @@ from .types import (
 SOFTMAX_TEMPERATURE = 0.12
 CATEGORY_NO_REPEAT_FIRST = True
 FILL_PRIORITY = True
+VALID_ASSET_RETRIEVAL_MODES = frozenset({"auto", "clip_faiss", "curated_rule_pool"})
 
 # Default maximum number of full meshes to keep in memory at once
 # This limits memory usage while still allowing mesh reuse
@@ -186,6 +188,20 @@ DEFAULT_SKY_DOME_SCENE_SPAN_MULTIPLIER = 6.0
 DEFAULT_SKY_DOME_TEXTURE_SIZE = (1024, 512)
 DEFAULT_SKY_DOME_MATERIAL_NAME = "roadgen3d_default_sky_gradient"
 _BUILDING_LAND_CLEARANCE_M = 0.45
+
+
+def resolve_asset_retrieval_mode(value: str | None = None) -> str:
+    """Resolve the asset retrieval backend without importing an ML runtime."""
+
+    mode = str(
+        value if value is not None else os.getenv("ROADGEN_ASSET_RETRIEVAL_MODE", "auto")
+    ).strip().lower()
+    if mode not in VALID_ASSET_RETRIEVAL_MODES:
+        allowed = ", ".join(sorted(VALID_ASSET_RETRIEVAL_MODES))
+        raise ValueError(f"ROADGEN_ASSET_RETRIEVAL_MODE must be one of: {allowed}")
+    return mode
+
+
 _BUILDING_STREET_EDGE_EXTRA_CLEARANCE_M = 0.20
 _ROAD_CLEARANCE_TARGET_FRONTAGE_MIN_M = 12.0
 _ROAD_CLEARANCE_TARGET_FRONTAGE_MAX_M = 24.0
@@ -454,8 +470,26 @@ def _resolve_path(path_text: object, base_dir: Path) -> str:
     return str(path)
 
 
+def _resolve_repo_portable_path(path_text: object, base_dir: Path) -> str:
+    """Resolve a manifest path and repair stale absolute paths from another checkout."""
+
+    resolved_path = Path(_resolve_path(path_text, base_dir))
+    if resolved_path.is_file():
+        return str(resolved_path)
+
+    source_parts = Path(str(path_text)).expanduser().parts
+    for anchor in ("assets", "data"):
+        if anchor not in source_parts:
+            continue
+        anchor_index = source_parts.index(anchor)
+        checkout_path = (ROOT / Path(*source_parts[anchor_index:])).resolve()
+        if checkout_path.is_file():
+            return str(checkout_path)
+    return str(resolved_path)
+
+
 def _resolve_manifest_mesh_path(payload: Mapping[str, object], base_dir: Path) -> str:
-    mesh_path = _resolve_path(payload.get("mesh_path", ""), base_dir)
+    mesh_path = _resolve_repo_portable_path(payload.get("mesh_path", ""), base_dir)
     if Path(mesh_path).is_file():
         return mesh_path
 
@@ -1910,7 +1944,7 @@ def _load_building_manifest(manifest_path: Path) -> List[Dict[str, object]]:
         # Resolve mesh path
         mesh_path = str(payload.get("mesh_path", "")).strip()
         if mesh_path:
-            mesh_path = _resolve_path(mesh_path, base_dir)
+            mesh_path = _resolve_repo_portable_path(mesh_path, base_dir)
         else:
             continue  # Skip if no mesh path
         if not Path(mesh_path).is_file():
@@ -13045,32 +13079,42 @@ def compose_street_scene(
     embedder: Optional[ClipTextEmbedder] = None
     index_store: Optional[FaissIndexStore] = None
     retrieval_fallback_reason = ""
-    try:
-        embedder = ClipTextEmbedder(
-            model_name=model_name,
-            model_dir=model_dir,
-            local_files_only=bool(local_files_only),
-            device=device,
-        )
-        # FAISS index: use artifacts_dir if present, otherwise fallback to artifacts/m1
-        index_path = artifacts_dir / "index_ip.faiss"
-        id_map_path = artifacts_dir / "id_map.json"
-        if not index_path.exists():
-            fallback_index = ROOT / "artifacts" / "m1" / "index_ip.faiss"
-            fallback_id_map = ROOT / "artifacts" / "m1" / "id_map.json"
-            if fallback_index.exists():
-                index_path = fallback_index
-                id_map_path = fallback_id_map
-        index_store = FaissIndexStore.load(
-            index_path=index_path,
-            id_map_path=id_map_path,
-        )
-    except Exception as exc:
-        retrieval_fallback_reason = f"{type(exc).__name__}: {exc}"
-        logger.warning(
-            "CLIP/FAISS asset retrieval unavailable; using deterministic curated/rule pools: %s",
-            retrieval_fallback_reason,
-        )
+    asset_retrieval_mode_requested = resolve_asset_retrieval_mode()
+    if asset_retrieval_mode_requested == "curated_rule_pool":
+        retrieval_fallback_reason = "disabled_by_configuration"
+        logger.info("Using deterministic curated/rule asset pools by configuration.")
+    else:
+        try:
+            embedder = ClipTextEmbedder(
+                model_name=model_name,
+                model_dir=model_dir,
+                local_files_only=bool(local_files_only),
+                device=device,
+            )
+            # FAISS index: use artifacts_dir if present, otherwise fallback to artifacts/m1
+            index_path = artifacts_dir / "index_ip.faiss"
+            id_map_path = artifacts_dir / "id_map.json"
+            if not index_path.exists():
+                fallback_index = ROOT / "artifacts" / "m1" / "index_ip.faiss"
+                fallback_id_map = ROOT / "artifacts" / "m1" / "id_map.json"
+                if fallback_index.exists():
+                    index_path = fallback_index
+                    id_map_path = fallback_id_map
+            index_store = FaissIndexStore.load(
+                index_path=index_path,
+                id_map_path=id_map_path,
+            )
+        except Exception as exc:
+            if asset_retrieval_mode_requested == "clip_faiss":
+                raise RuntimeError("CLIP/FAISS asset retrieval was required but could not be loaded") from exc
+            retrieval_fallback_reason = f"{type(exc).__name__}: {exc}"
+            logger.warning(
+                "CLIP/FAISS asset retrieval unavailable; using deterministic curated/rule pools: %s",
+                retrieval_fallback_reason,
+            )
+    asset_retrieval_mode_used = (
+        "clip_faiss" if embedder is not None and index_store is not None else "curated_rule_pool"
+    )
 
     # Load building assets from UrbanVerse manifest
     building_manifest_path = ROOT / "assets" / "building" / "buildings_manifest.jsonl"
@@ -13122,7 +13166,8 @@ def compose_street_scene(
         building_asset_count=building_asset_count,
         building_representation=str(getattr(config, "building_representation", "asset") or "asset"),
         building_asset_retrieval_skipped=not use_building_assets,
-        asset_retrieval_mode="clip_faiss" if embedder is not None and index_store is not None else "curated_rule_pool",
+        asset_retrieval_mode_requested=asset_retrieval_mode_requested,
+        asset_retrieval_mode=asset_retrieval_mode_used,
         asset_retrieval_fallback_reason=retrieval_fallback_reason,
     )
 
@@ -15569,6 +15614,9 @@ def compose_street_scene(
         "diversity_ratio": float(diversity_ratio),
         "overlap_rate": float(overlap_rate),
         "retrieval_top3_category_hit": float(retrieval_top3_category_hit),
+        "asset_retrieval_mode_requested": asset_retrieval_mode_requested,
+        "asset_retrieval_mode": asset_retrieval_mode_used,
+        "asset_retrieval_fallback_reason": retrieval_fallback_reason,
         "policy_used": policy_used,
         "latency_ms_total": float(elapsed_ms_total),
         "latency_ms_per_instance": float(latency_ms_per_instance),

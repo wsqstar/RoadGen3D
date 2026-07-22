@@ -1,0 +1,20 @@
+[Unit]
+Description=RoadGen3D teaching API
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=roadgen3d
+Group=roadgen3d
+WorkingDirectory=/opt/roadgen3d
+EnvironmentFile=/etc/roadgen3d/roadgen3d.env
+ExecStart=/opt/roadgen3d/.venv/bin/python -m uvicorn web.api.main:app --host 127.0.0.1 --port 8000 --workers 1
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

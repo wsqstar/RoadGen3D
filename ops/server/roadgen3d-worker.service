@@ -1,0 +1,21 @@
+[Unit]
+Description=RoadGen3D teaching queue worker
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=roadgen3d
+Group=roadgen3d
+WorkingDirectory=/opt/roadgen3d
+EnvironmentFile=/etc/roadgen3d/roadgen3d.env
+# Keep exactly one worker on the 16 GB teaching-server profile. Jobs queue in Redis.
+ExecStart=/opt/roadgen3d/.venv/bin/python -m roadgen3d.teaching.worker
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=120
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

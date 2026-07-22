@@ -12,6 +12,14 @@ depends_on = None
 
 def upgrade() -> None:
     bind = op.get_bind()
+    if bind.dialect.name != "sqlite":
+        op.alter_column(
+            "alembic_version",
+            "version_num",
+            existing_type=sa.String(length=32),
+            type_=sa.String(length=128),
+            existing_nullable=False,
+        )
     course_columns = {column["name"] for column in sa.inspect(bind).get_columns("courses")}
     if "scope" not in course_columns:
         op.add_column(

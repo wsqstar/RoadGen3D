@@ -21,7 +21,7 @@ for path in (ROOT, SRC):
 from roadgen3d.teaching.artifacts import LocalArtifactStore
 from roadgen3d.teaching.database import TeachingDatabase
 from roadgen3d.teaching.geojson_pipeline import normalize_teaching_geojson
-from roadgen3d.teaching.service import TeachingPlatformService
+from roadgen3d.teaching.service import Conflict, TeachingPlatformService
 from web.api.main import create_app
 
 
@@ -1102,6 +1102,36 @@ def test_durable_job_recovery_and_cancellation_are_terminal(client: TestClient):
     after_late_completion = service.update_job(running["id"], status="succeeded", progress=100, result={"unexpected": True})
     assert after_late_completion["status"] == "cancelled"
     assert after_late_completion["result"] == {}
+
+
+def test_each_user_can_hold_at_most_five_active_jobs(
+    client: TestClient,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("ROADGEN_MAX_ACTIVE_JOBS_PER_USER", "5")
+    response = client.post("/api/v1/auth/bootstrap", json={
+        "email": "quota@example.edu",
+        "password": "teacher-pass-123",
+        "display_name": "Quota Teacher",
+    })
+    assert response.status_code == 201
+    token = client.post(
+        "/api/v1/auth/login",
+        json={"email": "quota@example.edu", "password": "teacher-pass-123"},
+    ).json()["access_token"]
+    actor = client.get("/api/v1/me", headers=_auth(token)).json()
+    service = client.app.state.teaching_service
+
+    jobs = [
+        service.create_job(actor["id"], None, kind="project_export", payload={"index": index})
+        for index in range(5)
+    ]
+    with pytest.raises(Conflict, match=r"Active job quota reached \(5/5\)"):
+        service.create_job(actor["id"], None, kind="project_export", payload={"index": 5})
+
+    service.cancel_job(actor["id"], jobs[0]["id"])
+    replacement = service.create_job(actor["id"], None, kind="project_export", payload={"index": 5})
+    assert replacement["status"] == "queued"
 
 
 def test_scene_generation_failure_is_public_retryable_once_and_preserves_progress(client: TestClient, monkeypatch):

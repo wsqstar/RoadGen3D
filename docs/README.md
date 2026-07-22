@@ -21,6 +21,8 @@
 | [DATA_CONTRACTS.md](DATA_CONTRACTS.md) | `DesignDraft`、`SceneContext`、`StreetComposeConfig`、`scene_layout.json` 等数据契约 |
 | [EVALUATION.md](EVALUATION.md) | 当前评价 API、字段、降级规则和 road-metrics 边界 |
 | [DEPLOYMENT_AND_JOBS.md](DEPLOYMENT_AND_JOBS.md) | FastAPI、Viewer dev middleware、job service 和 artifact 边界 |
+| [TEACHING_SERVER_BARE_METAL.md](TEACHING_SERVER_BARE_METAL.md) | 5 人以内、16 GB、无 Torch/模型、单 worker 排队的裸机教学服务器安装与 SSH 交接 |
+| [TEACHING_CONTAINER_INTERNAL.md](TEACHING_CONTAINER_INTERNAL.md) | `exp-0722` 内网容器的实际端口、25-worker 运行方式、同步白名单和用户数据保护边界 |
 
 ## 支撑文档
 

@@ -862,6 +862,37 @@ def test_street_compose_outputs_created(tmp_path: Path, monkeypatch):
     assert all("slot_id" in placement for placement in layout_payload.get("placements", []))
 
 
+def test_street_compose_curated_rule_pool_never_initializes_clip(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    monkeypatch.setenv("ROADGEN_ASSET_RETRIEVAL_MODE", "curated_rule_pool")
+
+    def _unexpected_clip_init(*args, **kwargs):
+        raise AssertionError("CLIP must not initialize in curated_rule_pool mode")
+
+    monkeypatch.setattr("roadgen3d.street_layout.ClipTextEmbedder", _unexpected_clip_init)
+    result = compose_street_scene(
+        config=_build_config(seed=43),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+        render_presentation_artifacts=False,
+    )
+
+    layout_payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = layout_payload["summary"]
+    assert summary["asset_retrieval_mode_requested"] == "curated_rule_pool"
+    assert summary["asset_retrieval_mode"] == "curated_rule_pool"
+    assert summary["asset_retrieval_fallback_reason"] == "disabled_by_configuration"
+    assert summary["program_generator_used"] == "heuristic_v1"
+    assert summary["policy_used"] == "rule"
+
+
 def test_street_compose_records_asset_scale_summary_and_scaled_instances(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
