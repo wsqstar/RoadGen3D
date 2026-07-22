@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import logging
 import os
-from urllib.error import HTTPError, URLError
-from urllib.request import Request as UrlRequest, urlopen
+import tempfile
 from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlparse
+from urllib.request import Request as UrlRequest, urlopen
 from typing import Any, Dict
 
 from fastapi import APIRouter, HTTPException, Request
@@ -40,6 +43,25 @@ from web.api.schemas import (
 
 router = APIRouter(tags=["catalog"])
 ROOT = Path(__file__).resolve().parents[3]
+logger = logging.getLogger(__name__)
+
+DEFAULT_OSM_TILE_URLS = (
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+    "https://tile.openstreetmap.de/{z}/{x}/{y}.png",
+)
+
+
+def _osm_tile_upstreams() -> list[str]:
+    configured = [
+        value.strip()
+        for value in os.getenv("ROADGEN_OSM_TILE_URLS", "").split(",")
+        if value.strip()
+    ]
+    legacy = os.getenv("ROADGEN_OSM_TILE_URL", "").strip()
+    if legacy and legacy not in configured:
+        configured.insert(0, legacy)
+    return configured or list(DEFAULT_OSM_TILE_URLS)
 
 
 @router.get("/")
@@ -84,38 +106,70 @@ def get_osm_tile(zoom: int, tile_x: int, tile_y: int) -> Response:
 
     cache_root = Path(os.getenv("ROADGEN_OSM_TILE_CACHE", ROOT / "artifacts" / "osm_tile_cache"))
     cache_path = cache_root / str(zoom) / str(tile_x) / f"{tile_y}.png"
-    response_headers = {"Cache-Control": "public, max-age=86400, stale-if-error=604800"}
+    response_headers = {"Cache-Control": "public, max-age=604800, stale-if-error=2592000"}
     if cache_path.is_file():
         return FileResponse(cache_path, media_type="image/png", headers=response_headers)
 
-    upstream_template = os.getenv(
-        "ROADGEN_OSM_TILE_URL",
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    )
-    upstream_url = upstream_template.format(z=zoom, x=tile_x, y=tile_y)
-    request = UrlRequest(
-        upstream_url,
-        headers={
-            "User-Agent": os.getenv(
-                "ROADGEN_OSM_TILE_USER_AGENT",
-                "RoadGen3D/0.2 (+https://github.com/wsqstar/RoadGen3D)",
-            ),
-            "Accept": "image/png,image/*;q=0.8",
-        },
-    )
-    try:
-        with urlopen(request, timeout=15) as upstream:
-            content_type = str(upstream.headers.get("Content-Type") or "").lower()
-            payload = upstream.read(2_000_001)
-    except (HTTPError, URLError, TimeoutError) as exc:
-        raise HTTPException(status_code=502, detail="OSM tile upstream is unavailable.") from exc
-    if len(payload) > 2_000_000 or not content_type.startswith("image/"):
-        raise HTTPException(status_code=502, detail="OSM tile upstream returned an invalid response.")
+    payload: bytes | None = None
+    for upstream_template in _osm_tile_upstreams():
+        try:
+            upstream_url = upstream_template.format(z=zoom, x=tile_x, y=tile_y)
+        except (KeyError, ValueError) as exc:
+            logger.warning("Invalid OSM tile URL template %r: %s", upstream_template, exc)
+            continue
+        request = UrlRequest(
+            upstream_url,
+            headers={
+                "User-Agent": os.getenv(
+                    "ROADGEN_OSM_TILE_USER_AGENT",
+                    "RoadGen3D/0.2 (+https://github.com/wsqstar/RoadGen3D)",
+                ),
+                "Referer": "https://github.com/wsqstar/RoadGen3D",
+                "Accept": "image/png,image/*;q=0.8",
+            },
+        )
+        try:
+            with urlopen(request, timeout=12) as upstream:
+                content_type = str(upstream.headers.get("Content-Type") or "").lower()
+                candidate = upstream.read(2_000_001)
+            if len(candidate) <= 2_000_000 and content_type.startswith("image/"):
+                payload = candidate
+                break
+            logger.warning(
+                "OSM tile upstream returned invalid content: host=%s z=%s x=%s y=%s",
+                urlparse(upstream_url).netloc,
+                zoom,
+                tile_x,
+                tile_y,
+            )
+        except (HTTPError, URLError, TimeoutError, OSError) as exc:
+            logger.warning(
+                "OSM tile upstream failed: host=%s z=%s x=%s y=%s error=%s",
+                urlparse(upstream_url).netloc,
+                zoom,
+                tile_x,
+                tile_y,
+                type(exc).__name__,
+            )
+
+    if payload is None:
+        raise HTTPException(status_code=502, detail="All OSM tile upstreams are unavailable.")
 
     cache_path.parent.mkdir(parents=True, exist_ok=True)
-    temporary_path = cache_path.with_suffix(".png.tmp")
-    temporary_path.write_bytes(payload)
-    temporary_path.replace(cache_path)
+    temporary_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=cache_path.parent,
+            prefix=f".{tile_y}.",
+            suffix=".tmp",
+            delete=False,
+        ) as temporary_file:
+            temporary_file.write(payload)
+            temporary_path = Path(temporary_file.name)
+        temporary_path.replace(cache_path)
+    finally:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)
     return Response(content=payload, media_type="image/png", headers=response_headers)
 
 
