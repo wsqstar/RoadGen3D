@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import sys
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 
@@ -49,7 +50,23 @@ def create_app(
     benchmark_store: BranchBenchmarkStore | None = None,
     teaching_service: TeachingPlatformService | None = None,
 ) -> FastAPI:
-    app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
+    @asynccontextmanager
+    async def lifespan(lifespan_app: FastAPI):
+        if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() == "local":
+            lifespan_app.state.teaching_job_executor.recover()
+        try:
+            lifespan_app.state.design_service.scene_job_service.ensure_worker_running()
+        except Exception:
+            # Keep startup tolerant: scene-job recovery should not block API startup,
+            # because job submission still works and worker recovery is retryable from job reads.
+            pass
+        try:
+            yield
+        finally:
+            lifespan_app.state.teaching_job_executor.shutdown()
+            lifespan_app.state.osm_source_job_service.shutdown()
+
+    app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0", lifespan=lifespan)
     allowed_origins = [
         item.strip()
         for item in os.getenv(
@@ -113,26 +130,6 @@ def create_app(
         teaching_router,
     ):
         app.include_router(router)
-
-    def recover_local_jobs() -> None:
-        if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() == "local":
-            app.state.teaching_job_executor.recover()
-
-    def recover_scene_jobs() -> None:
-        try:
-            app.state.design_service.scene_job_service.ensure_worker_running()
-        except Exception:
-            # Keep startup tolerant: scene-job recovery should not block API startup,
-            # because job submission still works and worker recovery is retryable from job reads.
-            pass
-
-    def shutdown_local_jobs() -> None:
-        app.state.teaching_job_executor.shutdown()
-        app.state.osm_source_job_service.shutdown()
-
-    app.add_event_handler("startup", recover_local_jobs)
-    app.add_event_handler("startup", recover_scene_jobs)
-    app.add_event_handler("shutdown", shutdown_local_jobs)
 
     return app
 
