@@ -10,8 +10,10 @@ import os
 import platform
 import tempfile
 import zipfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from threading import Lock
 from typing import Any, Callable, Mapping, Sequence
 
 from sqlalchemy import func, select
@@ -1283,9 +1285,65 @@ class TeachingPlatformService:
         emit("annotation_resolving", 8, "Parsing the approved 2D annotation.", source_id=source_id)
         profiles = self.list_evaluation_profiles(actor_id, project_id) if evaluator is not None else []
         profile = next((item for item in profiles if item["is_default"]), profiles[0] if profiles else None)
-        generated_candidates: list[dict[str, Any]] = []
+        if not is_baseline and evaluator is None:
+            raise RuntimeError("Scenario C requires the configured evaluator to compare candidates with its parent.")
 
-        for candidate_index, candidate_spec in enumerate(candidate_specs):
+        parent_selection: dict[str, Any] | None = None
+        if not is_baseline and parent is not None and evaluator is not None and profile is not None:
+            with self.database.session() as db:
+                parent_run = db.scalars(
+                    select(EvaluationRun)
+                    .where(EvaluationRun.revision_id == parent.id, EvaluationRun.status == "succeeded")
+                    .order_by(EvaluationRun.updated_at.desc())
+                ).first()
+            if parent_run is None:
+                parent_evaluation = self.run_evaluation(
+                    actor_id,
+                    self.create_evaluation_run(
+                        actor_id,
+                        project_id,
+                        revision_id=parent.id,
+                        profile_id=profile["id"],
+                        weights=normalized_weights,
+                    )["id"],
+                    evaluator,
+                )
+            else:
+                parent_evaluation = self._evaluation(parent_run)
+            parent_selection = _candidate_selection_row(
+                parent_evaluation,
+                weights=normalized_weights,
+                minimum_scores=normalized_minimum_scores,
+            )
+
+        generated_candidates: list[dict[str, Any]] = []
+        generation_progress = [0.0 for _ in candidate_specs]
+        progress_lock = Lock()
+
+        def forward_parallel_generation_progress(candidate_index: int, event: Mapping[str, Any] | str) -> None:
+            payload = dict(event) if isinstance(event, Mapping) else {"message": str(event)}
+            try:
+                raw_progress = float(payload.get("progress", 0.0))
+            except (TypeError, ValueError):
+                raw_progress = 0.0
+            with progress_lock:
+                generation_progress[candidate_index] = max(
+                    generation_progress[candidate_index],
+                    max(0.0, min(100.0, raw_progress)),
+                )
+                overall_progress = 8 + int(round(sum(generation_progress) / max(1, len(generation_progress)) * 0.74))
+                payload["progress"] = overall_progress
+                payload["detail"] = {
+                    **dict(payload.get("detail") or {}),
+                    "candidate_index": candidate_index + 1,
+                    "candidate_count": len(candidate_specs),
+                    "parallel_limit": 2,
+                    "queued_candidate_count": max(0, len(candidate_specs) - 2),
+                }
+                if progress_callback is not None:
+                    progress_callback(payload)
+
+        def generate_candidate(candidate_index: int, candidate_spec: Mapping[str, Any]) -> dict[str, Any]:
             compose_patch = dict(candidate_spec["compose_config_patch"])
             draft = parse_design_draft(
                 {
@@ -1315,8 +1373,42 @@ class TeachingPlatformService:
                     "random_seed": int(candidate_spec["seed"]),
                     "retain_glb_policy": "always",
                 },
-                progress_callback=lambda event, index=candidate_index: forward_generation_progress(index, event),
+                progress_callback=lambda event: forward_parallel_generation_progress(candidate_index, event),
             ))
+            return {
+                "candidate_index": candidate_index,
+                "candidate_spec": dict(candidate_spec),
+                "compose_patch": compose_patch,
+                "result": result,
+            }
+
+        parallel_limit = min(2, len(candidate_specs))
+        if len(candidate_specs) > parallel_limit:
+            emit(
+                "candidate_queue",
+                8,
+                f"Starting {parallel_limit} Scenario C candidates; {len(candidate_specs) - parallel_limit} queued.",
+                candidate_count=len(candidate_specs),
+                parallel_limit=parallel_limit,
+                queued_candidate_count=len(candidate_specs) - parallel_limit,
+            )
+        generated_records: list[dict[str, Any] | None] = [None for _ in candidate_specs]
+        with ThreadPoolExecutor(max_workers=parallel_limit, thread_name_prefix="roadgen-candidate") as executor:
+            futures = {
+                executor.submit(generate_candidate, candidate_index, candidate_spec): candidate_index
+                for candidate_index, candidate_spec in enumerate(candidate_specs)
+            }
+            for future in as_completed(futures):
+                record = future.result()
+                generated_records[int(record["candidate_index"])] = record
+
+        for generated_record in generated_records:
+            if generated_record is None:
+                raise RuntimeError("Scenario C candidate generation returned no result.")
+            candidate_index = int(generated_record["candidate_index"])
+            candidate_spec = dict(generated_record["candidate_spec"])
+            compose_patch = dict(generated_record["compose_patch"])
+            result = dict(generated_record["result"])
             emit(
                 "artifact_persisting",
                 80 + int(round((candidate_index + 1) * 8 / len(candidate_specs))),
@@ -1372,7 +1464,7 @@ class TeachingPlatformService:
                     "generator_result": result,
                     "building_representation": "transparent_massing",
                     "massing_material": {
-                        "base_color": "#F4F7F8", "opacity": 0.42,
+                        "base_color": "#F4F7F8", "opacity": 0.88,
                         "roughness": 1.0, "metallic": 0.0, "alpha_mode": "BLEND",
                     },
                     "source_building_ids": [item for item in source_building_ids if item],
@@ -1394,6 +1486,27 @@ class TeachingPlatformService:
                 weights=normalized_weights,
                 minimum_scores=normalized_minimum_scores,
             )
+            parent_weighted_score = (
+                float(parent_selection["weighted_score"])
+                if parent_selection is not None
+                else None
+            )
+            selection["parent_weighted_score"] = parent_weighted_score
+            selection["score_improvement"] = (
+                round(float(selection["weighted_score"]) - parent_weighted_score, 8)
+                if parent_weighted_score is not None
+                else None
+            )
+            selection["improves_parent"] = bool(
+                selection["feasible"]
+                and (
+                    is_baseline
+                    or (
+                        parent_weighted_score is not None
+                        and float(selection["weighted_score"]) > parent_weighted_score + 1e-6
+                    )
+                )
+            )
             generated_candidates.append({
                 "revision": revision,
                 "evaluation": evaluation,
@@ -1401,39 +1514,52 @@ class TeachingPlatformService:
                 **selection,
             })
 
+        improved_candidates = [item for item in generated_candidates if item["improves_parent"]]
         ranked = sorted(
-            generated_candidates,
+            improved_candidates,
             key=lambda item: (
-                0 if item["feasible"] else 1,
                 float(item["constraint_violation"]),
                 -float(item["weighted_score"]),
                 int(item["revision"]["revision_number"]),
             ),
         )
-        selected = ranked[0]
+        selected = ranked[0] if ranked else None
         has_scored_candidate = any(item["evaluation_status"] == "succeeded" for item in generated_candidates)
         trace_rows = [{
             "revision_id": item["revision"]["id"],
             "search_profile": item["search_profile"],
             "scores": item["scores"],
             "weighted_score": item["weighted_score"],
+            "parent_weighted_score": item["parent_weighted_score"],
+            "score_improvement": item["score_improvement"],
             "constraint_violation": item["constraint_violation"],
             "feasible": item["feasible"],
             "evaluation_status": item["evaluation_status"],
+            "improves_parent": item["improves_parent"],
             "selected": item is selected,
         } for item in generated_candidates]
         solver_trace = {
-            "strategy": "deterministic_local_neighbourhood_v1",
-            "selection_status": "evaluated_local_best" if has_scored_candidate else "unscored_fallback",
-            "claim_scope": (
-                "best evaluated local candidate; not a global optimum"
+            "strategy": "deterministic_local_neighbourhood_parallel_v2",
+            "parallel_limit": 2,
+            "selection_status": (
+                "evaluated_improving_local_best"
+                if selected is not None
+                else "no_improving_candidate"
                 if has_scored_candidate
-                else "first generated fallback; no candidate evaluation was available"
+                else "evaluation_unavailable"
+            ),
+            "claim_scope": (
+                "best feasible local candidate that improves the parent under the requested weights; not a global optimum"
+                if selected is not None
+                else "No generated candidate improved the evaluated parent; the parent remains active."
+                if has_scored_candidate
+                else "No candidate could be evaluated; the parent remains active."
             ),
             "goal_weights": normalized_weights,
             "minimum_scores": normalized_minimum_scores,
+            "parent_weighted_score": parent_selection["weighted_score"] if parent_selection is not None else None,
             "candidate_count": len(generated_candidates),
-            "selected_revision_id": selected["revision"]["id"],
+            "selected_revision_id": selected["revision"]["id"] if selected is not None else None,
             "candidates": trace_rows,
         }
         with self.database.session() as db:
@@ -1450,15 +1576,15 @@ class TeachingPlatformService:
             "candidate_selection",
             98,
             (
-                f"Selected the best evaluated candidate from {len(generated_candidates)} local variants."
-                if has_scored_candidate
-                else f"Generated {len(generated_candidates)} local variants; opened the first because evaluation was unavailable."
+                f"Selected the best improving candidate from {len(generated_candidates)} local variants."
+                if selected is not None
+                else f"Generated {len(generated_candidates)} local variants; no candidate improved the evaluated parent."
             ),
-            selected_revision_id=selected["revision"]["id"],
+            selected_revision_id=selected["revision"]["id"] if selected is not None else None,
         )
         return {
-            "revision": selected["revision"],
-            "evaluation": selected["evaluation"],
+            "revision": selected["revision"] if selected is not None else self._revision(parent),
+            "evaluation": selected["evaluation"] if selected is not None else parent_evaluation if parent_selection is not None else None,
             "candidates": generated_candidates,
             "solver_trace": solver_trace,
         }

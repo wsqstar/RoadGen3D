@@ -593,16 +593,60 @@ def build_layout_manifest_payload(
     return manifest
 
 
+def _preferred_production_scene_path(payload: Mapping[str, Any]) -> Path | None:
+    """Return the full pipeline scene preview when it is available.
+
+    Layout rebuilds are deliberately lightweight recovery artifacts.  A
+    matching production preview remains the authoritative 3D scene and is the
+    only safe fallback for a layout that has been rebuilt in the past.
+    """
+
+    steps = payload.get("production_steps", []) or []
+    for step_id in ("scene_preview", "complete_scene"):
+        for step in steps:
+            if str((step or {}).get("step_id", "") or "") != step_id:
+                continue
+            raw_path = str((step or {}).get("glb_path", "") or "").strip()
+            if not raw_path:
+                continue
+            try:
+                candidate = resolve_repo_path(raw_path)
+            except WebViewerError:
+                continue
+            if candidate.exists():
+                return candidate
+    return None
+
+
+def _preferred_final_scene_path(payload: Mapping[str, Any]) -> Path:
+    outputs = payload.get("outputs", {}) or {}
+    raw_path = str(outputs.get("scene_glb", "") or "").strip()
+    referenced_path: Path | None = None
+    if raw_path:
+        try:
+            referenced_path = resolve_repo_path(raw_path)
+        except WebViewerError:
+            referenced_path = None
+    summary = payload.get("summary", {}) or {}
+    is_rebuild = bool(summary.get("scene_glb_rebuilt_from_layout")) or (
+        referenced_path is not None and "rebuild" in referenced_path.parts
+    )
+    production_path = _preferred_production_scene_path(payload)
+    if is_rebuild and production_path is not None:
+        return production_path
+    if referenced_path is not None and referenced_path.exists():
+        return referenced_path
+    if production_path is not None:
+        return production_path
+    if not raw_path:
+        raise WebViewerError("scene_layout.json does not define outputs.scene_glb or a production scene preview")
+    raise WebViewerError(f"Final scene GLB does not exist: {referenced_path}")
+
+
 def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
     resolved_layout = resolve_scene_layout_path(layout_path)
     payload = json.loads(resolved_layout.read_text(encoding="utf-8"))
-    outputs = payload.get("outputs", {}) or {}
-    final_scene_path_raw = str(outputs.get("scene_glb", "") or "").strip()
-    if not final_scene_path_raw:
-        raise WebViewerError("scene_layout.json does not define outputs.scene_glb")
-    final_scene_path = resolve_repo_path(final_scene_path_raw)
-    if not final_scene_path.exists():
-        raise WebViewerError(f"Final scene GLB does not exist: {final_scene_path}")
+    final_scene_path = _preferred_final_scene_path(payload)
     production_steps = []
     for step in payload.get("production_steps", []) or []:
         glb_path_raw = str((step or {}).get("glb_path", "") or "").strip()

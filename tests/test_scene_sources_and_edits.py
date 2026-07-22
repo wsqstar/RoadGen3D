@@ -225,7 +225,7 @@ def test_aligned_osm_buildings_become_noneditable_white_context_massing() -> Non
     )
     material = entry.mesh.visual.material
     assert material.name == "roadgen3d_transparent_massing"
-    assert material.baseColorFactor.tolist() == [244, 247, 248, 107]
+    assert material.baseColorFactor.tolist() == [244, 247, 248, 224]
     assert material.alphaMode == "BLEND"
     assert material.roughnessFactor == pytest.approx(1.0)
     assert material.metallicFactor == pytest.approx(0.0)

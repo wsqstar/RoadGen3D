@@ -24,6 +24,21 @@ ROOT = Path(__file__).resolve().parents[3]
 router = APIRouter(tags=["diff-capture"])
 
 
+def _existing_production_scene_preview(payload: Dict[str, Any], layout_path: Path) -> Path | None:
+    """Find the authoritative full-scene preview recorded by the pipeline."""
+
+    for expected_step_id in ("scene_preview", "complete_scene"):
+        for step in payload.get("production_steps", []) or []:
+            if str((step or {}).get("step_id", "") or "") != expected_step_id:
+                continue
+            candidate = resolve_layout_referenced_path(
+                str((step or {}).get("glb_path", "") or ""), layout_path
+            )
+            if candidate is not None and candidate.exists():
+                return candidate
+    return None
+
+
 @router.post("/api/design/rebuild-layout-glb")
 def rebuild_layout_glb(request_body: RebuildLayoutGlbRequestModel) -> Dict[str, Any]:
     raw_layout_path = request_body.layout_path.strip()
@@ -47,6 +62,18 @@ def rebuild_layout_glb(request_body: RebuildLayoutGlbRequestModel) -> Dict[str, 
         raise HTTPException(status_code=400, detail=f"Invalid scene_layout.json: {exc}") from exc
 
     outputs = dict(payload.get("outputs", {}) or {})
+    production_preview_path = _existing_production_scene_preview(payload, layout_path)
+    if production_preview_path is not None and not request_body.force:
+        # Never replace a full pipeline scene with the intentionally minimal
+        # layout reconstruction.  This path used to make the viewer appear to
+        # fall back to a tiny, 2D-inconsistent road fragment.
+        return make_json_safe({
+            "layout_path": str(layout_path),
+            "scene_glb_path": str(production_preview_path),
+            "manifest_path": str(manifest_path),
+            "rebuilt": False,
+            "scene_source": "production_scene_preview",
+        })
     existing_glb_path = resolve_layout_referenced_path(str(outputs.get("scene_glb", "") or ""), layout_path)
     if existing_glb_path is not None and existing_glb_path.exists() and not request_body.force:
         return make_json_safe({
@@ -185,4 +212,3 @@ def scene_diff_image(
     if not cache_path.exists():
         raise HTTPException(status_code=500, detail="Diff rendering produced no output.")
     return FileResponse(cache_path, media_type="image/png")
-

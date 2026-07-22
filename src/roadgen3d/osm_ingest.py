@@ -251,6 +251,7 @@ def fetch_osm_data(
     if cache_path.exists() and not force_refetch:
         logger.info("OSM cache hit: %s", cache_path)
         data = json.loads(cache_path.read_text(encoding="utf-8"))
+        _write_osm_cache_summary(cache_path, bbox, data, cache_hit=True)
         emit(
             "cache_lookup",
             48,
@@ -291,6 +292,7 @@ def fetch_osm_data(
             resp.raise_for_status()
             data = resp.json()
             cache_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            _write_osm_cache_summary(cache_path, bbox, data, cache_hit=False)
             logger.info("OSM data cached to %s (%d elements)", cache_path, len(data.get("elements", [])))
             emit(
                 "overpass_fetch",
@@ -318,6 +320,39 @@ def fetch_osm_data(
             )
             time.sleep(wait)
     raise RuntimeError(f"Overpass API failed after 3 attempts: {last_exc}") from last_exc
+
+
+def _write_osm_cache_summary(
+    cache_path: Path,
+    bbox: Tuple[float, float, float, float],
+    data: Mapping[str, Any],
+    *,
+    cache_hit: bool,
+) -> None:
+    """Write a compact, human-readable provenance companion for one OSM cache entry."""
+    elements = list(data.get("elements", []) or [])
+    roads = [item for item in elements if item.get("type") == "way" and "highway" in dict(item.get("tags") or {})]
+    buildings = [item for item in elements if item.get("type") == "way" and "building" in dict(item.get("tags") or {})]
+    nodes = [item for item in elements if item.get("type") == "node"]
+    summary_path = cache_path.with_suffix(".summary.txt")
+    summary_path.write_text(
+        "\n".join(
+            [
+                "RoadGen3D OSM cache provenance",
+                f"cache_status: {'hit' if cache_hit else 'fetched'}",
+                f"bbox: {','.join(f'{value:.7f}' for value in bbox)}",
+                f"raw_json: {cache_path.name}",
+                f"element_count: {len(elements)}",
+                f"road_way_count: {len(roads)}",
+                f"building_way_count: {len(buildings)}",
+                f"node_count: {len(nodes)}",
+                "road_way_ids: " + ",".join(str(item.get("id", "")) for item in roads[:20]),
+                "building_way_ids: " + ",".join(str(item.get("id", "")) for item in buildings[:20]),
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
 
 
 # ---------------------------------------------------------------------------

@@ -58,6 +58,8 @@ def test_public_control_registry_exposes_values_without_named_profiles():
 
     assert controls["parameter_schema_version"] == "roadgen3d.street-design-parameters.v2"
     assert controls["skeleton"]["laneCount"]["values"] == {"low": 2, "medium": 4, "high": 6}
+    assert controls["skeleton"]["laneWidthM"]["minimum"] == pytest.approx(0.5)
+    assert "maximum" not in controls["skeleton"]["laneWidthM"]
     assert controls["skeleton"]["junctionCornerRadiusM"]["values"]["high"] == pytest.approx(8.0)
     assert controls["furniture"]["categories"]["tree"]["values"] == {
         "low": 5.0,
@@ -65,6 +67,18 @@ def test_public_control_registry_exposes_values_without_named_profiles():
         "high": 12.0,
     }
     assert "profiles" not in controls
+
+
+def test_parameter_compiler_accepts_source_lane_width_outside_preset_band():
+    spec = build_default_street_design_parameter_spec_v2(
+        source_revision=4,
+        source_fingerprint="wide-source",
+    )
+    spec["skeleton"]["laneWidthM"] = 4.8
+
+    compiled = compile_street_design_parameter_spec(spec)
+
+    assert compiled.compose_config_patch["base_lane_width_m"] == pytest.approx(4.8)
 
 
 def test_v2_default_has_no_profile_ids_and_disables_optional_generation():

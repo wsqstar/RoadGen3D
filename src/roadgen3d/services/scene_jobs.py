@@ -75,7 +75,7 @@ class SceneJobService:
         scene_context: SceneContext | None = None,
         progress_callback: Callable[[Mapping[str, Any]], None] | None = None,
     ) -> SceneJobCreateResponse:
-        self._ensure_worker()
+        self.ensure_worker_running()
         job_id = uuid4().hex
         state = _SceneJobState(
             job_id=job_id,
@@ -93,6 +93,7 @@ class SceneJobService:
         return SceneJobCreateResponse(job_id=job_id, status=state.status, created_at=state.created_at)
 
     def get_job(self, job_id: str) -> SceneJobStatusResponse | None:
+        self.ensure_worker_running()
         with self._lock:
             state = self._jobs.get(str(job_id))
             if state is None:
@@ -100,6 +101,7 @@ class SceneJobService:
             return self._to_status_response(state)
 
     def list_jobs(self, *, limit: int = 20) -> List[SceneJobStatusResponse]:
+        self.ensure_worker_running()
         with self._lock:
             ordered = sorted(self._jobs.values(), key=lambda item: item.created_at, reverse=True)
             return [self._to_status_response(item) for item in ordered[: max(1, int(limit))]]
@@ -123,6 +125,7 @@ class SceneJobService:
             return self._to_status_response(state)
 
     def list_recent_scenes(self, *, limit: int = 20) -> List[SceneRecord]:
+        self.ensure_worker_running()
         with self._lock:
             ordered = sorted(
                 (item for item in self._jobs.values() if item.status == "succeeded" and item.result is not None),
@@ -132,6 +135,7 @@ class SceneJobService:
             return [self._to_scene_record(item) for item in ordered[: max(1, int(limit))]]
 
     def wait_for_job(self, job_id: str, *, timeout_s: float | None = None) -> SceneJobStatusResponse | None:
+        self.ensure_worker_running()
         with self._condition:
             if job_id not in self._jobs:
                 return None
@@ -169,11 +173,15 @@ class SceneJobService:
             raise RuntimeError("Scene generation completed without a result payload.")
         return status.result
 
+    def ensure_worker_running(self) -> None:
+        self._ensure_worker()
+
     def _ensure_worker(self) -> None:
-        if self._worker is not None and self._worker.is_alive():
-            return
-        self._worker = Thread(target=self._worker_loop, name="roadgen3d-scene-job-worker", daemon=True)
-        self._worker.start()
+        with self._condition:
+            if self._worker is not None and self._worker.is_alive():
+                return
+            self._worker = Thread(target=self._worker_loop, name="roadgen3d-scene-job-worker", daemon=True)
+            self._worker.start()
 
     def _worker_loop(self) -> None:
         while True:

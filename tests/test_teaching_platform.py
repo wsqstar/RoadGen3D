@@ -3,6 +3,7 @@ from __future__ import annotations
 import io
 import json
 import sys
+import threading
 import time
 import zipfile
 from pathlib import Path
@@ -29,18 +30,29 @@ class FakeDesignService:
         self.output_dir = output_dir
         self.generation_calls: list[dict] = []
         self.scene_jobs: dict[str, object] = {}
+        self._generation_lock = threading.Lock()
+        self._generation_counter = 0
+        self._active_generations = 0
+        self.max_concurrent_generations = 0
 
     def get_scene_job(self, job_id: str):
         return self.scene_jobs.get(job_id)
 
     def generate_scene(self, draft, *, scene_context: dict, generation_options: dict, **kwargs):
+        with self._generation_lock:
+            self._generation_counter += 1
+            call_index = self._generation_counter
+            self._active_generations += 1
+            self.max_concurrent_generations = max(self.max_concurrent_generations, self._active_generations)
+        # Make overlap observable for the parallel Scenario C contract while
+        # keeping this fixture fast.
+        time.sleep(0.02)
         progress_callback = kwargs.get("progress_callback")
         if progress_callback:
             progress_callback({"stage": "context_resolving", "progress": 15, "message": "Fixture annotation resolved."})
             progress_callback({"stage": "layout_generation", "progress": 44, "message": "Fixture layout generated."})
             progress_callback({"stage": "mesh_generation", "progress": 76, "message": "Fixture massing generated.", "detail": {"building_count": 1}})
             progress_callback({"stage": "glb_export", "progress": 88, "message": "Fixture GLB exported."})
-        call_index = len(self.generation_calls) + 1
         call_dir = self.output_dir / f"generated-{call_index}"
         call_dir.mkdir(parents=True, exist_ok=True)
         layout_path = call_dir / "scene_layout.json"
@@ -57,12 +69,14 @@ class FakeDesignService:
         glb_path.write_bytes(b"fixture-glb")
         if generation_options.get("capture_3d_views", True) and generation_options.get("retain_glb_policy") != "always":
             glb_path.unlink()
-        self.generation_calls.append({
-            "draft": draft.to_dict(),
-            "scene_context": scene_context,
-            "generation_options": generation_options,
-            "patch_overrides": dict(kwargs.get("patch_overrides") or {}),
-        })
+        with self._generation_lock:
+            self.generation_calls.append({
+                "draft": draft.to_dict(),
+                "scene_context": scene_context,
+                "generation_options": generation_options,
+                "patch_overrides": dict(kwargs.get("patch_overrides") or {}),
+            })
+            self._active_generations -= 1
         return {"scene_layout_path": str(layout_path), "scene_glb_path": str(glb_path)}
 
     def evaluate_scene_unified(self, *, layout_path: str, evaluation_profile: str, evaluation_config: dict, **_kwargs):
@@ -847,7 +861,7 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     assert baseline["branch_kind"] == "baseline"
     assert baseline["provenance"]["generation_method"] == "parametric"
     assert baseline["provenance"]["building_representation"] == "transparent_massing"
-    assert baseline["provenance"]["massing_material"]["opacity"] == pytest.approx(0.42)
+    assert baseline["provenance"]["massing_material"]["opacity"] == pytest.approx(0.88)
     assert client.app.state.design_service.generation_calls[0]["patch_overrides"] == {
         "building_representation": "transparent_massing",
         "surrounding_building_mode": "footprint_based",
@@ -911,11 +925,15 @@ def test_course_project_geojson_revision_evaluation_compare_and_export(client: T
     assert len(redesign_result["candidates"]) == 3
     assert redesign_result["solver_trace"]["candidate_count"] == 3
     assert redesign_result["solver_trace"]["selected_revision_id"] == redesign["id"]
-    assert redesign_result["solver_trace"]["selection_status"] == "evaluated_local_best"
-    assert redesign_result["solver_trace"]["claim_scope"] == "best evaluated local candidate; not a global optimum"
+    assert redesign_result["solver_trace"]["selection_status"] == "evaluated_improving_local_best"
+    assert redesign_result["solver_trace"]["parallel_limit"] == 2
+    assert redesign_result["solver_trace"]["claim_scope"] == "best feasible local candidate that improves the parent under the requested weights; not a global optimum"
     assert [item["feasible"] for item in redesign_result["solver_trace"]["candidates"]] == [False, False, True]
     selected_trace = next(item for item in redesign_result["solver_trace"]["candidates"] if item["selected"])
     assert selected_trace["scores"]["walkability"] == 74.0
+    assert selected_trace["improves_parent"] is True
+    assert selected_trace["score_improvement"] > 0.0
+    assert client.app.state.design_service.max_concurrent_generations == 2
     assert redesign["provenance"]["solver_selected"] is True
     assert redesign["provenance"]["generation_method"] == "parametric_search"
     redesign_revisions = client.get(f"/api/v1/projects/{project['id']}/revisions", headers=_auth(student_token)).json()["items"]
@@ -1175,7 +1193,7 @@ def test_transparent_massing_material_contract():
     )
     material = entry.mesh.visual.material
     assert material.name == "roadgen3d_transparent_massing"
-    assert list(material.baseColorFactor) == [244, 247, 248, 107]
+    assert list(material.baseColorFactor) == [244, 247, 248, 224]
     assert material.alphaMode == "BLEND"
     assert material.roughnessFactor == pytest.approx(1.0)
     assert material.metallicFactor == pytest.approx(0.0)

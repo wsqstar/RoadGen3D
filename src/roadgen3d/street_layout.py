@@ -3072,7 +3072,10 @@ def _placeholder_building_entry(
             )
         material = trimesh.visual.material.PBRMaterial(
             name="roadgen3d_transparent_massing",
-            baseColorFactor=[244, 247, 248, 107],
+            # Context massing remains visibly distinct from authored assets,
+            # but should read as a solid white volume by default.  224/255 is
+            # a light 12% transparency rather than the former ghosted 58%.
+            baseColorFactor=[244, 247, 248, 224],
             metallicFactor=0.0,
             roughnessFactor=1.0,
             alphaMode="BLEND",
@@ -6826,6 +6829,11 @@ def _build_osm_base_scene(
         float(getattr(config, "junction_precision_grid_m", 0.001) or 0.001),
         0.0001,
     )
+    # Source geometry retains millimetre precision for alignment, while final
+    # road slabs need a shared centimetre grid.  This prevents independent
+    # overlay operations from preserving almost-coincident boundary points
+    # that necessarily create needle triangles at export time.
+    final_surface_precision_grid_m = max(surface_precision_grid_m, 0.01)
 
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
@@ -6888,7 +6896,7 @@ def _build_osm_base_scene(
             return MultiPolygon(), 0
         try:
             cleaned = _clean_scene_polygonal_geometry(
-                set_precision(cleaned, grid_size=surface_precision_grid_m)
+                set_precision(cleaned, grid_size=final_surface_precision_grid_m)
             )
         except Exception:
             logger.debug("Failed to precision-snap final road surface", exc_info=True)
@@ -6904,7 +6912,7 @@ def _build_osm_base_scene(
             cleaned = _clean_scene_polygonal_geometry(
                 remove_repeated_points(
                     cleaned,
-                    tolerance=max(surface_precision_grid_m * 10.0, 0.01),
+                    tolerance=final_surface_precision_grid_m,
                 )
             )
         except Exception:
@@ -7279,6 +7287,35 @@ def _build_osm_base_scene(
         if not getattr(curb_zone, "is_empty", True) and not getattr(sidewalk_render_zone, "is_empty", True)
         else 0.0
     )
+    curb_sidewalk_overlap_before_repair_m2 = curb_sidewalk_overlap_area_m2
+    curb_sidewalk_overlap_repair_applied = False
+    if curb_sidewalk_overlap_area_m2 > 1e-4:
+        # The final simplify/difference sequence can leave a one-to-few-grid-cell
+        # coplanar overlap at curved curb ends. Rebuild the final partition on
+        # the configured precision grid, with the curb as the authoritative
+        # owner, before declaring a geometry QA failure.
+        try:
+            from shapely import difference, set_precision
+
+            repair_grid_m = max(surface_precision_grid_m, 0.001)
+            curb_zone = _clean_scene_polygonal_geometry(
+                set_precision(curb_zone, grid_size=repair_grid_m)
+            )
+            sidewalk_render_zone = _clean_scene_polygonal_geometry(
+                difference(
+                    set_precision(sidewalk_render_zone, grid_size=repair_grid_m),
+                    curb_zone,
+                    grid_size=repair_grid_m,
+                )
+            )
+            curb_sidewalk_overlap_area_m2 = float(
+                curb_zone.intersection(sidewalk_render_zone).area
+                if not getattr(curb_zone, "is_empty", True) and not getattr(sidewalk_render_zone, "is_empty", True)
+                else 0.0
+            )
+            curb_sidewalk_overlap_repair_applied = True
+        except Exception:
+            logger.warning("Final curb/sidewalk overlap repair failed", exc_info=True)
     curb_road_mouth_intrusion_area_m2 = float(
         curb_zone.intersection(road_mouth_open_zone).area
         if not getattr(curb_zone, "is_empty", True) and not getattr(road_mouth_open_zone, "is_empty", True)
@@ -7334,6 +7371,8 @@ def _build_osm_base_scene(
     surface_geometry_qa = {
         "ok": True,
         "curb_sidewalk_overlap_area_m2": round(curb_sidewalk_overlap_area_m2, 6),
+        "curb_sidewalk_overlap_before_repair_m2": round(curb_sidewalk_overlap_before_repair_m2, 6),
+        "curb_sidewalk_overlap_repair_applied": curb_sidewalk_overlap_repair_applied,
         "curb_road_mouth_intrusion_area_m2": round(curb_road_mouth_intrusion_area_m2, 6),
         "road_mouth_carriageway_gap_area_m2": round(road_mouth_carriageway_gap_area_m2, 6),
         "curb_road_mouth_intrusion_by_arm": curb_road_mouth_intrusion_by_arm,
@@ -7414,25 +7453,115 @@ def _build_osm_base_scene(
         """
         from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
 
+        def _triangulation_quality(vertices_2d: Any, faces: Any) -> Dict[str, float | int]:
+            """Return the same thin-face signal used by final mesh QA in 2-D.
+
+            Boolean overlays can leave a few sub-millimetre, almost-collinear
+            vertices in an otherwise valid sidewalk ring.  A constrained
+            Delaunay triangulation preserves those vertices exactly, which can
+            turn them into multi-metre needle faces.  Detect that condition
+            before extrusion so it can be repaired without weakening QA.
+            """
+            vertices = np.asarray(vertices_2d, dtype=float)
+            triangles = np.asarray(faces, dtype=int)
+            if vertices.ndim != 2 or vertices.shape[1] < 2 or triangles.size == 0:
+                return {"needle_face_count": 0, "maximum_aspect_ratio": 0.0}
+            triangles = triangles.reshape((-1, 3))
+            points = vertices[triangles, :2]
+            edge_a = np.linalg.norm(points[:, 1] - points[:, 0], axis=1)
+            edge_b = np.linalg.norm(points[:, 2] - points[:, 1], axis=1)
+            edge_c = np.linalg.norm(points[:, 0] - points[:, 2], axis=1)
+            longest = np.maximum.reduce([edge_a, edge_b, edge_c])
+            twice_area = np.abs(
+                (points[:, 1, 0] - points[:, 0, 0]) * (points[:, 2, 1] - points[:, 0, 1])
+                - (points[:, 1, 1] - points[:, 0, 1]) * (points[:, 2, 0] - points[:, 0, 0])
+            )
+            altitude = np.divide(
+                twice_area,
+                longest,
+                out=np.zeros_like(longest),
+                where=longest > 1e-10,
+            )
+            aspect = np.divide(
+                longest,
+                altitude,
+                out=np.full_like(longest, np.inf),
+                where=altitude > 1e-10,
+            )
+            cosine = np.divide(
+                edge_a * edge_a + edge_c * edge_c - edge_b * edge_b,
+                2.0 * edge_a * edge_c,
+                out=np.ones_like(edge_a),
+                where=(edge_a > 1e-10) & (edge_c > 1e-10),
+            )
+            minimum_angle = np.degrees(np.arccos(np.clip(cosine, -1.0, 1.0)))
+            needle = np.logical_or.reduce(
+                [
+                    aspect > 250.0,
+                    minimum_angle < 0.1,
+                    np.logical_and(longest > 0.25, altitude < 0.002),
+                ]
+            )
+            return {
+                "needle_face_count": int(needle.sum()),
+                "maximum_aspect_ratio": float(np.max(aspect)) if aspect.size else 0.0,
+            }
+
+        def _remove_numeric_collinear_vertices(polygon: Any) -> Any:
+            """Drop only sub-centimetre collinear artefacts from rings."""
+            from shapely.geometry import Polygon as RingPolygon
+
+            tolerance_m = final_surface_precision_grid_m
+
+            def clean_ring(coords: Any) -> List[Tuple[float, float]]:
+                points = [(float(x), float(y)) for x, y in list(coords)[:-1]]
+                changed = True
+                while changed and len(points) > 3:
+                    changed = False
+                    for index, point in enumerate(points):
+                        previous = np.asarray(points[(index - 1) % len(points)], dtype=float)
+                        current = np.asarray(point, dtype=float)
+                        following = np.asarray(points[(index + 1) % len(points)], dtype=float)
+                        baseline = following - previous
+                        baseline_length = float(np.linalg.norm(baseline))
+                        if baseline_length <= 1e-10:
+                            continue
+                        offset = current - previous
+                        deviation = abs(
+                            float(baseline[0] * offset[1] - baseline[1] * offset[0])
+                        ) / baseline_length
+                        if deviation <= tolerance_m:
+                            points.pop(index)
+                            changed = True
+                            break
+                return points
+
+            shell = clean_ring(polygon.exterior.coords)
+            holes = [clean_ring(ring.coords) for ring in polygon.interiors]
+            cleaned = RingPolygon(shell, holes)
+            # Removing a numerical collinear point should not change the
+            # surface.  Reject any cleanup that would alter real geometry.
+            area_delta = float(polygon.symmetric_difference(cleaned).area)
+            # A sub-centimetre collinear artefact can have a non-zero sliver
+            # area despite being below the source precision.
+            # Permit that bounded numerical change, but never simplify a
+            # visible surface feature.
+            if not cleaned.is_valid or area_delta > 0.01:
+                return polygon
+            return cleaned
+
         def _extrude_with_constrained_triangulation(polygon: Any) -> Any:
-            """Extrude a polygon from a constrained-Delaunay top partition."""
-            try:
+            """Extrude with a quality-checked triangulation and automatic repair."""
+            def constrained_faces(source: Any) -> tuple[np.ndarray, np.ndarray]:
                 from shapely import constrained_delaunay_triangles
 
-                triangulation = constrained_delaunay_triangles(polygon)
-                triangles = [
-                    item
-                    for item in getattr(triangulation, "geoms", ())
-                    if isinstance(item, ShapelyPolygon)
-                    and not getattr(item, "is_empty", True)
-                    and float(item.area) > 1e-10
-                ]
-                if not triangles:
-                    raise ValueError("constrained triangulation produced no faces")
+                triangulation = constrained_delaunay_triangles(source)
                 vertex_lookup: Dict[Tuple[float, float], int] = {}
                 vertices_2d: List[Tuple[float, float]] = []
                 faces: List[List[int]] = []
-                for triangle in triangles:
+                for triangle in getattr(triangulation, "geoms", ()):
+                    if not isinstance(triangle, ShapelyPolygon) or triangle.is_empty or triangle.area <= 1e-10:
+                        continue
                     face: List[int] = []
                     for x, y in list(triangle.exterior.coords)[:3]:
                         key = (round(float(x), 9), round(float(y), 9))
@@ -7443,14 +7572,34 @@ def _build_osm_base_scene(
                     if len(set(face)) == 3:
                         faces.append(face)
                 if not faces:
-                    raise ValueError("constrained triangulation produced only degenerate faces")
-                return trimesh.creation.extrude_triangulation(
-                    np.asarray(vertices_2d, dtype=float),
-                    np.asarray(faces, dtype=int),
-                    height,
-                )
+                    raise ValueError("constrained triangulation produced no valid faces")
+                return np.asarray(vertices_2d, dtype=float), np.asarray(faces, dtype=int)
+
+            try:
+                vertices_2d, faces = constrained_faces(polygon)
             except (AttributeError, ImportError, TypeError, ValueError):
+                # Keep the established generic trimesh fallback for optional
+                # non-road decoration.  Required road surfaces are still
+                # rejected by the final, strict mesh QA below.
                 return trimesh.creation.extrude_polygon(polygon, height)
+            quality = _triangulation_quality(vertices_2d, faces)
+            if quality["needle_face_count"]:
+                # Ear clipping avoids the Delaunay diagonal that connects
+                # almost-collinear overlay vertices.  First remove only
+                # numerical collinear points, then re-triangulate.
+                repaired_polygon = _remove_numeric_collinear_vertices(polygon)
+                vertices_2d, faces = trimesh.creation.triangulate_polygon(
+                    repaired_polygon,
+                    engine="earcut",
+                )
+                quality = _triangulation_quality(vertices_2d, faces)
+            if quality["needle_face_count"]:
+                raise ValueError(
+                    "triangulation retained needle faces after automatic repair "
+                    f"(count={quality['needle_face_count']}, "
+                    f"aspect={quality['maximum_aspect_ratio']:.1f})"
+                )
+            return trimesh.creation.extrude_triangulation(vertices_2d, faces, height)
 
         polygons = []
         if isinstance(geom, ShapelyPolygon):
@@ -7464,7 +7613,10 @@ def _build_osm_base_scene(
                 cleaned_poly, _removed = _clean_final_surface_geometry(
                     poly,
                     minimum_component_area_m2=1e-6,
-                    simplify_tolerance_m=max(surface_precision_grid_m * 5.0, 0.005),
+                    # Keep the mesh cleanup tighter than the geometry-level
+                    # partition, but large enough to eliminate the
+                    # sub-millimetre vertices introduced by curb booleans.
+                    simplify_tolerance_m=max(surface_precision_grid_m * 10.0, 0.01),
                 )
                 if isinstance(cleaned_poly, MultiPolygon):
                     cleaned_parts = list(cleaned_poly.geoms)
@@ -13045,9 +13197,15 @@ def compose_street_scene(
                 f"{json.dumps(getattr(placement_ctx, 'poi_fit_report', {}), ensure_ascii=True)}"
             )
         if config.layout_mode == "osm" and not qualifies_poi_counts(effective_poi_counts):
-            raise RuntimeError(
-                "Selected road does not retain enough effective POIs after compose filtering "
-                "(requires weighted POI score >= 2.0 and at least 1 core POI)."
+            # An arbitrary OSM corridor often has sparse mapped POIs.  That
+            # is an observation about source completeness, not a reason to
+            # reject a valid road and force the user to edit the source before
+            # generating a 3-D baseline.  Continue with the available road
+            # geometry and retain the low-POI signal in the output summary.
+            logger.info(
+                "Generating OSM corridor with sparse effective POIs: score=%.2f, core=%d",
+                poi_weighted_score(effective_poi_counts),
+                core_poi_count(effective_poi_counts),
             )
     elif config.layout_mode in {"metaurban", "graph_template", "reference_annotation"}:
         if road_segment_graph_override is None or projected_features_override is None or placement_context_override is None:
@@ -13305,7 +13463,10 @@ def compose_street_scene(
             )
             if slot_band_lookup[str(slot.slot_id)] is None:
                 slot_band_lookup[str(slot.slot_id)] = resolve_band_by_alias(
-                    resolved_program.bands,
+                    # The aggregate resolved program is built only after every
+                    # themed zone has been solved.  Use the already-available
+                    # base program for this cross-zone fallback.
+                    base_program.bands,
                     band_name=str(getattr(slot, "band_name", "") or ""),
                     side=str(getattr(slot, "side", "") or ""),
                     profile_name=str(config.design_rule_profile),
@@ -13398,17 +13559,37 @@ def compose_street_scene(
                         side=str(cslot.side),
                         profile_name=str(config.design_rule_profile),
                     ) or resolve_band_by_alias(
-                        resolved_program.bands,
+                        base_program.bands,
                         band_name=str(cslot.band_name),
                         side=str(cslot.side),
                         profile_name=str(config.design_rule_profile),
                     )
                 logger.info("Injected %d center planting tree slots.", len(center_tree_slots))
 
+    furniture_fallback_reason: str | None = None
+
+    def _fallback_without_furniture(reason: str) -> None:
+        nonlocal furniture_disabled, slot_plans, slot_segment_lookup, slot_band_lookup, zone_solver_results, theme_zone_programs, furniture_fallback_reason
+        if furniture_disabled:
+            return
+        furniture_disabled = True
+        furniture_fallback_reason = reason
+        logger.warning("Falling back to structure-only generation: %s", reason)
+        slot_plans = []
+        slot_segment_lookup.clear()
+        slot_band_lookup.clear()
+        zone_solver_results = [
+            replace(result, slot_plans=tuple())
+            for result in zone_solver_results
+        ]
+        theme_zone_programs = [
+            {**dict(program), "slot_count": 0}
+            for program in theme_zone_programs
+        ]
     if not slot_plans and not furniture_disabled:
-        raise RuntimeError(
+        _fallback_without_furniture(
             "Layout solver produced zero slots. "
-            "Check the design rule profile, theme inference, asset coverage, or scene length."
+            "Check the design rule profile, theme inference, asset coverage, or scene length.",
         )
 
     building_strategy_summary = {
@@ -13417,11 +13598,19 @@ def compose_street_scene(
         "theme_inference_mode": str(getattr(config, "theme_inference_mode", "deterministic_auto")),
         "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
     }
+    if furniture_fallback_reason:
+        building_strategy_summary["furniture_fallback_reason"] = furniture_fallback_reason
     resolved_program = replace(
         base_program,
         theme_segments=tuple(theme_segments),
         building_strategy_summary=dict(building_strategy_summary),
-        notes=tuple(dict.fromkeys(list(base_program.notes) + ["multitheme_street_v1"])),
+        notes=tuple(
+            dict.fromkeys(
+                list(base_program.notes)
+                + ["multitheme_street_v1"]
+                + ([f"furniture_fallback_reason: {furniture_fallback_reason}"] if furniture_fallback_reason else []),
+            )
+        ),
     )
     graph_summary = (
         road_segment_graph.summary()
@@ -14716,9 +14905,9 @@ def compose_street_scene(
     )
 
     if not placements and not furniture_disabled:
-        raise RuntimeError(
+        _fallback_without_furniture(
             "Street composition produced zero furniture placements. "
-            "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
+            "Try a different design-rule profile, larger length/density, or check category coverage in manifest.",
         )
 
     _emit_progress(
@@ -14743,6 +14932,16 @@ def compose_street_scene(
         start_instance_index=instance_counter,
     )
     building_footprints = surrounding_buildings.building_footprints
+    if (
+        config.layout_mode in {"osm", "osm_multiblock"}
+        and str(getattr(config, "surrounding_building_mode", "")).strip().lower() == "footprint_based"
+        and str(getattr(config, "infill_policy", "")).strip().lower() == "off"
+        and not building_footprints
+    ):
+        raise RuntimeError(
+            "OSM source coverage insufficient: the selected AOI/road has no usable "
+            "OSM building footprints. No procedural building fallback was applied."
+        )
     generated_lots = surrounding_buildings.generated_lots
     building_plans = list(surrounding_buildings.plans)
     building_retrieval_predictions = list(surrounding_buildings.retrieval_predictions)

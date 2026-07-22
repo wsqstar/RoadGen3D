@@ -118,11 +118,20 @@ def create_app(
         if os.getenv("ROADGEN_JOB_MODE", "inline").strip().lower() == "local":
             app.state.teaching_job_executor.recover()
 
+    def recover_scene_jobs() -> None:
+        try:
+            app.state.design_service.scene_job_service.ensure_worker_running()
+        except Exception:
+            # Keep startup tolerant: scene-job recovery should not block API startup,
+            # because job submission still works and worker recovery is retryable from job reads.
+            pass
+
     def shutdown_local_jobs() -> None:
         app.state.teaching_job_executor.shutdown()
         app.state.osm_source_job_service.shutdown()
 
     app.add_event_handler("startup", recover_local_jobs)
+    app.add_event_handler("startup", recover_scene_jobs)
     app.add_event_handler("shutdown", shutdown_local_jobs)
 
     return app

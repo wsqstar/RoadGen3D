@@ -28,7 +28,10 @@ LEVELS = ("low", "medium", "high")
 
 SKELETON_PARAMETER_CONTROLS: Dict[str, Dict[str, Any]] = {
     "laneCount": {"values": {"low": 2, "medium": 4, "high": 6}, "minimum": 1, "maximum": 8, "unit": "count"},
-    "laneWidthM": {"values": {"low": 2.75, "medium": 3.25, "high": 3.75}, "minimum": 2.5, "maximum": 4.5, "unit": "m"},
+    # Lane width is a generation parameter, not a preset-only standard.  Keep
+    # the presets as guidance but accept every positive, geometrically usable
+    # value so an OSM source value is never shown as editable then rejected.
+    "laneWidthM": {"values": {"low": 2.75, "medium": 3.25, "high": 3.75}, "minimum": 0.5, "unit": "m"},
     "sidewalkWidthM": {"values": {"low": 1.8, "medium": 3.0, "high": 4.5}, "minimum": 1.0, "maximum": 12.0, "unit": "m"},
     "furnishingWidthM": {"values": {"low": 0.6, "medium": 1.2, "high": 1.8}, "minimum": 0.0, "maximum": 5.0, "unit": "m"},
     "junctionCornerRadiusM": {"values": {"low": 3.0, "medium": 5.5, "high": 8.0}, "minimum": 1.0, "maximum": 20.0, "unit": "m"},
@@ -309,13 +312,14 @@ def build_street_design_parameter_spec(
     return validate_street_design_parameter_spec(spec)
 
 
-def _finite_number(value: Any, field: str, lower: float, upper: float) -> float:
+def _finite_number(value: Any, field: str, lower: float, upper: float | None) -> float:
     try:
         number = float(value)
     except (TypeError, ValueError) as exc:
         raise ParameterSpecError(f"{field} must be numeric.") from exc
-    if not math.isfinite(number) or not lower <= number <= upper:
-        raise ParameterSpecError(f"{field} must be between {lower} and {upper}.")
+    if not math.isfinite(number) or number < lower or (upper is not None and number > upper):
+        limit = f"at least {lower}" if upper is None else f"between {lower} and {upper}"
+        raise ParameterSpecError(f"{field} must be {limit}.")
     return number
 
 
@@ -385,7 +389,7 @@ def validate_street_design_parameter_spec(payload: Mapping[str, Any]) -> Dict[st
     if float(lanes) != float(skeleton.get("laneCount")):
         raise ParameterSpecError("skeleton.laneCount must be an integer.")
     skeleton["laneCount"] = lanes
-    skeleton["laneWidthM"] = _finite_number(skeleton.get("laneWidthM"), "skeleton.laneWidthM", 2.5, 4.5)
+    skeleton["laneWidthM"] = _finite_number(skeleton.get("laneWidthM"), "skeleton.laneWidthM", 0.5, None)
     skeleton["sidewalkWidthM"] = _finite_number(skeleton.get("sidewalkWidthM"), "skeleton.sidewalkWidthM", 1.0, 12.0)
     skeleton["furnishingWidthM"] = _finite_number(skeleton.get("furnishingWidthM"), "skeleton.furnishingWidthM", 0.0, 5.0)
     skeleton["curbWidthM"] = _finite_number(skeleton.get("curbWidthM"), "skeleton.curbWidthM", 0.05, 0.4)

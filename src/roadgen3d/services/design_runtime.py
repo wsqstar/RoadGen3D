@@ -10,6 +10,7 @@ from dataclasses import replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, Mapping, Sequence
+from uuid import uuid4
 
 from ..json_safe import make_json_safe
 from ..semantic_design_layers import (
@@ -1367,17 +1368,18 @@ def _derive_draft_with_llm(
 
 
 def _build_metaurban_out_dir(base_out_dir: Path, plan_id: str) -> Path:
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    timestamp = f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex[:8]}"
     return (Path(base_out_dir).expanduser().resolve() / "metaurban" / str(plan_id) / timestamp).resolve()
 
 
 def _build_graph_template_out_dir(base_out_dir: Path, template_id: str) -> Path:
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    timestamp = f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex[:8]}"
     return (Path(base_out_dir).expanduser().resolve() / "graph_template" / str(template_id) / timestamp).resolve()
 
 
 def _build_reference_annotation_out_dir(base_out_dir: Path, annotation_id: str) -> Path:
-    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    # Concurrent Scenario C workers must never share an output directory.
+    timestamp = f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex[:8]}"
     safe_id = re.sub(r"[^a-zA-Z0-9_.-]+", "-", str(annotation_id or "reference_annotation")).strip("._-")
     safe_id = (safe_id or "reference_annotation")[:96]
     return (Path(base_out_dir).expanduser().resolve() / "reference_annotation" / safe_id / timestamp).resolve()

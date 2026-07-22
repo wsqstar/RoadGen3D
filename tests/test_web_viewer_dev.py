@@ -5,6 +5,7 @@ import os
 import sys
 import time
 from pathlib import Path
+from urllib.parse import quote
 
 import pytest
 
@@ -339,6 +340,41 @@ def test_build_layout_manifest_exposes_plan_overlay_fields(
     assert metadata["furniture_balance_policy"] == "street_focus"
     assert metadata["style_preset"] == "test_style"
     assert metadata["production_step_ids"] == ["road_base"]
+
+
+def test_build_layout_manifest_prefers_production_preview_over_rebuilt_scene(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    repo_root = (tmp_path / "repo").resolve()
+    scene_dir = repo_root / "artifacts" / "run_rebuilt"
+    rebuild_dir = scene_dir / "rebuild"
+    preview_dir = scene_dir / "production_steps"
+    rebuild_dir.mkdir(parents=True)
+    preview_dir.mkdir()
+    rebuilt_scene = rebuild_dir / "scene.glb"
+    production_preview = preview_dir / "07_scene_preview.glb"
+    rebuilt_scene.write_bytes(b"rebuilt")
+    production_preview.write_bytes(b"full-scene")
+    layout_path = scene_dir / "scene_layout.json"
+    layout_path.write_text(
+        json.dumps(
+            {
+                "summary": {"scene_glb_rebuilt_from_layout": True},
+                "outputs": {"scene_glb": str(rebuilt_scene)},
+                "production_steps": [
+                    {"step_id": "scene_preview", "glb_path": str(production_preview)},
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(viewer, "ROOT", repo_root)
+
+    manifest = viewer.build_layout_manifest(layout_path)
+
+    assert quote(str(production_preview), safe="") in manifest["final_scene"]["glb_url"]
+    assert quote(str(rebuilt_scene), safe="") not in manifest["final_scene"]["glb_url"]
 
 
 def test_as_bbox_xz_supports_old_and_new_orders_with_position_hint():

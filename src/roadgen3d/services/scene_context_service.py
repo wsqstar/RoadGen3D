@@ -242,17 +242,14 @@ def select_auto_discovered_road(
     lane_count: int,
     road_selection: str = DEFAULT_ROAD_SELECTION,
 ) -> Tuple[Dict[str, Any], bool, Dict[str, Any]]:
-    """Return one POI-rich road chosen deterministically from discovery results."""
+    """Return one deterministic road, preferring POI-rich context when present."""
 
     discovered_path = artifacts_dir.parent / "m5" / "discovered_poi_roads.jsonl"
     metadata_path = discovered_metadata_path(discovered_path)
     if not discovered_cache_matches(discovered_path, aoi_bbox):
         cached_rows: List[Dict[str, Any]] = []
     else:
-        cached_rows = [
-            row for row in load_discovered_road_records(discovered_path)
-            if qualifies_poi_counts(row.get("poi_types", {}))
-        ]
+        cached_rows = list(load_discovered_road_records(discovered_path))
     auto_discovered = False
 
     if not cached_rows:
@@ -266,20 +263,23 @@ def select_auto_discovered_road(
                 self.province = ""
                 self.bbox = bbox
 
-        roads = discover_poi_roads(_AdhocCity(aoi_bbox), osm_cache_dir)
+        # Sparse POI tagging is common in otherwise valid OSM corridors.  The
+        # default source selector therefore discovers roads broadly and ranks
+        # POI-rich context first, instead of refusing to generate a baseline.
+        roads = discover_poi_roads(
+            _AdhocCity(aoi_bbox),
+            osm_cache_dir,
+            min_poi_count=0,
+            min_poi_score=0.0,
+            min_core_poi_count=0,
+        )
         auto_discovered = True
         write_discovered_roads_jsonl(roads, discovered_path)
         write_discovered_roads_metadata(metadata_path, aoi_bbox)
-        cached_rows = [
-            row for row in load_discovered_road_records(discovered_path)
-            if qualifies_poi_counts(row.get("poi_types", {}))
-        ]
+        cached_rows = list(load_discovered_road_records(discovered_path))
 
     if not cached_rows:
-        raise RuntimeError(
-            "No POI-rich roads found for the current area "
-            "(requires weighted POI score >= 2.0 and at least 1 core POI)."
-        )
+        raise RuntimeError("No usable roads found for the current area.")
 
     ordered_rows = sorted(
         cached_rows,
@@ -291,6 +291,9 @@ def select_auto_discovered_road(
     )
     rng = random.Random(int(seed))
     rng.shuffle(ordered_rows)
+    ordered_rows.sort(
+        key=lambda row: 0 if qualifies_poi_counts(row.get("poi_types", {})) else 1,
+    )
     if str(road_selection).strip().lower() == "walkable_neighborhood":
         preferred_rows = [
             row for row in ordered_rows
@@ -302,6 +305,7 @@ def select_auto_discovered_road(
         ]
         ordered_rows = preferred_rows + fallback_rows
 
+    sparse_candidates: List[Tuple[Dict[str, Any], Dict[str, Any]]] = []
     for row in ordered_rows:
         probe_metrics = probe_discovered_road_context_metrics(
             row,
@@ -314,11 +318,17 @@ def select_auto_discovered_road(
         effective_counts = dict(probe_metrics.get("poi_counts", {}) or {})
         if qualifies_poi_counts(effective_counts):
             return dict(row), bool(auto_discovered), probe_metrics
+        sparse_candidates.append((dict(row), probe_metrics))
 
-    raise RuntimeError(
-        "Auto-discovered roads exist, but none retain enough effective POIs after compose filtering "
-        "for the current width setup."
-    )
+    if sparse_candidates:
+        row, probe_metrics = sparse_candidates[0]
+        probe_metrics = {
+            **dict(probe_metrics),
+            "poi_context_sparse": True,
+            "poi_context_message": "No POI-rich road was available; selected a valid sparse-POI road.",
+        }
+        return row, bool(auto_discovered), probe_metrics
+    raise RuntimeError("Auto-discovered roads could not be evaluated for the current width setup.")
 
 
 def resolve_scene_context(

@@ -205,6 +205,81 @@ def _setup_fake_retrieval(monkeypatch, asset_ids: list[str]) -> None:
     monkeypatch.setattr(street_layout, "FaissIndexStore", FakeIndexStore)
 
 
+def test_backend_random_osm_snapshot_generates_pedestrian_priority_3d(tmp_path: Path, monkeypatch):
+    """Run an unedited, backend-only 3-D generation from a stored OSM sample."""
+    pytest.importorskip("trimesh")
+    import roadgen3d.osm_ingest as osm_ingest
+
+    snapshots = sorted((ROOT / "artifacts" / "starter_validation").glob("seed-*/osm_snapshot.json"))
+    assert snapshots, "the backend OSM smoke pool must contain at least one snapshot"
+    snapshot_path = random.Random(20260722).choice(snapshots)
+    raw_osm = json.loads(snapshot_path.read_text(encoding="utf-8"))
+
+    # Parse the recorded OSM response exactly as production does.  Only the
+    # network fetch is replaced so this remains deterministic and offline.
+    features = osm_ingest.parse_osm_features(raw_osm)
+    selected_road = next(
+        road for road in features.roads
+        if road.highway_type in {"primary", "secondary", "tertiary"}
+    )
+    node_coordinates = [
+        (float(item["lon"]), float(item["lat"]))
+        for item in raw_osm["elements"]
+        if item.get("type") == "node" and "lon" in item and "lat" in item
+    ]
+    assert node_coordinates
+    longitudes, latitudes = zip(*node_coordinates)
+    bbox = (min(longitudes), min(latitudes), max(longitudes), max(latitudes))
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **_kwargs: raw_osm)
+
+    rows = _build_real_rows(tmp_path / "assets")
+    manifest = tmp_path / "assets" / "manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    config = StreetComposeConfig(
+        query="pedestrian-priority complete street",
+        length_m=70.0,
+        road_width_m=max(float(selected_road.width_m), 7.0),
+        sidewalk_width_m=3.5,
+        lane_count=2,
+        density=0.8,
+        seed=20260722,
+        topk_per_category=8,
+        max_trials_per_slot=10,
+        layout_mode="osm",
+        constraint_mode="off",
+        aoi_bbox=bbox,
+        osm_cache_dir=str(tmp_path / "osm_cache"),
+        selected_road_osm_id=selected_road.osm_id,
+        road_selection="primary_road",
+        design_rule_profile="pedestrian_priority_v1",
+        street_furniture_profile="pedestrian_friendly",
+        ped_demand_level="high",
+    )
+
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    layout_path = Path(str(result.outputs["scene_layout"]))
+    glb_path = Path(str(result.outputs["scene_glb"]))
+    layout = json.loads(layout_path.read_text(encoding="utf-8"))
+    surface_qa = layout["summary"]["osm_geometry"]["surface_geometry_qa"]
+    assert snapshot_path.is_file()
+    assert layout_path.is_file() and glb_path.is_file()
+    assert layout["config"]["design_rule_profile"] == "pedestrian_priority_v1"
+    assert surface_qa["ok"] is True
+    assert surface_qa["needle_top_face_count"] == 0
+
+
 def _build_config(seed: int = 42) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="modern clean urban street",
@@ -1619,6 +1694,70 @@ def test_place_building_targets_centers_offset_mesh_and_keeps_lanes_clear(monkey
     assert footprint.intersection(road.buffer(0.05)).area == pytest.approx(0.0)
 
 
+def test_transparent_generated_buildings_clear_roads_and_reference_footprints():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    road = shapely_geometry.box(-20.0, -2.0, 20.0, 2.0)
+    reference_building = shapely_geometry.box(-5.0, 5.0, 5.0, 15.0)
+    placement_ctx = SimpleNamespace(
+        carriageway_polygon=road,
+        carriageway=road,
+        strip_zones={},
+        junction_geometries=[],
+    )
+    config = StreetComposeConfig(
+        query="transparent building clearance",
+        length_m=40.0,
+        road_width_m=4.0,
+        sidewalk_width_m=2.0,
+        lane_count=2,
+        density=1.0,
+        seed=11,
+        topk_per_category=1,
+        max_trials_per_slot=1,
+        layout_mode="osm",
+        building_representation="transparent_massing",
+        constraint_mode="off",
+    )
+    target = {
+        "target_id": "generated_lot",
+        "target_kind": "lot",
+        "source": "road_clearance_fill",
+        "placement_xz": (0.0, 8.0),
+        "center_xz": (0.0, 8.0),
+        "street_edge_xz": (0.0, 2.0),
+        "frontage_width_m": 8.0,
+        "depth_m": 6.0,
+        "yaw_deg": 0.0,
+        "theme_id": "theme_000",
+        "land_use_type": "commercial",
+        "side": "left",
+        "height_class": "midrise",
+        "target_height_m": 12.0,
+        "front_setback_m": 0.25,
+        "placement_strategy": "road_clearance_street_facade",
+    }
+
+    placements, _plans, _predictions, summary, _next_idx = street_layout._place_building_targets(
+        targets=[target],
+        config=config,
+        theme_segments=(),
+        resolved_program=SimpleNamespace(),
+        placement_ctx=placement_ctx,
+        embedder=object(),
+        index_store=object(),
+        asset_by_id={},
+        mesh_cache=street_layout._LazyMeshCache({}),
+        rng=random.Random(11),
+        start_instance_index=1,
+        road_type="urban",
+        reference_building_geometry=reference_building,
+    )
+
+    assert not placements
+    assert summary["building_lane_intrusion_rejected_count"] == 1
+
+
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
@@ -2961,6 +3100,41 @@ def test_osm_curb_and_sidewalk_own_disjoint_top_surfaces():
         for node_name in scene.graph.nodes_geometry
         if str(node_name).startswith("curb_")
     ]) == pytest.approx(street_layout.DEFAULT_CURB_REVEAL_M)
+
+
+def test_osm_sidewalk_meshing_repairs_nearly_collinear_boolean_vertices():
+    """Numerical overlay slivers must be repaired before strict mesh QA."""
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    # This ring reproduces the long, near-collinear triangles emitted after a
+    # sidewalk boolean overlay.  The surface itself is valid; only the
+    # constrained-Delaunay top partition is numerically unsuitable.
+    sidewalk_zone = shapely_geometry.Polygon(
+        [
+            (-25.541, 41.835),
+            (-25.534, 41.610),
+            (-25.689, 46.153),
+            (-25.854, 50.996),
+            (-25.844, 50.696),
+            (-25.999, 55.239),
+            (-20.000, 55.239),
+            (-20.000, 41.610),
+        ]
+    )
+    carriageway = shapely_geometry.box(-19.0, 41.610, -18.0, 55.239)
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        sidewalk_zone=sidewalk_zone,
+        road_arm_geometries=[carriageway],
+        junction_geometries=[],
+        strip_zones={},
+    )
+
+    street_layout._build_osm_base_scene(placement_ctx)
+
+    assert placement_ctx.surface_geometry_qa["needle_top_face_count"] == 0
+    assert placement_ctx.surface_geometry_qa["ok"]
 
 
 def test_osm_base_scene_renders_bus_bay_surface_and_markings():
