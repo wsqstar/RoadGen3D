@@ -24,6 +24,9 @@ git merge --ff-only FETCH_HEAD
 git submodule sync -- web/viewer src/roadgen3d/eval_engine_ext
 git submodule update --init --depth 1 web/viewer src/roadgen3d/eval_engine_ext
 
+if ! .venv/bin/python -m pip --version >/dev/null 2>&1; then
+  .venv/bin/python -m ensurepip --upgrade
+fi
 .venv/bin/python -m pip install --disable-pip-version-check \
   -r ops/requirements-teaching-server.txt
 
