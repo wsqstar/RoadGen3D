@@ -30,6 +30,8 @@ from web.api.teaching_schemas import (
     RevisionCompareRequest,
     RevisionCreateRequest,
     RevisionEditRequest,
+    RevisionForkRequest,
+    ReferenceAnnotationImportRequest,
     RevisionImportLayoutRequest,
     SceneGenerateRequest,
     SceneJobAdoptRequest,
@@ -320,6 +322,11 @@ def import_geojson(project_id: str, body: GeoJsonImportRequest, request: Request
     return _call(lambda: _service(request).import_geojson(actor["id"], project_id, body.geojson))
 
 
+@router.post("/projects/{project_id}/sources/reference-annotation", status_code=201)
+def import_reference_annotation(project_id: str, body: ReferenceAnnotationImportRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).import_reference_annotation(actor["id"], project_id, body.annotation))
+
+
 @router.post("/projects/{project_id}/sources/osm", status_code=202)
 def import_osm(project_id: str, body: OsmImportRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     def run():
@@ -407,15 +414,21 @@ def approve_source_review(project_id: str, source_id: str, body: AnnotationRevie
 def generate_scene(project_id: str, body: SceneGenerateRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
     def run():
         service = _service(request)
-        job = service.create_job(actor["id"], project_id, kind="scene_generate", payload={
-            "source_id": body.source_id,
-            "prompt": body.prompt,
-            "generation_mode": body.generation_mode,
-            "parent_revision_id": body.parent_revision_id,
-            "goal_weights": body.goal_weights,
-            "candidate_count": body.candidate_count,
-            "minimum_scores": body.minimum_scores,
-        })
+        job = service.create_job(
+            actor["id"],
+            project_id,
+            kind="scene_generate",
+            payload={
+                "source_id": body.source_id,
+                "prompt": body.prompt,
+                "generation_mode": body.generation_mode,
+                "parent_revision_id": body.parent_revision_id,
+                "goal_weights": body.goal_weights,
+                "candidate_count": body.candidate_count,
+                "minimum_scores": body.minimum_scores,
+            },
+            deduplicate_active=True,
+        )
         return _dispatch_job(request, job)
     return _call(run)
 
@@ -475,6 +488,18 @@ def edit_revision(project_id: str, revision_id: str, body: RevisionEditRequest, 
         revision = service.edit_revision(actor["id"], project_id, revision_id, commands=body.commands, branch_kind=body.branch_kind, label=body.label, provenance=body.provenance)
         return _auto_evaluate_revision(request, actor, project_id, revision, auto_evaluate=body.auto_evaluate, profile_id=body.evaluation_profile_id, weights=body.evaluation_weights, evaluation_mode=body.auto_evaluate_mode)
     return _call(run)
+
+
+@router.post("/projects/{project_id}/revisions/{revision_id}/fork", status_code=201)
+def fork_revision(project_id: str, revision_id: str, body: RevisionForkRequest, request: Request, actor: dict[str, Any] = Depends(_actor)):
+    return _call(lambda: _service(request).fork_revision(
+        actor["id"],
+        project_id,
+        revision_id,
+        branch_kind=body.branch_kind,
+        label=body.label,
+        provenance=body.provenance,
+    ))
 
 
 @router.get("/projects/{project_id}/revisions")

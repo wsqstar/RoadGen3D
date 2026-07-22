@@ -85,6 +85,10 @@ class GeoJsonImportRequest(BaseModel):
     geojson: Dict[str, Any]
 
 
+class ReferenceAnnotationImportRequest(BaseModel):
+    annotation: Dict[str, Any]
+
+
 class OsmImportRequest(BaseModel):
     force_refetch: bool = False
 
@@ -149,6 +153,12 @@ class RevisionEditRequest(BaseModel):
     auto_evaluate_mode: Literal["structured", "full"] = "structured"
     evaluation_profile_id: str | None = None
     evaluation_weights: Dict[str, float] | None = None
+
+
+class RevisionForkRequest(BaseModel):
+    branch_kind: Literal["human_edit", "ai_edit"] = "human_edit"
+    label: str = Field(default="Forked scene", max_length=180)
+    provenance: Dict[str, Any] = Field(default_factory=dict)
 
 
 class EvaluationProfileCreateRequest(BaseModel):

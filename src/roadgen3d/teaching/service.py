@@ -58,6 +58,7 @@ from .models import (
 
 
 logger = logging.getLogger(__name__)
+_JOB_CREATION_LOCK = Lock()
 
 
 PUBLIC_SCENE_GENERATION_FAILURE_MESSAGE = (
@@ -765,6 +766,41 @@ class TeachingPlatformService:
             provenance=provenance,
         )
 
+    def import_reference_annotation(self, actor_id: str, project_id: str, annotation: Mapping[str, Any]) -> dict[str, Any]:
+        """Persist an approved annotation without mislabelling its local coordinates as WGS84."""
+        source_id = new_id()
+        normalized_source = normalize_scene_source({
+            "kind": "reference_annotation",
+            "source_id": source_id,
+            "producer": "manual",
+            "annotation": annotation,
+        })
+        graph_payload = normalized_source.to_graph_payload()
+        normalized = {
+            "geojson": dict(normalized_source.geojson),
+            "annotation": dict(normalized_source.annotation),
+            "role_counts": dict(graph_payload.get("summary") or {}),
+            "warnings": list(normalized_source.warnings),
+            "source_alignment": dict(normalized_source.source_alignment),
+            "quality_report": {
+                "source_kind": "reference_annotation",
+                "annotation_sha256": normalized_source.source.get("annotation_sha256"),
+                "aligned_building_count": len(normalized_source.aligned_buildings),
+            },
+        }
+        return self._persist_normalized_source(
+            actor_id,
+            project_id,
+            source_id=source_id,
+            kind="reference_annotation",
+            raw_payload=annotation,
+            raw_kind="reference_annotation_raw",
+            raw_filename=f"{source_id}-raw-annotation.json",
+            raw_content_type="application/json",
+            normalized=normalized,
+            provenance={"coordinate_contract": "reference_annotation_local_metric"},
+        )
+
     def _persist_normalized_source(
         self,
         actor_id: str,
@@ -1343,68 +1379,7 @@ class TeachingPlatformService:
                 if progress_callback is not None:
                     progress_callback(payload)
 
-        def generate_candidate(candidate_index: int, candidate_spec: Mapping[str, Any]) -> dict[str, Any]:
-            compose_patch = dict(candidate_spec["compose_config_patch"])
-            draft = parse_design_draft(
-                {
-                    "normalized_scene_query": design_query,
-                    "compose_config_patch": compose_patch,
-                    "design_summary": f"Course project {resolved_mode} candidate {candidate_index + 1}/{len(candidate_specs)} for {design_query}",
-                    "risk_notes": [],
-                },
-                evidence=(),
-                fallback_query=design_query,
-                current_patch=compose_patch,
-            )
-            result = dict(generator(
-                draft,
-                patch_overrides=course_building_patch,
-                scene_context={
-                    "layout_mode": "reference_annotation",
-                    "reference_annotation": annotation,
-                    "source_context": source_context,
-                },
-                generation_options={
-                    "course_project_id": project_id,
-                    "preset_id": "llm" if resolved_mode == "llm" else "skip_llm",
-                    "skip_llm": resolved_mode != "llm",
-                    "derive_parameters_with_llm": resolved_mode == "llm",
-                    "knowledge_source": "none",
-                    "random_seed": int(candidate_spec["seed"]),
-                    "retain_glb_policy": "always",
-                },
-                progress_callback=lambda event: forward_parallel_generation_progress(candidate_index, event),
-            ))
-            return {
-                "candidate_index": candidate_index,
-                "candidate_spec": dict(candidate_spec),
-                "compose_patch": compose_patch,
-                "result": result,
-            }
-
-        parallel_limit = min(2, len(candidate_specs))
-        if len(candidate_specs) > parallel_limit:
-            emit(
-                "candidate_queue",
-                8,
-                f"Starting {parallel_limit} Scenario C candidates; {len(candidate_specs) - parallel_limit} queued.",
-                candidate_count=len(candidate_specs),
-                parallel_limit=parallel_limit,
-                queued_candidate_count=len(candidate_specs) - parallel_limit,
-            )
-        generated_records: list[dict[str, Any] | None] = [None for _ in candidate_specs]
-        with ThreadPoolExecutor(max_workers=parallel_limit, thread_name_prefix="roadgen-candidate") as executor:
-            futures = {
-                executor.submit(generate_candidate, candidate_index, candidate_spec): candidate_index
-                for candidate_index, candidate_spec in enumerate(candidate_specs)
-            }
-            for future in as_completed(futures):
-                record = future.result()
-                generated_records[int(record["candidate_index"])] = record
-
-        for generated_record in generated_records:
-            if generated_record is None:
-                raise RuntimeError("Scenario C candidate generation returned no result.")
+        def persist_candidate_revision(generated_record: Mapping[str, Any]) -> dict[str, Any]:
             candidate_index = int(generated_record["candidate_index"])
             candidate_spec = dict(generated_record["candidate_spec"])
             compose_patch = dict(generated_record["compose_patch"])
@@ -1437,7 +1412,7 @@ class TeachingPlatformService:
                     "title": str(step.get("title") or step.get("step_id") or f"Production step {step_index + 1}"),
                     "data": step_path.read_bytes(),
                 })
-            revision = self.create_revision(
+            return self.create_revision(
                 actor_id,
                 project_id,
                 layout=layout_payload,
@@ -1471,6 +1446,76 @@ class TeachingPlatformService:
                     "source_alignment": source_context.get("source_alignment"),
                 },
             )
+
+        def generate_candidate(candidate_index: int, candidate_spec: Mapping[str, Any]) -> dict[str, Any]:
+            compose_patch = dict(candidate_spec["compose_config_patch"])
+            draft = parse_design_draft(
+                {
+                    "normalized_scene_query": design_query,
+                    "compose_config_patch": compose_patch,
+                    "design_summary": f"Course project {resolved_mode} candidate {candidate_index + 1}/{len(candidate_specs)} for {design_query}",
+                    "risk_notes": [],
+                },
+                evidence=(),
+                fallback_query=design_query,
+                current_patch=compose_patch,
+            )
+            result = dict(generator(
+                draft,
+                patch_overrides=course_building_patch,
+                scene_context={
+                    "layout_mode": "reference_annotation",
+                    "reference_annotation": annotation,
+                    "source_context": source_context,
+                },
+                generation_options={
+                    "course_project_id": project_id,
+                    "preset_id": "llm" if resolved_mode == "llm" else "skip_llm",
+                    "skip_llm": resolved_mode != "llm",
+                    "derive_parameters_with_llm": resolved_mode == "llm",
+                    "knowledge_source": "none",
+                    "random_seed": int(candidate_spec["seed"]),
+                    "retain_glb_policy": "always",
+                },
+                progress_callback=lambda event: forward_parallel_generation_progress(candidate_index, event),
+            ))
+            record = {
+                "candidate_index": candidate_index,
+                "candidate_spec": dict(candidate_spec),
+                "compose_patch": compose_patch,
+                "result": result,
+            }
+            return {
+                **record,
+                "revision": persist_candidate_revision(record),
+            }
+
+        parallel_limit = min(2, len(candidate_specs))
+        if len(candidate_specs) > parallel_limit:
+            emit(
+                "candidate_queue",
+                8,
+                f"Starting {parallel_limit} Scenario C candidates; {len(candidate_specs) - parallel_limit} queued.",
+                candidate_count=len(candidate_specs),
+                parallel_limit=parallel_limit,
+                queued_candidate_count=len(candidate_specs) - parallel_limit,
+            )
+        generated_records: list[dict[str, Any] | None] = [None for _ in candidate_specs]
+        with ThreadPoolExecutor(max_workers=parallel_limit, thread_name_prefix="roadgen-candidate") as executor:
+            futures = {
+                executor.submit(generate_candidate, candidate_index, candidate_spec): candidate_index
+                for candidate_index, candidate_spec in enumerate(candidate_specs)
+            }
+            for future in as_completed(futures):
+                record = future.result()
+                generated_records[int(record["candidate_index"])] = record
+
+        for generated_record in generated_records:
+            if generated_record is None:
+                raise RuntimeError("Scenario C candidate generation returned no result.")
+            candidate_index = int(generated_record["candidate_index"])
+            candidate_spec = dict(generated_record["candidate_spec"])
+            revision = dict(generated_record["revision"])
             evaluation = None
             if evaluator is not None and profile:
                 evaluation = self.create_evaluation_run(
@@ -1891,6 +1936,35 @@ class TeachingPlatformService:
             provenance={"edit_protocol": "roadgen3d.scene_edit.v1", "edit_result": edited, **dict(provenance or {})},
         )
 
+    def fork_revision(self, actor_id: str, project_id: str, revision_id: str, *, branch_kind: str, label: str, provenance: Mapping[str, Any] | None = None) -> dict[str, Any]:
+        """Create a traceable branch point without pretending that an edit occurred."""
+        with self.database.session() as db:
+            project, _ = self._require_project(db, actor_id, project_id, write=True)
+            revision = db.get(SceneRevisionRecord, revision_id)
+            if revision is None or revision.project_id != project.id:
+                raise NotFound("Base revision not found in this project.")
+            layout_artifact = db.get(Artifact, revision.layout_artifact_id) if revision.layout_artifact_id else None
+            glb_artifact = db.get(Artifact, revision.glb_artifact_id) if revision.glb_artifact_id else None
+            if layout_artifact is None or glb_artifact is None:
+                raise Conflict("Branching requires both scene_layout and scene_glb artifacts.")
+            layout_key, glb_key, source_id = layout_artifact.object_key, glb_artifact.object_key, revision.source_id
+        with self.artifacts.open(layout_key) as handle:
+            layout = json.loads(handle.read().decode("utf-8"))
+        with self.artifacts.open(glb_key) as handle:
+            glb = handle.read()
+        return self.create_revision(
+            actor_id,
+            project_id,
+            layout=layout,
+            glb=glb,
+            source_id=source_id,
+            parent_id=revision_id,
+            branch_kind=branch_kind,
+            label=label,
+            commands=[],
+            provenance={"branch_protocol": "roadgen3d.scene_branch.v1", "branch_point": True, **dict(provenance or {})},
+        )
+
     # ---- metrics and comparisons -------------------------------------------------------
     def create_evaluation_profile(self, actor_id: str, course_id: str, *, name: str, weights: Mapping[str, Any]) -> dict[str, Any]:
         with self.database.session() as db:
@@ -2031,18 +2105,40 @@ class TeachingPlatformService:
             return self._artifact(artifact)
 
     # ---- jobs --------------------------------------------------------------------------
-    def create_job(self, actor_id: str, project_id: str | None, *, kind: str, payload: Mapping[str, Any]) -> dict[str, Any]:
-        with self.database.session() as db:
-            if project_id:
-                self._require_project(db, actor_id, project_id, write=True)
-            active = int(db.scalar(select(func.count(Job.id)).where(Job.owner_id == actor_id, Job.status.in_(("queued", "running")))) or 0)
-            limit = max(1, int(os.getenv("ROADGEN_MAX_ACTIVE_JOBS_PER_USER", "3")))
-            if active >= limit:
-                raise Conflict(f"Active job quota reached ({active}/{limit}).")
-            job = Job(project_id=project_id, owner_id=actor_id, kind=kind, payload=dict(payload))
-            db.add(job)
-            db.flush()
-            return self._job(job)
+    def create_job(
+        self,
+        actor_id: str,
+        project_id: str | None,
+        *,
+        kind: str,
+        payload: Mapping[str, Any],
+        deduplicate_active: bool = False,
+    ) -> dict[str, Any]:
+        normalized_payload = dict(payload)
+        with _JOB_CREATION_LOCK:
+            with self.database.session() as db:
+                if project_id:
+                    self._require_project(db, actor_id, project_id, write=True)
+                if deduplicate_active:
+                    active_jobs = db.scalars(
+                        select(Job).where(
+                            Job.owner_id == actor_id,
+                            Job.project_id == project_id,
+                            Job.kind == kind,
+                            Job.status.in_(("queued", "running")),
+                        ).order_by(Job.created_at.asc())
+                    ).all()
+                    for active_job in active_jobs:
+                        if dict(active_job.payload or {}) == normalized_payload:
+                            return self._job(active_job)
+                active = int(db.scalar(select(func.count(Job.id)).where(Job.owner_id == actor_id, Job.status.in_(("queued", "running")))) or 0)
+                limit = max(1, int(os.getenv("ROADGEN_MAX_ACTIVE_JOBS_PER_USER", "3")))
+                if active >= limit:
+                    raise Conflict(f"Active job quota reached ({active}/{limit}).")
+                job = Job(project_id=project_id, owner_id=actor_id, kind=kind, payload=normalized_payload)
+                db.add(job)
+                db.flush()
+                return self._job(job)
 
     def list_jobs(
         self,
