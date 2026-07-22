@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import os
 from logging.config import fileConfig
+from pathlib import Path
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool
+from sqlalchemy.engine import make_url
 
 from roadgen3d.teaching.database import Base
 from roadgen3d.teaching import models  # noqa: F401
@@ -17,6 +19,14 @@ config.set_main_option("sqlalchemy.url", os.getenv("ROADGEN_DATABASE_URL", confi
 target_metadata = Base.metadata
 
 
+def ensure_sqlite_parent() -> None:
+    """Create the database directory before Alembic opens a file-backed SQLite URL."""
+    url = make_url(config.get_main_option("sqlalchemy.url"))
+    if url.get_backend_name() != "sqlite" or not url.database or url.database == ":memory:":
+        return
+    Path(url.database).expanduser().resolve().parent.mkdir(parents=True, exist_ok=True)
+
+
 def run_migrations_offline() -> None:
     context.configure(url=config.get_main_option("sqlalchemy.url"), target_metadata=target_metadata, literal_binds=True, compare_type=True)
     with context.begin_transaction():
@@ -24,6 +34,7 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
+    ensure_sqlite_parent()
     connectable = engine_from_config(config.get_section(config.config_ini_section, {}), prefix="sqlalchemy.", poolclass=pool.NullPool)
     with connectable.connect() as connection:
         context.configure(connection=connection, target_metadata=target_metadata, compare_type=True)
