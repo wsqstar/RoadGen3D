@@ -50,6 +50,14 @@ ROADGEN_SYNC_SSH_KEY=/Users/shiqi/.ssh/docker_container_key \
   ./ops/container/sync-teaching-container.sh
 ```
 
+容器完成 Git checkout 初始化后，日常代码更新优先使用 Git 工作流。脚本会拒绝覆盖远端 tracked-file 修改，并按“备份、fast-forward、子模块、依赖、前端构建、迁移、重启、健康检查”的顺序执行：
+
+```bash
+/workspace/RoadGen3D/ops/container/update-from-git.sh
+```
+
+`assets/`、`data/` 采用 sparse-checkout 排除并作为教学数据保留在工作区；用户状态仍在 `/workspace/roadgen3d-data`，两者都不受 `git pull` 覆盖。新增或修改大型教学数据时仍使用上面的安全 rsync 脚本。
+
 ## 服务管理
 
 ```bash
