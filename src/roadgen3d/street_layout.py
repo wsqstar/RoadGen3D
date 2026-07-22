@@ -11679,10 +11679,10 @@ def _place_building_targets(
         )
         target_source = str(target.get("source", "") or "")
         # Transparent rendering is a visual choice, not permission to bypass
-        # road/building collision checks.  Only an immutable OSM context
-        # footprint may retain its exact source geometry.
-        exact_osm_context_massing = target_source == "osm_context_white_massing"
-        use_transparent_massing = exact_osm_context_massing or transparent_massing
+        # road/building collision checks. Immutable source footprints retain
+        # their exact geometry; every generated target must clear them.
+        locked_reference_footprint = target_source in {"osm", "osm_context_white_massing", "building_region"}
+        use_transparent_massing = locked_reference_footprint or transparent_massing
         force_analytical_procedural_building = (
             str(getattr(config, "style_preset", "") or "").strip().lower() == "analytical_diorama_v1"
         )
@@ -11740,7 +11740,7 @@ def _place_building_targets(
             "course_transparent_massing"
             if transparent_massing
             else "osm_white_massing"
-            if exact_osm_context_massing
+            if locked_reference_footprint
             else "procedural_fallback"
         )
         scale_decision: Dict[str, object] = {}
@@ -11820,8 +11820,8 @@ def _place_building_targets(
                 height_class=str(target.get("height_class", "midrise") or "midrise"),
                 theme_name=theme_name,
                 target_height_m=_target_height_m,
-                polygon_xz=(target.get("polygon_xz") if exact_osm_context_massing else None),
-                center_xz=(target_center_xz if exact_osm_context_massing else None),
+                polygon_xz=(target.get("polygon_xz") if locked_reference_footprint else None),
+                center_xz=(target_center_xz if locked_reference_footprint else None),
             )
             # Store the fallback entry (includes full mesh)
             mesh_cache.set_full_entry(asset_id, fallback_entry)
@@ -11858,7 +11858,7 @@ def _place_building_targets(
         )
         building_yaw_deg = (
             0.0
-            if exact_osm_context_massing
+            if locked_reference_footprint
             else _final_asset_yaw_deg(
                 desired_front_yaw_deg=desired_building_front_yaw,
                 canonical_front=building_canonical_front,
@@ -11867,7 +11867,7 @@ def _place_building_targets(
         )
         placement_strategy = str(target.get("placement_strategy", "") or "")
         front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
-        if not exact_osm_context_massing and "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
+        if not locked_reference_footprint and "interior" not in placement_strategy and len(street_edge_xz_raw) >= 2:
             target_center_xz = _front_aligned_building_visual_center(
                 entry=entry,
                 yaw_deg=float(building_yaw_deg),
@@ -11886,13 +11886,13 @@ def _place_building_targets(
             center_x=float(getattr(entry, "center_x", 0.0) or 0.0),
             center_z=float(getattr(entry, "center_z", 0.0) or 0.0),
             scale=scale_xyz,
-            placement_ctx=None if exact_osm_context_massing else placement_ctx,
+            placement_ctx=None if locked_reference_footprint else placement_ctx,
             forbidden_geometry=(
                 building_forbidden_geom
-                if exact_osm_context_massing
+                if locked_reference_footprint
                 else generated_building_forbidden_geom
             ),
-            config=None if exact_osm_context_massing else config,
+            config=None if locked_reference_footprint else config,
             bbox_clearance_m=0.15,
             vehicle_clearance_m=0.40,
         )
@@ -11929,7 +11929,7 @@ def _place_building_targets(
             max_overlap_area = max(max_overlap_area, _bbox_overlap_area(bbox, existing_bbox))
             if max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
                 break
-        if not exact_osm_context_massing and max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
+        if not locked_reference_footprint and max_overlap_area > _BUILDING_COLLISION_MIN_OVERLAP_AREA_M2:
             building_overlap_rejected_count += 1
             add_skip_reason("building_bbox_overlap")
             if row is not None:
@@ -11971,7 +11971,7 @@ def _place_building_targets(
             }
         building_asset_scale_mode = (
             "osm_white_massing_exact_footprint_bounds"
-            if exact_osm_context_massing
+            if locked_reference_footprint
             else ("building_real_preserve" if row is not None else "procedural_fallback_fit")
         )
         instance_id = f"inst_{instance_index:04d}"
@@ -12212,6 +12212,7 @@ def _place_surrounding_buildings(
         "frontage_coverage_by_side": {"left": {}, "right": {}},
         "frontage_gap_stats_by_side": {"left": {}, "right": {}},
     }
+    reference_building_geometry = _projected_building_footprint_geometry(projected_features)
 
     if mode == "footprint_based":
         asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
@@ -12324,7 +12325,10 @@ def _place_surrounding_buildings(
             seed=int(getattr(config, "seed", 0) or 0),
             front_setback_min_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
             front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
-            forbidden_geometry=building_forbidden_geometry(placement_ctx),
+            forbidden_geometry=_merge_building_obstacles(
+                building_forbidden_geometry(placement_ctx),
+                reference_building_geometry,
+            ),
         )
         if road_clearance_lots:
             legacy_lot_count = int(len(generated_lots))
@@ -12397,6 +12401,7 @@ def _place_surrounding_buildings(
         rng=rng,
         start_instance_index=start_instance_index,
         road_type=road_type,
+        reference_building_geometry=reference_building_geometry,
     )
 
     occupied_building_cells = sum(
