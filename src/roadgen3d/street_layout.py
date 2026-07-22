@@ -7393,6 +7393,13 @@ def _build_osm_base_scene(
         "removed_surface_sliver_count": int(removed_sidewalk_sliver_count + removed_curb_sliver_count),
     }
     setattr(placement_ctx, "surface_geometry_qa", surface_geometry_qa)
+    # Persist the canonical surfaces that are actually sent to mesh
+    # generation.  The raw placement polygons may be empty or omit junction
+    # repairs even when road-arm geometry produced a valid rendered surface.
+    # Downstream 2D/top-down views must describe the generated scene rather
+    # than re-serializing those stale placement inputs.
+    setattr(placement_ctx, "rendered_carriageway", vehicle_surface_zone)
+    setattr(placement_ctx, "rendered_sidewalk", sidewalk_render_zone)
     scene.metadata["surface_geometry_qa"] = surface_geometry_qa
 
     scene_bounds: List[Tuple[float, float, float, float]] = []
@@ -7953,6 +7960,9 @@ def _build_osm_base_scene(
             _place_zone_furniture_mesh(placeholder, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
 
     if not getattr(vehicle_surface_zone, "is_empty", True):
+        carriageway_node_count_before = sum(
+            1 for role in surface_node_roles.values() if role == "carriageway"
+        )
         _extrude_polygon(
             vehicle_surface_zone,
             0.06,
@@ -7962,6 +7972,15 @@ def _build_osm_base_scene(
             surface_role="carriageway",
             top_only=has_bus_bay_vehicle_zone,
         )
+        carriageway_node_count_after = sum(
+            1 for role in surface_node_roles.values() if role == "carriageway"
+        )
+        if carriageway_node_count_after <= carriageway_node_count_before:
+            raise ValueError(
+                "Required carriageway paving produced no renderable mesh nodes"
+            )
+    else:
+        raise ValueError("Required carriageway paving geometry is empty")
     if not sidewalk_render_zone.is_empty:
         _extrude_polygon(
             sidewalk_render_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
@@ -9660,8 +9679,12 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
     marking_geometry_qa = getattr(placement_ctx, "marking_geometry_qa", None)
     if isinstance(marking_geometry_qa, Mapping):
         result["marking_geometry_qa"] = dict(marking_geometry_qa)
-    carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
-    sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
+    carriageway = getattr(placement_ctx, "rendered_carriageway", None)
+    if carriageway is None or getattr(carriageway, "is_empty", True):
+        carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
+    sidewalk = getattr(placement_ctx, "rendered_sidewalk", None)
+    if sidewalk is None or getattr(sidewalk, "is_empty", True):
+        sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
     if not carriageway.is_empty:
         result["carriageway_rings"] = _extract_rings(carriageway)
     if not sidewalk.is_empty:
