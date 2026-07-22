@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+import os
+from urllib.error import HTTPError, URLError
+from urllib.request import Request as UrlRequest, urlopen
 from pathlib import Path
 from typing import Any, Dict
 
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 
 from roadgen3d.graph_templates import (
     get_graph_template,
@@ -36,6 +39,7 @@ from web.api.schemas import (
 )
 
 router = APIRouter(tags=["catalog"])
+ROOT = Path(__file__).resolve().parents[3]
 
 
 @router.get("/")
@@ -67,6 +71,52 @@ def health(request: Request) -> Dict[str, Any]:
 def list_china_cities(request: Request) -> Dict[str, Any]:
     service = request.app.state.design_service
     return make_json_safe({"items": service.list_china_cities()})
+
+
+@router.get("/api/geo/osm-tiles/{zoom}/{tile_x}/{tile_y}.png")
+def get_osm_tile(zoom: int, tile_x: int, tile_y: int) -> Response:
+    """Proxy and cache OSM raster tiles so browsers do not depend on direct tile access."""
+    if zoom < 0 or zoom > 19:
+        raise HTTPException(status_code=400, detail="OSM tile zoom must be between 0 and 19.")
+    tile_limit = 1 << zoom
+    if tile_x < 0 or tile_y < 0 or tile_x >= tile_limit or tile_y >= tile_limit:
+        raise HTTPException(status_code=400, detail="OSM tile coordinates are outside the zoom grid.")
+
+    cache_root = Path(os.getenv("ROADGEN_OSM_TILE_CACHE", ROOT / "artifacts" / "osm_tile_cache"))
+    cache_path = cache_root / str(zoom) / str(tile_x) / f"{tile_y}.png"
+    response_headers = {"Cache-Control": "public, max-age=86400, stale-if-error=604800"}
+    if cache_path.is_file():
+        return FileResponse(cache_path, media_type="image/png", headers=response_headers)
+
+    upstream_template = os.getenv(
+        "ROADGEN_OSM_TILE_URL",
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    )
+    upstream_url = upstream_template.format(z=zoom, x=tile_x, y=tile_y)
+    request = UrlRequest(
+        upstream_url,
+        headers={
+            "User-Agent": os.getenv(
+                "ROADGEN_OSM_TILE_USER_AGENT",
+                "RoadGen3D/0.2 (+https://github.com/wsqstar/RoadGen3D)",
+            ),
+            "Accept": "image/png,image/*;q=0.8",
+        },
+    )
+    try:
+        with urlopen(request, timeout=15) as upstream:
+            content_type = str(upstream.headers.get("Content-Type") or "").lower()
+            payload = upstream.read(2_000_001)
+    except (HTTPError, URLError, TimeoutError) as exc:
+        raise HTTPException(status_code=502, detail="OSM tile upstream is unavailable.") from exc
+    if len(payload) > 2_000_000 or not content_type.startswith("image/"):
+        raise HTTPException(status_code=502, detail="OSM tile upstream returned an invalid response.")
+
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_path = cache_path.with_suffix(".png.tmp")
+    temporary_path.write_bytes(payload)
+    temporary_path.replace(cache_path)
+    return Response(content=payload, media_type="image/png", headers=response_headers)
 
 
 @router.get("/api/reference-plans")
@@ -174,4 +224,3 @@ def osm_semantic_preview(request: OsmSemanticPreviewRequestModel) -> Dict[str, A
     except (RuntimeError, ValueError) as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     return make_json_safe(payload)
-
