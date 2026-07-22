@@ -43,20 +43,32 @@ class TeachingDatabase:
     def _ensure_compatibility_columns(self) -> None:
         """Apply the small additive migration needed by existing deployments."""
 
-        inspector = inspect(self.engine)
-        if "users" not in inspector.get_table_names():
-            return
-        columns = {item["name"] for item in inspector.get_columns("users")}
-        if "guest_recovery_key" not in columns:
-            try:
-                with self.engine.begin() as connection:
-                    connection.execute(text("ALTER TABLE users ADD COLUMN guest_recovery_key VARCHAR(96)"))
-            except OperationalError:
-                # Another API/worker process may have completed the migration.
-                refreshed = {item["name"] for item in inspect(self.engine).get_columns("users")}
-                if "guest_recovery_key" not in refreshed:
-                    raise
         with self.engine.begin() as connection:
+            is_postgresql = connection.dialect.name == "postgresql"
+            if is_postgresql:
+                # API and all RQ workers initialize concurrently. Serialize
+                # compatibility DDL so separate processes cannot race while
+                # adding the same column or index to an existing deployment.
+                connection.execute(text("SELECT pg_advisory_xact_lock(724720333)"))
+
+            inspector = inspect(connection)
+            if "users" not in inspector.get_table_names():
+                return
+            columns = {item["name"] for item in inspector.get_columns("users")}
+            if "guest_recovery_key" not in columns:
+                try:
+                    if is_postgresql:
+                        connection.execute(text(
+                            "ALTER TABLE users ADD COLUMN IF NOT EXISTS "
+                            "guest_recovery_key VARCHAR(96)"
+                        ))
+                    else:
+                        connection.execute(text("ALTER TABLE users ADD COLUMN guest_recovery_key VARCHAR(96)"))
+                except OperationalError:
+                    # Another SQLite process may have completed the migration.
+                    refreshed = {item["name"] for item in inspect(connection).get_columns("users")}
+                    if "guest_recovery_key" not in refreshed:
+                        raise
             connection.execute(text(
                 "CREATE UNIQUE INDEX IF NOT EXISTS ix_users_guest_recovery_key "
                 "ON users (guest_recovery_key)"
