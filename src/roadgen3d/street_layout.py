@@ -1655,7 +1655,7 @@ def _validate_export_format(export_format: str) -> str:
 def _load_real_manifest(
     manifest_path: Path,
     *,
-    require_latent: bool = True,
+    require_latent: bool = False,
 ) -> List[Dict[str, object]]:
     if not manifest_path.exists():
         raise FileNotFoundError(f"real manifest not found: {manifest_path}")
@@ -3465,8 +3465,8 @@ def _pick_category_candidate(
     query: str,
     category: str,
     topk: int,
-    embedder: ClipTextEmbedder,
-    index_store: FaissIndexStore,
+    embedder: Optional[ClipTextEmbedder],
+    index_store: Optional[FaissIndexStore],
     asset_by_id: Dict[str, Dict[str, object]],
     category_pool: List[Dict[str, object]],
     used_asset_ids: set[str],
@@ -3542,9 +3542,11 @@ def _pick_category_candidate(
         row, score = candidates[pick_idx]
         return row, float(score), pick_idx
 
-    slot_query = f"{query}, {category} street asset"
-    query_embedding = embedder.encode_texts([slot_query])
-    hits = index_store.search(query_embedding, topk=max(1, int(topk)))[0]
+    hits = []
+    if embedder is not None and index_store is not None:
+        slot_query = f"{query}, {category} street asset"
+        query_embedding = embedder.encode_texts([slot_query])
+        hits = index_store.search(query_embedding, topk=max(1, int(topk)))[0]
     matching_hits: List[Tuple[Dict[str, object], float]] = []
     all_hits: List[Dict[str, object]] = []
     for hit in hits:
@@ -10922,8 +10924,8 @@ def _rank_building_candidates_for_target(
     depth_m: float,
     road_type: str,
     height_class: str,
-    embedder: ClipTextEmbedder,
-    index_store: FaissIndexStore,
+    embedder: Optional[ClipTextEmbedder],
+    index_store: Optional[FaissIndexStore],
     asset_by_id: Dict[str, Dict[str, object]],
     search_topk: int,
 ) -> Tuple[List[Tuple[Dict[str, object], float]], Dict[str, object]]:
@@ -10937,17 +10939,19 @@ def _rank_building_candidates_for_target(
         road_type=road_type,
         height_class=height_class,
     )
-    query_embedding = embedder.encode_texts([query_text])
-    hits = index_store.search(query_embedding, topk=max(50, evaluation_limit, 1))[0]
-    reranked = rerank_building_candidates(
-        hits=hits,
-        asset_by_id=asset_by_id,
-        theme_name=theme_name,
-        frontage_width_m=float(frontage_width_m),
-        depth_m=float(depth_m),
-        height_class=height_class,
-        limit=evaluation_limit,
-    )
+    reranked: List[Tuple[Dict[str, object], float]] = []
+    if embedder is not None and index_store is not None:
+        query_embedding = embedder.encode_texts([query_text])
+        hits = index_store.search(query_embedding, topk=max(50, evaluation_limit, 1))[0]
+        reranked = rerank_building_candidates(
+            hits=hits,
+            asset_by_id=asset_by_id,
+            theme_name=theme_name,
+            frontage_width_m=float(frontage_width_m),
+            depth_m=float(depth_m),
+            height_class=height_class,
+            limit=evaluation_limit,
+        )
     reranked = [
         (row, score)
         for row, score in reranked
@@ -12938,7 +12942,7 @@ def compose_street_scene(
         object_backend_name, rows = object_asset_backend.load_rows(manifest_path=manifest_path)
         manifest_load_summary = dict(getattr(object_asset_backend, "last_load_summary", {}) or {})
     else:
-        rows = _load_real_manifest(manifest_path)
+        rows = _load_real_manifest(manifest_path, require_latent=False)
         manifest_load_summary = {
             "manifest_paths": [str(manifest_path)],
             "missing_manifest_paths": [],
@@ -13015,25 +13019,35 @@ def compose_street_scene(
 
     parametric_tree_count = 0
 
-    embedder = ClipTextEmbedder(
-        model_name=model_name,
-        model_dir=model_dir,
-        local_files_only=bool(local_files_only),
-        device=device,
-    )
-    # FAISS index: use artifacts_dir if present, otherwise fallback to artifacts/m1
-    index_path = artifacts_dir / "index_ip.faiss"
-    id_map_path = artifacts_dir / "id_map.json"
-    if not index_path.exists():
-        fallback_index = ROOT / "artifacts" / "m1" / "index_ip.faiss"
-        fallback_id_map = ROOT / "artifacts" / "m1" / "id_map.json"
-        if fallback_index.exists():
-            index_path = fallback_index
-            id_map_path = fallback_id_map
-    index_store = FaissIndexStore.load(
-        index_path=index_path,
-        id_map_path=id_map_path,
-    )
+    embedder: Optional[ClipTextEmbedder] = None
+    index_store: Optional[FaissIndexStore] = None
+    retrieval_fallback_reason = ""
+    try:
+        embedder = ClipTextEmbedder(
+            model_name=model_name,
+            model_dir=model_dir,
+            local_files_only=bool(local_files_only),
+            device=device,
+        )
+        # FAISS index: use artifacts_dir if present, otherwise fallback to artifacts/m1
+        index_path = artifacts_dir / "index_ip.faiss"
+        id_map_path = artifacts_dir / "id_map.json"
+        if not index_path.exists():
+            fallback_index = ROOT / "artifacts" / "m1" / "index_ip.faiss"
+            fallback_id_map = ROOT / "artifacts" / "m1" / "id_map.json"
+            if fallback_index.exists():
+                index_path = fallback_index
+                id_map_path = fallback_id_map
+        index_store = FaissIndexStore.load(
+            index_path=index_path,
+            id_map_path=id_map_path,
+        )
+    except Exception as exc:
+        retrieval_fallback_reason = f"{type(exc).__name__}: {exc}"
+        logger.warning(
+            "CLIP/FAISS asset retrieval unavailable; using deterministic curated/rule pools: %s",
+            retrieval_fallback_reason,
+        )
 
     # Load building assets from UrbanVerse manifest
     building_manifest_path = ROOT / "assets" / "building" / "buildings_manifest.jsonl"
@@ -13060,7 +13074,11 @@ def compose_street_scene(
                 asset_by_id[row["asset_id"]] = row
 
             # Generate CLIP embeddings for building assets and add to index
-            building_embeddings = _generate_building_text_embeddings(scene_eligible_rows, embedder)
+            building_embeddings = (
+                _generate_building_text_embeddings(scene_eligible_rows, embedder)
+                if embedder is not None and index_store is not None
+                else {}
+            )
             if building_embeddings:
                 asset_ids = list(building_embeddings.keys())
                 embeddings_list = [building_embeddings[aid] for aid in asset_ids]
@@ -13081,6 +13099,8 @@ def compose_street_scene(
         building_asset_count=building_asset_count,
         building_representation=str(getattr(config, "building_representation", "asset") or "asset"),
         building_asset_retrieval_skipped=not use_building_assets,
+        asset_retrieval_mode="clip_faiss" if embedder is not None and index_store is not None else "curated_rule_pool",
+        asset_retrieval_fallback_reason=retrieval_fallback_reason,
     )
 
     policy_runtime: Optional[LayoutPolicyRuntime] = None

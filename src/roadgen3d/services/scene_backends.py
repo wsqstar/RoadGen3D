@@ -579,7 +579,7 @@ def _load_legacy_object_rows(manifest_path: Path) -> List[Dict[str, object]]:
         if not line.strip():
             continue
         payload = json.loads(line)
-        required = ("asset_id", "category", "text_desc", "mesh_path", "latent_path")
+        required = ("asset_id", "category", "text_desc", "mesh_path")
         missing = [key for key in required if key not in payload or _clean_text(payload[key]) == ""]
         if missing:
             raise ValueError(
@@ -590,7 +590,7 @@ def _load_legacy_object_rows(manifest_path: Path) -> List[Dict[str, object]]:
             "category": _clean_text(payload["category"]).lower(),
             "text_desc": _clean_text(payload["text_desc"]),
             "mesh_path": _resolve_manifest_mesh_path(payload, base_dir),
-            "latent_path": _resolve_path(payload["latent_path"], base_dir),
+            "latent_path": _resolve_path(payload.get("latent_path"), base_dir),
         }
         if not Path(str(row["mesh_path"])).is_file():
             logger.warning(
@@ -667,7 +667,7 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
     rows: List[Dict[str, object]] = []
     base_dir = manifest_path.parent.resolve()
     for line_no, payload in enumerate(_read_jsonl_rows(manifest_path), start=1):
-        required = ("asset_id", "category", "text_desc", "mesh_path", "latent_path")
+        required = ("asset_id", "category", "text_desc", "mesh_path")
         missing = [key for key in required if key not in payload or _clean_text(payload[key]) == ""]
         if missing:
             raise ValueError(
@@ -678,7 +678,7 @@ def _load_object_manifest_v2_rows(manifest_path: Path) -> List[Dict[str, object]
             "category": _clean_text(payload["category"]).lower(),
             "text_desc": _clean_text(payload["text_desc"]),
             "mesh_path": _resolve_manifest_mesh_path(payload, base_dir),
-            "latent_path": _resolve_path(payload["latent_path"], base_dir),
+            "latent_path": _resolve_path(payload.get("latent_path"), base_dir),
             "asset_role": _clean_text(payload.get("asset_role")) or (
                 "building" if _clean_text(payload["category"]).lower() == "building" else "street_furniture"
             ),
