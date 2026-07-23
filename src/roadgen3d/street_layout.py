@@ -7251,6 +7251,113 @@ def _build_osm_base_scene(
 
     surface_annotation_patches = list(getattr(placement_ctx, "surface_annotations", []) or [])
 
+    def _is_crossing_surface_patch(patch: Mapping[str, Any]) -> bool:
+        role = str(patch.get("surface_role", "") or "").strip().lower()
+        kind = str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
+        if role in {"safety_island", "median", "median_green", "grass_belt"} or kind in {
+            "safety_island",
+            "median",
+            "median_green",
+            "grass_belt",
+        }:
+            return False
+        fields = " ".join(
+            str(value or "").strip().lower()
+            for value in (
+                role,
+                kind,
+                patch.get("surface_id", ""),
+                patch.get("label", ""),
+                patch.get("annotation_id", ""),
+            )
+        )
+        material = patch.get("material", {}) if isinstance(patch.get("material", {}), Mapping) else {}
+        preset = str(material.get("preset", "") or "").strip().lower()
+        tokens = ("crossing", "crosswalk", "raised_crossing", "school_crossing", "过街", "斑马线")
+        return preset in {"raised_crossing_warm", "school_crossing"} or any(
+            token in fields or token in preset for token in tokens
+        )
+
+    intersection_crossing_geometries: List[Any] = [
+        patch.get("geometry")
+        for patch in surface_annotation_patches
+        if isinstance(patch, Mapping)
+        and _is_crossing_surface_patch(patch)
+        and patch.get("geometry") is not None
+        and not getattr(patch.get("geometry"), "is_empty", True)
+    ]
+    for junction in junction_geometries:
+        normalized_surface_patches = list(junction.get("normalized_surface_patches", []) or ())
+        if normalized_surface_patches:
+            intersection_crossing_geometries.extend(
+                patch.get("geometry")
+                for patch in normalized_surface_patches
+                if isinstance(patch, Mapping)
+                and str(patch.get("surface_role", "") or "").strip().lower() == "crossing"
+                and patch.get("geometry") is not None
+                and not getattr(patch.get("geometry"), "is_empty", True)
+            )
+        else:
+            intersection_crossing_geometries.extend(
+                patch.get("geometry")
+                for patch in junction.get("crosswalk_patches", []) or ()
+                if isinstance(patch, Mapping)
+                and patch.get("geometry") is not None
+                and not getattr(patch.get("geometry"), "is_empty", True)
+            )
+
+    corner_ramp_specs: List[Dict[str, Any]] = []
+    ramp_footprint_zone = _clean_scene_polygonal_geometry(None)
+    ramp_surface_clearance_m = max(final_surface_precision_grid_m, 0.01)
+    ramp_cut_zone = _clean_scene_polygonal_geometry(None)
+    if bool(getattr(config, "curb_ramp_enabled", False)):
+        from shapely.geometry import Polygon as RampFootprintPolygon
+
+        directional_ramp_specs: List[Dict[str, Any]] = []
+        for crossing_index, crossing_geometry in enumerate(intersection_crossing_geometries):
+            for spec in _intersection_curb_ramp_specs(
+                crossing_geometry,
+                run_m=CURB_ACCESS_RAMP_RUN_M,
+            ):
+                directional_ramp_specs.append({**spec, "crossing_index": crossing_index})
+        corner_ramp_specs = _merge_intersection_corner_ramp_specs(
+            directional_ramp_specs,
+            run_m=CURB_ACCESS_RAMP_RUN_M,
+        )
+        ramp_footprints: List[Any] = []
+        for spec in corner_ramp_specs:
+            outward = [float(value) for value in spec["outward_axis_xz"]]
+            tangent = [-outward[1], outward[0]]
+            center_x = float(spec["center_xz"][0])
+            center_z = float(spec["center_xz"][1])
+            half_length = CURB_ACCESS_RAMP_LENGTH_M * 0.5
+            half_run = CURB_ACCESS_RAMP_RUN_M * 0.5
+            footprint_xz = [
+                [
+                    center_x + tangent[0] * along + outward[0] * across,
+                    center_z + tangent[1] * along + outward[1] * across,
+                ]
+                for along, across in (
+                    (-half_length, -half_run),
+                    (half_length, -half_run),
+                    (half_length, half_run),
+                    (-half_length, half_run),
+                )
+            ]
+            spec["footprint_xz"] = footprint_xz
+            footprint = RampFootprintPolygon(footprint_xz)
+            if footprint.is_valid and not footprint.is_empty:
+                ramp_footprints.append(footprint)
+        ramp_footprint_zone = _union_scene_polygonal_geometries(ramp_footprints)
+        if not getattr(ramp_footprint_zone, "is_empty", True):
+            ramp_cut_zone = _clean_scene_polygonal_geometry(
+                ramp_footprint_zone.buffer(
+                    ramp_surface_clearance_m,
+                    join_style=2,
+                    cap_style=2,
+                )
+            )
+
     def _is_bus_bay_vehicle_patch(patch: Mapping[str, Any]) -> bool:
         kind = str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
         role = str(patch.get("surface_role", "") or "").strip().lower()
@@ -7371,6 +7478,15 @@ def _build_osm_base_scene(
         *elevated_surface_annotation_surfaces,
     ])
     curb_zone = _build_curb_boundary_zone(curb_source_surface, curb_elevated_side_zone, curb_width)
+    if not getattr(ramp_cut_zone, "is_empty", True):
+        # The ramp must own its complete footprint. Leaving the raised sidewalk
+        # or curb underneath it hides the sloped top face in the final GLB.
+        sidewalk_render_zone = _clean_scene_polygonal_geometry(
+            sidewalk_render_zone.difference(ramp_cut_zone)
+        )
+        curb_zone = _clean_scene_polygonal_geometry(
+            curb_zone.difference(ramp_cut_zone)
+        )
     curb_zone_before_road_mouths = curb_zone
     curb_road_mouth_intrusion_by_arm: List[Dict[str, Any]] = []
     for record in road_mouth_mask_records:
@@ -8408,31 +8524,6 @@ def _build_osm_base_scene(
                 pass
         return list(fallback)
 
-    def _is_crossing_surface_patch(patch: Mapping[str, Any]) -> bool:
-        role = str(patch.get("surface_role", "") or "").strip().lower()
-        kind = str(patch.get("kind", patch.get("surface_kind", "")) or "").strip().lower()
-        if role in {"safety_island", "median", "median_green", "grass_belt"} or kind in {
-            "safety_island",
-            "median",
-            "median_green",
-            "grass_belt",
-        }:
-            return False
-        fields = " ".join(
-            str(value or "").strip().lower()
-            for value in (
-                role,
-                kind,
-                patch.get("surface_id", ""),
-                patch.get("label", ""),
-                patch.get("annotation_id", ""),
-            )
-        )
-        material = patch.get("material", {}) if isinstance(patch.get("material", {}), Mapping) else {}
-        preset = str(material.get("preset", "") or "").strip().lower()
-        tokens = ("crossing", "crosswalk", "raised_crossing", "school_crossing", "过街", "斑马线")
-        return preset in {"raised_crossing_warm", "school_crossing"} or any(token in fields or token in preset for token in tokens)
-
     def _surface_annotation_render_geometry(patch: Mapping[str, Any], geometry: object) -> object:
         if _is_bus_bay_vehicle_patch(patch):
             return _clean_scene_polygonal_geometry(geometry)
@@ -8730,7 +8821,6 @@ def _build_osm_base_scene(
                 horizontal_axes=(axis_u, axis_v),
             )
 
-    intersection_crossing_geometries: List[Any] = []
     for patch_index, patch in enumerate(surface_annotation_patches):
         geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
         if geometry is None or getattr(geometry, "is_empty", True):
@@ -8752,7 +8842,6 @@ def _build_osm_base_scene(
             top_only=isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch),
         )
         if isinstance(patch, Mapping) and _is_crossing_surface_patch(patch):
-            intersection_crossing_geometries.append(render_geometry)
             _render_crosswalk_zebra_patch(
                 render_geometry,
                 node_name_prefix=f"surface_annotation_crossing_marking_{patch.get('surface_id', patch_index)}",
@@ -8775,7 +8864,6 @@ def _build_osm_base_scene(
                     if role in junction_sidewalk_surface_roles or role in junction_vehicle_surface_roles:
                         continue
                     if role == "crossing":
-                        intersection_crossing_geometries.append(geometry)
                         _render_crosswalk_zebra_patch(
                             geometry,
                             node_name_prefix=f"junction_normalized_crossing_{junction_index}_{patch_index}",
@@ -8814,7 +8902,6 @@ def _build_osm_base_scene(
                     horizontal_axes=patch_axes,
                     node_name_prefix=f"junction_crosswalk_{junction_index}_{patch_index}",
                 )
-                intersection_crossing_geometries.append(geometry)
 
             turn_lane_patches = list(junction.get("turn_lane_patches", []) or ())
             has_corner_surface_patches = _has_corner_surface_patches(junction)
@@ -8893,36 +8980,11 @@ def _build_osm_base_scene(
             )
 
     if bool(getattr(config, "curb_ramp_enabled", False)):
-        directional_ramp_specs: List[Dict[str, Any]] = []
-        for crossing_index, crossing_geometry in enumerate(intersection_crossing_geometries):
-            for spec in _intersection_curb_ramp_specs(
-                crossing_geometry,
-                run_m=CURB_ACCESS_RAMP_RUN_M,
-            ):
-                directional_ramp_specs.append({**spec, "crossing_index": crossing_index})
-        corner_ramp_specs = _merge_intersection_corner_ramp_specs(
-            directional_ramp_specs,
-            run_m=CURB_ACCESS_RAMP_RUN_M,
-        )
         for ramp_index, spec in enumerate(corner_ramp_specs):
             outward = list(spec["outward_axis_xz"])
-            tangent = [-float(outward[1]), float(outward[0])]
             center_x = float(spec["center_xz"][0])
             center_z = float(spec["center_xz"][1])
-            half_length = CURB_ACCESS_RAMP_LENGTH_M * 0.5
-            half_run = CURB_ACCESS_RAMP_RUN_M * 0.5
-            footprint_xz = [
-                [
-                    center_x + tangent[0] * along + float(outward[0]) * across,
-                    center_z + tangent[1] * along + float(outward[1]) * across,
-                ]
-                for along, across in (
-                    (-half_length, -half_run),
-                    (half_length, -half_run),
-                    (half_length, half_run),
-                    (-half_length, half_run),
-                )
-            ]
+            footprint_xz = list(spec.get("footprint_xz") or [])
             # A Y-axis rotation maps local +Z to (sin(yaw), cos(yaw)).
             # _add_road_to_sidewalk_ramp converts road yaw once more, so
             # negate the desired renderer yaw here.
@@ -9459,6 +9521,7 @@ def _build_osm_base_scene(
         "carriageway",
         "sidewalk",
         "curb",
+        "accessible_curb_ramp",
         "junction_",
         "centerline_mark_",
         "lane_edge_",
@@ -9513,7 +9576,24 @@ def _build_osm_base_scene(
     )
     rendered_vehicle_surface = _rendered_top_surface_union(("carriageway",))
     rendered_curb_surface = _rendered_top_surface_union(("curb",))
-    rendered_surface = _rendered_top_surface_union(("carriageway", "sidewalk", "curb"))
+    rendered_sidewalk_surface = _rendered_top_surface_union(("sidewalk",))
+    rendered_ramp_surface = _rendered_top_surface_union(("accessible_curb_ramp",))
+    rendered_surface = _rendered_top_surface_union(
+        ("carriageway", "sidewalk", "curb", "accessible_curb_ramp")
+    )
+    curb_ramp_underlay_overlap_area_m2 = float(
+        ramp_footprint_zone.intersection(
+            _union_scene_polygonal_geometries([rendered_sidewalk_surface, rendered_curb_surface])
+        ).area
+        if not getattr(ramp_footprint_zone, "is_empty", True)
+        else 0.0
+    )
+    curb_ramp_visible_surface_area_m2 = float(
+        rendered_ramp_surface.intersection(ramp_footprint_zone).area
+        if not getattr(rendered_ramp_surface, "is_empty", True)
+        and not getattr(ramp_footprint_zone, "is_empty", True)
+        else 0.0
+    )
     # The exported top polygons can pass through two topology-preserving
     # five-millimetre simplification passes before triangulation.  Audit their
     # generic ROW coverage with the resulting ten-millimetre numerical
@@ -9636,6 +9716,11 @@ def _build_osm_base_scene(
                 6,
             ),
             "surface_mesh_violations": surface_mesh_violations,
+            "curb_ramp_count": int(len(corner_ramp_specs)),
+            "curb_ramp_cut_area_m2": round(float(getattr(ramp_footprint_zone, "area", 0.0)), 6),
+            "curb_ramp_surface_clearance_m": round(ramp_surface_clearance_m, 6),
+            "curb_ramp_underlay_overlap_area_m2": round(curb_ramp_underlay_overlap_area_m2, 6),
+            "curb_ramp_visible_surface_area_m2": round(curb_ramp_visible_surface_area_m2, 6),
         }
     )
     surface_geometry_qa["ok"] = bool(
@@ -9650,6 +9735,11 @@ def _build_osm_base_scene(
         and junction_transition_uncovered_area_m2 <= 1e-4
         and curb_road_mouth_intrusion_area_m2 <= 1e-4
         and road_mouth_carriageway_gap_area_m2 <= 1e-4
+        and curb_ramp_underlay_overlap_area_m2 <= 1e-4
+        and (
+            not corner_ramp_specs
+            or curb_ramp_visible_surface_area_m2 >= float(getattr(ramp_footprint_zone, "area", 0.0)) - 1e-4
+        )
     )
     if not surface_geometry_qa["ok"]:
         surface_geometry_qa["ok"] = False
@@ -9669,6 +9759,8 @@ def _build_osm_base_scene(
             f"curb_road_mouth_intrusion_area_m2={curb_road_mouth_intrusion_area_m2:.6f}, "
             f"road_mouth_carriageway_gap_area_m2={road_mouth_carriageway_gap_area_m2:.6f}, "
             f"road_mouth_added_carriageway_area_m2={road_mouth_added_carriageway_area_m2:.6f}, "
+            f"curb_ramp_underlay_overlap_area_m2={curb_ramp_underlay_overlap_area_m2:.6f}, "
+            f"curb_ramp_visible_surface_area_m2={curb_ramp_visible_surface_area_m2:.6f}, "
             f"road_mouth_arms={curb_road_mouth_intrusion_by_arm}, "
             f"violations={surface_mesh_violations[:8]}"
         )

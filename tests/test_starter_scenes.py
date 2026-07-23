@@ -133,6 +133,10 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert all(item["final_glb_intrusion_area_m2"] <= 1e-4 for item in road_mouth_qa.values())
     assert all(item["final_glb_carriageway_gap_area_m2"] <= 1e-4 for item in road_mouth_qa.values())
     assert surface_qa["surface_mesh_violations"] == []
+    assert surface_qa["curb_ramp_count"] == 4
+    assert surface_qa["curb_ramp_surface_clearance_m"] == 0.01
+    assert surface_qa["curb_ramp_underlay_overlap_area_m2"] <= 1e-4
+    assert surface_qa["curb_ramp_visible_surface_area_m2"] == pytest.approx(6.0, abs=1e-3)
     surface_diagnostic = scene_layout["surface_diagnostic"]
     assert surface_diagnostic["schema_version"] == "roadgen3d.surface-diagnostic.v1"
     assert surface_diagnostic["source"] == "final_glb_top_faces"
@@ -190,6 +194,15 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
         assert float(ramp_mesh.volume) == pytest.approx(0.5 * 1.5 * 1.0 * 0.15, abs=1e-6)
         assert float(ramp_mesh.bounds[0][1]) == pytest.approx(0.0)
         assert float(ramp_mesh.bounds[1][1]) == pytest.approx(0.15)
+        assert any(0.05 < float(normal[1]) < 0.99 for normal in ramp_mesh.face_normals)
+
+    raised_underlay = unary_union([
+        _glb_top_projection(scene, "sidewalk_"),
+        _glb_top_projection(scene, "curb_"),
+    ])
+    for ramp in curb_ramps:
+        footprint = Polygon(ramp["footprint_xz"])
+        assert footprint.intersection(raised_underlay).area <= 1e-4
 
     for name in ("package.json", "normalized_source.json", "scene_layout.json", "viewer_manifest.json"):
         text = (directory / name).read_text(encoding="utf-8")

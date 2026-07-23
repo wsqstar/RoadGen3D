@@ -35571,24 +35571,24 @@
       "sidewalk_rings": [
         [
           [
-            198.62,
-            -120.07
-          ],
-          [
             208.19,
             -145.33
           ],
           [
-            210.29,
-            -159.3
+            209.62,
+            -152.16
           ],
           [
-            209.19,
-            -166.18
+            210.27,
+            -160.88
           ],
           [
-            205.92,
-            -173.23
+            209.03,
+            -166.82
+          ],
+          [
+            206.39,
+            -172.41
           ],
           [
             200.01,
@@ -35635,12 +35635,16 @@
             -96.34
           ],
           [
-            178.14,
-            -86.7
+            178.67,
+            -87.73
           ],
           [
-            184.7,
-            -84.72
+            179.15,
+            -87.93
+          ],
+          [
+            179.31,
+            -86.34
           ],
           [
             198.97,
@@ -35667,14 +35671,18 @@
             -91.19
           ],
           [
-            198.62,
-            -120.07
+            198.35,
+            -119.44
+          ],
+          [
+            208.19,
+            -145.33
           ]
         ],
         [
           [
-            -72.33,
-            -109.01
+            -90.24,
+            -108.71
           ],
           [
             -108.75,
@@ -35801,30 +35809,74 @@
             -95.28
           ],
           [
-            146.53,
-            -98.52
+            147.18,
+            -98.46
+          ],
+          [
+            129.49,
+            -99.49
           ],
           [
             -53.98,
             -108.92
           ],
           [
-            -72.33,
-            -109.01
+            -90.24,
+            -108.71
           ]
         ],
         [
           [
-            181.21,
-            -72.75
+            178.37,
+            -87.14
+          ],
+          [
+            178.14,
+            -86.7
+          ],
+          [
+            178.62,
+            -86.55
+          ],
+          [
+            178.37,
+            -87.14
+          ]
+        ],
+        [
+          [
+            165.91,
+            -81.69
+          ],
+          [
+            166.14,
+            -82.33
+          ],
+          [
+            165.48,
+            -82.47
+          ],
+          [
+            165.91,
+            -81.69
+          ]
+        ],
+        [
+          [
+            180.85,
+            -72.42
           ],
           [
             185.7,
             -76.41
           ],
           [
-            175.17,
-            -79.99
+            175.14,
+            -79.96
+          ],
+          [
+            167.34,
+            -58.37
           ],
           [
             138.18,
@@ -35847,14 +35899,14 @@
             -62.32
           ],
           [
-            181.21,
-            -72.75
+            180.85,
+            -72.42
           ]
         ],
         [
           [
-            194.06,
-            -66.37
+            194.18,
+            -66.36
           ],
           [
             197.13,
@@ -35921,8 +35973,8 @@
             -63.85
           ],
           [
-            194.06,
-            -66.37
+            194.18,
+            -66.36
           ]
         ],
         [
@@ -35955,20 +36007,32 @@
             77.92
           ],
           [
-            118.14,
-            49.66
+            123.99,
+            28.93
           ],
           [
-            129.45,
-            12.66
+            129.52,
+            12.47
           ],
           [
             158.67,
             -61.58
           ],
           [
-            166.14,
-            -82.33
+            165.77,
+            -81.28
+          ],
+          [
+            165.16,
+            -80.95
+          ],
+          [
+            164.42,
+            -82.28
+          ],
+          [
+            164.97,
+            -82.58
           ],
           [
             145.65,
@@ -36056,6 +36120,11 @@
       ],
       "surface_geometry_qa": {
         "context_ground_exposure_inside_row_m2": 0.0,
+        "curb_ramp_count": 4,
+        "curb_ramp_cut_area_m2": 6.0,
+        "curb_ramp_surface_clearance_m": 0.01,
+        "curb_ramp_underlay_overlap_area_m2": 0.0,
+        "curb_ramp_visible_surface_area_m2": 6.000346,
         "curb_reveal_m": 0.15,
         "curb_road_mouth_intrusion_area_m2": 0.0,
         "curb_road_mouth_intrusion_by_arm": [
@@ -36254,7 +36323,7 @@
         "junction_surface_qa_inset_m": 0.0,
         "junction_transition_uncovered_area_m2": 0.0,
         "junction_transition_uncovered_bounds_xz": [],
-        "maximum_boundary_turn_deg": 116.565051,
+        "maximum_boundary_turn_deg": 135.0,
         "maximum_top_triangle_aspect_ratio": 186.67,
         "mesh_boundary_clearance_m": 0.0,
         "minimum_top_triangle_angle_deg": 0.314363,
@@ -37558,11 +37627,11 @@
       "carriageway": 1,
       "context_ground": 1,
       "crossing": 40,
-      "curb": 6,
+      "curb": 10,
       "curb_access_ramp": 4,
       "lane_mark": 88,
       "plaza": 4,
-      "sidewalk": 19,
+      "sidewalk": 21,
       "tree_pit": 108
     },
     "width_expanded": false,
@@ -42577,6 +42646,11 @@
     ],
     "geometry_qa": {
       "context_ground_exposure_inside_row_m2": 0.0,
+      "curb_ramp_count": 4,
+      "curb_ramp_cut_area_m2": 6.0,
+      "curb_ramp_surface_clearance_m": 0.01,
+      "curb_ramp_underlay_overlap_area_m2": 0.0,
+      "curb_ramp_visible_surface_area_m2": 6.000346,
       "curb_reveal_m": 0.15,
       "curb_road_mouth_intrusion_area_m2": 0.0,
       "curb_road_mouth_intrusion_by_arm": [
@@ -42775,7 +42849,7 @@
       "junction_surface_qa_inset_m": 0.0,
       "junction_transition_uncovered_area_m2": 0.0,
       "junction_transition_uncovered_bounds_xz": [],
-      "maximum_boundary_turn_deg": 116.565051,
+      "maximum_boundary_turn_deg": 135.0,
       "maximum_top_triangle_aspect_ratio": 186.67,
       "mesh_boundary_clearance_m": 0.0,
       "minimum_top_triangle_angle_deg": 0.314363,
@@ -43300,6 +43374,10 @@
       "curb_3": "curb",
       "curb_4": "curb",
       "curb_5": "curb",
+      "curb_6": "curb",
+      "curb_7": "curb",
+      "curb_8": "curb",
+      "curb_9": "curb",
       "junction_normalized_crossing_0_13_stripe_0_0": "crossing",
       "junction_normalized_crossing_0_13_stripe_1_0": "crossing",
       "junction_normalized_crossing_0_13_stripe_2_0": "crossing",
@@ -43345,7 +43423,9 @@
       "sidewalk_2": "sidewalk",
       "sidewalk_3": "sidewalk",
       "sidewalk_4": "sidewalk",
-      "sidewalk_5": "sidewalk"
+      "sidewalk_5": "sidewalk",
+      "sidewalk_6": "sidewalk",
+      "sidewalk_7": "sidewalk"
     },
     "patch_provenance": [
       {
