@@ -4503,6 +4503,106 @@ def _add_road_to_sidewalk_ramp(
     scene.add_geometry(mesh, node_name=node_name)
 
 
+def _intersection_curb_ramp_specs(
+    crossing_geometry: Any,
+    *,
+    run_m: float = CURB_ACCESS_RAMP_RUN_M,
+) -> List[Dict[str, Any]]:
+    """Return paired directional curb ramps at the two ends of a crosswalk.
+
+    The long axis of the clipped crosswalk is the pedestrian travel axis.  Its
+    two extreme edges meet the carriageway boundary; each ramp starts there
+    and rises outward into the adjacent sidewalk.
+    """
+
+    if crossing_geometry is None or getattr(crossing_geometry, "is_empty", True):
+        return []
+    rectangle = crossing_geometry.minimum_rotated_rectangle
+    coords = list(getattr(rectangle, "exterior", rectangle).coords)
+    if len(coords) < 4:
+        return []
+    edges: List[Tuple[float, Tuple[float, float]]] = []
+    for index in range(4):
+        start = coords[index]
+        end = coords[(index + 1) % 4]
+        vector = (float(end[0]) - float(start[0]), float(end[1]) - float(start[1]))
+        edges.append((math.hypot(vector[0], vector[1]), vector))
+    edge_length, edge_vector = max(edges, key=lambda item: item[0])
+    if edge_length <= 1e-6:
+        return []
+    axis = (edge_vector[0] / edge_length, edge_vector[1] / edge_length)
+    center = (float(crossing_geometry.centroid.x), float(crossing_geometry.centroid.y))
+    projections = [
+        (float(point[0]) - center[0]) * axis[0] + (float(point[1]) - center[1]) * axis[1]
+        for point in coords[:4]
+    ]
+    half_run = max(float(run_m), 0.0) / 2.0
+    specs: List[Dict[str, Any]] = []
+    for side, projection in (("negative", min(projections)), ("positive", max(projections))):
+        sign = -1.0 if side == "negative" else 1.0
+        outward = (axis[0] * sign, axis[1] * sign)
+        road_edge = (
+            center[0] + axis[0] * projection,
+            center[1] + axis[1] * projection,
+        )
+        specs.append({
+            "side": side,
+            "road_edge_xz": [road_edge[0], road_edge[1]],
+            "center_xz": [
+                road_edge[0] + outward[0] * half_run,
+                road_edge[1] + outward[1] * half_run,
+            ],
+            "outward_axis_xz": [outward[0], outward[1]],
+        })
+    return specs
+
+
+def _merge_intersection_corner_ramp_specs(
+    specs: Sequence[Mapping[str, Any]],
+    *,
+    run_m: float = CURB_ACCESS_RAMP_RUN_M,
+    cluster_distance_m: float = 5.0,
+) -> List[Dict[str, Any]]:
+    """Merge adjacent directional endpoints into one non-overlapping corner ramp."""
+
+    clusters: List[List[Mapping[str, Any]]] = []
+    for spec in specs:
+        edge = np.asarray(spec.get("road_edge_xz") or (0.0, 0.0), dtype=float)
+        nearest_cluster: List[Mapping[str, Any]] | None = None
+        nearest_distance = float("inf")
+        for cluster in clusters:
+            cluster_edges = np.asarray([item.get("road_edge_xz") or (0.0, 0.0) for item in cluster], dtype=float)
+            distance = float(np.linalg.norm(edge - cluster_edges.mean(axis=0)))
+            if distance <= float(cluster_distance_m) and distance < nearest_distance:
+                nearest_cluster = cluster
+                nearest_distance = distance
+        if nearest_cluster is None:
+            clusters.append([spec])
+        else:
+            nearest_cluster.append(spec)
+
+    merged: List[Dict[str, Any]] = []
+    for corner_index, cluster in enumerate(clusters):
+        edges = np.asarray([item.get("road_edge_xz") or (0.0, 0.0) for item in cluster], dtype=float)
+        outward_vectors = np.asarray([item.get("outward_axis_xz") or (0.0, 1.0) for item in cluster], dtype=float)
+        road_edge = edges.mean(axis=0)
+        outward = outward_vectors.sum(axis=0)
+        outward_norm = float(np.linalg.norm(outward))
+        if outward_norm <= 1e-9:
+            outward = outward_vectors[0]
+            outward_norm = max(float(np.linalg.norm(outward)), 1e-9)
+        outward = outward / outward_norm
+        center = road_edge + outward * (max(float(run_m), 0.0) / 2.0)
+        merged.append({
+            "corner_index": corner_index,
+            "source_endpoint_count": len(cluster),
+            "road_edge_xz": road_edge.tolist(),
+            "center_xz": center.tolist(),
+            "outward_axis_xz": outward.tolist(),
+        })
+    return merged
+
+
 def _should_render_centerline_marking(*, carriageway_width_m: float, lane_count: int | None = None) -> bool:
     if lane_count is not None and int(lane_count) > 1:
         return True
@@ -5406,7 +5506,9 @@ def _add_beauty_scene_proxies(
                 horizontal_axes=_road_axes_from_yaw_deg(road_yaw_deg),
             )
 
-    if bool(getattr(config, "curb_ramp_enabled", False)):
+    if bool(getattr(config, "curb_ramp_enabled", False)) and not _is_corridor_layout_mode(
+        str(getattr(config, "layout_mode", "template") or "template")
+    ):
         ramp_side = str(getattr(config, "curb_ramp_side", "right") or "right").strip().lower()
         side_sign = 1.0 if ramp_side == "left" else -1.0
         position_ratio = min(
@@ -8627,6 +8729,7 @@ def _build_osm_base_scene(
                 horizontal_axes=(axis_u, axis_v),
             )
 
+    intersection_crossing_geometries: List[Any] = []
     for patch_index, patch in enumerate(surface_annotation_patches):
         geometry = patch.get("geometry") if isinstance(patch, Mapping) else None
         if geometry is None or getattr(geometry, "is_empty", True):
@@ -8648,6 +8751,7 @@ def _build_osm_base_scene(
             top_only=isinstance(patch, Mapping) and _is_bus_bay_vehicle_patch(patch),
         )
         if isinstance(patch, Mapping) and _is_crossing_surface_patch(patch):
+            intersection_crossing_geometries.append(render_geometry)
             _render_crosswalk_zebra_patch(
                 render_geometry,
                 node_name_prefix=f"surface_annotation_crossing_marking_{patch.get('surface_id', patch_index)}",
@@ -8670,6 +8774,7 @@ def _build_osm_base_scene(
                     if role in junction_sidewalk_surface_roles or role in junction_vehicle_surface_roles:
                         continue
                     if role == "crossing":
+                        intersection_crossing_geometries.append(geometry)
                         _render_crosswalk_zebra_patch(
                             geometry,
                             node_name_prefix=f"junction_normalized_crossing_{junction_index}_{patch_index}",
@@ -8708,6 +8813,8 @@ def _build_osm_base_scene(
                     horizontal_axes=patch_axes,
                     node_name_prefix=f"junction_crosswalk_{junction_index}_{patch_index}",
                 )
+                intersection_crossing_geometries.append(geometry)
+
             turn_lane_patches = list(junction.get("turn_lane_patches", []) or ())
             has_corner_surface_patches = _has_corner_surface_patches(junction)
             visible_turn_lane_patches = [
@@ -8783,6 +8890,43 @@ def _build_osm_base_scene(
                 height_m=0.08,
                 surface_role="sidewalk",
             )
+
+    if bool(getattr(config, "curb_ramp_enabled", False)):
+        directional_ramp_specs: List[Dict[str, Any]] = []
+        for crossing_index, crossing_geometry in enumerate(intersection_crossing_geometries):
+            for spec in _intersection_curb_ramp_specs(
+                crossing_geometry,
+                run_m=CURB_ACCESS_RAMP_RUN_M,
+            ):
+                directional_ramp_specs.append({**spec, "crossing_index": crossing_index})
+        corner_ramp_specs = _merge_intersection_corner_ramp_specs(
+            directional_ramp_specs,
+            run_m=CURB_ACCESS_RAMP_RUN_M,
+        )
+        for ramp_index, spec in enumerate(corner_ramp_specs):
+            outward = list(spec["outward_axis_xz"])
+            # A Y-axis rotation maps local +Z to (sin(yaw), cos(yaw)).
+            # _add_road_to_sidewalk_ramp converts road yaw once more, so
+            # negate the desired renderer yaw here.
+            renderer_yaw_deg = math.degrees(math.atan2(float(outward[0]), float(outward[1])))
+            node_name = f"accessible_curb_ramp_corner_{spec['corner_index']}_{ramp_index}"
+            _add_road_to_sidewalk_ramp(
+                scene,
+                length_m=CURB_ACCESS_RAMP_LENGTH_M,
+                run_m=CURB_ACCESS_RAMP_RUN_M,
+                rise_m=sidewalk_top_y_m,
+                high_side_sign=1.0,
+                center_x_m=float(spec["center_xz"][0]),
+                center_z_m=float(spec["center_xz"][1]),
+                road_yaw_deg=-renderer_yaw_deg,
+                color=colors.get("transit_pad", (198, 132, 78, 255)),
+                node_name=node_name,
+                roughness=(roughness or {}).get("sidewalk", 0.70),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
+            )
+            surface_node_roles[node_name] = "curb_access_ramp"
 
     fallback_length_m = 20.0
     if scene_bounds:

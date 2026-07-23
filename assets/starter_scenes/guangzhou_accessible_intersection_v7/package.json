@@ -1,0 +1,45 @@
+{
+  "category_counts": {
+    "bench": 1,
+    "bollard": 8,
+    "building": 14,
+    "lamp": 8,
+    "trash": 2,
+    "tree": 8
+  },
+  "focus_extent_m": 32.0,
+  "focus_xz": [
+    171.94,
+    -84.95
+  ],
+  "id": "guangzhou_accessible_intersection_v7",
+  "label": "广州无障碍十字路口（4处街角坡道）",
+  "provenance": {
+    "asset_selection": "deterministic_representative_subset_v1",
+    "attribution": "© OpenStreetMap contributors",
+    "building_representation": "transparent_massing",
+    "curb_ramp_dimensions_m": {
+      "length_along_curb": 1.5,
+      "rise": 0.15,
+      "run": 1.0
+    },
+    "curb_ramp_policy": "merged_nonoverlapping_corner_ramps_v1",
+    "network_required": false,
+    "provider": "OpenStreetMap/Overpass",
+    "road_mouth_policy": "flat_mask_from_arm_skeleton_v1",
+    "source_starter_scene_id": "guangzhou_road_skeleton_v2",
+    "surface_diagnostic": "final_glb_top_faces_with_patch_provenance_v1",
+    "surface_partition": "road_mouth_open_partition_v6"
+  },
+  "random_seed": 42,
+  "retrieval_bbox": [
+    113.26616931271059,
+    23.13367933500995,
+    113.27325598728942,
+    23.13728296499005
+  ],
+  "scene_file": "complete_scene.glb",
+  "scene_fingerprint": "c244316b9ae0871f2017124413146c1515be6f5616650fe893ae11e2aea55b08",
+  "source_fingerprint": "166f68122f4eee030e43c2b5f76a55a6da47657db9a9adc2a8d676d1910ded12",
+  "version": "7.0.0"
+}

@@ -8,6 +8,7 @@ import sys
 
 from fastapi.testclient import TestClient
 import numpy as np
+import pytest
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 import trimesh
@@ -24,7 +25,7 @@ import roadgen3d.street_layout as street_layout
 from web.api.main import create_app
 
 
-SCENE_ID = "guangzhou_complete_intersection_v6"
+SCENE_ID = "guangzhou_accessible_intersection_v7"
 LEGACY_ROAD_MOUTH_FIXTURE_ID = "guangzhou_complete_intersection_v5"
 GEOMETRY_SCENE_ID = "guangzhou_road_skeleton_v2"
 
@@ -69,11 +70,11 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert normalized["source"]["producer"] == "osm"
     assert normalized["source"]["starter_scene"] is True
     assert package["focus_xz"] == [171.94, -84.95]
-    assert package["focus_extent_m"] == 115.0
+    assert package["focus_extent_m"] == 32.0
     assert package["category_counts"] == {
         "bench": 1,
         "bollard": 8,
-        "building": 21,
+        "building": 14,
         "lamp": 8,
         "trash": 2,
         "tree": 8,
@@ -164,7 +165,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert len(manifest["instances"]) == sum(package["category_counts"].values())
     assert manifest["layout_overlay"]["road_centerlines"]
     assert manifest["final_scene"]["glb_url"].endswith("/complete_scene.glb")
-    assert manifest["starter_focus"] == {"center_xz": [171.94, -84.95], "extent_m": 115.0}
+    assert manifest["starter_focus"] == {"center_xz": [171.94, -84.95], "extent_m": 32.0}
     assert manifest["surface_diagnostic"]["source"] == "final_glb_top_faces"
     assert len(manifest["surface_diagnostic"]["node_roles"]) == len(surface_diagnostic["node_roles"])
 
@@ -174,6 +175,14 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert not any(node_name.startswith("carriageway_arm_") for node_name in node_names)
     assert not any(node_name.startswith("junction_normalized_surface_") for node_name in node_names)
     assert sum(node_name.startswith("carriageway_") for node_name in node_names) == 1
+    ramp_node_names = [name for name in node_names if name.startswith("accessible_curb_ramp_")]
+    assert len(ramp_node_names) == 4
+    for node_name in ramp_node_names:
+        ramp_mesh = scene.geometry[scene.graph[node_name][1]]
+        assert ramp_mesh.is_watertight
+        assert float(ramp_mesh.volume) == pytest.approx(0.5 * 1.5 * 1.0 * 0.15, abs=1e-6)
+        assert float(ramp_mesh.bounds[0][1]) == pytest.approx(0.0)
+        assert float(ramp_mesh.bounds[1][1]) == pytest.approx(0.15)
 
     for name in ("package.json", "normalized_source.json", "scene_layout.json", "viewer_manifest.json"):
         text = (directory / name).read_text(encoding="utf-8")
@@ -190,6 +199,7 @@ def test_retired_starters_remain_addressable_for_existing_links() -> None:
     assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v3")["id"] == "guangzhou_complete_intersection_v3"
     assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v4")["id"] == "guangzhou_complete_intersection_v4"
     assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v5")["id"] == "guangzhou_complete_intersection_v5"
+    assert starter_scenes.load_starter_scene("guangzhou_complete_intersection_v6")["id"] == "guangzhou_complete_intersection_v6"
 
 
 def test_v2_exported_glb_has_disjoint_curb_and_sidewalk_caps() -> None:
@@ -275,7 +285,7 @@ def test_starter_scene_api_serves_contract_manifest_and_glb() -> None:
     manifest_response = client.get(contract["viewer_manifest_url"])
     assert manifest_response.status_code == 200
     manifest = manifest_response.json()
-    assert len(manifest["instances"]) == 48
+    assert len(manifest["instances"]) == 41
     assert manifest["final_scene"]["glb_url"] == f"/api/starter-scenes/{SCENE_ID}/files/complete_scene.glb"
 
     glb_response = client.get(manifest["final_scene"]["glb_url"])

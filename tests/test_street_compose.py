@@ -3056,6 +3056,37 @@ def test_curb_ramp_follows_rotated_road_side_and_position():
     assert float(high_edge_vertices[:, 1].max()) == pytest.approx(street_layout.SIDEWALK_ELEVATION_M)
 
 
+def test_intersection_crosswalk_produces_paired_directional_curb_ramps():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    crossing = shapely_geometry.box(-4.0, -1.5, 4.0, 1.5)
+
+    specs = street_layout._intersection_curb_ramp_specs(crossing, run_m=1.0)
+
+    assert len(specs) == 2
+    by_side = {item["side"]: item for item in specs}
+    assert by_side["negative"]["road_edge_xz"] == pytest.approx([-4.0, 0.0])
+    assert by_side["negative"]["center_xz"] == pytest.approx([-4.5, 0.0])
+    assert by_side["negative"]["outward_axis_xz"] == pytest.approx([-1.0, 0.0])
+    assert by_side["positive"]["road_edge_xz"] == pytest.approx([4.0, 0.0])
+    assert by_side["positive"]["center_xz"] == pytest.approx([4.5, 0.0])
+    assert by_side["positive"]["outward_axis_xz"] == pytest.approx([1.0, 0.0])
+
+
+def test_adjacent_crosswalk_endpoints_merge_into_one_corner_ramp():
+    specs = [
+        {"road_edge_xz": [4.0, 4.0], "outward_axis_xz": [1.0, 0.0]},
+        {"road_edge_xz": [4.2, 4.1], "outward_axis_xz": [0.0, 1.0]},
+        {"road_edge_xz": [-4.0, -4.0], "outward_axis_xz": [-1.0, 0.0]},
+    ]
+
+    merged = street_layout._merge_intersection_corner_ramp_specs(specs, run_m=1.0)
+
+    assert len(merged) == 2
+    assert merged[0]["source_endpoint_count"] == 2
+    assert merged[0]["road_edge_xz"] == pytest.approx([4.1, 4.05])
+    assert merged[0]["outward_axis_xz"] == pytest.approx([2 ** -0.5, 2 ** -0.5])
+
+
 def test_osm_curb_zone_excludes_road_endpoint_caps():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

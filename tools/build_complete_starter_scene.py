@@ -36,7 +36,7 @@ from roadgen3d.services.design_types import DesignDraft, SceneContext  # noqa: E
 from roadgen3d.web_viewer_dev import build_layout_manifest  # noqa: E402
 
 
-SCENE_ID = "guangzhou_complete_intersection_v6"
+SCENE_ID = "guangzhou_accessible_intersection_v7"
 SOURCE_SCENE_ID = "guangzhou_road_skeleton_v2"
 SOURCE_DIR = ROOT / "assets" / "starter_scenes" / SOURCE_SCENE_ID
 BUNDLED_DIR = ROOT / "assets" / "starter_scenes" / SCENE_ID
@@ -44,7 +44,7 @@ SNAPSHOT_TIMESTAMP = "2026-07-17T00:00:00Z"
 
 # Main four-arm junction in the fixed OSM snapshot's local XZ frame.
 FOCUS_XZ = (171.94, -84.95)
-FOCUS_EXTENT_M = 115.0
+FOCUS_EXTENT_M = 32.0
 
 # Keep one readable example of every generated street-object category.  Trees,
 # lamps and bollards repeat enough to communicate rhythm without overwhelming
@@ -223,6 +223,7 @@ def _generate_runtime_scene(source: Mapping[str, Any], build_root: Path) -> tupl
         "allow_demo_bus_stop_when_osm_absent": True,
         "max_bus_stops_per_scene": 1,
         "surrounding_building_mode": "footprint_based",
+        "curb_ramp_enabled": True,
     }
     draft = DesignDraft(
         normalized_scene_query="广州完整十字路口示范",
@@ -303,7 +304,7 @@ def main() -> int:
     config.update({"building_representation": "transparent_massing", "seed": 42})
     layout = _strip_runtime_noise(_strip_machine_paths({
         **runtime_layout,
-        "query": "Bundled Guangzhou complete OSM intersection starter demo.",
+        "query": "Bundled Guangzhou accessible OSM intersection starter demo with paired curb ramps.",
         "config": config,
         "summary": summary,
         "placements": selected,
@@ -327,8 +328,8 @@ def main() -> int:
     _write_json(bootstrap_layout, bootstrap_payload)
     manifest = _strip_machine_paths(build_layout_manifest(bootstrap_layout))
     manifest["layout_path"] = f"/api/starter-scenes/{SCENE_ID}/manifest"
-    manifest["final_scene"] = {"label": "广州完整十字路口", "glb_url": scene_file}
-    manifest["production_steps"] = [{"step_id": "complete_scene", "title": "完整十字路口", "glb_url": scene_file}]
+    manifest["final_scene"] = {"label": "广州无障碍十字路口", "glb_url": scene_file}
+    manifest["production_steps"] = [{"step_id": "complete_scene", "title": "无障碍十字路口", "glb_url": scene_file}]
     manifest["default_selection"] = "final_scene"
     manifest["starter_focus"] = {"center_xz": list(FOCUS_XZ), "extent_m": FOCUS_EXTENT_M}
     _write_json(output / "viewer_manifest.json", manifest)
@@ -337,8 +338,8 @@ def main() -> int:
 
     package = {
         "id": SCENE_ID,
-        "version": "6.0.0",
-        "label": "广州完整十字路口",
+        "version": "7.0.0",
+        "label": "广州无障碍十字路口（4处街角坡道）",
         "scene_file": scene_file,
         "retrieval_bbox": list(source.get("source_alignment", {}).get("source_frame", {}).get("bbox_wgs84") or []),
         "focus_xz": list(FOCUS_XZ),
@@ -357,6 +358,8 @@ def main() -> int:
             "surface_partition": "road_mouth_open_partition_v6",
             "surface_diagnostic": "final_glb_top_faces_with_patch_provenance_v1",
             "road_mouth_policy": "flat_mask_from_arm_skeleton_v1",
+            "curb_ramp_policy": "merged_nonoverlapping_corner_ramps_v1",
+            "curb_ramp_dimensions_m": {"length_along_curb": 1.5, "run": 1.0, "rise": 0.15},
         },
     }
     _write_json(output / "package.json", package)
