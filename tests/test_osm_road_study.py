@@ -37,6 +37,10 @@ def _raw() -> dict:
         (31, 113.2690, 23.1285),
         (32, 113.2690, 23.1290),
         (33, 113.2685, 23.1290),
+        (50, 113.2630, 23.1247),
+        (51, 113.2650, 23.1247),
+        (52, 113.2650, 23.1253),
+        (53, 113.2630, 23.1253),
     ]
     return {
         "elements": [
@@ -49,6 +53,7 @@ def _raw() -> dict:
             {"type": "way", "id": 301, "nodes": [3, 6], "tags": {"highway": "residential", "name": "Remote Street"}},
             {"type": "way", "id": 401, "nodes": [20, 21, 22, 23, 20], "tags": {"building": "yes", "building:levels": "4"}},
             {"type": "way", "id": 402, "nodes": [30, 31, 32, 33, 30], "tags": {"building": "yes"}},
+            {"type": "way", "id": 501, "nodes": [50, 51, 52, 53, 50], "tags": {"landuse": "forest"}},
         ]
     }
 
@@ -78,6 +83,8 @@ def test_selection_filters_roads_and_buildings_with_full_footprint():
     assert "osm-building-402" not in ids
     assert "osm-tree-40" in ids
     assert "osm-tree-41" not in ids
+    zone = next(item for item in selected["filtered_geojson"]["features"] if item["id"] == "osm-zone-501")
+    assert zone["properties"]["role"] == "functional_zone"
     building = next(item for item in selected["filtered_geojson"]["features"] if item["id"] == "osm-building-401")
     assert len(building["geometry"]["coordinates"][0]) == 5
     assert selected["study"]["selection"]["hop_count"] == 1

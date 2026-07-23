@@ -142,6 +142,53 @@ def _sample_annotation_payload():
     }
 
 
+def test_disjoint_legacy_scene_region_does_not_clip_all_osm_roads():
+    payload = {
+        "version": ANNOTATION_SCHEMA_VERSION,
+        "plan_id": "legacy_osm_zone_scene_region",
+        "image_path": "",
+        "image_width_px": 1000,
+        "image_height_px": 600,
+        "pixels_per_meter": 2.0,
+        "centerlines": [{
+            "id": "osm-road-1",
+            "label": "Selected road",
+            "road_width_m": 8.0,
+            "points": [{"x": 100.0, "y": 300.0}, {"x": 300.0, "y": 300.0}],
+        }],
+        "junctions": [],
+        "roundabouts": [],
+        "control_points": [],
+        "regions": [{
+            "id": "osm-zone-legacy",
+            "label": "Unrelated OSM context polygon",
+            "region_role": "scene_region",
+            "kind": "yes",
+            "points": [
+                {"x": 700.0, "y": 100.0},
+                {"x": 900.0, "y": 100.0},
+                {"x": 900.0, "y": 200.0},
+                {"x": 700.0, "y": 200.0},
+            ],
+        }],
+        "building_regions": [],
+        "functional_zones": [],
+        "surface_annotations": [],
+        "station_strip_patches": [],
+        "junction_compositions": [],
+    }
+
+    bridge = build_reference_annotation_scene_bridge(payload)
+
+    assert bridge.placement_context.carriageway.area > 0.0
+    assert bridge.placement_context.road_arm_geometries
+    assert bridge.summary_metadata["scene_region_clip"] == {
+        "status": "ignored",
+        "reason": "no_road_surface_intersection",
+        "fallback": "road_graph_bounds",
+    }
+
+
 def test_v2_parameters_materialize_median_and_bus_bay_surfaces():
     config = replace(
         build_reference_annotation_compose_config(),

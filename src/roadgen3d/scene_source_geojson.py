@@ -393,7 +393,16 @@ def osm_features_to_geojson(features: OsmFeatures) -> dict[str, Any]:
     for building in features.buildings:
         rows.append({"type": "Feature", "id": f"osm-building-{building.osm_id}", "properties": {"tags": building.tags}, "geometry": {"type": "Polygon", "coordinates": [[list(point) for point in building.coords]]}})
     for polygon in features.land_use_polygons:
-        rows.append({"type": "Feature", "id": f"osm-zone-{polygon.osm_id}", "properties": {"tags": polygon.tags, "source_type": polygon.source_type}, "geometry": {"type": "Polygon", "coordinates": [[list(point) for point in polygon.coords]]}})
+        rows.append({
+            "type": "Feature",
+            "id": f"osm-zone-{polygon.osm_id}",
+            "properties": {
+                "role": "functional_zone",
+                "tags": polygon.tags,
+                "source_type": polygon.source_type,
+            },
+            "geometry": {"type": "Polygon", "coordinates": [[list(point) for point in polygon.coords]]},
+        })
     context_points = list(getattr(features, "context_points", []) or [])
     if context_points:
         for point in context_points:

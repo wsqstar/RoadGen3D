@@ -8840,6 +8840,12 @@ def _build_osm_base_scene(
             if overlap_area_m2 > 0.0:
                 deduplicated_marking_area_m2 += overlap_area_m2
                 geometry = _clean_marking_polygonal_geometry(geometry.difference(prior_geometry))
+                # Precision snapping and ribbon cleanup may move a boundary
+                # back across the geometry that was just subtracted.  Apply a
+                # final one-grid clearance after cleanup so adjacent OSM road
+                # markings remain disjoint in the actual mesh/QC geometry.
+                if not getattr(geometry, "is_empty", True):
+                    geometry = geometry.difference(prior_geometry.buffer(0.001, join_style=2))
                 if getattr(geometry, "is_empty", True):
                     return
         if role == "lane_edge_mark":

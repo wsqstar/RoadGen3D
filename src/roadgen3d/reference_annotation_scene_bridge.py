@@ -162,6 +162,41 @@ def _graph_bbox(
     )
 
 
+def _resolve_scene_region_polygon(
+    annotation: ReferenceAnnotation,
+    local_centerlines: Sequence[Tuple[int, Any, Sequence[Tuple[float, float]]]],
+) -> Tuple[Any | None, Dict[str, Any]]:
+    """Return an AOI only when it owns at least one imported road surface.
+
+    Older OSM study payloads could classify an unrelated context polygon as a
+    ``scene_region``.  Using that polygon as a hard AOI clipped every selected
+    road away and left the 3D carriageway empty.  Preserve authored AOIs that
+    intersect the road network, but ignore a legacy/disjoint polygon and fall
+    back to the selected road graph bounds.
+    """
+
+    scene_polygon = scene_region_polygon_from_annotation(annotation)
+    if scene_polygon is None or getattr(scene_polygon, "is_empty", True):
+        return None, {"status": "absent", "fallback": "road_graph_bounds"}
+    try:
+        from shapely.geometry import LineString
+    except ImportError:
+        return scene_polygon, {"status": "applied", "reason": "shapely_unavailable"}
+
+    for _road_id, centerline, points in local_centerlines:
+        if len(points) < 2:
+            continue
+        half_width_m = max(float(centerline.carriageway_width_m()) * 0.5, 0.5)
+        road_surface = LineString(points).buffer(half_width_m, cap_style="flat")
+        if not getattr(road_surface.intersection(scene_polygon), "is_empty", True):
+            return scene_polygon, {"status": "applied", "reason": "intersects_road_surface"}
+    return None, {
+        "status": "ignored",
+        "reason": "no_road_surface_intersection",
+        "fallback": "road_graph_bounds",
+    }
+
+
 def _annotation_building_region_records(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
     ppm = max(float(annotation.pixels_per_meter), 1e-6)
     regions: List[Dict[str, Any]] = []
@@ -651,7 +686,10 @@ def build_reference_annotation_scene_bridge(
     annotation = _apply_parametric_cross_section_overrides(annotation, resolved_config)
     road_segment_graph = build_segment_graph_from_annotation(annotation, config=resolved_config)
     local_centerlines = _collect_local_centerlines(annotation)
-    scene_region_polygon = scene_region_polygon_from_annotation(annotation)
+    scene_region_polygon, scene_region_clip_summary = _resolve_scene_region_polygon(
+        annotation,
+        local_centerlines,
+    )
     synthetic_roads: List[OsmRoad] = []
     for road_id, centerline, points in local_centerlines:
         synthetic_roads.append(
@@ -772,6 +810,7 @@ def build_reference_annotation_scene_bridge(
         "region_derivation_summary": dict(derived_region_payload.get("summary", {}) or {}),
         "osm_context_massing": source_building_summary,
         "source_alignment": dict(source_alignment or {}),
+        "scene_region_clip": scene_region_clip_summary,
     }
     return ReferenceAnnotationSceneBridgeResult(
         annotation=annotation,
