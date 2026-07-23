@@ -11111,6 +11111,7 @@ def _rank_building_candidates_for_target(
         height_class=height_class,
     )
     reranked: List[Tuple[Dict[str, object], float]] = []
+    hits: Sequence[Any] = []
     if embedder is not None and index_store is not None:
         query_embedding = embedder.encode_texts([query_text])
         hits = index_store.search(query_embedding, topk=max(50, evaluation_limit, 1))[0]

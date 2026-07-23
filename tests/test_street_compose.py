@@ -1617,6 +1617,24 @@ def test_tree_candidate_uses_trunk_footprint_for_carriageway_clearance():
     )
 
 
+def test_building_candidate_ranking_without_clip_index_reports_zero_hits():
+    candidates, trace = street_layout._rank_building_candidates_for_target(
+        query="teaching street",
+        theme_name="mixed_use",
+        frontage_width_m=12.0,
+        depth_m=10.0,
+        road_type="residential",
+        height_class="midrise",
+        embedder=None,
+        index_store=None,
+        asset_by_id={},
+        search_topk=20,
+    )
+
+    assert candidates == []
+    assert trace["hit_count"] == 0
+
+
 def test_place_building_targets_centers_offset_mesh_and_keeps_lanes_clear(monkeypatch):
     shapely_geometry = pytest.importorskip("shapely.geometry")
 
