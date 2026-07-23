@@ -8072,6 +8072,19 @@ def _build_osm_base_scene(
             """Drop only sub-centimetre collinear artefacts from rings."""
             from shapely.geometry import Polygon as RingPolygon
 
+            if isinstance(polygon, MultiPolygon):
+                return MultiPolygon(
+                    [
+                        cleaned
+                        for part in polygon.geoms
+                        for cleaned in [_remove_numeric_collinear_vertices(part)]
+                        if isinstance(cleaned, ShapelyPolygon)
+                        and not cleaned.is_empty
+                    ]
+                )
+            if not isinstance(polygon, ShapelyPolygon):
+                return polygon
+
             tolerance_m = final_surface_precision_grid_m
 
             def clean_ring(coords: Any) -> List[Tuple[float, float]]:
@@ -8113,6 +8126,17 @@ def _build_osm_base_scene(
 
         def _extrude_with_constrained_triangulation(polygon: Any) -> Any:
             """Extrude with a quality-checked triangulation and automatic repair."""
+            def polygon_parts(source: Any) -> List[Any]:
+                if isinstance(source, ShapelyPolygon):
+                    return [source]
+                if isinstance(source, MultiPolygon):
+                    return [
+                        part
+                        for part in source.geoms
+                        if not part.is_empty and float(part.area) > 1e-10
+                    ]
+                return []
+
             def constrained_faces(source: Any) -> tuple[np.ndarray, np.ndarray]:
                 from shapely import constrained_delaunay_triangles
 
@@ -8136,6 +8160,29 @@ def _build_osm_base_scene(
                     raise ValueError("constrained triangulation produced no valid faces")
                 return np.asarray(vertices_2d, dtype=float), np.asarray(faces, dtype=int)
 
+            def earcut_faces(source: Any) -> tuple[np.ndarray, np.ndarray]:
+                """Triangulate every polygon component without dropping islands."""
+                vertices_by_part: List[np.ndarray] = []
+                faces_by_part: List[np.ndarray] = []
+                vertex_offset = 0
+                for part in polygon_parts(source):
+                    repaired = _remove_numeric_collinear_vertices(part)
+                    for repaired_part in polygon_parts(repaired):
+                        part_vertices, part_faces = trimesh.creation.triangulate_polygon(
+                            repaired_part,
+                            engine="earcut",
+                        )
+                        part_vertices = np.asarray(part_vertices, dtype=float)
+                        part_faces = np.asarray(part_faces, dtype=int)
+                        if part_vertices.size == 0 or part_faces.size == 0:
+                            continue
+                        vertices_by_part.append(part_vertices)
+                        faces_by_part.append(part_faces + vertex_offset)
+                        vertex_offset += int(len(part_vertices))
+                if not faces_by_part:
+                    raise ValueError("earcut triangulation produced no valid faces")
+                return np.vstack(vertices_by_part), np.vstack(faces_by_part)
+
             try:
                 vertices_2d, faces = constrained_faces(polygon)
             except (AttributeError, ImportError, TypeError, ValueError):
@@ -8147,12 +8194,10 @@ def _build_osm_base_scene(
             if quality["needle_face_count"]:
                 # Ear clipping avoids the Delaunay diagonal that connects
                 # almost-collinear overlay vertices.  First remove only
-                # numerical collinear points, then re-triangulate.
-                repaired_polygon = _remove_numeric_collinear_vertices(polygon)
-                vertices_2d, faces = trimesh.creation.triangulate_polygon(
-                    repaired_polygon,
-                    engine="earcut",
-                )
+                # numerical collinear points, then re-triangulate every
+                # component. A repair can legitimately produce a
+                # MultiPolygon, whose parts must not be discarded.
+                vertices_2d, faces = earcut_faces(polygon)
                 quality = _triangulation_quality(vertices_2d, faces)
             if quality["needle_face_count"]:
                 raise ValueError(
