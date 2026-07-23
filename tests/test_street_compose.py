@@ -682,6 +682,31 @@ def test_mesh_metadata_and_loaded_mesh_apply_manifest_source_scale(tmp_path: Pat
     assert entry.native_height_y == pytest.approx(0.5)
 
 
+def test_mesh_metadata_load_failure_is_not_masked_by_cleanup(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    trimesh = pytest.importorskip("trimesh")
+    mesh_path = tmp_path / "corrupt.glb"
+    mesh_path.write_bytes(b"not a valid mesh")
+
+    def fail_load(*_args, **_kwargs):
+        raise ValueError("corrupt mesh payload")
+
+    monkeypatch.setattr(trimesh, "load", fail_load)
+
+    with pytest.raises(ValueError, match="corrupt mesh payload"):
+        street_layout._load_mesh_metadata(
+            [
+                {
+                    "asset_id": "corrupt_asset",
+                    "category": "prop",
+                    "mesh_path": str(mesh_path),
+                }
+            ]
+        )
+
+
 def test_source_scale_infers_consistent_metric_dimensions_and_rejects_conflicts():
     scale, source, confidence, rejected, metric_size = street_layout._source_scale_for_row(
         {"dimensions_m": {"width": 20.0, "depth": 4.0, "height": 10.0}},

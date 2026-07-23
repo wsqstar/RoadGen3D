@@ -2134,6 +2134,8 @@ def _load_mesh_metadata(rows: List[Dict[str, str]]) -> Dict[str, _MeshMetadata]:
     for row in rows:
         asset_id = row["asset_id"]
         mesh_path = Path(row["mesh_path"]).resolve()
+        mesh_or_scene = None
+        display_geom = None
 
         if not mesh_path.exists():
             raise FileNotFoundError(f"mesh missing for asset '{asset_id}': {mesh_path}")
@@ -2211,10 +2213,9 @@ def _load_mesh_metadata(rows: List[Dict[str, str]]) -> Dict[str, _MeshMetadata]:
                 metric_size_m=dict(metric_size_m),
             )
         finally:
-            # Explicitly delete to help GC reclaim memory faster
-            del mesh_or_scene
-            if "display_geom" in locals():
-                del display_geom
+            # Release references without masking an earlier load/validation error.
+            mesh_or_scene = None
+            display_geom = None
 
     return metadata
 
@@ -10176,27 +10177,52 @@ def _should_embed_debug_scene_overlays(config: StreetComposeConfig) -> bool:
     return False
 
 
+def _iter_polygon_components(geometry):
+    """Yield Polygon members without assuming a geometry has one exterior."""
+    if geometry is None or getattr(geometry, "is_empty", True):
+        return
+    geometry_type = getattr(geometry, "geom_type", "")
+    if geometry_type == "Polygon":
+        yield geometry
+        return
+    if geometry_type in {"MultiPolygon", "GeometryCollection"}:
+        for component in geometry.geoms:
+            yield from _iter_polygon_components(component)
+
+
+def _extract_polygon_exterior_rings(
+    geometry,
+    tolerance: float = 0.5,
+    max_points: int = 200,
+) -> list:
+    """Simplify polygonal geometry and serialize every resulting exterior ring."""
+    rings: list = []
+    for polygon in _iter_polygon_components(geometry):
+        simplified_components = list(
+            _iter_polygon_components(polygon.simplify(tolerance))
+        )
+        for simplified in simplified_components:
+            components = [simplified]
+            if len(simplified.exterior.coords) > max_points:
+                components = list(
+                    _iter_polygon_components(simplified.simplify(tolerance * 2))
+                )
+            for component in components:
+                coords = list(component.exterior.coords)
+                rings.append(
+                    [[round(coord[0], 2), round(coord[1], 2)] for coord in coords]
+                )
+    return rings
+
+
 def _serialize_osm_geometry(placement_ctx: object) -> dict:
     """Extract simplified polygon exterior rings for 2D visualization in layout JSON."""
-    from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
-
     def _extract_rings(geom, tolerance: float = 0.5, max_points: int = 200):
-        polys: list = []
-        if isinstance(geom, ShapelyPolygon):
-            polys = [geom]
-        elif isinstance(geom, MultiPolygon):
-            polys = list(geom.geoms)
-        rings: list = []
-        for poly in polys:
-            if poly.is_empty:
-                continue
-            simplified = poly.simplify(tolerance)
-            coords = list(simplified.exterior.coords)
-            if len(coords) > max_points:
-                simplified = poly.simplify(tolerance * 2)
-                coords = list(simplified.exterior.coords)
-            rings.append([[round(c[0], 2), round(c[1], 2)] for c in coords])
-        return rings
+        return _extract_polygon_exterior_rings(
+            geom,
+            tolerance=tolerance,
+            max_points=max_points,
+        )
 
     def _serialize_polyline(points) -> list:
         return [

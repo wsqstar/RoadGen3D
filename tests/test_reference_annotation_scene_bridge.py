@@ -17,7 +17,11 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.reference_annotation import ANNOTATION_SCHEMA_VERSION, build_reference_annotation_compose_config
 from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
-from roadgen3d.street_layout import _build_osm_base_scene, _serialize_osm_geometry
+from roadgen3d.street_layout import (
+    _build_osm_base_scene,
+    _extract_polygon_exterior_rings,
+    _serialize_osm_geometry,
+)
 
 
 def _max_polygon_ring_size(geometry) -> int:
@@ -29,6 +33,25 @@ def _max_polygon_ring_size(geometry) -> int:
     if geom_type == "GeometryCollection":
         return max((_max_polygon_ring_size(item) for item in geometry.geoms), default=0)
     return 0
+
+
+def test_polygon_ring_serialization_handles_simplification_to_multipolygon():
+    pytest.importorskip("shapely")
+    from shapely.geometry import MultiPolygon, box
+
+    simplified = MultiPolygon([box(0.0, 0.0, 2.0, 2.0), box(4.0, 0.0, 6.0, 2.0)])
+
+    class SplittingPolygon:
+        geom_type = "Polygon"
+        is_empty = False
+
+        def simplify(self, _tolerance):
+            return simplified
+
+    rings = _extract_polygon_exterior_rings(SplittingPolygon())
+
+    assert len(rings) == 2
+    assert all(len(ring) == 5 for ring in rings)
 
 
 def _assert_cross_corner_ribbon_patches_are_valid(junction_geometry):
