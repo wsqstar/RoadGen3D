@@ -42437,6 +42437,144 @@
   "surface_annotations": [],
   "surface_diagnostic": {
     "coordinate_space": "local_xz_m",
+    "curb_access_ramps": [
+      {
+        "center_xz": [
+          165.237164,
+          -81.859439
+        ],
+        "footprint_xz": [
+          [
+            166.038717,
+            -81.447114
+          ],
+          [
+            165.309482,
+            -82.757921
+          ],
+          [
+            164.43561,
+            -82.271764
+          ],
+          [
+            165.164846,
+            -80.960957
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          -0.873872,
+          0.486157
+        ],
+        "ramp_id": "accessible_curb_ramp_corner_0_0",
+        "rise_m": 0.15,
+        "run_m": 1.0,
+        "source_crossing_indices": []
+      },
+      {
+        "center_xz": [
+          175.80036,
+          -78.668904
+        ],
+        "footprint_xz": [
+          [
+            176.246479,
+            -79.452152
+          ],
+          [
+            174.905777,
+            -78.779458
+          ],
+          [
+            175.35424,
+            -77.885656
+          ],
+          [
+            176.694942,
+            -78.558351
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          0.448463,
+          0.893801
+        ],
+        "ramp_id": "accessible_curb_ramp_corner_1_1",
+        "rise_m": 0.15,
+        "run_m": 1.0,
+        "source_crossing_indices": []
+      },
+      {
+        "center_xz": [
+          168.345877,
+          -90.897524
+        ],
+        "footprint_xz": [
+          [
+            167.880952,
+            -90.125291
+          ],
+          [
+            169.237525,
+            -90.765375
+          ],
+          [
+            168.810803,
+            -91.669758
+          ],
+          [
+            167.454229,
+            -91.029673
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          -0.426723,
+          -0.904382
+        ],
+        "ramp_id": "accessible_curb_ramp_corner_2_2",
+        "rise_m": 0.15,
+        "run_m": 1.0,
+        "source_crossing_indices": []
+      },
+      {
+        "center_xz": [
+          178.970272,
+          -87.02755
+        ],
+        "footprint_xz": [
+          [
+            178.21856,
+            -87.524972
+          ],
+          [
+            178.800233,
+            -86.142346
+          ],
+          [
+            179.721984,
+            -86.530128
+          ],
+          [
+            179.140311,
+            -87.912755
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          0.921751,
+          -0.387782
+        ],
+        "ramp_id": "accessible_curb_ramp_corner_3_3",
+        "rise_m": 0.15,
+        "run_m": 1.0,
+        "source_crossing_indices": []
+      }
+    ],
     "geometry_qa": {
       "context_ground_exposure_inside_row_m2": 0.0,
       "curb_reveal_m": 0.15,

@@ -141,6 +141,12 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert all(item.get("quadrant_id") for item in surface_diagnostic["patch_provenance"] if item.get("from_road_id"))
     assert surface_diagnostic["junction_arm_profiles"]
     assert len(surface_diagnostic["road_mouth_masks"]) == 4
+    curb_ramps = surface_diagnostic["curb_access_ramps"]
+    assert len(curb_ramps) == 4
+    assert all(len(item["footprint_xz"]) == 4 for item in curb_ramps)
+    assert all(item["influence_radius_m"] == 3.0 for item in curb_ramps)
+    assert all(item["length_along_curb_m"] == 1.5 for item in curb_ramps)
+    assert all(item["run_m"] == 1.0 for item in curb_ramps)
     marking_qa = osm_geometry["marking_geometry_qa"]
     assert marking_qa["ok"] is True
     assert marking_qa["urban_lane_edge_mode"] == "explicit_only"
@@ -168,6 +174,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert manifest["starter_focus"] == {"center_xz": [171.94, -84.95], "extent_m": 32.0}
     assert manifest["surface_diagnostic"]["source"] == "final_glb_top_faces"
     assert len(manifest["surface_diagnostic"]["node_roles"]) == len(surface_diagnostic["node_roles"])
+    assert manifest["surface_diagnostic"]["curb_access_ramps"] == curb_ramps
 
     scene = trimesh.load(directory / package["scene_file"], force="scene")
     node_names = [str(node_name) for node_name in scene.graph.nodes_geometry]

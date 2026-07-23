@@ -7069,6 +7069,7 @@ def _build_osm_base_scene(
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
     surface_node_roles: Dict[str, str] = {}
+    curb_access_ramp_records: List[Dict[str, Any]] = []
     curb_width = max(float(getattr(config, "curb_width_m", DEFAULT_CURB_WIDTH_M) or DEFAULT_CURB_WIDTH_M), 0.05)
     sidewalk_top_y_m = max(float(getattr(config, "curb_reveal_m", DEFAULT_CURB_REVEAL_M) or DEFAULT_CURB_REVEAL_M), 0.05)
     surface_precision_grid_m = max(
@@ -8905,6 +8906,23 @@ def _build_osm_base_scene(
         )
         for ramp_index, spec in enumerate(corner_ramp_specs):
             outward = list(spec["outward_axis_xz"])
+            tangent = [-float(outward[1]), float(outward[0])]
+            center_x = float(spec["center_xz"][0])
+            center_z = float(spec["center_xz"][1])
+            half_length = CURB_ACCESS_RAMP_LENGTH_M * 0.5
+            half_run = CURB_ACCESS_RAMP_RUN_M * 0.5
+            footprint_xz = [
+                [
+                    center_x + tangent[0] * along + float(outward[0]) * across,
+                    center_z + tangent[1] * along + float(outward[1]) * across,
+                ]
+                for along, across in (
+                    (-half_length, -half_run),
+                    (half_length, -half_run),
+                    (half_length, half_run),
+                    (-half_length, half_run),
+                )
+            ]
             # A Y-axis rotation maps local +Z to (sin(yaw), cos(yaw)).
             # _add_road_to_sidewalk_ramp converts road yaw once more, so
             # negate the desired renderer yaw here.
@@ -8916,8 +8934,8 @@ def _build_osm_base_scene(
                 run_m=CURB_ACCESS_RAMP_RUN_M,
                 rise_m=sidewalk_top_y_m,
                 high_side_sign=1.0,
-                center_x_m=float(spec["center_xz"][0]),
-                center_z_m=float(spec["center_xz"][1]),
+                center_x_m=center_x,
+                center_z_m=center_z,
                 road_yaw_deg=-renderer_yaw_deg,
                 color=colors.get("transit_pad", (198, 132, 78, 255)),
                 node_name=node_name,
@@ -8927,6 +8945,20 @@ def _build_osm_base_scene(
                 texture_overrides=texture_overrides,
             )
             surface_node_roles[node_name] = "curb_access_ramp"
+            curb_access_ramp_records.append({
+                "ramp_id": node_name,
+                "center_xz": [round(center_x, 6), round(center_z, 6)],
+                "outward_axis_xz": [round(float(outward[0]), 6), round(float(outward[1]), 6)],
+                "footprint_xz": [
+                    [round(float(point[0]), 6), round(float(point[1]), 6)]
+                    for point in footprint_xz
+                ],
+                "length_along_curb_m": CURB_ACCESS_RAMP_LENGTH_M,
+                "run_m": CURB_ACCESS_RAMP_RUN_M,
+                "rise_m": sidewalk_top_y_m,
+                "influence_radius_m": 3.0,
+                "source_crossing_indices": list(spec.get("source_crossing_indices", [])),
+            })
 
     fallback_length_m = 20.0
     if scene_bounds:
@@ -9696,6 +9728,7 @@ def _build_osm_base_scene(
         "coordinate_space": "local_xz_m",
         "source": "final_glb_top_faces",
         "node_roles": dict(sorted(surface_node_roles.items())),
+        "curb_access_ramps": curb_access_ramp_records,
         "patch_provenance": diagnostic_patches,
         "junction_arm_profiles": diagnostic_arm_profiles,
         "road_mouth_masks": [
