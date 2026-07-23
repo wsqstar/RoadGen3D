@@ -3,7 +3,7 @@ from __future__ import annotations
 import sys
 import json
 from pathlib import Path
-from threading import Event
+from threading import Event, Lock
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -121,6 +121,49 @@ def test_scene_job_service_exposes_running_progress():
     assert completed.status == "succeeded"
     assert completed.stage == "succeeded"
     assert completed.progress == 100
+
+
+def test_scene_job_service_runs_bounded_jobs_concurrently_with_unique_output_dirs(tmp_path: Path):
+    active_count = 0
+    active_lock = Lock()
+    three_started = Event()
+    release_generators = Event()
+    output_dirs: list[str] = []
+
+    def _generator(draft, **kwargs):
+        nonlocal active_count
+        generation_options = dict(kwargs.get("generation_options") or {})
+        output_dirs.append(str(generation_options["out_dir"]))
+        with active_lock:
+            active_count += 1
+            if active_count == 3:
+                three_started.set()
+        release_generators.wait(timeout=2.0)
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={"instance_count": 1},
+            scene_layout_path="/tmp/layout.json",
+            scene_glb_path="/tmp/scene.glb",
+            scene_ply_path="/tmp/scene.ply",
+            viewer_url="http://127.0.0.1:4173/?layout=demo",
+        )
+
+    service = SceneJobService(generator=_generator, max_workers=3)
+    created = [
+        service.submit_job(
+            draft=_draft(),
+            generation_options={"out_dir": str(tmp_path)},
+        )
+        for _ in range(3)
+    ]
+
+    assert three_started.wait(timeout=2.0)
+    release_generators.set()
+    completed = [service.wait_for_job(item.job_id, timeout_s=2.0) for item in created]
+
+    assert all(item is not None and item.status == "succeeded" for item in completed)
+    assert len(set(output_dirs)) == 3
+    assert all(Path(path).parent == tmp_path for path in output_dirs)
 
 
 def test_scene_job_cancellation_blocks_late_success():

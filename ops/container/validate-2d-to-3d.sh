@@ -93,6 +93,7 @@ run_step 07-backend-flow-tests \
   tests/test_design_api.py::test_design_api_endpoints_return_expected_shapes \
   tests/test_scene_jobs.py::test_scene_job_service_runs_sync_generation \
   tests/test_scene_jobs.py::test_scene_job_service_exposes_running_progress \
+  tests/test_scene_jobs.py::test_scene_job_service_runs_bounded_jobs_concurrently_with_unique_output_dirs \
   tests/test_design_runtime.py::test_generate_scene_from_draft_wraps_existing_scene_pipeline \
   tests/test_design_runtime.py::test_generate_scene_from_draft_applies_osm_scene_context \
   tests/test_street_compose.py::test_backend_random_osm_snapshot_generates_pedestrian_priority_3d

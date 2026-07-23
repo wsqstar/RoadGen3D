@@ -43,6 +43,8 @@
 9. Trimesh 的生产制品路径依赖 `scipy`；它是几何运行依赖，不是 AI 模型依赖。
 10. `pytest` 不进入生产依赖集，仅由远程验证门禁通过
     `ops/requirements-validation.txt` 安装。
+11. 专业生成队列最多并行 5 个任务；每个任务写入以 job ID 命名的独立输出目录，
+    不得互相覆盖 `scene_layout.json` 或 GLB。
 
 ## 远程验证
 

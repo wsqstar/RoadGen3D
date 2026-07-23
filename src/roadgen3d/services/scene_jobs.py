@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import logging
+import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,6 +24,9 @@ from .design_types import (
     SceneRecord,
 )
 from .generation_method import infer_generation_method
+
+
+logger = logging.getLogger(__name__)
 
 
 def _utc_now() -> str:
@@ -50,21 +55,32 @@ class _SceneJobState:
 
 
 class SceneJobService:
-    """Single-process background worker for scene generation jobs."""
+    """Bounded in-process worker pool for professional scene generation jobs."""
 
     def __init__(
         self,
         *,
         generator: Callable[..., SceneGenerationResult] | None = None,
         evaluator: Callable[..., Mapping[str, Any]] | None = None,
+        max_workers: int | None = None,
     ) -> None:
         self.generator = generator or generate_scene_from_draft
         self.evaluator = evaluator
+        configured_workers = (
+            max_workers
+            if max_workers is not None
+            else os.getenv("ROADGEN_SCENE_JOB_WORKERS", "5")
+        )
+        try:
+            worker_count = int(configured_workers)
+        except (TypeError, ValueError):
+            worker_count = 5
+        self.max_workers = max(1, min(worker_count, 5))
         self._jobs: Dict[str, _SceneJobState] = {}
         self._queue: Queue[str] = Queue()
         self._lock = Lock()
         self._condition = Condition(self._lock)
-        self._worker: Thread | None = None
+        self._workers: List[Thread] = []
 
     def submit_job(
         self,
@@ -178,10 +194,16 @@ class SceneJobService:
 
     def _ensure_worker(self) -> None:
         with self._condition:
-            if self._worker is not None and self._worker.is_alive():
-                return
-            self._worker = Thread(target=self._worker_loop, name="roadgen3d-scene-job-worker", daemon=True)
-            self._worker.start()
+            self._workers = [worker for worker in self._workers if worker.is_alive()]
+            while len(self._workers) < self.max_workers:
+                worker_index = len(self._workers)
+                worker = Thread(
+                    target=self._worker_loop,
+                    name=f"roadgen3d-scene-job-worker-{worker_index:02d}",
+                    daemon=True,
+                )
+                self._workers.append(worker)
+                worker.start()
 
     def _worker_loop(self) -> None:
         while True:
@@ -204,14 +226,27 @@ class SceneJobService:
                 )
                 self._condition.notify_all()
             try:
+                generation_options = dict(state.generation_options)
+                output_root = Path(
+                    str(
+                        generation_options.get("out_dir")
+                        or os.getenv("ROADGEN_SCENE_OUTPUT_ROOT", "")
+                        or Path.cwd() / "artifacts" / "real"
+                    )
+                ).expanduser().resolve()
+                # Every job owns its output directory. This prevents concurrent
+                # jobs from overwriting scene_layout.json, scene.glb, and the
+                # stable Viewer cache identity.
+                generation_options["out_dir"] = str((output_root / state.job_id).resolve())
                 result = self.generator(
                     state.draft,
                     patch_overrides=state.patch_overrides,
-                    generation_options=state.generation_options,
+                    generation_options=generation_options,
                     scene_context=state.scene_context,
                     progress_callback=lambda event: self._record_progress(job_id, event),
                 )
             except Exception as exc:
+                logger.exception("Scene generation job %s failed.", job_id)
                 with self._condition:
                     latest = self._jobs.get(job_id)
                     if latest is not None and latest.status != "cancelled":
