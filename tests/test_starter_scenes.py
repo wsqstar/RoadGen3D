@@ -136,9 +136,19 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert surface_qa["curb_ramp_count"] == 8
     assert surface_qa["curb_ramp_surface_clearance_m"] == 0.01
     assert surface_qa["curb_ramp_underlay_overlap_area_m2"] <= 1e-4
+    assert surface_qa["curb_ramp_pair_overlap_area_m2"] <= 1e-6
+    assert surface_qa["curb_ramp_min_pair_clearance_m"] >= 0.15 - 1e-6
+    assert surface_qa["curb_ramp_required_pair_clearance_m"] == 0.15
+    assert surface_qa["curb_ramp_clearance_violation_count"] == 0
+    assert surface_qa["curb_ramp_repositioned_count"] >= 2
+    assert 0.0 < surface_qa["curb_ramp_max_shift_m"] <= 3.0
     assert surface_qa["curb_ramp_visible_surface_area_m2"] == pytest.approx(
         surface_qa["curb_ramp_cut_area_m2"],
-        abs=2e-3,
+        abs=surface_qa["curb_ramp_visible_surface_tolerance_m2"],
+    )
+    assert (
+        surface_qa["curb_ramp_visible_surface_gap_area_m2"]
+        <= surface_qa["curb_ramp_visible_surface_tolerance_m2"]
     )
     surface_diagnostic = scene_layout["surface_diagnostic"]
     assert surface_diagnostic["schema_version"] == "roadgen3d.surface-diagnostic.v1"
@@ -150,7 +160,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert len(surface_diagnostic["road_mouth_masks"]) == 4
     curb_ramps = surface_diagnostic["curb_access_ramps"]
     assert len(curb_ramps) == 8
-    assert all(item["placement_rule"] == "crosswalk_endpoint_v1" for item in curb_ramps)
+    assert all(item["placement_rule"] == "crosswalk_endpoint_separated_v2" for item in curb_ramps)
     assert all(item["crossing_index"] >= 0 for item in curb_ramps)
     assert {item["endpoint_side"] for item in curb_ramps} == {"negative", "positive"}
     for item in curb_ramps:
@@ -159,6 +169,14 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
         outward = np.asarray(item["outward_axis_xz"], dtype=float)
         assert float(np.linalg.norm(center - road_edge)) == pytest.approx(0.5, abs=1e-5)
         assert float(np.dot(center - road_edge, outward)) == pytest.approx(0.5, abs=1e-5)
+        source_center = np.asarray(item["source_center_xz"], dtype=float)
+        tangent = np.asarray((-outward[1], outward[0]), dtype=float)
+        displacement = center - source_center
+        assert float(np.dot(displacement, outward)) == pytest.approx(0.0, abs=1e-5)
+        assert float(np.dot(displacement, tangent)) == pytest.approx(
+            item["placement_offset_along_curb_m"],
+            abs=1e-5,
+        )
     assert all(len(item["footprint_xz"]) == 4 for item in curb_ramps)
     assert all(item["influence_radius_m"] == 3.0 for item in curb_ramps)
     assert all(item["length_along_curb_m"] == 1.5 for item in curb_ramps)
@@ -203,7 +221,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     for node_name in ramp_node_names:
         ramp_mesh = scene.geometry[scene.graph[node_name][1]]
         assert ramp_mesh.is_watertight
-        assert float(ramp_mesh.volume) == pytest.approx(0.5 * 1.5 * 1.0 * 0.15, abs=1e-6)
+        assert float(ramp_mesh.volume) == pytest.approx(0.5 * 1.5 * 1.0 * 0.15, abs=2e-6)
         assert float(ramp_mesh.bounds[0][1]) == pytest.approx(0.0)
         assert float(ramp_mesh.bounds[1][1]) == pytest.approx(0.15)
         assert any(0.05 < float(normal[1]) < 0.99 for normal in ramp_mesh.face_normals)

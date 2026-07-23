@@ -3949,6 +3949,9 @@ DEFAULT_CURB_WIDTH_M = 0.12
 SIDEWALK_ELEVATION_M = DEFAULT_CURB_REVEAL_M
 CURB_ACCESS_RAMP_LENGTH_M = 1.5
 CURB_ACCESS_RAMP_RUN_M = 1.0
+CURB_ACCESS_RAMP_MIN_CLEARANCE_M = 0.15
+CURB_ACCESS_RAMP_SEPARATION_STEP_M = 0.25
+CURB_ACCESS_RAMP_MAX_SHIFT_M = 3.0
 BUILDING_GRASS_UNDERLAY_HEIGHT_M = 0.024
 BUILDING_GRASS_UNDERLAY_Y_MIN_M = -0.030
 BUILDING_GRASS_UNDERLAY_TOP_M = BUILDING_GRASS_UNDERLAY_Y_MIN_M + BUILDING_GRASS_UNDERLAY_HEIGHT_M
@@ -4611,6 +4614,152 @@ def _deduplicate_intersection_curb_ramp_specs(
         item["source_crossing_indices"] = [crossing_index] if crossing_index >= 0 else []
         distinct.append(item)
     return distinct
+
+
+def _curb_ramp_footprint_xz(
+    spec: Mapping[str, Any],
+    *,
+    length_m: float = CURB_ACCESS_RAMP_LENGTH_M,
+    run_m: float = CURB_ACCESS_RAMP_RUN_M,
+) -> List[List[float]]:
+    outward = np.asarray(spec.get("outward_axis_xz") or (0.0, 1.0), dtype=float)
+    outward_norm = float(np.linalg.norm(outward))
+    if outward_norm <= 1e-9:
+        outward = np.asarray((0.0, 1.0), dtype=float)
+    else:
+        outward = outward / outward_norm
+    tangent = np.asarray((-outward[1], outward[0]), dtype=float)
+    center = np.asarray(spec.get("center_xz") or (0.0, 0.0), dtype=float)
+    half_length = max(float(length_m), 0.0) * 0.5
+    half_run = max(float(run_m), 0.0) * 0.5
+    return [
+        (center + tangent * along + outward * across).tolist()
+        for along, across in (
+            (-half_length, -half_run),
+            (half_length, -half_run),
+            (half_length, half_run),
+            (-half_length, half_run),
+        )
+    ]
+
+
+def _separate_overlapping_intersection_curb_ramp_specs(
+    specs: Sequence[Mapping[str, Any]],
+    *,
+    min_clearance_m: float = CURB_ACCESS_RAMP_MIN_CLEARANCE_M,
+    step_m: float = CURB_ACCESS_RAMP_SEPARATION_STEP_M,
+    max_shift_m: float = CURB_ACCESS_RAMP_MAX_SHIFT_M,
+) -> List[Dict[str, Any]]:
+    """Move overlapping ramps apart along their curb tangents.
+
+    Crosswalk endpoints remain the source anchors, but final ramps may slide
+    along the road edge when the source geometry would make two ramp footprints
+    overlap. Both ramps in a conflict move by the smallest shared step that
+    provides the requested clearance.
+    """
+
+    from shapely.geometry import Polygon as RampFootprintPolygon
+
+    resolved: List[Dict[str, Any]] = []
+    for source in specs:
+        item = dict(source)
+        source_center = [float(value) for value in item.get("center_xz", (0.0, 0.0))]
+        source_road_edge = [float(value) for value in item.get("road_edge_xz", (0.0, 0.0))]
+        item["source_center_xz"] = source_center
+        item["source_road_edge_xz"] = source_road_edge
+        item["placement_offset_along_curb_m"] = 0.0
+        resolved.append(item)
+
+    def _polygon(item: Mapping[str, Any]) -> Any:
+        return RampFootprintPolygon(_curb_ramp_footprint_xz(item))
+
+    max_steps = max(int(math.ceil(max(float(max_shift_m), 0.0) / max(float(step_m), 1e-6))), 1)
+    max_iterations = max(len(resolved) * len(resolved), 1)
+    for _ in range(max_iterations):
+        polygons = [_polygon(item) for item in resolved]
+        conflict: Tuple[int, int] | None = None
+        for left_index in range(len(polygons)):
+            for right_index in range(left_index + 1, len(polygons)):
+                if polygons[left_index].distance(polygons[right_index]) < float(min_clearance_m) - 1e-6:
+                    conflict = (left_index, right_index)
+                    break
+            if conflict is not None:
+                break
+        if conflict is None:
+            break
+
+        left_index, right_index = conflict
+        candidate_choices: List[Tuple[float, float, int, int, Dict[str, Any], Dict[str, Any]]] = []
+        for step_index in range(1, max_steps + 1):
+            displacement = float(step_m) * step_index
+            if displacement > float(max_shift_m) + 1e-9:
+                break
+            for left_sign in (-1, 1):
+                for right_sign in (-1, 1):
+                    pair: List[Dict[str, Any]] = []
+                    for item_index, sign in ((left_index, left_sign), (right_index, right_sign)):
+                        item = dict(resolved[item_index])
+                        outward = np.asarray(item.get("outward_axis_xz") or (0.0, 1.0), dtype=float)
+                        outward_norm = max(float(np.linalg.norm(outward)), 1e-9)
+                        outward = outward / outward_norm
+                        tangent = np.asarray((-outward[1], outward[0]), dtype=float)
+                        delta = tangent * (float(sign) * displacement)
+                        item["center_xz"] = (
+                            np.asarray(resolved[item_index].get("center_xz") or (0.0, 0.0), dtype=float)
+                            + delta
+                        ).tolist()
+                        item["road_edge_xz"] = (
+                            np.asarray(resolved[item_index].get("road_edge_xz") or (0.0, 0.0), dtype=float)
+                            + delta
+                        ).tolist()
+                        item["placement_offset_along_curb_m"] = float(
+                            resolved[item_index].get("placement_offset_along_curb_m", 0.0)
+                        ) + float(sign) * displacement
+                        pair.append(item)
+                    left_polygon = _polygon(pair[0])
+                    right_polygon = _polygon(pair[1])
+                    pair_clearance = float(left_polygon.distance(right_polygon))
+                    if pair_clearance < float(min_clearance_m) - 1e-6:
+                        continue
+                    creates_overlap = False
+                    for other_index, other_polygon in enumerate(polygons):
+                        if other_index in conflict:
+                            continue
+                        if (
+                            left_polygon.intersection(other_polygon).area > 1e-6
+                            or right_polygon.intersection(other_polygon).area > 1e-6
+                        ):
+                            creates_overlap = True
+                            break
+                    if creates_overlap:
+                        continue
+                    center_distance = float(
+                        np.linalg.norm(
+                            np.asarray(pair[0]["center_xz"], dtype=float)
+                            - np.asarray(pair[1]["center_xz"], dtype=float)
+                        )
+                    )
+                    candidate_choices.append(
+                        (
+                            displacement,
+                            -center_distance,
+                            left_sign,
+                            right_sign,
+                            pair[0],
+                            pair[1],
+                        )
+                    )
+            if candidate_choices:
+                break
+
+        if not candidate_choices:
+            break
+        candidate_choices.sort(key=lambda item: item[:4])
+        best = candidate_choices[0]
+        resolved[left_index] = best[4]
+        resolved[right_index] = best[5]
+
+    return resolved
 
 
 def _should_render_centerline_marking(*, carriageway_width_m: float, lane_count: int | None = None) -> bool:
@@ -7320,6 +7469,11 @@ def _build_osm_base_scene(
     ramp_footprint_zone = _clean_scene_polygonal_geometry(None)
     ramp_surface_clearance_m = max(final_surface_precision_grid_m, 0.01)
     ramp_cut_zone = _clean_scene_polygonal_geometry(None)
+    ramp_pair_overlap_area_m2 = 0.0
+    ramp_min_pair_clearance_m = 0.0
+    ramp_clearance_violation_count = 0
+    ramp_repositioned_count = 0
+    ramp_max_shift_m = 0.0
     if bool(getattr(config, "curb_ramp_enabled", False)):
         from shapely.geometry import Polygon as RampFootprintPolygon
 
@@ -7333,30 +7487,35 @@ def _build_osm_base_scene(
         crosswalk_ramp_specs = _deduplicate_intersection_curb_ramp_specs(
             directional_ramp_specs,
         )
+        crosswalk_ramp_specs = _separate_overlapping_intersection_curb_ramp_specs(
+            crosswalk_ramp_specs,
+        )
         ramp_footprints: List[Any] = []
         for spec in crosswalk_ramp_specs:
-            outward = [float(value) for value in spec["outward_axis_xz"]]
-            tangent = [-outward[1], outward[0]]
-            center_x = float(spec["center_xz"][0])
-            center_z = float(spec["center_xz"][1])
-            half_length = CURB_ACCESS_RAMP_LENGTH_M * 0.5
-            half_run = CURB_ACCESS_RAMP_RUN_M * 0.5
-            footprint_xz = [
-                [
-                    center_x + tangent[0] * along + outward[0] * across,
-                    center_z + tangent[1] * along + outward[1] * across,
-                ]
-                for along, across in (
-                    (-half_length, -half_run),
-                    (half_length, -half_run),
-                    (half_length, half_run),
-                    (-half_length, half_run),
-                )
-            ]
+            footprint_xz = _curb_ramp_footprint_xz(spec)
             spec["footprint_xz"] = footprint_xz
             footprint = RampFootprintPolygon(footprint_xz)
             if footprint.is_valid and not footprint.is_empty:
                 ramp_footprints.append(footprint)
+        pair_clearances: List[float] = []
+        for left_index in range(len(ramp_footprints)):
+            for right_index in range(left_index + 1, len(ramp_footprints)):
+                left = ramp_footprints[left_index]
+                right = ramp_footprints[right_index]
+                overlap_area = float(left.intersection(right).area)
+                clearance = float(left.distance(right))
+                ramp_pair_overlap_area_m2 += overlap_area
+                pair_clearances.append(clearance)
+                if clearance < CURB_ACCESS_RAMP_MIN_CLEARANCE_M - 1e-6:
+                    ramp_clearance_violation_count += 1
+        if pair_clearances:
+            ramp_min_pair_clearance_m = min(pair_clearances)
+        offsets = [
+            abs(float(spec.get("placement_offset_along_curb_m", 0.0)))
+            for spec in crosswalk_ramp_specs
+        ]
+        ramp_repositioned_count = sum(offset > 1e-6 for offset in offsets)
+        ramp_max_shift_m = max(offsets, default=0.0)
         ramp_footprint_zone = _union_scene_polygonal_geometries(ramp_footprints)
         if not getattr(ramp_footprint_zone, "is_empty", True):
             ramp_cut_zone = _clean_scene_polygonal_geometry(
@@ -9021,14 +9180,26 @@ def _build_osm_base_scene(
             surface_node_roles[node_name] = "curb_access_ramp"
             curb_access_ramp_records.append({
                 "ramp_id": node_name,
-                "placement_rule": "crosswalk_endpoint_v1",
+                "placement_rule": "crosswalk_endpoint_separated_v2",
                 "crossing_index": int(spec.get("crossing_index", -1)),
                 "endpoint_side": str(spec.get("side", "")),
+                "source_road_edge_xz": [
+                    round(float(value), 6)
+                    for value in spec.get("source_road_edge_xz", spec.get("road_edge_xz", (center_x, center_z)))
+                ],
+                "source_center_xz": [
+                    round(float(value), 6)
+                    for value in spec.get("source_center_xz", spec.get("center_xz", (center_x, center_z)))
+                ],
                 "road_edge_xz": [
                     round(float(value), 6)
                     for value in spec.get("road_edge_xz", (center_x, center_z))
                 ],
                 "center_xz": [round(center_x, 6), round(center_z, 6)],
+                "placement_offset_along_curb_m": round(
+                    float(spec.get("placement_offset_along_curb_m", 0.0)),
+                    6,
+                ),
                 "outward_axis_xz": [round(float(outward[0]), 6), round(float(outward[1]), 6)],
                 "footprint_xz": [
                     [round(float(point[0]), 6), round(float(point[1]), 6)]
@@ -9613,6 +9784,11 @@ def _build_osm_base_scene(
         and not getattr(ramp_footprint_zone, "is_empty", True)
         else 0.0
     )
+    curb_ramp_visible_surface_gap_area_m2 = max(
+        float(getattr(ramp_footprint_zone, "area", 0.0)) - curb_ramp_visible_surface_area_m2,
+        0.0,
+    )
+    curb_ramp_visible_surface_tolerance_m2 = 0.005
     # The exported top polygons can pass through two topology-preserving
     # five-millimetre simplification passes before triangulation.  Audit their
     # generic ROW coverage with the resulting ten-millimetre numerical
@@ -9740,6 +9916,17 @@ def _build_osm_base_scene(
             "curb_ramp_surface_clearance_m": round(ramp_surface_clearance_m, 6),
             "curb_ramp_underlay_overlap_area_m2": round(curb_ramp_underlay_overlap_area_m2, 6),
             "curb_ramp_visible_surface_area_m2": round(curb_ramp_visible_surface_area_m2, 6),
+            "curb_ramp_visible_surface_gap_area_m2": round(
+                curb_ramp_visible_surface_gap_area_m2,
+                6,
+            ),
+            "curb_ramp_visible_surface_tolerance_m2": curb_ramp_visible_surface_tolerance_m2,
+            "curb_ramp_pair_overlap_area_m2": round(ramp_pair_overlap_area_m2, 6),
+            "curb_ramp_min_pair_clearance_m": round(ramp_min_pair_clearance_m, 6),
+            "curb_ramp_required_pair_clearance_m": CURB_ACCESS_RAMP_MIN_CLEARANCE_M,
+            "curb_ramp_clearance_violation_count": int(ramp_clearance_violation_count),
+            "curb_ramp_repositioned_count": int(ramp_repositioned_count),
+            "curb_ramp_max_shift_m": round(ramp_max_shift_m, 6),
         }
     )
     surface_geometry_qa["ok"] = bool(
@@ -9755,9 +9942,11 @@ def _build_osm_base_scene(
         and curb_road_mouth_intrusion_area_m2 <= 1e-4
         and road_mouth_carriageway_gap_area_m2 <= 1e-4
         and curb_ramp_underlay_overlap_area_m2 <= 1e-4
+        and ramp_pair_overlap_area_m2 <= 1e-6
+        and ramp_clearance_violation_count == 0
         and (
             not crosswalk_ramp_specs
-            or curb_ramp_visible_surface_area_m2 >= float(getattr(ramp_footprint_zone, "area", 0.0)) - 1e-4
+            or curb_ramp_visible_surface_gap_area_m2 <= curb_ramp_visible_surface_tolerance_m2
         )
     )
     if not surface_geometry_qa["ok"]:
@@ -9780,6 +9969,10 @@ def _build_osm_base_scene(
             f"road_mouth_added_carriageway_area_m2={road_mouth_added_carriageway_area_m2:.6f}, "
             f"curb_ramp_underlay_overlap_area_m2={curb_ramp_underlay_overlap_area_m2:.6f}, "
             f"curb_ramp_visible_surface_area_m2={curb_ramp_visible_surface_area_m2:.6f}, "
+            f"curb_ramp_visible_surface_gap_area_m2={curb_ramp_visible_surface_gap_area_m2:.6f}, "
+            f"curb_ramp_pair_overlap_area_m2={ramp_pair_overlap_area_m2:.6f}, "
+            f"curb_ramp_min_pair_clearance_m={ramp_min_pair_clearance_m:.6f}, "
+            f"curb_ramp_clearance_violation_count={ramp_clearance_violation_count}, "
             f"road_mouth_arms={curb_road_mouth_intrusion_by_arm}, "
             f"violations={surface_mesh_violations[:8]}"
         )

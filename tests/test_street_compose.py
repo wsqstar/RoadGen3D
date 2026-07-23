@@ -3125,6 +3125,60 @@ def test_duplicate_crosswalk_endpoint_is_removed_without_moving_contact_point():
     assert distinct[0]["source_crossing_indices"] == [0, 2]
 
 
+def test_overlapping_crosswalk_ramps_move_apart_along_curb_tangents():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    specs = [
+        {
+            "crossing_index": 0,
+            "side": "negative",
+            "road_edge_xz": [0.0, 0.0],
+            "center_xz": [-0.5, 0.0],
+            "outward_axis_xz": [-1.0, 0.0],
+        },
+        {
+            "crossing_index": 1,
+            "side": "positive",
+            "road_edge_xz": [0.2, -0.1],
+            "center_xz": [0.2, 0.4],
+            "outward_axis_xz": [0.0, 1.0],
+        },
+    ]
+    initial_polygons = [
+        shapely_geometry.Polygon(street_layout._curb_ramp_footprint_xz(item))
+        for item in specs
+    ]
+
+    resolved = street_layout._separate_overlapping_intersection_curb_ramp_specs(specs)
+    final_polygons = [
+        shapely_geometry.Polygon(street_layout._curb_ramp_footprint_xz(item))
+        for item in resolved
+    ]
+
+    assert initial_polygons[0].intersection(initial_polygons[1]).area > 0.0
+    assert final_polygons[0].intersection(final_polygons[1]).area <= 1e-6
+    assert final_polygons[0].distance(final_polygons[1]) >= (
+        street_layout.CURB_ACCESS_RAMP_MIN_CLEARANCE_M - 1e-6
+    )
+    assert all(
+        0.0 < abs(float(item["placement_offset_along_curb_m"]))
+        <= street_layout.CURB_ACCESS_RAMP_MAX_SHIFT_M
+        for item in resolved
+    )
+    for source, item in zip(specs, resolved):
+        outward = np.asarray(item["outward_axis_xz"], dtype=float)
+        tangent = np.asarray((-outward[1], outward[0]), dtype=float)
+        displacement = np.asarray(item["center_xz"], dtype=float) - np.asarray(
+            item["source_center_xz"],
+            dtype=float,
+        )
+        assert float(np.dot(displacement, outward)) == pytest.approx(0.0, abs=1e-6)
+        assert abs(float(np.dot(displacement, tangent))) == pytest.approx(
+            abs(float(item["placement_offset_along_curb_m"])),
+            abs=1e-6,
+        )
+        assert item["source_road_edge_xz"] == pytest.approx(source["road_edge_xz"])
+
+
 def test_osm_curb_zone_excludes_road_endpoint_caps():
     shapely_geometry = pytest.importorskip("shapely.geometry")
 

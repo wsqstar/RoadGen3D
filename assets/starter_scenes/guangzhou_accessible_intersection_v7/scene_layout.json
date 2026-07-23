@@ -35635,16 +35635,16 @@
             -96.34
           ],
           [
-            178.76,
-            -87.89
+            178.18,
+            -86.78
           ],
           [
-            179.74,
-            -87.14
+            180.93,
+            -86.78
           ],
           [
-            179.48,
-            -86.29
+            180.68,
+            -85.94
           ],
           [
             198.97,
@@ -35859,24 +35859,16 @@
         ],
         [
           [
-            175.92,
-            -79.8
+            175.1,
+            -79.92
           ],
           [
-            174.84,
-            -79.21
+            175.08,
+            -77.24
           ],
           [
-            175.68,
-            -78.91
-          ],
-          [
-            175.16,
-            -77.48
-          ],
-          [
-            174.33,
-            -77.78
+            174.24,
+            -77.54
           ],
           [
             138.18,
@@ -35907,20 +35899,24 @@
             -76.41
           ],
           [
-            177.41,
-            -79.48
+            177.61,
+            -79.29
           ],
           [
-            177.11,
-            -78.51
+            177.35,
+            -78.44
           ],
           [
-            175.66,
-            -78.95
+            175.9,
+            -78.88
           ],
           [
-            175.92,
-            -79.8
+            176.16,
+            -79.73
+          ],
+          [
+            175.1,
+            -79.92
           ]
         ],
         [
@@ -36027,28 +36023,40 @@
             77.92
           ],
           [
-            123.99,
-            28.93
+            118.1,
+            49.8
           ],
           [
-            129.52,
-            12.47
+            129.45,
+            12.66
           ],
           [
             158.67,
             -61.58
           ],
           [
-            165.63,
-            -80.91
+            165.97,
+            -81.85
           ],
           [
-            164.39,
-            -81.79
+            165.27,
+            -82.51
           ],
           [
-            164.58,
-            -82.66
+            164.9,
+            -81.68
+          ],
+          [
+            163.41,
+            -82.0
+          ],
+          [
+            163.6,
+            -82.87
+          ],
+          [
+            162.76,
+            -83.05
           ],
           [
             145.65,
@@ -36136,11 +36144,19 @@
       ],
       "surface_geometry_qa": {
         "context_ground_exposure_inside_row_m2": 0.0,
+        "curb_ramp_clearance_violation_count": 0,
         "curb_ramp_count": 8,
-        "curb_ramp_cut_area_m2": 10.178121,
+        "curb_ramp_cut_area_m2": 12.0,
+        "curb_ramp_max_shift_m": 1.25,
+        "curb_ramp_min_pair_clearance_m": 0.152632,
+        "curb_ramp_pair_overlap_area_m2": 0.0,
+        "curb_ramp_repositioned_count": 6,
+        "curb_ramp_required_pair_clearance_m": 0.15,
         "curb_ramp_surface_clearance_m": 0.01,
         "curb_ramp_underlay_overlap_area_m2": 0.0,
-        "curb_ramp_visible_surface_area_m2": 10.17956,
+        "curb_ramp_visible_surface_area_m2": 11.997499,
+        "curb_ramp_visible_surface_gap_area_m2": 0.002501,
+        "curb_ramp_visible_surface_tolerance_m2": 0.005,
         "curb_reveal_m": 0.15,
         "curb_road_mouth_intrusion_area_m2": 0.0,
         "curb_road_mouth_intrusion_by_arm": [
@@ -36345,7 +36361,7 @@
         "minimum_top_triangle_angle_deg": 0.314363,
         "needle_top_face_count": 0,
         "ok": true,
-        "removed_surface_sliver_count": 6,
+        "removed_surface_sliver_count": 5,
         "rendered_surface_qa_tolerance_m": 0.01,
         "rendered_surface_uncovered_area_m2": 0.0,
         "rendered_surface_uncovered_bounds_xz": [],
@@ -37643,7 +37659,7 @@
       "carriageway": 1,
       "context_ground": 1,
       "crossing": 40,
-      "curb": 12,
+      "curb": 13,
       "curb_access_ramp": 8,
       "lane_mark": 88,
       "plaza": 4,
@@ -42525,27 +42541,27 @@
     "curb_access_ramps": [
       {
         "center_xz": [
-          165.532766,
-          -81.753813
+          165.871537,
+          -82.694682
         ],
         "crossing_index": 0,
         "endpoint_side": "negative",
         "footprint_xz": [
           [
-            165.749123,
-            -80.878776
+            166.087893,
+            -81.819645
           ],
           [
-            166.257279,
-            -82.290079
+            166.596049,
+            -83.230948
           ],
           [
-            165.31641,
-            -82.62885
+            165.65518,
+            -83.569719
           ],
           [
-            164.808254,
-            -81.217547
+            165.147024,
+            -82.158416
           ]
         ],
         "influence_radius_m": 3.0,
@@ -42554,41 +42570,50 @@
           -0.940869,
           -0.338771
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 1.0,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_0_negative_0",
         "rise_m": 0.15,
         "road_edge_xz": [
-          166.003201,
-          -81.584428
+          166.341971,
+          -82.525297
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          165.532766,
+          -81.753813
+        ],
         "source_crossing_indices": [
           0
+        ],
+        "source_road_edge_xz": [
+          166.003201,
+          -81.584428
         ]
       },
       {
         "center_xz": [
-          174.941635,
-          -78.366042
+          174.856943,
+          -78.130825
         ],
         "crossing_index": 0,
         "endpoint_side": "positive",
         "footprint_xz": [
           [
-            174.725279,
-            -79.241079
+            174.640586,
+            -79.005862
           ],
           [
-            174.217123,
-            -77.829776
+            174.13243,
+            -77.594559
           ],
           [
-            175.157992,
-            -77.491005
+            175.073299,
+            -77.255788
           ],
           [
-            175.666148,
-            -78.902309
+            175.581455,
+            -78.667092
           ]
         ],
         "influence_radius_m": 3.0,
@@ -42597,16 +42622,25 @@
           0.940869,
           0.338771
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 0.25,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_0_positive_1",
         "rise_m": 0.15,
         "road_edge_xz": [
-          174.471201,
-          -78.535428
+          174.386508,
+          -78.30021
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          174.941635,
+          -78.366042
+        ],
         "source_crossing_indices": [
           0
+        ],
+        "source_road_edge_xz": [
+          174.471201,
+          -78.535428
         ]
       },
       {
@@ -42640,7 +42674,8 @@
           0.208277,
           -0.97807
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 0.0,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_1_negative_2",
         "rise_m": 0.15,
         "road_edge_xz": [
@@ -42648,33 +42683,41 @@
           -89.467393
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          166.907141,
+          -89.956428
+        ],
         "source_crossing_indices": [
           1
+        ],
+        "source_road_edge_xz": [
+          166.803002,
+          -89.467393
         ]
       },
       {
         "center_xz": [
-          165.240859,
-          -82.131572
+          164.26279,
+          -82.339849
         ],
         "crossing_index": 1,
         "endpoint_side": "positive",
         "footprint_xz": [
           [
-            166.07855,
-            -82.464399
+            165.100481,
+            -82.672676
           ],
           [
-            164.611446,
-            -82.776815
+            163.633376,
+            -82.985092
           ],
           [
-            164.403168,
-            -81.798745
+            163.425099,
+            -82.007022
           ],
           [
-            165.870273,
-            -81.486329
+            164.892203,
+            -81.694606
           ]
         ],
         "influence_radius_m": 3.0,
@@ -42683,16 +42726,25 @@
           -0.208277,
           0.97807
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 1.0,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_1_positive_3",
         "rise_m": 0.15,
         "road_edge_xz": [
-          165.344998,
-          -82.620607
+          164.366928,
+          -82.828884
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          165.240859,
+          -82.131572
+        ],
         "source_crossing_indices": [
           1
+        ],
+        "source_road_edge_xz": [
+          165.344998,
+          -82.620607
         ]
       },
       {
@@ -42726,7 +42778,8 @@
           -0.88734,
           -0.461115
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 0.0,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_2_negative_4",
         "rise_m": 0.15,
         "road_edge_xz": [
@@ -42734,33 +42787,41 @@
           -91.423273
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          169.871805,
+          -91.65383
+        ],
         "source_crossing_indices": [
           2
+        ],
+        "source_road_edge_xz": [
+          170.315475,
+          -91.423273
         ]
       },
       {
         "center_xz": [
-          178.745408,
-          -87.042579
+          178.169014,
+          -85.933403
         ],
         "crossing_index": 2,
         "endpoint_side": "positive",
         "footprint_xz": [
           [
-            178.647574,
-            -87.938642
+            178.07118,
+            -86.829466
           ],
           [
-            177.955901,
-            -86.607631
+            177.379508,
+            -85.498455
           ],
           [
-            178.843242,
-            -86.146516
+            178.266848,
+            -85.037341
           ],
           [
-            179.534914,
-            -87.477527
+            178.958521,
+            -86.368351
           ]
         ],
         "influence_radius_m": 3.0,
@@ -42769,41 +42830,50 @@
           0.88734,
           0.461115
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 1.25,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_2_positive_5",
         "rise_m": 0.15,
         "road_edge_xz": [
-          178.301738,
-          -87.273136
+          177.725344,
+          -86.163961
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          178.745408,
+          -87.042579
+        ],
         "source_crossing_indices": [
           2
+        ],
+        "source_road_edge_xz": [
+          178.301738,
+          -87.273136
         ]
       },
       {
         "center_xz": [
-          176.535639,
-          -79.217795
+          176.774833,
+          -79.145087
         ],
         "crossing_index": 3,
         "endpoint_side": "negative",
         "footprint_xz": [
           [
-            177.398636,
-            -79.478058
+            177.637829,
+            -79.40535
           ],
           [
-            175.963475,
-            -79.914306
+            176.202668,
+            -79.841598
           ],
           [
-            175.672643,
-            -78.957532
+            175.911836,
+            -78.884824
           ],
           [
-            177.107804,
-            -78.521284
+            177.346998,
+            -78.448576
           ]
         ],
         "influence_radius_m": 3.0,
@@ -42812,41 +42882,50 @@
           -0.290832,
           0.956774
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": -0.25,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_3_negative_6",
         "rise_m": 0.15,
         "road_edge_xz": [
-          176.681055,
-          -79.696182
+          176.920249,
+          -79.623474
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          176.535639,
+          -79.217795
+        ],
         "source_crossing_indices": [
           3
+        ],
+        "source_road_edge_xz": [
+          176.681055,
+          -79.696182
         ]
       },
       {
         "center_xz": [
-          178.862471,
-          -86.872569
+          180.058439,
+          -86.509029
         ],
         "crossing_index": 3,
         "endpoint_side": "positive",
         "footprint_xz": [
           [
-            177.999475,
-            -86.612306
+            179.195442,
+            -86.248766
           ],
           [
-            179.434636,
-            -86.176058
+            180.630604,
+            -85.812518
           ],
           [
-            179.725468,
-            -87.132832
+            180.921436,
+            -86.769292
           ],
           [
-            178.290307,
-            -87.56908
+            179.486274,
+            -87.20554
           ]
         ],
         "influence_radius_m": 3.0,
@@ -42855,26 +42934,43 @@
           0.290832,
           -0.956774
         ],
-        "placement_rule": "crosswalk_endpoint_v1",
+        "placement_offset_along_curb_m": 1.25,
+        "placement_rule": "crosswalk_endpoint_separated_v2",
         "ramp_id": "accessible_curb_ramp_crossing_3_positive_7",
         "rise_m": 0.15,
         "road_edge_xz": [
-          178.717055,
-          -86.394182
+          179.913023,
+          -86.030642
         ],
         "run_m": 1.0,
+        "source_center_xz": [
+          178.862471,
+          -86.872569
+        ],
         "source_crossing_indices": [
           3
+        ],
+        "source_road_edge_xz": [
+          178.717055,
+          -86.394182
         ]
       }
     ],
     "geometry_qa": {
       "context_ground_exposure_inside_row_m2": 0.0,
+      "curb_ramp_clearance_violation_count": 0,
       "curb_ramp_count": 8,
-      "curb_ramp_cut_area_m2": 10.178121,
+      "curb_ramp_cut_area_m2": 12.0,
+      "curb_ramp_max_shift_m": 1.25,
+      "curb_ramp_min_pair_clearance_m": 0.152632,
+      "curb_ramp_pair_overlap_area_m2": 0.0,
+      "curb_ramp_repositioned_count": 6,
+      "curb_ramp_required_pair_clearance_m": 0.15,
       "curb_ramp_surface_clearance_m": 0.01,
       "curb_ramp_underlay_overlap_area_m2": 0.0,
-      "curb_ramp_visible_surface_area_m2": 10.17956,
+      "curb_ramp_visible_surface_area_m2": 11.997499,
+      "curb_ramp_visible_surface_gap_area_m2": 0.002501,
+      "curb_ramp_visible_surface_tolerance_m2": 0.005,
       "curb_reveal_m": 0.15,
       "curb_road_mouth_intrusion_area_m2": 0.0,
       "curb_road_mouth_intrusion_by_arm": [
@@ -43079,7 +43175,7 @@
       "minimum_top_triangle_angle_deg": 0.314363,
       "needle_top_face_count": 0,
       "ok": true,
-      "removed_surface_sliver_count": 6,
+      "removed_surface_sliver_count": 5,
       "rendered_surface_qa_tolerance_m": 0.01,
       "rendered_surface_uncovered_area_m2": 0.0,
       "rendered_surface_uncovered_bounds_xz": [],
@@ -43600,6 +43696,7 @@
       "curb_1": "curb",
       "curb_10": "curb",
       "curb_11": "curb",
+      "curb_12": "curb",
       "curb_2": "curb",
       "curb_3": "curb",
       "curb_4": "curb",
