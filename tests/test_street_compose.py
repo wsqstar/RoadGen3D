@@ -210,8 +210,8 @@ def test_backend_random_osm_snapshot_generates_pedestrian_priority_3d(tmp_path: 
     pytest.importorskip("trimesh")
     import roadgen3d.osm_ingest as osm_ingest
 
-    snapshots = sorted((ROOT / "artifacts" / "starter_validation").glob("seed-*/osm_snapshot.json"))
-    assert snapshots, "the backend OSM smoke pool must contain at least one snapshot"
+    snapshots = sorted((ROOT / "assets" / "starter_scenes").glob("*/osm_snapshot.json"))
+    assert snapshots, "the versioned starter-scene OSM smoke pool must contain at least one snapshot"
     snapshot_path = random.Random(20260722).choice(snapshots)
     raw_osm = json.loads(snapshot_path.read_text(encoding="utf-8"))
 
