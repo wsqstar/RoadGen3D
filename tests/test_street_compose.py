@@ -3072,19 +3072,57 @@ def test_intersection_crosswalk_produces_paired_directional_curb_ramps():
     assert by_side["positive"]["outward_axis_xz"] == pytest.approx([1.0, 0.0])
 
 
-def test_adjacent_crosswalk_endpoints_merge_into_one_corner_ramp():
+def test_perpendicular_crosswalk_endpoints_remain_separate_at_a_corner():
     specs = [
-        {"road_edge_xz": [4.0, 4.0], "outward_axis_xz": [1.0, 0.0]},
-        {"road_edge_xz": [4.2, 4.1], "outward_axis_xz": [0.0, 1.0]},
-        {"road_edge_xz": [-4.0, -4.0], "outward_axis_xz": [-1.0, 0.0]},
+        {
+            "crossing_index": 0,
+            "side": "positive",
+            "road_edge_xz": [4.0, 4.0],
+            "center_xz": [4.5, 4.0],
+            "outward_axis_xz": [1.0, 0.0],
+        },
+        {
+            "crossing_index": 1,
+            "side": "positive",
+            "road_edge_xz": [4.02, 4.01],
+            "center_xz": [4.02, 4.51],
+            "outward_axis_xz": [0.0, 1.0],
+        },
     ]
 
-    merged = street_layout._merge_intersection_corner_ramp_specs(specs, run_m=1.0)
+    distinct = street_layout._deduplicate_intersection_curb_ramp_specs(specs)
 
-    assert len(merged) == 2
-    assert merged[0]["source_endpoint_count"] == 2
-    assert merged[0]["road_edge_xz"] == pytest.approx([4.1, 4.05])
-    assert merged[0]["outward_axis_xz"] == pytest.approx([2 ** -0.5, 2 ** -0.5])
+    assert len(distinct) == 2
+    assert distinct[0]["road_edge_xz"] == pytest.approx([4.0, 4.0])
+    assert distinct[0]["outward_axis_xz"] == pytest.approx([1.0, 0.0])
+    assert distinct[1]["road_edge_xz"] == pytest.approx([4.02, 4.01])
+    assert distinct[1]["outward_axis_xz"] == pytest.approx([0.0, 1.0])
+
+
+def test_duplicate_crosswalk_endpoint_is_removed_without_moving_contact_point():
+    specs = [
+        {
+            "crossing_index": 0,
+            "side": "positive",
+            "road_edge_xz": [4.0, 4.0],
+            "center_xz": [4.5, 4.0],
+            "outward_axis_xz": [1.0, 0.0],
+        },
+        {
+            "crossing_index": 2,
+            "side": "positive",
+            "road_edge_xz": [4.01, 4.01],
+            "center_xz": [4.51, 4.01],
+            "outward_axis_xz": [1.0, 0.0],
+        },
+    ]
+
+    distinct = street_layout._deduplicate_intersection_curb_ramp_specs(specs)
+
+    assert len(distinct) == 1
+    assert distinct[0]["road_edge_xz"] == pytest.approx([4.0, 4.0])
+    assert distinct[0]["center_xz"] == pytest.approx([4.5, 4.0])
+    assert distinct[0]["source_crossing_indices"] == [0, 2]
 
 
 def test_osm_curb_zone_excludes_road_endpoint_caps():

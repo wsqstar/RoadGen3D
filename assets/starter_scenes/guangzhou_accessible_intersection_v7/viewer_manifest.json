@@ -9656,16 +9656,16 @@
       "sidewalk_rings": [
         [
           [
-            208.19,
-            -145.33
+            207.85,
+            -144.19
           ],
           [
             209.62,
             -152.16
           ],
           [
-            210.27,
-            -160.88
+            210.32,
+            -160.09
           ],
           [
             209.03,
@@ -9720,16 +9720,16 @@
             -96.34
           ],
           [
-            178.67,
-            -87.73
+            178.76,
+            -87.89
           ],
           [
-            179.15,
-            -87.93
+            179.74,
+            -87.14
           ],
           [
-            179.31,
-            -86.34
+            179.48,
+            -86.29
           ],
           [
             198.97,
@@ -9760,8 +9760,8 @@
             -119.44
           ],
           [
-            208.19,
-            -145.33
+            207.85,
+            -144.19
           ]
         ],
         [
@@ -9818,12 +9818,44 @@
             -92.65
           ],
           [
+            166.09,
+            -89.74
+          ],
+          [
+            166.27,
+            -90.61
+          ],
+          [
+            167.76,
+            -90.3
+          ],
+          [
+            167.57,
+            -89.43
+          ],
+          [
             168.41,
             -89.27
           ],
           [
             169.52,
             -90.14
+          ],
+          [
+            169.86,
+            -90.8
+          ],
+          [
+            169.07,
+            -91.21
+          ],
+          [
+            169.77,
+            -92.56
+          ],
+          [
+            170.56,
+            -92.15
           ],
           [
             173.81,
@@ -9912,56 +9944,24 @@
         ],
         [
           [
-            178.37,
-            -87.14
+            175.92,
+            -79.8
           ],
           [
-            178.14,
-            -86.7
+            174.84,
+            -79.21
           ],
           [
-            178.62,
-            -86.55
+            175.68,
+            -78.91
           ],
           [
-            178.37,
-            -87.14
-          ]
-        ],
-        [
-          [
-            165.91,
-            -81.69
+            175.16,
+            -77.48
           ],
           [
-            166.14,
-            -82.33
-          ],
-          [
-            165.48,
-            -82.47
-          ],
-          [
-            165.91,
-            -81.69
-          ]
-        ],
-        [
-          [
-            180.85,
-            -72.42
-          ],
-          [
-            185.7,
-            -76.41
-          ],
-          [
-            175.14,
-            -79.96
-          ],
-          [
-            167.34,
-            -58.37
+            174.33,
+            -77.78
           ],
           [
             138.18,
@@ -9984,14 +9984,34 @@
             -62.32
           ],
           [
-            180.85,
-            -72.42
+            180.53,
+            -72.06
+          ],
+          [
+            185.7,
+            -76.41
+          ],
+          [
+            177.41,
+            -79.48
+          ],
+          [
+            177.11,
+            -78.51
+          ],
+          [
+            175.66,
+            -78.95
+          ],
+          [
+            175.92,
+            -79.8
           ]
         ],
         [
           [
-            194.18,
-            -66.36
+            194.06,
+            -66.37
           ],
           [
             197.13,
@@ -10058,8 +10078,8 @@
             -63.85
           ],
           [
-            194.18,
-            -66.36
+            194.06,
+            -66.37
           ]
         ],
         [
@@ -10104,20 +10124,16 @@
             -61.58
           ],
           [
-            165.77,
-            -81.28
+            165.63,
+            -80.91
           ],
           [
-            165.16,
-            -80.95
+            164.39,
+            -81.79
           ],
           [
-            164.42,
-            -82.28
-          ],
-          [
-            164.97,
-            -82.58
+            164.58,
+            -82.66
           ],
           [
             145.65,
@@ -10205,11 +10221,11 @@
       ],
       "surface_geometry_qa": {
         "context_ground_exposure_inside_row_m2": 0.0,
-        "curb_ramp_count": 4,
-        "curb_ramp_cut_area_m2": 6.0,
+        "curb_ramp_count": 8,
+        "curb_ramp_cut_area_m2": 10.178121,
         "curb_ramp_surface_clearance_m": 0.01,
         "curb_ramp_underlay_overlap_area_m2": 0.0,
-        "curb_ramp_visible_surface_area_m2": 6.000346,
+        "curb_ramp_visible_surface_area_m2": 10.17956,
         "curb_reveal_m": 0.15,
         "curb_road_mouth_intrusion_area_m2": 0.0,
         "curb_road_mouth_intrusion_by_arm": [
@@ -10414,7 +10430,7 @@
         "minimum_top_triangle_angle_deg": 0.314363,
         "needle_top_face_count": 0,
         "ok": true,
-        "removed_surface_sliver_count": 7,
+        "removed_surface_sliver_count": 6,
         "rendered_surface_qa_tolerance_m": 0.01,
         "rendered_surface_uncovered_area_m2": 0.0,
         "rendered_surface_uncovered_bounds_xz": [],
@@ -11712,11 +11728,11 @@
       "carriageway": 1,
       "context_ground": 1,
       "crossing": 40,
-      "curb": 10,
-      "curb_access_ramp": 4,
+      "curb": 12,
+      "curb_access_ramp": 8,
       "lane_mark": 88,
       "plaza": 4,
-      "sidewalk": 21,
+      "sidewalk": 19,
       "tree_pit": 108
     },
     "width_expanded": false,
@@ -11788,148 +11804,356 @@
     "curb_access_ramps": [
       {
         "center_xz": [
-          165.237164,
-          -81.859439
+          165.532766,
+          -81.753813
         ],
+        "crossing_index": 0,
+        "endpoint_side": "negative",
         "footprint_xz": [
           [
-            166.038717,
-            -81.447114
+            165.749123,
+            -80.878776
           ],
           [
-            165.309482,
-            -82.757921
+            166.257279,
+            -82.290079
           ],
           [
-            164.43561,
-            -82.271764
+            165.31641,
+            -82.62885
           ],
           [
-            165.164846,
-            -80.960957
+            164.808254,
+            -81.217547
           ]
         ],
         "influence_radius_m": 3.0,
         "length_along_curb_m": 1.5,
         "outward_axis_xz": [
-          -0.873872,
-          0.486157
+          -0.940869,
+          -0.338771
         ],
-        "ramp_id": "accessible_curb_ramp_corner_0_0",
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_0_negative_0",
         "rise_m": 0.15,
+        "road_edge_xz": [
+          166.003201,
+          -81.584428
+        ],
         "run_m": 1.0,
-        "source_crossing_indices": []
+        "source_crossing_indices": [
+          0
+        ]
       },
       {
         "center_xz": [
-          175.80036,
-          -78.668904
+          174.941635,
+          -78.366042
         ],
+        "crossing_index": 0,
+        "endpoint_side": "positive",
         "footprint_xz": [
           [
-            176.246479,
-            -79.452152
+            174.725279,
+            -79.241079
           ],
           [
-            174.905777,
-            -78.779458
+            174.217123,
+            -77.829776
           ],
           [
-            175.35424,
-            -77.885656
+            175.157992,
+            -77.491005
           ],
           [
-            176.694942,
-            -78.558351
+            175.666148,
+            -78.902309
           ]
         ],
         "influence_radius_m": 3.0,
         "length_along_curb_m": 1.5,
         "outward_axis_xz": [
-          0.448463,
-          0.893801
+          0.940869,
+          0.338771
         ],
-        "ramp_id": "accessible_curb_ramp_corner_1_1",
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_0_positive_1",
         "rise_m": 0.15,
+        "road_edge_xz": [
+          174.471201,
+          -78.535428
+        ],
         "run_m": 1.0,
-        "source_crossing_indices": []
+        "source_crossing_indices": [
+          0
+        ]
       },
       {
         "center_xz": [
-          168.345877,
-          -90.897524
+          166.907141,
+          -89.956428
         ],
+        "crossing_index": 1,
+        "endpoint_side": "negative",
         "footprint_xz": [
           [
-            167.880952,
-            -90.125291
+            166.06945,
+            -89.623601
           ],
           [
-            169.237525,
-            -90.765375
+            167.536554,
+            -89.311185
           ],
           [
-            168.810803,
-            -91.669758
+            167.744832,
+            -90.289255
           ],
           [
-            167.454229,
-            -91.029673
+            166.277727,
+            -90.601671
           ]
         ],
         "influence_radius_m": 3.0,
         "length_along_curb_m": 1.5,
         "outward_axis_xz": [
-          -0.426723,
-          -0.904382
+          0.208277,
+          -0.97807
         ],
-        "ramp_id": "accessible_curb_ramp_corner_2_2",
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_1_negative_2",
         "rise_m": 0.15,
+        "road_edge_xz": [
+          166.803002,
+          -89.467393
+        ],
         "run_m": 1.0,
-        "source_crossing_indices": []
+        "source_crossing_indices": [
+          1
+        ]
       },
       {
         "center_xz": [
-          178.970272,
-          -87.02755
+          165.240859,
+          -82.131572
         ],
+        "crossing_index": 1,
+        "endpoint_side": "positive",
         "footprint_xz": [
           [
-            178.21856,
-            -87.524972
+            166.07855,
+            -82.464399
           ],
           [
-            178.800233,
-            -86.142346
+            164.611446,
+            -82.776815
           ],
           [
-            179.721984,
-            -86.530128
+            164.403168,
+            -81.798745
           ],
           [
-            179.140311,
-            -87.912755
+            165.870273,
+            -81.486329
           ]
         ],
         "influence_radius_m": 3.0,
         "length_along_curb_m": 1.5,
         "outward_axis_xz": [
-          0.921751,
-          -0.387782
+          -0.208277,
+          0.97807
         ],
-        "ramp_id": "accessible_curb_ramp_corner_3_3",
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_1_positive_3",
         "rise_m": 0.15,
+        "road_edge_xz": [
+          165.344998,
+          -82.620607
+        ],
         "run_m": 1.0,
-        "source_crossing_indices": []
+        "source_crossing_indices": [
+          1
+        ]
+      },
+      {
+        "center_xz": [
+          169.871805,
+          -91.65383
+        ],
+        "crossing_index": 2,
+        "endpoint_side": "negative",
+        "footprint_xz": [
+          [
+            169.969639,
+            -90.757767
+          ],
+          [
+            170.661311,
+            -92.088778
+          ],
+          [
+            169.773971,
+            -92.549893
+          ],
+          [
+            169.082298,
+            -91.218882
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          -0.88734,
+          -0.461115
+        ],
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_2_negative_4",
+        "rise_m": 0.15,
+        "road_edge_xz": [
+          170.315475,
+          -91.423273
+        ],
+        "run_m": 1.0,
+        "source_crossing_indices": [
+          2
+        ]
+      },
+      {
+        "center_xz": [
+          178.745408,
+          -87.042579
+        ],
+        "crossing_index": 2,
+        "endpoint_side": "positive",
+        "footprint_xz": [
+          [
+            178.647574,
+            -87.938642
+          ],
+          [
+            177.955901,
+            -86.607631
+          ],
+          [
+            178.843242,
+            -86.146516
+          ],
+          [
+            179.534914,
+            -87.477527
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          0.88734,
+          0.461115
+        ],
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_2_positive_5",
+        "rise_m": 0.15,
+        "road_edge_xz": [
+          178.301738,
+          -87.273136
+        ],
+        "run_m": 1.0,
+        "source_crossing_indices": [
+          2
+        ]
+      },
+      {
+        "center_xz": [
+          176.535639,
+          -79.217795
+        ],
+        "crossing_index": 3,
+        "endpoint_side": "negative",
+        "footprint_xz": [
+          [
+            177.398636,
+            -79.478058
+          ],
+          [
+            175.963475,
+            -79.914306
+          ],
+          [
+            175.672643,
+            -78.957532
+          ],
+          [
+            177.107804,
+            -78.521284
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          -0.290832,
+          0.956774
+        ],
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_3_negative_6",
+        "rise_m": 0.15,
+        "road_edge_xz": [
+          176.681055,
+          -79.696182
+        ],
+        "run_m": 1.0,
+        "source_crossing_indices": [
+          3
+        ]
+      },
+      {
+        "center_xz": [
+          178.862471,
+          -86.872569
+        ],
+        "crossing_index": 3,
+        "endpoint_side": "positive",
+        "footprint_xz": [
+          [
+            177.999475,
+            -86.612306
+          ],
+          [
+            179.434636,
+            -86.176058
+          ],
+          [
+            179.725468,
+            -87.132832
+          ],
+          [
+            178.290307,
+            -87.56908
+          ]
+        ],
+        "influence_radius_m": 3.0,
+        "length_along_curb_m": 1.5,
+        "outward_axis_xz": [
+          0.290832,
+          -0.956774
+        ],
+        "placement_rule": "crosswalk_endpoint_v1",
+        "ramp_id": "accessible_curb_ramp_crossing_3_positive_7",
+        "rise_m": 0.15,
+        "road_edge_xz": [
+          178.717055,
+          -86.394182
+        ],
+        "run_m": 1.0,
+        "source_crossing_indices": [
+          3
+        ]
       }
     ],
     "geometry_qa": {
       "context_ground_exposure_inside_row_m2": 0.0,
-      "curb_ramp_count": 4,
-      "curb_ramp_cut_area_m2": 6.0,
+      "curb_ramp_count": 8,
+      "curb_ramp_cut_area_m2": 10.178121,
       "curb_ramp_surface_clearance_m": 0.01,
       "curb_ramp_underlay_overlap_area_m2": 0.0,
-      "curb_ramp_visible_surface_area_m2": 6.000346,
+      "curb_ramp_visible_surface_area_m2": 10.17956,
       "curb_reveal_m": 0.15,
       "curb_road_mouth_intrusion_area_m2": 0.0,
       "curb_road_mouth_intrusion_by_arm": [
@@ -12134,7 +12358,7 @@
       "minimum_top_triangle_angle_deg": 0.314363,
       "needle_top_face_count": 0,
       "ok": true,
-      "removed_surface_sliver_count": 7,
+      "removed_surface_sliver_count": 6,
       "rendered_surface_qa_tolerance_m": 0.01,
       "rendered_surface_uncovered_area_m2": 0.0,
       "rendered_surface_uncovered_bounds_xz": [],
@@ -12553,10 +12777,14 @@
       }
     ],
     "node_roles": {
-      "accessible_curb_ramp_corner_0_0": "curb_access_ramp",
-      "accessible_curb_ramp_corner_1_1": "curb_access_ramp",
-      "accessible_curb_ramp_corner_2_2": "curb_access_ramp",
-      "accessible_curb_ramp_corner_3_3": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_0_negative_0": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_0_positive_1": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_1_negative_2": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_1_positive_3": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_2_negative_4": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_2_positive_5": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_3_negative_6": "curb_access_ramp",
+      "accessible_curb_ramp_crossing_3_positive_7": "curb_access_ramp",
       "carriageway_0": "carriageway",
       "centerline_mark_0_0": "lane_mark",
       "centerline_mark_0_1": "lane_mark",
@@ -12649,6 +12877,8 @@
       "context_ground_base": "context_ground",
       "curb_0": "curb",
       "curb_1": "curb",
+      "curb_10": "curb",
+      "curb_11": "curb",
       "curb_2": "curb",
       "curb_3": "curb",
       "curb_4": "curb",
@@ -12702,9 +12932,7 @@
       "sidewalk_2": "sidewalk",
       "sidewalk_3": "sidewalk",
       "sidewalk_4": "sidewalk",
-      "sidewalk_5": "sidewalk",
-      "sidewalk_6": "sidewalk",
-      "sidewalk_7": "sidewalk"
+      "sidewalk_5": "sidewalk"
     },
     "patch_provenance": [
       {

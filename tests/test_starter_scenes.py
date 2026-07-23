@@ -133,10 +133,13 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert all(item["final_glb_intrusion_area_m2"] <= 1e-4 for item in road_mouth_qa.values())
     assert all(item["final_glb_carriageway_gap_area_m2"] <= 1e-4 for item in road_mouth_qa.values())
     assert surface_qa["surface_mesh_violations"] == []
-    assert surface_qa["curb_ramp_count"] == 4
+    assert surface_qa["curb_ramp_count"] == 8
     assert surface_qa["curb_ramp_surface_clearance_m"] == 0.01
     assert surface_qa["curb_ramp_underlay_overlap_area_m2"] <= 1e-4
-    assert surface_qa["curb_ramp_visible_surface_area_m2"] == pytest.approx(6.0, abs=1e-3)
+    assert surface_qa["curb_ramp_visible_surface_area_m2"] == pytest.approx(
+        surface_qa["curb_ramp_cut_area_m2"],
+        abs=2e-3,
+    )
     surface_diagnostic = scene_layout["surface_diagnostic"]
     assert surface_diagnostic["schema_version"] == "roadgen3d.surface-diagnostic.v1"
     assert surface_diagnostic["source"] == "final_glb_top_faces"
@@ -146,7 +149,16 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert surface_diagnostic["junction_arm_profiles"]
     assert len(surface_diagnostic["road_mouth_masks"]) == 4
     curb_ramps = surface_diagnostic["curb_access_ramps"]
-    assert len(curb_ramps) == 4
+    assert len(curb_ramps) == 8
+    assert all(item["placement_rule"] == "crosswalk_endpoint_v1" for item in curb_ramps)
+    assert all(item["crossing_index"] >= 0 for item in curb_ramps)
+    assert {item["endpoint_side"] for item in curb_ramps} == {"negative", "positive"}
+    for item in curb_ramps:
+        center = np.asarray(item["center_xz"], dtype=float)
+        road_edge = np.asarray(item["road_edge_xz"], dtype=float)
+        outward = np.asarray(item["outward_axis_xz"], dtype=float)
+        assert float(np.linalg.norm(center - road_edge)) == pytest.approx(0.5, abs=1e-5)
+        assert float(np.dot(center - road_edge, outward)) == pytest.approx(0.5, abs=1e-5)
     assert all(len(item["footprint_xz"]) == 4 for item in curb_ramps)
     assert all(item["influence_radius_m"] == 3.0 for item in curb_ramps)
     assert all(item["length_along_curb_m"] == 1.5 for item in curb_ramps)
@@ -187,7 +199,7 @@ def test_bundled_guangzhou_starter_is_offline_and_path_free() -> None:
     assert not any(node_name.startswith("junction_normalized_surface_") for node_name in node_names)
     assert sum(node_name.startswith("carriageway_") for node_name in node_names) == 1
     ramp_node_names = [name for name in node_names if name.startswith("accessible_curb_ramp_")]
-    assert len(ramp_node_names) == 4
+    assert len(ramp_node_names) == 8
     for node_name in ramp_node_names:
         ramp_mesh = scene.geometry[scene.graph[node_name][1]]
         assert ramp_mesh.is_watertight
