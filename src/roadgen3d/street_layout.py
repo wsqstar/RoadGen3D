@@ -3096,7 +3096,7 @@ def _placeholder_building_entry(
                 vertices[:, 1] = old_z
                 vertices[:, 2] = old_y
                 mesh.vertices = vertices
-                mesh.fix_normals()
+                mesh.fix_normals(multibody=False)
             except Exception:
                 logger.debug("Falling back to rectangular transparent massing for %s", asset_id)
                 mesh = None
@@ -4483,7 +4483,7 @@ def _add_road_to_sidewalk_ramp(
         dtype=np.int64,
     )
     mesh = trimesh.Trimesh(vertices=vertices, faces=faces, process=True)
-    mesh.fix_normals()
+    mesh.fix_normals(multibody=False)
     _apply_ground_pose(
         mesh,
         x_m=float(center_x_m),
@@ -6092,7 +6092,7 @@ def _add_polygon_slab(
             verts[:, 1] = old_z + float(y_min_m)
             verts[:, 2] = old_y
             mesh.vertices = verts
-            mesh.fix_normals()
+            mesh.fix_normals(multibody=False)
             mesh = _apply_surface_finish(
                 mesh,
                 surface_role=surface_role,
@@ -7810,7 +7810,7 @@ def _build_osm_base_scene(
                 verts[:, 1] = old_z - height + y_offset  # Y = extrusion shifted + offset
                 verts[:, 2] = old_y           # Z = northing
                 mesh.vertices = verts
-                mesh.fix_normals()
+                mesh.fix_normals(multibody=False)
                 if top_only:
                     top_face_mask = mesh.face_normals[:, 1] > 0.5
                     if not bool(top_face_mask.any()):
@@ -7920,7 +7920,7 @@ def _build_osm_base_scene(
             faces=np.array(wall_faces, dtype=np.int64),
             process=False,
         )
-        mesh.fix_normals()
+        mesh.fix_normals(multibody=False)
         mesh = _apply_surface_finish(
             mesh,
             surface_role="sidewalk",
@@ -9682,7 +9682,7 @@ def _add_poi_markers_and_zones(scene, poi_points_by_type_or_exclusion_zones, exc
             verts[:, 1] = old_z + 0.01
             verts[:, 2] = old_y
             ring_mesh.vertices = verts
-            ring_mesh.fix_normals()
+            ring_mesh.fix_normals(multibody=False)
             ring_mesh.visual.face_colors = _RING_COLOR
             scene.add_geometry(ring_mesh, node_name=f"exclusion_{zone.poi_type}_{idx}")
         except (ValueError, RuntimeError, IndexError):
