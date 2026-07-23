@@ -8238,7 +8238,10 @@ def _build_osm_base_scene(
                     # this fallback cannot silently remove paving.
                     from shapely.geometry import box
 
-                    max_span_m = 12.0
+                    # Five metres keeps even a standard 0.12 m curb strip
+                    # comfortably below the final 250:1 triangle-aspect
+                    # contract, including diagonal cell intersections.
+                    max_span_m = 5.0
                     pending = [poly]
                     partitions: List[Any] = []
                     while pending:
