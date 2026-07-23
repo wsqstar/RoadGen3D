@@ -8211,7 +8211,15 @@ def _build_osm_base_scene(
                     # ratio contract.  Densifying only straight boundary
                     # segments preserves the exact surface while providing
                     # stable vertices for a locally bounded triangulation.
-                    poly = segmentize(poly, max_segment_length=5.0)
+                    max_segment_length_m = (
+                        2.0
+                        if str(surface_role or roughness_key) == "curb"
+                        else 5.0
+                    )
+                    poly = segmentize(
+                        poly,
+                        max_segment_length=max_segment_length_m,
+                    )
                 except (AttributeError, ImportError, TypeError, ValueError):
                     pass
                 mesh = _extrude_with_constrained_triangulation(poly)
