@@ -24,7 +24,8 @@ import trimesh
 from roadgen3d.osm_ingest import OsmBuilding, OsmFeatures
 from roadgen3d.diff_engine import compute_placements_diff
 from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
-from roadgen3d.scene_layout_edits import SceneRevisionConflict, _apply_commands, _normalize_commands, apply_scene_layout_edits
+from roadgen3d import scene_layout_edits
+from roadgen3d.scene_layout_edits import SceneRevisionConflict, _apply_commands, _ground_and_validate_commands, _normalize_commands, apply_scene_layout_edits
 from roadgen3d.scene_sources import normalize_scene_source
 from roadgen3d.street_layout import _placeholder_building_entry
 from roadgen3d.theme_buildings import collect_building_footprints
@@ -428,6 +429,66 @@ def test_scene_edit_scale_and_height_constraints_match_shared_editor() -> None:
             "instance_id": "tree-1",
             "position_xyz": [0, 0, 0],
             "height_offset_m": 12,
+        }])
+
+
+def test_manual_asset_placement_override_is_validated_and_audited(monkeypatch, tmp_path: Path) -> None:
+    command = _normalize_commands([{
+        "command_id": "manual-bench",
+        "op": "add_instance",
+        "instance_id": "bench-manual-1",
+        "asset_id": "bench-a",
+        "category": "street_furniture",
+        "position_xyz": [2, 0, 3],
+        "support_policy": "manual_override",
+    }])[0]
+    assert command["support_policy"] == "manual_override"
+
+    monkeypatch.setattr(scene_layout_edits, "_surface_roles_at_points", lambda *_args: ["carriageway"])
+    grounded, validation = _ground_and_validate_commands(
+        tmp_path / "scene_layout.json",
+        {
+            "surface_diagnostic": {"node_roles": {"road": "carriageway"}},
+            "outputs": {"scene_glb": str(tmp_path / "scene.glb")},
+        },
+        [command],
+        transform_policy="course_grounded",
+    )
+
+    assert grounded[0]["position_xyz"] == [2.0, 0.0, 3.0]
+    assert validation["status"] == "validated_with_manual_overrides"
+    assert validation["manual_override_count"] == 1
+    assert validation["checked"][0] == {
+        "instance_id": "bench-manual-1",
+        "category": "street_furniture",
+        "position_xz": [2.0, 3.0],
+        "support_role": "carriageway",
+        "support_policy": "manual_override",
+        "rule_compatible": False,
+    }
+
+    monkeypatch.setattr(scene_layout_edits, "_surface_roles_at_points", lambda *_args: [None])
+    _, unclassified_validation = _ground_and_validate_commands(
+        tmp_path / "scene_layout.json",
+        {
+            "surface_diagnostic": {"node_roles": {"road": "carriageway"}},
+            "outputs": {"scene_glb": str(tmp_path / "scene.glb")},
+        },
+        [command],
+        transform_policy="course_grounded",
+    )
+    assert unclassified_validation["checked"][0]["support_role"] == "unclassified_or_datum"
+    assert unclassified_validation["checked"][0]["rule_compatible"] is False
+
+    with pytest.raises(Exception, match="support_policy"):
+        _normalize_commands([{
+            "command_id": "unsafe-policy",
+            "op": "add_instance",
+            "instance_id": "bench-manual-2",
+            "asset_id": "bench-a",
+            "category": "street_furniture",
+            "position_xyz": [2, 0, 3],
+            "support_policy": "ignore_everything",
         }])
 
 

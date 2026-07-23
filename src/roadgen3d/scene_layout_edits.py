@@ -352,6 +352,12 @@ def _normalize_commands(commands: Sequence[Mapping[str, Any]]) -> list[Dict[str,
             item["height_offset_m"] = _finite_number(command.get("height_offset_m", 0), f"commands[{index}].height_offset_m")
             if not 0.0 <= item["height_offset_m"] <= 10.0:
                 raise SceneLayoutEditError(f"commands[{index}].height_offset_m must be within 0..10.")
+            support_policy = str(command.get("support_policy") or "strict").strip().lower()
+            if support_policy not in {"strict", "manual_override"}:
+                raise SceneLayoutEditError(
+                    f"commands[{index}].support_policy must be strict or manual_override."
+                )
+            item["support_policy"] = support_policy
         if op == "duplicate_instance":
             item["new_instance_id"] = str(command.get("new_instance_id") or "").strip()
             if not item["new_instance_id"]:
@@ -421,7 +427,7 @@ def _ground_and_validate_commands(
         for item in (source_payload.get("placements") or [])
         if isinstance(item, Mapping)
     }
-    positional: list[tuple[int, str, str, float, float]] = []
+    positional: list[tuple[int, str, str, float, float, str]] = []
     normalized = [copy.deepcopy(dict(item)) for item in commands]
     for index, item in enumerate(normalized):
         op = str(item.get("op") or "")
@@ -429,7 +435,7 @@ def _ground_and_validate_commands(
             continue
         if op == "auto_plant_trees":
             for point_index, point in enumerate(item.get("points_xyz") or []):
-                positional.append((index, f"{item['instance_prefix']}-{point_index + 1:03d}", "tree", float(point[0]), float(point[2])))
+                positional.append((index, f"{item['instance_prefix']}-{point_index + 1:03d}", "tree", float(point[0]), float(point[2]), "strict"))
                 point[1] = 0.0
             continue
         if op == "add_instance":
@@ -442,7 +448,8 @@ def _ground_and_validate_commands(
             continue
         height_offset = 0.0 if policy == "course_grounded" else float(item.get("height_offset_m", 0.0) or 0.0)
         point[1] = height_offset
-        positional.append((index, str(item.get("instance_id") or ""), category, float(point[0]), float(point[2])))
+        support_policy = str(item.get("support_policy") or "strict") if op == "add_instance" else "strict"
+        positional.append((index, str(item.get("instance_id") or ""), category, float(point[0]), float(point[2]), support_policy))
     if not positional:
         return normalized, {"status": "not_required", "checked": []}
 
@@ -458,18 +465,32 @@ def _ground_and_validate_commands(
     glb_path = _layout_glb_path(source_layout_path, source_payload)
     hits = _surface_roles_at_points(glb_path, node_roles, [(item[3], item[4]) for item in positional])
     checked: list[Dict[str, Any]] = []
-    for (_, instance_id, category, x, z), role in zip(positional, hits):
+    manual_override_count = 0
+    for (_, instance_id, category, x, z, support_policy), role in zip(positional, hits):
         allowed = {"planting", "furnishing", "frontage"} if category.strip().lower() == "tree" else {"sidewalk", "furnishing", "frontage"}
-        if role is None:
+        if role is None and support_policy != "manual_override":
             raise SceneLayoutEditError(
                 f"Placement '{instance_id}' has no valid support surface at ({x:.3f}, {z:.3f})."
             )
-        if role not in allowed:
+        if role is None:
+            role = "unclassified_or_datum"
+        rule_compatible = role in allowed
+        if not rule_compatible and support_policy != "manual_override":
             raise SceneLayoutEditError(
                 f"Placement '{instance_id}' cannot use support surface '{role}' for category '{category}'."
             )
-        checked.append({"instance_id": instance_id, "category": category, "position_xz": [x, z], "support_role": role})
-    return normalized, {"status": "validated", "checked": checked}
+        if support_policy == "manual_override":
+            manual_override_count += 1
+        checked.append({
+            "instance_id": instance_id,
+            "category": category,
+            "position_xz": [x, z],
+            "support_role": role,
+            "support_policy": support_policy,
+            "rule_compatible": rule_compatible,
+        })
+    status = "validated_with_manual_overrides" if manual_override_count else "validated"
+    return normalized, {"status": status, "checked": checked, "manual_override_count": manual_override_count}
 
 
 def _surface_roles_at_points(
