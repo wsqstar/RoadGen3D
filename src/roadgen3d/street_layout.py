@@ -7330,11 +7330,40 @@ def _build_osm_base_scene(
             components = list(cleaned.geoms)
         else:
             components = []
+
+        def minimum_component_width_m(component: Any) -> float:
+            """Return the narrow side of the oriented component envelope."""
+            try:
+                rectangle = component.minimum_rotated_rectangle
+                coordinates = list(rectangle.exterior.coords)
+                edge_lengths = [
+                    float(
+                        np.linalg.norm(
+                            np.asarray(coordinates[index + 1], dtype=float)
+                            - np.asarray(coordinates[index], dtype=float)
+                        )
+                    )
+                    for index in range(len(coordinates) - 1)
+                ]
+                positive_edges = [length for length in edge_lengths if length > 1e-10]
+                return min(positive_edges) if positive_edges else 0.0
+            except (AttributeError, IndexError, TypeError, ValueError):
+                # Width inspection is a repair aid, not permission to delete
+                # geometry when GEOS cannot construct the oriented envelope.
+                return float("inf")
+
         retained = [
             component
             for component in components
             if float(component.area) >= float(minimum_component_area_m2)
             and len(component.exterior.coords) >= 4
+            # A component narrower than the final precision grid cannot be
+            # represented by a quality triangulation. It is a numerical shard
+            # from polygon overlays, not a buildable sidewalk or curb. Remove
+            # it before defining the canonical rendered surface so final QA
+            # audits the repaired geometry instead of a hidden omission.
+            and minimum_component_width_m(component)
+            >= final_surface_precision_grid_m
         ]
         removed_count = len(components) - len(retained)
         if not retained:
@@ -7981,7 +8010,7 @@ def _build_osm_base_scene(
         surface_role: str = "",
         horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
         top_only: bool = False,
-        _partition_retry: bool = False,
+        _partition_retry: int = 0,
     ) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
 
@@ -8304,19 +8333,35 @@ def _build_osm_base_scene(
                 )
             except (ValueError, RuntimeError, IndexError) as exc:
                 required_role = str(surface_role or roughness_key)
-                if required_role in {"carriageway", "sidewalk", "curb"} and not _partition_retry:
+                max_partition_depth = 4
+                if (
+                    required_role in {"carriageway", "sidewalk", "curb"}
+                    and _partition_retry < max_partition_depth
+                ):
                     # Long, narrow curb and sidewalk rings can retain a poor
                     # diagonal even after constrained-Delaunay and earcut
-                    # repair. Partition the exact polygon into bounded cells
-                    # and triangulate those cells independently. Their union
-                    # is checked against the original surface by final QA, so
-                    # this fallback cannot silently remove paving.
+                    # repair. Recursively partition the exact polygon into
+                    # progressively smaller cells and triangulate those cells
+                    # independently. Their union is checked against the
+                    # original surface by final QA, so this fallback cannot
+                    # silently remove paving.
                     from shapely.geometry import box
 
-                    # Five metres keeps even a standard 0.12 m curb strip
-                    # comfortably below the final 250:1 triangle-aspect
-                    # contract, including diagonal cell intersections.
-                    max_span_m = 5.0
+                    source_min_x, source_min_z, source_max_x, source_max_z = poly.bounds
+                    source_span_m = max(
+                        float(source_max_x - source_min_x),
+                        float(source_max_z - source_min_z),
+                    )
+                    # The first pass uses five-metre cells. If a sub-centimetre
+                    # wedge still creates a needle face, each subsequent pass
+                    # tightens the span by 4x. Always require at least one split
+                    # for a failed component so small but extremely thin
+                    # surfaces can continue through the repair chain.
+                    scheduled_span_m = 5.0 / (4.0 ** _partition_retry)
+                    max_span_m = min(
+                        scheduled_span_m,
+                        max(source_span_m / 2.0, 1e-4),
+                    )
                     pending = [poly]
                     partitions: List[Any] = []
                     while pending:
@@ -8365,7 +8410,7 @@ def _build_osm_base_scene(
                                 surface_role=surface_role,
                                 horizontal_axes=horizontal_axes,
                                 top_only=top_only,
-                                _partition_retry=True,
+                                _partition_retry=_partition_retry + 1,
                             )
                         continue
                 if required_role in {"carriageway", "sidewalk", "curb"}:

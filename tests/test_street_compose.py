@@ -4071,6 +4071,37 @@ def test_osm_normalized_crosswalk_uses_preserved_horizontal_axes():
         assert z_extent <= 0.7
 
 
+def test_required_sidewalk_removes_subprecision_needle_component():
+    pytest.importorskip("trimesh")
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+
+    # Real failure geometry: a roughly nine-metre edge with a seven-millimetre
+    # altitude. The complete component is narrower than the final centimetre
+    # precision grid, so it must be classified as a numerical overlay shard.
+    sidewalk = shapely_geometry.Polygon(
+        [
+            (-564.93, 234.11),
+            (-571.48, 240.48),
+            (-568.21, 237.29),
+        ]
+    )
+    carriageway = shapely_geometry.box(-1.0, -1.0, 1.0, 1.0)
+    placement_ctx = SimpleNamespace(
+        carriageway=carriageway,
+        sidewalk_zone=sidewalk,
+        road_arm_geometries=[carriageway],
+        junction_geometries=[],
+        strip_zones={},
+    )
+
+    scene = street_layout._build_osm_base_scene(placement_ctx)
+
+    surface_qa = scene.metadata["surface_geometry_qa"]
+    assert surface_qa["removed_surface_sliver_count"] >= 1
+    assert surface_qa["needle_top_face_count"] == 0
+    assert surface_qa["rendered_surface_uncovered_area_m2"] <= 1e-4
+
+
 def test_osm_center_grass_belt_renders_as_flowerbed():
     pytest.importorskip("trimesh")
     shapely_geometry = pytest.importorskip("shapely.geometry")
