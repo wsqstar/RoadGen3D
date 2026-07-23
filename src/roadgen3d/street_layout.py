@@ -8005,7 +8005,11 @@ def _build_osm_base_scene(
             vertices = np.asarray(vertices_2d, dtype=float)
             triangles = np.asarray(faces, dtype=int)
             if vertices.ndim != 2 or vertices.shape[1] < 2 or triangles.size == 0:
-                return {"needle_face_count": 0, "maximum_aspect_ratio": 0.0}
+                return {
+                    "needle_face_count": 0,
+                    "maximum_aspect_ratio": 0.0,
+                    "needle_faces": [],
+                }
             triangles = triangles.reshape((-1, 3))
             points = vertices[triangles, :2]
             edge_a = np.linalg.norm(points[:, 1] - points[:, 0], axis=1)
@@ -8045,6 +8049,23 @@ def _build_osm_base_scene(
             return {
                 "needle_face_count": int(needle.sum()),
                 "maximum_aspect_ratio": float(np.max(aspect)) if aspect.size else 0.0,
+                "needle_faces": [
+                    {
+                        "coordinates_xz": [
+                            [round(float(value), 6) for value in vertex[:2]]
+                            for vertex in triangle
+                        ],
+                        "aspect_ratio": round(float(face_aspect), 3),
+                        "longest_edge_m": round(float(face_longest), 6),
+                        "minimum_altitude_m": round(float(face_altitude), 6),
+                    }
+                    for triangle, face_aspect, face_longest, face_altitude in zip(
+                        points[needle],
+                        aspect[needle],
+                        longest[needle],
+                        altitude[needle],
+                    )
+                ][:5],
             }
 
         def _remove_numeric_collinear_vertices(polygon: Any) -> Any:
@@ -8137,7 +8158,8 @@ def _build_osm_base_scene(
                 raise ValueError(
                     "triangulation retained needle faces after automatic repair "
                     f"(count={quality['needle_face_count']}, "
-                    f"aspect={quality['maximum_aspect_ratio']:.1f})"
+                    f"aspect={quality['maximum_aspect_ratio']:.1f}, "
+                    f"samples={quality['needle_faces']})"
                 )
             return trimesh.creation.extrude_triangulation(vertices_2d, faces, height)
 
