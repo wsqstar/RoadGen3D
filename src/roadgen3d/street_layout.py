@@ -7981,6 +7981,7 @@ def _build_osm_base_scene(
         surface_role: str = "",
         horizontal_axes: tuple[tuple[float, float], tuple[float, float]] | None = None,
         top_only: bool = False,
+        _partition_retry: bool = False,
     ) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
 
@@ -8171,6 +8172,7 @@ def _build_osm_base_scene(
                                 surface_role=surface_role,
                                 horizontal_axes=horizontal_axes,
                                 top_only=top_only,
+                                _partition_retry=_partition_retry,
                             )
                         continue
                     poly = cleaned_parts[0]
@@ -8226,10 +8228,72 @@ def _build_osm_base_scene(
                     surface_role or roughness_key or "sidewalk"
                 )
             except (ValueError, RuntimeError, IndexError) as exc:
-                if (surface_role or roughness_key) in {"carriageway", "sidewalk", "curb"}:
+                required_role = str(surface_role or roughness_key)
+                if required_role in {"carriageway", "sidewalk", "curb"} and not _partition_retry:
+                    # Long, narrow curb and sidewalk rings can retain a poor
+                    # diagonal even after constrained-Delaunay and earcut
+                    # repair. Partition the exact polygon into bounded cells
+                    # and triangulate those cells independently. Their union
+                    # is checked against the original surface by final QA, so
+                    # this fallback cannot silently remove paving.
+                    from shapely.geometry import box
+
+                    max_span_m = 12.0
+                    pending = [poly]
+                    partitions: List[Any] = []
+                    while pending:
+                        candidate = pending.pop()
+                        min_x, min_z, max_x, max_z = candidate.bounds
+                        span_x = float(max_x - min_x)
+                        span_z = float(max_z - min_z)
+                        if max(span_x, span_z) <= max_span_m or len(partitions) + len(pending) >= 4096:
+                            partitions.append(candidate)
+                            continue
+                        if span_x >= span_z:
+                            split_at = float((min_x + max_x) / 2.0)
+                            cells = (
+                                box(min_x, min_z, split_at, max_z),
+                                box(split_at, min_z, max_x, max_z),
+                            )
+                        else:
+                            split_at = float((min_z + max_z) / 2.0)
+                            cells = (
+                                box(min_x, min_z, max_x, split_at),
+                                box(min_x, split_at, max_x, max_z),
+                            )
+                        children = [
+                            _clean_scene_polygonal_geometry(candidate.intersection(cell))
+                            for cell in cells
+                        ]
+                        children = [
+                            child
+                            for child in children
+                            if not getattr(child, "is_empty", True)
+                            and float(getattr(child, "area", 0.0)) > 1e-8
+                        ]
+                        if len(children) < 2:
+                            partitions.append(candidate)
+                            continue
+                        pending.extend(children)
+                    if len(partitions) > 1:
+                        for partition_index, partition in enumerate(partitions):
+                            _extrude_polygon(
+                                partition,
+                                height,
+                                color,
+                                f"{name_prefix}_{idx}_partition_{partition_index}",
+                                y_offset=y_offset,
+                                roughness_key=roughness_key,
+                                surface_role=surface_role,
+                                horizontal_axes=horizontal_axes,
+                                top_only=top_only,
+                                _partition_retry=True,
+                            )
+                        continue
+                if required_role in {"carriageway", "sidewalk", "curb"}:
                     raise ValueError(
                         "Failed to triangulate required road surface "
-                        f"{name_prefix}_{idx} (role={surface_role or roughness_key})"
+                        f"{name_prefix}_{idx} (role={required_role})"
                     ) from exc
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
@@ -8611,8 +8675,8 @@ def _build_osm_base_scene(
                     curb_zone, sidewalk_top_y_m, curb_color, "curb",
                     y_offset=sidewalk_top_y_m, roughness_key="curb", surface_role="curb",
                 )
-        except Exception:
-            logger.debug("Skipping curb geometry in OSM base scene")
+        except Exception as exc:
+            raise ValueError("Required curb paving could not be rendered") from exc
 
     def _turn_lane_patch_surface_key(patch: Mapping[str, Any]) -> str:
         surface_role = str(patch.get("surface_role", "") or "carriageway").strip().lower()

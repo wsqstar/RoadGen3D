@@ -206,7 +206,8 @@ def _classify_error(result_status: str, status_response: dict[str, Any]) -> str:
         return "insufficient_osm_coverage"
     if "zero furniture" in error_text or "composition produced zero furniture" in error_text:
         return "zero_furniture"
-    summary = status_response.get("result", {}).get("summary", {})
+    result_payload = status_response.get("result")
+    summary = result_payload.get("summary", {}) if isinstance(result_payload, dict) else {}
     if isinstance(summary, dict):
         for key in ("total_furniture_count", "street_furniture_count", "furniture_count"):
             raw_value = summary.get(key)
