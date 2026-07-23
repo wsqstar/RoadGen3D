@@ -79,6 +79,10 @@ run_step() {
 } >"$RUN_DIR/environment.log" 2>&1
 
 run_step 01-api-health curl --fail --silent --show-error http://127.0.0.1:8010/api/health
+run_step 01b-validation-dependencies \
+  .venv/bin/python -m pip install \
+  --disable-pip-version-check \
+  -r ops/requirements-validation.txt
 run_step 02-viewer-migration-contract npm --prefix web/viewer run test:2d-to-3d-migration
 run_step 03-viewer-professional-pipeline npm --prefix web/viewer run test:professional-pipeline
 run_step 04-viewer-starter-contract npm --prefix web/viewer run test:starter-scene

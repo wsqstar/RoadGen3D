@@ -40,6 +40,9 @@
 6. Viewer 必须加载该次任务的 layout，不得回退到广州 starter 或任意 recent scene。
 7. 随机 OSM 批量测试必须记录 seed、bbox、配置、任务 ID、耗时、结果路径和错误分类。
 8. 编译、契约测试、后端主链测试、批量生成以及服务日志必须保存在同一远程验证目录。
+9. Trimesh 的生产制品路径依赖 `scipy`；它是几何运行依赖，不是 AI 模型依赖。
+10. `pytest` 不进入生产依赖集，仅由远程验证门禁通过
+    `ops/requirements-validation.txt` 安装。
 
 ## 远程验证
 
